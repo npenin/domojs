@@ -1,0 +1,24 @@
+{
+  "name": "zigate",
+  "version": "1.0.4",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "tsc -p src"
+  },
+  "author": "npenin",
+  "license": "MIT",
+  "dependencies": {
+    "@akala/core": "^1.0.48",
+    "@domojs/protocol-parser": "^1.0.1",
+    "@types/ws": "^4.0.1",
+    "debug": "^3.1.0",
+    "serialport": "^6.0.5"
+  },
+  "devDependencies": {
+    "@types/debug": "^0.0.30",
+    "@types/serialport": "^6.0.1"
+  }
+}
