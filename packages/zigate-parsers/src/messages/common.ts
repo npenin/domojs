@@ -126,7 +126,7 @@ export enum MessageType
     APSDataConfirmFail = 0x8702,
 }
 
-export var Protocol: CProtocol<Message> & { send?: (type: MessageType, message: any) => Buffer, receive?: (message: Message) => any } = new CProtocol<Message>([
+export var Protocol: CProtocol<Message> & { send?: (type: MessageType, message: any) => Buffer } = new CProtocol<Message>([
     { name: 'start', type: 'uint8' },
     { name: 'type', type: 'uint16' },
     { name: 'length', type: 'uint16' },
@@ -138,11 +138,6 @@ export var Protocol: CProtocol<Message> & { send?: (type: MessageType, message: 
 Protocol.send = function (this: CProtocol<Message>, type: MessageType, message)
 {
     return this.write({ start: 0x01, type: type, message: message, end: 0x03, length: 2, checksum: 0xff, rssi: 0 });
-}
-
-Protocol.receive = function (message: Message)
-{
-    return message.message;
 }
 
 export enum Cluster
