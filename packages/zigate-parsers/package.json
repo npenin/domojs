@@ -1,6 +1,6 @@
 {
   "name": "zigate",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,6 +15,7 @@
     "@domojs/protocol-parser": "^1.0.1",
     "@types/ws": "^4.0.1",
     "debug": "^3.1.0",
+    "np": "^2.20.1",
     "serialport": "^6.0.5"
   },
   "devDependencies": {
