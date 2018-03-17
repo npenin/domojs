@@ -6,32 +6,59 @@ import { Duplex } from 'stream';
 import { Queue, log as debug } from '@akala/core';
 
 import * as address from './messages/address';
+import './messages/address';
 import * as aps from './messages/aps';
+import './messages/aps';
 import * as attributes from './messages/attributes';
+import './messages/attributes';
 import * as bind from './messages/bind';
+import './messages/bind';
 import * as dataIndication from './messages/data-indication';
+import './messages/data-indication';
 import * as descriptors from './messages/descriptors';
+import './messages/descriptors';
 import * as devices from './messages/devices';
+import './messages/devices';
 import * as door from './messages/door';
+import './messages/door';
 import * as enablePermissionsControlJoin from './messages/enablePermissionsControlJoin';
+import './messages/enablePermissionsControlJoin';
 import * as gateway from './messages/gateway';
+import './messages/gateway';
 import * as group from './messages/group';
+import './messages/group';
 import * as hue from './messages/hue';
+import './messages/hue';
 import * as ias from './messages/ias';
+import './messages/ias';
 import * as identify from './messages/identify';
+import './messages/identify';
 import * as logs from './messages/log';
+import './messages/log';
 import * as managementLeave from './messages/managementLeave';
+import './messages/managementLeave';
 import * as move from './messages/move';
+import './messages/move';
 import * as network from './messages/network';
+import './messages/network';
 import * as onoff from './messages/onoff';
+import './messages/onoff';
 import * as outOfBandCommissionningData from './messages/outOfBandCommissionningData';
+import './messages/outOfBandCommissionningData';
 import * as permitjoin from './messages/permitjoin';
+import './messages/permitjoin';
 import * as scenes from './messages/scenes';
+import './messages/scenes';
 import * as status from './messages/status';
+import './messages/status';
 import * as temperature from './messages/temperature';
+import './messages/temperature';
 import * as touchlink from './messages/touchlink';
+import './messages/touchlink';
 import * as trigger from './messages/trigger';
+import './messages/trigger';
 import * as version from './messages/version';
+import './messages/version';
 
 const log = debug('zigate');
 
@@ -291,7 +318,7 @@ export class Zigate extends EventEmitter
             }
         }
         log('decoded buffer', buffer);
-        this.emit('message', Protocol.receive(Protocol.read(buffer)));
+        this.emit('message', Protocol.read(buffer));
         next(true);
     });
     public constructor(private wire: Duplex)
@@ -374,6 +401,8 @@ export class Zigate extends EventEmitter
                         return reject('multiple Prolific adapters found');
                     resolve(new Zigate(new serialport(ports[0].comName, { baudRate: 115200, dataBits: 8 })));
                 });
+            else
+                resolve(new Zigate(new serialport(path, { baudRate: 115200, dataBits: 8 })));
         })
     }
 
