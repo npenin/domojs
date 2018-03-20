@@ -59,7 +59,7 @@ import * as trigger from './messages/trigger';
 import './messages/trigger';
 import * as version from './messages/version';
 import './messages/version';
-
+export { Protocol, MessageType }
 const log = debug('zigate');
 
 export namespace MessageTypes
@@ -267,8 +267,6 @@ export namespace MessageTypes
     export type APSDataConfirmFail = aps.APSDataConfirmFail;
 }
 
-export { MessageType };
-
 export class Zigate extends EventEmitter
 {
     private static emptyBuffer = Buffer.allocUnsafe(0);
@@ -358,35 +356,7 @@ export class Zigate extends EventEmitter
 
     public send<T>(type: MessageType, message?: T)
     {
-        var buffer = Protocol.write({ start: 0x01, end: 0x03, checksum: 1, rssi: 0, type: type, length: 0, message: message });
-        buffer.writeInt16BE(buffer.length - 8, 3);
-        log('encoding buffer', buffer);
-
-        var checksum = 0x00;
-        checksum^=type;
-        checksum^=buffer.length-8;
-
-        for (let i = 6; i < buffer.length - 2; i++)
-        {
-            checksum ^= buffer[i];
-        }
-        
-        buffer[5] = checksum;
-        for (let index = 1; index < buffer.length - 1; index++)
-        {
-            if (buffer[index] < 0x10)
-            {
-                let newBuffer = Buffer.alloc(buffer.length + 1);
-                buffer.copy(newBuffer, 0, 0, index - 1);
-                newBuffer[index] = 0x02;
-                newBuffer[index + 1] = buffer[index] ^ 0x10;
-                buffer.copy(newBuffer, index + 2, index + 1);
-                index++;
-                buffer = newBuffer;
-            }
-        }
-        log('encoded buffer', buffer);
-        this.wire.write(buffer);
+        this.wire.write(Protocol.send(type, message));
     }
 
     public static getSerial(path?: string)
