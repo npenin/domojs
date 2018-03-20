@@ -1,6 +1,9 @@
 import { uint8, uint16, uint32, int8, int16, int32, float, double, Frame, FrameDescription, uint64, Protocol as CProtocol } from '@domojs/protocol-parser/dist/index';
 import { EventEmitter } from 'events';
 export { uint8, uint16, uint32, int8, int16, int32, float, double, uint64 }
+import { log as debug } from '@akala/core';
+const log = debug('zigate');
+
 export enum MessageType
 {
     GetVersion = 0x0010,
@@ -132,12 +135,40 @@ export var Protocol: CProtocol<Message> & { send?: (type: MessageType, message: 
     { name: 'length', type: 'uint16' },
     { name: 'checksum', type: 'uint8' },
     { name: 'message', type: 'subFrame', choose: { discriminator: 'type', subFrame: {} } },
-    { name: 'rssi', type: 'uint8' },
+    { name: 'rssi', type: 'uint8', optional: true },
     { name: 'end', type: 'uint8' }]);
 
 Protocol.send = function (this: CProtocol<Message>, type: MessageType, message)
 {
-    return this.write({ start: 0x01, type: type, message: message, end: 0x03, length: 2, checksum: 0xff, rssi: 0 });
+    var buffer = this.write({ start: 0x01, type: type, message: message, end: 0x03, length: 2, checksum: 1 });
+    buffer.writeInt16BE(buffer.length - 8, 3);
+    log('encoding buffer', buffer);
+
+    var checksum = 0x00;
+    checksum ^= type;
+    checksum ^= buffer.length - 8;
+
+    for (let i = 6; i < buffer.length - 2; i++)
+    {
+        checksum ^= buffer[i];
+    }
+
+    buffer[5] = checksum;
+    for (let index = 1; index < buffer.length - 1; index++)
+    {
+        if (buffer[index] < 0x10)
+        {
+            let newBuffer = Buffer.alloc(buffer.length + 1);
+            buffer.copy(newBuffer, 0, 0, index);
+            newBuffer[index] = 0x02;
+            newBuffer[index + 1] = buffer[index] ^ 0x10;
+            buffer.copy(newBuffer, index + 2, index + 1);
+            index++;
+            buffer = newBuffer;
+        }
+    }
+    log('encoded buffer', buffer);
+    return buffer;
 }
 
 export enum Cluster
@@ -181,7 +212,7 @@ export interface Message
     message: any;
     length: uint16;
     checksum: uint8;
-    rssi: uint8;
+    rssi?: uint8;
 }
 
 // export class Message
