@@ -1,7 +1,7 @@
 import * as debug from 'debug';
 debug.enable('zigate');
 import { Zigate } from '../index'
-import { MessageType, Protocol } from 'zigate';
+import { MessageType, Protocol } from '../';
 import { PassThrough } from 'stream';
 
 // var s = new PassThrough();
