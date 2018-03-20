@@ -5,7 +5,18 @@ import { Device } from 'zigate/src/messages/devices';
 import { Frame } from '@domojs/protocol-parser';
 
 Protocol.register<SetExtendedPanId>('type', MessageType.SetExtendedPanId, [{ name: 'panId', type: 'uint64' }]);
-Protocol.register<SetChannelMask>('type', MessageType.SetChannelMask, [{ name: 'mask', type: 'uint32' }]);
+Protocol.register<SetChannelMask>('type', MessageType.SetChannelMask, [{ name: 'mask', type: 'uint32' }], function (message)
+{
+    if (message.mask >= 11 || message.mask <= 26)
+    {
+        var mask = 1;
+        for (var i = 0; i < message.mask; i++)
+        {
+            mask <<= 1;
+        }
+        message.mask = mask;
+    }
+});
 Protocol.register<SetSecurityStateAndKey>('type', MessageType.SetSecurityStateAndKey, [{ name: 'keyType', type: 'uint8' }, { name: 'key', type: 'uint64' }]);
 Protocol.register<{ type: DeviceType }>('type', MessageType.SetDeviceType, [{ name: 'type', type: 'uint8' }]);
 Protocol.register<StatusMessage>('type', MessageType.Reset, []);
