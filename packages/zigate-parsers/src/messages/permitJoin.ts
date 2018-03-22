@@ -4,7 +4,7 @@ import { ShortAddressRequest } from './descriptors';
 
 Protocol.register('type', MessageType.PermitJoin, []);
 Protocol.register<PermitJoinResponse>('type', MessageType.PermitJoin | MessageType.Response, [{ name: 'status', type: 'uint8' }]);
-Protocol.register<PermitJoiningRequest>('type', MessageType.PermitJoining | MessageType.Response, [
+Protocol.register<PermitJoiningRequest>('type', MessageType.PermitJoining, [
     { name: 'targetShortAddress', type: 'uint16' },
     { name: 'interval', type: 'uint8' },
     { name: 'TCSignificance', type: 'uint8' },
