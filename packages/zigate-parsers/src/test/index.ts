@@ -1,5 +1,5 @@
 import * as debug from 'debug';
-debug.enable('zigate');
+debug.enable('zigate,domojs:protocol-parser');
 import { Zigate } from '../index'
 import { MessageType, Protocol } from '../';
 import { PassThrough } from 'stream';

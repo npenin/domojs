@@ -17,7 +17,7 @@ export interface ManagementLeave extends ShortAddressRequest
     keepChildren: boolean;
 }
 
-Protocol.register<LeaveIndicationResponse>('type', MessageType.ManagementLeave | MessageType.Response, [
+Protocol.register<LeaveIndicationResponse>('type', MessageType.LeaveIndication, [
     { name: 'extendedAddress', type: 'uint64' },
     { name: 'rejoinStatus', type: 'uint8' },
 ])
