@@ -31,8 +31,8 @@
     ws "^3.0.0"
 
 "@domojs/protocol-parser@^1.0.1":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@domojs/protocol-parser/-/protocol-parser-1.1.2.tgz#ddb014c97a7b874f03cc2528c13e71cedef9dfdd"
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@domojs/protocol-parser/-/protocol-parser-1.1.6.tgz#e1ced466f4d207257ac0339dc26f62fec2b7111b"
   dependencies:
     "@types/debug" "^0.0.30"
     debug "^3.1.0"
@@ -72,12 +72,12 @@
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.0.tgz#5a7306e367c539b9f6543499de8dd519fac37a8b"
 
 "@types/node@*":
-  version "9.4.7"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.7.tgz#57d81cd98719df2c9de118f2d5f3b1120dcd7275"
+  version "9.6.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.0.tgz#d3480ee666df9784b1001a1872a2f6ccefb6c2d7"
 
 "@types/node@^7.0.42":
-  version "7.0.56"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.56.tgz#b6b659049191822be43c14610c1785d4b9cddecf"
+  version "7.0.57"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.57.tgz#eed149b2c75cdbd7b9823c3fd64ecddbdc68ed9c"
 
 "@types/orchestrator@0.0.30":
   version "0.0.30"
@@ -1102,8 +1102,8 @@ is-path-cwd@^1.0.0:
   resolved "https://registry.yarnpkg.com/is-path-cwd/-/is-path-cwd-1.0.0.tgz#d225ec23132e89edd38fda767472e62e65f1106d"
 
 is-path-in-cwd@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/is-path-in-cwd/-/is-path-in-cwd-1.0.0.tgz#6477582b8214d602346094567003be8a9eac04dc"
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/is-path-in-cwd/-/is-path-in-cwd-1.0.1.tgz#5ac48b345ef675339bd6c7a48a912110b241cf52"
   dependencies:
     is-path-inside "^1.0.0"
 

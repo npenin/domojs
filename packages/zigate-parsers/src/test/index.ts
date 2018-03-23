@@ -20,4 +20,6 @@ import { PassThrough } from 'stream';
 //     zigate.send(MessageType.GetVersion);
 // });
 
-console.log(Protocol.send(MessageType.SetChannelMask, { mask: 11 }));
+// console.log(Protocol.send(MessageType.SetChannelMask, { mask: 11 }));
+
+console.log(JSON.stringify(Protocol.read(new Buffer([0x01, 0x81, 0x02, 0x00, 0x0f, 0xf7, 0x27, 0x38, 0x44, 0x01, 0x04, 0x03, 0x00, 0x10, 0x00, 0x29, 0x00, 0x02, 0x26, 0xa7, 0x9c, 0x03]))));
