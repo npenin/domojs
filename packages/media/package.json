@@ -1,0 +1,18 @@
+{
+  "name": "@domojs/media",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/server/index.ts",
+  "types": "dist/server/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "tsc -p src"
+  },
+  "author": "npenin",
+  "license": "MIT",
+  "dependencies": {
+    "@akala/server": "^1.0.87",
+    "@types/request": "^2.47.0",
+    "@types/ws": "^4.0.2"
+  }
+}
