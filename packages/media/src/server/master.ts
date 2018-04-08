@@ -1,6 +1,6 @@
 import * as akala from '@akala/server';
 import { meta } from './scrapper';
-import { MediaTypes, MediaType, Media } from '../metadata';
+import { MediaTypes, MediaType, Media } from '../../metadata';
 import { Connection } from '@akala/json-rpc-ws';
 
 var scrappers: { [key: string]: { connection: Connection, priority: number }[] } = {}
