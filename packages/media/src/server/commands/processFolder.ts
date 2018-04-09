@@ -1,6 +1,8 @@
 import * as akala from '@akala/server';
 import * as fs from 'fs';
-import * as p from 'path'
+import * as p from 'path';
+import * as utils from 'util';
+
 const debug = akala.log('domojs:media');
 
 var folderMapping: { [key: string]: string } = {};
@@ -40,44 +42,35 @@ export function processFolder(folder, extension, lastIndex)
 {
     return new Promise(function (resolve, reject)
     {
-        fs.readdir(translatePath(folder), function (err, files)
+        utils.promisify(fs.readdir)(translatePath(folder)).then(function (files)
         {
             var result = [];
-            if (err)
+            return akala.eachAsync(files, function (file, index, next)
             {
-                console.log(err);
-                reject(err);
-            }
-            else
-                akala.eachAsync(files, function (file, index, next)
+                if (file == '$RECYCLE.BIN' || file == '.recycle')
+                    return next();
+                file = folder + '/' + file;
+                fs.stat(translatePath(file), function (err, stat)
                 {
-                    if (file == '$RECYCLE.BIN' || file == '.recycle')
-                        return next();
-                    file = folder + '/' + file;
-                    fs.stat(translatePath(file), function (err, stat)
+                    if (err)
                     {
-                        if (err)
+                        debug(err);
+                        next();
+                    }
+                    else if (stat.isDirectory())
+                        processFolder(file, extension, lastIndex).then(function (results)
                         {
-                            debug(err);
+                            result = result.concat(results);
                             next();
-                        }
-                        else if (stat.isDirectory())
-                            processFolder(file, extension, lastIndex).then(function (results)
-                            {
-                                result = result.concat(results);
-                                next();
-                            });
-                        else
-                        {
-                            if (extension.test(file) && stat.mtime > lastIndex)
-                                result.push(file);
-                            next();
-                        }
-                    });
-                }, function ()
+                        });
+                    else
                     {
-                        resolve(result);
-                    });
+                        if (extension.test(file) && stat.mtime > lastIndex)
+                            result.push(file);
+                        next();
+                    }
+                });
+            }).then(() => { return result; });
         });
     })
 }

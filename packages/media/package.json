@@ -2,7 +2,7 @@
   "name": "@domojs/media",
   "version": "1.0.2",
   "description": "",
-  "main": "dist/server/index.ts",
+  "main": "dist/server/index.js",
   "types": "dist/server/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
@@ -11,7 +11,7 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "@akala/server": "^1.0.87",
+    "@akala/server": "^1.0.89",
     "@types/request": "^2.47.0",
     "@types/ws": "^4.0.2"
   }
