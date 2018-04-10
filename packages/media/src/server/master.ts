@@ -18,27 +18,17 @@ akala.injectWithName(['$router'], function (router: akala.HttpRouter)
                     break;
             }
             scrappers[scrapper.type].splice(index, 0, { connection: connection, priority: scrapper.priority });
-
         },
         scrap: function (media)
         {
-            return new Promise<Media>((resolve, reject) =>
+            return akala.eachAsync(scrappers[media.type], (scrapper, i, next) =>
             {
-                akala.eachAsync(scrappers[media.type], (scrapper, i, next) =>
+                this.$proxy(scrapper.connection).scrap(media).then((m) =>
                 {
-                    this.$proxy(scrapper.connection).scrap(media).then((m) =>
-                    {
-                        media = m;
-                        next();
-                    }, next);
-                }, function (err)
-                    {
-                        if (err)
-                            reject(err);
-                        else
-                            resolve(media);
-                    });
-            })
+                    media = m;
+                    next();
+                }, next);
+            }).then(() => { return media; });
         }
-    })
+    });
 })();
