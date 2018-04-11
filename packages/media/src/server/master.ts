@@ -10,7 +10,7 @@ akala.injectWithName(['$router'], function (router: akala.HttpRouter)
     akala.createServerFromMeta(meta)(router, '/media', {
         register: function (scrapper, connection)
         {
-            if (scrapper.type in scrappers)
+            if (!(scrapper.type in scrappers))
                 scrappers[scrapper.type] = [];
             for (var index = 0; index < scrappers[scrapper.type].length; index++)
             {
