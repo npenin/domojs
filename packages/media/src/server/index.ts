@@ -4,7 +4,7 @@ export { meta as scrapper } from './scrapper';
 export * from '../../metadata';
 
 
-akala.injectWithName(['$isModule', '$master', '$module'], function (isModule: akala.worker.IsModule, master: akala.worker.MasterRegistration, worker: EventEmitter)
+akala.injectWithName(['$isModule', '$master', '$worker'], function (isModule: akala.worker.IsModule, master: akala.worker.MasterRegistration, worker: EventEmitter)
 {
     if (isModule('@domojs/media'))
     {
