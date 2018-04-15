@@ -1,3 +1,5 @@
+export as namespace media;
+
 export type Media = Music | TVShow | Movie;
 
 export interface BaseMedia
@@ -10,13 +12,17 @@ export interface BaseMedia
     length?: Date;
     displayName?: string;
     cover?: string;
+    collection?: string;
+    collections?: string[];
 }
 
 export interface Music extends BaseMedia
 {
     type: 'music';
+    artist: string;
     artists?: string[];
     album?: string;
+    trackNo: number;
 }
 
 export interface Video extends BaseMedia
@@ -30,7 +36,7 @@ export interface Video extends BaseMedia
 
 export interface TVShow extends Video
 {
-    subType: 'tvshow';
+    subType?: 'tvshow';
     episode?: number;
     season?: number;
     episodes?: number;
@@ -39,7 +45,7 @@ export interface TVShow extends Video
 
 export interface Movie extends Video
 {
-    subType: 'movie';
+    subType?: 'movie';
     episode?: number;
 }
 

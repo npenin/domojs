@@ -12,6 +12,7 @@ akala.injectWithName(['$isModule', '$master', '$worker'], function (isModule: ak
         worker.on('ready', function ()
         {
             require("./fileNameScrapper");
+            require("./tokenizer");
         })
     }
 })();

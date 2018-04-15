@@ -1,0 +1,13 @@
+En cours
+
+<div class="block" data-bind="{each:'tile in list', click:tileClick, part:tile.part}">
+    <i class="fa-3x" data-bind="{class:['fa', tile.icon] }"></i><br />
+    <span class="text" data-bind="{text:tile.text||tile.name}"></span>
+</div>
+
+Non vues
+
+<div class="block" data-bind="{each:'tile in list', click:tileClick, part:tile.part}">
+    <i class="fa-3x" data-bind="{class:['fa', tile.icon] }"></i><br />
+    <span class="text" data-bind="{text:tile.text||tile.name}"></span>
+</div>
