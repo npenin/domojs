@@ -11,8 +11,15 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
+    "@akala/client": "^1.0.75",
     "@akala/server": "^1.0.89",
+    "@domojs/db": "^1.0.1",
+    "@domojs/theme-default": "^1.0.37",
+    "@types/ioredis": "^3.2.7",
+    "@types/jquery": "^3.3.1",
+    "@types/redis": "^2.8.6",
     "@types/request": "^2.47.0",
-    "@types/ws": "^4.0.2"
+    "@types/ws": "^4.0.2",
+    "ioredis": "^3.2.2"
   }
 }
