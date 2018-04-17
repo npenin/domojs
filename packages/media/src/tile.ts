@@ -4,11 +4,11 @@
 
 tiles.add({
     text: 'Musique',
-    icon: 'fab fa-music',
+    icon: 'fas fal fa-music',
     url: '/media/music'
 });
 tiles.add({
     text: 'Videos',
-    icon: 'fab fa-video',
+    icon: 'fas fal fa-video',
     url: '/media/video'
 });
