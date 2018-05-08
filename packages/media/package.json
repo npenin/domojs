@@ -13,7 +13,7 @@
   "dependencies": {
     "@akala-modules/core": "^1.0.27",
     "@akala/client": "^1.0.75",
-    "@akala/server": "^1.0.89",
+    "@akala/server": "^2.0.1-1",
     "@domojs/db": "^1.1.0",
     "@domojs/theme-default": "^1.0.37",
     "@types/ioredis": "^3.2.7",

@@ -253,7 +253,7 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
                 var trueResult = {};
                 akala.worker.createClient('media').then(function (client)
                 {
-                    var scrapperClient = scrapper.createServerProxy(client);
+                    var scrapperClient = akala.api.jsonrpcws(scrapper).createServerProxy(client);
                     akala.eachAsync(result, function (path)
                     {
                         return scrapperClient.scrap(<any>{ path: path, type: type, id: null }).then(function (item)

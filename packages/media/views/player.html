@@ -1,0 +1,95 @@
+<style>
+    body>.fullheight {
+        flex: 1;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+
+    #content {
+        flex: 1;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    .player {
+        align-content: center;
+        display: flex;
+        flex-direction: column;
+        background-color: #222;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: auto;
+        color: #ddd;
+    }
+
+    .player a {
+        color: #ddd;
+    }
+
+    .player .cover {
+        display: flex;
+        align-content: center;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-shrink: 0;
+        justify-content: space-around;
+        width: auto;
+    }
+
+    .player .cover .picture {
+        border: 1px solid #ddd;
+        margin: auto;
+        background-size: contain;
+    }
+
+    .player .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        font-size: 5em;
+        flex-grow: 1;
+        flex-shrink: 0;
+        width: auto;
+        text-align: center;
+    }
+
+    .player .navbar a:hover {
+        color: #1BA1E2;
+    }
+
+    .player .navbar a {
+        color: #ddd;
+    }
+</style>
+
+<div class="player d-flex">
+    <div class="playing d-flex flex-column flex-md-row flex-fill">
+        <div class="col-md-7 cover d-flex flex-md-column">
+            <div class="picture flex-fill col-md-8"></div>
+        </div>
+        <div class="col-md-5 info">
+            <div class="name">Scorpion</div>
+            <div class="season">Saison&nbsp;4</div>
+            <div class="episode">Episode&nbsp;6</div>
+        </div>
+    </div>
+    <div class="d-flex navbar inverse">
+        <a class="fas fal fa-play-circle fa-2x"></a>
+        <a class="fas fal fa-pause-circle fa-2x"></a>
+        <a class="fas fal fa-random fa-2x"></a>
+        <a class="fas fal fa-repeat fa-2x"></a>
+        <a class="fas fal fa-repeat-1 fa-2x"></a>
+        <a class="fas fal fa-step-backward fa-2x"></a>
+        <a class="fas fal fa-step-forward fa-2x"></a>
+        <a class="fas fal fa-stop-circle fa-2x"></a>
+        <a class="fas fal fa-volume-off fa-2x"></a>
+        <a class="fas fal fa-volume-down fa-2x"></a>
+        <a class="fas fal fa-volume-up fa-2x"></a>
+        <a class="fas fal fa-volume-mute fa-2x"></a>
+        <a class="fas fal fa-headphones fa-2x"></a>
+        <a class="fa-stack">
+            <i class="fas fal fa-bars fa-stack-2x"></i>
+            <i class="fas fa-play fa-stack-1x"></i>
+        </a>
+    </div>
+</div>

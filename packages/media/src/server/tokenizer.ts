@@ -4,7 +4,7 @@ import * as path from 'path'
 
 akala.worker.createClient('media').then((client) =>
 {
-    var s = scrapper.createClient(client)({
+    var s = akala.api.jsonrpcws( scrapper).createClient(client)({
         scrap: function (media)
         {
             switch (media.type)
