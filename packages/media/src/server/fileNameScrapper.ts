@@ -51,7 +51,7 @@ function fileNameCleaner(fileName: string, extension?: RegExp)
 
 akala.worker.createClient('media').then((client) =>
 {
-    var s = scrapper.createClient(client)({
+    var s = akala.api.jsonrpcws(scrapper).createClient(client)({
         scrap: function (media)
         {
             var fileName = path.basename(media.path);
@@ -71,7 +71,7 @@ akala.worker.createClient('media').then((client) =>
     var episodeNumber = /(?:\.E(?:p(?:isode)?)?|Part|Chapitre)\.?([0-9]+)/i;
     var seasonNumber = /(?:\.S(?:aison)?)([0-9]+)/i;
     var name = /(([A-Z!][A-Z!0-9]*|[A-Z!0-9]*[A-Z!])+(\.|$))+/i;
-    var s = scrapper.createClient(client)({
+    var s = akala.api.jsonrpcws(scrapper).createClient(client)({
         scrap: function (media: TVShow | Movie)
         {
             var seasonMatch = seasonNumber.exec(media.name);

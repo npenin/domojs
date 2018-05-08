@@ -8,7 +8,7 @@ var scrappers: { [key: string]: { connection: Connection, priority: number }[] }
 
 akala.injectWithName(['$router'], function (router: akala.HttpRouter)
 {
-    akala.createServerFromMeta(meta)(router, '/media', {
+    akala.api.jsonrpcws(meta).createServer('/media', {
         register: function (scrapper, connection: Connection)
         {
             if (!(scrapper.type in scrappers))
