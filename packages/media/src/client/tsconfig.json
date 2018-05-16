@@ -3,10 +3,10 @@
     "compilerOptions": {
         "experimentalDecorators": true,
         "rootDir": ".",
-        "outDir": "../dist",
+        "outDir": "../../dist/client",
         "target": "es6",
         "module": "commonjs",
         "moduleResolution": "node",
-        "declaration": true
+        "declaration": true,
     }
 }

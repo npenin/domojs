@@ -21,7 +21,18 @@
     send "^0.16.1"
     uuid "^3.2.1"
 
-"@akala/client@^1.0.10", "@akala/client@^1.0.75", "@akala/client@^1.0.9":
+"@akala/cli@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@akala/cli/-/cli-0.0.1.tgz#c907ef4fbdba1b1d27c00781a8ce9832fece67d7"
+  dependencies:
+    "@akala/core" "^2.0.0-13"
+    "@types/commander" "^2.12.2"
+    "@types/debug" "^0.0.30"
+    "@types/node" "^10.0.6"
+    "@types/ws" "^5.1.1"
+    commander "^2.15.1"
+
+"@akala/client@^1.0.10", "@akala/client@^1.0.9":
   version "1.0.75"
   resolved "https://registry.yarnpkg.com/@akala/client/-/client-1.0.75.tgz#66914fd0522486bfcff08d4890caa59787cd52bf"
   dependencies:
@@ -33,6 +44,22 @@
     content-type "^1.0.4"
     mime "^2.1.0"
     orchestrator "^0.3.8"
+  optionalDependencies:
+    showdown "^1.8.6"
+
+"@akala/client@^2.0.0-3":
+  version "2.0.0-3"
+  resolved "https://registry.yarnpkg.com/@akala/client/-/client-2.0.0-3.tgz#3f4e3824e0285c472885087b90e7ab9eeffab016"
+  dependencies:
+    "@akala/core" "^2.0.0-5"
+    "@akala/json-rpc-ws" "^4.1.21"
+    "@types/content-type" "^1.1.2"
+    "@types/mime" "^2.0.0"
+    "@types/q" "^1.0.6"
+    content-type "^1.0.4"
+    mime "^2.1.0"
+    orchestrator "^0.3.8"
+    popper.js "^1.14.3"
   optionalDependencies:
     showdown "^1.8.6"
 
@@ -56,14 +83,49 @@
     utils-merge "^1.0.0"
     ws "^5.0.0"
 
-"@akala/core@^2.0.0-1":
-  version "2.0.0-7"
-  resolved "https://registry.yarnpkg.com/@akala/core/-/core-2.0.0-7.tgz#2f0b27fe119a8d8c48d0530eaba4caba1fd3f969"
+"@akala/core@^2.0.0-13":
+  version "2.0.0-13"
+  resolved "https://registry.yarnpkg.com/@akala/core/-/core-2.0.0-13.tgz#d49eaec6fe486c870e6da097702d5863c9d1ed7b"
   dependencies:
     "@akala/json-rpc-ws" "^4.1.10"
-    "@types/express" "^4.0.36"
-    "@types/node" "^7.0.42"
-    "@types/orchestrator" "0.0.30"
+    array-flatten "^2.1.1"
+    browser-process-hrtime "^0.1.2"
+    bufferutil "^3.0.2"
+    debug "^2.6.8"
+    es6-promise "^4.2.4"
+    isomorphic-fetch "^2.2.1"
+    orchestrator "^0.3.8"
+    parseurl "^1.3.1"
+    path-to-regexp "^1.7.0"
+    routington "^1.0.3"
+    utf-8-validate "^3.0.3"
+    utils-merge "^1.0.0"
+    ws "^5.0.0"
+
+"@akala/core@^2.0.0-14":
+  version "2.0.0-14"
+  resolved "https://registry.yarnpkg.com/@akala/core/-/core-2.0.0-14.tgz#cd07cc2a4b62016948d1fc2ae025fb9e5e658a99"
+  dependencies:
+    "@akala/json-rpc-ws" "^4.1.10"
+    array-flatten "^2.1.1"
+    browser-process-hrtime "^0.1.2"
+    bufferutil "^3.0.2"
+    debug "^2.6.8"
+    es6-promise "^4.2.4"
+    isomorphic-fetch "^2.2.1"
+    orchestrator "^0.3.8"
+    parseurl "^1.3.1"
+    path-to-regexp "^1.7.0"
+    routington "^1.0.3"
+    utf-8-validate "^3.0.3"
+    utils-merge "^1.0.0"
+    ws "^5.0.0"
+
+"@akala/core@^2.0.0-5", "@akala/core@^2.0.0-9":
+  version "2.0.0-9"
+  resolved "https://registry.yarnpkg.com/@akala/core/-/core-2.0.0-9.tgz#2e1ff7d02b36ad7df2e26be880a7bffb6a916048"
+  dependencies:
+    "@akala/json-rpc-ws" "^4.1.10"
     array-flatten "^2.1.1"
     browser-process-hrtime "^0.1.2"
     bufferutil "^3.0.2"
@@ -107,18 +169,17 @@
     ws "^3.3.2"
     xml2js "^0.4.19"
 
-"@akala/server@^2.0.1-1":
-  version "2.0.1-1"
-  resolved "https://registry.yarnpkg.com/@akala/server/-/server-2.0.1-1.tgz#1d84ef9077cec1c5831d3edefb8e56290e40e6c5"
+"@akala/server@^2.0.1-7":
+  version "2.0.1-7"
+  resolved "https://registry.yarnpkg.com/@akala/server/-/server-2.0.1-7.tgz#28d7b07b4caf8a031bff7757b593e1ab2e3c42be"
   dependencies:
-    "@akala/core" "^2.0.0-1"
+    "@akala/core" "^2.0.0-14"
     "@akala/json-rpc-ws" "^4.1.23"
     body-parser "^1.18.2"
     debug "^3.1.0"
     express "^4.16.2"
     on-finished "^2.3.0"
     orchestrator "^0.3.8"
-    request "^2.83.0"
     routington "^1.0.3"
     send "^0.16.1"
     sequencify "0.0.7"
@@ -176,9 +237,19 @@
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/@types/caseless/-/caseless-0.12.1.tgz#9794c69c8385d0192acc471a540d1f8e0d16218a"
 
+"@types/commander@^2.12.2":
+  version "2.12.2"
+  resolved "https://registry.yarnpkg.com/@types/commander/-/commander-2.12.2.tgz#183041a23842d4281478fa5d23c5ca78e6fd08ae"
+  dependencies:
+    commander "*"
+
 "@types/content-type@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@types/content-type/-/content-type-1.1.2.tgz#bff0a1b7aa5bd48516c8ed7a6efefb1e85813245"
+
+"@types/debug@^0.0.30":
+  version "0.0.30"
+  resolved "https://registry.yarnpkg.com/@types/debug/-/debug-0.0.30.tgz#dc1e40f7af3b9c815013a7860e6252f6352a84df"
 
 "@types/events@*":
   version "1.2.0"
@@ -224,6 +295,10 @@
   version "9.6.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.5.tgz#ee700810fdf49ac1c399fc5980b7559b3e5a381d"
 
+"@types/node@^10.0.6":
+  version "10.0.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.0.8.tgz#37b4d91d4e958e4c2ba0be2b86e7ed4ff19b0858"
+
 "@types/node@^7.0.42":
   version "7.0.61"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.61.tgz#0efdb25adfc21f659a9900aabd7924427c0a3317"
@@ -268,6 +343,13 @@
 "@types/ws@^4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@types/ws/-/ws-4.0.2.tgz#b29037627dd7ba31ec49a4f1584840422efb856f"
+  dependencies:
+    "@types/events" "*"
+    "@types/node" "*"
+
+"@types/ws@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@types/ws/-/ws-5.1.1.tgz#4adc1f1a5e92e7e0e95658fb35c7eab1bc52f4ac"
   dependencies:
     "@types/events" "*"
     "@types/node" "*"
@@ -891,6 +973,10 @@ combined-stream@1.0.6, combined-stream@^1.0.5, combined-stream@~1.0.5:
   resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.6.tgz#723e7df6e801ac5613113a7e445a9b69cb632818"
   dependencies:
     delayed-stream "~1.0.0"
+
+commander@*, commander@^2.15.1:
+  version "2.15.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.15.1.tgz#df46e867d0fc2aec66a34662b406a9ccafff5b0f"
 
 component-bind@1.0.0:
   version "1.0.0"
@@ -3485,6 +3571,10 @@ pinkie-promise@^2.0.0:
 pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
+
+popper.js@^1.14.3:
+  version "1.14.3"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.14.3.tgz#1438f98d046acf7b4d78cd502bf418ac64d4f095"
 
 prebuild-install@~2.3.0:
   version "2.3.0"

@@ -1,5 +1,8 @@
 ///<reference types="@akala/client" />
-///<reference path="../metadata" />
+///<reference path="../../metadata.d.ts" />
+
+import './mediaApi';
+import * as akala from '@akala/client';
 
 interface Collection extends akala.IScope<Collection>
 {

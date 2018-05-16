@@ -1,0 +1,2882 @@
+{ '$injector': undefined,
+  '$httpFactory': [Function],
+  '$http': [Getter],
+  '#http': HttpFormatterFactory {},
+  '#not': [Function: negate],
+  '#bool': [Function: booleanize],
+  '#date': DateFormatter {} }
+{ '$injector': undefined,
+  '$httpFactory': [Function],
+  '$http': [Getter],
+  '#http': HttpFormatterFactory {},
+  '#not': [Function: negate],
+  '#bool': [Function: booleanize],
+  '#date': DateFormatter {} }
+{ '$injector': undefined,
+  '$httpFactory': [Function],
+  '$http': [Getter],
+  '#http': HttpFormatterFactory {},
+  '#not': [Function: negate],
+  '#bool': [Function: booleanize],
+  '#date': DateFormatter {} }
+{ '$injector': undefined,
+  '$httpFactory': [Function],
+  '$http': [Getter],
+  '#http': HttpFormatterFactory {},
+  '#not': [Function: negate],
+  '#bool': [Function: booleanize],
+  '#date': DateFormatter {} }
+{ '$injector': undefined,
+  '$httpFactory': [Function],
+  '$http': [Getter],
+  '#http': HttpFormatterFactory {},
+  '#not': [Function: negate],
+  '#bool': [Function: booleanize],
+  '#date': DateFormatter {} }
+{ '$injector': undefined,
+  '$httpFactory': [Function],
+  '$http': [Getter],
+  '#http': HttpFormatterFactory {},
+  '#not': [Function: negate],
+  '#bool': [Function: booleanize],
+  '#date': DateFormatter {} }
+{ '$injector': undefined,
+  '$httpFactory': [Function],
+  '$http': [Getter],
+  '#http': HttpFormatterFactory {},
+  '#not': [Function: negate],
+  '#bool': [Function: booleanize],
+  '#date': DateFormatter {} }
+{ '$injector': undefined,
+  '$httpFactory': [Function],
+  '$http': [Getter],
+  '#http': HttpFormatterFactory {},
+  '#not': [Function: negate],
+  '#bool': [Function: booleanize],
+  '#date': DateFormatter {} }
+{ '$injector': undefined,
+  '$httpFactory': [Function],
+  '$http': [Getter],
+  '#http': HttpFormatterFactory {},
+  '#not': [Function: negate],
+  '#bool': [Function: booleanize],
+  '#date': DateFormatter {} }
+{ '$injector': undefined,
+  '$httpFactory': [Function],
+  '$http': [Getter],
+  '#http': HttpFormatterFactory {},
+  '#not': [Function: negate],
+  '#bool': [Function: booleanize],
+  '#date': DateFormatter {} }
+{ '$injector': undefined,
+  '$httpFactory': [Function],
+  '$http': [Getter],
+  '#http': HttpFormatterFactory {},
+  '#not': [Function: negate],
+  '#bool': [Function: booleanize],
+  '#date': DateFormatter {} }
+{ '$injector': undefined,
+  '$httpFactory': [Function],
+  '$http': [Getter],
+  '#http': HttpFormatterFactory {},
+  '#not': [Function: negate],
+  '#bool': [Function: booleanize],
+  '#date': DateFormatter {} }
+{ '$injector': undefined,
+  '$httpFactory': [Function],
+  '$http': [Getter],
+  '#http': HttpFormatterFactory {},
+  '#not': [Function: negate],
+  '#bool': [Function: booleanize],
+  '#date': DateFormatter {} }
+{ '$injector': undefined,
+  '$httpFactory': [Function],
+  '$http': [Getter],
+  '#http': HttpFormatterFactory {},
+  '#not': [Function: negate],
+  '#bool': [Function: booleanize],
+  '#date': DateFormatter {} }
+{ 'C:\\Dev\\akala\\cli\\dist\\index.js': 
+   Module {
+     id: '.',
+     exports: { default: [CliRouter] },
+     parent: null,
+     filename: 'C:\\Dev\\akala\\cli\\dist\\index.js',
+     loaded: true,
+     children: 
+      [ [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\dist\\router\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\dist\\router\\index.js',
+     exports: { default: [CliRouter] },
+     parent: 
+      Module {
+        id: '.',
+        exports: [Object],
+        parent: null,
+        filename: 'C:\\Dev\\akala\\cli\\dist\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\dist\\router\\index.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\dist\\router\\node_modules',
+        'C:\\Dev\\akala\\cli\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+     exports: undefined,
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\dist\\router\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\dist\\router\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+     loaded: true,
+     children: 
+      [ [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\injector.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\injector.js',
+     exports: undefined,
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        exports: undefined,
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\injector.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\reflect.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\reflect.js',
+     exports: 
+      { getParamNames: [Function: getParamNames],
+        escapeRegExp: [Function: escapeRegExp] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\injector.js',
+        exports: undefined,
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\injector.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\reflect.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\index.js',
+     exports: 
+      { [Function: createDebug]
+        default: [Circular],
+        debug: [Circular],
+        coerce: [Function: coerce],
+        disable: [Function: disable],
+        enable: [Function: enable],
+        enabled: [Function: enabled],
+        humanize: [Function],
+        names: [],
+        skips: [],
+        formatters: [Object],
+        init: [Function: init],
+        log: [Function: log],
+        formatArgs: [Function: formatArgs],
+        save: [Function: save],
+        load: [Function: load],
+        useColors: [Function: useColors],
+        colors: [Array],
+        inspectOpts: {} },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\injector.js',
+        exports: undefined,
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\injector.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\index.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\debug\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\node.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\node.js',
+     exports: 
+      { [Function: createDebug]
+        default: [Circular],
+        debug: [Circular],
+        coerce: [Function: coerce],
+        disable: [Function: disable],
+        enable: [Function: enable],
+        enabled: [Function: enabled],
+        humanize: [Function],
+        names: [],
+        skips: [],
+        formatters: [Object],
+        init: [Function: init],
+        log: [Function: log],
+        formatArgs: [Function: formatArgs],
+        save: [Function: save],
+        load: [Function: load],
+        useColors: [Function: useColors],
+        colors: [Array],
+        inspectOpts: {} },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\index.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\node.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\debug\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\debug.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\debug.js',
+     exports: 
+      { [Function: createDebug]
+        default: [Circular],
+        debug: [Circular],
+        coerce: [Function: coerce],
+        disable: [Function: disable],
+        enable: [Function: enable],
+        enabled: [Function: enabled],
+        humanize: [Function],
+        names: [],
+        skips: [],
+        formatters: [Object],
+        init: [Function: init],
+        log: [Function: log],
+        formatArgs: [Function: formatArgs],
+        save: [Function: save],
+        load: [Function: load],
+        useColors: [Function: useColors],
+        colors: [Array],
+        inspectOpts: {} },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\node.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\node.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\debug.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\debug\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\ms\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\ms\\index.js',
+     exports: [Function],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\debug.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\debug\\src\\debug.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\ms\\index.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\ms\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\promiseHelpers.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\promiseHelpers.js',
+     exports: 
+      { Promisify: [Function: Promisify],
+        isPromiseLike: [Function: isPromiseLike],
+        when: [Function: when],
+        whenOrTimeout: [Function: whenOrTimeout],
+        PromiseStatus: [Object] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\injector.js',
+        exports: undefined,
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\injector.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\promiseHelpers.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\es6-promise\\dist\\es6-promise.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\es6-promise\\dist\\es6-promise.js',
+     exports: 
+      { [Function: Promise]
+        all: [Function: all],
+        race: [Function: race],
+        resolve: [Function: resolve$1],
+        reject: [Function: reject$1],
+        _setScheduler: [Function: setScheduler],
+        _setAsap: [Function: setAsap],
+        _asap: [Function: asap],
+        polyfill: [Function: polyfill],
+        Promise: [Circular] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\promiseHelpers.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\promiseHelpers.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\es6-promise\\dist\\es6-promise.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\es6-promise\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\es6-promise\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\factory.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\factory.js',
+     exports: { factory: [Function: factory] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        exports: undefined,
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\factory.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\http.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\http.js',
+     exports: 
+      { FetchHttp: [Function: FetchHttp],
+        HttpFormatterFactory: [Function: HttpFormatterFactory] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        exports: undefined,
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\http.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\each.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\each.js',
+     exports: 
+      { array: [Function: array],
+        object: [Function: object],
+        each: [Function: each],
+        grepArray: [Function: grepArray],
+        grepObject: [Function: grepObject],
+        grep: [Function: grep],
+        mapArray: [Function: mapArray],
+        mapObject: [Function: mapObject],
+        map: [Function: map] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\http.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\http.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\each.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\helpers.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\helpers.js',
+     exports: 
+      { Promisify: [Function: Promisify],
+        isPromiseLike: [Function: isPromiseLike],
+        when: [Function: when],
+        whenOrTimeout: [Function: whenOrTimeout],
+        PromiseStatus: [Object],
+        eachAsync: [Function: each],
+        each: [Function: each],
+        grep: [Function: grep],
+        Layer: [Function: Layer],
+        Route: [Function: Route],
+        Router: [Function: Router],
+        Router1: [Function: Router1],
+        Router2: [Function: Router2],
+        log: [Function],
+        noop: [Function: noop],
+        extend: [Function: extend],
+        module: [Function: module] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\http.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\http.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\helpers.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\module.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\module.js',
+     exports: { Module: [Function] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\helpers.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\helpers.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\module.js',
+     loaded: true,
+     children: [ [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\index.js',
+     exports: { [Function: Orchestrator] super_: [Function] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\module.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\module.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\index.js',
+     loaded: true,
+     children: [ [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\lib\\runTask.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\lib\\runTask.js',
+     exports: [Function],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\index.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\lib\\runTask.js',
+     loaded: true,
+     children: [ [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\node_modules\\end-of-stream\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\node_modules\\end-of-stream\\index.js',
+     exports: [Function: eos],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\lib\\runTask.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\lib\\runTask.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\node_modules\\end-of-stream\\index.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\node_modules\\end-of-stream\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\node_modules\\once\\once.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\node_modules\\once\\once.js',
+     exports: [Function: wrapper],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\node_modules\\end-of-stream\\index.js',
+        exports: [Function: eos],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\node_modules\\end-of-stream\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\node_modules\\once\\once.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\node_modules\\once\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\wrappy\\wrappy.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\wrappy\\wrappy.js',
+     exports: [Function: wrappy],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\node_modules\\once\\once.js',
+        exports: [Function: wrapper],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\node_modules\\once\\once.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\wrappy\\wrappy.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\wrappy\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\stream-consume\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\stream-consume\\index.js',
+     exports: [Function],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\lib\\runTask.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\lib\\runTask.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\stream-consume\\index.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\stream-consume\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\sequencify\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\sequencify\\index.js',
+     exports: [Function: sequence],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\index.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\orchestrator\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\sequencify\\index.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\sequencify\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\eachAsync.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\eachAsync.js',
+     exports: 
+      { array: [Function: array],
+        object: [Function: object],
+        each: [Function: each] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\helpers.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\helpers.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\eachAsync.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\index.js',
+     exports: 
+      { Layer: [Function: Layer],
+        Route: [Function: Route],
+        Router: [Function: Router],
+        Router1: [Function: Router1],
+        Router2: [Function: Router2] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\helpers.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\helpers.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\index.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\array-flatten\\array-flatten.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\array-flatten\\array-flatten.js',
+     exports: 
+      { [Function: flatten]
+        from: [Function: flattenFrom],
+        depth: [Function: flattenDepth],
+        fromDepth: [Function: flattenFromDepth] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\array-flatten\\array-flatten.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\array-flatten\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\layer.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\layer.js',
+     exports: { Layer: [Function: Layer] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\layer.js',
+     loaded: true,
+     children: [ [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\path-to-regexp\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\path-to-regexp\\index.js',
+     exports: 
+      { [Function: pathToRegexp]
+        parse: [Function: parse],
+        compile: [Function: compile],
+        tokensToFunction: [Function: tokensToFunction],
+        tokensToRegExp: [Function: tokensToRegExp] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\layer.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\layer.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\path-to-regexp\\index.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\path-to-regexp\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\path-to-regexp\\node_modules\\isarray\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\path-to-regexp\\node_modules\\isarray\\index.js',
+     exports: [Function: isArray],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\path-to-regexp\\index.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\path-to-regexp\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\path-to-regexp\\node_modules\\isarray\\index.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\path-to-regexp\\node_modules\\isarray\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\path-to-regexp\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\route.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\route.js',
+     exports: { Route: [Function: Route] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\route.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\router\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\service.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\service.js',
+     exports: { service: [Function: service] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\http.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\http.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\service.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\isomorphic-fetch\\fetch-npm-node.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\isomorphic-fetch\\fetch-npm-node.js',
+     exports: [Function],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\http.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\http.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\isomorphic-fetch\\fetch-npm-node.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\isomorphic-fetch\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\index.js',
+     exports: 
+      { [Function: Fetch]
+        default: [Circular],
+        Promise: [Function: Promise],
+        Response: [Function: Response],
+        Headers: [Function: Headers],
+        Request: [Function: Request] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\isomorphic-fetch\\fetch-npm-node.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\isomorphic-fetch\\fetch-npm-node.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\index.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\body.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\body.js',
+     exports: { [Function: Body] Promise: [Function: Promise] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\index.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\body.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\encoding\\lib\\encoding.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\encoding\\lib\\encoding.js',
+     exports: { convert: [Function: convert] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\body.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\body.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\encoding\\lib\\encoding.js',
+     loaded: true,
+     children: [ [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\encoding\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\encoding\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\index.js',
+     exports: 
+      { encodings: null,
+        defaultCharUnicode: '�',
+        defaultCharSingleByte: '?',
+        encode: [Function: encode],
+        decode: [Function: decode],
+        encodingExists: [Function: encodingExists],
+        toEncoding: [Function: encode],
+        fromEncoding: [Function: decode],
+        _codecDataCache: {},
+        getCodec: [Function: getCodec],
+        _canonicalizeEncoding: [Function],
+        getEncoder: [Function: getEncoder],
+        getDecoder: [Function: getDecoder],
+        encodeStream: [Function: encodeStream],
+        decodeStream: [Function: decodeStream],
+        supportsStreams: true,
+        IconvLiteEncoderStream: [Function: IconvLiteEncoderStream],
+        IconvLiteDecoderStream: [Function: IconvLiteDecoderStream],
+        _collect: [Function],
+        supportsNodeEncodingsExtension: false,
+        extendNodeEncodings: [Function: extendNodeEncodings],
+        undoExtendNodeEncodings: [Function: undoExtendNodeEncodings] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\encoding\\lib\\encoding.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\encoding\\lib\\encoding.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\index.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\safer-buffer\\safer.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\safer-buffer\\safer.js',
+     exports: 
+      { transcode: [Function: transcode],
+        INSPECT_MAX_BYTES: 50,
+        kMaxLength: 2147483647,
+        kStringMaxLength: 1073741799,
+        constants: [Object],
+        Buffer: [Object] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\safer-buffer\\safer.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\safer-buffer\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\bom-handling.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\bom-handling.js',
+     exports: 
+      { PrependBOM: [Function: PrependBOMWrapper],
+        StripBOM: [Function: StripBOMWrapper] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\bom-handling.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\streams.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\streams.js',
+     exports: [Function],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\streams.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\extend-node.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\extend-node.js',
+     exports: [Function],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\extend-node.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\iconv-lite\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\encoding\\lib\\iconv-loader.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\encoding\\lib\\iconv-loader.js',
+     exports: undefined,
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\encoding\\lib\\encoding.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\encoding\\lib\\encoding.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\encoding\\lib\\iconv-loader.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\encoding\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\encoding\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\is-stream\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\is-stream\\index.js',
+     exports: 
+      { [Function]
+        writable: [Function],
+        readable: [Function],
+        duplex: [Function],
+        transform: [Function] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\body.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\body.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\is-stream\\index.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\is-stream\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\fetch-error.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\fetch-error.js',
+     exports: { [Function: FetchError] super_: [Function] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\body.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\body.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\fetch-error.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\response.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\response.js',
+     exports: [Function: Response],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\index.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\response.js',
+     loaded: true,
+     children: [ [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\headers.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\headers.js',
+     exports: [Function: Headers],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\response.js',
+        exports: [Function: Response],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\response.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\headers.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\request.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\request.js',
+     exports: [Function: Request],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\index.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\request.js',
+     loaded: true,
+     children: [ [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\node-fetch\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\binder.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\binder.js',
+     exports: 
+      { Binding: [Function],
+        PromiseBinding: [Function: PromiseBinding],
+        ObservableArray: [Function: ObservableArray],
+        WatchBinding: [Function: WatchBinding] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        exports: undefined,
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\binder.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\parser.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\parser.js',
+     exports: 
+      { ParsedBinary: [Function: ParsedBinary],
+        ParsedString: [Function: ParsedString],
+        ParsedNumber: [Function: ParsedNumber],
+        ParsedBoolean: [Function: ParsedBoolean],
+        Parser: [Function: Parser] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\binder.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\binder.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\parser.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\index.js',
+     exports: 
+      { identity: [Function: identity],
+        negate: [Function: negate],
+        booleanize: [Function: booleanize],
+        formatParser: [Function: formatParser],
+        DateFormatter: [Function: DateFormatter] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\parser.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\parser.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\index.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\identity.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\identity.js',
+     exports: { identity: [Function: identity] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\identity.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\negate.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\negate.js',
+     exports: { negate: [Function: negate] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\negate.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\booleanize.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\booleanize.js',
+     exports: { booleanize: [Function: booleanize] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\booleanize.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\date.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\date.js',
+     exports: 
+      { formatParser: [Function: formatParser],
+        DateFormatter: [Function: DateFormatter] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\date.js',
+     loaded: true,
+     children: [ [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\formatters\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\queue.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\queue.js',
+     exports: { Queue: [Function: Queue] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        exports: undefined,
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\queue.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\json-rpc-ws.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\json-rpc-ws.js',
+     exports: { JsonRpcWs: [Function: JsonRpcWs] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        exports: undefined,
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\json-rpc-ws.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\index.js',
+     exports: 
+      { Connection: [Function: Connection],
+        Client: [Function: Client],
+        Server: [Function: Server],
+        Errors: [Function: getError],
+        createServer: [Function: createServer],
+        createClient: [Function: createClient] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\json-rpc-ws.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\json-rpc-ws.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\index.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\connection.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\connection.js',
+     exports: 
+      { isBrowserSocket: [Function: isBrowserSocket],
+        Connection: [Function: Connection] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\connection.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\uuid\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\index.js',
+     exports: { [Function: v4] v1: [Function: v1], v4: [Circular] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\connection.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\connection.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\index.js',
+     loaded: true,
+     children: [ [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\uuid\\v1.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\v1.js',
+     exports: [Function: v1],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\index.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\v1.js',
+     loaded: true,
+     children: [ [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\uuid\\lib\\rng.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\lib\\rng.js',
+     exports: [Function: nodeRNG],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\v1.js',
+        exports: [Function: v1],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\v1.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\lib\\rng.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\uuid\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\uuid\\lib\\bytesToUuid.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\lib\\bytesToUuid.js',
+     exports: [Function: bytesToUuid],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\v1.js',
+        exports: [Function: v1],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\v1.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\lib\\bytesToUuid.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\uuid\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\uuid\\v4.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\v4.js',
+     exports: { [Function: v4] v1: [Function: v1], v4: [Circular] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\index.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\v4.js',
+     loaded: true,
+     children: [ [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\uuid\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\src\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\src\\index.js',
+     exports: 
+      { [Function: createDebug]
+        default: [Circular],
+        debug: [Circular],
+        coerce: [Function: coerce],
+        disable: [Function: disable],
+        enable: [Function: enable],
+        enabled: [Function: enabled],
+        humanize: [Function],
+        instances: [Array],
+        names: [],
+        skips: [],
+        formatters: [Object],
+        init: [Function: init],
+        log: [Function: log],
+        formatArgs: [Function: formatArgs],
+        save: [Function: save],
+        load: [Function: load],
+        useColors: [Function: useColors],
+        colors: [Array],
+        inspectOpts: {} },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\connection.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\connection.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\src\\index.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\src\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\src\\node.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\src\\node.js',
+     exports: 
+      { [Function: createDebug]
+        default: [Circular],
+        debug: [Circular],
+        coerce: [Function: coerce],
+        disable: [Function: disable],
+        enable: [Function: enable],
+        enabled: [Function: enabled],
+        humanize: [Function],
+        instances: [Array],
+        names: [],
+        skips: [],
+        formatters: [Object],
+        init: [Function: init],
+        log: [Function: log],
+        formatArgs: [Function: formatArgs],
+        save: [Function: save],
+        load: [Function: load],
+        useColors: [Function: useColors],
+        colors: [Array],
+        inspectOpts: {} },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\src\\index.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\src\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\src\\node.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\src\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\src\\debug.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\src\\debug.js',
+     exports: 
+      { [Function: createDebug]
+        default: [Circular],
+        debug: [Circular],
+        coerce: [Function: coerce],
+        disable: [Function: disable],
+        enable: [Function: enable],
+        enabled: [Function: enabled],
+        humanize: [Function],
+        instances: [Array],
+        names: [],
+        skips: [],
+        formatters: [Object],
+        init: [Function: init],
+        log: [Function: log],
+        formatArgs: [Function: formatArgs],
+        save: [Function: save],
+        load: [Function: load],
+        useColors: [Function: useColors],
+        colors: [Array],
+        inspectOpts: {} },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\src\\node.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\src\\node.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\src\\debug.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\src\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\debug\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\errors.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\errors.js',
+     exports: { Errors: [Function: Errors], default: [Function: getError] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\connection.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\connection.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\errors.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\client.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\client.js',
+     exports: { default: [Function: Client] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\client.js',
+     loaded: true,
+     children: [ [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\index.js',
+     exports: 
+      { [Function: WebSocket]
+        CONNECTING: 0,
+        OPEN: 1,
+        CLOSING: 2,
+        CLOSED: 3,
+        Server: [Function: WebSocketServer],
+        Receiver: [Function: Receiver],
+        Sender: [Function: Sender] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\client.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\client.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\index.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js',
+     exports: 
+      { [Function: WebSocket]
+        CONNECTING: 0,
+        OPEN: 1,
+        CLOSING: 2,
+        CLOSED: 3,
+        Server: [Function: WebSocketServer],
+        Receiver: [Function: Receiver],
+        Sender: [Function: Sender] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\index.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js',
+     loaded: true,
+     children: 
+      [ [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module],
+        [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\ultron\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\ultron\\index.js',
+     exports: [Function: Ultron],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\ultron\\index.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\ultron\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\PerMessageDeflate.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\PerMessageDeflate.js',
+     exports: [Function: PerMessageDeflate],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\PerMessageDeflate.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\safe-buffer\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\safe-buffer\\index.js',
+     exports: 
+      { Buffer: [Function],
+        SlowBuffer: [Function: SlowBuffer],
+        transcode: [Function: transcode],
+        INSPECT_MAX_BYTES: 50,
+        kMaxLength: 2147483647,
+        kStringMaxLength: 1073741799,
+        constants: [Object] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\PerMessageDeflate.js',
+        exports: [Function: PerMessageDeflate],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\PerMessageDeflate.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\safe-buffer\\index.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\safe-buffer\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\async-limiter\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\async-limiter\\index.js',
+     exports: [Function: Queue],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\PerMessageDeflate.js',
+        exports: [Function: PerMessageDeflate],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\PerMessageDeflate.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\async-limiter\\index.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\async-limiter\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\BufferUtil.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\BufferUtil.js',
+     exports: 
+      { concat: [Function: concat],
+        mask: [Function],
+        unmask: [Function],
+        path: 'C:\\Dev\\akala\\cli\\node_modules\\bufferutil\\build\\Release\\bufferutil.node' },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\PerMessageDeflate.js',
+        exports: [Function: PerMessageDeflate],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\PerMessageDeflate.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\BufferUtil.js',
+     loaded: true,
+     children: [ [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\bufferutil\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\bufferutil\\index.js',
+     exports: 
+      { mask: [Function],
+        unmask: [Function],
+        path: 'C:\\Dev\\akala\\cli\\node_modules\\bufferutil\\build\\Release\\bufferutil.node' },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\BufferUtil.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\BufferUtil.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\bufferutil\\index.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\bufferutil\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\bindings\\bindings.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\bindings\\bindings.js',
+     exports: 
+      { [Function: bindings]
+        getFileName: [Function: getFileName],
+        getRoot: [Function: getRoot] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\bufferutil\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\bufferutil\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\bindings\\bindings.js',
+     loaded: true,
+     children: [ [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\bindings\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\bufferutil\\build\\Release\\bufferutil.node': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\bufferutil\\build\\Release\\bufferutil.node',
+     exports: 
+      { mask: [Function],
+        unmask: [Function],
+        path: 'C:\\Dev\\akala\\cli\\node_modules\\bufferutil\\build\\Release\\bufferutil.node' },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\bindings\\bindings.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\bindings\\bindings.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\bufferutil\\build\\Release\\bufferutil.node',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\bufferutil\\build\\Release\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\bufferutil\\build\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\bufferutil\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\EventTarget.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\EventTarget.js',
+     exports: 
+      { addEventListener: [Function: addEventListener],
+        removeEventListener: [Function: removeEventListener] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\EventTarget.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Extensions.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Extensions.js',
+     exports: { format: [Function: format], parse: [Function: parse] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Extensions.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Constants.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Constants.js',
+     exports: 
+      { BINARY_TYPES: [Array],
+        GUID: '258EAFA5-E914-47DA-95CA-C5AB0DC85B11',
+        EMPTY_BUFFER: <Buffer >,
+        NOOP: [Function] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Constants.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Receiver.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Receiver.js',
+     exports: [Function: Receiver],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Receiver.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Validation.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Validation.js',
+     exports: 
+      { [Function: exports]
+        path: 'C:\\Dev\\akala\\cli\\node_modules\\utf-8-validate\\build\\Release\\validation.node' },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Receiver.js',
+        exports: [Function: Receiver],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Receiver.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Validation.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\utf-8-validate\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\utf-8-validate\\index.js',
+     exports: 
+      { [Function: exports]
+        path: 'C:\\Dev\\akala\\cli\\node_modules\\utf-8-validate\\build\\Release\\validation.node' },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Validation.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Validation.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\utf-8-validate\\index.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\utf-8-validate\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\utf-8-validate\\build\\Release\\validation.node': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\utf-8-validate\\build\\Release\\validation.node',
+     exports: 
+      { [Function: exports]
+        path: 'C:\\Dev\\akala\\cli\\node_modules\\utf-8-validate\\build\\Release\\validation.node' },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\bindings\\bindings.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\bindings\\bindings.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\utf-8-validate\\build\\Release\\validation.node',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\utf-8-validate\\build\\Release\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\utf-8-validate\\build\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\utf-8-validate\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\ErrorCodes.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\ErrorCodes.js',
+     exports: 
+      { '1000': 'normal',
+        '1001': 'going away',
+        '1002': 'protocol error',
+        '1003': 'unsupported data',
+        '1004': 'reserved',
+        '1005': 'reserved for extensions',
+        '1006': 'reserved for extensions',
+        '1007': 'inconsistent or invalid data',
+        '1008': 'policy violation',
+        '1009': 'message too big',
+        '1010': 'extension handshake missing',
+        '1011': 'an unexpected condition prevented the request from being fulfilled',
+        '1012': 'service restart',
+        '1013': 'try again later',
+        isValidErrorCode: [Function: isValidErrorCode] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Receiver.js',
+        exports: [Function: Receiver],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Receiver.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\ErrorCodes.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Sender.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Sender.js',
+     exports: [Function: Sender],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocket.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\Sender.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocketServer.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocketServer.js',
+     exports: [Function: WebSocketServer],
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\index.js',
+        exports: [Function],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\WebSocketServer.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules\\ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\shared_client.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\shared_client.js',
+     exports: { default: [Function: Client] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\client.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\client.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\shared_client.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\base.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\base.js',
+     exports: { Base: [Function: Base] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\shared_client.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\shared_client.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\base.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\server.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\server.js',
+     exports: { default: [Function: Server] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\server.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\lib\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\json-rpc-ws\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\rest.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\rest.js',
+     exports: { Rest: [Function: Rest] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        exports: undefined,
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\rest.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\index.js',
+     exports: 
+      { Api: [Function: Api],
+        DualApi: [Function: DualApi],
+        api: [Object],
+        createServerProxy: [Function: createServerProxy],
+        createClient: [Function: createClient] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        exports: undefined,
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\index.js',
+     loaded: true,
+     children: [ [Module], [Module], [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\base.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\base.js',
+     exports: { Api: [Function: Api], DualApi: [Function: DualApi] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\base.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\api\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\interpolate.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\interpolate.js',
+     exports: { Interpolate: [Function] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        exports: undefined,
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\interpolate.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\core\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules\\@akala\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\node_modules\\commander\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\node_modules\\commander\\index.js',
+     exports: 
+      Command {
+        commands: [],
+        options: [],
+        _execs: {},
+        _allowUnknownOption: false,
+        _args: [],
+        _name: '',
+        Command: [Function],
+        Option: [Function: Option] },
+     parent: 
+      Module {
+        id: 'C:\\Dev\\akala\\cli\\dist\\router\\index.js',
+        exports: [Object],
+        parent: [Module],
+        filename: 'C:\\Dev\\akala\\cli\\dist\\router\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\node_modules\\commander\\index.js',
+     loaded: true,
+     children: [],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\node_modules\\commander\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\dist\\sdk.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\dist\\sdk.js',
+     exports: {},
+     parent: 
+      Module {
+        id: '.',
+        exports: [Object],
+        parent: null,
+        filename: 'C:\\Dev\\akala\\cli\\dist\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\dist\\sdk.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\dist\\config\\index.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\dist\\config\\index.js',
+     exports: {},
+     parent: 
+      Module {
+        id: '.',
+        exports: [Object],
+        parent: null,
+        filename: 'C:\\Dev\\akala\\cli\\dist\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\dist\\config\\index.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\dist\\config\\node_modules',
+        'C:\\Dev\\akala\\cli\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\dist\\client.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\dist\\client.js',
+     exports: {},
+     parent: 
+      Module {
+        id: '.',
+        exports: [Object],
+        parent: null,
+        filename: 'C:\\Dev\\akala\\cli\\dist\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\dist\\client.js',
+     loaded: true,
+     children: [ [Module], [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'C:\\Dev\\akala\\cli\\dist\\plugins.js': 
+   Module {
+     id: 'C:\\Dev\\akala\\cli\\dist\\plugins.js',
+     exports: {},
+     parent: 
+      Module {
+        id: '.',
+        exports: [Object],
+        parent: null,
+        filename: 'C:\\Dev\\akala\\cli\\dist\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'C:\\Dev\\akala\\cli\\dist\\plugins.js',
+     loaded: true,
+     children: [ [Module] ],
+     paths: 
+      [ 'C:\\Dev\\akala\\cli\\dist\\node_modules',
+        'C:\\Dev\\akala\\cli\\node_modules',
+        'C:\\Dev\\akala\\node_modules',
+        'C:\\Dev\\node_modules',
+        'C:\\node_modules' ] },
+  'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\dist\\server\\commands\\library.js': 
+   Module {
+     id: 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\dist\\server\\commands\\library.js',
+     exports: {},
+     parent: 
+      Module {
+        id: '.',
+        exports: [Object],
+        parent: null,
+        filename: 'C:\\Dev\\akala\\cli\\dist\\index.js',
+        loaded: true,
+        children: [Array],
+        paths: [Array] },
+     filename: 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\dist\\server\\commands\\library.js',
+     loaded: false,
+     children: [ [Module] ],
+     paths: 
+      [ 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\dist\\server\\commands\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\dist\\server\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\dist\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\node_modules',
+        'd:\\Nicolas\\node_modules',
+        'd:\\node_modules' ] },
+  'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\dist\\index.js': 
+   Module {
+     id: 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\dist\\index.js',
+     exports: {},
+     parent: 
+      Module {
+        id: 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\dist\\server\\commands\\library.js',
+        exports: {},
+        parent: [Module],
+        filename: 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\dist\\server\\commands\\library.js',
+        loaded: false,
+        children: [Array],
+        paths: [Array] },
+     filename: 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\dist\\index.js',
+     loaded: false,
+     children: [ [Module] ],
+     paths: 
+      [ 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\dist\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\node_modules',
+        'd:\\Nicolas\\node_modules',
+        'd:\\node_modules' ] },
+  'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\dist\\api\\index.js': 
+   Module {
+     id: 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\dist\\api\\index.js',
+     exports: {},
+     parent: 
+      Module {
+        id: 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\dist\\index.js',
+        exports: {},
+        parent: [Module],
+        filename: 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\dist\\index.js',
+        loaded: false,
+        children: [Array],
+        paths: [Array] },
+     filename: 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\dist\\api\\index.js',
+     loaded: false,
+     children: [ [Module] ],
+     paths: 
+      [ 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\dist\\api\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\dist\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\node_modules',
+        'd:\\Nicolas\\node_modules',
+        'd:\\node_modules' ] },
+  'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\node_modules\\@akala\\core\\dist\\index.js': 
+   Module {
+     id: 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\node_modules\\@akala\\core\\dist\\index.js',
+     exports: {},
+     parent: 
+      Module {
+        id: 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\dist\\api\\index.js',
+        exports: {},
+        parent: [Module],
+        filename: 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\dist\\api\\index.js',
+        loaded: false,
+        children: [Array],
+        paths: [Array] },
+     filename: 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\node_modules\\@akala\\core\\dist\\index.js',
+     loaded: false,
+     children: [],
+     paths: 
+      [ 'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\node_modules\\@akala\\core\\dist\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\node_modules\\@akala\\core\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\node_modules\\@akala\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\server\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules\\@akala\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\media\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules\\@domojs\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node-cluster-test\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\Developpement\\node_modules',
+        'd:\\Nicolas\\onedrive-temp\\node_modules',
+        'd:\\Nicolas\\node_modules',
+        'd:\\node_modules' ] } }
