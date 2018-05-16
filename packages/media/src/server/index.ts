@@ -21,8 +21,8 @@ akala.injectWithName(['$isModule', '$master', '$worker'], function (isModule: ak
         {
             virtualasset.then((va) =>
             {
-                va.register('/js/tiles.js', require.resolve('../tile'));
-                va.register('/js/routes.js', require.resolve('../routes'));
+                va.register('/js/tiles.js', require.resolve('../../client/tile'));
+                va.register('/js/routes.js', require.resolve('../../client/routes'));
             });
             // virtualasset.then((va) => va.register('/js/device.js', path.resolve(__dirname, './device.js')));
         })();
