@@ -12,18 +12,22 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "@akala-modules/core": "^1.0.27",
     "@akala/cli": "^0.0.1",
     "@akala/client": "^2.0.0-3",
     "@akala/core": "^2.0.0",
     "@akala/server": "^2.0.5",
+    "ioredis": "^3.2.2"
+  },
+  "peerDependencies": {
+    "@akala-modules/core": "^1.0.27",
     "@domojs/db": "^1.1.0",
-    "@domojs/theme-default": "^1.0.37",
+    "@domojs/theme-default": "^1.0.37"
+  },
+  "devDependencies": {
     "@types/ioredis": "^3.2.7",
     "@types/jquery": "^3.3.1",
     "@types/redis": "^2.8.6",
     "@types/request": "^2.47.0",
-    "@types/ws": "^4.0.2",
-    "ioredis": "^3.2.2"
+    "@types/ws": "^4.0.2"
   }
 }
