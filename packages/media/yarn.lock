@@ -14,10 +14,10 @@
     commander "^2.15.1"
 
 "@akala/client@^2.0.0-3":
-  version "2.0.0-3"
-  resolved "https://registry.yarnpkg.com/@akala/client/-/client-2.0.0-3.tgz#3f4e3824e0285c472885087b90e7ab9eeffab016"
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@akala/client/-/client-2.0.1.tgz#643f9601849810c6a950d96c7e119ea8bea28b93"
   dependencies:
-    "@akala/core" "^2.0.0-5"
+    "@akala/core" "^2.0.0"
     "@akala/json-rpc-ws" "^4.1.21"
     "@types/content-type" "^1.1.2"
     "@types/mime" "^2.0.0"
@@ -29,7 +29,7 @@
   optionalDependencies:
     showdown "^1.8.6"
 
-"@akala/core@^2.0.0", "@akala/core@^2.0.0-13", "@akala/core@^2.0.0-17", "@akala/core@^2.0.0-5":
+"@akala/core@^2.0.0", "@akala/core@^2.0.0-13", "@akala/core@^2.0.0-17":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@akala/core/-/core-2.0.0.tgz#3b7aee40691f089b81b98584aac62966ffd6634a"
   dependencies:

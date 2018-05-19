@@ -1,4 +1,3 @@
-///<reference types="@akala/client" />
 ///<reference path="../../metadata.d.ts" />
 
 import './mediaApi';
