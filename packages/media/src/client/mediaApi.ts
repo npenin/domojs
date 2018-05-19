@@ -14,7 +14,7 @@ export var api = new akala.Api()
             cli: { command: 'library <library>', param: { library: 'param', db: 'db', config: '$config' } }
         }
     })
-    .clientToServer<{ source: string, episode?: string, name?: string, season?: string, album?: string, artist?: string }, PromiseLike<media.Media[]>>()({
+    .clientToServer<{ source: string, episode?: string, name?: string, season?: string, album?: string, artist?: string }, PromiseLike<{ [key: string]: media.Media[] }>>()({
         browse: {
             rest: {
                 url: '/library/:name/browse', param: {
@@ -29,17 +29,4 @@ export var api = new akala.Api()
             },
             cli: { command: 'browse <library>', param: { config: '$config', library: 'param', episode: 'option', name: 'option', season: 'option', album: 'option', artist: 'option' } }
         },
-        index: {
-            rest: {
-                url: '/library/:name/index', param: {
-                    config: '$config',
-                    library: 'query.source',
-                    episode: 'query.episode',
-                    name: 'query.name',
-                    season: 'query.season',
-                    album: 'query.album',
-                    artist: 'query.artist'
-                }
-            }
-        }
     });
