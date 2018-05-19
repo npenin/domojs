@@ -2,20 +2,17 @@
 # yarn lockfile v1
 
 
-"@akala/cli@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@akala/cli/-/cli-0.0.1.tgz#c907ef4fbdba1b1d27c00781a8ce9832fece67d7"
+"@akala/cli@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@akala/cli/-/cli-0.0.3.tgz#7b0ca4edced67fa3d34aa113a84348eb07a1a4a7"
   dependencies:
-    "@akala/core" "^2.0.0-13"
-    "@types/commander" "^2.12.2"
-    "@types/debug" "^0.0.30"
-    "@types/node" "^10.0.6"
-    "@types/ws" "^5.1.1"
-    commander "^2.15.1"
+    "@akala/core" "^2.0.0-17"
+    "@akala/server" "^2.0.1-7"
+    mock-require "^3.0.2"
 
-"@akala/client@^2.0.0-3":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@akala/client/-/client-2.0.1.tgz#643f9601849810c6a950d96c7e119ea8bea28b93"
+"@akala/client@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@akala/client/-/client-2.0.4.tgz#96b1d882e14020dbd7a72aa3584f414c0d9420f3"
   dependencies:
     "@akala/core" "^2.0.0"
     "@akala/json-rpc-ws" "^4.1.21"
@@ -29,7 +26,7 @@
   optionalDependencies:
     showdown "^1.8.6"
 
-"@akala/core@^2.0.0", "@akala/core@^2.0.0-13", "@akala/core@^2.0.0-17":
+"@akala/core@^2.0.0", "@akala/core@^2.0.0-17":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@akala/core/-/core-2.0.0.tgz#3b7aee40691f089b81b98584aac62966ffd6634a"
   dependencies:
@@ -56,7 +53,7 @@
     uuid "^3.0.0"
     ws "^3.0.0"
 
-"@akala/server@^2.0.5":
+"@akala/server@^2.0.1-7", "@akala/server@^2.0.5":
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/@akala/server/-/server-2.0.5.tgz#ebad57efe12f488c67d45b329e2881e984079792"
   dependencies:
@@ -83,19 +80,9 @@
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/@types/caseless/-/caseless-0.12.1.tgz#9794c69c8385d0192acc471a540d1f8e0d16218a"
 
-"@types/commander@^2.12.2":
-  version "2.12.2"
-  resolved "https://registry.yarnpkg.com/@types/commander/-/commander-2.12.2.tgz#183041a23842d4281478fa5d23c5ca78e6fd08ae"
-  dependencies:
-    commander "*"
-
 "@types/content-type@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@types/content-type/-/content-type-1.1.2.tgz#bff0a1b7aa5bd48516c8ed7a6efefb1e85813245"
-
-"@types/debug@^0.0.30":
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/@types/debug/-/debug-0.0.30.tgz#dc1e40f7af3b9c815013a7860e6252f6352a84df"
 
 "@types/events@*":
   version "1.2.0"
@@ -122,7 +109,7 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.0.tgz#5a7306e367c539b9f6543499de8dd519fac37a8b"
 
-"@types/node@*", "@types/node@^10.0.6":
+"@types/node@*":
   version "10.1.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.1.2.tgz#1b928a0baa408fc8ae3ac012cc81375addc147c6"
 
@@ -153,13 +140,6 @@
 "@types/ws@^4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@types/ws/-/ws-4.0.2.tgz#b29037627dd7ba31ec49a4f1584840422efb856f"
-  dependencies:
-    "@types/events" "*"
-    "@types/node" "*"
-
-"@types/ws@^5.1.1":
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/@types/ws/-/ws-5.1.1.tgz#4adc1f1a5e92e7e0e95658fb35c7eab1bc52f4ac"
   dependencies:
     "@types/events" "*"
     "@types/node" "*"
@@ -301,10 +281,6 @@ cluster-key-slot@^1.0.6:
 code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
-
-commander@*, commander@^2.15.1:
-  version "2.15.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.15.1.tgz#df46e867d0fc2aec66a34662b406a9ccafff5b0f"
 
 console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   version "1.1.0"
@@ -532,7 +508,7 @@ gauge@~2.7.3:
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
 
-get-caller-file@^1.0.1:
+get-caller-file@^1.0.1, get-caller-file@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
 
@@ -802,6 +778,13 @@ mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
+mock-require@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/mock-require/-/mock-require-3.0.2.tgz#7ce759b559e3b194be5f20a5b1cece0eb363f53d"
+  dependencies:
+    get-caller-file "^1.0.2"
+    normalize-path "^2.1.1"
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -834,6 +817,12 @@ node-fetch@^1.0.1:
 noop-logger@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/noop-logger/-/noop-logger-0.1.1.tgz#94a2b1633c4f1317553007d8966fd0e841b6a4c2"
+
+normalize-path@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-2.1.1.tgz#1ab28b556e198363a8c1a6f7e6fa20137fe6aed9"
+  dependencies:
+    remove-trailing-separator "^1.0.1"
 
 npm-run-path@^2.0.0:
   version "2.0.2"
@@ -1068,6 +1057,10 @@ redis-commands@^1.2.0:
 redis-parser@^2.4.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/redis-parser/-/redis-parser-2.6.0.tgz#52ed09dacac108f1a631c07e9b69941e7a19504b"
+
+remove-trailing-separator@^1.0.1:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.1.0.tgz#c24bce2a283adad5bc3f58e0d48249b92379d8ef"
 
 require-directory@^2.1.1:
   version "2.1.1"

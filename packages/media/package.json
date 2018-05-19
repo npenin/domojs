@@ -8,12 +8,11 @@
     "test": "echo \"Error: no test specified\"",
     "prepublishOnly": "tsc -p src"
   },
-  "akala-cli": "dist/server/cli.js",
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "@akala/cli": "^0.0.1",
-    "@akala/client": "^2.0.0-3",
+    "@akala/cli": "^0.0.3",
+    "@akala/client": "^2.0.4",
     "@akala/core": "^2.0.0",
     "@akala/server": "^2.0.5",
     "ioredis": "^3.2.2"
