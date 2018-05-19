@@ -4,7 +4,6 @@ export { meta as scrapper } from './scrapper';
 export * from '../../metadata';
 import { AssetRegistration } from '@akala-modules/core'
 
-
 akala.injectWithName(['$isModule', '$master', '$worker'], function (isModule: akala.worker.IsModule, master: akala.worker.MasterRegistration, worker: EventEmitter)
 {
     if (isModule('@domojs/media'))
@@ -21,8 +20,8 @@ akala.injectWithName(['$isModule', '$master', '$worker'], function (isModule: ak
         {
             virtualasset.then((va) =>
             {
-                va.register('/js/tiles.js', require.resolve('../../client/tile'));
-                va.register('/js/routes.js', require.resolve('../../client/routes'));
+                va.register('/js/tiles.js', require.resolve('../client/tile'));
+                va.register('/js/routes.js', require.resolve('../client/routes'));
             });
             // virtualasset.then((va) => va.register('/js/device.js', path.resolve(__dirname, './device.js')));
         })();
