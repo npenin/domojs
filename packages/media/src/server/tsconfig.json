@@ -2,8 +2,6 @@
     "compileOnSave": true,
     "compilerOptions": {
         "experimentalDecorators": true,
-        "rootDir": ".",
-        "outDir": "../../dist/server",
         "target": "es6",
         "module": "commonjs",
         "moduleResolution": "node",
