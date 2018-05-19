@@ -28,7 +28,7 @@ class Api
         console.log('no lib');
         return null;
     }
-
+    
     updateLibrary(param)
     {
         return param.config(param.path, 'libraries.' + param.name);
