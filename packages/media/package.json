@@ -1,6 +1,6 @@
 {
   "name": "@domojs/media",
-  "version": "1.1.0-0",
+  "version": "1.1.0-1",
   "description": "",
   "main": "dist/server/index.js",
   "types": "dist/server/index.d.ts",
@@ -15,8 +15,8 @@
     "@akala-modules/core": "^1.0.27",
     "@akala/cli": "^0.0.1",
     "@akala/client": "^2.0.0-3",
-    "@akala/core": "^2.0.0-9",
-    "@akala/server": "^2.0.1-7",
+    "@akala/core": "^2.0.0",
+    "@akala/server": "^2.0.5",
     "@domojs/db": "^1.1.0",
     "@domojs/theme-default": "^1.0.37",
     "@types/ioredis": "^3.2.7",
