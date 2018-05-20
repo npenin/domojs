@@ -7,7 +7,7 @@ import * as process from './processFolder';
 @akala.server(api, {
     rest: '/api',
     cli: '@domojs/media:media',
-    jsonrpcws: true
+    jsonrpcws: false
 })
 class Api
 {

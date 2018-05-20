@@ -25,5 +25,7 @@ akala.injectWithName(['$isModule', '$master', '$worker'], function (isModule: ak
             });
             // virtualasset.then((va) => va.register('/js/device.js', path.resolve(__dirname, './device.js')));
         })();
+
+        require('./commands/library')
     }
 })();
