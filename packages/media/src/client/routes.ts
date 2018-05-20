@@ -12,7 +12,7 @@ akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Pa
     part.use('/media/video', 'body', {
         template: '/@domojs/media/video.html', controller: function (scope, elem, params)
         {
-            var mediaApi = akala.api.rest(api).createServerProxy(new URL('/api/@domojs/media', window.location.origin).toString());
+            var mediaApi = akala.api.rest(api).createServerProxy(new URL('/api/@domojs/media/', window.location.origin).toString());
             scope['list'] = mediaApi.library({ library: 'video' });
             scope['tileClick'] = function (tile: Tile, $location: akala.LocationService, $http: akala.Http)
             {
