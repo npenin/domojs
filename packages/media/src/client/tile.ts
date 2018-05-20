@@ -1,5 +1,5 @@
-///<reference types='@domojs/theme-default/dist/tile' />
-///<reference types='@akala/client' />
+import '@akala/client';
+import '@domojs/theme-default/dist/tile';
 
 
 tiles.add({
