@@ -1,4 +1,4 @@
-import './mediaApi';
+import { api } from './mediaApi';
 import * as akala from '@akala/client';
 import { Tile } from '@domojs/theme-default/dist/tile'
 
@@ -12,7 +12,8 @@ akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Pa
     part.use('/media/video', 'body', {
         template: '/@domojs/media/video.html', controller: function (scope, elem, params)
         {
-            scope['list'] = http.getJSON('api/@domojs/media/device/video' + params.name);
+            var mediaApi = akala.api.rest(api).createServerProxy('/api/@domojs/media');
+            scope['list'] = mediaApi.library({ library: 'video' });
             scope['tileClick'] = function (tile: Tile, $location: akala.LocationService, $http: akala.Http)
             {
                 if (tile.url)
