@@ -1,7 +1,7 @@
-///<reference path="../../metadata.d.ts" />
-
 import './mediaApi';
 import * as akala from '@akala/client';
+import { Tile } from '@domojs/theme-default/dist/tile'
+
 
 interface Collection extends akala.IScope<Collection>
 {
