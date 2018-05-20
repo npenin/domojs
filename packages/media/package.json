@@ -6,7 +6,10 @@
   "types": "dist/server/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
-    "prepublishOnly": "tsc -p src"
+    "build:js": "tsc -p src",
+    "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
+    "build:js:tile": "browserify -x @akala/client -x @akala/core dist/client/tile.js -o dist/tile.js",
+    "prepublishOnly": "npm run build:js && npm run build:js:routes && npm run build:js:tile"
   },
   "author": "npenin",
   "license": "MIT",
