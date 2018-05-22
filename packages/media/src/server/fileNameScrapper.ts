@@ -2,7 +2,7 @@ import * as akala from '@akala/server';
 import { meta as scrapper } from './scrapper';
 import * as path from 'path'
 import { extensions } from './commands/processFolder';
-import { Video, TVShow, Movie } from '../metadata';
+import { Video, TVShow, Movie } from '../../metadata';
 
 
 function fileNameCleaner(fileName: string, extension?: RegExp)
