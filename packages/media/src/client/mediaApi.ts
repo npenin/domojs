@@ -4,8 +4,8 @@ import * as media from '../../metadata';
 export var api = new akala.Api()
     .clientToServer<void, string[]>()({
         libraries: {
-            rest: { url: '/library', param: { config: '$config.@domojs/media' } },
-            cli: { command: 'library', param: { db: 'db', config: '$config.@domojs/media' } }
+            rest: { url: '/library', param: { config: '$config.@domojs/media', updateConfig: '$updateConfig' } },
+            cli: { command: 'library', param: { updateConfig: '$updateConfig', config: '$config.@domojs/media' } }
         }
     })
     .clientToServer<{ path: string, additionalPaths?: string[], name: string }, media.Media>()({
