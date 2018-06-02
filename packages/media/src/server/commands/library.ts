@@ -11,6 +11,11 @@ import * as process from './processFolder';
 })
 class Api
 {
+    async libraries(param)
+    {
+        var config = await param.config;
+        return config.libraries;
+    }
     async library(param)
     {
         var config = await param.config;
@@ -28,7 +33,7 @@ class Api
         console.log('no lib');
         return null;
     }
-    
+
     updateLibrary(param)
     {
         return param.config(param.path, 'libraries.' + param.name);
