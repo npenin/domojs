@@ -35,9 +35,15 @@ akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Pa
         }
     });
 
+    interface MediaConfigScope extends akala.IScope<MediaConfigScope>
+    {
+        newItems: ArrayLike<any>;
+        addNewItem(): void;
+    }
+
     part.use('/config/media', 'body', {
         template: '/@domojs/media/config.html'
-        , controller: function (scope, element, params, next)
+        , controller: function (scope: MediaConfigScope, element, params, next)
         {
             scope.newItems = new akala.ObservableArray([]);
             scope.addNewItem = function ()
