@@ -27,6 +27,21 @@ akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Pa
         }
     })
 
+    part.use('/media', 'commands', {
+        template: '/@domojs/media/commands.html'
+        , controller: function (scope, element, params, next)
+        {
+            next();
+        }
+    });
+
+    part.use('/config/media', 'body', {
+        template: '/@domojs/media/config.html'
+        , controller: function (scope, element, params, next)
+        {
+        }
+    });
+
     part.use('/media', 'body', {
         template: '/@domojs/theme-default/tiles.html', controller: function (scope, elem, params)
         {

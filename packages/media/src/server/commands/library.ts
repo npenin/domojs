@@ -15,8 +15,8 @@ class Api
     {
         var config = await param.config;
         if (!config)
-            param.updateConfig('@domojs/media.libraries', {});
-        return config.libraries || {};
+            param.updateConfig({}, '@domojs/media.libraries');
+        return config && config.libraries || {};
     }
     async library(param)
     {

@@ -1,4 +1,4 @@
-<h1>New Device</h1>
+<h1>Media libraries configuration</h1>
 <style>
     #content
     {
@@ -11,6 +11,10 @@
         display: inline-block;
     }
 </style>
+<ul>
+    <li data-bind="{each:{in:'/api/@domojs/media/libraries' #http, key:'name', value:'path' }}">
+    <span style="font-weight: bold" data-bind="{text:name}"></span><input type="text" value="path" data-bind="{value:path, change:{url:'/api/@domojs/media/library/'+name, body:{path:path}, method:'postJSON'} #http}" /></li>
+</ul>
 <form id="create" action="/api/@domojs/devices/new" method="post" enctype="json" class="form-horizontal">
     <div class="form-group">
         <label for="name" class="control-label col-sm-2">Name</label>
