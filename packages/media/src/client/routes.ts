@@ -39,6 +39,11 @@ akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Pa
         template: '/@domojs/media/config.html'
         , controller: function (scope, element, params, next)
         {
+            scope.newItems = new akala.ObservableArray([]);
+            scope.addNewItem = function ()
+            {
+                scope.newItems = [];
+            }
         }
     });
 
