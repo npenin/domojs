@@ -37,7 +37,7 @@ akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Pa
 
     interface MediaConfigScope extends akala.IScope<MediaConfigScope>
     {
-        newItems: ArrayLike<any>;
+        newItems: akala.ObservableArray<any>;
         addNewItem(): void;
     }
 
@@ -48,7 +48,7 @@ akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Pa
             scope.newItems = new akala.ObservableArray([]);
             scope.addNewItem = function ()
             {
-                scope.newItems = [];
+                scope.newItems.push({});
             }
         }
     });
