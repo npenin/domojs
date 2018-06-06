@@ -48,7 +48,7 @@ akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Pa
             scope.newItems = new akala.ObservableArray([]);
             scope.addNewItem = function ()
             {
-                scope.newItems.push({});
+                scope.newItems.push({ path: '', name: '' });
             }
         }
     });
