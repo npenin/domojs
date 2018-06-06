@@ -12,16 +12,19 @@
         display: inline-block;
     }
 </style>
-<a class="btn btn-default" data-bind="{click:addNewItem}">Add Library</a>
-<ul>
-    <li data-bind="{each:{in:'/api/@domojs/media/libraries' #http, key:'name', value:'path' }}">
-        <span style="font-weight: bold" data-bind="{text:name}"></span>
-        <input type="text" data-bind="{value:path }" />
-        <a class="btn fas far fa-save" data-bind="{click:{url:'/api/@domojs/media/library/'+name, body:{path:path}, method:'postJSON'} #http}"></a>
-    </li>
-    <li data-bind="{each:{in:newItems, key:'name', value:'path' }}">
-        <span style="font-weight: bold" data-bind="{text:name}"></span>
-        <input type="text" data-bind="{value:path }" />
-        <a class="btn fas far fa-save" data-bind="{click:{url:'/api/@domojs/media/library/'+name, body:{path:path}, method:'postJSON'} #http}"></a>
-    </li>
-</ul>
+<div>
+    <a class="btn btn-secondary" data-bind="{click:addNewItem}">
+        <span class="fas far fa-plus"> </span> Add Library</a>
+    <ul>
+        <li data-bind="{each:{in:'/api/@domojs/media/library' #http, key:'name', value:'path' }}">
+            <span style="font-weight: bold" data-bind="{text:name}"></span>
+            <input type="text" data-bind="{value:path }" />
+            <a class="btn fas far fa-save" data-bind="{click:{url:'/api/@domojs/media/library/'+name, body:{path:path}, method:'postJSON'} #http}"></a>
+        </li>
+        <li data-bind="{each:{in:newItems, value:'lib' }}">
+            <span style="font-weight: bold" data-bind="{text:lib.name}"></span>
+            <input type="text" data-bind="{value:lib.path }" />
+            <a class="btn fas far fa-save" data-bind="{click:{url:'/api/@domojs/media/library/'+lib.name, body:{path:lib.path}, method:'postJSON'} #http}"></a>
+        </li>
+    </ul>
+</div>
