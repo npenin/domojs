@@ -18,13 +18,21 @@
     <ul>
         <li data-bind="{each:{in:'/api/@domojs/media/library' #http, key:'name', value:'path' }}">
             <span style="font-weight: bold" data-bind="{text:name}"></span>
-            <input type="text" data-bind="{value:path }" />
-            <a class="btn fas far fa-save" data-bind="{click:{url:'/api/@domojs/media/library/'+name, body:{path:path}, method:'postJSON'} #http}"></a>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="path" aria-label="path" data-bind="{value:path }">
+                <div class="input-group-append">
+                    <a class="btn fas far fa-save" data-bind="{click:{url:'/api/@domojs/media/library/'+name, body:{path:path}, method:'postJSON'} #http}"></a>
+                </div>
+            </div>
         </li>
         <li data-bind="{each:{in:newItems, value:'lib' }}">
-            <span style="font-weight: bold" data-bind="{text:lib.name}"></span>
-            <input type="text" data-bind="{value:lib.path }" />
-            <a class="btn fas far fa-save" data-bind="{click:{url:'/api/@domojs/media/library/'+lib.name, body:{path:lib.path}, method:'postJSON'} #http}"></a>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="name" aria-label="name" data-bind="{value:lib.name }">
+                <input type="text" class="form-control" placeholder="path" aria-label="path" data-bind="{value:lib.path }">
+                <div class="input-group-append">
+                    <a class="btn btn-primary fas far fa-save" data-bind="{click:{args:['/api/@domojs/media/library/'+lib.name, {path:lib.path}], method:'postJSON'} #call:$http}"></a>
+                </div>
+            </div>
         </li>
     </ul>
 </div>
