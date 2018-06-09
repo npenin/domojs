@@ -4,14 +4,14 @@ import * as media from '../../metadata';
 export var api = new akala.Api()
     .clientToServer<void, string[]>()({
         libraries: {
-            rest: { url: '/library', param: { config: '$config.@domojs/media', updateConfig: '$updateConfig' } },
-            cli: { command: 'library', param: { updateConfig: '$updateConfig', config: '$config.@domojs/media' } }
+            rest: { url: '/library', param: { config: '$config.@domojs/media', updateConfig: '$updateConfig.@domojs/media' } },
+            cli: { command: 'library', param: { updateConfig: '$updateConfig.@domojs/media', config: '$config.@domojs/media' } }
         }
     })
     .clientToServer<{ path: string, additionalPaths?: string[], name: string }, media.Media>()({
         updateLibrary: {
-            rest: { url: '/library/:name', method: 'post', param: { path: 'body', additionalPaths: 'body', name: 'route', db: 'db', config: '$updateConfig' } },
-            cli: { command: 'library <name> <path> [...additionalPaths]', param: { path: 'param', additionalPaths: 'param', name: 'param', db: 'db', config: '$updateConfig' } }
+            rest: { url: '/library/:name', method: 'post', param: { path: 'body', additionalPaths: 'body', name: 'route', db: 'db', config: '$updateConfig.@domojs/media' } },
+            cli: { command: 'library <name> <path> [...additionalPaths]', param: { path: 'param', additionalPaths: 'param', name: 'param', db: 'db', config: '$updateConfig.@domojs/media' } }
         }
     })
     .clientToServer<{ library: string }, media.Media[]>()({
