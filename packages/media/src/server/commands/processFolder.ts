@@ -36,7 +36,7 @@ function translatePath(path: string): string
         akala.each(folderMapping, function (remotePath, localPath)
         {
             if (path.startsWith(remotePath))
-                path = path.replace(remotePath, localPath);
+                path = path.replace(remotePath, localPath as string);
         });
     }
     return path;
