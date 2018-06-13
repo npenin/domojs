@@ -38,7 +38,9 @@ class Api
 
     updateLibrary(param)
     {
-        return param.config(param.path, 'libraries.' + param.name);
+        return param.config(param.path, 'libraries.' + param.name).then(function(){
+            return {};
+        });
     }
 
     browse(param)
