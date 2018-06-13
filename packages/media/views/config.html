@@ -16,12 +16,12 @@
     <a class="btn btn-secondary" data-bind="{click:addNewItem}">
         <span class="fas far fa-plus"> </span> Add Library</a>
     <ul>
-        <li data-bind="{each:{in:'/api/@domojs/media/library' #http, key:'name', value:'path' }}">
+        <li data-bind="{each:{in:'/api/@domojs/media/libraries' #http, key:'name', value:'path' }}">
             <span style="font-weight: bold" data-bind="{text:name}"></span>
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="path" aria-label="path" data-bind="{value:path }">
                 <div class="input-group-append">
-                    <a class="btn fas far fa-save" data-bind="{click:{url:'/api/@domojs/media/library/'+name, body:{path:path}, method:'postJSON'} #http}"></a>
+                    <a class="btn btn-primary fas far fa-save" data-bind="{click:{args:['/api/@domojs/media/library/'+name, {path:path}], method:'postJSON'} #call:$http}"></a>
                 </div>
             </div>
         </li>
