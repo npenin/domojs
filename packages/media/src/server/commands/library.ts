@@ -45,7 +45,7 @@ class Api
 
     browse(param)
     {
-        return Promise.resolve(param.config).then(function (config)
+        return param.config.then(function (config)
         {
             return process.processSource(config.libraries, param.source, param.type, null, param.name, param.season, param.episode, param.album, param.artist);
         });
