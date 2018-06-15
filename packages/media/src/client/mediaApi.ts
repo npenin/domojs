@@ -30,9 +30,10 @@ export var api = new akala.Api()
                     name: 'query.name',
                     season: 'query.season',
                     album: 'query.album',
-                    artist: 'query.artist'
+                    artist: 'query.artist',
+                    type: 'query.type'
                 }
             },
-            cli: { command: 'browse <library>', param: { config: '$config.@domojs/media', library: 'param', episode: 'option', name: 'option', season: 'option', album: 'option', artist: 'option' } }
+            cli: { command: 'browse <library> <type>', param: { config: '$config.@domojs/media', library: 'param', type: 'param', episode: 'option', name: 'option', season: 'option', album: 'option', artist: 'option' } }
         },
     });
