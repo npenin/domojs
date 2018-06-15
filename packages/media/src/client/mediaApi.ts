@@ -25,7 +25,7 @@ export var api = new akala.Api()
             rest: {
                 url: '/library/:name/browse', param: {
                     config: '$config.@domojs/media',
-                    source: 'query.source',
+                    source: 'route.name',
                     episode: 'query.episode',
                     name: 'query.name',
                     season: 'query.season',

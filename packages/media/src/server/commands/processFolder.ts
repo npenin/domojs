@@ -13,7 +13,7 @@ var folderMapping: { [key: string]: string } = {};
 
 function translatePath(path: string): string
 {
-    if (path.startsWith('//') && process.platform != 'win32')
+    if (path[0] == '/' && path[1] == '/' && process.platform != 'win32')
     {
         path = path.substring(2).replace(/\//g, p.sep);
         var indexOfSlash = path.indexOf(p.sep);
@@ -220,8 +220,7 @@ var alphabetize = (function ()
 
 export function processSource(config, source?: string, type?: 'music' | 'video', lastIndex?: Date, name?: string, season?: number, episode?: number, album?: string, artist?: string)
 {
-    var indexers = 10;
-    var sources = config[source] || [];
+    var sources = [config[source]] || [];
     var result: string[] = [];
     if (processing)
         return Promise.reject(404);
@@ -240,7 +239,7 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
     var self = this;
     return new Promise<{ [key: string]: Media[] }>((resolve, reject) =>
     {
-        akala.eachAsync(sources, function (index, source)
+        akala.eachAsync(sources, function (source)
         {
             return browse(source, extension, lastIndex).then(function (media)
             {
@@ -279,37 +278,34 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
 
 export function browse(folder: string, extension: RegExp, lastIndex: Date)
 {
-    return new Promise<string[]>(function (resolve, reject)
+    return utils.promisify(fs.readdir)(translatePath(folder)).then(function (files)
     {
-        utils.promisify(fs.readdir)(translatePath(folder)).then(function (files)
+        var result: string[] = [];
+        return akala.eachAsync(files, function (file, index, next)
         {
-            var result: string[] = [];
-            return akala.eachAsync(files, function (file, index, next)
+            if (file == '$RECYCLE.BIN' || file == '.recycle')
+                return next();
+            file = folder + '/' + file;
+            fs.stat(translatePath(file), function (err, stat)
             {
-                if (file == '$RECYCLE.BIN' || file == '.recycle')
-                    return next();
-                file = folder + '/' + file;
-                fs.stat(translatePath(file), function (err, stat)
+                if (err)
                 {
-                    if (err)
+                    debug(err);
+                    next();
+                }
+                else if (stat.isDirectory())
+                    browse(file, extension, lastIndex).then(function (results)
                     {
-                        debug(err);
+                        result = result.concat(results);
                         next();
-                    }
-                    else if (stat.isDirectory())
-                        browse(file, extension, lastIndex).then(function (results)
-                        {
-                            result = result.concat(results);
-                            next();
-                        });
-                    else
-                    {
-                        if (extension.test(file) && stat.mtime > lastIndex)
-                            result.push(file);
-                        next();
-                    }
-                });
-            }).then(() => { return result; });
-        });
-    })
+                    });
+                else
+                {
+                    if (extension.test(file) && stat.mtime > lastIndex)
+                        result.push(file);
+                    next();
+                }
+            });
+        }).then(() => { return result; });
+    });
 }
