@@ -136,7 +136,8 @@ akala.worker.createClient('media').then((client) =>
             else
                 itemName = media.name;
             media.name = itemName.replace(/prologue|oav|ova/gi, '').replace(/\./g, ' ').replace(/ $/, '');
-
+            media.displayName = media.name;
+            
             media.id = 'media:video:' + media.name;
             if (seasonMatch)
             {

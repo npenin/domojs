@@ -239,11 +239,12 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
     var self = this;
     return new Promise<{ [key: string]: Media[] }>((resolve, reject) =>
     {
-        akala.eachAsync(sources, function (source)
+        akala.eachAsync(sources, function (source, dummy, next)
         {
-            return browse(source, extension, lastIndex).then(function (media)
+            browse(source, extension, lastIndex).then(function (media)
             {
                 result = result.concat(media);
+                next()
             });
         }, function ()
             {
@@ -253,9 +254,9 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
                 akala.worker.createClient('media').then(function (client)
                 {
                     var scrapperClient = akala.api.jsonrpcws(scrapper).createServerProxy(client);
-                    akala.eachAsync(result, function (path)
+                    akala.eachAsync(result, function (path, dummy, next)
                     {
-                        return scrapperClient.scrap(<any>{ path: path, type: type, id: null }).then(function (item)
+                        scrapperClient.scrap(<any>{ path: path, type: type, id: null }).then(function (item)
                         {
                             if (item && matcher(item))
                             {
@@ -265,6 +266,7 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
                                     trueResult[name] = group = [];
                                 group.push(item);
                             }
+                            next();
                         });
                     }, function ()
                         {
