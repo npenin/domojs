@@ -2,7 +2,7 @@ import * as akala from '@akala/server';
 import { meta as scrapper } from './scrapper';
 import * as path from 'path'
 import { extensions } from './commands/processFolder';
-import { Video, TVShow, Movie } from '../../metadata';
+import { TVShow, Movie } from '../../metadata';
 
 
 export function fileNameCleaner(fileName: string, extension?: RegExp)
@@ -49,7 +49,7 @@ export function fileNameCleaner(fileName: string, extension?: RegExp)
     return fileName;
 }
 
-akala.injectWithName(['$agent.media'], function (client)
+akala.injectWithNameAsync(['$agent.media'], function (client)
 {
     var s = akala.api.jsonrpcws(scrapper).createClient(client)({
         scrap: function (media)
@@ -63,7 +63,7 @@ akala.injectWithName(['$agent.media'], function (client)
     }).$proxy();
     s.register({ type: 'video', priority: 100 });
     s.register({ type: 'music', priority: 100 });
-})()
+});
 
 export function scrapTVShowInfo(media: TVShow | Movie)
 {
@@ -156,7 +156,7 @@ var seasonNumber = /(?:\.S(?:aison)?)([0-9]+)/i;
 var name = /(([A-Z!][A-Z!0-9]*|[A-Z!0-9]*[A-Z!])+(\.|$))+/i;
 
 
-akala.injectWithName(['$agent.media'], function (client)
+akala.injectWithNameAsync(['$agent.media'], function (client)
 {
     var s = akala.api.jsonrpcws(scrapper).createClient(client)({
         scrap: scrapTVShowInfo
