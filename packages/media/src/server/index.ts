@@ -8,12 +8,13 @@ akala.injectWithName(['$isModule', '$master', '$worker'], function (isModule: ak
 {
     if (isModule('@domojs/media'))
     {
-        master(__filename, './master');
         worker.on('ready', function ()
         {
             require("./fileNameScrapper");
             require("./tokenizer");
         });
+        master(__filename, './master');
+
 
 
         akala.injectWithName([AssetRegistration.name], function (virtualasset: PromiseLike<AssetRegistration>)
