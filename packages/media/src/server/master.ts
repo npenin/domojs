@@ -3,7 +3,7 @@ import { meta } from './scrapper';
 import { MediaTypes, MediaType, Media } from '../../metadata';
 import { Connection } from '@akala/json-rpc-ws';
 import * as ws from 'ws';
-
+const log=akala.log('domojs:media:scrap')
 var scrappers: { [key: string]: { connection: Connection, priority: number }[] } = {}
 
 akala.injectWithName(['$router'], function (router: akala.HttpRouter)
@@ -37,6 +37,7 @@ akala.injectWithName(['$router'], function (router: akala.HttpRouter)
         },
         scrap: function (media)
         {
+            log(media);
             return akala.eachAsync(scrappers[media.type], (scrapper, i, next) =>
             {
                 this.$proxy(scrapper.connection).scrap(media).then((m) =>
