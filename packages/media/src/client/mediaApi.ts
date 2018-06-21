@@ -36,4 +36,18 @@ export var api = new akala.Api()
             },
             cli: { command: 'browse <library> <type>', param: { config: '$config.@domojs/media', library: 'param', type: 'param', episode: 'option', name: 'option', season: 'option', album: 'option', artist: 'option' } }
         },
+        dropbox: {
+            rest: {
+                url: '/dropbox/:type', param: {
+                    config: '$config.@domojs/media',
+                    episode: 'query.episode',
+                    name: 'query.name',
+                    season: 'query.season',
+                    album: 'query.album',
+                    artist: 'query.artist',
+                    type: 'query.type'
+                }
+            },
+            cli: { command: 'dropbox <type>', param: { config: '$config.@domojs/media', library: 'param', type: 'param', episode: 'option', name: 'option', season: 'option', album: 'option', artist: 'option' } }
+        },
     });

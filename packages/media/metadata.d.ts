@@ -9,7 +9,7 @@ export interface BaseMedia
     type: MediaType;
     tokens?: string[];
     name?: string;
-    length?: Date;
+    length?: number;
     displayName?: string;
     cover?: string;
     collection?: string;
