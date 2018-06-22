@@ -44,8 +44,11 @@ akala.injectWithName(['$router'], function (router: akala.HttpRouter)
                 {
                     media = m;
                     next();
-                }, next);
-            }).then(() => { return media; });
+                }, function(err){
+                    log(err);
+                    next();
+                });
+            }).then((err) => { return media; });
         }
     });
 })();
