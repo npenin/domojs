@@ -93,7 +93,7 @@ export function scrapTVShowInfo(media: TVShow | Movie)
                 episodeMatch.index = seasonMatch.index
             }
             else
-                episodeMatch = /(?:[^0-9]|^)([0-9]{1,3})(?:\W|$)/.exec(media.name);
+                episodeMatch = /(?:[^0-9]|^)([0-9]{1,3})(?=\W|$)/.exec(media.name);
             if (!episodeMatch)
                 episodeMatch = /(?:[^0-9]|^)([0-9]{1,3})(?:[^0-9]|$)/.exec(media.name);
         }
