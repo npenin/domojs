@@ -29,6 +29,7 @@ for (var file of [
     // 'Owarimonogatari.S02E01.VOSTFR.1080p.WEB-DL.AAC.x264-WKN',
     // '[NKF]_Bakemonogatari_01_[1280x720_x264_AAC]',
     // '10.Cloverfield.Lane.2016.MULTi.BRRip.x264-GTM',
-    'Kiss_x_Sis_01_[H-R]_HD_1280x720_[0014C58B]',
+    // 'Kiss_x_Sis_01_[H-R]_HD_1280x720_[0014C58B]',
+    'Suicide Squad (2016) Extended MULTi VF [1080p] BluRay x264-PopHD',
 ])
     console.log(scrapper({ name: scrapper2(file), type: 'video', id: '', path: '' }).displayName)
