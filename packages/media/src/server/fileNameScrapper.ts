@@ -85,7 +85,7 @@ export function scrapTVShowInfo(media: TVShow | Movie)
         if (!episodeMatch)
         {
             //console.log(media.name);
-            episodeMatch = /(?:\.S(?:aison)?)([0-9]+)(?:E(?:p(?:isode)?)?|Part|Chapitre)\.?([0-9]+)/i.exec(media.name);
+            episodeMatch = /(?:\.S(?:aison)?)\.?([0-9]+)\.?(?:E(?:p(?:isode)?)?|Part|Chapitre\.?)?([0-9]+)(?:v\d)?/i.exec(media.name);
             if (episodeMatch && episodeMatch[2])
             {
                 seasonMatch = episodeMatch;
@@ -151,8 +151,8 @@ export function scrapTVShowInfo(media: TVShow | Movie)
     return media;
 }
 
-var episodeNumber = /(?:\.E(?:p(?:isode)?)?|Part|Chapitre)\.?([0-9]+)/i;
-var seasonNumber = /(?:\.S(?:aison)?)([0-9]+)/i;
+var episodeNumber = /(?:\.E(?:p(?:isode)?)?|Part|Chapitre)\.?([0-9]+)(?:v\d)/i;
+var seasonNumber = /(?:\.S(?:aison)?)\.?([0-9]+)/i;
 var name = /((&|[A-Z!][A-Z!0-9]*|[A-Z!0-9]*[A-Z!])+(\.|$))+/i;
 
 
