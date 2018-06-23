@@ -30,7 +30,7 @@ export function fileNameCleaner(fileName: string, extension?: RegExp)
     //normalizing separators to a dot
     fileName = fileName.replace(/[-\._ ]+/g, '.');
     //trimming codecs and format
-    fileName = fileName.replace(/(^(\[[^\]]+\]_?)(\[[^\]]{2,7}\])?)|((10|8)bit(?:s)?)|((1080|720)[pi])|[0-9]{3,4}x[0-9]{3,4}|([XH]\.?)26[45]|xvid|ogg|mp3|ac3|\+?aac|rv(9|10)e?([_-]EHQ)?|multi|vost(f(r)?)?|(?:true)(?:sub)?(?:st)?fr(?:ench)?|5\.1|dvd(rip(p)?(ed)?)?|bluray|directors\.cut|web-dl|\.V?[HLS][QD](?=\.)|\.(?:fin(al)?)|TV|B(?:R)?(?:D)(rip(p)?(ed)?)?|\.v[1-9]/gi, '');
+    fileName = fileName.replace(/(^(\[[^\]]+\]_?)(\[[^\]]{2,7}\])?)|((10|8)bit(?:s)?)|((1080|720)[pi]?)|[0-9]{3,4}x[0-9]{3,4}|([XH]\.?)26[45]|xvid|ogg|mp3|ac3|\+?aac|rv(9|10)e?([_-]EHQ)?|multi|vost(f(r)?)?|(?:true)(?:sub)?(?:st)?fr(?:ench)?|5\.1|dvd(rip(p)?(ed)?)?|bluray|directors\.cut|web-dl|\.V?[HLS][QD](?:TV)?(?=\.)|\.(?:fin(al)?)|TV|B(?:R)?(?:D)(rip(p)?(ed)?)?|\.v[1-9]/gi, '');
     //trimming end tags
     fileName = fileName.replace(/\[[^\]]+\]\.?$/, '');
     //removing empty tags
@@ -105,8 +105,8 @@ export function scrapTVShowInfo(media: TVShow | Movie)
         {
             media.name = media.name.substring(0, seasonMatch.index) + media.name.substring(seasonMatch.index + seasonMatch[0].length);
             seasonMatch[0] = null;
+            episodeMatch = /(?:[^0-9]|^)([0-9]{1,3})(?:[^0-9]|$)/.exec(media.name);
         }
-        episodeMatch = /(?:[^0-9]|^)([0-9]{1,3})(?:[^0-9]|$)/.exec(media.name);
     }
 
     if (episodeMatch && episodeMatch[0])
@@ -153,7 +153,7 @@ export function scrapTVShowInfo(media: TVShow | Movie)
 
 var episodeNumber = /(?:\.E(?:p(?:isode)?)?|Part|Chapitre)\.?([0-9]+)/i;
 var seasonNumber = /(?:\.S(?:aison)?)([0-9]+)/i;
-var name = /(([A-Z!][A-Z!0-9]*|[A-Z!0-9]*[A-Z!])+(\.|$))+/i;
+var name = /((&|[A-Z!][A-Z!0-9]*|[A-Z!0-9]*[A-Z!])+(\.|$))+/i;
 
 
 akala.injectWithNameAsync(['$agent.media'], function (client)
