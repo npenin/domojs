@@ -220,6 +220,23 @@ var alphabetize = (function ()
 
 export function processSource(config, source?: string, type?: 'music' | 'video', lastIndex?: Date, name?: string, season?: number, episode?: number, album?: string, artist?: string)
 {
+    var processing = false;
+    var wasProcessing = false;
+    var interval = setInterval(function ()
+    {
+        if (processing)
+        {
+            debug(processing);
+            wasProcessing = processing;
+        }
+        else if (wasProcessing)
+        {
+            debug('process finished');
+            wasProcessing = false;
+            clearInterval(interval);
+        }
+    }, 10000);
+
     var sources = [config[source]] || [];
     var result: string[] = [];
     if (processing)
