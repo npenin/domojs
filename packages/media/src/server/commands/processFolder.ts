@@ -43,6 +43,22 @@ function translatePath(path: string): string
 }
 
 var processing: string = null;
+var wasProcessing: string = null;
+var interval = setInterval(function ()
+{
+    if (processing)
+    {
+        debug(processing);
+        wasProcessing = processing;
+    }
+    else if (wasProcessing)
+    {
+        debug('process finished');
+        wasProcessing = null;
+        clearInterval(interval);
+    }
+}, 10000);
+
 export var extensions = {
     video: /\.(avi|mkv|flv|mp4|mpg|ts)$/i,
     music: /\.(mp3|fla|flac|m4a)$/i
@@ -237,23 +253,6 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
             (!artist || item.type == 'music' && item.artists && artist in item.artists);
     }
     var self = this;
-
-    var processing: string = undefined;
-    var wasProcessing: string = null;
-    var interval = setInterval(function ()
-    {
-        if (processing)
-        {
-            debug(processing);
-            wasProcessing = processing;
-        }
-        else if (wasProcessing)
-        {
-            debug('process finished');
-            wasProcessing = null;
-            clearInterval(interval);
-        }
-    }, 10000);
 
     return new Promise<{ [key: string]: Media[] }>((resolve, reject) =>
     {
