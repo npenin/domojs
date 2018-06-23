@@ -220,6 +220,24 @@ var alphabetize = (function ()
 
 export function processSource(config, source?: string, type?: 'music' | 'video', lastIndex?: Date, name?: string, season?: number, episode?: number, album?: string, artist?: string)
 {
+    var sources = [config[source]] || [];
+    var result: string[] = [];
+    if (processing)
+        return Promise.reject({status:404});
+    processing = 'processing folders';
+    var extension = extensions[type];
+    if (!lastIndex)
+        lastIndex = new Date(0);
+    var matcher = function (item: Media)
+    {
+        return (!name || item.name == name) &&
+            (!season || item.type == 'video' && item.subType == 'tvshow' && item.season == season) &&
+            (!episode || item.type == 'video' && item.episode == episode) &&
+            (!album || item.type == 'music' && item.album == album) &&
+            (!artist || item.type == 'music' && item.artists && artist in item.artists);
+    }
+    var self = this;
+    
     var processing: string = undefined;
     var wasProcessing: string = null;
     var interval = setInterval(function ()
@@ -237,23 +255,6 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
         }
     }, 10000);
 
-    var sources = [config[source]] || [];
-    var result: string[] = [];
-    if (processing)
-        return Promise.reject(404);
-    processing = 'processing folders';
-    var extension = extensions[type];
-    if (!lastIndex)
-        lastIndex = new Date(0);
-    var matcher = function (item: Media)
-    {
-        return (!name || item.name == name) &&
-            (!season || item.type == 'video' && item.subType == 'tvshow' && item.season == season) &&
-            (!episode || item.type == 'video' && item.episode == episode) &&
-            (!album || item.type == 'music' && item.album == album) &&
-            (!artist || item.type == 'music' && item.artists && artist in item.artists);
-    }
-    var self = this;
     return new Promise<{ [key: string]: Media[] }>((resolve, reject) =>
     {
         akala.eachAsync(sources, function (source, dummy, next)
