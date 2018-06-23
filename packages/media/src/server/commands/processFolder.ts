@@ -256,6 +256,7 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
                     var scrapperClient = akala.api.jsonrpcws(scrapper).createServerProxy(client);
                     akala.eachAsync(result, function (path, dummy, next)
                     {
+                        var groups = Object.keys([]);
                         scrapperClient.scrap(<any>{ path: path, type: type, id: null }).then(function (item)
                         {
                             if (item && matcher(item))
@@ -263,7 +264,14 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
                                 var name = item.type == 'music' && item.album || item.name;
                                 var group = trueResult[name];
                                 if (!group)
-                                    trueResult[name] = group = [];
+                                {
+                                    group = groups.find(g => g.toLowerCase() == name.toLowerCase());
+                                    if (!group)
+                                    {
+                                        groups.push(name);
+                                        trueResult[name] = group = [];
+                                    }
+                                }
                                 group.push(item);
                             }
                             next();

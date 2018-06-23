@@ -33,9 +33,10 @@ for (var file of [
     { original: 'Suicide Squad (2016) Extended MULTi VF [1080p] BluRay x264-PopHD', expected: 'Suicide Squad' },
     { original: '[AnoS]_Otome_wa_Boku_ni_Koishiteru_-_Episode_01_[384BD001].avi', expected: 'Otome wa Boku ni Koishiteru Episode - E1' },
     { original: '[Nemesis]_Maria_sama_ga_miteru_Saison_1_03v2_[FF9FC7F0].mkv', expected: 'Maria sama ga miteru - S1 - E3' },
+    { original: '[Nemesis]_Psycho-Pass_01v2_[C65C5CC8].mkv', expected: 'Psycho Pass - E1' },
 ])
 {
     var actual = scrapper({ name: scrapper2(file.original), type: 'video', id: '', path: '' }).displayName;
     // console.log(actual);
-    console.assert(actual == file.expected, JSON.stringify({ original: file.original, expected:file.expected, actual: actual }, null, 4));
+    console.assert(actual == file.expected, JSON.stringify({ original: file.original, expected: file.expected, actual: actual }, null, 4));
 }

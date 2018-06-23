@@ -93,7 +93,7 @@ export function scrapTVShowInfo(media: TVShow | Movie)
                 episodeMatch.index = seasonMatch.index
             }
             else
-                episodeMatch = /(?:[^0-9]|^)([0-9]{1,3})(?=\W|$)/.exec(media.name);
+                episodeMatch = /(?:[^0-9v]|^)([0-9]{1,3})(?=\W|$)/.exec(media.name);
             if (!episodeMatch)
                 episodeMatch = /(?:[^0-9]|^)([0-9]{1,3})(?:[^0-9]|$)/.exec(media.name);
         }
@@ -105,7 +105,7 @@ export function scrapTVShowInfo(media: TVShow | Movie)
         {
             media.name = media.name.substring(0, seasonMatch.index) + media.name.substring(seasonMatch.index + seasonMatch[0].length);
             seasonMatch[0] = null;
-            episodeMatch = /(?:[^0-9]|^)([0-9]{1,3})(?:[^0-9]|$)/.exec(media.name);
+            episodeMatch = /(?:[^0-9]|^)([0-9]{1,3})(?:v\d)?(?:[^0-9]|$)/.exec(media.name);
         }
     }
 
