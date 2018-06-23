@@ -32,14 +32,13 @@ for (var file of [
     { original: '10.Cloverfield.Lane.2016.MULTi.BRRip.x264-GTM', expected: 'Cloverfield Lane - E10' },
     { original: 'Kiss_x_Sis_01_[H-R]_HD_1280x720_[0014C58B]', expected: 'Kiss x Sis - E1' },
     { original: 'Suicide Squad (2016) Extended MULTi VF [1080p] BluRay x264-PopHD', expected: 'Suicide Squad' },
-    { original: '[AnoS]_Otome_wa_Boku_ni_Koishiteru_-_Episode_01_[384BD001].avi', expected: 'Otome wa Boku ni Koishiteru Episode - E1' },
+    { original: '[AnoS]_Otome_wa_Boku_ni_Koishiteru_-_Episode_01_[384BD001].avi', expected: 'Otome wa Boku ni Koishiteru - E1' },
     { original: '[Nemesis]_Maria_sama_ga_miteru_Saison_1_03v2_[FF9FC7F0].mkv', expected: 'Maria sama ga miteru - S1 - E3' },
     { original: '[Nemesis]_Psycho-Pass_01v2_[C65C5CC8].mkv', expected: 'Psycho Pass - E1' },
     { original: '[RepoAnime] Dakara Boku wa, H ga Dekinai - 01 [BD Uncensored] [720p H264 AAC Eng Subbed] [D7D5E2C0].mp4', expected: 'Dakara Boku wa, H ga Dekinai - E1' },
     { original: '[Shi-R]Asura_Cryin\'_01_HD_vostfr_1280x720_ x264-AAC.[A7194CCD].mp4', expected: 'Asura Cryin\' - E1' },
     { original: '[TNF]_Magic_Kaito_[Kid_l\'insaisissable][SP][X264_1280x720][vostfr].mp4', expected: 'Magic Kaito' },
     { original: '[eXe]_DragonBlade_Film_[C8DD75F3].avi', expected: 'DragonBlade' },
-    
 ])
 {
     var actual = scrapper({ name: scrapper2(file.original, extensions.video), type: 'video', id: '', path: '' });
