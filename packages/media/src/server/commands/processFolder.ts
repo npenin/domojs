@@ -239,7 +239,7 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
     var sources = [config[source]] || [];
     var result: string[] = [];
     if (processing)
-        return Promise.reject({ status: 404 });
+        return Promise.reject('Server is already processing (' + processing + ')');
     processing = 'processing folders';
     var extension = extensions[type];
     if (!lastIndex)
@@ -282,8 +282,8 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
                                 var group = trueResult[name];
                                 if (!group)
                                 {
-                                    name = groups.find(g => g.toLowerCase() == name.toLowerCase());
-                                    group = trueResult[name];
+                                    var groupName = groups.find(g => g.toLowerCase() == name.toLowerCase());
+                                    group = trueResult[groupName];
                                     if (!group)
                                     {
                                         groups.push(name);
