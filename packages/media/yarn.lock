@@ -2,12 +2,12 @@
 # yarn lockfile v1
 
 
-"@akala/cli@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@akala/cli/-/cli-0.0.3.tgz#7b0ca4edced67fa3d34aa113a84348eb07a1a4a7"
+"@akala/cli@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@akala/cli/-/cli-0.0.8.tgz#9133933ebee9faa262ffd3359033056555d66456"
   dependencies:
-    "@akala/core" "^2.0.0-17"
-    "@akala/server" "^2.0.1-7"
+    "@akala/core" "^2.0.0"
+    "@akala/server" "^2.0.5"
     mock-require "^3.0.2"
 
 "@akala/client@^2.0.4":
@@ -17,8 +17,8 @@
     showdown "^1.8.6"
 
 "@akala/core@^2.0.0", "@akala/core@^2.0.0-17":
-  version "2.0.29"
-  resolved "https://registry.yarnpkg.com/@akala/core/-/core-2.0.29.tgz#7333d3c262a46c34d16ce06c0468eff1bbc14e10"
+  version "2.0.32"
+  resolved "https://registry.yarnpkg.com/@akala/core/-/core-2.0.32.tgz#961f27f4e24e5aba0b6c4bba00afaed41099f723"
   dependencies:
     "@akala/json-rpc-ws" "^4.1.10"
     "@types/mock-require" "^2.0.0"
@@ -45,9 +45,9 @@
     uuid "^3.0.0"
     ws "^3.0.0"
 
-"@akala/server@^2.0.1-7", "@akala/server@^2.0.5":
-  version "2.0.23"
-  resolved "https://registry.yarnpkg.com/@akala/server/-/server-2.0.23.tgz#3cc95c74a7d4a5af3e5759d435cd6de31504148f"
+"@akala/server@^2.0.24", "@akala/server@^2.0.5":
+  version "2.0.24"
+  resolved "https://registry.yarnpkg.com/@akala/server/-/server-2.0.24.tgz#604534f0dac94e3ef01f5b30b1eacd0275f91dfd"
   dependencies:
     "@akala/core" "^2.0.0-17"
     "@akala/json-rpc-ws" "^4.1.23"
@@ -83,15 +83,19 @@
     "@types/node" "*"
 
 "@types/ioredis@^3.2.7":
-  version "3.2.8"
-  resolved "https://registry.yarnpkg.com/@types/ioredis/-/ioredis-3.2.8.tgz#ea2dda6ee379efa5f8dabd477f04dce4bed91815"
+  version "3.2.9"
+  resolved "https://registry.yarnpkg.com/@types/ioredis/-/ioredis-3.2.9.tgz#ef93519f1ae15ac597fd19b8b0d44cdab725f97a"
   dependencies:
     "@types/bluebird" "*"
     "@types/node" "*"
 
 "@types/jquery@^3.3.1":
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.3.2.tgz#8700226bdde24b6f98e3a60126dbaab3b2a3ab41"
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.3.4.tgz#f1850fb9a70041a14ace4f81a7ed782db8548317"
+
+"@types/levenshtein@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/levenshtein/-/levenshtein-1.0.1.tgz#0a8084347279058c43f9a0627c88d0435f9f823b"
 
 "@types/mock-require@^2.0.0":
   version "2.0.0"
@@ -100,8 +104,8 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "10.3.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.3.3.tgz#8798d9e39af2fa604f715ee6a6b19796528e46c3"
+  version "10.3.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.3.5.tgz#8423cdf6e6fb83433e489900d7600d3b61c8260c"
 
 "@types/redis@^2.8.6":
   version "2.8.6"
@@ -628,6 +632,10 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
+levenshtein@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/levenshtein/-/levenshtein-1.0.5.tgz#3911737a9cb56da345d008f55782c6f138979ba3"
+
 locate-path@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-2.0.0.tgz#2b568b265eec944c6d9c0de9c3dbbbca0354cd8e"
@@ -784,8 +792,8 @@ negotiator@0.6.1:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
 node-abi@^2.1.1, node-abi@^2.2.0:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/node-abi/-/node-abi-2.4.1.tgz#7628c4d4ec4e9cd3764ceb3652f36b2e7f8d4923"
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/node-abi/-/node-abi-2.4.3.tgz#43666b7b17e57863e572409edbb82115ac7af28b"
   dependencies:
     semver "^5.4.1"
 
@@ -1226,8 +1234,8 @@ strip-json-comments@~2.0.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
 tar-fs@^1.13.0:
-  version "1.16.2"
-  resolved "https://registry.yarnpkg.com/tar-fs/-/tar-fs-1.16.2.tgz#17e5239747e399f7e77344f5f53365f04af53577"
+  version "1.16.3"
+  resolved "https://registry.yarnpkg.com/tar-fs/-/tar-fs-1.16.3.tgz#966a628841da2c4010406a82167cbd5e0c72d509"
   dependencies:
     chownr "^1.0.1"
     mkdirp "^0.5.1"
