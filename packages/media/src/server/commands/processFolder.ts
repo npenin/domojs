@@ -220,8 +220,8 @@ var alphabetize = (function ()
 
 export function processSource(config, source?: string, type?: 'music' | 'video', lastIndex?: Date, name?: string, season?: number, episode?: number, album?: string, artist?: string)
 {
-    var processing = false;
-    var wasProcessing = false;
+    var processing: string = undefined;
+    var wasProcessing: string = null;
     var interval = setInterval(function ()
     {
         if (processing)
@@ -232,7 +232,7 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
         else if (wasProcessing)
         {
             debug('process finished');
-            wasProcessing = false;
+            wasProcessing = null;
             clearInterval(interval);
         }
     }, 10000);
