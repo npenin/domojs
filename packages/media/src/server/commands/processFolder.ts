@@ -223,7 +223,7 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
     var sources = [config[source]] || [];
     var result: string[] = [];
     if (processing)
-        return Promise.reject({status:404});
+        return Promise.reject({ status: 404 });
     processing = 'processing folders';
     var extension = extensions[type];
     if (!lastIndex)
@@ -237,7 +237,7 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
             (!artist || item.type == 'music' && item.artists && artist in item.artists);
     }
     var self = this;
-    
+
     var processing: string = undefined;
     var wasProcessing: string = null;
     var interval = setInterval(function ()
@@ -268,7 +268,7 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
             {
                 debug('found ' + result.length + ' new ' + type + '(s)');
                 processing = 'processing indexation';
-                var trueResult = {};
+                var trueResult: { [key: string]: Media[] } = {};
                 akala.worker.createClient('media').then(function (client)
                 {
                     var scrapperClient = akala.api.jsonrpcws(scrapper).createServerProxy(client);
@@ -283,7 +283,8 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
                                 var group = trueResult[name];
                                 if (!group)
                                 {
-                                    group = groups.find(g => g.toLowerCase() == name.toLowerCase());
+                                    name = groups.find(g => g.toLowerCase() == name.toLowerCase());
+                                    group = trueResult[name];
                                     if (!group)
                                     {
                                         groups.push(name);
