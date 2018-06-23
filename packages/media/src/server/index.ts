@@ -5,7 +5,7 @@ export * from '../../metadata';
 import * as levenshtein from 'levenshtein';
 import { AssetRegistration } from '@akala-modules/core'
 
-const log = akala.log('domojs:media');
+const confidenceLog = akala.log('domojs:media:confidence');
 
 export function confidence(name: string, names: string[])
 {
@@ -13,7 +13,7 @@ export function confidence(name: string, names: string[])
     name = name.toLowerCase().replace(/[^A-Z0-9 ]/gi, '');
     if (names)
     {
-        log(`${name} confidence in ${names}`);
+        confidenceLog(`${name} confidence in ${names}`);
         akala.each(names, function (n)
         {
             var tokens = n.replace(/ \([0-9]{4}\)$/, '').replace(/[^A-Z0-9 ]/gi, '').toLowerCase();
