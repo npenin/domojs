@@ -30,9 +30,9 @@ export function confidence(name: string, names: string[])
                 if (indexOfToken > 0)
                     indexOfToken--;
                 var test = new RegExp('(?:^|\\W)' + akala.introspect.escapeRegExp(token) + '(?:$|\\W)');
-                return token.length > 0 && indexOfToken > -1 && (indexOfToken + token.length == name.length || test.test(name.substring(indexOfToken, token.length + 1)));
+                return token.length > 0 && indexOfToken > -1 && (indexOfToken + token.length == name.length - 1 || test.test(name.substr(indexOfToken, token.length + 1)));
             });
-            c = match.length / name.split(' ').length * match.length / tokenArray.length;
+            c = c * match.length / name.split(' ').length * match.length / tokenArray.length;
             if (c >= max)
                 max = c;
         });
