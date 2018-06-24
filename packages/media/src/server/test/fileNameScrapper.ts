@@ -39,6 +39,8 @@ for (var file of [
     { original: '[Shi-R]Asura_Cryin\'_01_HD_vostfr_1280x720_ x264-AAC.[A7194CCD].mp4', expected: 'Asura Cryin\' - E1' },
     { original: '[TNF]_Magic_Kaito_[Kid_l\'insaisissable][SP][X264_1280x720][vostfr].mp4', expected: 'Magic Kaito' },
     { original: '[eXe]_DragonBlade_Film_[C8DD75F3].avi', expected: 'DragonBlade' },
+    { original: '[KLF]_[FFS]_Prism_Ark_Trailer.avi', expected: 'Prism Ark Trailer' },
+    
 ])
 {
     var actual = scrapper({ name: scrapper2(file.original, extensions.video), type: 'video', id: '', path: '' });
