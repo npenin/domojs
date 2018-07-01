@@ -4,11 +4,11 @@ import '@domojs/theme-default/dist/tile';
 
 tiles.add({
     text: 'Musique',
-    icon: 'fas fal fa-music',
+    icon: 'music',
     url: '/media/music'
 });
 tiles.add({
     text: 'Videos',
-    icon: 'fas fal fa-video',
+    icon: 'video',
     url: '/media/video'
 });
