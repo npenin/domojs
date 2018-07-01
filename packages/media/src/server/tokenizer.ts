@@ -3,7 +3,7 @@ import { meta as scrapper } from './scrapper';
 
 akala.injectWithNameAsync(['$agent.media'], function (client)
 {
-    var s = akala.api.jsonrpcws(scrapper).createClient(client)({
+    var s = akala.api.jsonrpcws(scrapper).createClient(client, {
         scrap: function (media)
         {
             switch (media.type)

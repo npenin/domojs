@@ -51,7 +51,7 @@ export function fileNameCleaner(fileName: string, extension?: RegExp)
 
 akala.injectWithNameAsync(['$agent.media'], function (client)
 {
-    var s = akala.api.jsonrpcws(scrapper).createClient(client)({
+    var s = akala.api.jsonrpcws(scrapper).createClient(client, {
         scrap: function (media)
         {
             var fileName = path.basename(media.path);
@@ -158,7 +158,7 @@ var name = /(([&,]|[A-Z!][A-Z!0-9]*|[A-Z!0-9]*[A-Z!'])+(\.|$))+/i;
 
 akala.injectWithNameAsync(['$agent.media'], function (client)
 {
-    var s = akala.api.jsonrpcws(scrapper).createClient(client)({
+    var s = akala.api.jsonrpcws(scrapper).createClient(client, {
         scrap: scrapTVShowInfo
     }).$proxy();
     s.register({ type: 'video', priority: 90 });
