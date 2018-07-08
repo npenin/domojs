@@ -25,7 +25,7 @@ akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Pa
                     $http.get(tile.cmd)
             }
         }
-    })
+    });
 
     part.use('/media', 'commands', {
         template: '/@domojs/media/commands.html'

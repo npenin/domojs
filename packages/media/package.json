@@ -28,13 +28,16 @@
   },
   "devDependencies": {
     "@akala/cli": "^0.0.8",
-    "@akala/server": "^2.0.29",
+    "@akala/server": "^2.0.30",
     "@types/ioredis": "^3.2.7",
     "@types/jquery": "^3.3.1",
     "@types/levenshtein": "^1.0.1",
     "@types/redis": "^2.8.6",
     "@types/request": "^2.47.0",
     "@types/ws": "^4.0.2",
-    "popper.js": "^1.14.3"
+    "popper.js": "^1.14.3",
+    "@akala-modules/core": "^1.0.27",
+    "@domojs/db": "^1.1.0",
+    "@domojs/theme-default": "^1.1.3"
   }
 }
