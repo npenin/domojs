@@ -5,7 +5,7 @@ import * as process from './processFolder';
 import { promisify } from 'util';
 import { writeFile, fstat, stat, readFile, exists } from 'fs';
 import { saveMedia } from './processFolder';
-import { Media } from '@domojs/media/metadata';
+import { Media } from '../../../metadata';
 
 
 @akala.server(api, {

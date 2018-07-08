@@ -2,7 +2,7 @@ import * as akala from '@akala/server';
 import * as fs from 'fs';
 import * as p from 'path';
 import * as utils from 'util';
-import { Media } from '@domojs/media/metadata';
+import { Media } from '../../../metadata';
 import { meta as scrapper } from '../scrapper'
 import { client as db } from '@domojs/db';
 import * as redis from 'ioredis';
