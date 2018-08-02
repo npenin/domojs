@@ -1,6 +1,7 @@
 import * as akala from '@akala/server';
 import { EventEmitter } from 'events';
 export { meta as scrapper } from './scrapper';
+export { player } from '../client/playerApi'
 export * from '../../metadata';
 import * as levenshtein from 'levenshtein';
 import { AssetRegistration } from '@akala-modules/core'

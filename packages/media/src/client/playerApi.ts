@@ -20,23 +20,17 @@ function buildCommands(url: string, definition: { jsonrpcws: boolean, rest: Rest
     return apiDefinition;
 }
 
-export var api = new akala.Api()
-    .clientToServerOneWay<{ name: string, identity: string }>()({ register: { jsonrpcws: true } })
-    .clientToServer<void, { name: string, identity: string }[]>()({ getPlayers: { jsonrpcws: true } })
-    .serverToClientOneWay<{ media: Media, target: string }>()({
-        play: {
-            jsonrpcws: true,
-            rest:
-            {
-                method: 'post',
-                url: '/api/player/:playerIdentity',
-                param: {
-                    target: 'route.playerIdentity',
-                    media: 'body'
-                }
-            }
-        },
-    })
+export interface Player
+{
+    name: string;
+    identity: string;
+    capability?: ('playlist')[];
+}
+
+export var controller = new akala.Api()
+    .serverToClientOneWay<Player[]>()({ players: { jsonrpcws: true, rest: false } })
+    .clientToServer<void, Player[]>()({ getPlayers: { jsonrpcws: true, rest: { method: 'get', url: '/api/player' } } })
+    .clientToServerOneWay<string>()({ control: true })
     .clientToServerOneWay<{ media: Media, target: string }>()({
         play: {
             jsonrpcws: true,
@@ -51,7 +45,7 @@ export var api = new akala.Api()
             }
         }
     })
-    .serverToClientOneWay<{ target: string }>()(buildCommands('/api/player/:playerIdentity/', {
+    .clientToServerOneWay<{ target: string }>()(buildCommands('/api/@domojs/media/player/:playerIdentity/', {
         jsonrpcws: true,
         rest:
         {
@@ -62,7 +56,50 @@ export var api = new akala.Api()
             }
         }
     }))
-    .clientToServerOneWay<{ target: string }>()(buildCommands('/api/@domojs/media/player/:playerIdentity/', {
+    .serverToClientOneWay<{ identity: string, progress: number }>()({
+        progress: {
+            jsonrpcws: true, rest: {
+                method: 'get',
+                url: '/api/@domojs/media/player/:playerIdentity/progress',
+                param: {
+                    target: 'route.playerIdentity'
+                }
+            }
+        }
+    })
+    .serverToClientOneWay<{ identity: string, playlist: string[] }>()({
+        playlist: {
+            jsonrpcws: true,
+            rest: {
+                method: 'get',
+                url: '/api/@domojs/media/player/:playerIdentity/playlist',
+                param: {
+                    target: 'route.playerIdentity'
+                }
+            }
+        }
+    })
+    ;
+
+export var player = new akala.Api()
+    .clientToServerOneWay<Player>()({ registerAsPlayer: { jsonrpcws: true } })
+    .clientToServerOneWay<{ identity: string, progress: number }>()({ progress: { jsonrpcws: true } })
+    .clientToServerOneWay<{ identity: string, playlist: string[] }>()({ playlist: { jsonrpcws: true } })
+    .serverToClientOneWay<{ media: Media, target: string }>()({
+        play: {
+            jsonrpcws: true,
+            rest:
+            {
+                method: 'post',
+                url: '/api/player/:playerIdentity',
+                param: {
+                    target: 'route.playerIdentity',
+                    media: 'body'
+                }
+            }
+        },
+    })
+    .serverToClientOneWay<{ target: string }>()(buildCommands('/api/player/:playerIdentity/', {
         jsonrpcws: true,
         rest:
         {
