@@ -56,11 +56,17 @@ export var controller = new akala.Api()
             }
         }
     }))
-    .serverToClientOneWay<{ identity: string, progress: number }>()({
-        progress: {
+    .serverToClientOneWay<{
+        identity: string,
+        state: 'playing' | 'paused' | 'stopped',
+        position: number,
+        time: number,
+        length: number,
+    }>()({
+        status: {
             jsonrpcws: true, rest: {
                 method: 'get',
-                url: '/api/@domojs/media/player/:playerIdentity/progress',
+                url: '/api/@domojs/media/player/:playerIdentity/status',
                 param: {
                     target: 'route.playerIdentity'
                 }
@@ -83,7 +89,13 @@ export var controller = new akala.Api()
 
 export var player = new akala.Api()
     .clientToServerOneWay<Player>()({ registerPlayer: { jsonrpcws: true }, unregisterPlayer: { jsonrpcws: true } })
-    .clientToServerOneWay<{ identity: string, progress: number }>()({ progress: { jsonrpcws: true } })
+    .clientToServerOneWay<{
+        identity: string,
+        state: 'playing' | 'paused' | 'stopped',
+        position: number,
+        time: number,
+        length: number,
+    }>()({ status: { jsonrpcws: true } })
     .clientToServerOneWay<{ identity: string, playlist: string[] }>()({ playlist: { jsonrpcws: true } })
     .serverToClientOneWay<{ media: Media, target: string }>()({
         play: {
