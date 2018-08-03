@@ -16,11 +16,11 @@ function playerProxy(connection: Connection)
 function controllerProxy()
 {
     return {
-        progress(p)
+        status(p)
         {
             controllers[p.identity].forEach(connection =>
             {
-                akala.api.jsonrpcws(controller).createClientProxy(connection).progress(p);
+                akala.api.jsonrpcws(controller).createClientProxy(connection).status(p);
             });
         },
         playlist(p)
@@ -148,9 +148,9 @@ akala.buildServer(new akala.DualApi(scrapper, new akala.DualApi(player, controll
             return { name: player.name, identity: identity as string };
         }, true));
     },
-    progress(param)
+    status(param)
     {
-        return controllerProxy().progress(param);
+        return controllerProxy().status(param);
     },
     control(param, connection)
     {
