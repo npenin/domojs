@@ -59,9 +59,9 @@ export var controller = new akala.Api()
     .serverToClientOneWay<{
         identity: string,
         state: 'playing' | 'paused' | 'stopped',
-        position: number,
-        time: number,
-        length: number,
+        position?: number,
+        time?: number,
+        length?: number,
     }>()({
         status: {
             jsonrpcws: true, rest: {
@@ -92,9 +92,9 @@ export var player = new akala.Api()
     .clientToServerOneWay<{
         identity: string,
         state: 'playing' | 'paused' | 'stopped',
-        position: number,
-        time: number,
-        length: number,
+        position?: number,
+        time?: number,
+        length?: number,
     }>()({ status: { jsonrpcws: true } })
     .clientToServerOneWay<{ identity: string, playlist: string[] }>()({ playlist: { jsonrpcws: true } })
     .serverToClientOneWay<{ media: Media, target: string }>()({
