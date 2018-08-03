@@ -73,7 +73,7 @@ export var controller = new akala.Api()
             }
         }
     })
-    .serverToClientOneWay<{ identity: string, playlist: string[] }>()({
+    .serverToClientOneWay<{ identity: string, playlist: { url: string, current?: boolean }[] }>()({
         playlist: {
             jsonrpcws: true,
             rest: {
@@ -96,7 +96,7 @@ export var player = new akala.Api()
         time?: number,
         length?: number,
     }>()({ status: { jsonrpcws: true } })
-    .clientToServerOneWay<{ identity: string, playlist: string[] }>()({ playlist: { jsonrpcws: true } })
+    .clientToServerOneWay<{ identity: string, playlist: { url: string, current?: boolean }[] }>()({ playlist: { jsonrpcws: true } })
     .serverToClientOneWay<{ media: Media, target: string }>()({
         play: {
             jsonrpcws: true,
