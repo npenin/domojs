@@ -82,7 +82,7 @@ export var controller = new akala.Api()
     ;
 
 export var player = new akala.Api()
-    .clientToServerOneWay<Player>()({ registerAsPlayer: { jsonrpcws: true } })
+    .clientToServerOneWay<Player>()({ registerPlayer: { jsonrpcws: true }, unregisterPlayer: { jsonrpcws: true } })
     .clientToServerOneWay<{ identity: string, progress: number }>()({ progress: { jsonrpcws: true } })
     .clientToServerOneWay<{ identity: string, playlist: string[] }>()({ playlist: { jsonrpcws: true } })
     .serverToClientOneWay<{ media: Media, target: string }>()({

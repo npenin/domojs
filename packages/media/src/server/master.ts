@@ -27,14 +27,14 @@ function controllerProxy()
         {
             controllers[p.identity].forEach(connection =>
             {
-                akala.api.jsonrpcws(controller).createClientProxy(connection).progress(p);
+                akala.api.jsonrpcws(controller).createClientProxy(connection).playlist(p);
             });
         },
-        players(p)
+        players(p, identity: string = 'all')
         {
-            controllers['all'].forEach(connection =>
+            controllers[identity].forEach(connection =>
             {
-                akala.api.jsonrpcws(controller).createClientProxy(connection).progress(p);
+                akala.api.jsonrpcws(controller).createClientProxy(connection).players(p);
             });
         }
     };
@@ -86,40 +86,60 @@ akala.buildServer(new akala.DualApi(scrapper, new akala.DualApi(player, controll
     },
     play(param)
     {
-        return playerProxy(players[param.identity].connection).play(param);
+        return playerProxy(players[param.target].connection).play(param);
     },
     pause(param)
     {
-        return playerProxy(players[param.identity].connection).pause(param);
+        return playerProxy(players[param.target].connection).pause(param);
     },
     stop(param)
     {
-        return playerProxy(players[param.identity].connection).stop(param);
+        return playerProxy(players[param.target].connection).stop(param);
     },
     next(param)
     {
-        return playerProxy(players[param.identity].connection).next(param);
+        return playerProxy(players[param.target].connection).next(param);
     },
     previous(param)
     {
-        return playerProxy(players[param.identity].connection).previous(param);
+        return playerProxy(players[param.target].connection).previous(param);
     },
     mute(param)
     {
-        return playerProxy(players[param.identity].connection).mute(param);
+        return playerProxy(players[param.target].connection).mute(param);
     },
-    registerAsPlayer(param, connection: Connection)
+    registerPlayer(param, connection: Connection)
     {
         if (param.identity in players)
             throw new Error(`${param.identity} is already a registered player`);
+
         players[param.identity] = { connection, name: param.name };
         controllers[param.identity] = [];
 
         connection.on('close', function ()
         {
-            delete controllers[param.identity];
             delete player[param.identity];
+            controllerProxy().players(akala.map(players, function (player, identity)
+            {
+                return { name: player.name, identity: identity as string };
+            }, true), param.identity);
+            delete controllers[param.identity];
         })
+    },
+    unregisterPlayer(param, connection: Connection)
+    {
+        if (!(param.identity in players))
+            throw new Error(`${param.identity} is not registered as a player`);
+
+        if (players[param.identity].connection != connection)
+            throw new Error(`${param.identity} is not registered as a player on this connection`);
+
+        delete player[param.identity];
+        controllerProxy().players(akala.map(players, function (player, identity)
+        {
+            return { name: player.name, identity: identity as string };
+        }, true), param.identity);
+        delete controllers[param.identity];
     },
     getPlayers()
     {

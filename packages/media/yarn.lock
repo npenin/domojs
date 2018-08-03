@@ -27,8 +27,8 @@
     showdown "^1.8.6"
 
 "@akala/core@^2.0.0", "@akala/core@^2.0.33":
-  version "2.0.38"
-  resolved "https://registry.yarnpkg.com/@akala/core/-/core-2.0.38.tgz#b56cb80d013cc26dc3f3329f359c88b2d549e756"
+  version "2.0.40"
+  resolved "https://registry.yarnpkg.com/@akala/core/-/core-2.0.40.tgz#4f6ab1e6068cb15631c03fcbb7501e066e5016f7"
   dependencies:
     "@akala/json-rpc-ws" "^4.1.25"
     "@types/mock-require" "^2.0.0"
@@ -55,8 +55,8 @@
     ws "^5.2.2"
 
 "@akala/server@^2.0.28", "@akala/server@^2.0.30", "@akala/server@^2.0.5":
-  version "2.0.36"
-  resolved "https://registry.yarnpkg.com/@akala/server/-/server-2.0.36.tgz#89d600d1cfafb8f5e7337002f57e47c806960e40"
+  version "2.0.37"
+  resolved "https://registry.yarnpkg.com/@akala/server/-/server-2.0.37.tgz#5eebc199f4f72f27403f9225ba2694031114ecb0"
   dependencies:
     "@akala/core" "^2.0.33"
     "@akala/json-rpc-ws" "^4.1.23"
@@ -254,8 +254,10 @@ asap@~2.0.3:
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
 
 asn1@~0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/asn1/-/asn1-0.2.3.tgz#dac8787713c9966849fc8180777ebe9c1ddf3b86"
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/asn1/-/asn1-0.2.4.tgz#8d2475dfab553bb33e77b54e59e880bb8ce23136"
+  dependencies:
+    safer-buffer "~2.1.0"
 
 assert-plus@1.0.0, assert-plus@^1.0.0:
   version "1.0.0"
@@ -1898,7 +1900,7 @@ safe-buffer@^5.0.1, safe-buffer@^5.1.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
 
-"safer-buffer@>= 2.1.2 < 3", safer-buffer@^2.0.2, safer-buffer@^2.1.0:
+"safer-buffer@>= 2.1.2 < 3", safer-buffer@^2.0.2, safer-buffer@^2.1.0, safer-buffer@~2.1.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
 
@@ -2076,9 +2078,9 @@ snyk-policy@1.12.0:
     snyk-try-require "^1.1.1"
     then-fs "^2.0.0"
 
-snyk-python-plugin@1.6.1:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/snyk-python-plugin/-/snyk-python-plugin-1.6.1.tgz#eb3194b37b4710edebee3406a2adea4a0159e89f"
+snyk-python-plugin@1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/snyk-python-plugin/-/snyk-python-plugin-1.8.0.tgz#e38c57521616cfb36743fca0f1d777c8994cb8d0"
   dependencies:
     tmp "0.0.33"
 
@@ -2130,8 +2132,8 @@ snyk-try-require@1.3.1, snyk-try-require@^1.1.1:
     then-fs "^2.0.0"
 
 snyk@^1.69.10:
-  version "1.89.1"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.89.1.tgz#db64203adfc99cd3e5b4367b851eebeeabf44522"
+  version "1.90.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.90.0.tgz#ba37f66484e18a56fc98f64d565a517a53fc8562"
   dependencies:
     abbrev "^1.1.1"
     ansi-escapes "^3.1.0"
@@ -2157,7 +2159,7 @@ snyk@^1.69.10:
     snyk-nuget-plugin "1.6.3"
     snyk-php-plugin "1.5.1"
     snyk-policy "1.12.0"
-    snyk-python-plugin "1.6.1"
+    snyk-python-plugin "1.8.0"
     snyk-resolve "1.0.1"
     snyk-resolve-deps "3.1.0"
     snyk-sbt-plugin "1.3.0"
