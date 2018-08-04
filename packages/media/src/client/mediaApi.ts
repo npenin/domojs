@@ -14,6 +14,12 @@ export var api = new akala.Api()
             cli: { command: 'library <name> <path> [...additionalPaths]', param: { path: 'param', additionalPaths: 'param', name: 'param', db: 'db', config: '$updateConfig.@domojs/media' } }
         }
     })
+    .clientToServer<string, media.Media>()({
+        getByPath: {
+            rest: { url: '/media', method: 'get', param: 'query.path' },
+            cli: { command: 'media <path>', param: 'param.path' }
+        }
+    })
     .clientToServer<{ library: string }, media.Media[]>()({
         library: {
             rest: { url: '/library/:library', param: { library: 'route', db: 'db', config: '$config.@domojs/media' } },

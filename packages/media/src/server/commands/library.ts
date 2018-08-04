@@ -55,6 +55,11 @@ export var server = akala.buildServer(api, {
             });
         },
 
+        getByPath(path)
+        {
+            return db.hgetall(path);
+        },
+
         dropbox(param)
         {
             return db.scard('media:' + param.type + ':toIndex').then(async (count) =>

@@ -1,7 +1,7 @@
 import { api } from './mediaApi';
 import * as akala from '@akala/client';
 import { Tile } from '@domojs/theme-default/dist/tile'
-
+import './player';
 
 interface Collection extends akala.IScope<Collection>
 {
