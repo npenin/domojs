@@ -74,20 +74,20 @@
         </div>
     </div>
     <div class="d-flex navbar inverse">
-        <a class="fas fal fa-play-circle fa-2x"></a>
-        <a class="fas fal fa-pause-circle fa-2x"></a>
-        <a class="fas fal fa-random fa-2x"></a>
-        <a class="fas fal fa-repeat fa-2x"></a>
-        <a class="fas fal fa-repeat-1 fa-2x"></a>
-        <a class="fas fal fa-step-backward fa-2x"></a>
-        <a class="fas fal fa-step-forward fa-2x"></a>
-        <a class="fas fal fa-stop-circle fa-2x"></a>
+        <a data-bind="{click:controller.play}" class="fas fal fa-play-circle fa-2x"></a>
+        <a data-bind="{click:controller.pause}" class="fas fal fa-pause-circle fa-2x"></a>
+        <a data-bind="{click:controller.random}" class="fas fal fa-random fa-2x"></a>
+        <a data-bind="{click:controller.repeat}" class="fas fal fa-repeat fa-2x"></a>
+        <a data-bind="{click:controller.repeat}" class="fas fal fa-repeat-1 fa-2x"></a>
+        <a data-bind="{click:controller.previous}" class="fas fal fa-step-backward fa-2x"></a>
+        <a data-bind="{click:controller.next}" class="fas fal fa-step-forward fa-2x"></a>
+        <a data-bind="{click:controller.stop}" class="fas fal fa-stop-circle fa-2x"></a>
         <a class="fas fal fa-volume-off fa-2x"></a>
         <a class="fas fal fa-volume-down fa-2x"></a>
         <a class="fas fal fa-volume-up fa-2x"></a>
-        <a class="fas fal fa-volume-mute fa-2x"></a>
+        <a data-bind="{click:controller.mute}" class="fas fal fa-volume-mute fa-2x"></a>
         <a class="fas fal fa-headphones fa-2x"></a>
-        <a class="fa-stack">
+        <a data-bind="{click:togglePlaylist}" class="fa-stack">
             <i class="fas fal fa-bars fa-stack-2x"></i>
             <i class="fas fa-play fa-stack-1x"></i>
         </a>
