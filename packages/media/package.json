@@ -39,6 +39,7 @@
     "@types/redis": "^2.8.6",
     "@types/request": "^2.47.0",
     "@types/ws": "^4.0.2",
-    "popper.js": "^1.14.3"
+    "popper.js": "^1.14.3",
+    "utf-8-validate": "^5.0.1"
   }
 }
