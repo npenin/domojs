@@ -10,8 +10,8 @@ interface IScopePlayer extends akala.IScope<IScopePlayer>
     item?: { url: string, current?: boolean } | Media;
     status?: { identity: string, state: 'playing' | 'paused' | 'stopped', position?: number, time?: number, length?: number };
     controller: akala.api.Client<typeof controllerApi>;
-    togglePlaylist():void;
-    playlistVisible?:boolean;
+    togglePlaylist(): void;
+    playlistVisible?: boolean;
 
 }
 
@@ -20,7 +20,8 @@ akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Pa
     part.use('/media/player', 'body', {
         template: '/@domojs/media/player.html', controller: function (scope: IScopePlayer, elem, params)
         {
-            scope.togglePlaylist=function(){
+            scope.togglePlaylist = function ()
+            {
                 scope.$set('playlistVisible', !scope.playlistVisible)
             }
 
