@@ -24,12 +24,13 @@ export interface Player
 {
     name: string;
     identity: string;
+    icons: { [key: string]: string }
     capability?: ('playlist')[];
 }
 
 export var controller = new akala.Api()
     .serverToClientOneWay<Player[]>()({ players: { jsonrpcws: true, rest: false } })
-    .clientToServer<void, Player[]>()({ getPlayers: { jsonrpcws: true, rest: { method: 'get', url: '/api/player' } } })
+    .clientToServer<void, Player[]>()({ getPlayers: { jsonrpcws: true, rest: { method: 'get', url: '/player' }, cli: { command: 'player' } } })
     .clientToServerOneWay<string>()({ control: true })
     .clientToServerOneWay<{ media: Media, target: string }>()({
         play: {
