@@ -7,7 +7,7 @@ import * as ws from 'ws';
 const log = akala.log('domojs:media:scrap')
 var scrappers: { [type: string]: { priority: number, connection: Connection }[] } = {}
 var controllers: { [key: string]: Connection[] } = { all: [] }
-var players: { [key: string]: { connection: Connection, name: string, icons: { [key: string]: string } } } = { }
+var players: { [key: string]: { connection: Connection, name: string, icons: { [key: string]: string } } } = {}
 
 function playerProxy(connection: Connection)
 {
@@ -113,7 +113,7 @@ akala.buildServer(new akala.DualApi(scrapper, new akala.DualApi(player, controll
         if (param.identity in players)
             throw new Error(`${param.identity} is already a registered player`);
 
-        players[param.identity] = { connection, name: param.name,icons:param.icons };
+        players[param.identity] = { connection, name: param.name, icons: param.icons };
         controllers[param.identity] = [];
 
         connection.on('close', function ()
