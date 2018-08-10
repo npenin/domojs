@@ -1,5 +1,5 @@
 import * as akala from '@akala/client'
-import { player as playerApi, controller as controllerApi } from './playerApi'
+import { player as playerApi, controller as controllerApi, Player } from './playerApi'
 import { api as mediaApi } from './mediaApi'
 import { Client, Connection } from '@akala/json-rpc-ws';
 import { Media } from '../../metadata';
@@ -12,7 +12,7 @@ interface IScopePlayer extends akala.IScope<IScopePlayer>
     controller: akala.api.Client<typeof controllerApi>;
     togglePlaylist(): void;
     playlistVisible?: boolean;
-
+    setPlayer(player: Player): void;
 }
 
 akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Part, http: akala.Http, location: akala.LocationService, injector: akala.Injector)
@@ -51,6 +51,10 @@ akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Pa
                         }
                     });
                 scope.$set('players', controller.$proxy().getPlayers(null));
+                scope.setPlayer = function (player)
+                {
+                    scope.currentPlayer = player;
+                }
             })
         }
     });

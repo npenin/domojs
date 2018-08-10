@@ -121,7 +121,7 @@ akala.buildServer(new akala.DualApi(scrapper, new akala.DualApi(player, controll
             delete player[param.identity];
             controllerProxy().players(akala.map(players, function (player, identity)
             {
-                return { name: player.name, identity: identity as string };
+                return { name: player.name, identity: identity as string, icons: player.icons };
             }, true), param.identity);
             delete controllers[param.identity];
         })
