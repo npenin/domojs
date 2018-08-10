@@ -13,6 +13,7 @@ interface IScopePlayer extends akala.IScope<IScopePlayer>
     togglePlaylist(): void;
     playlistVisible?: boolean;
     setPlayer(player: Player): void;
+    currentPlayer?: Player;
 }
 
 akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Part, http: akala.Http, location: akala.LocationService, injector: akala.Injector)
