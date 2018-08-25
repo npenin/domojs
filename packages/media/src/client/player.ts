@@ -12,6 +12,8 @@ interface IScopePlayer extends akala.IScope<IScopePlayer>
     controller: akala.api.Client<typeof controllerApi>;
     togglePlaylist(): void;
     playlistVisible?: boolean;
+    togglePlayers(): void;
+    playersVisible?: boolean;
     setPlayer(player: Player): void;
     currentPlayer?: Player;
 }
@@ -24,6 +26,10 @@ akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Pa
             scope.togglePlaylist = function ()
             {
                 scope.$set('playlistVisible', !scope.playlistVisible)
+            }
+            scope.togglePlayers = function ()
+            {
+                scope.$set('playersVisible', !scope.playersVisible)
             }
 
             akala.injectWithNameAsync(['$agent.media'], async function (client: Client<Connection>)
@@ -55,6 +61,7 @@ akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Pa
                 scope.setPlayer = function (player)
                 {
                     scope.currentPlayer = player;
+                    controller.$proxy().control(player.identity)
                 }
             })
         }
