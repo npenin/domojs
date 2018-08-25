@@ -70,7 +70,7 @@ akala.buildServer(new akala.DualApi(scrapper, new akala.DualApi(player, controll
     },
     scrap(media)
     {
-        log(media);
+        log.error(media);
         return akala.eachAsync(scrappers[media.type], (scrapper, i, next) =>
         {
             this.$proxy(scrapper.connection).scrap(media).then((m) =>
@@ -79,7 +79,7 @@ akala.buildServer(new akala.DualApi(scrapper, new akala.DualApi(player, controll
                 next();
             }, function (err)
                 {
-                    log(err);
+                    log.error(err);
                     next();
                 });
         }).then((err) => { return media; });
