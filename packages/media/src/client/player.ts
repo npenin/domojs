@@ -61,7 +61,7 @@ akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Pa
                 scope.setPlayer = function (player)
                 {
                     scope.currentPlayer = player;
-                    controller.$proxy().control(player.identity)
+                    controller.$proxy().control({ identity: player.identity })
                 }
             })
         }
