@@ -92,14 +92,13 @@
             <i class="fas fa-play fa-stack-1x"></i>
         </a>
         <div class="btn-group dropup">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                data-bind="{click:togglePlayers, popper:{placement:'top-start', popper:'.dropdown-menu'}}">
+            <button type="button" class="btn btn-secondary dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-bind="{click:togglePlayers, popper:{placement:'top-start', modifiers:{flip:true, offset:{offset:0}, preventOverflow:{boundariesElement:'scrollParent'}}, popper:'.dropdown-menu'}}">
                 <div class="fa-stack">
                     <i class="fas fal fa-bars fa-stack-2x"></i>
                     <i class="fas fa-play fa-stack-1x"></i>
                 </div>
             </button>
-            <div class="dropdown-menu" data-bind="{show:playersVisible}">
+            <div class="dropdown-menu" data-bind="{class:{show:playersVisible}}">
                 <ul>
                     <li data-bind="{each:'player in players', click:setPlayer}">
                         <span data-bind="{css:{backgroundImage:player.icons.48}}"></span>

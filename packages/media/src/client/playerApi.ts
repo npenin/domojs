@@ -31,7 +31,7 @@ export interface Player
 export var controller = new akala.Api()
     .serverToClientOneWay<Player[]>()({ players: { jsonrpcws: true, rest: false } })
     .clientToServer<void, Player[]>()({ getPlayers: { jsonrpcws: true, rest: { method: 'get', url: '/player' }, cli: { command: 'player' } } })
-    .clientToServerOneWay<string>()({ control: true })
+    .clientToServerOneWay<{ identity: string }>()({ control: true })
     .clientToServerOneWay<{ media: Media, target: string }>()({
         play: {
             jsonrpcws: true,
