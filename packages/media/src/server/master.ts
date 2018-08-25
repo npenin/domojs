@@ -4,7 +4,7 @@ import { player, controller } from '../client/playerApi';
 import { MediaTypes, MediaType, Media } from '../../metadata';
 import { Connection } from '@akala/json-rpc-ws';
 import * as ws from 'ws';
-const log = akala.log('domojs:media:scrap')
+const log = akala.logger('@domojs/media')
 var scrappers: { [type: string]: { priority: number, connection: Connection }[] } = {}
 var controllers: { [key: string]: Connection[] } = { all: [] }
 var players: { [key: string]: { connection: Connection, name: string, icons: { [key: string]: string } } } = {}
@@ -113,6 +113,7 @@ akala.buildServer(new akala.DualApi(scrapper, new akala.DualApi(player, controll
         if (param.identity in players)
             throw new Error(`${param.identity} is already a registered player`);
 
+        log.info(`registering Player ${JSON.stringify(param)}`);
         players[param.identity] = { connection, name: param.name, icons: param.icons };
         controllers[param.identity] = [];
 
