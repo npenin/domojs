@@ -159,7 +159,9 @@ akala.buildServer(new akala.DualApi(scrapper, new akala.DualApi(player, controll
         controllers['all'].push(connection);
         connection.on('close', function ()
         {
-            controllers[param.identity].splice(controllers[param.identity].indexOf(connection), 1);
+            if (controllers[param.identity])
+                controllers[param.identity].splice(controllers[param.identity].indexOf(connection), 1);
+
             controllers['all'].splice(controllers['all'].indexOf(connection), 1);
         })
     },
