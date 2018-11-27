@@ -30,8 +30,8 @@
     ws "^3.0.0"
 
 "@domojs/protocol-parser@^1.0.1":
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/@domojs/protocol-parser/-/protocol-parser-1.1.8.tgz#11b9c66fe42eebe918ff75f473e0eff4a829c5d7"
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@domojs/protocol-parser/-/protocol-parser-1.2.0.tgz#59337c5990266043b099b8e8e97d013295dc3266"
   dependencies:
     "@types/debug" "^0.0.30"
     debug "^3.1.0"
