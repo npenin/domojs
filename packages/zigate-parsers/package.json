@@ -14,7 +14,7 @@
     "@akala/core": "^2.0.0",
     "@domojs/protocol-parser": "^1.0.1",
     "@types/ws": "^4.0.1",
-    "debug": "^3.1.0",
+    "debug": "^4.1.1",
     "np": "^2.20.1",
     "serialport": "^6.0.5"
   },
