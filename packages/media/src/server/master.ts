@@ -16,11 +16,13 @@ function playerProxy(connection: Connection)
 function controllerProxy()
 {
     return {
-        status(p)
+        async status(p:{identity:string})
         {
+            var status=await playerProxy(players[p.identity].connection).status(p)
+
             controllers[p.identity].forEach(connection =>
             {
-                akala.api.jsonrpcws(controller).createClientProxy(connection).status(p);
+                akala.api.jsonrpcws(controller).createClientProxy(connection).status(status);
             });
         },
         playlist(p)
@@ -40,7 +42,7 @@ function controllerProxy()
     };
 }
 
-akala.buildServer(new akala.DualApi(scrapper, new akala.DualApi(player, controller)), { jsonrpcws: '/media', rest: '/api/media' }, {
+akala.buildServer(new akala.DualApi(scrapper, new akala.DualApi(player, controller)), { jsonrpcws: '/api/media', rest: '/api/@domojs/media' }, {
     register(scrapper, connection: Connection)
     {
         if (!(scrapper.type in scrappers))
@@ -149,14 +151,11 @@ akala.buildServer(new akala.DualApi(scrapper, new akala.DualApi(player, controll
             return { name: player.name, identity: identity as string, icons: player.icons };
         }, true));
     },
-    status(param)
-    {
-        return controllerProxy().status(param);
-    },
     control(param, connection)
     {
         controllers[param.identity].push(connection);
         controllers['all'].push(connection);
+        akala.api.jsonrpcws(controller).createClientProxy(connection).status(param);
         connection.on('close', function ()
         {
             if (controllers[param.identity])
