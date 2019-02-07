@@ -32,7 +32,7 @@ akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Pa
                 scope.$set('playersVisible', !scope.playersVisible)
             }
 
-            akala.injectWithNameAsync(['$agent.media'], async function (client: Client<Connection>)
+            akala.injectWithNameAsync(['$agent.api/@domojs/media'], async function (client: Client<Connection>)
             {
                 var library = akala.api.jsonrpcws(mediaApi).createServerProxy(client);
                 var controller = scope.controller = akala.api.jsonrpcws(controllerApi).createClient(client,
@@ -62,6 +62,7 @@ akala.run(['$part', '$http', '$location', '$injector'], function (part: akala.Pa
                 {
                     scope.currentPlayer = player;
                     controller.$proxy().control({ identity: player.identity })
+                    scope.$set('playersVisibility', false);
                 }
             })
         }

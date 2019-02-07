@@ -1,7 +1,7 @@
 import * as akala from '@akala/server';
 import { meta as scrapper } from './scrapper';
 
-akala.injectWithNameAsync(['$agent.media'], function (client)
+akala.injectWithNameAsync(['$agent.api/@domojs/media'], function (client)
 {
     var s = akala.api.jsonrpcws(scrapper).createClient(client, {
         scrap: function (media)
