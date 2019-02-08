@@ -8,7 +8,7 @@ import { saveMedia } from './processFolder';
 import { Media } from '../../../metadata';
 
 
-export var server = akala.buildServer(api, {
+export var server = akala.api.buildServer(api, {
     rest: '/api',
     cli: '@domojs/media:media',
     jsonrpcws: false
