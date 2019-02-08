@@ -49,7 +49,7 @@ export function fileNameCleaner(fileName: string, extension?: RegExp)
     return fileName;
 }
 
-akala.injectWithNameAsync(['$agent.api/@domojs/media'], function (client)
+akala.injectWithNameAsync(['$agent.api/media'], function (client)
 {
     var s = akala.api.jsonrpcws(scrapper).createClient(client, {
         scrap: function (media)
@@ -156,7 +156,7 @@ var seasonNumber = /(?:\.S(?:aison)?)\.?([0-9]+)/i;
 var name = /(([&,]|[A-Z!][A-Z!0-9]*|[A-Z!0-9]*[A-Z!'])+(\.|$))+/i;
 
 
-akala.injectWithNameAsync(['$agent.api/@domojs/media'], function (client)
+akala.injectWithNameAsync(['$agent.api/media'], function (client)
 {
     var s = akala.api.jsonrpcws(scrapper).createClient(client, {
         scrap: scrapTVShowInfo

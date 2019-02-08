@@ -38,7 +38,7 @@ export var controller = new akala.Api()
             rest:
             {
                 method: 'post',
-                url: '/api/@domojs/media/player/:playerIdentity',
+                url: '/api/media/player/:playerIdentity',
                 param: {
                     target: 'route.playerIdentity',
                     media: 'body'
@@ -46,7 +46,7 @@ export var controller = new akala.Api()
             }
         }
     })
-    .clientToServerOneWay<{ target: string }>()(buildCommands('/api/@domojs/media/player/:playerIdentity/', {
+    .clientToServerOneWay<{ target: string }>()(buildCommands('/api/media/player/:playerIdentity/', {
         jsonrpcws: true,
         rest:
         {
@@ -67,7 +67,7 @@ export var controller = new akala.Api()
         status: {
             jsonrpcws: true, rest: {
                 method: 'get',
-                url: '/api/@domojs/media/player/:playerIdentity/status',
+                url: '/api/media/player/:playerIdentity/status',
                 param: {
                     target: 'route.playerIdentity'
                 }
@@ -79,7 +79,7 @@ export var controller = new akala.Api()
             jsonrpcws: true,
             rest: {
                 method: 'get',
-                url: '/api/@domojs/media/player/:playerIdentity/playlist',
+                url: '/api/media/player/:playerIdentity/playlist',
                 param: {
                     target: 'route.playerIdentity'
                 }
