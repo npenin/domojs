@@ -42,7 +42,7 @@ function controllerProxy()
     };
 }
 
-akala.buildServer(new akala.DualApi(scrapper, new akala.DualApi(player, controller)), { jsonrpcws: '/api/media', rest: '/api/@domojs/media' }, {
+akala.api.buildServer(new akala.DualApi(scrapper, new akala.DualApi(player, controller)), { jsonrpcws: '/api/media', rest: '/api/@domojs/media' }, {
     register(scrapper, connection: Connection)
     {
         if (!(scrapper.type in scrappers))
