@@ -1,5 +1,5 @@
 import * as akala from '@akala/server';
-import { meta as scrapper } from './scrapper';
+import { scrapper } from './scrapper';
 
 akala.injectWithNameAsync(['$agent.api/media'], function (client)
 {

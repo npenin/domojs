@@ -1,12 +1,11 @@
 import * as akala from '@akala/server';
-import { meta as scrapper } from './scrapper';
+import { scrapper } from './scrapper';
 import * as path from 'path'
 import { extensions } from './commands/processFolder';
 import { TVShow, Movie } from '../../metadata';
 
 
-export function fileNameCleaner(fileName: string, extension?: RegExp)
-{
+export function fileNameCleaner(fileName: string, extension?: RegExp) {
     while (fileName.startsWith('/'))
         fileName = fileName.substr(1);
     if (/%[0-9a-f]{2}/gi.test(fileName))
@@ -49,11 +48,9 @@ export function fileNameCleaner(fileName: string, extension?: RegExp)
     return fileName;
 }
 
-akala.injectWithNameAsync(['$agent.api/media'], function (client)
-{
-    var s = akala.api.jsonrpcws(scrapper).createClient(client, {
-        scrap: function (media)
-        {
+akala.injectWithNameAsync(['$agent.api/media'], function (client) {
+    var s=akala.api.jsonrpcws(scrapper).createClient(client, {
+        scrap: function (media) {
             var fileName = path.basename(media.path);
             fileName = fileNameCleaner(fileName);
             media.name = fileName;
@@ -65,29 +62,23 @@ akala.injectWithNameAsync(['$agent.api/media'], function (client)
     s.register({ type: 'music', priority: 100 });
 });
 
-export function scrapTVShowInfo(media: TVShow | Movie)
-{
+export function scrapTVShowInfo(media: TVShow | Movie) {
     var seasonMatch = seasonNumber.exec(media.name);
     var episodeMatch = episodeNumber.exec(media.name);
     var itemName = media.name.replace(extensions[media.type], '');
-    if (!episodeMatch || !episodeMatch[1])
-    {
-        if (!seasonMatch)
-        {
+    if (!episodeMatch || !episodeMatch[1]) {
+        if (!seasonMatch) {
             episodeMatch = /([0-9]+)(?:x|\.)([0-9]+)/.exec(media.name);
-            if (episodeMatch && episodeMatch[2])
-            {
+            if (episodeMatch && episodeMatch[2]) {
                 seasonMatch = episodeMatch;
                 episodeMatch = [false, episodeMatch[2]] as RegExpExecArray;
                 episodeMatch.index = episodeMatch.index;
             }
         }
-        if (!episodeMatch)
-        {
+        if (!episodeMatch) {
             //console.log(media.name);
             episodeMatch = /(?:\.S(?:aison)?)\.?([0-9]+)\.?(?:E(?:p(?:isode)?)?|Part|Chapitre\.?)?([0-9]+)(?:v\d)?/i.exec(media.name);
-            if (episodeMatch && episodeMatch[2])
-            {
+            if (episodeMatch && episodeMatch[2]) {
                 seasonMatch = episodeMatch;
                 episodeMatch = [false, episodeMatch[2]] as RegExpExecArray;
                 episodeMatch.index = seasonMatch.index
@@ -99,22 +90,18 @@ export function scrapTVShowInfo(media: TVShow | Movie)
         }
 
     }
-    else
-    {
-        if (seasonMatch && seasonMatch[0])
-        {
+    else {
+        if (seasonMatch && seasonMatch[0]) {
             media.name = media.name.substring(0, seasonMatch.index) + media.name.substring(seasonMatch.index + seasonMatch[0].length);
             seasonMatch[0] = null;
             episodeMatch = /(?:[^0-9]|^)([0-9]{1,3})(?:v\d)?(?:[^0-9]|$)/.exec(media.name);
         }
     }
 
-    if (episodeMatch && episodeMatch[0])
-    {
+    if (episodeMatch && episodeMatch[0]) {
         media.name = media.name.substring(0, episodeMatch.index) + media.name.substring(episodeMatch.index + episodeMatch[0].length);
     }
-    if (seasonMatch && seasonMatch[0])
-    {
+    if (seasonMatch && seasonMatch[0]) {
         media.name = media.name.substring(0, seasonMatch.index) + media.name.substring(seasonMatch.index + seasonMatch[0].length);
     }
     var maxLength = Math.min(seasonMatch && seasonMatch.index || media.name.length, episodeMatch && episodeMatch.index || media.name.length);
@@ -122,8 +109,7 @@ export function scrapTVShowInfo(media: TVShow | Movie)
         media.episode = Number(episodeMatch[1]);
     var itemNameMatch = name.exec(media.name);
 
-    if (itemNameMatch)
-    {
+    if (itemNameMatch) {
         if (itemNameMatch.index + itemNameMatch[0].length > maxLength)
             itemName = itemNameMatch[0].substr(0, maxLength);
         else
@@ -135,17 +121,14 @@ export function scrapTVShowInfo(media: TVShow | Movie)
     media.displayName = media.name;
 
     media.id = 'media:video:' + media.name;
-    if (seasonMatch)
-    {
+    if (seasonMatch) {
         media.subType = 'tvshow';
-        if (media.subType == 'tvshow')
-        {
+        if (media.subType == 'tvshow') {
             media.season = Number(seasonMatch[1]);
             media.displayName = media.displayName + ' - S' + media.season;
         }
     }
-    if (episodeMatch)
-    {
+    if (episodeMatch) {
         media.displayName = media.displayName + ' - E' + media.episode;
     }
     return media;
@@ -156,8 +139,7 @@ var seasonNumber = /(?:\.S(?:aison)?)\.?([0-9]+)/i;
 var name = /(([&,]|[A-Z!][A-Z!0-9]*|[A-Z!0-9]*[A-Z!'])+(\.|$))+/i;
 
 
-akala.injectWithNameAsync(['$agent.api/media'], function (client)
-{
+akala.injectWithNameAsync(['$agent.api/media'], function (client) {
     var s = akala.api.jsonrpcws(scrapper).createClient(client, {
         scrap: scrapTVShowInfo
     }).$proxy();

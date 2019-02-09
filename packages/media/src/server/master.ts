@@ -1,5 +1,5 @@
 import * as akala from '@akala/server';
-import { meta as scrapper } from './scrapper';
+import { scrapper } from './scrapper';
 import { player, controller } from '../client/playerApi';
 import { MediaTypes, MediaType, Media } from '../../metadata';
 import { Connection } from '@akala/json-rpc-ws';
