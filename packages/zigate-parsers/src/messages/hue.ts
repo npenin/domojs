@@ -1,7 +1,7 @@
 import { StatusMessage } from './status';
 import { Message, MessageType, uint8, uint16, Protocol } from './common';
-import { ShortAddressRequest } from 'zigate/src/messages/descriptors';
-import { CommandMessage } from 'zigate/src/messages/move';
+import { ShortAddressRequest } from './descriptors';
+import { CommandMessage } from './move';
 
 
 

@@ -1,6 +1,6 @@
 import { StatusMessage } from './status';
 import { Message, MessageType, uint8, uint16, Protocol } from './common';
-import { ShortAddressRequest } from 'zigate/src/messages/descriptors';
+import { ShortAddressRequest } from './descriptors';
 import { CommandMessage } from './move';
 
 Protocol.register<APSRequest>('type', MessageType.RawAPSData, [
@@ -29,16 +29,7 @@ Protocol.register<APSDataConfirmFail>('type', MessageType.APSDataConfirmFail, [
     { name: 'sourceEndpoint', type: 'uint8' },
     { name: 'destinationEndpoint', type: 'uint8' },
     { name: 'addressMode', type: 'uint8' },
-    {
-        name: 'destinationAddress', type: function (instance)
-        {
-            switch (instance.addressMode)
-            {
-                default:
-                    return 'uint64';
-            }
-        }
-    },
+    { name: 'destinationAddress', type: 'uint64' },
     { name: 'sequenceNumber', type: 'uint8' },
 ])
 
