@@ -1,7 +1,7 @@
 import { StatusMessage } from './status';
 import { Message, MessageType, uint16, uint8, Protocol, uint64 } from './common';
 import { ShortAddressRequest } from './descriptors';
-import { complexFrameType } from '../../../@domojs/protocol-parser/dist/index';
+import { complexFrameType } from '@domojs/protocol-parser';
 
 Protocol.register<RemoveDevice>('type', MessageType.RemoveDevice, [
     { name: 'targetShortAddress', type: 'uint64' },

@@ -1,7 +1,7 @@
 import { Protocol, MessageType, uint64, uint32, uint8 } from './common'
 import { DeviceType } from './network';
 import { StatusMessage } from './status';
-import { Device } from 'zigate/src/messages/devices';
+import { Device } from './devices';
 import { Frame } from '@domojs/protocol-parser';
 
 Protocol.register<SetExtendedPanId>('type', MessageType.SetExtendedPanId, [{ name: 'panId', type: 'uint64' }]);

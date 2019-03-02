@@ -1,6 +1,6 @@
 import { StatusMessage } from './status';
 import { Message, MessageType, uint64, Protocol, uint32, uint8, uint16 } from './common';
-import { complexFrameType } from '../../../@domojs/protocol-parser/dist/index';
+import { complexFrameType } from '@domojs/protocol-parser';
 
 Protocol.register<OutOfBandCommissionningDataRequest>('type', MessageType.OutOfBandCommissionningData, [
     { name: 'addressOfInterest', type: 'uint64' },

@@ -1,6 +1,6 @@
 import { StatusMessage } from './status';
 import { Message, MessageType, Protocol, uint8, uint16, uint32, uint64 } from './common';
-import { ShortAddressRequest, Mask } from 'zigate/src/messages/descriptors';
+import { ShortAddressRequest, Mask } from './descriptors';
 import { Device } from './devices';
 import { Frame } from '@domojs/protocol-parser';
 

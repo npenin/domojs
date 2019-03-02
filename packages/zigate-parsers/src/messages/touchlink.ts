@@ -1,6 +1,6 @@
 import { StatusMessage } from './status';
 import { Message, MessageType, uint8, uint16, Protocol } from './common';
-import { ShortAddressRequest } from 'zigate/src/messages/descriptors';
+import { ShortAddressRequest } from './descriptors';
 
 Protocol.register<{}>('type', MessageType.InitiateTouchlink, []);
 Protocol.register<{}>('type', MessageType.TouchlinkFactoryResetTarget, []);
