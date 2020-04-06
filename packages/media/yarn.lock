@@ -41,10 +41,11 @@
     mock-require "^3.0.2"
 
 "@akala/client@^2.0.71", "@akala/client@^2.1.4":
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/@akala/client/-/client-2.1.5.tgz#72fb346584ca3274b2a2bf8ce9ec02308346545e"
-  integrity sha512-R5pbPRZvr7aYhOxQlceBQvUGfF0/BQHm210f58IUpWqmUaAyQoWDk4NtNmZh78NMn/TkR7GhasHLzpLwP3CnLw==
+  version "2.1.19"
+  resolved "https://registry.yarnpkg.com/@akala/client/-/client-2.1.19.tgz#9b9b8de339d9196d189b87f80b2aa471cfd881b0"
+  integrity sha512-h+nExvq+d2sEv2vagadRtUfcyhonsQ6h5VQU6435pXVyRpNqmzlxq7XhrXqzqdqEVgDk92l0B0zISMEcW9KKkA==
   optionalDependencies:
+    "@popperjs/core" "^2.2.0"
     showdown "^1.8.6"
 
 "@akala/core@^2.0.0", "@akala/core@^2.0.65", "@akala/core@^2.0.87", "@akala/core@^2.0.96", "@akala/core@^2.0.97":
@@ -161,6 +162,11 @@
   version "0.2.14"
   resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.14.tgz#0eb86a77ac88e8c12c48591735283f0bf0ea5606"
   integrity sha512-LOcvERCI96KioXSIfOYN4IATv2ROJOyf72dYnpoWfOIkuyLp45oMej1kL03kYdzvktLCzYhykgHwiu6nkg9Xbw==
+
+"@popperjs/core@^2.2.0":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.2.1.tgz#d7d1d7fbdc1f2aa24e62f4ef4b001be7727340c5"
+  integrity sha512-BChdj3idQiLi+7vPhE6gEDiPzpozvSrUqbSMoSTlRbOQkU0p6u4si0UBydegTyphsYSZC2AUHGYYICP0gqmEVg==
 
 "@snyk/dep-graph@1.1.2":
   version "1.1.2"
