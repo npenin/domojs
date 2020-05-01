@@ -1,0 +1,145 @@
+import * as akala from '@akala/server';
+import { deviceType } from '@domojs/devices';
+import { Rfxtrx, RFXDevice, PacketType } from 'rfxtrx';
+import * as rfy from 'rfxtrx/dist/rfy';
+// import * as current from 'rfxtrx/dist/elec1';
+// import * as currentEnergy from 'rfxtrx/dist/elec2';
+
+var devices: { [key: string]: Partial<RFXDevice> & { gateway: Rfxtrx, type: number } } = {};
+export var setGateway: (gw: Promise<Rfxtrx>) => void;
+var gateway: PromiseLike<Rfxtrx> = new Promise((resolve, reject) =>
+{
+    setGateway = resolve;
+});
+
+akala.injectWithNameAsync(['$worker', '$agent.api/devices'], (worker, client) =>
+{
+    var ready;
+    worker.on('ready', function ()
+    {
+        ready = true;
+        akala.logger.info('ready');
+    });
+
+    var c = akala.api.jsonrpcws(deviceType).createClient(client, {
+        async exec(p)
+        {
+            var device = devices[p.device];
+            let message: RFXDevice;
+            switch ((device.type & 0xff00) >> 8 as PacketType)
+            {
+                case PacketType.RFY:
+                    message = Object.assign({ command: rfy.Commands[p.command] }, device) as RFXDevice;
+                    break;
+            }
+            if (message == null)
+                throw new Error(`${JSON.stringify(p)} is not supported on ${JSON.stringify(device.type)}`)
+
+            return device.gateway.send<RFXDevice>(device.type, message);
+        },
+        save(p)
+        {
+            return gateway.then((gw =>
+            {
+                if (!p.body)
+                    return p.device;
+                var type: PacketType = (p.body.rfxType & 0xff00) >> 8;
+
+                switch (type)
+                {
+                    case PacketType.RFY:
+                        devices[p.device.name] = { type: p.body.rfxType, id1: p.body.id1, id2: p.body.id2, id3: p.body.id3, unitCode: p.body.unitCode, gateway: gw };
+                        p.device.commands = Object.keys(rfy.Commands).filter(v => isNaN(Number(v)));
+                        break;
+                    case PacketType.TEMPERATURE_HUMIDITY:
+                        devices[p.device.name] = { type: p.body.rfxType, id: p.body.rfxType, gateway: gw };
+                        p.device.subdevices = [
+                            { name: 'temperature', commands: [], statusMethod: 'push', statusUnit: '°C' },
+                            { name: 'humidity', commands: [], statusMethod: 'push', statusUnit: '%' },
+                            { name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
+                            { name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
+                        ];
+
+                        gw.on('TEMPERATURE_HUMIDITY', device =>
+                        {
+                            c.$proxy().pushStatus({ device: p.device.name + '.temperature', state: device.temperature / 10 })
+                            if (device.humidity !== 0)
+                                c.$proxy().pushStatus({ device: p.device.name + '.humidity', state: device.humidity })
+                            c.$proxy().pushStatus({ device: p.device.name + '.battery', state: device.batteryLevel * 6.25 })
+                            c.$proxy().pushStatus({ device: p.device.name + '.signal', state: device.rssi * 6.25 })
+                        })
+                        break;
+                    case PacketType.ENERGY:
+                        devices[p.device.name] = { type: p.body.rfxType, sensorId: p.body.sensorId, gateway: gw };
+                        p.device.subdevices = [
+                            { name: 'instant', commands: [], statusMethod: 'push', statusUnit: 'W' },
+                            { name: 'total', commands: [], statusMethod: 'push', statusUnit: 'Wh' },
+                            { name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
+                            { name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
+                        ];
+                        gw.on('ENERGY', device =>
+                        {
+                            c.$proxy().pushStatus({ device: p.device.name + '.instant', state: device.instant })
+                            if (!device.count)
+                                c.$proxy().pushStatus({ device: p.device.name + '.total', state: device.total / 223.666 })
+                            c.$proxy().pushStatus({ device: p.device.name + '.battery', state: device.batteryLevel * 6.25 })
+                            c.$proxy().pushStatus({ device: p.device.name + '.signal', state: device.rssi * 6.25 })
+                        })
+                        break;
+                    case PacketType.CURRENT_ENERGY:
+                        devices[p.device.name] = { type: p.body.rfxType, sensorId: p.body.sensorId, gateway: gw };
+                        p.device.subdevices = [
+                            { name: 'channel1', commands: [], statusMethod: 'push', statusUnit: 'A' },
+                            { name: 'channel2', commands: [], statusMethod: 'push', statusUnit: 'A' },
+                            { name: 'channel3', commands: [], statusMethod: 'push', statusUnit: 'A' },
+                            { name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
+                            { name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
+                        ];
+                        gw.on('CURRENT_ENERGY', device =>
+                        {
+                            c.$proxy().pushStatus({ device: p.device.name + '.channel1', state: device.channel1 })
+                            c.$proxy().pushStatus({ device: p.device.name + '.channel2', state: device.channel2 })
+                            c.$proxy().pushStatus({ device: p.device.name + '.channel3', state: device.channel3 })
+                            c.$proxy().pushStatus({ device: p.device.name + '.battery', state: device.batteryLevel * 6.25 })
+                            c.$proxy().pushStatus({ device: p.device.name + '.signal', state: device.rssi * 6.25 })
+                        })
+                        break;
+                    default:
+                        console.error(`rfx: ${type} (${p.body.rfxType}) is not supported`);
+                        throw new Error(`${type} (${p.body.rfxType}) is not supported`);
+                }
+                p.body.gateway = gw;
+                return p.device;
+            }))
+        },
+        getStatus(p)
+        {
+
+        },
+    });
+
+    var server = c.$proxy();
+    if (ready)
+    {
+        akala.logger.info('registering');
+        gateway.then(() =>
+        {
+            server.register({
+                name: 'RFX',
+                view: '@domojs/rfx/new.html'
+            });
+        });
+    }
+    else
+        worker.on('ready', function ()
+        {
+            akala.logger.info('registering');
+            gateway.then(() =>
+            {
+                server.register({
+                    name: 'RFX',
+                    view: '@domojs/rfx/new.html'
+                });
+            });
+        });
+});

@@ -1,0 +1,29 @@
+import * as akala from '@akala/server';
+import { KeywordInterpreter, KeywordContext } from '@domojs/chat';
+import { Context } from '@domojs/chat-date';
+
+export type KeywordWithTimeContext = KeywordContext & Context;
+
+
+export class DeviceInterpreter extends KeywordInterpreter
+{
+    constructor()
+    {
+        super();
+    }
+
+    public execute(context: KeywordWithTimeContext, next: (error?: any) => void, callback: (answer: string) => void)
+    {
+        var http: akala.Http = akala.resolve('$http');
+        http.get('/api/devices/' + context.other)
+    }
+
+    public understand(context: KeywordWithTimeContext)
+    {
+        super.understand(context);
+        if (context.keyword)
+            context.deferred = false;
+    };
+}
+
+new DeviceInterpreter().register();

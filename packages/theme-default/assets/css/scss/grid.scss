@@ -1,0 +1,52 @@
+$breakpoints:(576px, 768px, 992px, 1200px);
+$breakpoints-names:("", "sm-", "md-", "lg-");
+
+@mixin col($c)
+{
+    width: ((100% / 12) * $c);
+}
+
+@mixin responsive-grid($h)
+{
+    @media (max-width:nth($breakpoints, $h))
+    {    
+        %fullwidth
+        {
+            width: 100%;
+        }
+        
+        @for $j from 1 through 11
+        {
+            .col-#{$j}
+            {
+                @include col($j);
+            }
+        }
+
+        .col-12
+        {
+            @extend %fullwidth;
+        }
+
+        @for $i from 2 through 4
+        {
+            @for $j from 1 through 12
+            {
+                .col-#{nth($breakpoints-names, $i)}#{$j}
+                {
+                    @if $j != 12 and $h >= $i
+                    {
+                        @include col($j);
+                    }
+                    @else
+                    {
+                        @extend %fullwidth;
+                    }                
+                }
+            }
+        }
+    }
+}
+
+@include responsive-grid(1);
+@include responsive-grid(2);

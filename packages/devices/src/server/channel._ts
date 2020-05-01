@@ -1,0 +1,92 @@
+import * as akala from '@akala/server'
+import * as lifttt from '@domojs/lifttt';
+import { api } from './commands/get'
+import { devices } from '../devices';
+import { deviceWatcher } from './worker'
+import { EventEmitter } from 'events';
+import { v4 as uuid } from 'uuid';
+
+akala.injectWithNameAsync(['$agent.api/lifttt', '$agent.api/devices'], function (liftttClient, devicesClient)
+{
+    var deviceMgr = new EventEmitter();
+    var triggerIds: { [device: string]: string[] } = {};
+
+    akala.api.jsonrpcws(deviceWatcher).createClient(devicesClient, {
+        add(device)
+        {
+            deviceMgr.emit('add', device);
+        },
+        remove(device)
+        {
+            deviceMgr.emit('rm', device);
+        },
+        status(state)
+        {
+            deviceMgr.emit('status.' + state.device, state.state);
+        }
+    }).$proxy().watch(null);
+    var channel = akala.api.jsonrpcws(lifttt.channel).createClient(liftttClient, {
+        executeAction(action: { name: string, params: { device: string, command: string, value: string } })
+        {
+            return akala.injectWithName(['devices'], function (devices: akala.Injector)
+            {
+                return api.getDevice(devices, action.params.device, action.params.command, null, action.params.value);
+            })();
+        },
+        executeCondition(param)
+        {
+
+        },
+        executeTrigger(trigger: { name: string, params: { name: string, device: string } })
+        {
+            var id: string;
+            if (!triggerIds[trigger.params.name + '.' + trigger.params.device])
+            {
+                triggerIds[trigger.params.name + '.' + trigger.params.device] = [];
+                switch (trigger.params.name)
+                {
+                    case 'add':
+                        deviceMgr.on('add', function (device: devices.IDevice)
+                        {
+                            if (!trigger.params.device || trigger.params.device[0] == '#' && trigger.params.device.substring(1) == device.type || trigger.params.device == device.name)
+                                triggerIds[trigger.params.name + '.' + trigger.params.device].forEach(function (id)
+                                {
+                                    server.trigger({ id: id, data: device as any });
+                                });
+                        });
+                        break;
+                    case 'remove':
+                        deviceMgr.on('rm', function (device: devices.IDevice)
+                        {
+                            if (!trigger.params.device || trigger.params.device[0] == '#' && trigger.params.device.substring(1) == device.type || trigger.params.device == device.name)
+                                triggerIds[trigger.params.name + '.' + trigger.params.device].forEach(function (id)
+                                {
+                                    server.trigger({ id: id, data: device as any });
+                                });
+                        });
+                        break;
+                    case 'status':
+                        deviceMgr.on('status.' + trigger.params.device, function (state)
+                        {
+                            triggerIds[trigger.params.name + '.' + trigger.params.device].forEach(function (id)
+                            {
+                                server.trigger({ id: id, data: state });
+                            });
+                        });
+                        break;
+                }
+            }
+            triggerIds[trigger.params.name + '.' + trigger.params.device].push(id = uuid());
+            return id;
+        },
+        stopTrigger(param)
+        {
+
+        }
+    });
+
+    var server = channel.$proxy();
+    server.registerChannel({ name: 'device', icon: 'usb' });
+    server.registerTrigger({ name: 'event', fields: [{ name: 'name', type: 'string' }, { name: 'device', type: 'string' }] })
+    server.registerAction({ name: 'cmd', fields: [{ name: 'device', type: 'string' }, { name: 'command', type: 'string' }, { name: 'value', type: 'string' }] })
+});

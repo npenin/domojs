@@ -1,0 +1,22 @@
+{
+    "": {
+        "inject": [
+            "deviceType",
+            "param.0"
+        ]
+    },
+    "jsonrpcws": {
+        "inject": [
+            "deviceType",
+            "param.0"
+        ]
+    },
+    "http": {
+        "inject": [
+            "deviceType",
+            "body"
+        ],
+        "method": "post",
+        "route": "/api/new"
+    }
+}

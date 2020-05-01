@@ -1,0 +1,29 @@
+.navbar
+{
+    background-color:#fff;
+}
+
+.navbar.inverse
+{
+    background-color: #222;
+    color:#fff;
+}
+
+.navbar.inverse .navbar-nav>.active>a,
+.navbar.inverse .navbar-nav>.active>a:focus, 
+.navbar.inverse .navbar-nav>.active>a:hover {
+    color: #fff;
+    background-color: #080808;
+}
+
+.navbar.inverse .navbar-brand {
+    color: #9d9d9d;
+}
+.navbar.inverse ul>li>a  {
+    color: #9d9d9d;
+}
+
+.navbar.top
+{
+    line-height:48px;
+}

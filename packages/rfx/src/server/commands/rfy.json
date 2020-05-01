@@ -1,0 +1,29 @@
+{
+    "jsonrpc": {
+        "inject": [
+            "param.0",
+            "param.1",
+            "param.2",
+            "param.3",
+            "param.4"
+        ]
+    },
+    "": {
+        "inject": [
+            "param.0",
+            "param.1",
+            "param.2",
+            "param.3",
+            "param.4"
+        ]
+    },
+    "cli": {
+        "inject": [
+            "options.unitCode",
+            "options.id1",
+            "options.id2",
+            "options.id3",
+            "param.0"
+        ]
+    }
+}

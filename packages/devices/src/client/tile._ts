@@ -1,0 +1,11 @@
+///<reference types='@domojs/theme-default/dist/client/tile' />
+///<reference types='@akala/client' />
+
+/*
+tiles.add({
+    text: 'Périphériques',
+    icon: 'usb',
+    iconLibrary:'fab',
+    url: '/devices'
+});
+/**/

@@ -1,0 +1,14 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "theme-default"
+    },
+    {
+      "path": "devices"
+    },
+    {
+      "path": "rfx"
+    }
+  ]
+}

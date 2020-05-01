@@ -1,0 +1,22 @@
+.form-horizontal
+{
+    display:block;
+}
+
+.form-horizontal .form-group
+{
+    display:flex;
+    flex-direction: row;
+}
+
+.form-group
+{
+    display:block;
+    width:100%;
+}
+
+.form-group .control-label
+{
+    font-weight: bold;
+    font-size: 0.85rem;
+}

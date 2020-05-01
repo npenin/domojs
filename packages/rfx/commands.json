@@ -1,0 +1,135 @@
+{
+    "name": "commands",
+    "commands": [
+        {
+            "name": "$init",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/server/commands/$init.js",
+                    "source": "src/server/commands/$init.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "options.path",
+                        "options.v"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "exec",
+            "inject": [
+                "param.0",
+                "param.1",
+                "param.2"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/server/commands/exec.js",
+                    "source": "src/server/commands/exec.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "rfy",
+            "inject": [
+                "param.0",
+                "param.1",
+                "param.2",
+                "param.3",
+                "param.4"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/server/commands/rfy.js",
+                    "source": "src/server/commands/rfy.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.unitCode",
+                        "options.id1",
+                        "options.id2",
+                        "options.id3",
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "save",
+            "inject": [
+                "param.0",
+                "param.1",
+                "connectionAsContainer"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "connectionAsContainer"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/server/commands/save.js",
+                    "source": "src/server/commands/save.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "connectionAsContainer"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "connectionAsContainer"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}
