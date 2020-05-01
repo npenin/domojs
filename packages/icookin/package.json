@@ -2,6 +2,7 @@
   "name": "@domojs/icookin",
   "version": "1.0.0",
   "main": "index.js",
+  "private": true,
   "license": "MIT",
   "dependencies": {
     "@akala/core": "^3.1.1",
