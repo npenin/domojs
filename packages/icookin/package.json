@@ -1,0 +1,17 @@
+{
+  "name": "@domojs/icookin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@akala/core": "^3.0.1",
+    "mongodb": "^3.3.1",
+    "ws": "^7.1.2"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.5",
+    "@types/mongodb": "^3.5.4",
+    "@types/node": "^13.11.0",
+    "@types/ws": "^7.2.3"
+  }
+}

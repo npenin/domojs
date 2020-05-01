@@ -1,0 +1,89 @@
+
+$black:#222222;
+$blue:#1BA1E2; 
+$brown:#A05000; 
+$green:#339933; 
+$lime:#A2C139; 
+$magenta:#D80073; 
+$orange:#F09609; 
+$pink:#E671B8; 
+$purple:#A200FF; 
+$red :#E51400; 
+$viridian:#00ABA9; 
+
+
+.block-black { background-color:$black; color:white; }
+.block-blue { background-color:$blue; color:white; }
+.block-brown { background-color:$brown; color:white; }
+.block-green { background-color:$green; color:white; }
+.block-lime { background-color:$lime; color:white; }
+.block-magenta { background-color:$magenta; color:white;}
+.block-orange { background-color:$orange; color:white; }
+.block-pink { background-color:$pink; color:white; }
+.block-purple { background-color:$purple; color:white; }
+.block-red { background-color:$red;; color:white; }
+.block-viridian { background-color:$viridian; color:white;}
+
+.block-text-black {    color:$black; }
+.block-text-blue {     color:$blue; }
+.block-text-brown {    color:$brown; }
+.block-text-green {    color:$green; }
+.block-text-lime {     color:$lime; }
+.block-text-magenta {  color:$magenta; }
+.block-text-orange {   color:$orange; }
+.block-text-pink {     color:$pink; }
+.block-text-purple {   color:$purple; }
+.block-text-red {      color:$red; }
+.block-text-viridian { color:$viridian; }
+
+.block
+{
+    flex:0 0 auto;
+    display:flex;
+    flex-direction:column; 
+    margin:10px;
+    text-align: center;
+    align-self: flex-start;
+    padding:10px;
+    width:30vmin;
+    height:30vmin;
+    justify-content: space-between;
+    font-size: 5vmin; 
+    cursor: pointer;
+    border:3px solid transparent;
+}
+
+.block:hover
+{
+    border:3px solid grey;
+}
+
+.block .text
+{
+    align-self: flex-start;
+    flex-grow: 0;
+    flex-shrink: 0;
+    display:flex;
+    font-size: 3vmin; 
+}
+
+.block .fa,
+.block .fal,
+.block .fas,
+.block .far
+{
+    display:flex;
+    align-self: center;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 100%;
+}
+
+
+.block .fa::before,
+.block .fal::before,
+.block .fas::before,
+.block .far::before
+{
+    margin:auto;
+}

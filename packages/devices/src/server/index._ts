@@ -1,0 +1,265 @@
+import { EventEmitter } from 'events';
+import * as akala from '@akala/server';
+import * as fs from 'fs';
+import { AssetRegistration } from '@akala-modules/core';
+export { deviceType } from './devicetype-commands'
+export { device } from './device-commands'
+
+function requireIfExists(id: string)
+{
+    try
+    {
+        return require(id);
+    }
+    catch (e)
+    {
+        if (e.code == 'MODULE_NOT_FOUND')
+            return null;
+        throw e;
+    }
+};
+
+const chat = requireIfExists('@domojs/chat');
+import * as path from 'path';
+// import { deviceManager, deviceWatcher, deviceType } from './worker';
+import { devices } from '../../device';
+
+const debug = akala.logger.info;
+var savedDevices = [];
+var initializing = true;
+
+var deviceFile = path.resolve('../../../devices.json');
+
+// export { devices, deviceManager as device, deviceType };
+
+var registered: { [type: string]: devices.IDevice[] } = {};
+
+var pkgName = require('../../package.json').name;
+
+akala.module(pkgName).init([], function ()
+{
+    require('./commands');
+    require('./master');
+
+    akala.injectWithName([AssetRegistration.name], function (virtualasset: PromiseLike<AssetRegistration>)
+    {
+        virtualasset.then((va) =>
+        {
+            va.register('/js/tiles.js', require.resolve('../tile'));
+            va.register('/js/routes.js', require.resolve('../routes'));
+            va.register('/css/module.css', require.resolve('../../assets/css/module.css'));
+        })
+        // virtualasset.then((va) => va.register('/js/device.js', path.resolve(__dirname, './device.js')));
+    })();
+});
+
+
+akala.module(pkgName).run(['$agent.api/devices'], function (client)
+{
+    var devices = new akala.Injector();
+    akala.register('devices', devices);
+    var deviceTypeClient = akala.api.jsonrpcws(deviceType).createServerProxy(client);
+    var deviceClient = akala.api.jsonrpcws(new akala.DualApi(deviceManager, deviceWatcher)).createClient(client, {
+        add: function (device)
+        {
+            debug('adding device ' + device.name);
+
+            var indexOfDot = device.name.indexOf('.');
+            if (indexOfDot >= 0)
+            {
+                var mainName = device.name.substr(0, indexOfDot);
+                var mainDevice = devices.resolve<domojs.devices.IDevice>(mainName);
+                if (mainDevice && mainDevice.subdevices)
+                {
+                    var subDeviceIndex = mainDevice.subdevices.findIndex(d => d.name == device.name);
+                    if (!~subDeviceIndex)
+                        mainDevice.subdevices.push(device);
+                    else
+                        mainDevice.subdevices[subDeviceIndex] = akala.extend(mainDevice.subdevices[subDeviceIndex], device);
+                }
+            }
+
+            if (typeof device.category != 'undefined' && typeof (registered[device.category]) == 'undefined')
+                Object.defineProperty(registered, device.category, { configurable: false, enumerable: device.type.indexOf('.') !== 0, writable: false, value: [] });
+
+            devices.register(device.name, device = akala.extend(new EventEmitter(), device));
+
+            if (typeof (device.category) != 'undefined')
+                registered[device.category].push(device);
+
+            debug(device);
+
+            if (device.commands)
+            {
+                var commands: { [key: string]: devices.RunnableCommandDescription } = {};
+                if (Array.isArray(device.commands))
+                {
+                    akala.each(device.commands, function (command)
+                    {
+                        commands[command] = {
+                            type: 'button',
+                            run: function (value)
+                            {
+                                return deviceTypeClient.exec({ device: device.name, type: device.type, command: command, value: value });
+                            }
+                        };
+                    })
+                    device.commands = commands;
+                }
+                else
+                {
+                    akala.each(device.commands, function (command: devices.Command, name)
+                    {
+                        if (typeof (command) == 'function')
+                        {
+                            commands[name] = {
+                                type: 'button',
+                                run: command
+                            };
+                        }
+                        else if (typeof (command) == 'string')
+                            commands[name] = {
+                                type: 'button',
+                                run: function (value)
+                                {
+                                    return deviceTypeClient.exec({ device: device.name, type: device.type, command: command, value: value });
+                                }
+                            };
+                        else
+                        {
+                            commands[name] = akala.extend(command, {
+                                run: function (value)
+                                {
+                                    switch (command.type)
+                                    {
+                                        case 'range':
+                                            if (value < command.min || value > command.max)
+                                                throw new Error('Value (' + value + ') is out of bounds (' + command.min + ', ' + command.max + ')');
+                                            break;
+                                        case 'input':
+                                            if (typeof (value) == 'number' || command.values.indexOf(value) == -1)
+                                                throw new Error('Value (' + value + ') is not accepted (' + command.values.join(', ') + ')');
+                                            break;
+                                    }
+                                    return deviceTypeClient.exec({ device: device.name, type: device.type, command: name as string, value: value });
+                                }
+                            });
+                        }
+                    })
+                    device.commands = commands;
+                }
+            }
+            if (device.subdevices)
+            {
+                akala.each(device.subdevices, function (item: devices.Device)
+                {
+                    register(akala.extend(item, { name: device.name + '.' + item.name, type: item.type || device.type }));
+                });
+            }
+
+
+            device.status = () =>
+            {
+                return deviceClient.$proxy().getStatus({ device: device.name, type: device.type });
+            };
+
+            device.remove = () =>
+            {
+                devices.unregister(device.name);
+                deviceClient.$proxy().remove(device);
+            };
+        },
+        remove: function (device: devices.IDevice)
+        {
+            devices.resolve<devices.IDevice & EventEmitter>(device.name).removeAllListeners();;
+            devices.unregister(device.name);
+        },
+        status: function (status)
+        {
+            var device = devices.resolve<devices.IDevice & EventEmitter>(status.device);
+            if (!device)
+                return;
+            if (device.statusMethod == 'push')
+                device.status = () =>
+                {
+                    return Promise.resolve(status.state);
+                }
+            device.emit('status', status.state);
+        }
+    });
+    deviceClient.$proxy().watch(null);
+
+    function register(device: devices.IDevice, body?)
+    {
+        debug('register', arguments);
+        if (typeof (device) == 'undefined')
+            return registered;
+
+        if (!device)
+            device = {
+                name: body.name,
+                type: body.type.name,
+                category: body.category,
+                commands: null
+            };
+
+        if (body && !initializing)
+        {
+            savedDevices.push(body);
+            fs.writeFile(deviceFile, JSON.stringify(savedDevices, null, 4), function (err)
+            {
+                if (err)
+                    debug(err);
+            });
+        }
+
+
+        return deviceTypeClient.save({ device: device, body: body });
+    }
+
+    akala.register('device', register);
+
+    fs.exists(deviceFile, function (exists)
+    {
+        if (!exists)  
+        {
+            debug('could not find file devices.json');
+            initializing = false;
+            return;
+        }
+        debug('loading devices');
+        savedDevices = require(deviceFile);
+        akala.eachAsync(savedDevices, function (item, index, next)
+        {
+            debug('waiting for register function')
+            akala.onResolve<devices.register>('device').then((register: devices.register) =>
+            {
+                debug('registering device');
+                register(null, item).then(function ()
+                {
+                    next();
+                }, function (err)
+                {
+                    next(err);
+                });
+
+            });
+
+        }, function ()
+        {
+            initializing = false;
+        });
+    });
+});
+
+
+akala.module('@domojs/chat').run(['$agent.@domojs/chat'], (client) =>
+{
+    if (client.isConnected())
+        chat.meta.createServerProxy(client).register({ name: 'device', path: path.resolve(__dirname, './interpreter') });
+})
+
+akala.module('@domojs/lifttt').run([], function ()
+{
+    require('./channel');
+});

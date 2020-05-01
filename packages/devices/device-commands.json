@@ -1,0 +1,202 @@
+{
+    "name": "@domojs/devices",
+    "commands": [
+        {
+            "name": "$init",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/server/commands/devices/$init.js",
+                    "source": "src/server/commands/devices/$init.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "options": {
+                        "normalize": [
+                            "path"
+                        ]
+                    },
+                    "inject": [
+                        "container",
+                        "pm",
+                        "options.path",
+                        "options"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "add",
+            "inject": [
+                "deviceType",
+                "container",
+                "db",
+                "param.0",
+                "param.1"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "deviceType",
+                        "container",
+                        "db",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/server/commands/devices/add.js",
+                    "source": "src/server/commands/devices/add.ts",
+                    "inject": [
+                        "deviceType",
+                        "container",
+                        "db",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "deviceType",
+                        "container",
+                        "db",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "options.type"
+                    ]
+                },
+                "http": {
+                    "inject": [
+                        "deviceType",
+                        "container",
+                        "db",
+                        "param.0",
+                        "body"
+                    ],
+                    "method": "post",
+                    "route": "/api/new"
+                }
+            }
+        },
+        {
+            "name": "get-by-category",
+            "inject": [
+                "db",
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "db",
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/server/commands/devices/get-by-category.js",
+                    "source": "src/server/commands/devices/get-by-category.ts",
+                    "inject": [
+                        "db",
+                        "param.0"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "db",
+                        "param.0"
+                    ]
+                },
+                "http": {
+                    "inject": [
+                        "db",
+                        "query.category"
+                    ],
+                    "method": "post",
+                    "route": "/api/new"
+                }
+            }
+        },
+        {
+            "name": "get-by-name",
+            "inject": [
+                "db",
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "db",
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/server/commands/devices/get-by-name.js",
+                    "source": "src/server/commands/devices/get-by-name.ts",
+                    "inject": [
+                        "db",
+                        "param.0"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "db",
+                        "param.0"
+                    ]
+                },
+                "http": {
+                    "inject": [
+                        "db",
+                        "query.name"
+                    ],
+                    "method": "post",
+                    "route": "/api/new"
+                }
+            }
+        },
+        {
+            "name": "register",
+            "inject": [
+                "deviceType",
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "deviceType",
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/server/commands/devices/register.js",
+                    "source": "src/server/commands/devices/register.ts",
+                    "inject": [
+                        "ignore",
+                        "param.0"
+                    ]
+                },
+                "jsonrpcws": {
+                    "inject": [
+                        "deviceType",
+                        "param.0"
+                    ]
+                },
+                "http": {
+                    "inject": [
+                        "deviceType",
+                        "body"
+                    ],
+                    "method": "post",
+                    "route": "/api/new"
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}

@@ -1,0 +1,48 @@
+<html>
+
+<head>
+  <script>
+    if ('serviceWorker' in navigator)
+    {
+      window.swRegistration = navigator.serviceWorker.register('/sw.js', { scope: '/' });
+      window.swRegistration.then(function (reg)
+      {
+        // registration worked
+        console.log('Registration succeeded. Scope is ' + reg.scope);
+      }).catch(function (error)
+      {
+        // registration failed
+        console.log('Registration failed with ' + error);
+      });;
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="manifest" href="/manifest.json" />
+  <base href="/">
+</head>
+
+<body>
+  <div class="fullheight col between-xs">
+    <header class="navbar row top inverse">
+      <div class="col-xs-12 left-xs">
+        <div class="navbar-brand">
+          <a href="/#">DomoJS</a>
+        </div>
+      </div>
+      <div data-bind="{part:'commands'}">
+      </div>
+    </header>
+    <div id="content" data-bind="{part:'body'}">
+    </div>
+    <footer class="navbar row inverse">
+      <div class="col-xs-12">
+        <div class="box navbar-brand">
+          Copyright 2020 - Nicolas Penin
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</body>
+
+</html>

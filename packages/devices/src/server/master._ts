@@ -1,0 +1,85 @@
+import { deviceType, deviceWatcher, deviceManager } from './worker'
+import * as akala from '@akala/server'
+import * as ws from 'ws';
+
+const log = akala.log('domojs:devices')
+
+var watchers: akala.Connection[] = [];
+var deviceTypeSocket = new akala.Injector(null);
+var api = new akala.DualApi(new akala.DualApi(deviceWatcher, deviceType), deviceManager);
+var server = akala.api.jsonrpcws(api).createServer('/api/devices', {
+    watch(dummy, connection: akala.Connection)
+    {
+        var indexOfGateway = watchers.push(connection);
+        if (connection.socket instanceof ws)
+            connection.socket.on('close', function ()
+            {
+                watchers.splice(indexOfGateway, 1);
+            });
+    },
+    pushStatus(device)
+    {
+        return Promise.all(akala.map(watchers, (gateway) =>
+        {
+            return akala.api.jsonrpcws(deviceWatcher).createClientProxy(gateway).status(akala.extend(device, { type: null }));
+        })).then(akala.noop);
+    },
+    add(device)
+    {
+        return akala.when(akala.map(watchers, (gateway) =>
+        {
+            return akala.api.jsonrpcws(deviceWatcher).createClientProxy(gateway).add(device);
+        })).then(akala.noop);
+    },
+    remove(device)
+    {
+        return akala.when(akala.map(watchers, (gateway) =>
+        {
+            return akala.api.jsonrpcws(deviceWatcher).createClientProxy(gateway).remove(device);
+        })).then(akala.noop);
+    },
+    getStatus(p)
+    {
+        return akala.whenOrTimeout(deviceTypeSocket.onResolve<akala.Connection>(p.type), 300000).then((socket) =>
+        {
+            return server.$proxy(socket).getStatus({ device: p.device });
+        });
+    },
+    exec(p)
+    {
+        return akala.whenOrTimeout(deviceTypeSocket.onResolve<akala.Connection>(p.type), 300000).then((socket) =>
+        {
+            return server.$proxy(socket).exec({ device: p.device, command: p.command, value: p.value });
+        });
+    },
+    register(deviceType, connection: akala.Connection)
+    {
+        deviceTypes[deviceType.name] = deviceType;
+        deviceTypeSocket.register(deviceType.name, connection);
+        (connection.socket as ws).on('close', function ()
+        {
+            deviceTypeSocket.unregister(deviceType.name);
+        });
+        log(deviceTypes);
+    },
+    list()
+    {
+        log(deviceTypes);
+        return Promise.resolve(deviceTypes);
+    },
+    save(param)
+    {
+        return akala.whenOrTimeout(deviceTypeSocket.onResolve<akala.Connection>(param.device.type), 300000).then((socket) =>
+        {
+            return this.$proxy(socket).save(param).then((device) =>
+            {
+                return akala.when(akala.map(watchers, (watcher) =>
+                {
+                    return akala.api.jsonrpcws(deviceWatcher).createClientProxy(watcher).add(device);
+                })).then(() => { return device });
+            });
+        });
+    }
+});
+
+var deviceTypes: domojs.devices.DeviceTypeCollection = {};

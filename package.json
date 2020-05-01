@@ -1,0 +1,13 @@
+{
+  "name": "domojs",
+  "repository": "https://github.com/npenin/domojs",
+  "author": "npenin <nicolas.penin@dragon-angel.fr>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "lerna": "^3.20.2"
+  }
+}

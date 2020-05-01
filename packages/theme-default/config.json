@@ -1,0 +1,10 @@
+{
+    "@akala/server": {
+        "root": "C:/dev/domojs/theme-default/views"
+    },
+    "@akala-modules/authentication": {
+        "storage": {
+            "provider": "file"
+        }
+    }
+}

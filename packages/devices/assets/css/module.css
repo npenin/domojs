@@ -1,0 +1,61 @@
+svg.knob
+{
+    width:calc(100% + 20px);
+    height:calc(100% + 20px);
+    margin:-10px;
+}
+
+svg.knob .stroke
+{
+    fill:#222;
+    stroke-width: 25%;
+    transform-origin: 50% 50% 0px;
+    stroke-dasharray: 0, 10;
+    transform: rotate(-40deg) scale(-1, -1);
+}
+
+.block-blue svg.knob .stroke
+{
+    stroke: #1BA1E2;
+}
+.block-brown svg.knob .stroke
+{
+    stroke: #A05000;
+}
+.block-green svg.knob .stroke
+{
+    stroke: #339933;
+}
+.block-lime svg.knob .stroke
+{
+    stroke: #A2C139;
+}
+.block-magenta svg.knob .stroke
+{
+    stroke: #D80073;
+}
+.block-orange svg.knob .stroke
+{
+    stroke: #F09609;
+}
+.block-pink svg.knob .stroke
+{
+    stroke: #E671B8;
+}
+.block-purple svg.knob .stroke
+{
+    stroke: #A200FF;
+}
+.block-red svg.knob .stroke
+{
+    stroke: #E51400;
+}
+.block-viridian svg.knob .stroke
+{
+    stroke: #00ABA9;
+}
+.block-black svg.knob .stroke
+{
+    fill: #ccc;
+    stroke:#222 ;
+}

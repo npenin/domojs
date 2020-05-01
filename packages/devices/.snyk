@@ -1,0 +1,60 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.3
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:lodash:20180130':
+    - '@akala/server > server-static > npm > cli-table2 > lodash':
+        patched: '2019-02-12T12:01:21.196Z'
+    - '@akala-modules/core > @akala/server > server-static > npm > cli-table2 > lodash':
+        patched: '2019-02-12T12:01:21.196Z'
+  'npm:ms:20170412':
+    - '@akala/server > server-static > socket.io > debug > ms':
+        patched: '2019-02-12T12:01:21.196Z'
+    - '@akala/server > server-static > socket.io > engine.io > debug > ms':
+        patched: '2019-02-12T12:01:21.196Z'
+    - '@akala/server > server-static > socket.io > socket.io-adapter > debug > ms':
+        patched: '2019-02-12T12:01:21.196Z'
+    - '@akala/server > server-static > socket.io > socket.io-client > debug > ms':
+        patched: '2019-02-12T12:01:21.196Z'
+    - '@akala-modules/core > @akala/server > server-static > socket.io > debug > ms':
+        patched: '2019-02-12T12:01:21.196Z'
+    - '@akala-modules/core > @akala/server > server-static > socket.io > engine.io > debug > ms':
+        patched: '2019-02-12T12:01:21.196Z'
+    - '@akala-modules/core > @akala/server > server-static > socket.io > socket.io-adapter > debug > ms':
+        patched: '2019-02-12T12:01:21.196Z'
+    - '@akala-modules/core > @akala/server > server-static > socket.io > socket.io-client > socket.io-parser > debug > ms':
+        patched: '2019-02-12T12:01:21.196Z'
+    - '@akala-modules/core > @akala/server > server-static > socket.io > socket.io-client > debug > ms':
+        patched: '2019-02-12T12:01:21.196Z'
+    - '@akala-modules/core > @akala/server > server-static > socket.io > socket.io-client > engine.io-client > debug > ms':
+        patched: '2019-02-12T12:01:21.196Z'
+    - '@akala/server > server-static > socket.io > socket.io-parser > debug > ms':
+        patched: '2019-02-12T12:01:21.196Z'
+    - '@akala/server > server-static > socket.io > socket.io-adapter > socket.io-parser > debug > ms':
+        patched: '2019-02-12T12:01:21.196Z'
+    - '@akala/server > server-static > socket.io > socket.io-client > socket.io-parser > debug > ms':
+        patched: '2019-02-12T12:01:21.196Z'
+    - '@akala-modules/core > @akala/server > server-static > socket.io > socket.io-parser > debug > ms':
+        patched: '2019-02-12T12:01:21.196Z'
+    - '@akala-modules/core > @akala/server > server-static > socket.io > socket.io-adapter > socket.io-parser > debug > ms':
+        patched: '2019-02-12T12:01:21.196Z'
+    - '@akala/server > server-static > socket.io > socket.io-client > engine.io-client > debug > ms':
+        patched: '2019-02-12T12:01:21.196Z'
+  'npm:debug:20170905':
+    - '@akala/server > server-static > socket.io > debug':
+        patched: '2019-02-13T16:15:11.217Z'
+    - '@akala/server > server-static > socket.io > socket.io-adapter > debug':
+        patched: '2019-02-13T16:15:11.217Z'
+    - '@akala/server > server-static > socket.io > socket.io-client > debug':
+        patched: '2019-02-13T16:15:11.217Z'
+    - '@akala/server > server-static > socket.io > socket.io-client > engine.io-client > debug':
+        patched: '2019-02-13T16:15:11.217Z'
+    - '@akala/server > server-static > socket.io > socket.io-parser > debug':
+        patched: '2019-02-13T16:15:11.217Z'
+    - '@akala/server > server-static > socket.io > socket.io-adapter > socket.io-parser > debug':
+        patched: '2019-02-13T16:15:11.217Z'
+    - '@akala/server > server-static > socket.io > socket.io-client > socket.io-parser > debug':
+        patched: '2019-02-13T16:15:11.217Z'
+    - '@akala/server > server-static > socket.io > engine.io > debug':
+        patched: '2019-02-13T16:15:11.217Z'
