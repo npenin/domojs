@@ -1,7 +1,7 @@
 {
   "author": "npenin",
   "dependencies": {
-    "@akala/client": "^2.1.47",
+    "@akala/client": "^2.1.52",
     "@fortawesome/fontawesome-common-types": "^0.2.28",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
@@ -12,13 +12,13 @@
     "jquery": "^3.3.1",
     "require-optional": "^0.4.0",
     "sass-loader": "^8.0.2",
-    "snyk": "^1.314.0"
+    "snyk": "^1.316.2"
   },
   "deprecated": false,
   "description": "",
   "devDependencies": {
     "@akala-modules/core": "^1.2.17",
-    "@akala/server": "^4.0.39",
+    "@akala/server": "^4.0.41",
     "@types/debug": "^4.1.0",
     "@types/jasmine": "~3.5.10",
     "@types/jasminewd2": "~2.0.3",
@@ -30,12 +30,12 @@
     "css-loader": "^3.4.2",
     "extract-loader": "^5.0.1",
     "file-loader": "^6.0.0",
-    "html-webpack-plugin": "^4.2.1",
+    "html-webpack-plugin": "^4.3.0",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.11.0",
     "node-sass-package-importer": "^5.3.2",
     "style-loader": "^1.2.1",
-    "ts-loader": "^7.0.1",
+    "ts-loader": "^7.0.2",
     "tslint": "~6.1.1",
     "typescript": "~3.8.3",
     "webpack": "^4.42.1",

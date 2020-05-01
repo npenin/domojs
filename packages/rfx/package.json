@@ -11,7 +11,7 @@
     "@domojs/devices": "^1.3.21"
   },
   "dependencies": {
-    "@akala/pm": "^1.3.8",
+    "@akala/pm": "^1.3.10",
     "rfxtrx": "^1.1.0",
     "serialport": "^8.0.7",
     "usb": "^1.6.3"
@@ -20,12 +20,13 @@
   "deprecated": false,
   "description": "",
   "devDependencies": {
-    "@akala/server": "^4.0.39",
+    "@akala/server": "^4.0.41",
     "@domojs/chat": "^1.0.23",
     "@domojs/devices": "^1.3.13",
     "@types/debug": "^4.1.0",
     "@types/serialport": "^8.0.0",
-    "@types/ws": "^7.2.0"
+    "@types/ws": "^7.2.0",
+    "typescript": "^3.8.3"
   },
   "homepage": "https://github.com/domojs/domojs-rfxcom#readme",
   "license": "MIT",
