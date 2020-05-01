@@ -1,0 +1,42 @@
+{
+    "name": "@domojs/lifttt",
+    "version": "1.1.2",
+    "main": "dist/server/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\"",
+        "build:js": "tsc -p src",
+        "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
+        "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
+        "prepublishOnly": "npm run build",
+        "build": "npm run build:js && npm run build:js:routes && npm run build:js:tile"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/domojs/lifttt.git"
+    },
+    "author": "npenin",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/domojs/lifttt/issues"
+    },
+    "homepage": "https://github.com/domojs/lifttt#readme",
+    "keywords": [],
+    "description": "",
+    "types": "dist/server/index.d.ts",
+    "dependencies": {
+        "@akala/server": "^4.0.39",
+        "@fortawesome/fontawesome-common-types": "^0.2.19",
+        "uuid": "^7.0.3"
+    },
+    "peerDependencies": {
+        "@domojs/theme-default": "^1.1.14"
+    },
+    "devDependencies": {
+        "@akala-modules/core": "^1.2.17",
+        "@akala/client": "^2.1.47",
+        "@domojs/theme-default": "^1.1.45",
+        "@types/debug": "^4.1.5",
+        "@types/uuid": "^7.0.3",
+        "popper.js": "^1.14.3"
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "jsonrpc": {
+        "inject": [
+            "param.0",
+            "container",
+            "connectionAsContainer"
+        ]
+    },
+    "": {
+        "inject": [
+            "param.0"
+        ]
+    },
+    "fs": {
+        "inject": [
+            "param.0"
+        ]
+    }
+}

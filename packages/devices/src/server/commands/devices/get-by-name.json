@@ -1,0 +1,28 @@
+{
+    "jsonrpc": {
+        "inject": [
+            "db",
+            "param.0"
+        ]
+    },
+    "fs": {
+        "inject": [
+            "db",
+            "param.0"
+        ]
+    },
+    "": {
+        "inject": [
+            "db",
+            "param.0"
+        ]
+    },
+    "http": {
+        "inject": [
+            "db",
+            "query.name"
+        ],
+        "method": "post",
+        "route": "/api/new"
+    }
+}

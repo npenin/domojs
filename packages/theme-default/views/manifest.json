@@ -1,0 +1,21 @@
+{
+    "short_name": "domojs",
+    "name": "Domojs",
+    "icons": [
+        {
+            "src": "/@domojs/theme-default/logo.svg",
+            "type": "image/svg",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/@domojs/theme-default/logo.svg",
+            "type": "image/svg",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/?source=pwa",
+    "background_color": "#3367D6",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#3367D6"
+}

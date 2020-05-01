@@ -1,0 +1,87 @@
+import * as akala from '@akala/core';
+import * as devices from '../../devices';
+import { Tile } from '@domojs/theme-default/dist/tile';
+import { EventEmitter } from 'events';
+
+const log = akala.log('domojs:devices:api');
+
+export namespace api
+{
+    export function getCategories(register: devices.register, callback)
+    {
+        callback(akala.map(register(), function (item, index)
+        {
+            return {
+                name: index,
+                length: Object.keys(item).length,
+                url: "/api/@domojs/devices/category/" + index
+            }
+        }, true));
+    }
+
+    export function getDevice(devices: akala.Injector, id: string): devices.IDevice & EventEmitter
+    export function getDevice(devices: akala.Injector, id: string, cmd?: string, status?: null, value?: string): PromiseLike<void>
+    export function getDevice(devices: akala.Injector, id: string, cmd?: null, status?: string, value?, callback?: akala.worker.Callback): PromiseLike<string>
+    export function getDevice(devices: akala.Injector, id: string, cmd?: string, status?: string, value?, callback?: akala.worker.Callback): Tile[] | PromiseLike<void | string | never>
+    export function getDevice(devices: akala.Injector, id: string, cmd?: string, status?: string, value?, callback?: akala.worker.Callback): devices.IDevice | Tile[] | PromiseLike<void | string | never>
+    {
+        log({ id, cmd, status, value });
+
+        var device = devices.resolve<devices.IDevice>(id);
+        if (!device)
+        {
+            let indexOfDot = id.indexOf('.');
+            if (~indexOfDot)
+                device = devices.resolve<devices.IDevice>(id.substr(0, indexOfDot));
+            if (!device)
+                return Promise.reject({ status: 404 });
+            device = device.subdevices.find(function (subDevice)
+            {
+                return subDevice.name == id;
+            })
+            if (!device)
+                return Promise.reject({ status: 404 });
+        }
+        if (arguments.length == 2)
+            return device;
+
+        if (cmd)
+        {
+            return (device.commands[cmd] as devices.RunnableCommand).run(value);
+        }
+        else if (status && typeof (device.status) != 'undefined')
+            return device.status().then(function (s: any)
+            {
+                log(s);
+                if (typeof (s) == 'number')
+                    return s.toString();
+                if (typeof (s) == 'string')
+                    return s;
+                if (s && s['state'] && !s['color'])
+                    s['color'] = s['state'] == status ? 'green' : 'red';
+                if (s && typeof (s[status]) != 'undefined')
+                    return s[status];
+                else
+                    return s;
+            });
+        else
+        {
+            var subdevices: Tile[] = akala.map(device.subdevices || [], function (item, i)
+            {
+                log(item);
+                if (typeof i !== 'number')
+                    return;
+
+                if (Object.keys(item.commands).length == 0)
+                    return { text: item.name, url: '/api/@domojs/devices/device/' + item.name, device: { type: 'sensor', unit: item.statusUnit } };
+                return { text: item.name, url: '/api/@domojs/devices/device/' + item.name, device: { type: 'generic' } };
+            });
+            var commands: Tile[] = akala.map((device.commands || {}) as { [name: string]: devices.RunnableCommandDescription }, function (item, index: string)
+            {
+                return { text: index, cmd: '/api/@domojs/devices/device/' + device.name + '?cmd=' + index, command: item };
+            }, true);
+
+            return subdevices.concat(commands);
+        }
+    }
+}

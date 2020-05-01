@@ -1,0 +1,46 @@
+{
+    "": {
+        "inject": [
+            "deviceType",
+            "container",
+            "db",
+            "param.0",
+            "param.1"
+        ]
+    },
+    "jsonrpc": {
+        "inject": [
+            "deviceType",
+            "container",
+            "db",
+            "param.0",
+            "param.1"
+        ]
+    },
+    "fs": {
+        "inject": [
+            "deviceType",
+            "container",
+            "db",
+            "param.0",
+            "param.1"
+        ]
+    },
+    "cli": {
+        "inject": [
+            "param.0",
+            "options.type"
+        ]
+    },
+    "http": {
+        "inject": [
+            "deviceType",
+            "container",
+            "db",
+            "param.0",
+            "body"
+        ],
+        "method": "post",
+        "route": "/api/new"
+    }
+}

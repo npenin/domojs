@@ -1,0 +1,4 @@
+<div class="block" data-bind="{each:'tile in list', color:tile.color, click:tileClick, part:tile.part}">
+    <i class="fa-3x" data-bind="{fa:{prefix: tile.iconLibrary, iconName: tile.icon} }"></i><br />
+    <span class="text" data-bind="{text:tile.text||tile.name}"></span>
+</div>
