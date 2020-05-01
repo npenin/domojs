@@ -49,7 +49,7 @@
     "test": "echo \"Error: no test specified\" && exit 0",
     "build:css": "node-sass assets/css/scss/main.scss assets/css/module.css --source-map assets/css --importer node_modules/node-sass-package-importer/dist/cli.js",
     "watch:css": "node-sass assets/css/scss/main.scss -w assets/css/module.css --source-map assets/css --importer node_modules/node-sass-package-importer/dist/cli.js",
-    "build:js": "tsc -p src",
+    "build:js": "tsc -p .",
     "build:js:tile": "browserify -x @akala/client -x @akala/core dist/client/tile.js -o dist/tile.js",
     "build": "npm run build:css && npm run build:js && npm run build:js:tile",
     "prepublishOnly": "npm run build:js && webpack",
@@ -64,5 +64,5 @@
     "@fortawesome/fontawesome-free": "^5.9.0"
   },
   "commands": "./commands.json",
-  "gitHead": "48334b704a20b2f3e6ae2c3da539619d59afa588"
+  "gitHead": "1de5b1d002942a330b01261ceaabbd86faf1dca2"
 }
