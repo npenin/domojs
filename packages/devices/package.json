@@ -66,5 +66,6 @@
     "generate": "npm run generate:json && npm run generate:ts"
   },
   "typings": "dist/index.d.ts",
-  "snyk": true
+  "snyk": true,
+  "gitHead": "48334b704a20b2f3e6ae2c3da539619d59afa588"
 }
