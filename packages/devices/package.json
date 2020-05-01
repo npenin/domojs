@@ -12,14 +12,14 @@
     "@domojs/devicetype": "./devicetype-commands.json"
   },
   "dependencies": {
-    "@akala/client": "^2.1.47",
-    "@akala/commands": "^0.6.1",
-    "@akala/core": "^3.0.9",
-    "@akala/json-rpc-ws": "^9.0.0",
-    "@akala/server": "^4.0.39",
-    "@akala/storage": "^1.1.32",
-    "snyk": "^1.314.0",
-    "uuid": "^7.0.3",
+    "@akala/client": "^2.1.52",
+    "@akala/commands": "^0.6.35",
+    "@akala/core": "^3.1.1",
+    "@akala/json-rpc-ws": "^9.0.27",
+    "@akala/server": "^4.0.41",
+    "@akala/storage": "^1.1.38",
+    "snyk": "^1.316.2",
+    "uuid": "^8.0.0",
     "ws": "^7.2.1"
   },
   "peerDependencies": {
@@ -40,7 +40,8 @@
     "@types/ws": "^7.2.1",
     "node-sass": "^4.13.1",
     "node-sass-package-importer": "^5.3.2",
-    "popper.js": "^1.16.0"
+    "popper.js": "^1.16.0",
+    "typescript": "^3.8.3"
   },
   "homepage": "https://github.com/domojs/devices#readme",
   "license": "MIT",
