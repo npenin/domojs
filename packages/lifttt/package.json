@@ -39,5 +39,6 @@
         "@types/uuid": "^7.0.3",
         "popper.js": "^1.14.3",
         "typescript": "^3.8.3"
-    }
+    },
+    "gitHead": "48334b704a20b2f3e6ae2c3da539619d59afa588"
 }
