@@ -56,7 +56,7 @@
     "snyk-protect": "snyk protect"
   },
   "types": "dist/client/public_api.d.ts",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "snyk": true,
   "peerDependencies": {
     "@akala-modules/core": "^1.2.14",
