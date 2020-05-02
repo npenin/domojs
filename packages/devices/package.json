@@ -1,6 +1,6 @@
 {
   "name": "@domojs/devices",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "author": {
     "name": "npenin"
   },
@@ -33,7 +33,7 @@
     "@domojs/chat": "^1.0.22",
     "@domojs/chat-date": "^1.0.9",
     "@domojs/lifttt": "^2.0.4",
-    "@domojs/theme-default": "^1.2.4",
+    "@domojs/theme-default": "^1.2.5",
     "@types/debug": "^4.1.0",
     "@types/express-serve-static-core": "^4.17.3",
     "@types/uuid": "^7.0.2",
@@ -67,5 +67,5 @@
   },
   "typings": "dist/index.d.ts",
   "snyk": true,
-  "gitHead": "1de5b1d002942a330b01261ceaabbd86faf1dca2"
+  "gitHead": "59da3072912bba96ad5617632580194493a3a43a"
 }
