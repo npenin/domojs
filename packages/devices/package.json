@@ -1,6 +1,6 @@
 {
   "name": "@domojs/devices",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "author": {
     "name": "npenin"
   },
@@ -33,7 +33,7 @@
     "@domojs/chat": "^1.0.22",
     "@domojs/chat-date": "^1.0.9",
     "@domojs/lifttt": "^2.0.4",
-    "@domojs/theme-default": "^1.2.2",
+    "@domojs/theme-default": "^1.2.3",
     "@types/debug": "^4.1.0",
     "@types/express-serve-static-core": "^4.17.3",
     "@types/uuid": "^7.0.2",
