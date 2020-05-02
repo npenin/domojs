@@ -56,7 +56,7 @@
     "snyk-protect": "snyk protect"
   },
   "types": "dist/client/public_api.d.ts",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "snyk": true,
   "peerDependencies": {
     "@akala-modules/core": "^1.2.14",
@@ -64,5 +64,5 @@
     "@fortawesome/fontawesome-free": "^5.9.0"
   },
   "commands": "./commands.json",
-  "gitHead": "1de5b1d002942a330b01261ceaabbd86faf1dca2"
+  "gitHead": "59da3072912bba96ad5617632580194493a3a43a"
 }
