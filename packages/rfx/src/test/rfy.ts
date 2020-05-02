@@ -8,7 +8,7 @@ import assert = require('assert');
     assert.notEqual(s.length, 0, 'no eligible device found');
     if (s.length)
     {
-        var gw = await common.Rfxtrx.getSerial(s[0].comName)
+        var gw = await common.Rfxtrx.getSerial(s[0].path)
         await gw.start()
         console.log(await gw.send(common.Type.RFY.Standard, { command: cmd, unitCode: rfy.Internal.RfyStandard.UnitCode.Unit3, id1: 0, id2: 0, id3: 3 }))
     }
