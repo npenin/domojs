@@ -52,7 +52,7 @@
     "build:js": "tsc -p .",
     "build:js:tile": "browserify -x @akala/client -x @akala/core dist/client/tile.js -o dist/tile.js",
     "build": "npm run build:css && npm run build:js && npm run build:js:tile",
-    "prepublishOnly": "npm run build:js && webpack",
+    "prepublishOnly": "npm run build:js",
     "snyk-protect": "snyk protect"
   },
   "types": "dist/client/public_api.d.ts",
