@@ -1,21 +1,23 @@
 import * as akala from '@akala/server';
 import * as net from 'net'
 import * as path from 'path';
+import { State } from '../state';
 
 
-export default async function (socketPath: string)
+export default async function (this: State)
 {
-    console.log(socketPath);
+    console.log(this.socketPath);
     try
     {
         var socket = await new Promise<net.Socket>((resolve, reject) =>
         {
-            var socket = net.connect({ path: socketPath }, function ()
+            var socket = net.connect({ path: this.socketPath }, function ()
             {
-                console.log('connected to ' + socketPath);
+                console.log('connected to ' + this.socketPath);
                 resolve(socket)
             }).on('error', reject);
-        })
+        });
+
         var container = akala.connect(socket)
 
         await container.dispatch('remove-asset', '/js/tiles.js', path.resolve(__dirname, '../../tile.js'))
