@@ -11,6 +11,7 @@ export default async function $init(this: State, socketPath: string)
     console.log(socketPath);
     if (!socketPath)
         throw new Error('path to akala-server is not defined');
+    this.socketPath = socketPath;
     var socket = await new Promise<net.Socket>((resolve, reject) =>
     {
         var socket = net.connect({ path: socketPath }, function ()

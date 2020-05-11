@@ -6,5 +6,6 @@ export interface ModuleDefinition
 
 export interface State
 {
+    socketPath: string;
     modules: { [key: string]: ModuleDefinition };
 }
