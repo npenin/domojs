@@ -7,11 +7,15 @@
     },
     "cli": {
         "inject": [
-            "options.path"
+            "options.path",
+            "options.enableAllCommands"
         ],
         "options": {
             "normalize": [
                 "path"
+            ],
+            "boolean": [
+                "enableAllCommands"
             ]
         }
     }

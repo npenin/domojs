@@ -1,5 +1,5 @@
 {
-    "name": "theme-default",
+    "name": "commands",
     "commands": [
         {
             "name": "$init",
@@ -21,11 +21,15 @@
                 },
                 "cli": {
                     "inject": [
-                        "options.path"
+                        "options.path",
+                        "options.enableAllCommands"
                     ],
                     "options": {
                         "normalize": [
                             "path"
+                        ],
+                        "boolean": [
+                            "enableAllCommands"
                         ]
                     }
                 }
@@ -33,21 +37,15 @@
         },
         {
             "name": "$stop",
-            "inject": [
-                "param.0"
-            ],
+            "inject": [],
             "config": {
                 "": {
-                    "inject": [
-                        "param.0"
-                    ]
+                    "inject": []
                 },
                 "fs": {
                     "path": "dist/server/commands/$stop.js",
                     "source": "src/server/commands/$stop.ts",
-                    "inject": [
-                        "param.0"
-                    ]
+                    "inject": []
                 }
             }
         },

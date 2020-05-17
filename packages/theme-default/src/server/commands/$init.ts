@@ -3,9 +3,10 @@ import * as net from 'net'
 import * as path from 'path';
 import requireIfExists from 'require-optional'
 import { State } from '../state';
+import { Container } from '@akala/commands'
 
 
-export default async function $init(this: State, socketPath: string)
+export default async function $init(this: State, socketPath: string, enableAllCommands: boolean)
 {
     this.modules = {};
     console.log(socketPath);
@@ -20,7 +21,7 @@ export default async function $init(this: State, socketPath: string)
             resolve(socket)
         }).on('error', reject);
     });
-    var container = akala.connect(socket)
+    var container = akala.connect(socket);
 
     await container.dispatch('webpack-html', { title: 'Output management', template: path.join(__dirname, '../../../views/index.html'), excludeChunks: ['sw'] });
 
@@ -30,6 +31,9 @@ export default async function $init(this: State, socketPath: string)
     // await container.dispatch('asset', 'sw', require.resolve('@akala/client/dist/service-workers/router'));
     // await container.dispatch('asset', 'sw', require.resolve('@akala/client/dist/service-workers/cache'));
     // await container.dispatch('asset', 'sw', require.resolve('@akala/client/dist/service-workers/shell'));
+
+    if (enableAllCommands)
+        await container.dispatch('asset', 'main', require.resolve('../../client/pm'))
 
     var fa = requireIfExists('@fortawesome/fontawesome-pro');
     if (fa)
