@@ -3,8 +3,8 @@ import * as net from 'net'
 import * as path from 'path';
 import requireIfExists from 'require-optional'
 import { State } from '../state';
-import { Container } from '@akala/commands'
 
+const log = akala.log('domojs:theme-default')
 
 export default async function $init(this: State, socketPath: string, enableAllCommands: boolean)
 {
@@ -33,7 +33,11 @@ export default async function $init(this: State, socketPath: string, enableAllCo
     // await container.dispatch('asset', 'sw', require.resolve('@akala/client/dist/service-workers/shell'));
 
     if (enableAllCommands)
+    {
+        log('enabling all pm commands');
         await container.dispatch('asset', 'main', require.resolve('../../client/pm'))
+        await container.dispatch('require', require.resolve('../pm'))
+    }
 
     var fa = requireIfExists('@fortawesome/fontawesome-pro');
     if (fa)

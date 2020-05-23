@@ -7,7 +7,7 @@ import tiles from '../../views/tiles.html'
 
 import { Tile, BlockColors, TileDef, FaIconLibraryInterface, bootstrap } from './public_api'
 
-bootstrap.addDependency(akala.module('@domojs/theme-default', 'akala').activate(['$injector'], function (module: akala.Module)
+bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.name).activate(['$injector'], function (module: akala.Module)
 {
   var list: akala.ObservableArray<TileDef> = new akala.ObservableArray<TileDef>([]);
 
