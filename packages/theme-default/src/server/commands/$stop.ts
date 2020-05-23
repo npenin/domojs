@@ -19,8 +19,8 @@ export default async function (this: State)
         });
 
         var container = akala.connect(socket)
-        await container.dispatch('asset', 'main', require.resolve('../../client'))
-        await container.dispatch('asset', 'sw', require.resolve('@akala/client/dist/service-workers/immediate'));
+        await container.dispatch('remove-asset', 'main', require.resolve('../../client'))
+        await container.dispatch('remove-asset', 'sw', require.resolve('@akala/client/dist/service-workers/immediate'));
 
         // await container.dispatch('remove-asset', '/js/tiles.js', path.resolve(__dirname, '../../tile.js'))
         // await container.dispatch('remove-asset', '/js/akala.js', require.resolve('@akala/client/akala'));
