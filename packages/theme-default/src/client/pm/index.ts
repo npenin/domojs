@@ -12,7 +12,7 @@ module.ready(['@domojs/theme-default.tiles', '@domojs/theme-default.faIcon'],
 
         tiles.add({
             text: 'Commandes',
-            icon: 'cogs',
+            icon: 'shield-alt',
             iconLibrary: 'fas',
             url: '/pm'
         });
