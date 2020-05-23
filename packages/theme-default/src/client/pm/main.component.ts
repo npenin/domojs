@@ -7,14 +7,11 @@ import { Container, Processors, Metadata } from '@akala/commands'
 class Main
 {
     template = require('../../../views/tiles.html');
-    private part: client.Part;
-    container: Promise<Container<string>>;
 
-    constructor(part: client.Part)
+    constructor(part: client.Part, private container: Promise<Container<void>>)
     {
-        this.part = part.use('/pm', 'body', this);
-        this.part = part.use('/pm/:ns', 'body', this);
-        this.container = Processors.JsonRpc.connect('/api/pm').then(processor => new Container('pm', 'void', processor));
+        part.use('/pm', 'body', this);
+        part.use('/pm/:ns', 'body', this);
     }
 
     async controller(scope: client.IScope<any>, element: Element, params: { ns?: string }, next: () => void)
