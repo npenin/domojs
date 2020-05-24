@@ -58,14 +58,14 @@ bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.
   }
 
   @client.control('@domojs/theme-default.faIcon')
-  class FA extends client.BaseControl<fa.IconLookup>
+  class FA extends client.BaseControl<fa.IconLookup | fa.IconDefinition>
   {
     constructor(private library: FaIconLibraryInterface)
     {
       super('fa');
     }
 
-    public apply(scope: any, element: Element, parameter: fa.IconLookup | akala.Proxy<fa.IconLookup, akala.Binding>): any
+    public apply(scope: any, element: Element, parameter: fa.IconLookup | fa.IconDefinition | akala.Proxy<fa.IconLookup, akala.Binding>): any
     {
       if (typeof parameter !== 'undefined')
       {
@@ -73,7 +73,10 @@ bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.
           return this.apply(scope, element, akala.Binding.unbindify(parameter) as fa.IconLookup);
       }
 
-      element.innerHTML = fa.icon(this.library.getIconDefinition(parameter.prefix as fa.IconPrefix, parameter.iconName as fa.IconName)).html.join('\n')
+      if (typeof parameter['icon'] != 'undefined')
+        element.innerHTML = fa.icon(parameter['icon']).html.join('\n');
+      else
+        element.innerHTML = fa.icon(this.library.getIconDefinition(parameter.prefix as fa.IconPrefix, parameter.iconName as fa.IconName)).html.join('\n')
     }
   }
 
