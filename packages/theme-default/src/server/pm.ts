@@ -22,7 +22,8 @@ export default function (router: server.HttpRouter, pm: Container<any>)
   router.upgrade('/api/pm', 'websocket', function (req, ...rest: any[]) 
   {
     logger.verbose('received upgrade request');
-    logger.verbose(arguments);
+    logger.verbose(req);
+    logger.verbose(rest);
     wsserver.handleUpgrade(req, rest[0], rest[1], function (client)
     {
       logger.info('received connection')
