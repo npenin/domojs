@@ -6,7 +6,7 @@ import { Container, Processors, Metadata } from '@akala/commands'
 @module.activateNew('akala-services.$part', 'pm')
 class Main
 {
-    template = require('../../../views/tiles.html');
+    template = import('../../../views/tiles.html').then(h => h.default);
 
     constructor(part: client.Part, private container: Promise<Container<void>>)
     {
