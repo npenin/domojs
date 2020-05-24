@@ -8,8 +8,7 @@ web.bootstrap.addDependency(akala.module('@domojs/devices', '@domojs/theme-defau
 
     tiles.add({
         text: 'Périphériques',
-        icon: 'usb',
-        iconLibrary: 'fab',
+        icon: fa.faUsb,
         url: '/devices'
     })
 
