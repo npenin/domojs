@@ -1,7 +1,7 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
 import * as server from '@akala/server'
 import { Container, Triggers } from '@akala/commands'
-import ws from 'ws'
+import * as ws from 'ws'
 
 const logger = server.logger('domojs:theme-default:pm')
 
@@ -22,8 +22,6 @@ export default function (router: server.HttpRouter, pm: Container<any>)
   router.upgrade('/api/pm', 'websocket', function (req, ...rest: any[]) 
   {
     logger.verbose('received upgrade request');
-    logger.verbose(req);
-    logger.verbose(rest);
     wsserver.handleUpgrade(req, rest[0], rest[1], function (client)
     {
       logger.info('received connection')
