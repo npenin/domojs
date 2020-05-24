@@ -13,12 +13,14 @@ export default function (router: server.HttpRouter, pm: Container<any>)
     logger.info('attaching pm to socket');
     pm.attach(Triggers.jsonrpcws.name, new jsonrpcws.ws.SocketAdapter(socket));
   });
+
+  wsserver.on('error', function (error)
+  {
+    logger.error(error);
+  })
+
   router.upgrade('/api/pm', 'websocket', (req, socket, head) =>
   {
-    wsserver.on('error', function (error)
-    {
-      logger.error(error);
-    })
     wsserver.handleUpgrade(req, socket, head, function (client)
     {
       logger.info('received connection')
