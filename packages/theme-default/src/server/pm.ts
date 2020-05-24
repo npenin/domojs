@@ -24,11 +24,12 @@ export default function (router: server.HttpRouter, pm: Container<any>)
     logger.verbose('received upgrade request');
     try
     {
+      req.method = 'GET';
       wsserver.handleUpgrade(req, rest[0], rest[1], function (client)
       {
         logger.info('received connection')
         wsserver.emit('connection', client, req);
-      })
+      });
     }
     catch (e)
     {
