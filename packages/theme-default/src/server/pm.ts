@@ -7,7 +7,7 @@ const logger = server.logger('domojs:theme-default:pm')
 
 export default function (router: server.HttpRouter, pm: Container<any>)
 {
-  var wsserver = new ws.Server({ noServer: true });
+  const wsserver = new ws.Server({ noServer: true });
   wsserver.on('connection', (socket) =>
   {
     logger.info('attaching pm to socket');
@@ -22,11 +22,18 @@ export default function (router: server.HttpRouter, pm: Container<any>)
   router.upgrade('/api/pm', 'websocket', function (req, ...rest: any[]) 
   {
     logger.verbose('received upgrade request');
-    wsserver.handleUpgrade(req, rest[0], rest[1], function (client)
+    try
     {
-      logger.info('received connection')
-      wsserver.emit('connection', client, req);
-    })
+      wsserver.handleUpgrade(req, rest[0], rest[1], function (client)
+      {
+        logger.info('received connection')
+        wsserver.emit('connection', client, req);
+      })
+    }
+    catch (e)
+    {
+      logger.error(e);
+    }
   })
 }
 
