@@ -8,12 +8,9 @@ web.bootstrap.addDependency(module);
 module.ready(['@domojs/theme-default.tiles', '@domojs/theme-default.faIcon'],
     function addCogsTile(tiles: web.TileService, lib: web.FaIconLibraryInterface)
     {
-        lib.addIcons(fa.faCogs);
-
         tiles.add({
             text: 'Commandes',
-            icon: 'shield-alt',
-            iconLibrary: 'fas',
+            icon: fa.faShieldAlt,
             url: '/pm'
         });
     });

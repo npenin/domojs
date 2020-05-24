@@ -1,12 +1,17 @@
-import * as akala from '@akala/core'
+import * as jsonrpcws from '@akala/json-rpc-ws'
 import * as server from '@akala/server'
-import { Container } from '@akala/commands'
+import { Container, Triggers } from '@akala/commands'
+import ws from 'ws'
 
-export default function (router: server.HttpRouter, pm: Container<void>)
+export default function (router: server.HttpRouter, pm: Container<any>)
 {
-  router.use('/api/pm', async function (req: server.Request, res: server.Response, next: akala.NextFunction)
+  var wsserver = new ws.Server({ noServer: true });
+  router.upgrade('/api/pm', 'websocket', (req, socket, head) =>
   {
-    res.json(await pm.dispatch('$metadata'));
+    wsserver.handleUpgrade(req, socket, head, function (client)
+    {
+      Triggers.jsonrpcws.register(pm, new jsonrpcws.ws.SocketAdapter(client));
+    })
   })
 }
 

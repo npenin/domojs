@@ -5,8 +5,7 @@ import * as fa from '@fortawesome/fontawesome-svg-core'
 export interface Tile
 {
     text: string,
-    icon?: IconName,
-    iconLibrary?: IconPrefix,
+    icon?: fa.IconDefinition,
     url?: string | PromiseLike<string>,
     cmd?: string,
     color?: BlockColors;
