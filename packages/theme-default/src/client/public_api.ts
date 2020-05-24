@@ -40,7 +40,7 @@ export interface FaIconLibraryInterface
 {
     addIcons(...icons: fa.IconDefinition[]): void;
     addIconPacks(...packs: fa.IconPack[]): void;
-    getIconDefinition(prefix: IconPrefix, name: IconName): fa.IconDefinition | null;
+    getIconDefinition(icon: fa.IconLookup): fa.IconDefinition | null;
 }
 
 export var bootstrap = {
