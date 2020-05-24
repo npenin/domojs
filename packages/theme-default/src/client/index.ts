@@ -47,25 +47,28 @@ bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.
       }
     }
 
-    getIconDefinition(prefix: IconPrefix, name: IconName): fa.IconDefinition | null
+    getIconDefinition(icon: fa.IconLookup): fa.IconDefinition | null
     {
-      if (prefix in this.definitions && name in this.definitions[prefix])
+      if (typeof icon['icon'] != 'undefined')
+        return icon as fa.IconDefinition;
+
+      if (icon.prefix in this.definitions && icon.iconName in this.definitions[icon.prefix])
       {
-        return this.definitions[prefix][name];
+        return this.definitions[icon.prefix][icon.iconName];
       }
       return null;
     }
   }
 
   @client.control('@domojs/theme-default.faIcon')
-  class FA extends client.BaseControl<fa.IconLookup | fa.IconDefinition>
+  class FA extends client.BaseControl<fa.IconLookup>
   {
     constructor(private library: FaIconLibraryInterface)
     {
       super('fa');
     }
 
-    public apply(scope: any, element: Element, parameter: fa.IconLookup | fa.IconDefinition | akala.Proxy<fa.IconLookup, akala.Binding>): any
+    public apply(scope: any, element: Element, parameter: fa.IconLookup | akala.Proxy<fa.IconLookup, akala.Binding>): any
     {
       if (typeof parameter !== 'undefined')
       {
@@ -74,9 +77,9 @@ bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.
       }
 
       if (typeof parameter['icon'] != 'undefined')
-        element.innerHTML = fa.icon(parameter['icon']).html.join('\n');
+        element.innerHTML = fa.icon(parameter as fa.IconLookup).html.join('\n');
       else
-        element.innerHTML = fa.icon(this.library.getIconDefinition(parameter.prefix as fa.IconPrefix, parameter.iconName as fa.IconName)).html.join('\n')
+        element.innerHTML = fa.icon(this.library.getIconDefinition(parameter as fa.IconLookup)).html.join('\n')
     }
   }
 
