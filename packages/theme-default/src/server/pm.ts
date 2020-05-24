@@ -6,11 +6,15 @@ import ws from 'ws'
 export default function (router: server.HttpRouter, pm: Container<any>)
 {
   var wsserver = new ws.Server({ noServer: true });
+  wsserver.on('connection', (socket) =>
+  {
+    Triggers.jsonrpcws.register(pm, new jsonrpcws.ws.SocketAdapter(socket));
+  });
   router.upgrade('/api/pm', 'websocket', (req, socket, head) =>
   {
     wsserver.handleUpgrade(req, socket, head, function (client)
     {
-      Triggers.jsonrpcws.register(pm, new jsonrpcws.ws.SocketAdapter(client));
+      wsserver.emit('connection', client, req);
     })
   })
 }
