@@ -19,7 +19,7 @@ export default function (router: server.HttpRouter, pm: Container<any>)
     logger.error(error);
   })
 
-  router.upgrade('/api/pm', 'websocket', (req, ...rest: any[]) =>
+  router.upgrade('/api/pm', 'websocket', function (req, ...rest: any[]) 
   {
     logger.verbose('received upgrade request');
     logger.verbose(arguments);
