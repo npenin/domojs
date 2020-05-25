@@ -7,10 +7,9 @@ import { Container } from '@akala/commands';
 
 const log = akala.log('domojs:theme-default')
 
-export default async function $init(this: State, socketPath: string, enableAllCommands: boolean, pm: Container<void>)
+export default async function $init(this: State, socketPath: string, enableAllCommands: boolean)
 {
     this.modules = {};
-    this.pm = pm;
     console.log(socketPath);
     if (!socketPath)
         throw new Error('path to akala-server is not defined');
