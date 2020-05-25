@@ -16,7 +16,7 @@ class Main
 
     async controller(scope: client.IScope<any>, element: Element, params: { ns?: string }, next: () => void)
     {
-        var metaContainer = await (await this.container).dispatch('$metadata', true) as Metadata.Container;
+        var metaContainer = await (await (await this.container).processor.process('$metadata', { param: [true] })) as Metadata.Container;
         scope.$set('list', metaContainer.commands.filter(c => params.ns && c.name.startsWith(params.ns) || !params.ns && c.name.indexOf('.') == -1));
     }
 }
