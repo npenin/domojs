@@ -5,9 +5,10 @@ import * as ws from 'ws'
 
 const logger = server.logger('domojs:theme-default:pm')
 
-export default function (router: server.HttpRouter, pm: Container<any>)
+export default function (this: server.State, router: server.HttpRouter)
 {
   const wsserver = new ws.Server({ noServer: true });
+  const pm = this.pm;
   wsserver.on('connection', (socket) =>
   {
     logger.info('attaching pm to socket');
@@ -38,4 +39,4 @@ export default function (router: server.HttpRouter, pm: Container<any>)
   })
 }
 
-exports.default.$inject = ['$router', 'pm'];
+exports.default.$inject = ['$router'];
