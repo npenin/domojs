@@ -1,0 +1,3 @@
+FROM npenin/akala
+RUN apk add --no-cache make gcc g++ python linux-headers udev eudev-dev
+RUN yarn add serialport usb
