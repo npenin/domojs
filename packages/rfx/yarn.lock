@@ -57,7 +57,7 @@
     "@akala/json-rpc-ws" "^9.0.13"
     yargs-parser "^18.1.0"
 
-"@akala/core@^2.0.105", "@akala/core@^2.1.0", "@akala/core@^2.1.18":
+"@akala/core@^2.0.105", "@akala/core@^2.1.0":
   version "2.1.18"
   resolved "https://registry.yarnpkg.com/@akala/core/-/core-2.1.18.tgz#3ed646f1ceb5fc86a99f6993fcd87ff6433c7183"
   integrity sha512-6TVFMCB+yD+yrlmzCLOnWJqAnHK39zaOKVZqmrMauAMmOhsgY2PoSwkeg4Kq0kDm0vJNahw0RDzV4/ausaeN3A==
@@ -110,15 +110,6 @@
     debug "^4.1.1"
     uuid "^3.4.0"
     ws "^7.2.1"
-
-"@akala/json-rpc-ws@^9.0.13":
-  version "9.0.13"
-  resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.0.13.tgz#557290d15c9fb229b0510e1b2513111c565af11f"
-  integrity sha512-NI0o1iRvHR67p0nrLu3nFfnicqVIcFnlqZQ2Vl466Vck4AJ2Pg95h27oUQXjZCvWMEshR6it26DxWY3/cyLAaA==
-  dependencies:
-    debug "^4.1.1"
-    uuid "^7.0.3"
-    ws "^7.2.3"
 
 "@akala/json-rpc-ws@^9.0.13":
   version "9.0.13"
