@@ -1,6 +1,5 @@
 import * as akala from '@akala/core';
 import * as client from '@akala/client';
-import { IconName, IconPrefix } from '@fortawesome/fontawesome-common-types'
 import * as fa from '@fortawesome/fontawesome-svg-core'
 import '../../assets/css/scss/main.scss';
 import tiles from '../../views/tiles.html'
@@ -21,83 +20,83 @@ bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.
 
   module.register('bootstrap', []);
 
-  @akala.module('@domojs/theme-default').service('faIcon')
-  class FaIconLibrary implements FaIconLibraryInterface
-  {
-    private definitions: { [prefix: string]: { [name: string]: fa.IconDefinition } } = {};
-
-    addIcons(...icons: fa.IconDefinition[])
+  akala.module('@domojs/theme-default').service('faIcon')(
+    class FaIconLibrary implements FaIconLibraryInterface
     {
-      for (const icon of icons)
+      private definitions: { [prefix: string]: { [name: string]: fa.IconDefinition } } = {};
+
+      addIcons(...icons: fa.IconDefinition[])
       {
-        if (!(icon.prefix in this.definitions))
+        for (const icon of icons)
         {
-          this.definitions[icon.prefix] = {};
+          if (!(icon.prefix in this.definitions))
+          {
+            this.definitions[icon.prefix] = {};
+          }
+          this.definitions[icon.prefix][icon.iconName] = icon;
         }
-        this.definitions[icon.prefix][icon.iconName] = icon;
       }
-    }
 
-    addIconPacks(...packs: fa.IconPack[])
-    {
-      for (const pack of packs)
+      addIconPacks(...packs: fa.IconPack[])
       {
-        const icons = Object.keys(pack).map((key) => pack[key]);
-        this.addIcons(...icons);
+        for (const pack of packs)
+        {
+          const icons = Object.keys(pack).map((key) => pack[key]);
+          this.addIcons(...icons);
+        }
       }
-    }
 
-    getIconDefinition(icon: fa.IconLookup): fa.IconDefinition | null
-    {
-      if (typeof icon['icon'] != 'undefined')
-        return icon as fa.IconDefinition;
-
-      if (icon.prefix in this.definitions && icon.iconName in this.definitions[icon.prefix])
+      getIconDefinition(icon: fa.IconLookup): fa.IconDefinition | null
       {
-        return this.definitions[icon.prefix][icon.iconName];
+        if (typeof icon['icon'] != 'undefined')
+          return icon as fa.IconDefinition;
+
+        if (icon.prefix in this.definitions && icon.iconName in this.definitions[icon.prefix])
+        {
+          return this.definitions[icon.prefix][icon.iconName];
+        }
+        return null;
       }
-      return null;
-    }
-  }
+    })
 
-  @client.control('@domojs/theme-default.faIcon')
-  class FA extends client.BaseControl<fa.IconLookup>
-  {
-    constructor(private library: FaIconLibraryInterface)
+  client.control('@domojs/theme-default.faIcon')(
+    class FA extends client.BaseControl<fa.IconLookup>
     {
-      super('fa');
-    }
-
-    public apply(scope: any, element: Element, parameter: fa.IconLookup | akala.Proxy<fa.IconLookup, akala.Binding>): any
-    {
-      if (typeof parameter !== 'undefined')
+      constructor(private library: FaIconLibraryInterface)
       {
-        if (parameter.prefix instanceof akala.Binding || parameter.iconName instanceof akala.Binding)
-          return this.apply(scope, element, akala.Binding.unbindify(parameter) as fa.IconLookup);
+        super('fa');
       }
 
-      if (typeof parameter['icon'] != 'undefined')
-        element.innerHTML = fa.icon(parameter as fa.IconLookup).html.join('\n');
-      else
-        element.innerHTML = fa.icon(this.library.getIconDefinition(parameter as fa.IconLookup)).html.join('\n')
-    }
-  }
+      public apply(scope: any, element: Element, parameter: fa.IconLookup | akala.Proxy<fa.IconLookup, akala.Binding>): any
+      {
+        if (typeof parameter !== 'undefined')
+        {
+          if (parameter.prefix instanceof akala.Binding || parameter.iconName instanceof akala.Binding)
+            return this.apply(scope, element, akala.Binding.unbindify(parameter) as fa.IconLookup);
+        }
 
-  @client.control()
-  class BlockColor extends client.BaseControl<string>
-  {
-    constructor()
-    {
-      super('color');
-    }
+        if (typeof parameter['icon'] != 'undefined')
+          element.innerHTML = fa.icon(parameter as fa.IconLookup).html.join('\n');
+        else
+          element.innerHTML = fa.icon(this.library.getIconDefinition(parameter as fa.IconLookup)).html.join('\n')
+      }
+    })
 
-    public apply(_scope: client.IScope<any>, element: Element, parameter?: string): any
+  client.control()(
+    class BlockColor extends client.BaseControl<string>
     {
-      if (typeof parameter == 'undefined')
-        parameter = BlockColors[Math.floor(Math.random() * Object.keys(BlockColors).length / 2)];
-      element.classList.add('block-' + parameter);
-    }
-  }
+      constructor()
+      {
+        super('color');
+      }
+
+      public apply(_scope: client.IScope<any>, element: Element, parameter?: string): any
+      {
+        if (typeof parameter == 'undefined')
+          parameter = BlockColors[Math.floor(Math.random() * Object.keys(BlockColors).length / 2)];
+        element.classList.add('block-' + parameter);
+      }
+    })
 
   module.ready(['akala-services.$part'], function (part: client.Part)
   {
