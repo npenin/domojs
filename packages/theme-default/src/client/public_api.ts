@@ -46,6 +46,8 @@ export interface FaIconLibraryInterface
 export var bootstrap = {
     addDependency(module: akala.Module)
     {
+        if (module.dep)
+            module.dep.forEach(m => bootstrap.addDependency(m));
         bootstrapModule.activate([], function ()
         {
             this.waitUntil(module.activateEvent.complete())
