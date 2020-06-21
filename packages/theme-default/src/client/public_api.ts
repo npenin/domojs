@@ -51,7 +51,7 @@ export var bootstrap = {
         bootstrapModule.activate([], function ()
         {
             this.waitUntil(module.activateEvent.complete())
-            module.start();
+            return module.start();
         })
         bootstrapModule.ready([], function ()
         {

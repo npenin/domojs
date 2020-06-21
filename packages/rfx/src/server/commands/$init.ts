@@ -54,16 +54,15 @@ async function addDeviceIfMatch()
     {
         var device = serials[0]
         akala.logger.info('idenfified a RFXCOM potential serial device');
-        setGateway(await Rfxtrx.getSerial(device.path))
-        usb.on('detach', function (udevice)
+        setGateway(await Rfxtrx.getSerial(device))
+        usb.on('detach', async function (udevice)
         {
-            if (udevice.deviceDescriptor.idVendor == Number(device.vendorId) && udevice.deviceDescriptor.idProduct == Number(device.productId))
-            {
+            var newSerials = await Rfxtrx.listEligibleSerials();
+            if (newSerials.length == 0 || newSerials.indexOf(device) === -1)
                 state.gateway = new Promise((resolve) =>
                 {
                     setGateway = resolve;
                 });
-            }
         });
     }
 }
