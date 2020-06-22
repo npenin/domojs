@@ -31,12 +31,12 @@
     uuid "^3.4.0"
     yargs-parser "^18.1.0"
 
-"@akala/commands@^0.6.67", "@akala/commands@^0.6.73":
-  version "0.6.73"
-  resolved "https://registry.yarnpkg.com/@akala/commands/-/commands-0.6.73.tgz#42dda6a2629a0b2f155d7f9998b7b0039ba50c1f"
-  integrity sha512-cP8IIre3Q47YsfjHuiE47JVUGOcxTsbfULamuoEr2Fj75h/RZNzuQnCWiSbmqyXTvUXPGllEc2EWMKWT9tPU6w==
+"@akala/commands@^0.6.67", "@akala/commands@^0.6.73", "@akala/commands@^0.6.74":
+  version "0.6.74"
+  resolved "https://registry.yarnpkg.com/@akala/commands/-/commands-0.6.74.tgz#e0c6211bd783bc5641c9590716c6d9e7752a6cf7"
+  integrity sha512-+sUJ019fvEJvOEBI3zR/Oy72HBDfOPHjxZrpJ243tikq5QnqT2k2sNF+jPpIMunYj29AxH2NxCM8vaYLQXluBQ==
   dependencies:
-    "@akala/core" "^4.0.11"
+    "@akala/core" "^4.0.12"
     "@akala/json-rpc-ws" "^9.1.4"
     debug "^4.1.1"
     path-to-regexp "^6.1.0"
@@ -110,12 +110,12 @@
     ws "^7.2.3"
 
 "@akala/pm@^1.3.57":
-  version "1.3.63"
-  resolved "https://registry.yarnpkg.com/@akala/pm/-/pm-1.3.63.tgz#755e9556dbb6971c5f5824a07740c18ab1fd68fc"
-  integrity sha512-T9qgClWm4VMMf/f9rHYpSapQvOofQ7/4xRYtHJmNM52Ywx0vsaOHiRYAN3mCsxQ+qWIeCSqjqRrXlT2MI700Kg==
+  version "1.3.64"
+  resolved "https://registry.yarnpkg.com/@akala/pm/-/pm-1.3.64.tgz#f2739cd7e4c0fc6a86a45321b6f11978f7952880"
+  integrity sha512-o3VzVdBXpNLHLn4RHBKfLPDCG1uoXhn7jIuJH8P1x29HtJ9/8YFwzaxxIR+uP6DrKq+dPBMH3RvTCOwa5pBxqw==
   dependencies:
-    "@akala/commands" "^0.6.73"
-    "@akala/core" "^4.0.11"
+    "@akala/commands" "^0.6.74"
+    "@akala/core" "^4.0.12"
     "@akala/json-rpc-ws" "^9.1.4"
     chokidar "^3.3.1"
     debug "^4.1.1"
