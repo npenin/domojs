@@ -63,9 +63,9 @@
     ws "^7.2.1"
 
 "@akala/core@^4.0.11", "@akala/core@^4.0.6":
-  version "4.0.11"
-  resolved "https://registry.yarnpkg.com/@akala/core/-/core-4.0.11.tgz#c138a2e80cedee13dbb83208eeb4b1984315f1bf"
-  integrity sha512-1XXs41S43GeUL9fviO9881AKKmGBMcXR4Xxv8pDC1GQoJ3rh8jPXTJA5DaxDqIkIzjRLhYT5Lh1bFR/ZxCJv6g==
+  version "4.0.12"
+  resolved "https://registry.yarnpkg.com/@akala/core/-/core-4.0.12.tgz#e0d4a90c86b9e4f1378bc2b58b313f8d6d8769c7"
+  integrity sha512-/Tn5CyQBbfdUVt7jb4rYwF0NdmBK4KHA4bxgDAOW0MHJVVVQ7fdD8z+ydDvH71H0MxnYZ+LP1cMK5bOW7tlPbQ==
   dependencies:
     "@akala/json-rpc-ws" "^9.1.4"
     browser-process-hrtime "^1.0.0"
