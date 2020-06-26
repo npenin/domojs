@@ -62,7 +62,7 @@
     utils-merge "^1.0.0"
     ws "^7.2.1"
 
-"@akala/core@^4.0.12", "@akala/core@^4.0.13", "@akala/core@^4.0.6":
+"@akala/core@^4.0.13", "@akala/core@^4.0.6":
   version "4.0.13"
   resolved "https://registry.yarnpkg.com/@akala/core/-/core-4.0.13.tgz#408ec143c9e8ac239a3348a74e2fee7344f8cc7d"
   integrity sha512-BgBJcNSUREoCwq+4qC/GAUlRRXV2AXfTq5eyirf/2blRbb7RIoIrYQGB0Xfr9QHeY5MermQNsJ3I0NGJUjTdow==
@@ -179,11 +179,11 @@
     xml2js "^0.4.23"
 
 "@akala/storage@^1.1.57":
-  version "1.1.63"
-  resolved "https://registry.yarnpkg.com/@akala/storage/-/storage-1.1.63.tgz#71322109b96d9137749a50240269e89752487161"
-  integrity sha512-Scer0j+MGLGSMvAC/sTRJX1mjTALOQhCe3jlH7hlN2sEVlfRcWLKP5DknI9dVUGgm840IzzCv75KPT8/CGN9zw==
+  version "1.1.64"
+  resolved "https://registry.yarnpkg.com/@akala/storage/-/storage-1.1.64.tgz#2fe4b1715248904b5dd91b71bf4c5bc77b0eb053"
+  integrity sha512-7/eU3J7cxDs2FccA83fGOd6iRyQG8hstLvDZ5lhvFNlYKHEOARBKLk6092Ybp1vOKVo2wuOGj6ltx87JN5+PgQ==
   dependencies:
-    "@akala/core" "^4.0.12"
+    "@akala/core" "^4.0.13"
     reflect-metadata "^0.1.13"
     uuid "^8.0.0"
 
