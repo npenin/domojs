@@ -43,22 +43,19 @@ export interface FaIconLibraryInterface
     getIconDefinition(icon: fa.IconLookup): fa.IconDefinition | null;
 }
 
+let bootstrapStarted = false;
+
 export var bootstrap = {
     addDependency(module: akala.Module)
     {
         if (module.dep)
             module.dep.forEach(m => bootstrap.addDependency(m));
-        bootstrapModule.activate([], function ()
-        {
-            this.waitUntil(module.activateEvent.complete())
-            return module.start();
-        })
-        bootstrapModule.ready([], function ()
-        {
-            this.waitUntil(module.readyEvent.complete())
-        })
+        bootstrapModule.addDependency(module);
+
+        if (bootstrapStarted)
+            module.start();
     },
-    start() { return bootstrapModule.start() }
+    start() { bootstrapStarted = true; return bootstrapModule.start() }
 }
 
 var bootstrapModule = akala.module('$bootstrap');

@@ -33,9 +33,9 @@ export default async function $init(this: State, socketPath: string, enableAllCo
     // await container.dispatch('asset', 'sw', require.resolve('@akala/client/dist/service-workers/cache'));
     // await container.dispatch('asset', 'sw', require.resolve('@akala/client/dist/service-workers/shell'));
 
-    await container.dispatch('webpack-alias', '@akala/core', require('@akala/core'));
-    await container.dispatch('webpack-alias', '@akala/client', require('@akala/client'));
-    await container.dispatch('webpack-alias', '@domojs/theme-default', require('../../client/public_api'));
+    await container.dispatch('webpack-alias', '@akala/core', require.resolve('@akala/core'));
+    await container.dispatch('webpack-alias', '@akala/client', require.resolve('@akala/client'));
+    await container.dispatch('webpack-alias', '@domojs/theme-default', require.resolve('../../client/public_api'));
 
     if (enableAllCommands)
     {
