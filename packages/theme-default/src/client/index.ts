@@ -18,8 +18,6 @@ bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.
     array: list
   })
 
-  module.register('bootstrap', []);
-
   akala.module('@domojs/theme-default').service('faIcon')(
     class FaIconLibrary implements FaIconLibraryInterface
     {
@@ -98,7 +96,7 @@ bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.
       }
     })
 
-  module.ready(['akala-services.$part'], function (part: client.Part)
+  module.activate(['akala-services.$part'], function (part: client.Part)
   {
     part.use('/', 'body', {
       template: tiles, controller: function (scope)
