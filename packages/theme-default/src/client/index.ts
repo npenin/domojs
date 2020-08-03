@@ -57,42 +57,61 @@ bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.
       }
     })
 
-  client.control('@domojs/theme-default.faIcon')(
-    class FA extends client.BaseControl<fa.IconLookup>
+  @client.control('fa')
+  class FA extends client.controls.GenericControlInstance<fa.IconLookup | akala.Proxy<fa.IconLookup, akala.Binding>>
+  {
+    @akala.inject('@domojs/theme-default.faIcon')
+    private library: FaIconLibraryInterface;
+
+    constructor()
     {
-      constructor(private library: FaIconLibraryInterface)
+      super();
+    }
+
+    public init(): any
+    {
+      if (typeof this.parameter !== 'undefined')
       {
-        super('fa');
+        var parameter = this.parameter;
+
+        if (this.parameter instanceof akala.Binding || this.parameter.prefix instanceof akala.Binding || this.parameter.iconName instanceof akala.Binding)
+          parameter = akala.Binding.unbindify(this.parameter) as fa.IconLookup;
+
+        if (typeof parameter != 'undefined')
+          if (typeof parameter['icon'] != 'undefined')
+            this.element.innerHTML = fa.icon(parameter as fa.IconLookup).html.join('\n');
+          else
+            this.element.innerHTML = fa.icon(this.library.getIconDefinition(parameter as fa.IconLookup)).html.join('\n')
       }
+    }
+  }
 
-      public apply(scope: any, element: Element, parameter: fa.IconLookup | akala.Proxy<fa.IconLookup, akala.Binding>): any
-      {
-        if (typeof parameter !== 'undefined')
-        {
-          if (parameter.prefix instanceof akala.Binding || parameter.iconName instanceof akala.Binding)
-            return this.apply(scope, element, akala.Binding.unbindify(parameter) as fa.IconLookup);
-        }
-
-        if (typeof parameter['icon'] != 'undefined')
-          element.innerHTML = fa.icon(parameter as fa.IconLookup).html.join('\n');
-        else
-          element.innerHTML = fa.icon(this.library.getIconDefinition(parameter as fa.IconLookup)).html.join('\n')
-      }
-    })
-
-  client.control()(
-    class BlockColor extends client.BaseControl<string>
+  client.control('color')(
+    class BlockColor extends client.controls.GenericControlInstance<string>
     {
       constructor()
       {
-        super('color');
+        super();
       }
 
-      public apply(_scope: client.IScope<any>, element: Element, parameter?: string): any
+      public init()
       {
+        var parameter = this.parameter;
         if (typeof parameter == 'undefined')
           parameter = BlockColors[Math.floor(Math.random() * Object.keys(BlockColors).length / 2)];
-        element.classList.add('block-' + parameter);
+        if (parameter instanceof akala.Binding)
+        {
+          var oldValue = undefined;
+          parameter.onChanged((ev) =>
+          {
+            if (typeof oldValue !== 'undefined')
+              this.element.classList.remove('block-' + oldValue);
+            this.element.classList.add('block-' + ev.eventArgs.value);
+            oldValue = ev.eventArgs.value;
+          });
+        }
+        else
+          this.element.classList.add('block-' + parameter);
       }
     })
 
@@ -112,6 +131,8 @@ bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.
               $location.show(tile.url);
           if (tile.cmd)
             $http.get(tile.cmd)
+          if (tile.click)
+            tile.click();
         }
         scope['tileClick'].$inject = ['tile', '$modules.akala-services.$location', '$http'];
 

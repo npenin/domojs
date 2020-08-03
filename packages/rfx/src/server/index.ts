@@ -1,4 +1,3 @@
-import * as os from 'os';
 import * as akala from '@akala/core';
 
 function requireIfExists(id: string)
@@ -15,7 +14,7 @@ function requireIfExists(id: string)
     }
 };
 
-akala.injectWithNameAsync(['$agent.api/@domojs/chat'], (client) =>
+akala.defaultInjector.injectWithNameAsync(['$agent.api/@domojs/chat'], (client) =>
 {
     var chat = requireIfExists('chat');
     if (chat)
