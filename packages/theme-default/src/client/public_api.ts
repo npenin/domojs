@@ -1,6 +1,8 @@
 import * as akala from '@akala/core';
 import { IconName, IconPrefix } from '@fortawesome/fontawesome-common-types'
 import * as fa from '@fortawesome/fontawesome-svg-core'
+import { LocationService, applyTemplate } from '@akala/client';
+import { Scope } from '@akala/client/dist/scope';
 
 export interface Tile
 {
@@ -9,7 +11,7 @@ export interface Tile
     url?: string | PromiseLike<string>,
     cmd?: string,
     color?: BlockColors;
-    click?(...args: any[]): boolean | void;
+    click?(...args: any[]): boolean | void | Promise<void>;
 }
 
 export enum BlockColors
@@ -58,4 +60,10 @@ export var bootstrap = {
     start() { bootstrapStarted = true; return bootstrapModule.start() }
 }
 
-var bootstrapModule = akala.module('$bootstrap');
+var bootstrapModule = akala.module('$bootstrap').ready(['akala-services.$location', 'akala.$rootScope'], function (location: LocationService, rootScope: Scope<any>)
+{
+    if (!rootScope)
+        debugger;
+
+    applyTemplate([document.body], rootScope);
+});

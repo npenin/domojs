@@ -1,4 +1,4 @@
-import * as akala from '@akala/client'
+import * as akala from '@akala/core'
 import * as web from '@domojs/theme-default'
 import * as fa from '@fortawesome/free-brands-svg-icons'
 
