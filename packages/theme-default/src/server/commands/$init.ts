@@ -29,9 +29,9 @@ export default async function $init(this: State, socketPath: string, enableAllCo
     await container.dispatch('asset', 'main', require.resolve('../../client'))
     // await container.dispatch('asset', 'akala.js', require.resolve('@akala/client/akala'));
     await container.dispatch('asset', 'sw', require.resolve('@akala/client/dist/service-workers/immediate'));
-    // await container.dispatch('asset', 'sw', require.resolve('@akala/client/dist/service-workers/router'));
-    // await container.dispatch('asset', 'sw', require.resolve('@akala/client/dist/service-workers/cache'));
-    // await container.dispatch('asset', 'sw', require.resolve('@akala/client/dist/service-workers/shell'));
+    await container.dispatch('asset', 'sw', require.resolve('@akala/client/dist/service-workers/router'));
+    await container.dispatch('asset', 'sw', require.resolve('@akala/client/dist/service-workers/cache'));
+    await container.dispatch('asset', 'sw', require.resolve('@akala/client/dist/service-workers/shell'));
 
     await container.dispatch('webpack-alias', '@akala/core', require.resolve('@akala/core'));
     await container.dispatch('webpack-alias', '@akala/client', require.resolve('@akala/client'));
