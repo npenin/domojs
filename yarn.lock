@@ -44,6 +44,19 @@
     ws "^7.2.3"
     yargs-parser "^18.1.3"
 
+"@akala/commands@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@akala/commands/-/commands-0.7.0.tgz#242844a47512d1ac511f330f86d3981cdc857725"
+  integrity sha512-q1uDf56DfwfhaScRcCXBkr//KOq/N7L/T3gU2CJmsqZKOTB1O3eqOG8QDuVqAB11yozrvfkd9g+2CKBOX6uMhQ==
+  dependencies:
+    "@akala/core" "^5.0.0"
+    "@akala/json-rpc-ws" "^9.1.6"
+    debug "^4.1.1"
+    path-to-regexp "^6.1.0"
+    reflect-metadata "^0.1.13"
+    ws "^7.2.3"
+    yargs-parser "^18.1.3"
+
 "@akala/core@^2.0.100", "@akala/core@^2.0.105", "@akala/core@^2.1.0":
   version "2.1.21"
   resolved "https://registry.yarnpkg.com/@akala/core/-/core-2.1.21.tgz#4fb7779cbeb51a6039b6a019a65c3bdf71502293"
@@ -81,6 +94,25 @@
     utils-merge "^1.0.0"
     ws "^7.2.1"
 
+"@akala/core@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@akala/core/-/core-5.0.0.tgz#97cdc35ce48c216a46f74285ec074ab8d7659fe8"
+  integrity sha512-1FouOalua4Rrmx+XfrUMWNEGKEGBx/N7OK451OANhldbum5eCy1BmEjM2oOg1nWhX7kEIWHqEPU2GIsHARIbtg==
+  dependencies:
+    "@akala/json-rpc-ws" "^9.1.6"
+    browser-process-hrtime "^1.0.0"
+    debug "^4.1.1"
+    es6-promise "^4.2.8"
+    isomorphic-fetch "^2.2.1"
+    mock-require "^3.0.3"
+    orchestrator "^0.3.8"
+    parseurl "^1.3.1"
+    path-to-regexp "^6.1.0"
+    reflect-metadata "^0.1.13"
+    routington "^1.0.3"
+    utils-merge "^1.0.0"
+    ws "^7.2.1"
+
 "@akala/json-rpc-ws@^7.0.2":
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-7.0.2.tgz#543138e11a2a40fda2deb221bbae32afed65405b"
@@ -99,7 +131,7 @@
     uuid "^3.4.0"
     ws "^7.2.1"
 
-"@akala/json-rpc-ws@^9.0.16", "@akala/json-rpc-ws@^9.1.3", "@akala/json-rpc-ws@^9.1.5":
+"@akala/json-rpc-ws@^9.0.16", "@akala/json-rpc-ws@^9.1.3", "@akala/json-rpc-ws@^9.1.5", "@akala/json-rpc-ws@^9.1.6":
   version "9.1.6"
   resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.1.6.tgz#1394a69e614b06421088b8d6786f08d9080c28a7"
   integrity sha512-yHfgcX3EqXa3lD4sobgEBYaNzdT33WwkOP6Ug7qvyRAGp2FW+xkL3EtJaoIf0v7g/Z28pdKbqd6DY2EsVqtWmw==
@@ -110,13 +142,13 @@
     ws "^7.2.3"
 
 "@akala/pm@^1.3.57":
-  version "1.3.65"
-  resolved "https://registry.yarnpkg.com/@akala/pm/-/pm-1.3.65.tgz#5a30172aecacfd0871b90404b81ed1657648959d"
-  integrity sha512-iLC1IKu1Cn86+DFSSpXjEe31yQR2sCJfs1/baWxovLCnqxdPUDbY2tPi9iUkROPg+SWvEJIZ8Hg8HR8EpSRdbw==
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@akala/pm/-/pm-1.4.0.tgz#606275c28d2aad9704144f0133b3e129104ffcab"
+  integrity sha512-IYMKC30XXCewPm0Nki9c2SLqvXMp4NgmDBdAWCDP4eP7M9i69kiisDAHBaLHnrQJZuDoo1Ee5HJAYXEYlIFrfg==
   dependencies:
-    "@akala/commands" "^0.6.75"
-    "@akala/core" "^4.0.13"
-    "@akala/json-rpc-ws" "^9.1.5"
+    "@akala/commands" "^0.7.0"
+    "@akala/core" "^5.0.0"
+    "@akala/json-rpc-ws" "^9.1.6"
     chokidar "^3.3.1"
     debug "^4.1.1"
     mock-require "^3.0.3"
@@ -3679,22 +3711,7 @@ chokidar@^2.0.4, chokidar@^2.1.8:
   optionalDependencies:
     fsevents "^1.2.7"
 
-chokidar@^3.3.1:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.4.0.tgz#b30611423ce376357c765b9b8f904b9fba3c0be8"
-  integrity sha512-aXAaho2VJtisB/1fg1+3nlLJqGOuewTzQpd/Tz0yTg2R0e4IGtshYvtjowyEumcBv2z+y4+kc75Mz7j5xJskcQ==
-  dependencies:
-    anymatch "~3.1.1"
-    braces "~3.0.2"
-    glob-parent "~5.1.0"
-    is-binary-path "~2.1.0"
-    is-glob "~4.0.1"
-    normalize-path "~3.0.0"
-    readdirp "~3.4.0"
-  optionalDependencies:
-    fsevents "~2.1.2"
-
-chokidar@^3.4.1:
+chokidar@^3.3.1, chokidar@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.4.1.tgz#e905bdecf10eaa0a0b1db0c664481cc4cbc22ba1"
   integrity sha512-TQTJyr2stihpC4Sya9hs2Xh+O2wf+igjL36Y75xx2WdHuiICcn/XJza46Jwt0eT5hVpQOzo3FpY3cj3RVYLX0g==
