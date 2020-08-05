@@ -211,11 +211,11 @@
     xml2js "^0.4.23"
 
 "@akala/storage@^1.1.57":
-  version "1.1.64"
-  resolved "https://registry.yarnpkg.com/@akala/storage/-/storage-1.1.64.tgz#2fe4b1715248904b5dd91b71bf4c5bc77b0eb053"
-  integrity sha512-7/eU3J7cxDs2FccA83fGOd6iRyQG8hstLvDZ5lhvFNlYKHEOARBKLk6092Ybp1vOKVo2wuOGj6ltx87JN5+PgQ==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@akala/storage/-/storage-1.2.0.tgz#5995e8538af28af1324d7e49c22c8c081f4a2914"
+  integrity sha512-OCceCVFrTrAuEGKGXLhIY3nHN0gnPbBld4xZESix7JE3yTzRYgBcxjy8DX4bFqIlLDIAHX11ML6gliKc9Xg2sQ==
   dependencies:
-    "@akala/core" "^4.0.13"
+    "@akala/core" "^5.0.0"
     reflect-metadata "^0.1.13"
     uuid "^8.0.0"
 
