@@ -10,7 +10,7 @@
     "@popperjs/core": "^2.4.0",
     "bootstrap": "^4.5.0",
     "require-optional": "^0.4.0",
-    "sass-loader": "^8.0.2",
+    "sass-loader": "^9.0.3",
     "snyk": "^1.332.1"
   },
   "deprecated": false,
