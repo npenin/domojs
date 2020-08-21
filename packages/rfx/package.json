@@ -26,7 +26,7 @@
     "@types/debug": "^4.1.5",
     "@types/serialport": "^8.0.1",
     "@types/ws": "^7.2.4",
-    "typescript": "~3.8.3"
+    "typescript": "~4.0.2"
   },
   "homepage": "https://github.com/domojs/domojs-rfxcom#readme",
   "license": "MIT",

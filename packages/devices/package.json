@@ -42,7 +42,7 @@
     "node-sass": "^4.14.1",
     "node-sass-package-importer": "^5.3.2",
     "popper.js": "^1.16.1",
-    "typescript": "~3.8.3"
+    "typescript": "~4.0.2"
   },
   "homepage": "https://github.com/domojs/devices#readme",
   "license": "MIT",
