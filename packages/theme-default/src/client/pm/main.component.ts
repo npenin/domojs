@@ -6,10 +6,10 @@ import { Tile } from '../public_api';
 import { inject } from '@akala/core';
 
 
-@akala.useInjector(module)
+@client.component(module)
 export class Main
 {
-    template = import('../../../views/tiles.html').then(h => h.default);
+    public readonly template = import('../../../views/tiles.html').then(h => h.default);
 
     constructor(@inject('akala-services.$part') part: client.Part, @inject('pm') private container: Promise<Container<void>>)
     {
