@@ -23,6 +23,6 @@
             "query.name"
         ],
         "method": "post",
-        "route": "/api/new"
+        "route": "/devices"
     }
 }

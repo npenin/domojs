@@ -41,6 +41,6 @@
             "body"
         ],
         "method": "post",
-        "route": "/api/new"
+        "route": "/new"
     }
 }
