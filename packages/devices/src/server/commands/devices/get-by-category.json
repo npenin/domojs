@@ -20,9 +20,9 @@
     "http": {
         "inject": [
             "db",
-            "query.category"
+            "route.category"
         ],
-        "method": "post",
-        "route": "/api/new"
+        "method": "get",
+        "route": "/:category?"
     }
 }

@@ -1,5 +1,5 @@
 {
-    "name": "@domojs/devices",
+    "name": "devices",
     "commands": [
         {
             "name": "$init",
@@ -82,7 +82,7 @@
                         "body"
                     ],
                     "method": "post",
-                    "route": "/api/new"
+                    "route": "/new"
                 }
             }
         },
@@ -116,10 +116,10 @@
                 "http": {
                     "inject": [
                         "db",
-                        "query.category"
+                        "route.category"
                     ],
-                    "method": "post",
-                    "route": "/api/new"
+                    "method": "get",
+                    "route": "/:category?"
                 }
             }
         },
@@ -156,7 +156,7 @@
                         "query.name"
                     ],
                     "method": "post",
-                    "route": "/api/new"
+                    "route": "/devices"
                 }
             }
         },
@@ -186,14 +186,6 @@
                         "deviceType",
                         "param.0"
                     ]
-                },
-                "http": {
-                    "inject": [
-                        "deviceType",
-                        "body"
-                    ],
-                    "method": "post",
-                    "route": "/api/new"
                 }
             }
         }
