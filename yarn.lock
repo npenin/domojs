@@ -41,7 +41,7 @@
     uuid "^3.4.0"
     yargs-parser "^18.1.0"
 
-"@akala/commands@^0.6.67", "@akala/commands@^0.6.75":
+"@akala/commands@^0.6.75":
   version "0.6.75"
   resolved "https://registry.yarnpkg.com/@akala/commands/-/commands-0.6.75.tgz#578bdd883ae1b1f8867fe8052a6998234a318482"
   integrity sha512-W1mv4PsprxxKu212mA2TvrDBHTf8sI6JSC11iCkq7/DJqZ37sQhhP04dZ8ML4yl6o3Jlg09Vo74BatfBqy6LbA==
