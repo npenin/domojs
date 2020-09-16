@@ -1,8 +1,9 @@
-import * as akala from '@akala/core'
 import * as web from '@domojs/theme-default'
 import * as fa from '@fortawesome/free-brands-svg-icons'
+import module from './main.module'
+import './main.component'
 
-web.bootstrap.addDependency(akala.module('@domojs/devices', '@domojs/theme-default').ready(['@domojs/theme-default.tiles', '@domojs/theme-default.faIcon'], function (tiles: web.TileService, lib: web.FaIconLibraryInterface)
+module.ready(['@domojs/theme-default.tiles', '@domojs/theme-default.faIcon'], function (tiles: web.TileService, lib: web.FaIconLibraryInterface)
 {
     lib.addIcons(fa.faUsb);
 
@@ -11,7 +12,4 @@ web.bootstrap.addDependency(akala.module('@domojs/devices', '@domojs/theme-defau
         icon: fa.faUsb,
         url: '/devices'
     })
-
-}))
-
-// module.start();
+});

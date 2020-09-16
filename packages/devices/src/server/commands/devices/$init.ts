@@ -18,6 +18,7 @@ export default async function (this: devices.IDeviceCollection & { initializing:
     console.log(socketPath);
     if (!socketPath)
         throw new Error('path to akala-server is not defined');
+    // this.socketPath = socketPath;
     var socket = await new Promise<net.Socket>((resolve, reject) =>
     {
         var socket = net.connect({ path: socketPath }, function ()
@@ -26,8 +27,10 @@ export default async function (this: devices.IDeviceCollection & { initializing:
             resolve(socket)
         }).on('error', reject);
     });
-    var webc = web.connect(socket)
-    webc.dispatch('asset', 'main', require.resolve('../../../client'))
+    var webc = web.connect(socket);
+    await webc.dispatch('remote-container', { param: ['/api/devices'] })
+
+    await webc.dispatch('asset', 'main', require.resolve('../../../client'))
 
     mdule.readyAsync(['db'], async function (db: Store)
     {

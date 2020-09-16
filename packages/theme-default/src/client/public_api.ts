@@ -62,7 +62,11 @@ export var bootstrap = {
 
 var bootstrapModule = akala.module('$bootstrap').ready(['akala-services.$location', 'akala.$rootScope'], async function (location: LocationService, rootScope: Scope<any>)
 {
-    await this.whenDone;
-    await applyTemplate([document.body], rootScope);
-    location.start({ dispatch: true, hashbang: false })
+    //if (!rootScope)
+    this.whenDone.then(async () =>
+    {
+        debugger;
+        await applyTemplate([document.body], rootScope);
+        location.start({ dispatch: true, hashbang: false })
+    })
 });

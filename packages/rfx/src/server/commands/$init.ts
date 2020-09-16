@@ -23,7 +23,7 @@ export default function init(this: State, path: string, verbose?: boolean)
     // proxy(require('@akala/devices/devicetype-commands.json'), 
     var metaServer: Metadata.Container = require('@domojs/devices/devicetype-commands.json');
 
-    var server: import('@domojs/devices/dist/server/devicetype-commands').description.devicetype = proxy(metaServer, (container) =>
+    var server: import('@domojs/devices/dist/server/devicetype-commands').description.deviceTypes = proxy(metaServer, (container) =>
     {
         var processor: Processor<State> = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(net.connect({ path })), container))
         if (verbose)
