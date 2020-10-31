@@ -22,7 +22,7 @@
             "db",
             "query.name"
         ],
-        "method": "post",
+        "method": "get",
         "route": "/devices"
     }
 }

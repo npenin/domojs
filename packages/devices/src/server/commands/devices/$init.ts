@@ -27,8 +27,8 @@ export default async function (this: devices.IDeviceCollection & { initializing:
             resolve(socket)
         }).on('error', reject);
     });
-    var webc = web.connect(socket);
-    await webc.dispatch('remote-container', { param: ['/api/devices'] })
+    var webc = web.connect(socket, container);
+    await webc.dispatch('remote-container', '/api/devices')
 
     await webc.dispatch('asset', 'main', require.resolve('../../../client'))
 
