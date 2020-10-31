@@ -20,7 +20,7 @@
                         ]
                     },
                     "inject": [
-                        "container",
+                        "$container",
                         "pm",
                         "options.path",
                         "options"
@@ -32,7 +32,7 @@
             "name": "add",
             "inject": [
                 "deviceType",
-                "container",
+                "$container",
                 "db",
                 "param.0",
                 "param.1"
@@ -41,7 +41,7 @@
                 "": {
                     "inject": [
                         "deviceType",
-                        "container",
+                        "$container",
                         "db",
                         "param.0",
                         "param.1"
@@ -52,7 +52,7 @@
                     "source": "src/server/commands/devices/add.ts",
                     "inject": [
                         "deviceType",
-                        "container",
+                        "$container",
                         "db",
                         "param.0",
                         "param.1"
@@ -61,7 +61,7 @@
                 "jsonrpc": {
                     "inject": [
                         "deviceType",
-                        "container",
+                        "$container",
                         "db",
                         "param.0",
                         "param.1"
@@ -76,7 +76,7 @@
                 "http": {
                     "inject": [
                         "deviceType",
-                        "container",
+                        "$container",
                         "db",
                         "param.0",
                         "body"
