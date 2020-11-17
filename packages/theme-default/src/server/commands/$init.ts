@@ -22,7 +22,7 @@ export default async function $init(this: State, socketPath: string, enableAllCo
             resolve(socket)
         }).on('error', reject);
     });
-    var container = akala.connect(socket);
+    var container = akala.connect(socket, null);
 
     await container.dispatch('webpack-html', { title: 'Output management', template: path.join(__dirname, '../../../views/index.html'), excludeChunks: ['sw'] });
 

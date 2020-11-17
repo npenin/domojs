@@ -1,5 +1,5 @@
 import * as akala from '@akala/core'
-import { module } from './main.module'
+import { mdule } from './main.module'
 import * as client from '@akala/client'
 import { Container, Processors, Metadata } from '@akala/commands'
 import { Tile } from '@domojs/theme-default';
@@ -7,7 +7,7 @@ import { inject } from '@akala/core';
 import { LocationService } from '@akala/client';
 import { description } from '../server/device-commands';
 
-@client.component(module)
+@client.component(mdule)
 export class Main
 {
     // public readonly template = require('@domojs/theme-default/views/tiles.html').default;

@@ -5,10 +5,19 @@
       "path": "theme-default"
     },
     {
+      "path": "protocol-parser"
+    },
+    {
       "path": "devices"
     },
     {
       "path": "rfx"
+    },
+    {
+      "path": "weather"
+    },
+    {
+      "path": "iscp"
     }
   ]
 }

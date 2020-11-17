@@ -1,0 +1,127 @@
+{
+    "name": "iscp",
+    "commands": [
+        {
+            "name": "$init",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "options.path",
+                        "options.v"
+                    ],
+                    "options": {
+                        "normalize": [
+                            "path"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "exec",
+            "inject": [
+                "param.0",
+                "param.1"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/exec.js",
+                    "source": "src/commands/exec.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "power-off",
+            "inject": [
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/power-off.js",
+                    "source": "src/commands/power-off.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "power-on",
+            "inject": [
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/power-on.js",
+                    "source": "src/commands/power-on.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "save",
+            "inject": [
+                "param.0",
+                "param.1",
+                "connectionAsContainer"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "connectionAsContainer"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/save.js",
+                    "source": "src/commands/save.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "connectionAsContainer"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "connectionAsContainer"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}

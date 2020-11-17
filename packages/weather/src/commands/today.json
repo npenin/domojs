@@ -1,0 +1,39 @@
+{
+    "jsonrpc": {
+        "inject": [
+            "$http",
+            "param.0",
+            "param.1"
+        ]
+    },
+    "": {
+        "inject": [
+            "$http",
+            "param.0",
+            "param.1"
+        ]
+    },
+    "http": {
+        "route": "/today",
+        "method": "get",
+        "inject": [
+            "$http",
+            "query.lat",
+            "query.long"
+        ]
+    },
+    "fs": {
+        "inject": [
+            "$http",
+            "param.0",
+            "param.1"
+        ]
+    },
+    "cli": {
+        "inject": [
+            "$http",
+            "options.latitude",
+            "options.longitude"
+        ]
+    }
+}

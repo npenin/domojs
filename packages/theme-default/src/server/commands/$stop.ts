@@ -18,7 +18,7 @@ export default async function (this: State)
             }).on('error', reject);
         });
 
-        var container = akala.connect(socket)
+        var container = akala.connect(socket, null)
         await container.dispatch('remove-asset', 'main', require.resolve('../../client'))
         await container.dispatch('remove-asset', 'sw', require.resolve('@akala/client/dist/service-workers/immediate'));
 

@@ -25,6 +25,13 @@ export default function register(this: devices.IDeviceCollection, device: device
 
     this[device.name] = device;
 
+    if (device.statusMethod !== 'push')
+    {
+        deviceTypeContainer.dispatch('status', device);
+        if (typeof device.statusMethod == 'number')
+            setInterval(deviceTypeContainer.dispatch('status', device));
+    }
+
     if (device.commands)
     {
         var commands: { [key: string]: devices.RunnableCommandDescription } = {};

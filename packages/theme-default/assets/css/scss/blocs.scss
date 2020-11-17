@@ -24,6 +24,18 @@ $viridian:#00ABA9;
 .block-red { background-color:$red;; color:white; }
 .block-viridian { background-color:$viridian; color:white;}
 
+.block-container .block-black {background-color: transparent; }
+.block-container .block-blue {background-color: transparent; }
+.block-container .block-brown {background-color: transparent; }
+.block-container .block-green {background-color: transparent; }
+.block-container .block-lime {background-color: transparent; }
+.block-container .block-magenta {background-color: transparent;;}
+.block-container .block-orange {background-color: transparent; }
+.block-container .block-pink {background-color: transparent; }
+.block-container .block-purple {background-color: transparent; }
+.block-container .block-red {background-color: transparent; }
+.block-container .block-viridian {background-color: transparent;}
+
 .block-text-black {    color:$black; }
 .block-text-blue {     color:$blue; }
 .block-text-brown {    color:$brown; }
@@ -51,6 +63,29 @@ $viridian:#00ABA9;
     font-size: 5vmin; 
     cursor: pointer;
     border:3px solid transparent;
+}
+
+.block.block-container
+{
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0px;
+}
+
+.block-container .block .fa-3x
+{
+    font-size: 2em;
+}
+
+.block.block-container .block
+{
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0px;
+    width:50%;
+    height:50%;
+    border-width:1px solid grey;
+    border-collapse: collapse;
 }
 
 .block:hover

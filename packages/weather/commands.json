@@ -1,0 +1,188 @@
+{
+    "name": "config",
+    "commands": [
+        {
+            "name": "$init",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "pm",
+                        "options.path",
+                        "options.serverPath",
+                        "options.v"
+                    ],
+                    "options": {
+                        "normalize": [
+                            "path"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "exec",
+            "inject": [
+                "param.0",
+                "param.1"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/exec.js",
+                    "source": "src/commands/exec.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "save",
+            "inject": [
+                "param.0",
+                "param.1",
+                "connectionAsContainer"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "connectionAsContainer"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/save.js",
+                    "source": "src/commands/save.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "connectionAsContainer"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "connectionAsContainer"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "temperature",
+            "inject": [
+                "$http",
+                "param.0",
+                "param.1"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "$http",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/temperature.js",
+                    "source": "src/commands/temperature.ts",
+                    "inject": [
+                        "$http",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "$http",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "http": {
+                    "route": "/temperature",
+                    "method": "get",
+                    "inject": [
+                        "$http",
+                        "query.lat",
+                        "query.long"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "$http",
+                        "options.latitude",
+                        "options.longitude"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "today",
+            "inject": [
+                "$http",
+                "param.0",
+                "param.1"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "$http",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/today.js",
+                    "source": "src/commands/today.ts",
+                    "inject": [
+                        "$http",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "$http",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "http": {
+                    "route": "/today",
+                    "method": "get",
+                    "inject": [
+                        "$http",
+                        "query.lat",
+                        "query.long"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "$http",
+                        "options.latitude",
+                        "options.longitude"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}

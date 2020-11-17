@@ -1,0 +1,13 @@
+{
+	"name": "domojs-weather",
+	"version": "0.1.0",
+	"commands": "./commands.json",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/npenin/domojs-weather.git"
+	},
+	"dependencies": {
+		"@akala/commands": "^0.7.1",
+		"@akala/config": "^0.0.1"
+	}
+}

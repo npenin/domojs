@@ -1,0 +1,37 @@
+{
+  "author": {
+    "name": "npenin"
+  },
+  "bugs": {
+    "url": "https://github.com/domojs/domojs-pioneer/issues"
+  },
+  "dependencies": {
+    "@akala/core": "^5.0.0",
+    "@akala/server": "^5.0.0",
+    "@domojs/devices": "^1.4.38"
+  },
+  "devDependencies": {
+    "@types/ws": "^7.2.9"
+  },
+  "deprecated": false,
+  "description": "",
+  "homepage": "https://github.com/domojs/domojs-pioneer#readme",
+  "license": "MIT",
+  "commands": "./commands.json",
+  "name": "@domojs/iscp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/domojs/domojs-pioneer.git"
+  },
+  "runDependencies": [],
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "build:js": "tsc -p src",
+    "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
+    "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
+    "prepublishOnly": "npm run build",
+    "build": "npm run build:js"
+  },
+  "typings": "dist/index.d.ts",
+  "version": "1.0.17"
+}
