@@ -32,7 +32,7 @@
         "@domojs/theme-default": "^1.1.14"
     },
     "devDependencies": {
-        "@akala/client": "^2.1.63",
+        "@akala/client": "^3.1.2",
         "@domojs/theme-default": "^1.2.38",
         "@types/debug": "^4.1.5",
         "@types/uuid": "^8.0.0",
