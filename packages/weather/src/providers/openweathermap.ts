@@ -11,7 +11,8 @@ const cache = getFromCache('openweathermap',
 export function today(http: Http, position: Position): PromiseLike<{ temp: number, feelslike: number, tempMin: number, tempMax: number, pressure?: number, humidity?: number, weather: number, isNight?: boolean }>
 {
 	return cache.getInfo(http, position).then(v =>
-		({
+	{
+		var result = {
 			temp: v.main.temp,
 			feelslike: v.main.feels_like,
 			tempMin: v.main.temp_min,
@@ -19,8 +20,11 @@ export function today(http: Http, position: Position): PromiseLike<{ temp: numbe
 			pressure: v.pressure,
 			humidity: v.humidity,
 			weather: v.weather[0].id as Weather,
-			isNight: v.dt > v.sys.sunrise && v.dt < v.sys.sunset
-		}));
+			isNight: !(v.dt > v.sys.sunrise && v.dt < v.sys.sunset)
+		};
+		console.log(result);
+		return result;
+	});
 }
 export function temperature(http: Http, position: Position)
 {

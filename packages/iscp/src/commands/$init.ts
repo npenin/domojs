@@ -3,11 +3,12 @@ import { Processors, NetSocketAdapter, Metadata, proxy, Processor } from "@akala
 import * as net from 'net'
 import * as akala from '@akala/server';
 import * as assert from 'assert'
+import fs from 'fs/promises'
 
 var state: State = null;
 const log = akala.log('domojs:iscp:devicetype');
 
-export default function init(this: State, path: string, verbose?: boolean)
+export default async function init(this: State, path: string, verbose?: boolean)
 {
     assert.ok(path, 'path to @domojs/devicetype is not defined');
     state = this;
@@ -34,11 +35,12 @@ export default function init(this: State, path: string, verbose?: boolean)
         return processor;
     });
 
-    server.dispatch('register', {
-        name: 'iscp',
-        view: '@domojs/iscp/device.html',
-        commandMode: 'dynamic'
-    });
+    fs.readFile(require.resolve('../../views/device.html'), 'utf-8').then(newDeviceTempalte =>
+        server.dispatch('register', {
+            name: 'iscp',
+            view: newDeviceTempalte,
+            commandMode: 'dynamic'
+        }));
 }
 
 init.$inject = ['container', 'options.path']

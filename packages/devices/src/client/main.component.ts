@@ -1,11 +1,14 @@
 import * as akala from '@akala/core'
 import { mdule } from './main.module'
 import * as client from '@akala/client'
-import { Container, Processors, Metadata } from '@akala/commands'
+import { Container, Processors, Metadata, Command } from '@akala/commands'
 import { Tile } from '@domojs/theme-default';
 import { inject } from '@akala/core';
 import { LocationService } from '@akala/client';
 import { description } from '../server/device-commands';
+import * as website from '@domojs/theme-default'
+
+var commandRegistered = false;
 
 @client.component(mdule)
 export class Main
@@ -18,6 +21,8 @@ export class Main
         part.use('/devices/category/:ns', 'body', this);
         part.use('/devices/:ns', 'body', this);
     }
+
+    public readonly template = website.tiles;
 
     commandToTile(c: Metadata.Command, indexOfDot?: number): Tile
     {
@@ -35,9 +40,14 @@ export class Main
 
     async controller(scope: client.IScope<any>, _element: Element, params: { ns?: string })
     {
+        if (!commandRegistered)
+        {
+            scope['commands'].push(new Command((location: LocationService) => location.show('/devices/new'), 'new', ['$modules.akala-services.$location']));
+            commandRegistered = true;
+        }
         if (this.location.current.startsWith('/devices/category') || this.location.current == '/devices')
-            scope.$set('list', (await this.container).dispatch('get-by-category', params.ns));
+            scope.$set('tile.list', (await this.container).dispatch('get-by-category', params.ns));
         else
-            scope.$set('list', (await this.container).dispatch('get-by-name', params.ns));
+            scope.$set('tile.list', (await this.container).dispatch('get-by-name', params.ns));
     }
 }
