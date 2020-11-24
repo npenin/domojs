@@ -21,6 +21,7 @@ export namespace description
 	{
 	export interface deviceTypes 
 	{
+		dispatch (cmd:'$init', ...args:[]): ReturnType<typeof import('./commands/device-types/$init').default>
 		dispatch (cmd:'list', ...args:[]): ReturnType<typeof import('./commands/device-types/list').default>
 		dispatch (cmd:'register', ...args:[Argument0<typeof import('./commands/device-types/register').default>]): ReturnType<typeof import('./commands/device-types/register').default>
 	}

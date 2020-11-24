@@ -2,6 +2,33 @@
     "name": "device-types",
     "commands": [
         {
+            "name": "$init",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/server/commands/device-types/$init.js",
+                    "source": "src/server/commands/device-types/$init.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "options": {
+                        "normalize": [
+                            "path"
+                        ]
+                    },
+                    "inject": [
+                        "$container",
+                        "pm",
+                        "options.path",
+                        "options"
+                    ]
+                }
+            }
+        },
+        {
             "name": "list",
             "inject": [],
             "config": {
@@ -12,6 +39,11 @@
                     "path": "dist/server/commands/device-types/list.js",
                     "source": "src/server/commands/device-types/list.ts",
                     "inject": []
+                },
+                "http": {
+                    "inject": [],
+                    "method": "get",
+                    "route": "/list"
                 }
             }
         },

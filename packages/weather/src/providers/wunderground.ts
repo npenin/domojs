@@ -19,7 +19,7 @@ export function today(http: Http, position: Position)
 			pressure: v.pressure,
 			humidity: v.humidity,
 			weather: v.weather[0].id as Weather,
-			isNight: v.dt > v.sys.sunrise && v.dt < v.sys.sunset
+			isNight: !(v.dt > v.sys.sunrise && v.dt < v.sys.sunset)
 		}));
 }
 export function temperature(http: Http, position: Position)

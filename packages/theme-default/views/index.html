@@ -29,7 +29,8 @@
           <a href="/#">DomoJS</a>
         </div>
       </div>
-      <div data-bind="{part:'commands'}">
+      <div class="command-container">
+        <a data-bind="{each: 'command in $root.commands', click:dispatch, text:command.name}"></a>
       </div>
     </header>
     <div id="content" data-bind="{part:'body'}">
