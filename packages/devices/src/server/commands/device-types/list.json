@@ -1,0 +1,13 @@
+{
+    "": {
+        "inject": []
+    },
+    "fs": {
+        "inject": []
+    },
+    "http": {
+        "inject": [],
+        "method": "get",
+        "route": "/list"
+    }
+}
