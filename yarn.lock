@@ -104,16 +104,16 @@
     utils-merge "^1.0.0"
     ws "^7.2.1"
 
-"@akala/core@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@akala/core/-/core-5.0.0.tgz#97cdc35ce48c216a46f74285ec074ab8d7659fe8"
-  integrity sha512-1FouOalua4Rrmx+XfrUMWNEGKEGBx/N7OK451OANhldbum5eCy1BmEjM2oOg1nWhX7kEIWHqEPU2GIsHARIbtg==
+"@akala/core@^5.0.0", "@akala/core@^5.1.2":
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@akala/core/-/core-5.1.2.tgz#3c82031245c86b3c3e38da4d87695dc3e86dadc3"
+  integrity sha512-JIc1KtaIhxqePC5ZaBSC84YivuEpgQU5T0/3hpk6GNZj6G6RqVoYXqauAB6q0atbaIXIYTZq2TH1pxlM+ye76Q==
   dependencies:
-    "@akala/json-rpc-ws" "^9.1.6"
+    "@akala/json-rpc-ws" "^9.1.7"
     browser-process-hrtime "^1.0.0"
     debug "^4.1.1"
     es6-promise "^4.2.8"
-    isomorphic-fetch "^2.2.1"
+    isomorphic-fetch "^3.0.0"
     mock-require "^3.0.3"
     orchestrator "^0.3.8"
     parseurl "^1.3.1"
@@ -141,10 +141,10 @@
     uuid "^3.4.0"
     ws "^7.2.1"
 
-"@akala/json-rpc-ws@^9.0.16", "@akala/json-rpc-ws@^9.1.3", "@akala/json-rpc-ws@^9.1.5", "@akala/json-rpc-ws@^9.1.6":
-  version "9.1.6"
-  resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.1.6.tgz#1394a69e614b06421088b8d6786f08d9080c28a7"
-  integrity sha512-yHfgcX3EqXa3lD4sobgEBYaNzdT33WwkOP6Ug7qvyRAGp2FW+xkL3EtJaoIf0v7g/Z28pdKbqd6DY2EsVqtWmw==
+"@akala/json-rpc-ws@^9.0.16", "@akala/json-rpc-ws@^9.1.3", "@akala/json-rpc-ws@^9.1.5", "@akala/json-rpc-ws@^9.1.6", "@akala/json-rpc-ws@^9.1.7":
+  version "9.1.7"
+  resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.1.7.tgz#b3e742f2cf92dc0a63839ea5d4632fcce64371f7"
+  integrity sha512-deI8ofqOVChdQOZC5whedfWQX+4gbEQkxa6msDVAhuN4rzYPl0tKeYG1lqzLTNfE62dZ2sA+VtlK/PNExd3qng==
   dependencies:
     debug "^4.1.1"
     reflect-metadata "^0.1.13"
@@ -6789,6 +6789,14 @@ isomorphic-fetch@^2.2.1:
     node-fetch "^1.0.1"
     whatwg-fetch ">=0.10.0"
 
+isomorphic-fetch@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-3.0.0.tgz#0267b005049046d2421207215d45d6a262b8b8b4"
+  integrity sha512-qvUtwJ3j6qwsF3jLxkZ72qCgjMysPzDfeV240JHiGZsANBYd+EEuu35v7dfrJ9Up0Ak07D7GGSkGhCHTqg/5wA==
+  dependencies:
+    node-fetch "^2.6.1"
+    whatwg-fetch "^3.4.1"
+
 isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
@@ -8021,6 +8029,11 @@ node-fetch@^2.3.0, node-fetch@^2.5.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
   integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
+
+node-fetch@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
+  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
 node-forge@0.9.0:
   version "0.9.0"
@@ -12139,6 +12152,11 @@ whatwg-fetch@>=0.10.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.4.0.tgz#e11de14f4878f773fbebcde8871b2c0699af8b30"
   integrity sha512-rsum2ulz2iuZH08mJkT0Yi6JnKhwdw4oeyMjokgxd+mmqYSd9cPpOQf01TIWgjxG/U4+QR+AwKq6lSbXVxkyoQ==
+
+whatwg-fetch@^3.4.1:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.5.0.tgz#605a2cd0a7146e5db141e29d1c62ab84c0c4c868"
+  integrity sha512-jXkLtsR42xhXg7akoDKvKWE40eJeI+2KZqcp2h3NsOrRnDvtWX36KcKl30dy+hxECivdk2BVUHVNrPtoMBUx6A==
 
 whatwg-url@^7.0.0:
   version "7.1.0"
