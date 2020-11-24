@@ -51,6 +51,6 @@ export class Main
                 }
             }
         });
-        scope.$set('list', list);
+        scope.$set('tile.list', list);
     }
 }

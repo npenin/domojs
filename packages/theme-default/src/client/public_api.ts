@@ -5,6 +5,7 @@ import { LocationService, applyTemplate, IScope, PartDefinition } from '@akala/c
 import tiles from '../../views/tiles.html'
 import * as client from '@akala/client';
 import { ObservableArray } from '@akala/core';
+import { Command, Container, inject } from '@akala/commands';
 
 export interface Tile
 {
@@ -40,8 +41,28 @@ export interface TileService
     add<T extends TileDef>(tile: T): void;
     array: akala.ObservableArray<TileDef>;
 }
+var commandContainer = new Container<void>('local', null);
+var commands = new ObservableArray<Command>([]);
+commands.on('collectionChanged', function (ev)
+{
+    switch (ev.action)
+    {
+        case 'pop':
+        case 'shift':
+        case 'replace':
+            ev.oldItems.forEach(c => commandContainer.unregister(c.name));
+            if (ev.action != 'replace')
+                break;
+        case 'push':
+        case 'unshift':
+            ev.newItems.forEach(c => commandContainer.register(c));
+            break;
+    }
+});
 
-export function tileComponent(list: ObservableArray<TileDef> | TileDef[]): PartDefinition<any>
+export { tiles };
+
+export function tileComponent(list: ObservableArray<TileDef> | TileDef[], cmds?: Command[] | ObservableArray<Command>): PartDefinition<any>
 {
     return {
         template: tiles, controller: function (scope, element)
@@ -49,6 +70,13 @@ export function tileComponent(list: ObservableArray<TileDef> | TileDef[]): PartD
             if (element.classList.contains('block'))
                 element.classList.add('block-container');
             scope.tile = { list };
+
+            scope['$root'].$set('commands', cmds || commands);
+            scope.$set('dispatch', inject('command')(function (cmd: Command, ...rest: any[]) 
+            {
+                return commandContainer.dispatch(cmd, ...rest);
+            }));
+
 
             scope['tileClick'] = function (tile: Tile, $location: client.LocationService, $http: akala.Http)
             {
