@@ -2,7 +2,7 @@ import * as akala from '@akala/core';
 import { IconName, IconPrefix } from '@fortawesome/fontawesome-common-types'
 import * as fa from '@fortawesome/fontawesome-svg-core'
 import { LocationService, applyTemplate, IScope, PartDefinition } from '@akala/client';
-import tiles from '../../views/tiles.html'
+import template from '../../views/tiles.html'
 import * as client from '@akala/client';
 import { ObservableArray } from '@akala/core';
 import { Command, Container, inject } from '@akala/commands';
@@ -60,12 +60,12 @@ commands.on('collectionChanged', function (ev)
     }
 });
 
-export { tiles };
+export const tiles: string = template;
 
 export function tileComponent(list: ObservableArray<TileDef> | TileDef[], cmds?: Command[] | ObservableArray<Command>): PartDefinition<any>
 {
     return {
-        template: tiles, controller: function (scope, element)
+        template: template, controller: function (scope, element)
         {
             if (element.classList.contains('block'))
                 element.classList.add('block-container');
