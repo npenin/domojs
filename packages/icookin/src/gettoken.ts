@@ -7,6 +7,10 @@ export default function ()
     {
         var req = http.request(Object.assign({ method: 'POST', headers: { 'content-type': 'application/json' } }, uri.parse('https://fr-icookin.group-taurus.com/login/')));
         req.write(JSON.stringify({
+            "login": "anne.lallouet@gmail.com",
+            "password": "moncel72",
+            "region": "FR-ICOOKIN",
+            "isMachine": false,
         }));
         req.on('response', function (res)
         {

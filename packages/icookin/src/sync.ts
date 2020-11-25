@@ -9,10 +9,12 @@ if (require.main == module)
         var db = c.db('kitchen');
         var recipes = db.collection('recipes');
         var totalCount = 0;
+        var dbCount = await recipes.countDocuments();
         for (var category of await getCategories())
         {
             console.log(`syncing ${category.niceName}`);
-            var lastRecord = await recipes.find({ categories: { $elemMatch: { niceName: category.niceName } } }).sort([['info.creationDate', -1]]).limit(1).next();
+            if (dbCount > 0)
+                var lastRecord = await recipes.find({ categories: { $elemMatch: { niceName: category.niceName } } }).sort([['info.creationDate', -1]]).limit(1).next();
             var start = 0;
             var step = 50;
             do
