@@ -10,6 +10,7 @@
             "$container",
             "pm",
             "options.path",
+            "options.deviceType",
             "options"
         ]
     }

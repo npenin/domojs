@@ -1,0 +1,40 @@
+{
+    "jsonrpc": {
+        "inject": [
+            "livedb",
+            "param.0",
+            "param.1",
+            "param.2",
+            "$modules.@domojs/devices.deviceType"
+        ]
+    },
+    "fs": {
+        "inject": [
+            "livedb",
+            "param.0",
+            "param.1",
+            "param.2",
+            "$modules.@domojs/devices.deviceType"
+        ]
+    },
+    "": {
+        "inject": [
+            "livedb",
+            "param.0",
+            "param.1",
+            "param.2",
+            "$modules.@domojs/devices.deviceType"
+        ]
+    },
+    "http": {
+        "inject": [
+            "livedb",
+            "route.name",
+            "route.cmd",
+            "body",
+            "$modules.@domojs/devices.deviceType"
+        ],
+        "method": "get",
+        "route": "/device/:name/:cmd"
+    }
+}

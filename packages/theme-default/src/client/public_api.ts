@@ -1,7 +1,7 @@
 import * as akala from '@akala/core';
 import { IconName, IconPrefix } from '@fortawesome/fontawesome-common-types'
 import * as fa from '@fortawesome/fontawesome-svg-core'
-import { LocationService, applyTemplate, IScope, PartDefinition } from '@akala/client';
+import { LocationService, IScope, PartDefinition, Template } from '@akala/client';
 import template from '../../views/tiles.html'
 import * as client from '@akala/client';
 import { ObservableArray } from '@akala/core';
@@ -123,7 +123,7 @@ var bootstrapModule = akala.module('$bootstrap').ready(['akala-services.$locatio
     //if (!rootScope)
     this.whenDone.then(async () =>
     {
-        await applyTemplate([document.body], rootScope);
+        await Template.composeAll([document.body], rootScope);
         location.start({ dispatch: true, hashbang: false })
     })
 });
