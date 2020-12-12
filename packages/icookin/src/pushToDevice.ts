@@ -28,8 +28,8 @@ client.on('open', async function ()
                 "user": 'annelallouetgmailcom',
                 "region": 'FR-ICOOKIN',
                 "moveToRecipe": {
-                    niceName: 'veloute-de-potimarron-au-lait-de-coco',
-                    title: "Velouté de potimarron au lait de coco"
+                    niceName: 'manalas-12509',
+                    title: "Manalas"
                 },
                 "onlyMachines": true
             }), function (err)

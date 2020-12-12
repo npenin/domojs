@@ -1,28 +1,28 @@
 {
     "jsonrpc": {
         "inject": [
-            "db",
+            "livedb",
             "param.0"
         ]
     },
     "fs": {
         "inject": [
-            "db",
+            "livedb",
             "param.0"
         ]
     },
     "": {
         "inject": [
-            "db",
+            "livedb",
             "param.0"
         ]
     },
     "http": {
         "inject": [
-            "db",
-            "query.name"
+            "livedb",
+            "route.name"
         ],
         "method": "get",
-        "route": "/devices"
+        "route": "/device/:name"
     }
 }

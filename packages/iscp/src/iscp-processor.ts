@@ -6,6 +6,15 @@ import { EventEmitter } from 'events'
 
 const log = debug('domojs:iscp:processor');
 
+export class TimeoutError extends Error
+{
+    public readonly code = 'TIMEOUT';
+    constructor(message?: string)
+    {
+        super(message || 'Response not received in acceptable time frame');
+    }
+}
+
 var prot = new proto.Protocol<IscpMessage>([
     { name: 'ether', type: 'string', length: 4 },
     { name: 'hSize', type: 'uint32' },
@@ -78,7 +87,7 @@ export class ISCPProcessor<T> extends CommandNameProcessor<T>
         {
             var buffer = prot.write(new IscpMessage(
                 cmd,
-                param.param[0]
+                param.param[0] || ''
             ));
             var responded = false;
             var handler = (response: IscpMessage) =>
@@ -86,7 +95,7 @@ export class ISCPProcessor<T> extends CommandNameProcessor<T>
                 responded = true;
                 if (response.command !== cmd)
                     return;
-                this.socket.off('data', handler);
+                this.messages.off('message', handler);
                 if (response.command == cmd && (param.param[0] == 'QSTN' || param.param[0] == response.arg))
                     resolve(response);
                 else
@@ -102,17 +111,17 @@ export class ISCPProcessor<T> extends CommandNameProcessor<T>
                     responded = true;
                     reject(error);
                 }
-            });
-
-            setTimeout(() =>
-            {
-                log('timeout');
-                if (!responded)
+                log('message written');
+                setTimeout(() =>
                 {
-                    responded = true;
-                    reject(new Error('Timeout'))
-                }
-            }, 300)
+                    log('timeout');
+                    if (!responded)
+                    {
+                        responded = true;
+                        reject(new TimeoutError())
+                    }
+                }, 300)
+            });
         })
     }
 }

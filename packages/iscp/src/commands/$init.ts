@@ -1,5 +1,5 @@
 import { State } from "../state";
-import { Processors, NetSocketAdapter, Metadata, proxy, Processor } from "@akala/commands";
+import { Processors, NetSocketAdapter, Metadata, proxy, Processor, Container } from "@akala/commands";
 import * as net from 'net'
 import * as akala from '@akala/server';
 import * as assert from 'assert'
@@ -8,7 +8,7 @@ import fs from 'fs/promises'
 var state: State = null;
 const log = akala.log('domojs:iscp:devicetype');
 
-export default async function init(this: State, path: string, verbose?: boolean)
+export default async function init(this: State, container: Container<void>, path: string, verbose?: boolean)
 {
     assert.ok(path, 'path to @domojs/devicetype is not defined');
     state = this;
@@ -27,18 +27,16 @@ export default async function init(this: State, path: string, verbose?: boolean)
     // proxy(require('@akala/devices/devicetype-commands.json'), 
     var metaServer: Metadata.Container = require('@domojs/devices/devicetype-commands.json');
 
-    var server: import('@domojs/devices/dist/server/devicetype-commands').description.deviceTypes = proxy(metaServer, (container) =>
-    {
-        var processor: Processor<State> = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(net.connect({ path })), container), true)
-        if (verbose)
-            processor = new Processors.LogProcessor(processor, (cmd, params) => log({ cmd, params }));
-        return processor;
-    });
+    var processor: Processor<State> = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(net.connect({ path })), container), true)
+    if (verbose)
+        processor = new Processors.LogProcessor(processor, (cmd, params) => log({ cmd, params }));
 
-    fs.readFile(require.resolve('../../views/device.html'), 'utf-8').then(newDeviceTempalte =>
+    var server: import('@domojs/devices/dist/server/devicetype-commands').description.deviceTypes = proxy(metaServer, processor);
+
+    fs.readFile(require.resolve('../../views/device.html'), 'utf-8').then(newDeviceTemplate =>
         server.dispatch('register', {
             name: 'iscp',
-            view: newDeviceTempalte,
+            view: newDeviceTemplate,
             commandMode: 'dynamic'
         }));
 }

@@ -5,33 +5,34 @@ export default function (this: State, deviceName: string, command: string)
 {
     var cmd = command;
     var mainDevice = this.getMainDevice(deviceName);
+
     if (deviceName != mainDevice.name)
     {
         switch (deviceName.substring(mainDevice.name.length + 1))
         {
             case 'power':
                 if (command == 'off')
-                    cmd = 'PF'
+                    cmd = 'PWR00'
                 else
-                    cmd = 'PO'
+                    cmd = 'PWR01'
                 break;
             case 'mute':
                 if (command == 'off')
-                    cmd = 'MF';
+                    cmd = 'AMT00';
                 else
-                    cmd = 'MO';
+                    cmd = 'AMT01';
                 break;
             case 'volume':
                 switch (command)
                 {
                     case 'up':
-                        cmd = 'VU';
+                        cmd = 'MVLUP';
                         break;
                     case 'down':
-                        cmd = 'VD';
+                        cmd = 'MVLDOWN';
                         break;
                     case 'set':
-                        cmd = 'VL';
+                        // cmd = 'MVL';
                         break;
                 }
                 break;
@@ -63,5 +64,5 @@ export default function (this: State, deviceName: string, command: string)
                 break;
         }
     }
-    return api.send(cmd, mainDevice['address']).then(() => undefined);
+    return mainDevice.dispatch(cmd);
 }

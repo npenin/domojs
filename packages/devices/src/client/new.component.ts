@@ -1,10 +1,12 @@
 import { mdule2 } from './main.module'
 import * as client from '@akala/client'
 import { Container, Processors, Command } from '@akala/commands'
-import { inject } from '@akala/core';
+import { inject, injectable } from '@akala/core';
 import { LocationService, PartDefinition } from '@akala/client';
 import { description } from '../server/devicetype-commands';
 import template from '../../views/new.html'
+import { DeviceType, IDevice } from '../devices';
+import { applyInjector } from '@akala/core/dist/reflection-injector';
 
 @client.component(mdule2)
 export class NewDevice implements PartDefinition<any>
@@ -22,6 +24,12 @@ export class NewDevice implements PartDefinition<any>
     {
         scope.$set('device', {});
         scope.$set('deviceTypes', this.container.dispatch('list'));
+        scope.$set('send', this.send);
+    }
+
+    public send(this: { device: IDevice, type: DeviceType }, @inject('$modules.@domojs/devices.container') container: Container<void> & import('../server/device-commands').description.devices)
+    {
+        return container.dispatch('add', this.type.name, this.device);
     }
 }
 
