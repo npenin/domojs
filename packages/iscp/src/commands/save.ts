@@ -22,13 +22,13 @@ export function getMainDevice(name)
     return deviceCollection[mainDevice];
 }
 
-export default async function save(this: State, http: Http, body: any, device: devices.IDevice, container: ac.Container<any>)
+export default async function save(this: State, body: any, device: devices.IDevice, container: ac.Container<any>)
 {
     if (device.name.indexOf('.') > -1)
         return device;
     var socket = new Socket();
 
-    this.collection[device.name] = new Container('iscp-' + device.name, {}, new ISCPProcessor(socket, function (message)
+    this.collection[device.name] = new Container('iscp-' + device.name, {}, new ISCPProcessor(socket, (message) =>
     {
         switch (message.command)
         {

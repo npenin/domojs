@@ -2,17 +2,20 @@ import * as devices from "../../../devices";
 import * as akala from '@akala/core'
 import { Container, Command } from "@akala/commands";
 import { deviceTypeContainer, deviceContainer } from "../../..";
+import { LiveStore } from "../../store";
+import { BinaryOperator } from "@akala/storage/dist/server/expressions";
 
-export default function register(this: devices.IDeviceCollection, device: devices.IDevice, deviceTypeContainer: Container<devices.DeviceTypeCollection> & deviceTypeContainer, deviceContainer: Container<devices.IDeviceCollection> & deviceContainer)
+export default async function register(db: LiveStore, deviceTypeContainer: Container<devices.DeviceTypeCollection> & deviceTypeContainer, deviceContainer: Container<devices.IDeviceCollection> & deviceContainer, device: devices.IDevice)
 {
-    if (typeof this[device.name] != 'undefined')
+    console.log(arguments);
+    if (await db.Devices.where('name', BinaryOperator.Equal, device.name).any())
         throw new Error(`a device with name ${device.name} already exists`);
 
     var indexOfDot = device.name.indexOf('.');
     if (indexOfDot >= 0)
     {
         var mainName = device.name.substr(0, indexOfDot);
-        var mainDevice = this[mainName];
+        var mainDevice = await db.Devices.where('name', BinaryOperator.Equal, mainName).firstOrDefault();
         if (mainDevice && mainDevice.subdevices)
         {
             var subDeviceIndex = mainDevice.subdevices.findIndex(d => d.name == device.name);
@@ -23,7 +26,7 @@ export default function register(this: devices.IDeviceCollection, device: device
         }
     }
 
-    this[device.name] = device;
+    await db.Devices.createSingle(device);
 
     if (device.statusMethod !== 'push')
     {
@@ -98,9 +101,9 @@ export default function register(this: devices.IDeviceCollection, device: device
     }
     if (device.subdevices)
     {
-        akala.each(device.subdevices, function (item: devices.Device)
+        await akala.eachAsync(device.subdevices, (item: devices.Device) =>
         {
-            register.call(this, deviceTypeContainer, akala.extend(item, { name: device.name + '.' + item.name, type: item.type || device.type }));
-        });
+            return register(db, deviceTypeContainer, deviceContainer, akala.extend(item, { name: device.name + '.' + item.name, type: item.type || device.type }));
+        }, false);
     }
 }

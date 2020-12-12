@@ -1,6 +1,7 @@
 {
     "cli": {
         "inject": [
+            "$container",
             "options.path",
             "options.v"
         ],

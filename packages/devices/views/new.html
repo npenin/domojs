@@ -1,12 +1,13 @@
 <h1>New Device</h1>
 <style>
-    #content
-    {
+    #content {
         flex-direction: column;
     }
+
     #commandGroup.dynamic .btn-primary {
         display: none;
     }
+
     #commandGroup.static .btn-primary {
         display: inline-block;
     }
@@ -27,23 +28,25 @@
     <div class="form-group">
         <label for="type" class="control-label col-sm-2">Type</label>
         <div class="col-sm-10">
-            <select id="type" class="form-control" name="type" data-bind="{value:device.type, options:{in:deviceTypes, text:name, value:name}}">
+            <select id="type" class="form-control" name="type"
+                data-bind="{value:type, options:{in:deviceTypes, text:name, value:name}}">
                 <option value="">Select a type</option>
             </select>
         </div>
     </div>
-    <div id="commandGroup" data-bind="{class:{dynamic:device.type.mode=='dynamic', static:device.type.mode=='static'}">
+    <div id="commandGroup" data-bind="{class:{dynamic:type.mode=='dynamic', static:type.mode=='static'}">
         <h3>Commands
-            <a href="#" class="btn btn-primary" data-bind="{show:device.type.mode=='static'}">
+            <a href="#" class="btn btn-primary" data-bind="{show:type.mode=='static'}">
                 <span class="fa fa-plus"></span>
             </a>
         </h3>
-        <ul id="commands" class="list-unstyled container-fluid" data-bind="{part:{name:'deviceType', template:device.type.view, controller:device.type.controller}}">
+        <ul id="commands" class="list-unstyled container-fluid"
+            data-bind="{part:{name:'deviceType', template:type.view, controller:type.controller}}">
         </ul>
     </div>
     <div class="form-group horizontal-form">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn disabled btn-primary" data-bind="{click:send}">Add</button>
+            <button type="button" class="btn disabled btn-primary" data-bind="{click:send}">Add</button>
             <a href="#/devices" class="btn btn-default">Cancel</a>
         </div>
     </div>

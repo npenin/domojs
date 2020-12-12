@@ -1,13 +1,17 @@
 {
     "": {
         "inject": [
-            "deviceType",
+            "livedb",
+            "$modules.@domojs/devices.deviceType",
+            "$container",
             "param.0"
         ]
     },
     "jsonrpcws": {
         "inject": [
-            "deviceType",
+            "livedb",
+            "$modules.@domojs/devices.deviceType",
+            "$container",
             "param.0"
         ]
     }

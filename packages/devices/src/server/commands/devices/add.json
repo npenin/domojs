@@ -1,7 +1,7 @@
 {
     "": {
         "inject": [
-            "deviceType",
+            "$modules.@domojs/devices.deviceType",
             "$container",
             "db",
             "param.0",
@@ -10,7 +10,7 @@
     },
     "jsonrpc": {
         "inject": [
-            "deviceType",
+            "$modules.@domojs/devices.deviceType",
             "$container",
             "db",
             "param.0",
@@ -19,7 +19,7 @@
     },
     "fs": {
         "inject": [
-            "deviceType",
+            "$modules.@domojs/devices.deviceType",
             "$container",
             "db",
             "param.0",
@@ -28,19 +28,23 @@
     },
     "cli": {
         "inject": [
+            "$modules.@domojs/devices.deviceType",
+            "$container",
+            "db",
             "param.0",
-            "options.type"
+            "stdin"
         ]
     },
     "http": {
         "inject": [
-            "deviceType",
+            "$modules.@domojs/devices.deviceType",
             "$container",
             "db",
-            "param.0",
+            "route.type",
             "body"
         ],
+        "type": "json",
         "method": "post",
-        "route": "/new"
+        "route": "/new/:type"
     }
 }
