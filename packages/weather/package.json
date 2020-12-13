@@ -1,5 +1,5 @@
 {
-	"name": "domojs-weather",
+	"name": "@domojs/weather",
 	"version": "0.1.0",
 	"commands": "./commands.json",
 	"repository": {
