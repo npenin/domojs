@@ -24,8 +24,8 @@
     "ws": "^7.3.0"
   },
   "peerDependencies": {
-    "@domojs/lifttt": "^2.1.0",
-    "@domojs/theme-default": "^1.2.38"
+    "@domojs/lifttt": "^3.0.4",
+    "@domojs/theme-default": "^1.3.5"
   },
   "deprecated": false,
   "description": "",
