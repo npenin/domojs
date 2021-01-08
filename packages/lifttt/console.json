@@ -1,0 +1,26 @@
+{
+    "name": "console",
+    "commands": [
+        {
+            "name": "log",
+            "inject": [
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/console/log.js",
+                    "source": "src/commands/console/log.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}

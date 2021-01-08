@@ -1,0 +1,55 @@
+{
+    "name": "fs",
+    "commands": [
+        {
+            "name": "watch",
+            "inject": [
+                "param.0",
+                "param.1",
+                "param.2"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/fs/watch.js",
+                    "source": "src/commands/fs/watch.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "write",
+            "inject": [
+                "param.0",
+                "param.1"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/fs/write.js",
+                    "source": "src/commands/fs/write.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}

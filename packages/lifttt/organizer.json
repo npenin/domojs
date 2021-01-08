@@ -1,0 +1,47 @@
+{
+    "name": "organizer",
+    "commands": [
+        {
+            "name": "list",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/commands/organizer/list.js",
+                    "source": "src/commands/organizer/list.ts",
+                    "inject": []
+                },
+                "http": {
+                    "route": "/organizer",
+                    "method": "get"
+                }
+            }
+        },
+        {
+            "name": "new",
+            "inject": [
+                "$container",
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "$container",
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/organizer/new.js",
+                    "source": "src/commands/organizer/new.ts",
+                    "inject": [
+                        "ignore",
+                        "param.0"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}
