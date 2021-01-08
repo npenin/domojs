@@ -1,3 +1,3 @@
 FROM npenin/akala
-RUN apk add --no-cache make gcc g++ python3 linux-headers udev eudev-dev
+RUN apk add --no-cache alpine-sdk python3 linux-headers eudev-dev libusb-dev
 RUN yarn add serialport usb
