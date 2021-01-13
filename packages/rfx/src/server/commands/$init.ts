@@ -38,12 +38,18 @@ export default function init(this: State, path: string, verbose?: boolean)
     });
 
     addDeviceIfMatch();
-
-    usb.on('attach', function ()
+    try
     {
-        akala.logger.info('detected new usb device');
-        addDeviceIfMatch();
-    });
+        usb.on('attach', function ()
+        {
+            akala.logger.info('detected new usb device');
+            addDeviceIfMatch();
+        });
+    }
+    catch (e)
+    {
+        console.error(e);
+    }
 }
 
 
