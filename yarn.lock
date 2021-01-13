@@ -71,20 +71,10 @@
     utils-merge "^1.0.0"
     ws "^7.2.1"
 
-"@akala/json-rpc-ws@^9.1.3", "@akala/json-rpc-ws@^9.1.7":
+"@akala/json-rpc-ws@^9.1.3", "@akala/json-rpc-ws@^9.1.5", "@akala/json-rpc-ws@^9.1.7":
   version "9.1.7"
   resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.1.7.tgz#b3e742f2cf92dc0a63839ea5d4632fcce64371f7"
   integrity sha512-deI8ofqOVChdQOZC5whedfWQX+4gbEQkxa6msDVAhuN4rzYPl0tKeYG1lqzLTNfE62dZ2sA+VtlK/PNExd3qng==
-  dependencies:
-    debug "^4.1.1"
-    reflect-metadata "^0.1.13"
-    uuid "^8.0.0"
-    ws "^7.2.3"
-
-"@akala/json-rpc-ws@^9.1.5":
-  version "9.1.6"
-  resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.1.6.tgz#1394a69e614b06421088b8d6786f08d9080c28a7"
-  integrity sha512-yHfgcX3EqXa3lD4sobgEBYaNzdT33WwkOP6Ug7qvyRAGp2FW+xkL3EtJaoIf0v7g/Z28pdKbqd6DY2EsVqtWmw==
   dependencies:
     debug "^4.1.1"
     reflect-metadata "^0.1.13"
