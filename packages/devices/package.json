@@ -1,6 +1,6 @@
 {
   "name": "@domojs/devices",
-  "version": "1.5.6",
+  "version": "1.5.7",
   "author": {
     "name": "npenin"
   },
@@ -30,8 +30,8 @@
   "deprecated": false,
   "description": "",
   "devDependencies": {
-    "@domojs/lifttt": "^3.0.4",
-    "@domojs/theme-default": "^1.3.5",
+    "@domojs/lifttt": "^3.0.5",
+    "@domojs/theme-default": "^1.3.6",
     "@types/debug": "^4.1.5",
     "@types/express-serve-static-core": "^4.17.18",
     "@types/uuid": "^8.0.0",
