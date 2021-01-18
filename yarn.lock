@@ -12,7 +12,7 @@
     "@popperjs/core" "^2.2.0"
     showdown "^1.8.6"
 
-"@akala/commands@^0.7.1", "@akala/commands@^0.7.4", "@akala/commands@^0.7.6":
+"@akala/commands@^0.7.1", "@akala/commands@^0.7.6":
   version "0.7.6"
   resolved "https://registry.yarnpkg.com/@akala/commands/-/commands-0.7.6.tgz#1199af22d9c32ea149ab371e18b65b7a2f31751d"
   integrity sha512-aDbjYnfiD9BlnTp1wbV4CWqF05lryEC7bXf9f6nFRk8DB7mhxh8vnmmyWAQlyBQs9RfNVknTaq5QzEbZU2+R9w==
@@ -25,13 +25,13 @@
     ws "^7.2.3"
     yargs-parser "^20.2.0"
 
-"@akala/config@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@akala/config/-/config-0.0.4.tgz#ffa1e12e07ae279267ab161d45404fb42315c608"
-  integrity sha512-4RJW4CF9IyOj60DosetwvvGRg99dH1KYaVdusi9/uhqtQ87KrwbyS6LSFr2djdaTg77hwNbkt00zBYPfMGEYpA==
+"@akala/config@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@akala/config/-/config-0.0.6.tgz#9ea4fbd85a08b361befdf0e59c48cd370466921b"
+  integrity sha512-zYsb/ntQmagaILTCtho0i6TJa4nk2luuH3sZ4+NCBXpD6ZfHlRP2lATIYnwMTKuE3Iy15Js3mYceF06m2XTF2A==
   dependencies:
-    "@akala/commands" "^0.7.4"
-    "@akala/core" "^6.0.0"
+    "@akala/commands" "^0.7.6"
+    "@akala/core" "^6.0.2"
 
 "@akala/core@^4.0.6":
   version "4.0.13"
