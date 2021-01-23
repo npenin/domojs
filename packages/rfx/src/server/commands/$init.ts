@@ -5,6 +5,7 @@ import * as usb from 'usb';
 import * as akala from '@akala/server';
 import { Rfxtrx } from 'rfxtrx';
 import * as assert from 'assert'
+import * as fs from 'fs/promises';
 
 var state: State = null;
 var setGateway: (gw: Rfxtrx) => void = null;
@@ -31,11 +32,12 @@ export default function init(this: State, path: string, verbose?: boolean)
         return processor;
     });
 
-    server.dispatch('register', {
-        name: 'RFX',
-        view: '@domojs/rfx/new.html',
-        commandMode: 'static'
-    });
+    fs.readFile(require.resolve('../../views/new-RFY.html'), 'utf-8').then(newDeviceTemplate =>
+        server.dispatch('register', {
+            name: 'RFY',
+            view: newDeviceTemplate,
+            commandMode: 'static'
+        }));
 
     addDeviceIfMatch();
     try

@@ -15,13 +15,13 @@ export default async function (this: ChannelState, container: Container<ChannelS
     c = new Container('fs', {});
     await Processors.FileSystem.discoverCommands(require.resolve('../../../fs.json'), c, { isDirectory: false })
     await container.dispatch('new-channel', 'fs', c);
-    await container.dispatch('new', {
-        steps: [
-            {
-                channel: 'console',
-                command: 'log',
-                parameters: [{ $interpolate: 'pwic {{ 1+1 }}' }]
-            }
-        ]
-    } as Task)
+    // await container.dispatch('new', {
+    //     steps: [
+    //         {
+    //             channel: 'console',
+    //             command: 'log',
+    //             parameters: [{ $interpolate: 'pwic {{ 1+1 }}' }]
+    //         }
+    //     ]
+    // } as Task)
 }

@@ -5,6 +5,15 @@
       "path": "theme-default"
     },
     {
+      "path": "cron"
+    },
+    {
+      "path": "chat"
+    },
+    {
+      "path": "cli"
+    },
+    {
       "path": "protocol-parser"
     },
     {
