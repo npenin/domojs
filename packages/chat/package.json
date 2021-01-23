@@ -2,6 +2,14 @@
   "name": "@domojs/chat",
   "version": "2.0.4",
   "private": true,
-  "main": "index.js",
-  "license": "MIT"
+  "main": "dist/test.js",
+  "license": "MIT",
+  "dependencies": {
+    "@nlpjs/basic": "^4.19.0",
+    "node-nlp": "^4.19.0"
+  },
+  "devDependencies": {
+    "@nlpjs/directline-connector": "^4.18.0",
+    "@nlpjs/express-api-server": "^4.17.1"
+  }
 }

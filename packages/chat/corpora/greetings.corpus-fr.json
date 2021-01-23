@@ -1,0 +1,46 @@
+{
+  "name": "Name of the corpus",
+  "locale": "fr",
+  "data": [
+    {
+      "intent": "greetings.bye",
+      "utterances": [
+        "A la prochaine",
+        "A plus dans le bus",
+        "a plus tard",
+        "J'y vais",
+        "Salut"
+      ],
+      "answers": [
+        "Ca marche, a plus !",
+        "A bientot !",
+        "Au revoir !"
+      ]
+    },
+    {
+      "intent": "greetings.hello",
+      "utterances": [
+        "Salut",
+        "bonjour",
+        "bonsoir"
+      ],
+      "answers": [
+        "Bonjour !",
+        "Bienvenue !",
+        "Hey, comment va ?!"
+      ]
+    },
+    {
+      "intent": "greetings.saionara",
+      "utterances": [
+        "adieu",
+        "harakiri"
+      ],
+      "answers": [
+        "adieu monde cruel",
+        "je reviendrai",
+        "on se reverra en enfer"
+      ]
+    }
+  ]
+}
