@@ -19,10 +19,10 @@ export default async function save(this: State, body: any, device: devices.IDevi
         case PacketType.TEMPERATURE_HUMIDITY:
             this.devices[device.name] = { type: body.rfxType, id: body.rfxType, gateway };
             device.subdevices = [
-                { type: body.rfxType, name: 'temperature', commands: [], statusMethod: 'push', statusUnit: '°C' },
-                { type: body.rfxType, name: 'humidity', commands: [], statusMethod: 'push', statusUnit: '%' },
-                { type: body.rfxType, name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
-                { type: body.rfxType, name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
+                { room: body.room, type: body.rfxType, name: 'temperature', commands: [], statusMethod: 'push', statusUnit: '°C' },
+                { room: body.room, type: body.rfxType, name: 'humidity', commands: [], statusMethod: 'push', statusUnit: '%' },
+                { room: body.room, type: body.rfxType, name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
+                { room: body.room, type: body.rfxType, name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
             ];
 
             gateway.on('TEMPERATURE_HUMIDITY', state =>
@@ -37,10 +37,10 @@ export default async function save(this: State, body: any, device: devices.IDevi
         case PacketType.ENERGY:
             this.devices[device.name] = { type: body.rfxType, sensorId: body.sensorId, gateway };
             device.subdevices = [
-                { type: body.rfxType, name: 'instant', commands: [], statusMethod: 'push', statusUnit: 'W' },
-                { type: body.rfxType, name: 'total', commands: [], statusMethod: 'push', statusUnit: 'Wh' },
-                { type: body.rfxType, name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
-                { type: body.rfxType, name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
+                { room: body.room, type: body.rfxType, name: 'instant', commands: [], statusMethod: 'push', statusUnit: 'W' },
+                { room: body.room, type: body.rfxType, name: 'total', commands: [], statusMethod: 'push', statusUnit: 'Wh' },
+                { room: body.room, type: body.rfxType, name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
+                { room: body.room, type: body.rfxType, name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
             ];
             gateway.on('ENERGY', state =>
             {
@@ -54,11 +54,11 @@ export default async function save(this: State, body: any, device: devices.IDevi
         case PacketType.CURRENT_ENERGY:
             this.devices[device.name] = { type: body.rfxType, sensorId: body.sensorId, gateway };
             device.subdevices = [
-                { type: body.rfxType, name: 'channel1', commands: [], statusMethod: 'push', statusUnit: 'A' },
-                { type: body.rfxType, name: 'channel2', commands: [], statusMethod: 'push', statusUnit: 'A' },
-                { type: body.rfxType, name: 'channel3', commands: [], statusMethod: 'push', statusUnit: 'A' },
-                { type: body.rfxType, name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
-                { type: body.rfxType, name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
+                { room: body.room, type: body.rfxType, name: 'channel1', commands: [], statusMethod: 'push', statusUnit: 'A' },
+                { room: body.room, type: body.rfxType, name: 'channel2', commands: [], statusMethod: 'push', statusUnit: 'A' },
+                { room: body.room, type: body.rfxType, name: 'channel3', commands: [], statusMethod: 'push', statusUnit: 'A' },
+                { room: body.room, type: body.rfxType, name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
+                { room: body.room, type: body.rfxType, name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
             ];
             gateway.on('CURRENT_ENERGY', state =>
             {

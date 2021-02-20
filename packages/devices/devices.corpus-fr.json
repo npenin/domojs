@@ -1,0 +1,15 @@
+{
+    "name": "Name of the corpus",
+    "locale": "fr",
+    "domain": "house",
+    "entities": {
+        "room": [
+            {"name":"livingroom", "alias":"salle"},
+            {"name":"bedroom", "alias":"chambre"},
+            {"name":"loungeroom", "alias":"salon"},
+            {"name":"kitchen", "alias":"cuisine"},
+            {"name":"underground", "alias":"cave"},
+            {"name":"atic", "alias":"grenier"}
+        ]
+    }
+}

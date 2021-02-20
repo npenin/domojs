@@ -5,7 +5,7 @@ import { PersistenceEngine, ModelDefinition, Types, Generator } from '@akala/sto
 
 export interface Store
 {
-    DevicesInit: db.DbSet<{ name: string, body: string, type: string }>;
+    DevicesInit: db.DbSet<{ name: string, body: string, type: string, room: string }>;
     // Devices: db.DbSet<devices.IDevice>;
 }
 
@@ -24,6 +24,7 @@ akala.module('@domojs/devices').activate(['$config.@domojs/devices.storage'], as
     devices.defineMember('name', true, Types.string(50), Generator.business);
     devices.defineMember('category', false, Types.string(50));
     devices.defineMember('type', false, Types.string(50));
+    devices.defineMember('room', false, Types.string(50));
     var engines: { [key: string]: PersistenceEngine<any> } = {};
     this.waitUntil(db.providers.injectWithName([storage?.provider || 'file', 'vanilla'], async function (persistent: PersistenceEngine<any>, volatile: PersistenceEngine<any>)
     {

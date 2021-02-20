@@ -3,7 +3,12 @@ import { Container } from "@akala/commands";
 import { Store } from "../../store";
 import { deviceContainer } from '../../..';
 
-export default async function persist(this: { initializing?: boolean }, deviceTypeContainer: Container<devices.DeviceTypeCollection>, deviceContainer: Container<devices.IDeviceCollection> & deviceContainer, store: Store, type: string, bodyasync: Promise<any>)
+export default async function persist(this: { initializing?: boolean },
+    deviceTypeContainer: Container<devices.DeviceTypeCollection>,
+    deviceContainer: Container<devices.IDeviceCollection> & deviceContainer,
+    store: Store,
+    type: string,
+    bodyasync: Promise<any>)
 {
     var body = await bodyasync;
 
@@ -13,6 +18,7 @@ export default async function persist(this: { initializing?: boolean }, deviceTy
         name: body.name,
         type: type,
         category: body.category,
+        root: body.room,
         commands: null
     };
 

@@ -1,11 +1,16 @@
 {
   "name": "Name of the corpus",
   "locale": "fr",
+  "entities": [
+    {
+      "name": "volets"
+    }
+  ],
   "data": [
     {
       "intent": "rfy.up",
       "utterances": [
-        "A la prochaine",
+        "O",
         "A plus dans le bus",
         "a plus tard",
         "J'y vais",

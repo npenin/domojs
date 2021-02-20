@@ -1,0 +1,28 @@
+{
+    "jsonrpc": {
+        "inject": [
+            "livedb",
+            "param.0"
+        ]
+    },
+    "fs": {
+        "inject": [
+            "livedb",
+            "param.0"
+        ]
+    },
+    "": {
+        "inject": [
+            "livedb",
+            "param.0"
+        ]
+    },
+    "http": {
+        "inject": [
+            "livedb",
+            "route.category"
+        ],
+        "method": "get",
+        "route": "/category/:category?"
+    }
+}

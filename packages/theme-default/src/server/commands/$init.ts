@@ -3,26 +3,15 @@ import * as net from 'net'
 import * as path from 'path';
 import requireIfExists from 'require-optional'
 import { State } from '../state';
-import { Container } from '@akala/commands';
+import { connectByPreference, Container } from '@akala/commands';
+import { connect } from '@akala/pm'
 
 const log = akala.log('domojs:theme-default')
 
-export default async function $init(this: State, socketPath: string, enableAllCommands: boolean)
+export default async function $init(this: State, enableAllCommands: boolean)
 {
     this.modules = {};
-    console.log(socketPath);
-    if (!socketPath)
-        throw new Error('path to akala-server is not defined');
-    this.socketPath = socketPath;
-    var socket = await new Promise<net.Socket>((resolve, reject) =>
-    {
-        var socket = net.connect({ path: socketPath }, function ()
-        {
-            console.log('connected to ' + socketPath);
-            resolve(socket)
-        }).on('error', reject);
-    });
-    var container = akala.connect(socket, null);
+    const { container } = await akala.connect(await connect('server'), {}, 'socket');
 
     await container.dispatch('webpack-html', { title: 'Output management', template: path.join(__dirname, '../../../views/index.html'), excludeChunks: ['sw'] });
 
@@ -41,7 +30,7 @@ export default async function $init(this: State, socketPath: string, enableAllCo
     {
         log('enabling all pm commands');
         await container.dispatch('asset', 'main', require.resolve('../../client/pm'))
-        await container.dispatch('require', require.resolve('../pm'))
+        await container.dispatch('require', require.resolve('../pm'), process.cwd())
     }
 
     var fa = requireIfExists('@fortawesome/fontawesome-pro');
@@ -53,6 +42,6 @@ export default async function $init(this: State, socketPath: string, enableAllCo
         if (fa)
             await container.dispatch('asset', 'main', require.resolve('@fortawesome/fontawesome-free/css/all.css'));
     }
-    await container.dispatch('route', '/sw.js', '/sw.js', { pre: true, get: true, root: path.resolve('./build'), headers: { 'Service-Worker-Allowed': '/' } });
+    await container.dispatch('route', '/sw.js', '/sw.js', { pre: true, get: true, root: path.resolve('./build')/*, headers: { 'Service-Worker-Allowed': '/' }*/ }, process.cwd());
     // await container.dispatch('route', '/', null, { pre: true, use: true, get: true, root: path.resolve('./build') });
 }

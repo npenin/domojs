@@ -1,4 +1,5 @@
 import { Container } from "@akala/commands";
+import { NetConnectOpts } from "net";
 
 export interface ModuleDefinition
 {
@@ -8,7 +9,7 @@ export interface ModuleDefinition
 
 export interface State
 {
-    socketPath: string;
+    socketPath: NetConnectOpts;
     modules: { [key: string]: ModuleDefinition };
     pm: Container<void>
 }
