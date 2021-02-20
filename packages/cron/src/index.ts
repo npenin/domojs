@@ -8,12 +8,6 @@ function calcTimeJulianCent(jd)
     return T
 }
 
-function calcJDFromJulianCent(t)
-{
-    var JD = t * 36525.0 + 2451545.0
-    return JD
-}
-
 function isLeapYear(yr) 
 {
     return ((yr % 4 == 0 && yr % 100 != 0) || yr % 400 == 0);
@@ -108,13 +102,6 @@ function calcSunTrueAnomaly(t)
     return v;		// in degrees
 }
 
-function calcSunRadVector(t)
-{
-    var v = calcSunTrueAnomaly(t);
-    var e = calcEccentricityEarthOrbit(t);
-    var R = (1.000001018 * (1 - e * e)) / (1 + e * Math.cos(degToRad(v)));
-    return R;		// in AUs
-}
 
 function calcSunApparentLong(t)
 {
@@ -139,15 +126,6 @@ function calcObliquityCorrection(t)
     return e;		// in degrees
 }
 
-function calcSunRtAscension(t)
-{
-    var e = calcObliquityCorrection(t);
-    var lambda = calcSunApparentLong(t);
-    var tananum = (Math.cos(degToRad(e)) * Math.sin(degToRad(lambda)));
-    var tanadenom = (Math.cos(degToRad(lambda)));
-    var alpha = radToDeg(Math.atan2(tananum, tanadenom));
-    return alpha;		// in degrees
-}
 
 function calcSunDeclination(t)
 {

@@ -1,3 +1,4 @@
+import { connect } from '@akala/pm';
 import * as akala from '@akala/server';
 import * as net from 'net'
 import * as path from 'path';
@@ -9,18 +10,13 @@ export default async function (this: State)
     console.log(this.socketPath);
     try
     {
-        var socket = await new Promise<net.Socket>((resolve, reject) =>
-        {
-            var socket = net.connect({ path: this.socketPath }, function ()
-            {
-                console.log('connected to ' + this.socketPath);
-                resolve(socket)
-            }).on('error', reject);
-        });
+        const { container } = await akala.connect(await connect('server'), {}, 'socket');
 
-        var container = akala.connect(socket, null)
         await container.dispatch('remove-asset', 'main', require.resolve('../../client'))
         await container.dispatch('remove-asset', 'sw', require.resolve('@akala/client/dist/service-workers/immediate'));
+        await container.dispatch('remove-asset', 'sw', require.resolve('@akala/client/dist/service-workers/router'));
+        await container.dispatch('remove-asset', 'sw', require.resolve('@akala/client/dist/service-workers/cache'));
+        await container.dispatch('remove-asset', 'sw', require.resolve('@akala/client/dist/service-workers/shell'));
 
         // await container.dispatch('remove-asset', '/js/tiles.js', path.resolve(__dirname, '../../tile.js'))
         // await container.dispatch('remove-asset', '/js/akala.js', require.resolve('@akala/client/akala'));

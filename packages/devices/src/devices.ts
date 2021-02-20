@@ -28,6 +28,7 @@ export interface IDevice
 {
     name: string;
     type: string;
+    room: string;
     category?: string;
     classes?: string[];
     statusMethod?: string | number;

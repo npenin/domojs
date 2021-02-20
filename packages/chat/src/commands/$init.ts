@@ -1,9 +1,9 @@
-import basic = require('@nlpjs/basic');
+import { dockStart, Dock } from '@nlpjs/basic';
 import path from 'path'
 
-export default async function ()
+export default async function (this: { dock: Dock })
 {
-    this.dock = await basic.dockStart({
+    this.dock = await dockStart({
         "settings": {
             "pathPipeline": path.resolve(__dirname, '../../pipelines.md'),
             "nlp": {
@@ -11,11 +11,10 @@ export default async function ()
                 "modelFileName": path.resolve(__dirname, '../../model.nlp'),
                 "corpora": [
                     require.resolve("../../corpora/greetings.corpus-fr.json")
-                ]
+                ],
+                "forceNER": true
             },
-            // "ner": {
-            //     "useDuckling": false
-            // },
+            "ner": { "useDuckling": true },
             "console": {
                 "debug": true
             }
@@ -27,60 +26,30 @@ export default async function ()
         ]
     });
     var nlp = this.dock.get('nlp');
+    this.dock.get('ner').addRule('*', 'email', 'regex', /\b(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})\b/gi);
     await nlp.train();
     var brainconsole = this.dock.get('console');
-    // brainconsole.onHear;
-    async function (line)
+    brainconsole.onHear = async function a(self, line)
     {
-        const name = `${this.settings.tag}.hear`;
-        const pipeline = this.container.getPipeline(name);
-        if (pipeline)
+        const nlp = self.container.get('nlp');
+        if (nlp)
         {
-            this.container.runPipeline(
-                pipeline,
-                { message: line, channel: 'console', app: this.container.name },
-                this
+            const result = await nlp.process(
+                {
+                    message: line,
+                    channel: 'console',
+                    app: self.container.name,
+                },
+                undefined,
+                self.context
             );
-        } else
-        {
-            const bot = this.container.get('bot');
-            if (bot)
-            {
-                const session = this.createSession({
-                    channelId: 'console',
-                    text: line,
-                    address: { conversation: { id: 'console000' } },
-                });
-                await bot.process(session);
-            } else
-            {
-                const nlp = this.container.get('nlp');
-                if (nlp)
-                {
-                    const result = await nlp.process(
-                        undefined,
-                        {
-                            message: line,
-                            channel: 'console',
-                            app: this.container.name,
-                        },
-                        this.context
-                    );
-                    console.log(result);
-                    this.say(result);
-                } else
-                {
-                    console.error(`There is no pipeline for ${name}`);
-                }
-            }
+            self.say(result);
         }
-    }
-    nlp.addAction('greetings.saionara', (test) =>
+    };
+    nlp.addAction('greetings.saionara', 'exit', null, async function ()
     {
         var console = this.dock.get('console');
-        console.say(test);
-    }, null, function ()
-    {
-        process.exit();
+        await console.say({ answer: 'pwic' });
+        console.exit();
     })
 }

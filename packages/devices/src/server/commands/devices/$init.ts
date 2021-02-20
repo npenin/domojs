@@ -3,50 +3,26 @@ import * as devices from "../../../devices";
 import { LiveStore, Store } from "../../store";
 import "../../store";
 import * as akala from '@akala/core'
-import { Container, NetSocketAdapter, Processors, proxy, serve } from "@akala/commands";
+import { connectByPreference, Container, NetSocketAdapter, Processors, proxy, serve, ServeMetadata } from "@akala/commands";
 import { deviceContainer } from "../../..";
 import * as web from '@akala/server'
 import * as net from 'net'
+import { connect, Container as pmContainer } from '@akala/pm'
 
-
-export default async function (this: { initializing: boolean }, container: Container<any> & deviceContainer, pm: Container<any>, socketPath: string, deviceTypeSocketPath: string, options: any)
+export default async function (this: { initializing: boolean }, container: Container<any> & deviceContainer, pm: Container<any> & pmContainer)
 {
     container.register('pm', pm);
     var state = this;
     var mdule = akala.module('@domojs/devices');
 
-    console.log(socketPath);
-    if (!socketPath)
-        throw new Error('path to akala-server is not defined');
-    // this.socketPath = socketPath;
-    var socket = await new Promise<net.Socket>((resolve, reject) =>
-    {
-        var socket = net.connect({ path: socketPath }, function ()
-        {
-            console.log('connected to ' + socketPath);
-            resolve(socket)
-        }).on('error', reject);
-    });
+    const { container: webc } = await web.connect(await connect('server'), {}, 'socket');
 
-
-    var webc = web.connect(socket, container);
-    await webc.dispatch('remote-container', '/api/devices')
+    await webc.dispatch('remote-container', '/api/devices', require('../../../../device-commands.json'))
 
     await webc.dispatch('asset', 'main', require.resolve('../../../client'))
 
-    if (!deviceTypeSocketPath)
-        throw new Error('path to device-type is not defined');
-    // this.socketPath = socketPath;
-    var deviceTypeSocket = await new Promise<net.Socket>((resolve, reject) =>
-    {
-        var deviceTypeSocket = net.connect({ path: deviceTypeSocketPath }, function ()
-        {
-            console.log('connected to ' + deviceTypeSocketPath);
-            resolve(deviceTypeSocket)
-        }).on('error', reject);
-    });
+    const { container: deviceTypeContainer } = await connectByPreference(await connect('@domojs/devicetype'), { container: require('../../../../devicetype-commands.json') }, 'socket');
 
-    var deviceTypeContainer = Container.proxy('device-type', new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(deviceTypeSocket), null)) as any);
     mdule.register('deviceType', deviceTypeContainer);
 
     mdule.readyAsync(['db', 'livedb'], async function (db: Store, livedb: LiveStore)
@@ -66,7 +42,4 @@ export default async function (this: { initializing: boolean }, container: Conta
         })());
     })
     mdule.start();
-
-
-    return await serve(container, options);
 }

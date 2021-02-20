@@ -1,6 +1,4 @@
-import { Rfxtrx, PacketType } from "rfxtrx";
 import { devices } from "@domojs/devices";
-import { Http } from '@akala/core';
 import { State } from "../state";
 import * as ac from '@akala/commands'
 import * as api from '../api'
@@ -44,6 +42,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
     device.statusMethod = 'push';
     device.subdevices = [
         {
+            room: device.room,
             name: "power",
             type: 'iscp',
             category: 'switch',
@@ -62,6 +61,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             commands: ['on', 'off']
         },
         {
+            room: device.room,
             name: "mute",
             type: 'iscp',
             category: 'switch',
@@ -78,6 +78,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             commands: ['on', 'off']
         },
         {
+            room: device.room,
             name: "volume",
             type: 'iscp',
             category: 'input',
@@ -93,6 +94,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             commands: ['up', 'down', 'set']
         },
         {
+            room: device.room,
             name: "input",
             type: 'iscp',
             category: 'values',
