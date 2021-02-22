@@ -52,10 +52,10 @@
     utils-merge "^1.0.0"
     ws "^7.2.1"
 
-"@akala/core@^6.0.0", "@akala/core@^6.0.2":
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/@akala/core/-/core-6.0.2.tgz#399531a9025d2e6d721c9c8be70e3e5103537033"
-  integrity sha512-wfeC5MLdSWbyuCTXjIyTIaOqmo04HpHp8i6Kvc3lZcnzLzb7mWh1p63hGr9tbjKQlrazAC8QyI+nw4viVQM2Dg==
+"@akala/core@^6.0.0", "@akala/core@^6.0.2", "@akala/core@^6.0.3":
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/@akala/core/-/core-6.0.3.tgz#4ae0d1578ae0714211921977224f8812c90aeb2f"
+  integrity sha512-7rFBMhj6tsvxApkK6F/gOPWUysuRXvhEjBOP0yK7FYfFNFDhWNly4y0ETholVU3X4eyHXNTOvaTPr1yBDsUdrg==
   dependencies:
     "@akala/json-rpc-ws" "^9.1.9"
     browser-process-hrtime "^1.0.0"
@@ -132,11 +132,11 @@
     xml2js "^0.4.23"
 
 "@akala/storage@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@akala/storage/-/storage-2.0.2.tgz#cc2156c27648020c36dd8315d8597c655d5bc93d"
-  integrity sha512-qF3ozUJtFarqUmijgtKxn5GC/sTG64xNPc2ms/cQ8YYZmfrgpO+cxfTJWKyQnUN0DfYFAkyhiLIiiV2SyC6zUQ==
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@akala/storage/-/storage-2.0.3.tgz#2a406959c8eb0391554c34d01cc6d481ceb43929"
+  integrity sha512-AxQe2Law10MAj1UsrpzlTIm+VsMPhIcNQgM64bXj1gNppxhOAtr0sRvAX5PiGiZ8euZC/TbcHzLWtQc1jr6F5A==
   dependencies:
-    "@akala/core" "^6.0.2"
+    "@akala/core" "^6.0.3"
     reflect-metadata "^0.1.13"
     uuid "^8.0.0"
 
