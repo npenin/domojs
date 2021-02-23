@@ -3,9 +3,9 @@
 
 
 "@akala/client@^4.0.0", "@akala/client@^4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@akala/client/-/client-4.0.2.tgz#ab014f97b56cb605db6d728aabb5421164206856"
-  integrity sha512-DyTszQDEvSsN86lJ6zIEyD0mwXvwfpYs+w3I4iF45ZUNKYo/jawoAIgDuB32f5CaUa4iysrp8QFqGrPFhEFA2A==
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@akala/client/-/client-4.0.3.tgz#239a244c236e2cc001f5539a93d8e5e534e363e2"
+  integrity sha512-0oOWXwbYLLJk4ZdsnF3mlAVEsCKhw7cxVWTx5LFERQO0oDHGWMsgu9KLAmAwCJhEz6uswJ+i6C6xy8y3wUYLZg==
   dependencies:
     reflect-metadata "^0.1.13"
   optionalDependencies:
