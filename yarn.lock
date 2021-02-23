@@ -12,12 +12,12 @@
     "@popperjs/core" "^2.2.0"
     showdown "^1.8.6"
 
-"@akala/commands@^0.7.1", "@akala/commands@^0.7.4", "@akala/commands@^0.7.6":
-  version "0.7.6"
-  resolved "https://registry.yarnpkg.com/@akala/commands/-/commands-0.7.6.tgz#1199af22d9c32ea149ab371e18b65b7a2f31751d"
-  integrity sha512-aDbjYnfiD9BlnTp1wbV4CWqF05lryEC7bXf9f6nFRk8DB7mhxh8vnmmyWAQlyBQs9RfNVknTaq5QzEbZU2+R9w==
+"@akala/commands@^0.7.1", "@akala/commands@^0.7.4", "@akala/commands@^0.7.6", "@akala/commands@^0.7.7":
+  version "0.7.7"
+  resolved "https://registry.yarnpkg.com/@akala/commands/-/commands-0.7.7.tgz#10af75a57d2ac76a5b03531574c26687f810bdc6"
+  integrity sha512-NualStTLIl7o3+rJMdzcuiA1WUlZcF+8o0x2U/8idZzcbvyWaixeHGiZnMB48yjqtlzHvxl61iE7oiXFot9TNQ==
   dependencies:
-    "@akala/core" "^6.0.2"
+    "@akala/core" "^6.0.3"
     "@akala/json-rpc-ws" "^9.1.9"
     debug "^4.1.1"
     path-to-regexp "^6.1.0"
@@ -82,12 +82,12 @@
     ws "^7.2.3"
 
 "@akala/pm@^1.4.0", "@akala/pm@^1.4.6":
-  version "1.4.6"
-  resolved "https://registry.yarnpkg.com/@akala/pm/-/pm-1.4.6.tgz#b2733c7641cdbbe691864d661f0bf50d2d1b07a4"
-  integrity sha512-7klNDd3RtGUG3iCUBIXlTVc46K/z9vArLqg32SufRqlFao9pEZ7+J+ZEDkUfyaZguTfMuYycoTPAXvBibikhXw==
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@akala/pm/-/pm-1.5.0.tgz#20e93d6ccaede5e74ad351cf9c8df4bcf06993ee"
+  integrity sha512-t8khqD6OGesV3PcIIsS6bCpNkjC6vx4mGENMcQUOQ6uPYqIbDePF/DsaVCbgnjU5EnszL61fETdPoQuBgqOmFQ==
   dependencies:
-    "@akala/commands" "^0.7.6"
-    "@akala/core" "^6.0.2"
+    "@akala/commands" "^0.7.7"
+    "@akala/core" "^6.0.3"
     "@akala/json-rpc-ws" "^9.1.9"
     chokidar "^3.3.1"
     debug "^4.1.1"
