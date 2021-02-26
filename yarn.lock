@@ -53,11 +53,11 @@
     ws "^7.2.1"
 
 "@akala/core@^6.0.0", "@akala/core@^6.0.2", "@akala/core@^6.0.3":
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/@akala/core/-/core-6.0.3.tgz#4ae0d1578ae0714211921977224f8812c90aeb2f"
-  integrity sha512-7rFBMhj6tsvxApkK6F/gOPWUysuRXvhEjBOP0yK7FYfFNFDhWNly4y0ETholVU3X4eyHXNTOvaTPr1yBDsUdrg==
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/@akala/core/-/core-6.0.5.tgz#08c1dc883e751fb2056ea0075b30d87c5afd924d"
+  integrity sha512-xRdPBmn6fh4KQJTsJvoF10ySNNDMSYik68nNju5i8enDxN4wcVZHF1tJo4ar1BVF6hm+UX3G+3TQ4AcTc/DrVQ==
   dependencies:
-    "@akala/json-rpc-ws" "^9.1.9"
+    "@akala/json-rpc-ws" "^9.1.11"
     browser-process-hrtime "^1.0.0"
     debug "^4.1.1"
     es6-promise "^4.2.8"
@@ -69,17 +69,17 @@
     reflect-metadata "^0.1.13"
     routington "^1.0.3"
     utils-merge "^1.0.0"
-    ws "^7.2.1"
+    ws "^7.4.3"
 
-"@akala/json-rpc-ws@^9.1.5", "@akala/json-rpc-ws@^9.1.9":
-  version "9.1.9"
-  resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.1.9.tgz#7fab9e621561eea3aced714d871c37ee9fffc293"
-  integrity sha512-aEC4rJTR26MucKe+mNbxW5Gl1Q05wFCYRikYq22zRfJpfbjTcn4VMHCpELn6bhSKquqcrVxbC3U6mU2ABtFCUQ==
+"@akala/json-rpc-ws@^9.1.11", "@akala/json-rpc-ws@^9.1.5", "@akala/json-rpc-ws@^9.1.9":
+  version "9.1.11"
+  resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.1.11.tgz#a27e4097c88ca75fdd655f42bb83500f0df63b67"
+  integrity sha512-8aU3vAvVSqvMM74iYzQzlEeXX14t84MUazrh8ATVg6sN6TwoGhA45yCOobp1DeMo5CtK89yw1gwwiJvZaFAyAg==
   dependencies:
     debug "^4.1.1"
     reflect-metadata "^0.1.13"
     uuid "^8.0.0"
-    ws "^7.2.3"
+    ws "^7.4.3"
 
 "@akala/pm@^1.4.0", "@akala/pm@^1.4.6":
   version "1.5.0"
@@ -13192,7 +13192,7 @@ ws@^6.2.1:
   dependencies:
     async-limiter "~1.0.0"
 
-ws@^7.2.1, ws@^7.2.3, ws@^7.4.2:
+ws@^7.2.1, ws@^7.2.3, ws@^7.4.2, ws@^7.4.3:
   version "7.4.3"
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.4.3.tgz#1f9643de34a543b8edb124bdcbc457ae55a6e5cd"
   integrity sha512-hr6vCR76GsossIRsr8OLR9acVVm1jyfEWvhbNjtgPOrfvAlKzvyeg/P6r8RuDjRyrcQoPQT7K0DGEPc7Ae6jzA==
