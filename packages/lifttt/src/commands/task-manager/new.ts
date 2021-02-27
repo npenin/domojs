@@ -2,7 +2,6 @@ import { Command, Container } from "@akala/commands";
 import { v4 as uuid } from 'uuid'
 import { eachAsync, Injector, Interpolate } from "@akala/core";
 import { ChannelState, Task } from "../../channel-state";
-import { trigger } from "@akala/commands/dist/triggers/jsonrpc";
 import { SerializableObject } from "@akala/json-rpc-ws";
 
 export default async function (this: ChannelState, container: Container<void>, task: Task)

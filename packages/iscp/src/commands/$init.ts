@@ -1,16 +1,12 @@
 import { State } from "../state";
-import { Processors, NetSocketAdapter, Metadata, proxy, Processor, Container } from "@akala/commands";
-import * as net from 'net'
-import * as akala from '@akala/server';
 import * as assert from 'assert'
 import fs from 'fs/promises'
+import { registerDeviceType } from "@domojs/devices";
 
 var state: State = null;
-const log = akala.log('domojs:iscp:devicetype');
 
-export default async function init(this: State, container: Container<void>, path: string, verbose?: boolean)
+export default async function init(this: State)
 {
-    assert.ok(path, 'path to @domojs/devicetype is not defined');
     state = this;
     state.collection = {};
     state.getMainDevice = function getMainDevice(name)
@@ -24,21 +20,10 @@ export default async function init(this: State, container: Container<void>, path
         return this.collection[mainDevice];
     };
 
-    // proxy(require('@akala/devices/devicetype-commands.json'), 
-    var metaServer: Metadata.Container = require('@domojs/devices/devicetype-commands.json');
-
-    var processor: Processor<State> = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(net.connect({ path })), container), true)
-    if (verbose)
-        processor = new Processors.LogProcessor(processor, (cmd, params) => log({ cmd, params }));
-
-    var server: import('@domojs/devices/dist/server/devicetype-commands').description.deviceTypes = proxy(metaServer, processor);
-
-    fs.readFile(require.resolve('../../views/device.html'), 'utf-8').then(newDeviceTemplate =>
-        server.dispatch('register', {
+    await fs.readFile(require.resolve('../../views/device.html'), 'utf-8').then(newDeviceTemplate =>
+        registerDeviceType({
             name: 'iscp',
             view: newDeviceTemplate,
             commandMode: 'dynamic'
         }));
 }
-
-init.$inject = ['container', 'options.path']

@@ -1,6 +1,6 @@
 import { Rfxtrx, PacketType } from "rfxtrx";
 import { devices } from "@domojs/devices";
-import * as rfy from 'rfxtrx/dist/rfy';
+import { Rfy } from 'rfxtrx';
 import { State } from "../state";
 import * as ac from '@akala/commands'
 
@@ -14,7 +14,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
     {
         case PacketType.RFY:
             this.devices[device.name] = { type: body.rfxType, id1: body.id1, id2: body.id2, id3: body.id3, unitCode: body.unitCode, gateway };
-            device.commands = Object.keys(rfy.Commands).filter(v => isNaN(Number(v)));
+            device.commands = Object.keys(Rfy.Commands).filter(v => isNaN(Number(v)));
             break;
         case PacketType.TEMPERATURE_HUMIDITY:
             this.devices[device.name] = { type: body.rfxType, id: body.rfxType, gateway };
