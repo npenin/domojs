@@ -3,19 +3,19 @@ import * as akala from '@akala/core'
 import { Container, Command } from "@akala/commands";
 import { deviceTypeContainer, deviceContainer } from "../../..";
 import { LiveStore } from "../../store";
-import { BinaryOperator } from "@akala/storage/dist/server/expressions";
+import { expressions } from "@akala/storage";
 
 export default async function register(db: LiveStore, deviceTypeContainer: Container<devices.DeviceTypeCollection> & deviceTypeContainer, deviceContainer: Container<devices.IDeviceCollection> & deviceContainer, device: devices.IDevice)
 {
     console.log(arguments);
-    if (await db.Devices.where('name', BinaryOperator.Equal, device.name).any())
+    if (await db.Devices.where('name', expressions.BinaryOperator.Equal, device.name).any())
         throw new Error(`a device with name ${device.name} already exists`);
 
     var indexOfDot = device.name.indexOf('.');
     if (indexOfDot >= 0)
     {
         var mainName = device.name.substr(0, indexOfDot);
-        var mainDevice = await db.Devices.where('name', BinaryOperator.Equal, mainName).firstOrDefault();
+        var mainDevice = await db.Devices.where('name', expressions.BinaryOperator.Equal, mainName).firstOrDefault();
         if (mainDevice && mainDevice.subdevices)
         {
             var subDeviceIndex = mainDevice.subdevices.findIndex(d => d.name == device.name);

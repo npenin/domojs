@@ -1,7 +1,7 @@
 import * as akala from '@akala/core';
 import { IconName, IconPrefix } from '@fortawesome/fontawesome-common-types'
 import * as fa from '@fortawesome/fontawesome-svg-core'
-import { LocationService, IScope, PartDefinition, Template } from '@akala/client';
+import { LocationService, IScope, PartDefinition, Template, HotKeyTrigger } from '@akala/client';
 import template from '../../views/tiles.html'
 import * as client from '@akala/client';
 import { ObservableArray } from '@akala/core';
@@ -59,6 +59,9 @@ commands.on('collectionChanged', function (ev)
             break;
     }
 });
+
+export const keyBinding = new Container<void>('keybinding', undefined);
+keyBinding.attach(HotKeyTrigger, null);
 
 export const tiles: string = template;
 

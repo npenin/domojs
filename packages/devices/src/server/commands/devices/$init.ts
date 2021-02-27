@@ -4,10 +4,10 @@ import { LiveStore, Store } from "../../store";
 import "../../store";
 import * as akala from '@akala/core'
 import { connectByPreference, Container, NetSocketAdapter, Processors, proxy, serve, ServeMetadata } from "@akala/commands";
-import { deviceContainer } from "../../..";
+import { deviceContainer, deviceTypeContainer } from "../../..";
 import * as web from '@akala/server'
 import * as net from 'net'
-import { connect, Container as pmContainer } from '@akala/pm'
+import { connect, Container as pmContainer, sidecar, SidecarMap } from '@akala/pm'
 
 export default async function (this: { initializing: boolean }, container: Container<any> & deviceContainer, pm: Container<any> & pmContainer)
 {
@@ -15,13 +15,13 @@ export default async function (this: { initializing: boolean }, container: Conta
     var state = this;
     var mdule = akala.module('@domojs/devices');
 
-    const { container: webc } = await web.connect(await connect('server'), {}, 'socket');
-
+    var sidecars = sidecar<SidecarMap>();
+    var webc = await sidecars['@akala/server'];
     await webc.dispatch('remote-container', '/api/devices', require('../../../../device-commands.json'))
 
     await webc.dispatch('asset', 'main', require.resolve('../../../client'))
 
-    const { container: deviceTypeContainer } = await connectByPreference(await connect('@domojs/devicetype'), { container: require('../../../../devicetype-commands.json') }, 'socket');
+    const deviceTypeContainer = await sidecars.deviceTypeContainer;
 
     mdule.register('deviceType', deviceTypeContainer);
 

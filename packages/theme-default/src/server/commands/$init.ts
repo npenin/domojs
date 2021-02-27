@@ -4,14 +4,16 @@ import * as path from 'path';
 import requireIfExists from 'require-optional'
 import { State } from '../state';
 import { connectByPreference, Container } from '@akala/commands';
-import { connect } from '@akala/pm'
+import { connect, sidecar, SidecarMap } from '@akala/pm'
 
 const log = akala.log('domojs:theme-default')
+
 
 export default async function $init(this: State, enableAllCommands: boolean)
 {
     this.modules = {};
-    const { container } = await akala.connect(await connect('server'), {}, 'socket');
+    this.sidecar = sidecar<SidecarMap>();
+    const container = await this.sidecar['@akala/server'];
 
     await container.dispatch('webpack-html', { title: 'Output management', template: path.join(__dirname, '../../../views/index.html'), excludeChunks: ['sw'] });
 

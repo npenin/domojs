@@ -1,6 +1,6 @@
 import { State } from "../state";
 import { RFXDevice, PacketType } from "rfxtrx";
-import * as rfy from 'rfxtrx/dist/rfy';
+import { Rfy } from 'rfxtrx';
 
 export default function (this: State, deviceName: string, command: string, value: any)
 {
@@ -9,7 +9,7 @@ export default function (this: State, deviceName: string, command: string, value
     switch ((device.type & 0xff00) >> 8 as PacketType)
     {
         case PacketType.RFY:
-            message = Object.assign({ command: rfy.Commands[command] }, device) as RFXDevice;
+            message = Object.assign({ command: Rfy.Commands[command] }, device) as RFXDevice;
             break;
     }
     if (message == null)

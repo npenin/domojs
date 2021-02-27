@@ -5,7 +5,7 @@ import * as web from '@akala/server'
 import Configuration from '@akala/config'
 import * as assert from 'assert'
 import { registerDeviceType } from "@domojs/devices";
-import { connect } from "@akala/pm";
+import { connect, sidecar, SidecarMap } from "@akala/pm";
 
 var state: State = null;
 const log = web.log('domojs:iscp:devicetype');
@@ -22,11 +22,11 @@ export default async function init(this: State)
         commandMode: 'dynamic'
     });
 
-    const { container: webc } = await web.connect(await connect('server'), {}, 'socket');
+    const webc = await sidecar<SidecarMap>()['@akala/server'];
+
     await webc.dispatch('remote-container', '/api/weather', require('../../commands.json'))
 
-    await webc.dispatch('asset', 'main', require.resolve('../client'))
-
+    await webc.dispatch('asset', 'main', require.resolve('../client'));
 }
 
 init.$inject = ['container', 'options.path']

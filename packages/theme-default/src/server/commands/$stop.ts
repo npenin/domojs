@@ -10,7 +10,7 @@ export default async function (this: State)
     console.log(this.socketPath);
     try
     {
-        const { container } = await akala.connect(await connect('server'), {}, 'socket');
+        const container = await this.sidecar.server;
 
         await container.dispatch('remove-asset', 'main', require.resolve('../../client'))
         await container.dispatch('remove-asset', 'sw', require.resolve('@akala/client/dist/service-workers/immediate'));
