@@ -34,11 +34,11 @@
     "@akala/core" "^6.0.5"
 
 "@akala/core@^6.0.0", "@akala/core@^6.0.5":
-  version "6.0.5"
-  resolved "https://registry.yarnpkg.com/@akala/core/-/core-6.0.5.tgz#08c1dc883e751fb2056ea0075b30d87c5afd924d"
-  integrity sha512-xRdPBmn6fh4KQJTsJvoF10ySNNDMSYik68nNju5i8enDxN4wcVZHF1tJo4ar1BVF6hm+UX3G+3TQ4AcTc/DrVQ==
+  version "6.0.6"
+  resolved "https://registry.yarnpkg.com/@akala/core/-/core-6.0.6.tgz#ff8ab74f1421c7f7e02c40b90fe8d121903945e1"
+  integrity sha512-dOIMrnwGbq1UN1fpKvjy6yPUQe0+v3J6wAD9T8ybtgzHyqBssS6NnfUyB7OqcalJK3Pn7RgxD/cCIfRqCG661Q==
   dependencies:
-    "@akala/json-rpc-ws" "^9.1.11"
+    "@akala/json-rpc-ws" "^9.1.12"
     browser-process-hrtime "^1.0.0"
     debug "^4.1.1"
     es6-promise "^4.2.8"
@@ -52,10 +52,10 @@
     utils-merge "^1.0.0"
     ws "^7.4.3"
 
-"@akala/json-rpc-ws@^9.1.11", "@akala/json-rpc-ws@^9.1.9":
-  version "9.1.11"
-  resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.1.11.tgz#a27e4097c88ca75fdd655f42bb83500f0df63b67"
-  integrity sha512-8aU3vAvVSqvMM74iYzQzlEeXX14t84MUazrh8ATVg6sN6TwoGhA45yCOobp1DeMo5CtK89yw1gwwiJvZaFAyAg==
+"@akala/json-rpc-ws@^9.1.11", "@akala/json-rpc-ws@^9.1.12", "@akala/json-rpc-ws@^9.1.9":
+  version "9.1.12"
+  resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.1.12.tgz#4271ecf18e89a9c9e28603e113795fba9b374d82"
+  integrity sha512-QjzqTIfiiCg/ap8VKtfqjSVYrW9ZF35ffROAHJCyJAkTpEZ/B75SwE3lxTpQAbgXQQzzFwNbQTSZkMFIOKcZ4A==
   dependencies:
     debug "^4.1.1"
     reflect-metadata "^0.1.13"
