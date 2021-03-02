@@ -12,28 +12,28 @@
     "@popperjs/core" "^2.8.4"
     showdown "^1.8.6"
 
-"@akala/commands@^0.7.1", "@akala/commands@^0.7.6", "@akala/commands@^0.7.9":
-  version "0.7.9"
-  resolved "https://registry.yarnpkg.com/@akala/commands/-/commands-0.7.9.tgz#ed7fa0d34a5ac201861bef54e5f33f9e98259e38"
-  integrity sha512-43kRnp7+8EngGanReAXnPjrFFqIBlq5/Az3gXNZ1WGRzq7NYKNwLMCp+Se4kG3UuhsKsiDsy49Sx3fQT9kr38Q==
+"@akala/commands@^0.7.1", "@akala/commands@^0.7.14", "@akala/commands@^0.7.6", "@akala/commands@^0.7.9":
+  version "0.7.14"
+  resolved "https://registry.yarnpkg.com/@akala/commands/-/commands-0.7.14.tgz#d51176ec4ec8448a9bfaade08c618cac8e61ba1c"
+  integrity sha512-D6Rjv8yYCKJE6Bs8iYGt6bZCVOPjexHIAgJjfLq4doRtcQbhVDBCKdML0p6+dsdi7EalegJLjm9NUqGHkKnW9A==
   dependencies:
-    "@akala/core" "^6.0.5"
-    "@akala/json-rpc-ws" "^9.1.11"
+    "@akala/core" "^6.0.6"
+    "@akala/json-rpc-ws" "^9.1.12"
     debug "^4.1.1"
     path-to-regexp "^6.1.0"
     reflect-metadata "^0.1.13"
     ws "^7.4.3"
     yargs-parser "^20.2.5"
 
-"@akala/config@^0.0.9":
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/@akala/config/-/config-0.0.9.tgz#d006c558602798e38196bec528afe9321f0d3fe6"
-  integrity sha512-Z6JrE6zH/WkJDNvfE8+uVOcegDQLGjQjlVt2ZlICTpFJbVZazqGlMuLwnuQkyw0UJivlJYzg7tQL/msLqzCJWg==
+"@akala/config@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@akala/config/-/config-0.0.14.tgz#2269465414800c0e52362d2895c523b9b52c25da"
+  integrity sha512-rQlB9AEesjtXRHQtczoaIudVVPax/TpVhQz58FnNOTDwX35Ep2s11T7oQVqrB5ogCf6wkiBVUqVVspLRoCVzCQ==
   dependencies:
-    "@akala/commands" "^0.7.9"
-    "@akala/core" "^6.0.5"
+    "@akala/commands" "^0.7.14"
+    "@akala/core" "^6.0.6"
 
-"@akala/core@^6.0.0", "@akala/core@^6.0.1", "@akala/core@^6.0.5":
+"@akala/core@^6.0.0", "@akala/core@^6.0.1", "@akala/core@^6.0.5", "@akala/core@^6.0.6":
   version "6.0.6"
   resolved "https://registry.yarnpkg.com/@akala/core/-/core-6.0.6.tgz#ff8ab74f1421c7f7e02c40b90fe8d121903945e1"
   integrity sha512-dOIMrnwGbq1UN1fpKvjy6yPUQe0+v3J6wAD9T8ybtgzHyqBssS6NnfUyB7OqcalJK3Pn7RgxD/cCIfRqCG661Q==
