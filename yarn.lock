@@ -33,7 +33,7 @@
     "@akala/commands" "^0.7.9"
     "@akala/core" "^6.0.5"
 
-"@akala/core@^6.0.0", "@akala/core@^6.0.5":
+"@akala/core@^6.0.0", "@akala/core@^6.0.1", "@akala/core@^6.0.5":
   version "6.0.6"
   resolved "https://registry.yarnpkg.com/@akala/core/-/core-6.0.6.tgz#ff8ab74f1421c7f7e02c40b90fe8d121903945e1"
   integrity sha512-dOIMrnwGbq1UN1fpKvjy6yPUQe0+v3J6wAD9T8ybtgzHyqBssS6NnfUyB7OqcalJK3Pn7RgxD/cCIfRqCG661Q==
