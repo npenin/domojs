@@ -1,5 +1,5 @@
 import serialport from 'serialport';
-import { Protocol, MessageType, Message } from './messages/common';
+import { Protocol, MessageType, Message, Cluster } from './messages/common';
 import * as fs from 'fs'
 import { EventEmitter } from 'events';
 import { Duplex } from 'stream';
@@ -266,6 +266,8 @@ export namespace MessageTypes
     export type RouterDiscoveryConfirm = network.RouterDiscoveryConfirm;
     export type APSDataConfirmFail = aps.APSDataConfirmFail;
 }
+
+export { Cluster };
 
 export class Zigate extends EventEmitter
 {
