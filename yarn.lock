@@ -25,13 +25,13 @@
     ws "^7.4.3"
     yargs-parser "^20.2.5"
 
-"@akala/config@^0.0.9":
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/@akala/config/-/config-0.0.9.tgz#d006c558602798e38196bec528afe9321f0d3fe6"
-  integrity sha512-Z6JrE6zH/WkJDNvfE8+uVOcegDQLGjQjlVt2ZlICTpFJbVZazqGlMuLwnuQkyw0UJivlJYzg7tQL/msLqzCJWg==
+"@akala/config@^0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@akala/config/-/config-0.0.16.tgz#331ceb876c6db6060eb53e8b996611d792518352"
+  integrity sha512-rucVBAWhnaUNBt6faVUp5NXDxbY8arpUMTEbaPP+1EapVsWwZEP52Qw3pikR0IWur1QKlE1FWfN+9ZGogVpMag==
   dependencies:
-    "@akala/commands" "^0.7.9"
-    "@akala/core" "^6.0.5"
+    "@akala/commands" "^0.7.16"
+    "@akala/core" "^6.0.7"
 
 "@akala/core@^6.0.0", "@akala/core@^6.0.1", "@akala/core@^6.0.5", "@akala/core@^6.0.7":
   version "6.0.7"
