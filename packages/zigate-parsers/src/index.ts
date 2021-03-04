@@ -1,4 +1,4 @@
-import * as serialport from 'serialport';
+import serialport from 'serialport';
 import { Protocol, MessageType, Message } from './messages/common';
 import * as fs from 'fs'
 import { EventEmitter } from 'events';
@@ -370,7 +370,7 @@ export class Zigate extends EventEmitter
                         return reject('no matching port could be found');
                     if (ports.length > 1)
                         return reject('multiple Prolific adapters found');
-                    resolve(new Zigate(new serialport(ports[0].comName, { baudRate: 115200, dataBits: 8 })));
+                    resolve(new Zigate(new serialport(ports[0].path, { baudRate: 115200, dataBits: 8 })));
                 });
             else
                 resolve(new Zigate(new serialport(path, { baudRate: 115200, dataBits: 8 })));
@@ -379,7 +379,7 @@ export class Zigate extends EventEmitter
 
     public static listEligibleSerials()
     {
-        return serialport.list().then((ports: { manufacturer: string, comName: string }[]) =>
+        return serialport.list().then((ports: { manufacturer: string, path: string }[]) =>
         {
             return ports.filter(port => port.manufacturer && port.manufacturer.startsWith('Prolific'));
         })
