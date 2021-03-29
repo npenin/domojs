@@ -1048,12 +1048,12 @@
     "@microsoft/recognizers-text-suite" "1.3.0"
     "@nlpjs/core" "^4.21.1"
 
-"@nlpjs/connector@^4.21.1":
-  version "4.21.1"
-  resolved "https://registry.yarnpkg.com/@nlpjs/connector/-/connector-4.21.1.tgz#6950756084f2db685f90c09c7fe74dcc6e626424"
-  integrity sha512-2p1uoG0069ZY6w7cAre4mPoKNntD0h1/eR5kCqc6HWVl9uiEygWZZTMYv/DT18b28quAo/rITvodP9yr1tdn4A==
+"@nlpjs/connector@^4.21.1", "@nlpjs/connector@^4.22.0":
+  version "4.22.0"
+  resolved "https://registry.yarnpkg.com/@nlpjs/connector/-/connector-4.22.0.tgz#15ddae8a366456c2b3fae96f5a3326dd271fcaea"
+  integrity sha512-LemZpFHWLGX/Cdp4IF+UlVK9UpEIoLTgh1QFh/++K7Br7w5Zf28g97rBN/Mi9uUwsOClHk6A8oc45Sl2rOx5hg==
   dependencies:
-    "@nlpjs/core" "^4.21.1"
+    "@nlpjs/core" "^4.22.0"
 
 "@nlpjs/console-connector@^4.21.1":
   version "4.21.1"
@@ -1071,18 +1071,18 @@
     "@nlpjs/core" "^4.21.1"
     "@nlpjs/request" "^4.21.1"
 
-"@nlpjs/core@^4.21.1":
-  version "4.21.1"
-  resolved "https://registry.yarnpkg.com/@nlpjs/core/-/core-4.21.1.tgz#71a7e86f06169ee8818d3a2ec3ef43076036d3b1"
-  integrity sha512-6QdnCCQmEDUH9vRFQivzdMUiL7oGJ1g2jKt9CWM8xO7Bv7AoCX+4CF9pp0ua2HsLCyeymTdK10IhspSaQ//tGA==
+"@nlpjs/core@^4.21.1", "@nlpjs/core@^4.22.0":
+  version "4.22.0"
+  resolved "https://registry.yarnpkg.com/@nlpjs/core/-/core-4.22.0.tgz#908f109a74ada5febd2ff8eb8c36f94d2feda94c"
+  integrity sha512-L7Qb5kP+/ZJ7Wyjoli1nk+SQvvMY0BuuLfYLNvJ2vKL3tMmrSdYBJcXhgmOHEROU6jf4LFgY8VwBpFTsRJV97g==
 
 "@nlpjs/directline-connector@^4.18.0":
-  version "4.21.1"
-  resolved "https://registry.yarnpkg.com/@nlpjs/directline-connector/-/directline-connector-4.21.1.tgz#c6c97eb793626945e35f3b62d0ee120c1ad42931"
-  integrity sha512-n/oNWdPMuwJj09Ltuq07vM51E6YFunngc6tY3ujjecUFw5NHhXQLKBUzoWewxyWXywnaa+hVhhd/Ru8c8XhSKQ==
+  version "4.22.0"
+  resolved "https://registry.yarnpkg.com/@nlpjs/directline-connector/-/directline-connector-4.22.0.tgz#9cd9a9c26d9db3326d9bbbd9dafd27f4cd722afc"
+  integrity sha512-5CaZRpjf7uTRCXBJQxT9VeVGRE1QMCEA+UgtS/4UfBA6O+/yv7b+GooNAF2OMaB8VU+ec8CbjBe4kBtz2kuPDg==
   dependencies:
-    "@nlpjs/connector" "^4.21.1"
-    "@nlpjs/core" "^4.21.1"
+    "@nlpjs/connector" "^4.22.0"
+    "@nlpjs/core" "^4.22.0"
     formidable "^1.2.2"
     node-fetch "^2.6.1"
 
