@@ -1102,11 +1102,11 @@
     esprima "^4.0.1"
 
 "@nlpjs/express-api-server@^4.17.1":
-  version "4.21.1"
-  resolved "https://registry.yarnpkg.com/@nlpjs/express-api-server/-/express-api-server-4.21.1.tgz#57d0ca97226afcb24e3ba4419d4d5c9e5a4babe1"
-  integrity sha512-mXa24Uf9Zb9R7vSEcOUqIQPc+RMK2fN88C65AJtirmbBmaDtk1DMtlgdHYWpxexkmXt3ScE2dkRDYSVOG4SQGQ==
+  version "4.22.0"
+  resolved "https://registry.yarnpkg.com/@nlpjs/express-api-server/-/express-api-server-4.22.0.tgz#65fcde7015850259609891e85e617dcb4f4a4eb3"
+  integrity sha512-kPVVHJn9XLP6xxkoAYBlx8YaOyHXIpkI/Wc67jKuRYK19v3VYmlz/ITwnEiZOrqE1PJzC9s1jsWj6Mjlub2EmQ==
   dependencies:
-    "@nlpjs/core" "^4.21.1"
+    "@nlpjs/core" "^4.22.0"
     cors "^2.8.5"
     express "^4.17.1"
 
