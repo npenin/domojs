@@ -1,0 +1,12 @@
+{
+    "extends": "../tsconfig.settings.json",
+    "compileOnSave": true,
+    "compilerOptions": {
+        "rootDir": "generators",
+        "outDir": "generators",
+        "esModuleInterop": true,
+    },
+    "exclude": [
+        "templates"
+    ]
+}
