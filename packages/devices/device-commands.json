@@ -181,29 +181,6 @@
             }
         },
         {
-            "name": "get-by-name copy",
-            "inject": [
-                "param.0",
-                "param.1"
-            ],
-            "config": {
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "fs": {
-                    "path": "dist/server/commands/devices/get-by-name copy.js",
-                    "source": "src/server/commands/devices/get-by-name copy.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                }
-            }
-        },
-        {
             "name": "get-by-name",
             "inject": [
                 "livedb",
@@ -237,6 +214,43 @@
                     ],
                     "method": "get",
                     "route": "/device/:name"
+                }
+            }
+        },
+        {
+            "name": "get-by-room",
+            "inject": [
+                "livedb",
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "livedb",
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/server/commands/devices/get-by-room.js",
+                    "source": "src/server/commands/devices/get-by-room.ts",
+                    "inject": [
+                        "livedb",
+                        "param.0"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "livedb",
+                        "param.0"
+                    ]
+                },
+                "http": {
+                    "inject": [
+                        "livedb",
+                        "route.category"
+                    ],
+                    "method": "get",
+                    "route": "/category/:category?"
                 }
             }
         },

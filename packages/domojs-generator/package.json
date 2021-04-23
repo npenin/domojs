@@ -1,0 +1,21 @@
+{
+	"name": "generator-domojs",
+	"version": "0.0.1",
+	"description": "a",
+	"scripts": {
+		"test": "echo \"Error: no test specified\""
+	},
+	"private": true,
+	"files": [
+		"generators"
+	],
+	"author": "npenin",
+	"license": "MIT",
+	"dependencies": {
+		"yeoman-generator": "^4.11.3"
+	},
+	"devDependencies": {
+		"@types/yeoman-generator": "^4.11.3",
+		"typescript": "~4.2.2"
+	}
+}

@@ -33,6 +33,12 @@
     },
     {
       "path": "icookin"
+    },
+    {
+      "path": "zigate"
+    },
+    {
+      "path": "domojs-generator"
     }
   ]
 }

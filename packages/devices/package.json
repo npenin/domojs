@@ -12,16 +12,16 @@
     "@domojs/devicetype": "./devicetype-commands.json"
   },
   "dependencies": {
-    "@akala/client": "^4.0.6",
-    "@akala/commands": "^0.7.9",
-    "@akala/core": "^6.0.5",
-    "@akala/json-rpc-ws": "^9.1.11",
-    "@akala/server": "^5.1.2",
-    "@akala/storage": "^2.0.5",
-    "@fortawesome/free-brands-svg-icons": "^5.13.0",
-    "snyk": "^1.461.0",
+    "@akala/client": "^5.0.0",
+    "@akala/commands": "^0.8.0",
+    "@akala/core": "^7.0.0",
+    "@akala/json-rpc-ws": "^9.1.14",
+    "@akala/server": "^6.0.0",
+    "@akala/storage": "^2.1.0",
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "snyk": "^1.563.0",
     "uuid": "^8.0.0",
-    "ws": "^7.4.2"
+    "ws": "^7.4.5"
   },
   "peerDependencies": {
     "@domojs/lifttt": "^3.0.4",
@@ -57,8 +57,8 @@
     "build": "npm run build:js && npm run build:js:routes && npm run build:js:tile",
     "generate:devices:json": "ac generate dist/server/commands/devices device-commands.json",
     "generate:devicetypes:json": "ac generate dist/server/commands/device-types devicetype-commands.json",
-    "generate:devices:ts": "ac generate-metadata devices device-commands.json src/server/device-commands.ts",
-    "generate:devicetypes:ts": "ac generate-metadata devicetype devicetype-commands.json src/server/devicetype-commands.ts",
+    "generate:devices:ts": "ac generate-metadata device-commands.json src/server/device-commands.ts --name deviceContainer",
+    "generate:devicetypes:ts": "ac generate-metadata devicetype-commands.json src/server/devicetype-commands.ts --name deviceTypeContainer",
     "generate:json": "npm run generate:devices:json && npm run generate:devicetypes:json",
     "generate:ts": "npm run generate:devices:ts && npm run generate:devicetypes:ts",
     "generate": "npm run generate:json && npm run generate:ts"
