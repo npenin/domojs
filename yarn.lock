@@ -145,7 +145,7 @@
     reflect-metadata "^0.1.13"
     source-map-support "^0.5.19"
 
-"@akala/server@^5.0.0", "@akala/server@^5.1.8":
+"@akala/server@^5.0.0", "@akala/server@^5.1.2", "@akala/server@^5.1.8":
   version "5.1.8"
   resolved "https://registry.yarnpkg.com/@akala/server/-/server-5.1.8.tgz#358d6352ab89470f30819d581a1e04e3b7d1e943"
   integrity sha512-C2kmZFUuAa2dg2g0qHJ1v8ayQEShPwTkV2ZokMizYhQ4EKmYNsI9vyztg6i+LsPJ+NTPdjvcxc7m85u+LFueHQ==
