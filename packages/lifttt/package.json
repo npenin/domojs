@@ -35,7 +35,7 @@
         "@domojs/theme-default": "^1.2.38"
     },
     "devDependencies": {
-        "@akala/client": "^4.0.0",
+        "@akala/client": "^5.0.7",
         "@domojs/theme-default": "^1.3.7",
         "@popperjs/core": "^2.8.6",
         "@types/debug": "^4.1.5",
