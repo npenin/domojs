@@ -85,24 +85,21 @@
     utils-merge "^1.0.0"
     ws "^7.4.3"
 
-"@akala/core@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@akala/core/-/core-7.0.0.tgz#aa4c77b230f9e0c5abaf0bce0722e34bccb7303d"
-  integrity sha512-HXUnPG6wljOnvce5YDdgTlLtUIu5OOUNOzEeMBjZx41rmPVNajHPCejFc6pkJND67C0X587mEwAb+BFL6pPBFQ==
+"@akala/core@^7.0.0", "@akala/core@^7.0.7":
+  version "7.0.7"
+  resolved "https://registry.yarnpkg.com/@akala/core/-/core-7.0.7.tgz#fc5a1ce4a361a4bf9da64010035684aceea9e012"
+  integrity sha512-tKuPzX1uDUMaPRnQJXQ+2PPU7UjpCdml4yOldE8Zk9cHwuqibzs+zUBugPb6jZNFcwY8/z4M+PMerjYXvlAvzw==
   dependencies:
-    "@akala/json-rpc-ws" "^9.1.14"
+    "@akala/json-rpc-ws" "^9.1.19"
     browser-process-hrtime "^1.0.0"
     debug "^4.1.1"
     es6-promise "^4.2.8"
     isomorphic-fetch "^3.0.0"
     mock-require "^3.0.3"
     orchestrator "^0.3.8"
-    parseurl "^1.3.1"
     path-to-regexp "^6.1.0"
     reflect-metadata "^0.1.13"
-    routington "^1.0.3"
-    utils-merge "^1.0.0"
-    ws "^7.4.3"
+    ws "^7.4.5"
 
 "@akala/json-rpc-ws@^9.1.13", "@akala/json-rpc-ws@^9.1.14", "@akala/json-rpc-ws@^9.1.9":
   version "9.1.14"
@@ -113,6 +110,16 @@
     reflect-metadata "^0.1.13"
     uuid "^8.0.0"
     ws "^7.4.3"
+
+"@akala/json-rpc-ws@^9.1.19":
+  version "9.1.19"
+  resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.1.19.tgz#5762c0d8e61957d8f594d1b6997942345a5d5fca"
+  integrity sha512-DA2/8rRyeyLjhxKJu2Sz0HJZQBjbup11yLCuQUswNNiBVi6C74rZztVH8SlhIKJwcXSCge9EG5Nf2OK3ypBPbw==
+  dependencies:
+    debug "^4.1.1"
+    reflect-metadata "^0.1.13"
+    uuid "^8.0.0"
+    ws "^7.4.5"
 
 "@akala/pm@^1.4.0", "@akala/pm@^1.4.6", "@akala/pm@^1.5.8":
   version "1.5.8"
@@ -213,11 +220,11 @@
     xml2js "^0.4.23"
 
 "@akala/storage@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@akala/storage/-/storage-2.1.0.tgz#87c5db75eb2f6d422cf9976b35e05a58cf446888"
-  integrity sha512-UOQnIhUlWHs55k4en3GYUw4DRfAaZv712Eq1tYMFXLXZLhSZmUauxle4NC2HtwvWoqnKZWW87HskCYRxyB9Ujg==
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/@akala/storage/-/storage-2.1.7.tgz#d49303ffc58524143b3b4d6f92cf137935da23d8"
+  integrity sha512-kZhEFefZ8pliaFuZZJbpryL6S+qF/KcdNcuiSYRNCf11U325bKQd75f5x94sxPbzF1xYuY2vqzq0ZeYlXNDA+w==
   dependencies:
-    "@akala/core" "^7.0.0"
+    "@akala/core" "^7.0.7"
     reflect-metadata "^0.1.13"
     uuid "^8.0.0"
 
