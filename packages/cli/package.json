@@ -8,7 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "@akala/commands": "^0.7.6",
-    "@akala/pm": "^1.4.6",
+    "@akala/pm": "^2.1.13",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
