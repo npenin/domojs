@@ -21,20 +21,10 @@
     mock-require "^3.0.2"
     reflect-metadata "^0.1.13"
 
-"@akala/client@^4.0.0":
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/@akala/client/-/client-4.0.8.tgz#c2c571333ce8efacf81c591fd5292880cd3f688c"
-  integrity sha512-uzL0NGJw2ixZ7hRao94RjcYmRkmAq3KfXAlWpJvMJV90xtsGK4eCyPJjH5FUz35eVdEr7ggQ1gJQGE3P+DpUKg==
-  dependencies:
-    reflect-metadata "^0.1.13"
-  optionalDependencies:
-    "@popperjs/core" "^2.8.4"
-    showdown "^1.8.6"
-
-"@akala/client@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@akala/client/-/client-5.0.0.tgz#e08422f5b7567e028e089bdac3135193bb49a4d4"
-  integrity sha512-AWpTsKASY6prLamEAOsL05KnYNI27L5+eQCAyPvs8Fo/3r5JbBp74FaGd8lyuBagpaD2vztYFPmGJcX1EUMADA==
+"@akala/client@^5.0.0", "@akala/client@^5.0.14":
+  version "5.0.14"
+  resolved "https://registry.yarnpkg.com/@akala/client/-/client-5.0.14.tgz#caeee0ccc5c974991eeead864b1d33af2a2f814d"
+  integrity sha512-/LpGEV1IZfSPlJH2QbBabKmFIDJ9SQ0X79pGYCWxYPjh8TKLimSQH/tlQ/NKpq3xl/gaw172gzZoSraJw3EtxA==
   dependencies:
     reflect-metadata "^0.1.13"
   optionalDependencies:
