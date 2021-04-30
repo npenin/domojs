@@ -1,6 +1,6 @@
 {
   "name": "domojs",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "command line interface for domotics needs",
   "main": "dist/cli.js",
   "repository": "https://github.com/npenin/domojs",
