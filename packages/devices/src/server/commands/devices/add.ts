@@ -5,7 +5,7 @@ import { deviceContainer } from '../../..';
 
 export default async function persist(this: { initializing?: boolean },
     deviceTypeContainer: Container<devices.DeviceTypeCollection>,
-    deviceContainer: Container<devices.IDeviceCollection> & deviceContainer,
+    deviceContainer: Container<devices.IDeviceCollection> & deviceContainer.container,
     store: Store,
     type: string,
     bodyasync: Promise<any>)

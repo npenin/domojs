@@ -1,5 +1,5 @@
 import { CommandNameProcessor } from "@akala/commands";
-import { log as debug } from "@akala/core";
+import { log as debug, MiddlewarePromise } from "@akala/core";
 import * as proto from '@domojs/protocol-parser'
 import { Duplex } from 'stream'
 import { EventEmitter } from 'events'
@@ -66,7 +66,7 @@ class IscpMessage
     dummy?: number;
 }
 
-export class ISCPProcessor<T> extends CommandNameProcessor<T>
+export class ISCPProcessor extends CommandNameProcessor
 {
     private messages = new EventEmitter();
     constructor(private socket: Duplex, handler?: (message: IscpMessage) => void)
@@ -81,7 +81,7 @@ export class ISCPProcessor<T> extends CommandNameProcessor<T>
             this.messages.on('message', handler);
     }
 
-    process(cmd: string, param: { [key: string]: any; param: any[]; })
+    handle(cmd: string, param: { [key: string]: any; param: string[]; }): MiddlewarePromise
     {
         return new Promise((resolve, reject) =>
         {
@@ -97,7 +97,7 @@ export class ISCPProcessor<T> extends CommandNameProcessor<T>
                     return;
                 this.messages.off('message', handler);
                 if (response.command == cmd && (param.param[0] == 'QSTN' || param.param[0] == response.arg))
-                    resolve(response);
+                    reject(response);
                 else
                     reject(response);
             };
@@ -109,7 +109,7 @@ export class ISCPProcessor<T> extends CommandNameProcessor<T>
                 {
                     log(error.toString());
                     responded = true;
-                    reject(error);
+                    resolve(error);
                 }
                 log('message written');
                 setTimeout(() =>
@@ -118,7 +118,7 @@ export class ISCPProcessor<T> extends CommandNameProcessor<T>
                     if (!responded)
                     {
                         responded = true;
-                        reject(new TimeoutError())
+                        resolve(new TimeoutError())
                     }
                 }, 300)
             });

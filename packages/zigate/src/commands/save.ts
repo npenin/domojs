@@ -72,6 +72,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                 this.devicesByAddress[attribute.sourceAddress] = {
                     type: 'device',
                     gateway: zigate,
+                    room: undefined,
                     address: attribute.sourceAddress,
                     category: null,
                     clusters: [],
@@ -168,8 +169,8 @@ export default async function save(this: State, body: any, device: devices.IDevi
                         this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = (this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] as number) / 100;
                         break;
                 }
-                if (this.devicesByAddress[attribute.sourceAddress].registered)
-                    await this.server.dispatch(pushStatus({ device: this.devicesByAddress[attribute.sourceAddress].name + '.' + Cluster[attribute.clusterId], state: this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] });
+                // if (this.devicesByAddress[attribute.sourceAddress].registered)
+                //     await this.server.dispatch('pushStatus', { device: this.devicesByAddress[attribute.sourceAddress].name + '.' + Cluster[attribute.clusterId], state: this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] });
                 log(this.devicesByAddress[attribute.sourceAddress].attributes);
             }
             catch (e)
@@ -201,6 +202,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                 address: body.zdevice.address,
                 category: device.category,
                 name: device.name,
+                room: device.room,
                 attributes: {},
                 clusters: [],
                 gateway: zigate,

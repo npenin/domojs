@@ -68,7 +68,7 @@ export const tiles: string = template;
 export function tileComponent(list: ObservableArray<TileDef> | TileDef[], cmds?: Command[] | ObservableArray<Command>): PartDefinition<any>
 {
     return {
-        template: template, controller: function (scope, element)
+        template: template, controller: async function (scope, element)
         {
             if (element.classList.contains('block'))
                 element.classList.add('block-container');
