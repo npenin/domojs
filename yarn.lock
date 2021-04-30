@@ -88,7 +88,7 @@
     "@akala/commands" "^0.7.16"
     "@akala/core" "^6.0.7"
 
-"@akala/core@^6.0.0", "@akala/core@^6.0.1", "@akala/core@^6.0.5", "@akala/core@^6.0.7":
+"@akala/core@^6.0.5", "@akala/core@^6.0.7":
   version "6.0.7"
   resolved "https://registry.yarnpkg.com/@akala/core/-/core-6.0.7.tgz#afe0a25ba923c1030182c2e0374650c05af4104c"
   integrity sha512-Ym8uuIK5mWomvEdmYGOXrseJCCMuMCIBBVzDgVejekP+xVHl6Y1/VMaptamq8OXJwZjqDk6F+8Qfv7V4u6Q0Zg==
@@ -107,12 +107,12 @@
     utils-merge "^1.0.0"
     ws "^7.4.3"
 
-"@akala/core@^7.0.0", "@akala/core@^7.0.12", "@akala/core@^7.0.7":
-  version "7.0.12"
-  resolved "https://registry.yarnpkg.com/@akala/core/-/core-7.0.12.tgz#e833ca0c0b1fc924a9d48a7cf363fb17b7cc6fbd"
-  integrity sha512-GSLDlOUINtBzdquxRPBQPxzxFDFQyv/qdx7G2YGWkjK8QKhXUs7KhYFRoZqSyIzSKLuF1ASa/7qbwMEunn4xGQ==
+"@akala/core@^7.0.0", "@akala/core@^7.0.12", "@akala/core@^7.0.13", "@akala/core@^7.0.7":
+  version "7.0.13"
+  resolved "https://registry.yarnpkg.com/@akala/core/-/core-7.0.13.tgz#27c68b18d4d6865a5831c63d19fff6707d90e5f7"
+  integrity sha512-7pEWs8ABWtR80d6XEqKKFDjNEK4uO0khpFj/NQnnoNapjVPYbGb9IKWOqo9WqeM1m/UlbUwRNX+BIgfQnyHrRQ==
   dependencies:
-    "@akala/json-rpc-ws" "^9.1.24"
+    "@akala/json-rpc-ws" "^9.1.25"
     browser-process-hrtime "^1.0.0"
     debug "^4.1.1"
     isomorphic-fetch "^3.0.0"
@@ -122,10 +122,10 @@
     reflect-metadata "^0.1.13"
     ws "^7.4.5"
 
-"@akala/json-rpc-ws@^9.1.13", "@akala/json-rpc-ws@^9.1.14", "@akala/json-rpc-ws@^9.1.24", "@akala/json-rpc-ws@^9.1.9":
-  version "9.1.24"
-  resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.1.24.tgz#6c8e81be6f33127e8eec585ac5ab7d2830a0185d"
-  integrity sha512-3t3CpkY9JovxC0RAV8imX4HfJg/t8r74NYxP8V/N2BmGb0wbOA3L0n+/55u85TRZKkbTg5jm6BuM4ToS5y4NXQ==
+"@akala/json-rpc-ws@^9.1.13", "@akala/json-rpc-ws@^9.1.14", "@akala/json-rpc-ws@^9.1.24", "@akala/json-rpc-ws@^9.1.25", "@akala/json-rpc-ws@^9.1.9":
+  version "9.1.25"
+  resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.1.25.tgz#177d5a7c21ec1724eecde9695789822f741fe305"
+  integrity sha512-45p30pqRmi4D573NuduFDfDL8c6cd7aP/mQ874DHEYekBpdcymV7hDqqfvdlpzk841eT9oeihLHQwPZ6FDaRmg==
   dependencies:
     debug "^4.1.1"
     reflect-metadata "^0.1.13"

@@ -25,26 +25,7 @@
     ws "^7.4.3"
     yargs-parser "^20.2.5"
 
-"@akala/core@^6.0.1":
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/@akala/core/-/core-6.0.2.tgz#399531a9025d2e6d721c9c8be70e3e5103537033"
-  integrity sha512-wfeC5MLdSWbyuCTXjIyTIaOqmo04HpHp8i6Kvc3lZcnzLzb7mWh1p63hGr9tbjKQlrazAC8QyI+nw4viVQM2Dg==
-  dependencies:
-    "@akala/json-rpc-ws" "^9.1.9"
-    browser-process-hrtime "^1.0.0"
-    debug "^4.1.1"
-    es6-promise "^4.2.8"
-    isomorphic-fetch "^3.0.0"
-    mock-require "^3.0.3"
-    orchestrator "^0.3.8"
-    parseurl "^1.3.1"
-    path-to-regexp "^6.1.0"
-    reflect-metadata "^0.1.13"
-    routington "^1.0.3"
-    utils-merge "^1.0.0"
-    ws "^7.2.1"
-
-"@akala/core@^6.0.7":
+"@akala/core@^6.0.1", "@akala/core@^6.0.7":
   version "6.0.7"
   resolved "https://registry.yarnpkg.com/@akala/core/-/core-6.0.7.tgz#afe0a25ba923c1030182c2e0374650c05af4104c"
   integrity sha512-Ym8uuIK5mWomvEdmYGOXrseJCCMuMCIBBVzDgVejekP+xVHl6Y1/VMaptamq8OXJwZjqDk6F+8Qfv7V4u6Q0Zg==
@@ -63,7 +44,7 @@
     utils-merge "^1.0.0"
     ws "^7.4.3"
 
-"@akala/json-rpc-ws@^9.1.13":
+"@akala/json-rpc-ws@^9.1.13", "@akala/json-rpc-ws@^9.1.9":
   version "9.1.13"
   resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.1.13.tgz#aff71f79c035928744ec1806b4ef36b38db1aa0e"
   integrity sha512-/LXd7MXJZBx/vDyaFhpfXRB01qK2/RNMR+1NknA6IqaxaUANXhstYBCRT3qckL5P9OACdUKcxO/rkPNN6wYMaQ==
@@ -72,16 +53,6 @@
     reflect-metadata "^0.1.13"
     uuid "^8.0.0"
     ws "^7.4.3"
-
-"@akala/json-rpc-ws@^9.1.9":
-  version "9.1.9"
-  resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.1.9.tgz#7fab9e621561eea3aced714d871c37ee9fffc293"
-  integrity sha512-aEC4rJTR26MucKe+mNbxW5Gl1Q05wFCYRikYq22zRfJpfbjTcn4VMHCpELn6bhSKquqcrVxbC3U6mU2ABtFCUQ==
-  dependencies:
-    debug "^4.1.1"
-    reflect-metadata "^0.1.13"
-    uuid "^8.0.0"
-    ws "^7.2.3"
 
 "@akala/pm@^1.5.8":
   version "1.5.8"
@@ -8878,12 +8849,7 @@ ws@^6.2.1:
   dependencies:
     async-limiter "~1.0.0"
 
-ws@^7.2.1, ws@^7.2.3:
-  version "7.4.2"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-7.4.2.tgz#782100048e54eb36fe9843363ab1c68672b261dd"
-  integrity sha512-T4tewALS3+qsrpGI/8dqNMLIVdq/g/85U98HPMa6F0m6xTbvhXU6RCQLqPH3+SlomNV/LdY6RXEbBpMH6EOJnA==
-
-ws@^7.4.3:
+ws@^7.2.1, ws@^7.2.3, ws@^7.4.3:
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.4.4.tgz#383bc9742cb202292c9077ceab6f6047b17f2d59"
   integrity sha512-Qm8k8ojNQIMx7S+Zp8u/uHOx7Qazv3Yv4q68MiWWWOJhiwG5W3x7iqmRtJo8xxrciZUY4vRxUTJCKuRnF28ZZw==
