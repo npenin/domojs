@@ -31,7 +31,7 @@ export class Main
         };
     }
 
-    async controller(scope: client.IScope<any>, element: Element, params: { ns?: string }, next: () => void)
+    async controller(scope: client.IScope<any>, element: Element, params: { ns?: string })
     {
         debugger;
         var metaContainer = await (await this.container).dispatch('$metadata', { param: [true] }) as Metadata.Container;

@@ -9,19 +9,25 @@ import * as web from '@akala/server'
 import * as net from 'net'
 import { connect, Container as pmContainer, sidecar, SidecarMap } from '@akala/pm'
 
-export default async function (this: { initializing: boolean }, container: Container<any> & deviceContainer, pm: Container<any> & pmContainer)
+export default async function (this: { initializing: boolean }, container: Container<any> & deviceContainer.container, pm: Container<any> & pmContainer)
 {
     container.register('pm', pm);
     var state = this;
     var mdule = akala.module('@domojs/devices');
 
     var sidecars = sidecar<SidecarMap>();
-    var webc = await sidecars['@akala/server'];
-    await webc.dispatch('remote-container', '/api/devices', require('../../../../device-commands.json'))
+    try
+    {
+        var webc = await sidecars['@akala/server'];
+        await webc.dispatch('remote-container', '/api/devices', require('../../../../device-commands.json'))
 
-    await webc.dispatch('asset', 'main', require.resolve('../../../client'))
-
-    const deviceTypeContainer = await sidecars.deviceTypeContainer;
+        await webc.dispatch('asset', 'main', require.resolve('../../../client'))
+    }
+    catch (e)
+    {
+        console.warn('no web available');
+    }
+    const deviceTypeContainer = await sidecars['@domojs/devicetype'];
 
     mdule.register('deviceType', deviceTypeContainer);
 

@@ -1,5 +1,4 @@
 import { Container } from "@akala/commands";
-import { devices } from "@domojs/devices";
 
 export interface State
 {
