@@ -26,8 +26,8 @@ export interface ZDevice
 
 export interface State
 {
-    deviceServer: deviceContainer;
-    server: deviceTypeContainer;
+    deviceServer: deviceContainer.container;
+    server: deviceTypeContainer.container;
     gateway: Promise<Zigate>;
     devices: { [name: string]: ZDevices };
     devicesByAddress: { [address: number]: ZDevice };

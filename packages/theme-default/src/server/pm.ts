@@ -22,7 +22,7 @@ export default function (this: server.State, router: server.HttpRouter)
         logger.error(error);
     })
 
-    router.upgrade('/api/pm', 'websocket', function (req, ...rest: any[]) 
+    router.upgrade('/api/pm', 'websocket', async function (req, ...rest: any[]) 
     {
         logger.verbose('received upgrade request');
         try
