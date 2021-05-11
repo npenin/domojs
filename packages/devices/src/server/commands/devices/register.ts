@@ -5,7 +5,7 @@ import { deviceTypeContainer, deviceContainer } from "../../..";
 import { LiveStore } from "../../store";
 import { expressions } from "@akala/storage";
 
-export default async function register(db: LiveStore, deviceTypeContainer: Container<devices.DeviceTypeCollection> & deviceTypeContainer, deviceContainer: Container<devices.IDeviceCollection> & deviceContainer, device: devices.IDevice)
+export default async function register(db: LiveStore, deviceTypeContainer: Container<devices.DeviceTypeCollection> & deviceTypeContainer.container, deviceContainer: Container<devices.IDeviceCollection> & deviceContainer.container, device: devices.IDevice)
 {
     console.log(arguments);
     if (await db.Devices.where('name', expressions.BinaryOperator.Equal, device.name).any())
@@ -32,7 +32,7 @@ export default async function register(db: LiveStore, deviceTypeContainer: Conta
     {
         deviceTypeContainer.dispatch('status', device);
         if (typeof device.statusMethod == 'number')
-            setInterval(deviceTypeContainer.dispatch('status', device));
+            setInterval(() => deviceTypeContainer.dispatch('status', device), device.statusMethod);
     }
 
     if (device.commands)

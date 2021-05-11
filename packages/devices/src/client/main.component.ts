@@ -5,7 +5,7 @@ import { Container, Processors, Metadata, Command } from '@akala/commands'
 import { Tile } from '@domojs/theme-default';
 import { inject } from '@akala/core';
 import { LocationService } from '@akala/client';
-import { description } from '../server/device-commands';
+import devices from '../server/device-commands';
 import * as website from '@domojs/theme-default'
 
 var commandRegistered = false;
@@ -15,7 +15,7 @@ export class Main
 {
     // public readonly template = require('@domojs/theme-default/views/tiles.html').default;
 
-    constructor(@inject('akala-services.$part') part: client.Part, @inject('container') private container: Promise<Container<void> & description.devices>, @inject('akala-services.$location') private location: LocationService)
+    constructor(@inject('akala-services.$part') part: client.Part, @inject('container') private container: Promise<Container<void> & devices.container>, @inject('akala-services.$location') private location: LocationService)
     {
         part.use('/devices', 'body', this);
         part.use('/devices/category/:ns', 'body', this);
