@@ -108,7 +108,7 @@
     uuid "^8.0.0"
     ws "^7.4.5"
 
-"@akala/pm@^2.1.2", "@akala/pm@^2.1.25":
+"@akala/pm@^2.1.16", "@akala/pm@^2.1.2", "@akala/pm@^2.1.25":
   version "2.1.25"
   resolved "https://registry.yarnpkg.com/@akala/pm/-/pm-2.1.25.tgz#219846386c3ae48ebdb1a8a9ad425646957af528"
   integrity sha512-hE4zLUgufCCkWSrF+pXz2pcRW1ZtdDqBZhkzT6SlWG93F+o/ytrFcNPThzgTSgJGMf3RBurtBwwRE2Hcd18Ttw==
@@ -122,7 +122,7 @@
     reflect-metadata "^0.1.13"
     source-map-support "^0.5.19"
 
-"@akala/server@^6.0.0", "@akala/server@^6.1.2":
+"@akala/server@^6.0.0", "@akala/server@^6.1.2", "@akala/server@^6.1.26":
   version "6.1.26"
   resolved "https://registry.yarnpkg.com/@akala/server/-/server-6.1.26.tgz#a9d350a9d3cc00f3ccb77825b4615d68d9442189"
   integrity sha512-fdsOWjlKQBqrngCwyxKunjoqmlPBG4ZCnaLXGk3dQ1tRe1RgSD9bdQHe3uiCoaS59qNeyUouoE8vkEqFIl5E2Q==
@@ -10752,16 +10752,6 @@ trim-off-newlines@^1.0.0:
   integrity sha1-n5up2e+odkw4dpi8v+sshI8RrbM=
 
 ts-loader@^9.1.1:
-  version "9.1.1"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-9.1.1.tgz#83f598c37e648f3b6b2350bfac6f58f9253d078c"
-  integrity sha512-u91MdIE4rtN/06Q881uUzVeMoYy+CdFXoanCQXVGRubKKxgLjqQ/H9nkDbp6klkiPv3t18KLjZbEofkJodM3ow==
-  dependencies:
-    chalk "^4.1.0"
-    enhanced-resolve "^5.0.0"
-    micromatch "^4.0.0"
-    semver "^7.3.4"
-
-ts-loader@^9.1.0:
   version "9.1.1"
   resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-9.1.1.tgz#83f598c37e648f3b6b2350bfac6f58f9253d078c"
   integrity sha512-u91MdIE4rtN/06Q881uUzVeMoYy+CdFXoanCQXVGRubKKxgLjqQ/H9nkDbp6klkiPv3t18KLjZbEofkJodM3ow==

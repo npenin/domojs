@@ -4,13 +4,18 @@ import deviceType from "../../devicetype-commands";
 import { sidecar, SidecarMap } from '@akala/pm';
 
 
-export default async function (this: devices.DeviceTypeCollection & { initializing: boolean }, container: Container<any> & deviceType.container, pm: Container<any>, options: any)
+export default async function (this: devices.DeviceTypeCollection & { initializing: boolean }, container: Container<any> & deviceType.container, pm: Container<any>)
 {
     container.register('pm', pm);
+    try
+    {
+        var webc = await sidecar<SidecarMap>()['@akala/server'];
 
-    var webc = await sidecar<SidecarMap>()['@akala/server'];
-
-    await webc.dispatch('remote-container', '/api/devices/types', require('../../../../devicetype-commands.json'))
-
-    return await serve(container, options);
+        await webc.dispatch('remote-container', '/api/devices/types', require('../../../../devicetype-commands.json'))
+    }
+    catch (e)
+    {
+        if (e.code !== 'MODULE_NOT_FOUND')
+            throw e;
+    }
 }
