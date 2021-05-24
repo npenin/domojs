@@ -1,15 +1,16 @@
 ///<reference types="mocha" />
-import * as self from '..'
 import * as assert from 'assert'
 import 'source-map-support/register'
+import { array, bit, string, uint16, uint16LE, uint2, uint3, uint32, uint32LE, uint4, uint5, uint6, uint64, uint7, uint8 } from '../parsers'
+import { Cursor, Parser, parserWrite } from '../parsers/type'
 
-function readType(type: self.simpleFrameType, length: number)
+function readType(name: string, type: Parser<number>, length: number)
 {
-    describe(type, function ()
+    describe(name, function ()
     {
         it('should return ' + length + '/8', function ()
         {
-            assert.equal(self.frameTypeLength(type), length / 8);
+            assert.strictEqual(type.length, length / 8);
         })
         it('should read and write from buffer', function ()
         {
@@ -30,41 +31,52 @@ function readType(type: self.simpleFrameType, length: number)
 
                 expectedBuffer.fill(0);
                 if (length > 8)
-                    if (type.endsWith('LE'))
+                    if (name.endsWith('LE'))
                         expectedBuffer.writeUIntLE(x, 0, length / 8);
                     else
                         expectedBuffer.writeUIntBE(x, 0, length / 8);
+
+                let c = new Cursor();
                 for (let i = 0; i < 7; i++)
                 {
-                    if (x == 1 && i == 1 && length == 16)
-                        debugger;
+                    // if (x == 1 && i == 1 && length == 3)
+                    //     debugger;
                     buffer.fill(0)
-
-                    assert.strictEqual(self.write(buffer, x, { type: type, name: 'prop' }, null, i / 8), undefined, 'writing in buffer');
+                    c.offset = i / 8;
+                    try
+                    {
+                        assert.strictEqual(type.write(buffer, c, x), undefined, 'writing in buffer');
+                    }
+                    catch (e)
+                    {
+                        console.error(`failed in writing at ${i}/8 in buffer for ${x} (${x.toString(2)})`);
+                        assert.fail(e);
+                    }
                     if (i == 0 && length > 8)
                     {
                         assert.deepStrictEqual(buffer, expectedBuffer, `comparing buffers after write for ${x} (${x.toString(2)})`);
                     }
-                    assert.deepStrictEqual(self.read(buffer, { type: type, name: 'prop' }, i / 8, null, 0), x, `reading ${i} / 8 in buffer [${buffer.toJSON().data}] for ${x} (${x.toString(2)})`);
+                    c.offset = i / 8;
+                    assert.deepStrictEqual(type.read(buffer, c), x, `reading ${i} / 8 in buffer [${buffer.toJSON().data}] for ${x} (${x.toString(2)})`);
                 }
             }
         })
     })
 }
 
-function readArrayType(type: self.simpleFrameType, length: number)
+function readArrayType(name: string, type: Parser<number>, length: number)
 {
-    var arrayType: self.complexFrameType = type + '[]' as any;
-    describe(arrayType, function ()
+    var arrayType = array(uint8, type);
+    describe(name + '[]', function ()
     {
         it('should return -1', function ()
         {
-            assert.equal(self.frameTypeLength(arrayType), -1);
+            assert.strictEqual(arrayType.length, -1);
         })
         it('should read and write from buffer', function ()
         {
             var expectedValue = 0;
-            var arrayElementLength = self.frameTypeLength(type);
+            var arrayElementLength = type.length;
             for (let i = 0; i < 8 * arrayElementLength; i++)
             {
                 expectedValue += Math.pow(2, i);
@@ -76,45 +88,46 @@ function readArrayType(type: self.simpleFrameType, length: number)
                 expected.push(expectedValue);
             }
 
-            var buffer: Buffer;
+            var buffer: Buffer = Buffer.alloc(length * type.length + 1);
 
-            assert.notStrictEqual(buffer = self.write(null, expected, { type: arrayType, name: 'prop', length: 'uint8' }, null, 0), undefined, 'writing in buffer');
-            assert.deepEqual(self.read(buffer, { type: arrayType, name: 'prop', length: 'uint8' }, 0, null, length), expected, 'reading array in buffer');
+            parserWrite(arrayType, buffer, new Cursor(), expected);
+            assert.deepStrictEqual(arrayType.read(buffer, new Cursor()), expected, 'reading array in buffer');
         })
     })
 }
 
 describe('read', function ()
 {
-    readType('bit', 1)
-    readType('uint2', 2)
-    readType('uint3', 3)
-    readType('uint4', 4)
-    readType('uint5', 5)
-    readType('uint6', 6)
-    readType('uint7', 7)
-    readType('uint8', 8)
-    readType('uint16', 16)
-    readType('uint32', 32)
-    readType('uint16LE', 16)
-    readType('uint32LE', 32)
+    readType('bit', bit, 1)
+    readType('uint2', uint2, 2)
+    readType('uint3', uint3, 3)
+    readType('uint4', uint4, 4)
+    readType('uint5', uint5, 5)
+    readType('uint6', uint6, 6)
+    readType('uint7', uint7, 7)
+    readType('uint8', uint8, 8)
+    readType('uint16', uint16, 16)
+    readType('uint32', uint32, 32)
+    readType('uint16LE', uint16LE, 16)
+    readType('uint32LE', uint32LE, 32)
 
-    readArrayType('uint8', 4)
-    readArrayType('uint16', 4)
-    readArrayType('uint32', 4)
+    readArrayType('uint8', uint8, 4)
+    readArrayType('uint16', uint16, 4)
+    readArrayType('uint32', uint32, 4)
 
     describe('string', function ()
     {
+        var s = string(uint8);
         it('should return -1', function ()
         {
-            assert.equal(self.frameTypeLength('string'), -1);
+            assert.strictEqual(s.length, -1);
         })
         it('should read from buffer', function ()
         {
             var expected = 'string'
-            var buffer: Buffer;
-            assert.notStrictEqual(buffer = self.write(null, expected, { type: 'string', name: 'prop', length: 'uint8' }, null, 0), undefined, 'writing in buffer');
-            assert.equal(self.read(buffer, { type: 'string', name: 'prop', length: 'uint8' }, 0, null, 0), 'string', 'reading in buffer');
+            var buffer: Buffer = Buffer.alloc(expected.length + 1);
+            parserWrite(s, buffer, new Cursor(), expected);
+            assert.strictEqual(s.read(buffer, new Cursor()), 'string', 'reading in buffer');
         })
     })
 
@@ -122,15 +135,15 @@ describe('read', function ()
     {
         it('should return 8', function ()
         {
-            assert.equal(self.frameTypeLength('uint64'), 8);
+            assert.equal(uint64.length, 8);
         })
         it('should read from buffer', function ()
         {
-            var expected = 'string12'
+            var expected = BigInt(1234567890);
             var buffer = Buffer.alloc(8);
 
-            assert.strictEqual(self.write(buffer, expected, { type: 'uint64', name: 'prop' }, null, 0), undefined, 'writing in buffer');
-            assert.equal(self.read(buffer, { type: 'uint64', name: 'prop' }, 0, null, 0), expected, 'reading in buffer');
+            uint64.write(buffer, new Cursor(), expected)
+            assert.strictEqual(uint64.read(buffer, new Cursor()), expected, 'reading in buffer');
         })
     })
 })

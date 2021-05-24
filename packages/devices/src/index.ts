@@ -6,7 +6,6 @@ import * as devices from './devices';
 import { sidecar, SidecarMap } from '@akala/pm';
 export { devices, deviceContainer, deviceTypeContainer }
 
-import * as ac from '@akala/commands'
 import { Container } from '@akala/commands';
 
 export async function registerDeviceType(deviceType: devices.DeviceType)
