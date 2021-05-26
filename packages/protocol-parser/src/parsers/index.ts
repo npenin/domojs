@@ -19,18 +19,21 @@ import VuintLE from './vuintLE'
 
 import PrefixedString from './string-prefixed'
 import FixedString from './string-fixed'
+import PreparsedLengthString from './string-preparsed'
 import PrefixedArray from './array-prefixed'
 import FixedArray from './array-fixed'
-import { AnyParser, Parser, Parsers, ParsersWithMessage, ParserWithMessage } from './type'
+import { AnyParser, Parser, Parsers, ParsersWithMessage, ParserWithMessage, ParserWithMessageWithoutKnownLength, ParserWithoutKnownLength } from './type'
 import Skip from './skip'
 import PrefixedBuffer from './buffer-prefixed'
 import BufferRaw from './buffer-fixed'
 import { ObjectMap } from './object'
 import Switch from './switch'
-import SwitchProperty from './switch-property'
+import SwitchProperty from './property-switch'
 import Sequence from './sequence'
 import Series from './series'
 import Property from './property'
+import PropertyObject from './property-object'
+import { Prepare } from './prepare'
 
 export const bit = new Bit();
 export const boolean = new Boolean();
@@ -84,10 +87,15 @@ export function skip<T = void>(length: number): Parsers<T>
 {
     return new Skip<T>(length);
 }
-export function string(length: Parser<number> | number, encoding?: BufferEncoding): Parsers<string>
+export function string(length: number, encoding?: BufferEncoding): Parser<string>
+export function string(length: Parser<number>, encoding?: BufferEncoding): ParserWithoutKnownLength<string>
+export function string<T extends { [key in TKey]: number }, TKey extends Exclude<keyof T, number | symbol> = Exclude<keyof T, number | symbol>>(length: TKey, encoding?: BufferEncoding): ParserWithMessageWithoutKnownLength<string, T>
+export function string<T extends { [key in TKey]: number }, TKey extends Exclude<keyof T, number | symbol>>(length: Parser<number> | number | TKey, encoding?: BufferEncoding): AnyParser<string, T>
 {
     if (typeof (length) === 'number')
         return new FixedString(length, encoding);
+    if (typeof (length) === 'string')
+        return new PreparsedLengthString<T, typeof length>(length, encoding);
     return new PrefixedString(length, encoding);
 }
 export function buffer(length: Parser<number>): Parsers<Buffer>
@@ -130,12 +138,27 @@ export function choose<T extends { [key in TKey]: number | string }, TResult, TK
     return new Switch<T, TKey, TResult, T[TKey]>(name, parsers);
 }
 
-export function chooseProperty<T extends object, TKey extends keyof T = keyof T, TKeyAssign extends keyof T = keyof T, TResult = T[TKeyAssign], TValue extends (T[TKey] extends string | number | symbol ? T[TKey] : never) = (T[TKey] extends string | number | symbol ? T[TKey] : never)>(name: TKey, assignProperty: TKeyAssign, parsers: { [key in TValue]: AnyParser<TResult> })
+export function chooseProperty<T, TKey extends keyof T = keyof T, TKeyAssign extends keyof T = keyof T, TResult = T[TKeyAssign], TValue extends (T[TKey] extends string | number | symbol ? T[TKey] : never) = (T[TKey] extends string | number | symbol ? T[TKey] : never)>(name: TKey, assignProperty: TKeyAssign, parsers: { [key in TValue]: AnyParser<TResult> })
+    : ParserWithMessageWithoutKnownLength<TResult, T>
 {
     return new SwitchProperty<T, TKey, TKeyAssign, TResult, TValue>(name, assignProperty, parsers);
 }
 
-export function property<T extends object, TKey extends keyof T>(name: TKey, valueParser: AnyParser<T[TKey], T[TKey]>): ParserWithMessage<T[TKey], T>
+
+export function property<T>(name: keyof T, valueParser: Parser<T>): AnyParser<T[typeof name], T>
+export function property<T>(name: keyof T, valueParser: ParserWithoutKnownLength<T>): AnyParser<T[typeof name], T>
+export function property<T>(name: keyof T, valueParser: ParserWithMessage<T[typeof name], T>): AnyParser<T[typeof name], T>
+export function property<T>(name: keyof T, valueParser: ParserWithMessageWithoutKnownLength<T[typeof name], T>): AnyParser<T[typeof name], T>
+export function property<T>(name: keyof T, valueParser: AnyParser<T[typeof name], T>): AnyParser<T[typeof name], T>
 {
-    return new Property<T, TKey>(name, valueParser);
+    return new Property<T, typeof name>(name, valueParser);
+}
+export function complexProperty<T extends object, TKey extends keyof T>(name: TKey, valueParser: AnyParser<T[TKey], T[TKey]>): ParserWithMessage<T[TKey], T>
+{
+    return new PropertyObject<T, TKey>(name, valueParser);
+}
+
+export function prepare<T, TMessage>(fn: (t: T) => void, parser: AnyParser<T>)
+{
+    return new Prepare<T, TMessage>(fn, parser);
 }

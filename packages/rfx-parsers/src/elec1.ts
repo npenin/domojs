@@ -12,7 +12,8 @@ The above copyright notice shall be included in all copies or substantial
 portions of this file.
 '----------------------------------------------------------------------------
 */
-import { Protocol, Type } from ".";
+import { parsers } from "@domojs/protocol-parser";
+import { messages as Protocol, Type } from ".";
 
 
 export enum SubType
@@ -49,13 +50,13 @@ export type Device = Elec1.Device;
 
 export function init()
 {
-    Protocol.register<Elec1.Device>('type', Type.CURRENT_ENERGY.CM113, [
-        { name: 'sensorId', type: 'uint16' },
-        { name: 'count', type: 'uint8' },
-        { name: 'channel1', type: 'uint16' },
-        { name: 'channel2', type: 'uint16' },
-        { name: 'channel3', type: 'uint16' },
-        { name: 'batteryLevel', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ]);
+    Protocol.register(Type.CURRENT_ENERGY.CM113, parsers.object<Elec1.Device>(
+        parsers.property('sensorId', parsers.uint16),
+        parsers.property('count', parsers.uint8),
+        parsers.property('channel1', parsers.uint16),
+        parsers.property('channel2', parsers.uint16),
+        parsers.property('channel3', parsers.uint16),
+        parsers.property('batteryLevel', parsers.uint4),
+        parsers.property('rssi', parsers.uint4),
+    ));
 }

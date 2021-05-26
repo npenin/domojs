@@ -12,7 +12,8 @@ The above copyright notice shall be included in all copies or substantial
 portions of this file.
 '----------------------------------------------------------------------------
 */
-import { Protocol, Type } from ".";
+import { parsers } from "@domojs/protocol-parser";
+import { messages as Protocol, Type } from ".";
 
 
 export enum SubType
@@ -52,21 +53,21 @@ export type Device = BaseDevice;
 
 export function init()
 {
-    Protocol.register<Elec2.Device>('type', Type.ENERGY.CM119, [
-        { name: 'sensorId', type: 'uint16' },
-        { name: 'count', type: 'uint8' },
-        { name: 'instant', type: 'uint32' },
-        { name: 'total', type: 'uint8[]', length: 6 },
-        { name: 'batteryLevel', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ]);
+    Protocol.register(Type.ENERGY.CM119, parsers.object<Elec2.Device>(
+        parsers.property('sensorId', parsers.uint16),
+        parsers.property('count', parsers.uint8),
+        parsers.property('instant', parsers.uint32),
+        parsers.property('total', parsers.uint8),
+        parsers.property('batteryLevel', parsers.uint4),
+        parsers.property('rssi', parsers.uint4),
+    ));
 
-    Protocol.register<Elec3.Device>('type', Type.ENERGY.CM180, [
-        { name: 'sensorId', type: 'uint16' },
-        { name: 'count', type: 'uint8' },
-        { name: 'instant', type: 'uint32' },
-        { name: 'total', type: 'uint8[]', length: 6 },
-        { name: 'batteryLevel', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ]);
+    Protocol.register(Type.ENERGY.CM180, parsers.object<Elec3.Device>(
+        parsers.property('sensorId', parsers.uint16),
+        parsers.property('count', parsers.uint8),
+        parsers.property('instant', parsers.uint32),
+        parsers.property('total', parsers.uint8),
+        parsers.property('batteryLevel', parsers.uint4),
+        parsers.property('rssi', parsers.uint4),
+    ));
 }

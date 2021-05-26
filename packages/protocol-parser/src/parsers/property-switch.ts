@@ -1,6 +1,6 @@
 import { AnyParser, Cursor, ParserWithMessageWithoutKnownLength, parserWrite } from "./type";
 
-export default class SwitchProperty<T extends object, TKey extends keyof T, TKeyAssign extends keyof T, TResult, TValue extends (T[TKey] extends string | number | symbol ? T[TKey] : never)>
+export default class SwitchProperty<T, TKey extends keyof T, TKeyAssign extends keyof T, TResult, TValue extends (T[TKey] extends string | number | symbol ? T[TKey] : never)>
     implements ParserWithMessageWithoutKnownLength<TResult, T>
 {
     private parsers: { [key in TValue]: AnyParser<TResult> };

@@ -1,5 +1,5 @@
-import { Type, Protocol } from ".";
-import { FrameDescription } from "@domojs/protocol-parser";
+import { parsers } from "@domojs/protocol-parser";
+import { Type, messages as Protocol } from ".";
 
 /*
 Copyright 2011-2019, RFXCOM
@@ -219,29 +219,29 @@ export type Device =
     Fan.LucciAirDCII.Device;
 
 
-var frames: FrameDescription<Device>[] = [
-    { name: 'j1', type: 'bit' },
-    { name: 'sw2', type: 'uint2' },
-    { name: 'id1', type: 'uint5' },
-    { name: 'id2', type: 'bit' },
-    { name: 'sw1', type: 'uint7' },
-    { name: 'sw12', type: 'uint3' },
-    { name: 'remId', type: 'uint5' },
-    { name: 'command', type: 'uint8' },
-    { name: 'filler', type: 'uint4' },
-    { name: 'rssi', type: 'uint4' },
-];
+var frames = parsers.object<Device>(
+    parsers.property('j1', parsers.boolean),
+    parsers.property('sw2', parsers.uint2),
+    parsers.property('id1', parsers.uint5),
+    parsers.property('id2', parsers.boolean),
+    parsers.property('sw1', parsers.uint7),
+    parsers.property('sw12', parsers.uint3),
+    parsers.property('remId', parsers.uint5),
+    parsers.property('command', parsers.uint8),
+    parsers.property('filler', parsers.uint4),
+    parsers.property('rssi', parsers.uint4),
+);
 
 export function init()
 {
-    Protocol.register('type', Type.FAN.SiemensSF01, frames);
-    Protocol.register('type', Type.FAN.IthoCVERFT, frames);
-    Protocol.register('type', Type.FAN.LucciAirFan, frames);
-    Protocol.register('type', Type.FAN.SEAV, frames);
-    Protocol.register('type', Type.FAN.WestingHouse, frames);
-    Protocol.register('type', Type.FAN.LucciAirDC, frames);
-    Protocol.register('type', Type.FAN.CasaFan, frames);
-    Protocol.register('type', Type.FAN.FT1211RFan, frames);
-    Protocol.register('type', Type.FAN.Falmec, frames);
-    Protocol.register('type', Type.FAN.LucciAirDCII, frames);
+    Protocol.register(Type.FAN.SiemensSF01, frames);
+    Protocol.register(Type.FAN.IthoCVERFT, frames);
+    Protocol.register(Type.FAN.LucciAirFan, frames);
+    Protocol.register(Type.FAN.SEAV, frames);
+    Protocol.register(Type.FAN.WestingHouse, frames);
+    Protocol.register(Type.FAN.LucciAirDC, frames);
+    Protocol.register(Type.FAN.CasaFan, frames);
+    Protocol.register(Type.FAN.FT1211RFan, frames);
+    Protocol.register(Type.FAN.Falmec, frames);
+    Protocol.register(Type.FAN.LucciAirDCII, frames);
 }

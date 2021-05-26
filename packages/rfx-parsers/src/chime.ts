@@ -1,4 +1,5 @@
-import { Protocol, Type } from ".";
+import { parsers } from "@domojs/protocol-parser";
+import { messages as Protocol, Type } from ".";
 
 /*
 Copyright 2011-2019, RFXCOM
@@ -72,35 +73,35 @@ export namespace Internal
 }
 export function init()
 {
-    Protocol.register<Internal.ByronSX.Device>('type', Type.CHIME.ByronSX, [
-        { name: 'id1', type: 'uint8' },
-        { name: 'id2', type: 'uint8' },
-        { name: 'sound', type: 'uint8' },
-        { name: 'filler', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ]);
+    Protocol.register(Type.CHIME.ByronSX, parsers.object<Internal.ByronSX.Device>(
+        parsers.property('id1', parsers.uint8),
+        parsers.property('id2', parsers.uint8),
+        parsers.property('sound', parsers.uint8),
+        parsers.property('filler', parsers.uint4),
+        parsers.property('rssi', parsers.uint4),
+    ));
 
-    Protocol.register<Internal.ByronMP001.Device>('type', Type.CHIME.ByronMP001, [
-        { name: 'id1', type: 'uint8' },
-        { name: 'id2', type: 'uint8' },
-        { name: 'sound', type: 'uint8' },
-        { name: 'filler', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ]);
-    Protocol.register<Internal.SelectPlus.Device>('type', Type.CHIME.SelectPlus, [
-        { name: 'id1', type: 'uint8' },
-        { name: 'id2', type: 'uint8' },
-        { name: 'sound', type: 'uint8' },
-        { name: 'filler', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ]);
-    Protocol.register<Internal.Envivo.Device>('type', Type.CHIME.Envivo, [
-        { name: 'id1', type: 'uint8' },
-        { name: 'id2', type: 'uint8' },
-        { name: 'sound', type: 'uint8' },
-        { name: 'filler', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ]);
+    Protocol.register(Type.CHIME.ByronMP001, parsers.object<Internal.ByronMP001.Device>(
+        parsers.property('id1', parsers.uint8),
+        parsers.property('id2', parsers.uint8),
+        parsers.property('sound', parsers.uint8),
+        parsers.property('filler', parsers.uint4),
+        parsers.property('rssi', parsers.uint4),
+    ));
+    Protocol.register(Type.CHIME.SelectPlus, parsers.object<Internal.SelectPlus.Device>(
+        parsers.property('id1', parsers.uint8),
+        parsers.property('id2', parsers.uint8),
+        parsers.property('sound', parsers.uint8),
+        parsers.property('filler', parsers.uint4),
+        parsers.property('rssi', parsers.uint4),
+    ));
+    Protocol.register(Type.CHIME.Envivo, parsers.object<Internal.Envivo.Device>(
+        parsers.property('id1', parsers.uint8),
+        parsers.property('id2', parsers.uint8),
+        parsers.property('sound', parsers.uint8),
+        parsers.property('filler', parsers.uint4),
+        parsers.property('rssi', parsers.uint4),
+    ));
 }
 export type Device =
     Internal.ByronSX.Device |

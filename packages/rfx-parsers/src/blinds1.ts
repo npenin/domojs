@@ -12,8 +12,8 @@ The above copyright notice shall be included in all copies or substantial
 portions of this file.
 '----------------------------------------------------------------------------
 */
-import { Protocol, Type } from '.'
-import { FrameDescription } from '@domojs/protocol-parser';
+import { parsers } from '@domojs/protocol-parser';
+import { messages as Protocol, Type } from '.'
 
 export enum SubType
 {
@@ -497,34 +497,34 @@ export namespace Internal
 }
 export function init()
 {
-    var frames: FrameDescription<Internal.Device<number, number>>[] = [
-        { name: 'id1', type: 'uint8' },
-        { name: 'id2', type: 'uint8' },
-        { name: 'id3', type: 'uint8' },
-        { name: 'unitCode', type: 'uint8' },
-        { name: 'id4', type: 'uint8' },
-        { name: 'command', type: 'uint8' },
-        { name: 'batteryLevel', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ];
+    var frames = parsers.object<Internal.Device<number, number>>(
+        parsers.property('id1', parsers.uint8),
+        parsers.property('id2', parsers.uint8),
+        parsers.property('id3', parsers.uint8),
+        parsers.property('unitCode', parsers.uint8),
+        parsers.property('id4', parsers.uint8),
+        parsers.property('command', parsers.uint8),
+        parsers.property('batteryLevel', parsers.uint4),
+        parsers.property('rssi', parsers.uint4),
+    );
 
-    Protocol.register<Internal.BlindsT0.Device>('type', Type.BLINDS1.BlindsT0, frames)
-    Protocol.register<Internal.BlindsT1.Device>('type', Type.BLINDS1.BlindsT1, frames)
-    Protocol.register<Internal.BlindsT2.Device>('type', Type.BLINDS1.BlindsT2, frames)
-    Protocol.register<Internal.BlindsT3.Device>('type', Type.BLINDS1.BlindsT3, frames)
-    Protocol.register<Internal.BlindsT4.Device>('type', Type.BLINDS1.BlindsT4, frames)
-    Protocol.register<Internal.BlindsT5.Device>('type', Type.BLINDS1.BlindsT5, frames)
-    Protocol.register<Internal.BlindsT6.Device>('type', Type.BLINDS1.BlindsT6, frames)
-    Protocol.register<Internal.BlindsT7.Device>('type', Type.BLINDS1.BlindsT7, frames)
-    Protocol.register<Internal.BlindsT8.Device>('type', Type.BLINDS1.BlindsT8, frames)
-    Protocol.register<Internal.BlindsT9.Device>('type', Type.BLINDS1.BlindsT9, frames)
-    Protocol.register<Internal.BlindsT10.Device>('type', Type.BLINDS1.BlindsT10, frames)
-    Protocol.register<Internal.BlindsT11.Device>('type', Type.BLINDS1.BlindsT11, frames)
-    Protocol.register<Internal.BlindsT12.Device>('type', Type.BLINDS1.BlindsT12, frames)
-    Protocol.register<Internal.BlindsT13.Device>('type', Type.BLINDS1.BlindsT13, frames)
-    Protocol.register<Internal.BlindsT14.Device>('type', Type.BLINDS1.BlindsT14, frames)
-    // Protocol.register<Blinds1.BlindsT15.Device>('type', Type.BLINDS1.BlindsT15, frames)
-    Protocol.register<Internal.BlindsT16.Device>('type', Type.BLINDS1.BlindsT16, frames)
+    Protocol.register(Type.BLINDS1.BlindsT0, frames)
+    Protocol.register(Type.BLINDS1.BlindsT1, frames)
+    Protocol.register(Type.BLINDS1.BlindsT2, frames)
+    Protocol.register(Type.BLINDS1.BlindsT3, frames)
+    Protocol.register(Type.BLINDS1.BlindsT4, frames)
+    Protocol.register(Type.BLINDS1.BlindsT5, frames)
+    Protocol.register(Type.BLINDS1.BlindsT6, frames)
+    Protocol.register(Type.BLINDS1.BlindsT7, frames)
+    Protocol.register(Type.BLINDS1.BlindsT8, frames)
+    Protocol.register(Type.BLINDS1.BlindsT9, frames)
+    Protocol.register(Type.BLINDS1.BlindsT10, frames)
+    Protocol.register(Type.BLINDS1.BlindsT11, frames)
+    Protocol.register(Type.BLINDS1.BlindsT12, frames)
+    Protocol.register(Type.BLINDS1.BlindsT13, frames)
+    Protocol.register(Type.BLINDS1.BlindsT14, frames)
+    // Protocol.register(Type.BLINDS1.BlindsT15, frames)
+    Protocol.register(Type.BLINDS1.BlindsT16, frames)
 }
 export type Device =
     Internal.BlindsT0.Device |

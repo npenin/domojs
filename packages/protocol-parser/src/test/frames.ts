@@ -42,7 +42,7 @@ var frame2 = object<TestType2>(
 var superframe = object<SuperType>(
     property('prop1', uint8),
     property('type', uint16),
-    chooseProperty<SuperType, 'type', 'sub', SuperType['sub'], SuperType['type']>('type', 'sub', {
+    chooseProperty<SuperType>('type', 'sub', {
         1: frame,
         2: frame2
     })

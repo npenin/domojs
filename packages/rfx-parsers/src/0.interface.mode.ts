@@ -10,7 +10,8 @@ The above copyright notice shall be included in all copies or substantial
 portions of this file.
 '----------------------------------------------------------------------------
 */
-import { Protocol, Type, PacketType } from ".";
+import { parsers } from "@domojs/protocol-parser";
+import { messages as Protocol, Type, PacketType } from ".";
 
 export enum Commands
 {
@@ -147,16 +148,16 @@ export interface ModeCommand
 
 export function init()
 {
-    Protocol.register<ModeCommand>('type', Type.INTERFACE_CONTROL.Mode, [
-        { name: 'command', type: 'uint8' },
-        { name: 'frequenceSelection', type: 'uint8' },
-        { name: 'emitPower', type: 'uint8' },
-        { name: 'msg3', type: 'uint8' },
-        { name: 'msg4', type: 'uint8' },
-        { name: 'msg5', type: 'uint8' },
-        { name: 'msg6', type: 'uint8' },
-        { name: 'msg7', type: 'uint8' },
-        { name: 'msg8', type: 'uint8' },
-        { name: 'msg9', type: 'uint8' },
-    ]);
+    Protocol.register(Type.INTERFACE_CONTROL.Mode, parsers.object<ModeCommand>(
+        parsers.property('command', parsers.uint8),
+        parsers.property('frequenceSelection', parsers.uint8),
+        parsers.property('emitPower', parsers.uint8),
+        parsers.property('msg3', parsers.uint8),
+        parsers.property('msg4', parsers.uint8),
+        parsers.property('msg5', parsers.uint8),
+        parsers.property('msg6', parsers.uint8),
+        parsers.property('msg7', parsers.uint8),
+        parsers.property('msg8', parsers.uint8),
+        parsers.property('msg9', parsers.uint8),
+    ));
 }

@@ -7,7 +7,7 @@ export interface Parser<T>
 export interface ParserWithMessage<T, TMessage>
 {
     length: number;
-    read(buffer: Buffer, cursor: Cursor, partial?: TMessage): T;
+    read(buffer: Buffer, cursor: Cursor, partial: TMessage): T;
     write(buffer: Buffer, cursor: Cursor, value: T, message: TMessage): void;
 }
 export interface ParserWithoutKnownLength<T>
@@ -52,7 +52,7 @@ export class Cursor
     }
 }
 
-type IsCursor<T> = (cursor: Cursor | T) => boolean;
+// type IsCursor<T> = (cursor: Cursor | T) => boolean;
 
 export function hasUknownLength<T, TMessage = unknown>(p: AnyParser<T, TMessage>): p is ParserWithoutKnownLength<T> | ParserWithMessageWithoutKnownLength<T, TMessage>
 {

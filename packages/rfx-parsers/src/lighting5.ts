@@ -12,8 +12,8 @@ The above copyright notice shall be included in all copies or substantial
 portions of this file.
 '----------------------------------------------------------------------------
 */
-import { Type, Protocol } from ".";
-import { FrameDescription } from "@domojs/protocol-parser";
+import { parsers } from "@domojs/protocol-parser";
+import { Type, messages as Protocol } from ".";
 
 export enum SubType
 {
@@ -772,33 +772,33 @@ export type Device =
 
 export function init()
 {
-    var frames: FrameDescription<Device>[] = [
-        { name: 'id1', type: 'uint8' },
-        { name: 'id2', type: 'uint8' },
-        { name: 'id3', type: 'uint8' },
-        { name: 'unitCode', type: 'uint8' },
-        { name: 'command', type: 'uint8' },
-        { name: 'level', type: 'uint8' },
-        { name: 'filler', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ];
+    var frames = parsers.object<Device>(
+        parsers.property('id1', parsers.uint8),
+        parsers.property('id2', parsers.uint8),
+        parsers.property('id3', parsers.uint8),
+        parsers.property('unitCode', parsers.uint8),
+        parsers.property('command', parsers.uint8),
+        parsers.property('level', parsers.uint8),
+        parsers.property('filler', parsers.uint4),
+        parsers.property('rssi', parsers.uint4),
+    );
 
-    Protocol.register<Device>('type', Type.LIGHTING5.LightwaveRF, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.EMW100GAO, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.BBSB, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.MDRemote106LedDimmer, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.ConradRSL2, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.LivoloDimmer, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.RGB_TRC02_2batt, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.AokeRelay, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.RGB_TRC02_3batt, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.Eurodomest, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.LivoloAppliance, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.RGB432W, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.MDRemote107LedDimmer, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.LegrandCAD, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.Avantek, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.FA500, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.MDRemote108LedDimmer, frames);
-    Protocol.register<Device>('type', Type.LIGHTING5.Kangtai, frames);
+    Protocol.register(Type.LIGHTING5.LightwaveRF, frames);
+    Protocol.register(Type.LIGHTING5.EMW100GAO, frames);
+    Protocol.register(Type.LIGHTING5.BBSB, frames);
+    Protocol.register(Type.LIGHTING5.MDRemote106LedDimmer, frames);
+    Protocol.register(Type.LIGHTING5.ConradRSL2, frames);
+    Protocol.register(Type.LIGHTING5.LivoloDimmer, frames);
+    Protocol.register(Type.LIGHTING5.RGB_TRC02_2batt, frames);
+    Protocol.register(Type.LIGHTING5.AokeRelay, frames);
+    Protocol.register(Type.LIGHTING5.RGB_TRC02_3batt, frames);
+    Protocol.register(Type.LIGHTING5.Eurodomest, frames);
+    Protocol.register(Type.LIGHTING5.LivoloAppliance, frames);
+    Protocol.register(Type.LIGHTING5.RGB432W, frames);
+    Protocol.register(Type.LIGHTING5.MDRemote107LedDimmer, frames);
+    Protocol.register(Type.LIGHTING5.LegrandCAD, frames);
+    Protocol.register(Type.LIGHTING5.Avantek, frames);
+    Protocol.register(Type.LIGHTING5.FA500, frames);
+    Protocol.register(Type.LIGHTING5.MDRemote108LedDimmer, frames);
+    Protocol.register(Type.LIGHTING5.Kangtai, frames);
 }
