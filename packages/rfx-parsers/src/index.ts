@@ -10,12 +10,12 @@ The above copyright notice shall be included in all copies or substantial
 portions of this file.
 '----------------------------------------------------------------------------
 */
-import { uint8, uint16, uint32, int8, int16, int32, float, double, Frame, FrameDescription, uint64, Protocol as CProtocol } from '@domojs/protocol-parser';
+import { uint8, uint16, uint32, int8, int16, int32, float, double, uint64, parsers } from '@domojs/protocol-parser';
 import { EventEmitter } from 'events';
 export { uint8, uint16, uint32, int8, int16, int32, float, double, uint64 }
 import { Queue, log as debug, eachAsync } from '@akala/core';
 import * as usb from 'usb'
-import * as serialport from 'serialport'
+import SerialPort from 'serialport'
 import * as os from 'os';
 
 const log = debug('rfxtrx');
@@ -86,14 +86,16 @@ export enum PacketType
 
 }
 
+var messages;
 
-export var Protocol: CProtocol<Message> & { send?: (message: any) => Buffer } = new CProtocol<Message>([
-    { name: 'length', type: 'uint8' },
-    { name: 'type', type: 'uint16' },
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'message', type: 'subFrame', choose: { discriminator: 'type', subFrame: {} } },
-]);
+export var Protocol = parsers.object<Message>(
+    parsers.property('length', parsers.uint8),
+    parsers.property('type', parsers.uint16),
+    parsers.property('sequenceNumber', parsers.uint8),
+    messages = parsers.chooseProperty<Message, 'type', 'message'>('type', 'message', {})
+);
 
+export { messages };
 import * as Lighting1 from './lighting1';
 import * as Lighting2 from './lighting2';
 import * as Lighting3 from './lighting3';
@@ -119,6 +121,7 @@ import * as TemperatureHumidity from './temperature and humidity';
 import { Interface } from 'readline';
 import { readdir } from 'fs';
 import { Duplex } from 'serialport';
+import { Cursor, parserWrite } from '@domojs/protocol-parser/dist/parsers/type';
 
 
 export namespace Type
@@ -508,7 +511,7 @@ export class Rfxtrx extends EventEmitter
         }
 
         log(buffer);
-        var message = Protocol.read(buffer);
+        var message = Protocol.read(buffer, new Cursor(), {});
         this.sqnce = message.sequenceNumber;
         log(message);
         this.emit('message', message);
@@ -663,7 +666,7 @@ export class Rfxtrx extends EventEmitter
     {
         var msg: Message<Partial<T>> = { type: type, message: message, sequenceNumber: this.sqnce++, length: 0 };
         log(msg);
-        var buffer = Protocol.write(msg);
+        var buffer = Buffer.concat(parserWrite(Protocol, msg));
         buffer[0] = buffer.length - 1;
         return new Promise<Message<any>>((resolve, reject) =>
         {
@@ -704,10 +707,10 @@ export class Rfxtrx extends EventEmitter
                         return reject('no matching port could be found');
                     if (devices.length > 1)
                         return reject('multiple RFXCOM adapters found');
-                    resolve(new Rfxtrx(new serialport(devices[0], { baudRate: 38400, })));
+                    resolve(new Rfxtrx(new SerialPort(devices[0], { baudRate: 38400, })));
                 });
             else
-                resolve(new Rfxtrx(new serialport(path, { baudRate: 38400, })));
+                resolve(new Rfxtrx(new SerialPort(path, { baudRate: 38400, })));
         });
     }
 
@@ -747,7 +750,7 @@ export class Rfxtrx extends EventEmitter
 
             return serials;
         }
-        return (await serialport.list()).filter(port => port.manufacturer && port.manufacturer == 'RFXCOM').map(sp => sp.path);
+        return (await SerialPort.list()).filter(port => port.manufacturer && port.manufacturer == 'RFXCOM').map(sp => sp.path);
     }
 }
 

@@ -1,20 +1,24 @@
-import { Cursor, Parser } from "./type";
+import { AnyParser, Cursor, ParsersWithMessage, ParserWithMessage, parserWrite } from "./type";
 
-export class Prepare<T> implements Parser<T>
+export class Prepare<T, TMessage> implements ParserWithMessage<T, TMessage>
 {
-    constructor(private prepareMessage: (t: T) => void, private parser: Parser<T>)
+    constructor(private prepareMessage: (t: T) => void, private parser: AnyParser<T, TMessage>)
     {
+        this.length = parser.length;
     }
 
     length: number;
-    read(buffer: Buffer, cursor: Cursor): T
+    read(buffer: Buffer, cursor: Cursor, message: TMessage): T
     {
-        return this.parser.read(buffer, cursor);
+        return this.parser.read(buffer, cursor, message);
     }
-    write(buffer: Buffer, cursor: Cursor, value: T): void
+
+    write(value: T, message: TMessage): Buffer[]
+    write(buffer: Buffer, cursor: Cursor, value: T, message: TMessage): void
+    write(buffer: Buffer | T, cursor?: Cursor | TMessage, value?: T, message?: TMessage)
     {
         this.prepareMessage(value);
-        this.parser.write(buffer, cursor, value);
+        return parserWrite(this.parser, buffer, cursor, value, message);
     }
 
 }

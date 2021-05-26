@@ -1,4 +1,5 @@
-import { Protocol, Type } from ".";
+import { parsers } from "@domojs/protocol-parser";
+import { messages as Protocol, Type } from ".";
 
 /*
 Copyright 2011-2019, RFXCOM
@@ -108,25 +109,25 @@ export type Device =
 
 export function init()
 {
-    Protocol.register<Internal.Blyss.Device>('type', Type.LIGHTING6.Blyss, [
-        { name: 'id', type: 'uint16' },
-        { name: 'groupCode', type: 'uint8' },
-        { name: 'unitCode', type: 'uint8' },
-        { name: 'command', type: 'uint8' },
-        { name: 'commandSequenceNumber', type: 'uint8', },
-        { name: 'sequenceNumber2', type: 'uint8' },
-        { name: 'filler', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ]);
+    Protocol.register(Type.LIGHTING6.Blyss, parsers.object<Internal.Blyss.Device>(
+        parsers.property('id', parsers.uint16),
+        parsers.property('groupCode', parsers.uint8),
+        parsers.property('unitCode', parsers.uint8),
+        parsers.property('command', parsers.uint8),
+        parsers.property('commandSequenceNumber', parsers.uint8),
+        parsers.property('sequenceNumber2', parsers.uint8),
+        parsers.skip(.5),
+        parsers.property('rssi', parsers.uint4),
+    ));
 
-    Protocol.register<Internal.Cuveo.Device>('type', Type.LIGHTING6.Cuveo, [
-        { name: 'id', type: 'uint16' },
-        { name: 'groupCode', type: 'uint8' },
-        { name: 'unitCode', type: 'uint8' },
-        { name: 'command', type: 'uint8' },
-        { name: 'commandSequenceNumber', type: 'uint8' },
-        { name: 'sequenceNumber2', type: 'uint8' },
-        { name: 'filler', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ]);
+    Protocol.register(Type.LIGHTING6.Cuveo, parsers.object<Internal.Cuveo.Device>(
+        parsers.property('id', parsers.uint16),
+        parsers.property('groupCode', parsers.uint8),
+        parsers.property('unitCode', parsers.uint8),
+        parsers.property('command', parsers.uint8),
+        parsers.property('commandSequenceNumber', parsers.uint8),
+        parsers.property('sequenceNumber2', parsers.uint8),
+        parsers.property('filler', parsers.uint4),
+        parsers.property('rssi', parsers.uint4),
+    ));
 }

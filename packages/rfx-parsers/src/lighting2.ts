@@ -12,8 +12,8 @@ The above copyright notice shall be included in all copies or substantial
 portions of this file.
 '----------------------------------------------------------------------------
 */
-import { Protocol, Type } from ".";
-import { FrameDescription } from "@domojs/protocol-parser";
+import { parsers } from "@domojs/protocol-parser";
+import { messages as Protocol, Type } from ".";
 
 export enum SubType
 {
@@ -102,20 +102,20 @@ export type Device =
 
 export function init()
 {
-    var frames: FrameDescription<Device>[] = [
-        { name: 'id1', type: 'uint2' },
-        { name: 'filler1', type: 'uint6' },
-        { name: 'id2', type: 'uint8' },
-        { name: 'id3', type: 'uint8' },
-        { name: 'id4', type: 'uint8' },
-        { name: 'unitCode', type: 'uint8' },
-        { name: 'command', type: 'uint8' },
-        { name: 'level', type: 'uint8' },
-        { name: 'filler2', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ];
-    Protocol.register<Device>('type', Type.LIGHTING2.AC, frames);
-    Protocol.register<Device>('type', Type.LIGHTING2.HomeEasyEU, frames);
-    Protocol.register<Device>('type', Type.LIGHTING2.ANSLUT, frames);
-    Protocol.register<Device>('type', Type.LIGHTING2.KambrookRF3672, frames);
+    var frames = parsers.object<Device>(
+        parsers.property('id1', parsers.uint2),
+        parsers.property('filler1', parsers.uint6),
+        parsers.property('id2', parsers.uint8),
+        parsers.property('id3', parsers.uint8),
+        parsers.property('id4', parsers.uint8),
+        parsers.property('unitCode', parsers.uint8),
+        parsers.property('command', parsers.uint8),
+        parsers.property('level', parsers.uint8),
+        parsers.property('filler2', parsers.uint4),
+        parsers.property('rssi', parsers.uint4),
+    );
+    Protocol.register(Type.LIGHTING2.AC, frames);
+    Protocol.register(Type.LIGHTING2.HomeEasyEU, frames);
+    Protocol.register(Type.LIGHTING2.ANSLUT, frames);
+    Protocol.register(Type.LIGHTING2.KambrookRF3672, frames);
 }

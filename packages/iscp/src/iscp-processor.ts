@@ -3,6 +3,8 @@ import { log as debug, MiddlewarePromise } from "@akala/core";
 import * as proto from '@domojs/protocol-parser'
 import { Duplex } from 'stream'
 import { EventEmitter } from 'events'
+import { parsers } from "@domojs/protocol-parser";
+import { Cursor } from "@domojs/protocol-parser/src/parsers/type";
 
 const log = debug('domojs:iscp:processor');
 
@@ -15,22 +17,20 @@ export class TimeoutError extends Error
     }
 }
 
-var prot = new proto.Protocol<IscpMessage>([
-    { name: 'ether', type: 'string', length: 4 },
-    { name: 'hSize', type: 'uint32' },
-    { name: 'dSize', type: 'uint32' },
-    { name: 'version', type: 'uint8' },
-    { name: 'dummy', type: 'uint8' },
-    { name: 'dummy', type: 'uint8' },
-    { name: 'dummy', type: 'uint8' },
-    { name: 'value', type: 'string', length: -5 },
-], (message =>
+var prot = parsers.prepare(message =>
 {
     message.ether = 'ISCP';
     message.hSize = 0x10;
     message.dSize = message.value.length;
     message.version = 1;
-}));
+}, parsers.object<IscpMessage>(
+    parsers.property('ether', parsers.string(4)),
+    parsers.property('hSize', parsers.uint32),
+    parsers.property('dSize', parsers.uint32),
+    parsers.property('version', parsers.uint8),
+    parsers.skip(3),
+    parsers.property('value', parsers.string<IscpMessage, 'dSize'>('dSize')),
+));
 
 class IscpMessage
 {
@@ -60,10 +60,9 @@ class IscpMessage
         return this.value.substr(5, this.value.length - 6);
     }
     ether = 'ISCP';
-    hSize?: number;
-    dSize?: number;
-    version?: number;
-    dummy?: number;
+    hSize: number;
+    dSize: number;
+    version: number;
 }
 
 export class ISCPProcessor extends CommandNameProcessor
@@ -74,7 +73,7 @@ export class ISCPProcessor extends CommandNameProcessor
         super('iscp');
         socket.on('data', data =>
         {
-            var response = prot.read(data);
+            var response = prot.read(data, new Cursor(), {});
             this.messages.emit('message', new IscpMessage(response));
         });
         if (handler)
@@ -88,7 +87,7 @@ export class ISCPProcessor extends CommandNameProcessor
             var buffer = prot.write(new IscpMessage(
                 cmd,
                 param.param[0] || ''
-            ));
+            ), undefined);
             var responded = false;
             var handler = (response: IscpMessage) =>
             {

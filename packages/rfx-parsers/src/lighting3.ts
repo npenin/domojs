@@ -1,4 +1,5 @@
-import { Protocol, Type } from ".";
+import { parsers } from "@domojs/protocol-parser";
+import { messages as Protocol, Type } from ".";
 
 /*
 Copyright 2011-2019, RFXCOM
@@ -74,11 +75,11 @@ export type Device = Internal.Device
 
 export function init()
 {
-    Protocol.register<Device>('type', Type.LIGHTING3.IkeaKoppla, [
-        { name: 'system', type: 'uint8' },
-        { name: 'channel', type: 'uint16' },
-        { name: 'command', type: 'uint8' },
-        { name: 'batteryLevel', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ]);
+    Protocol.register(Type.LIGHTING3.IkeaKoppla, parsers.object<Device>(
+        parsers.property('system', parsers.uint8),
+        parsers.property('channel', parsers.uint16),
+        parsers.property('command', parsers.uint8),
+        parsers.property('batteryLevel', parsers.uint4),
+        parsers.property('rssi', parsers.uint4),
+    ));
 }

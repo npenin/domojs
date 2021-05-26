@@ -12,7 +12,8 @@ The above copyright notice shall be included in all copies or substantial
 portions of this file.
 '----------------------------------------------------------------------------
 */
-import { Protocol, Type } from ".";
+import { parsers } from "@domojs/protocol-parser";
+import { messages as Protocol, Type } from ".";
 
 
 export enum SubType
@@ -67,11 +68,11 @@ export namespace Curtain1
 
 export function init()
 {
-    Protocol.register<Curtain1.Device>('type', Type.CURTAIN1.Harrison, [
-        { name: 'houseCode', type: 'uint8' },
-        { name: 'unitCode', type: 'uint8' },
-        { name: 'command', type: 'uint8' },
-        { name: 'batteryLevel', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ]);
+    Protocol.register(Type.CURTAIN1.Harrison, parsers.object<Curtain1.Device>(
+        parsers.property('houseCode', parsers.uint8),
+        parsers.property('unitCode', parsers.uint8),
+        parsers.property('command', parsers.uint8),
+        parsers.property('batteryLevel', parsers.uint4),
+        parsers.property('rssi', parsers.uint4),
+    ));
 }

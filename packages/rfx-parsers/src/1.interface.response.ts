@@ -10,7 +10,8 @@ The above copyright notice shall be included in all copies or substantial
 portions of this file.
 '----------------------------------------------------------------------------
 */
-import { Protocol, Type, Message } from ".";
+import { parsers } from "@domojs/protocol-parser";
+import { messages as Protocol, Type, Message } from ".";
 import { Frequences, protocols_msg3, protocols_msg4, protocols_msg5, protocols_msg6 } from './0.interface.mode'
 
 export enum SubType
@@ -35,7 +36,7 @@ export enum FirmwareType
 
 export interface ModeResponse
 {
-    command: 2;
+    command: number; //2
     transceiverType: Frequences;
     firmwareVersion: number;
     emitPower: number;
@@ -66,7 +67,7 @@ export interface ListRFYRemote
 
 export interface CheckRFXCOMDevice
 {
-    command: 7;
+    command: number; //7
     copyright: string;
 }
 
@@ -89,54 +90,44 @@ export enum ResponseAck
 
 export function init()
 {
-    Protocol.register<ModeResponse>('type', Type.INTERFACE_MESSAGE.mode, [
-        { name: 'command', type: 'uint8' },
-        { name: 'transceiverType', type: 'uint8' },
-        { name: 'firmwareVersion', type: 'uint8' },
-        { name: 'msg3', type: 'uint8' },
-        { name: 'msg4', type: 'uint8' },
-        { name: 'msg5', type: 'uint8' },
-        { name: 'msg6', type: 'uint8' },
-        { name: 'hardwareMajorVersion', type: 'uint8' },
-        { name: 'hardwareMinorVersion', type: 'uint8' },
-        { name: 'emitPower', type: 'uint8' },
-        { name: 'firmwareType', type: 'uint8' },
-        { name: 'noiseLevel', type: 'uint8' },
-        { name: 'filler', type: 'uint8' },
-        { name: 'filler', type: 'uint8' },
-        { name: 'filler', type: 'uint8' },
-        { name: 'filler', type: 'uint8' },
-        { name: 'filler', type: 'uint8' },
-    ]);
+    Protocol.register(Type.INTERFACE_MESSAGE.mode, parsers.object<ModeResponse>(
+        parsers.property('command', parsers.uint8),
+        parsers.property('transceiverType', parsers.uint8),
+        parsers.property('firmwareVersion', parsers.uint8),
+        parsers.property('msg3', parsers.uint8),
+        parsers.property('msg4', parsers.uint8),
+        parsers.property('msg5', parsers.uint8),
+        parsers.property('msg6', parsers.uint8),
+        parsers.property('hardwareMajorVersion', parsers.uint8),
+        parsers.property('hardwareMinorVersion', parsers.uint8),
+        parsers.property('emitPower', parsers.uint8),
+        parsers.property('firmwareType', parsers.uint8),
+        parsers.property('noiseLevel', parsers.uint8),
+        parsers.skip(5),
+    ));
 
-    Protocol.register<ListRFYRemote>('type', Type.INTERFACE_MESSAGE.listRFYRemotes, [
-        { name: 'command', type: 'uint8' },
-        { name: 'location', type: 'uint8' },
-        { name: 'id1', type: 'uint8' },
-        { name: 'id2', type: 'uint8' },
-        { name: 'id3', type: 'uint8' },
-        { name: 'unitNumber', type: 'uint8' },
-        { name: 'randomCode', type: 'uint8' },
-        { name: 'rollingCodeHigh', type: 'uint8' },
-        { name: 'rollingCodeLow', type: 'uint8' },
-        { name: 'filler', type: 'uint8' },
-        { name: 'filler', type: 'uint8' },
-        { name: 'filler', type: 'uint8' },
-        { name: 'filler', type: 'uint8' },
-        { name: 'filler', type: 'uint8' },
-        { name: 'filler', type: 'uint8' },
-        { name: 'filler', type: 'uint8' },
-    ]);
+    Protocol.register(Type.INTERFACE_MESSAGE.listRFYRemotes, parsers.object<ListRFYRemote>(
+        parsers.property('command', parsers.uint8),
+        parsers.property('location', parsers.uint8),
+        parsers.property('id1', parsers.uint8),
+        parsers.property('id2', parsers.uint8),
+        parsers.property('id3', parsers.uint8),
+        parsers.property('unitNumber', parsers.uint8),
+        parsers.property('randomCode', parsers.uint8),
+        parsers.property('rollingCodeHigh', parsers.uint8),
+        parsers.property('rollingCodeLow', parsers.uint8),
+        parsers.skip(7)
+    ));
 
-    Protocol.register<CheckRFXCOMDevice>('type', Type.INTERFACE_MESSAGE.start, [
-        { name: 'command', type: 'uint8' },
-        { name: 'copyright', type: 'string', length: -16 },
-    ]);
+    Protocol.register(Type.INTERFACE_MESSAGE.start, parsers.object<CheckRFXCOMDevice>(
+        parsers.property('command', parsers.uint8),
+        parsers.property('copyright', parsers.string(16)),
+    ));
 
-    Protocol.register<Response>('type', Type.TRANSMITTER_MESSAGE.Response, [
-        { name: 'ack', type: 'uint8' },
-    ]);
-    Protocol.register<Response>('type', Type.TRANSMITTER_MESSAGE.Error, [
-        { name: 'ack', type: 'uint8' },
-    ]);
+    Protocol.register(Type.TRANSMITTER_MESSAGE.Response, parsers.object<Response>(
+        parsers.property('ack', parsers.uint8),
+    ));
+    Protocol.register(Type.TRANSMITTER_MESSAGE.Error, parsers.object<Response>(
+        parsers.property('ack', parsers.uint8),
+    ));
 }

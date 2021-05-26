@@ -12,8 +12,8 @@ The above copyright notice shall be included in all copies or substantial
 portions of this file.
 '----------------------------------------------------------------------------
 */
-import { Protocol, Type } from ".";
-import { FrameDescription } from "@domojs/protocol-parser";
+import { parsers } from "@domojs/protocol-parser";
+import { messages as Protocol, Type } from ".";
 
 export enum SubType
 {
@@ -540,24 +540,24 @@ export type Device =
 
 export function init()
 {
-    var frames: FrameDescription<Device>[] = [
-        { name: 'houseCode', type: 'uint8' },
-        { name: 'unitCode', type: 'uint8' },
-        { name: 'command', type: 'uint8' },
-        { name: 'filler', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ];
-    Protocol.register<Device>('type', Type.LIGHTING1.X10, frames);
-    Protocol.register<Device>('type', Type.LIGHTING1.ARC, frames);
-    Protocol.register<Device>('type', Type.LIGHTING1.AB400, frames);
-    Protocol.register<Device>('type', Type.LIGHTING1.Waveman, frames);
-    Protocol.register<Device>('type', Type.LIGHTING1.Chacon_EMW200, frames);
-    Protocol.register<Device>('type', Type.LIGHTING1.IMPULS, frames);
-    Protocol.register<Device>('type', Type.LIGHTING1.RisingSun, frames);
-    Protocol.register<Device>('type', Type.LIGHTING1.PhilipsSBC, frames);
-    Protocol.register<Device>('type', Type.LIGHTING1.Energenie_ENER010, frames);
-    Protocol.register<Device>('type', Type.LIGHTING1.Energenie_5gang, frames);
-    Protocol.register<Device>('type', Type.LIGHTING1.COCO_GDR22000R, frames);
-    Protocol.register<Device>('type', Type.LIGHTING1.HQ_COCO20, frames);
-    Protocol.register<Device>('type', Type.LIGHTING1.Oase_Inscenio_FM_Master, frames);
+    var frames = parsers.object<Device>(
+        parsers.property('houseCode', parsers.uint8),
+        parsers.property('unitCode', parsers.uint8),
+        parsers.property('command', parsers.uint8),
+        parsers.property('filler', parsers.uint4),
+        parsers.property('rssi', parsers.uint4),
+    );
+    Protocol.register(Type.LIGHTING1.X10, frames);
+    Protocol.register(Type.LIGHTING1.ARC, frames);
+    Protocol.register(Type.LIGHTING1.AB400, frames);
+    Protocol.register(Type.LIGHTING1.Waveman, frames);
+    Protocol.register(Type.LIGHTING1.Chacon_EMW200, frames);
+    Protocol.register(Type.LIGHTING1.IMPULS, frames);
+    Protocol.register(Type.LIGHTING1.RisingSun, frames);
+    Protocol.register(Type.LIGHTING1.PhilipsSBC, frames);
+    Protocol.register(Type.LIGHTING1.Energenie_ENER010, frames);
+    Protocol.register(Type.LIGHTING1.Energenie_5gang, frames);
+    Protocol.register(Type.LIGHTING1.COCO_GDR22000R, frames);
+    Protocol.register(Type.LIGHTING1.HQ_COCO20, frames);
+    Protocol.register(Type.LIGHTING1.Oase_Inscenio_FM_Master, frames);
 }

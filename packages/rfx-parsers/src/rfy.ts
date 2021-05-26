@@ -12,7 +12,8 @@ The above copyright notice shall be included in all copies or substantial
 portions of this file.
 '----------------------------------------------------------------------------
 */
-import { Protocol, Type, PacketType } from ".";
+import { parsers } from "@domojs/protocol-parser";
+import { messages as Protocol, Type, PacketType } from ".";
 
 export enum SubType
 {
@@ -156,42 +157,42 @@ export type Device =
 
 export function init()
 {
-    Protocol.register<Internal.RfyStandard.Device>('type', Type.RFY.Standard, [
-        { name: 'id1', type: 'uint8' },
-        { name: 'id2', type: 'uint8' },
-        { name: 'id3', type: 'uint8' },
-        { name: 'unitCode', type: 'uint8' },
-        { name: 'command', type: 'uint8' },
-        { name: 'rfu', type: 'uint8' },
-        { name: 'rfu', type: 'uint8' },
-        { name: 'rfu', type: 'uint8' },
-        { name: 'filler', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ]);
+    Protocol.register(Type.RFY.Standard, parsers.object<Internal.RfyStandard.Device>(
+        parsers.property('id1', parsers.uint8),
+        parsers.property('id2', parsers.uint8),
+        parsers.property('id3', parsers.uint8),
+        parsers.property('unitCode', parsers.uint8),
+        parsers.property('command', parsers.uint8),
+        parsers.property('rfu', parsers.uint8),
+        parsers.property('rfu', parsers.uint8),
+        parsers.property('rfu', parsers.uint8),
+        parsers.skip(.5),
+        parsers.property('rssi', parsers.uint4),
+    ));
 
-    Protocol.register<Internal.RfyExtended.Device>('type', Type.RFY.Extended, [
-        { name: 'id1', type: 'uint8' },
-        { name: 'id2', type: 'uint8' },
-        { name: 'id3', type: 'uint8' },
-        { name: 'unitCode', type: 'uint8' },
-        { name: 'command', type: 'uint8' },
-        { name: 'rfu', type: 'uint8' },
-        { name: 'rfu', type: 'uint8' },
-        { name: 'rfu', type: 'uint8' },
-        { name: 'filler', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ]);
+    Protocol.register(Type.RFY.Extended, parsers.object<Internal.RfyExtended.Device>(
+        parsers.property('id1', parsers.uint8),
+        parsers.property('id2', parsers.uint8),
+        parsers.property('id3', parsers.uint8),
+        parsers.property('unitCode', parsers.uint8),
+        parsers.property('command', parsers.uint8),
+        parsers.property('rfu', parsers.uint8),
+        parsers.property('rfu', parsers.uint8),
+        parsers.property('rfu', parsers.uint8),
+        parsers.skip(.5),
+        parsers.property('rssi', parsers.uint4),
+    ));
 
-    Protocol.register<Internal.Asa.Device>('type', Type.RFY.ASA, [
-        { name: 'id1', type: 'uint8' },
-        { name: 'id2', type: 'uint8' },
-        { name: 'id3', type: 'uint8' },
-        { name: 'unitCode', type: 'uint8' },
-        { name: 'command', type: 'uint8' },
-        { name: 'rfu', type: 'uint8' },
-        { name: 'rfu', type: 'uint8' },
-        { name: 'rfu', type: 'uint8' },
-        { name: 'filler', type: 'uint4' },
-        { name: 'rssi', type: 'uint4' },
-    ]);
+    Protocol.register(Type.RFY.ASA, parsers.object<Internal.Asa.Device>(
+        parsers.property('id1', parsers.uint8),
+        parsers.property('id2', parsers.uint8),
+        parsers.property('id3', parsers.uint8),
+        parsers.property('unitCode', parsers.uint8),
+        parsers.property('command', parsers.uint8),
+        parsers.property('rfu', parsers.uint8),
+        parsers.property('rfu', parsers.uint8),
+        parsers.property('rfu', parsers.uint8),
+        parsers.skip(.5),
+        parsers.property('rssi', parsers.uint4),
+    ));
 }

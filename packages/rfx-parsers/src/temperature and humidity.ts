@@ -1,5 +1,5 @@
-import { Type, Protocol } from ".";
-import { FrameDescription } from "@domojs/protocol-parser";
+import { parsers } from "@domojs/protocol-parser";
+import { Type, messages as Protocol } from ".";
 
 /*
 Copyright 2011-2019, RFXCOM
@@ -86,7 +86,7 @@ export namespace TemperatureHumidity
     export interface Device
     {
         id: number;
-        sign: boolean;
+        sign: number;
         temperature: number;
         humidity: number;
         humidityStatus: number;
@@ -99,30 +99,30 @@ export namespace TemperatureHumidity
 export type Device = TemperatureHumidity.Device;
 
 
-var frames: FrameDescription<Device>[] = [
-    { name: 'id', type: 'uint16' },
-    { name: 'sign', type: 'uint8' },
-    { name: 'temperature', type: 'uint8' },
-    { name: 'humidity', type: 'uint8' },
-    { name: 'humidityStatus', type: 'uint8' },
-    { name: 'batteryLevel', type: 'uint4' },
-    { name: 'rssi', type: 'uint4' },
-];
+var frames = parsers.object<Device>(
+    parsers.property('id', parsers.uint16),
+    parsers.property('sign', parsers.uint8),
+    parsers.property('temperature', parsers.uint8),
+    parsers.property('humidity', parsers.uint8),
+    parsers.property('humidityStatus', parsers.uint8),
+    parsers.property('batteryLevel', parsers.uint4),
+    parsers.property('rssi', parsers.uint4),
+);
 
 export function init()
 {
-    Protocol.register('type', Type.TEMPERATURE_HUMIDITY.TH1, frames);
-    Protocol.register('type', Type.TEMPERATURE_HUMIDITY.TH2, frames);
-    Protocol.register('type', Type.TEMPERATURE_HUMIDITY.TH3, frames);
-    Protocol.register('type', Type.TEMPERATURE_HUMIDITY.TH4, frames);
-    Protocol.register('type', Type.TEMPERATURE_HUMIDITY.TH5, frames);
-    Protocol.register('type', Type.TEMPERATURE_HUMIDITY.TH6, frames);
-    Protocol.register('type', Type.TEMPERATURE_HUMIDITY.TH7, frames);
-    Protocol.register('type', Type.TEMPERATURE_HUMIDITY.TH8, frames);
-    Protocol.register('type', Type.TEMPERATURE_HUMIDITY.TH9, frames);
-    Protocol.register('type', Type.TEMPERATURE_HUMIDITY.TH10, frames);
-    Protocol.register('type', Type.TEMPERATURE_HUMIDITY.TH11, frames);
-    Protocol.register('type', Type.TEMPERATURE_HUMIDITY.TH12, frames);
-    Protocol.register('type', Type.TEMPERATURE_HUMIDITY.TH13, frames);
-    Protocol.register('type', Type.TEMPERATURE_HUMIDITY.TH14, frames);
+    Protocol.register(Type.TEMPERATURE_HUMIDITY.TH1, frames);
+    Protocol.register(Type.TEMPERATURE_HUMIDITY.TH2, frames);
+    Protocol.register(Type.TEMPERATURE_HUMIDITY.TH3, frames);
+    Protocol.register(Type.TEMPERATURE_HUMIDITY.TH4, frames);
+    Protocol.register(Type.TEMPERATURE_HUMIDITY.TH5, frames);
+    Protocol.register(Type.TEMPERATURE_HUMIDITY.TH6, frames);
+    Protocol.register(Type.TEMPERATURE_HUMIDITY.TH7, frames);
+    Protocol.register(Type.TEMPERATURE_HUMIDITY.TH8, frames);
+    Protocol.register(Type.TEMPERATURE_HUMIDITY.TH9, frames);
+    Protocol.register(Type.TEMPERATURE_HUMIDITY.TH10, frames);
+    Protocol.register(Type.TEMPERATURE_HUMIDITY.TH11, frames);
+    Protocol.register(Type.TEMPERATURE_HUMIDITY.TH12, frames);
+    Protocol.register(Type.TEMPERATURE_HUMIDITY.TH13, frames);
+    Protocol.register(Type.TEMPERATURE_HUMIDITY.TH14, frames);
 }

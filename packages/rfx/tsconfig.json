@@ -8,6 +8,9 @@
     "references": [
         {
             "path": "../devices"
+        },
+        {
+            "path": "../rfx-parsers"
         }
     ]
 }
