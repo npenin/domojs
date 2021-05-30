@@ -2,10 +2,10 @@ import { uint8, uint16, parsers } from '@domojs/protocol-parser';
 
 export var Protocol = parsers.object<Message>(
     parsers.property('type', parsers.uint4),
-    parsers.property('dup', parsers.boolean),
+    parsers.property('dup', parsers.boolean()),
     parsers.property('qos', parsers.uint2),
-    parsers.property('retain', parsers.boolean),
-    parsers.property(undefined, subFrame, length: 'vuint', choose: { discriminator: 'type', subFrame: {} } },
+    parsers.property('retain', parsers.boolean()),
+    parsers.choose<Message, 'type'>('type', {} as any),
 ]);
 
 export enum ControlPacketType
@@ -107,46 +107,42 @@ export enum PropertyKeys
     sharedSubscriptionAvailable = 0x2A,
 }
 
-export const propertiesFrame: FrameDescription<{ properties: Properties }> = {
-    name: 'properties', type: 'subFrame[]', length: 'vuint', frame: new Frame<{ property: PropertyKeys, value: unknown }>([
+export const propertiesFrame = parsers.property<{ properties: { property: PropertyKeys, value: unknown }[] }, 'properties'>('properties',
+    parsers.array(parsers.vuint, parsers.object<{ property: PropertyKeys, value: unknown }>(
         parsers.property('property', parsers.uint8),
-        {
-            name: 'value', type: 'subFrame', choose: {
-                discriminator: 'property',
-                subFrame: {
-                    [PropertyKeys.payloadFormat]: new Frame([{ name: 'value', type: 'uint8', }]),
-                    [PropertyKeys.messageExpiryInterval]: new Frame([{ name: 'value', type: 'uint32', }]),
-                    [PropertyKeys.contentType]: new Frame([{ name: 'value', type: 'string', length: 'uint16' }]),
-                    [PropertyKeys.responseTopic]: new Frame([{ name: 'value', type: 'string', length: 'uint16' }]),
-                    [PropertyKeys.correlationData]: new Frame([{ name: 'value', type: 'buffer', length: 'uint16' }]),
-                    [PropertyKeys.subscriptionIdentifier]: new Frame([{ name: 'value', type: 'vuint', }]),
-                    [PropertyKeys.sessionExpiryInterval]: new Frame([{ name: 'value', type: 'uint32', }]),
-                    [PropertyKeys.assignedClientIdentifier]: new Frame([{ name: 'value', type: 'string', length: 'uint16' }]),
-                    [PropertyKeys.serverKeepAlive]: new Frame([{ name: 'value', type: 'uint16', }]),
-                    [PropertyKeys.authenticationMethod]: new Frame([{ name: 'value', type: 'string', length: 'uint16' }]),
-                    [PropertyKeys.authenticationData]: new Frame([{ name: 'value', type: 'buffer', length: 'uint16' }]),
-                    [PropertyKeys.requestProblemInformation]: new Frame([{ name: 'value', type: 'uint8', }]),
-                    [PropertyKeys.willDelayInterval]: new Frame([{ name: 'value', type: 'uint32', }]),
-                    [PropertyKeys.requestResponseInformation]: new Frame([{ name: 'value', type: 'uint8', }]),
-                    [PropertyKeys.responseInformation]: new Frame([{ name: 'value', type: 'string', length: 'uint16' }]),
-                    [PropertyKeys.serverReference]: new Frame([{ name: 'value', type: 'string', length: 'uint16' }]),
-                    [PropertyKeys.reasonString]: new Frame([{ name: 'value', type: 'string', length: 'uint16' }]),
-                    [PropertyKeys.receiveMaximum]: new Frame([{ name: 'value', type: 'uint16', }]),
-                    [PropertyKeys.topicAliasMaximum]: new Frame([{ name: 'value', type: 'uint16', }]),
-                    [PropertyKeys.topicAlias]: new Frame([{ name: 'value', type: 'uint16', }]),
-                    [PropertyKeys.maximumQoS]: new Frame([{ name: 'value', type: 'uint8', }]),
-                    [PropertyKeys.retainAvailable]: new Frame([{ name: 'value', type: 'uint8', }]),
-                    [PropertyKeys.userProperty]: new Frame([{
-                        name: 'value', type: 'subFrame[]', length: 1, frame: new Frame<{ name: string, value: string }>([
-                            { name: 'name', type: 'string', length: 'uint16' },
-                            { name: 'value', type: 'string', length: 'uint16' }
-                        ])
-                    }]),
-                    [PropertyKeys.maximumPacketSize]: new Frame([{ name: 'value', type: 'uint32', }]),
-                    [PropertyKeys.wildcardSubscriptionAvailable]: new Frame([{ name: 'value', type: 'uint8', }]),
-                    [PropertyKeys.subscriptionIdentifierAvailable]: new Frame([{ name: 'value', type: 'uint8', }]),
-                    [PropertyKeys.sharedSubscriptionAvailable]: new Frame([{ name: 'value', type: 'uint8', }]),
-                }
+        parsers.chooseProperty<{ value: unknown, property: PropertyKeys }>('value', 'property',
+            {
+                [PropertyKeys.payloadFormat]: parsers.uint8,
+                [PropertyKeys.messageExpiryInterval]: parsers.uint32,
+                [PropertyKeys.contentType]: parsers.string(parsers.uint16),
+                [PropertyKeys.responseTopic]: parsers.string(parsers.uint16),
+                [PropertyKeys.correlationData]: parsers.buffer(parsers.uint16),
+                [PropertyKeys.subscriptionIdentifier]: parsers.vuint,
+                [PropertyKeys.sessionExpiryInterval]: parsers.uint32,
+                [PropertyKeys.assignedClientIdentifier]: parsers.string(parsers.uint16),
+                [PropertyKeys.serverKeepAlive]: parsers.uint16,
+                [PropertyKeys.authenticationMethod]: parsers.string(parsers.uint16),
+                [PropertyKeys.authenticationData]: parsers.buffer(parsers.uint16),
+                [PropertyKeys.requestProblemInformation]: parsers.uint8,
+                [PropertyKeys.willDelayInterval]: parsers.uint32,
+                [PropertyKeys.requestResponseInformation]: parsers.uint8,
+                [PropertyKeys.responseInformation]: parsers.string(parsers.uint16),
+                [PropertyKeys.serverReference]: parsers.string(parsers.uint16),
+                [PropertyKeys.reasonString]: parsers.string(parsers.uint16),
+                [PropertyKeys.receiveMaximum]: parsers.uint16,
+                [PropertyKeys.topicAliasMaximum]: parsers.uint16,
+                [PropertyKeys.topicAlias]: parsers.uint16,
+                [PropertyKeys.maximumQoS]: parsers.uint8,
+                [PropertyKeys.retainAvailable]: parsers.uint8,
+                [PropertyKeys.userProperty]: parsers.object<{ name: string, value: string }>(
+                    parsers.property('name', parsers.string(parsers.uint16)),
+                    parsers.property('value', parsers.string(parsers.uint16))
+                ),
+                [PropertyKeys.maximumPacketSize]: parsers.uint32,
+                [PropertyKeys.wildcardSubscriptionAvailable]: parsers.uint8,
+                [PropertyKeys.subscriptionIdentifierAvailable]: parsers.uint8,
+                [PropertyKeys.sharedSubscriptionAvailable]: parsers.uint8,
+            }
             }
         }
     ])

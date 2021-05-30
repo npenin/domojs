@@ -114,12 +114,13 @@ export function buffer(length: Parser<number> | number): Parsers<Buffer>
     return new PrefixedBuffer(length);
 }
 export function array<T, TMessage>(length: Parser<number>, value: Parser<T>): Parser<T[]>
+export function array<T, TMessage>(length: ParserWithoutKnownLength<number>, value: Parser<T>): ParserWithoutKnownLength<T[]>
 export function array<T, TMessage>(length: -1, value: Parser<T>): ParserWithoutKnownLength<T[]>
 export function array<T, TMessage>(length: -1, value: ParserWithMessage<T, unknown>): ParserWithMessageWithoutKnownLength<T[], TMessage>
 export function array<T, TMessage>(length: -1, value: ParserWithMessageWithoutKnownLength<T, unknown>): ParserWithMessageWithoutKnownLength<T[], TMessage>
 export function array<T, TMessage>(length: number, value: Parser<T>): Parser<T[]>
 export function array<T, TMessage>(length: keyof TMessage, value: AnyParser<T, Partial<T>>): ParserWithMessageWithoutKnownLength<T[], TMessage>
-export function array<T, TMessage>(length: keyof TMessage | number | Parser<number>, value: AnyParser<T, TMessage>): AnyParser<T[], TMessage>
+export function array<T, TMessage>(length: keyof TMessage | number | Parsers<number>, value: AnyParser<T, TMessage>): AnyParser<T[], TMessage>
 {
     if (typeof (length) === 'number')
         return new FixedArray<T, TMessage>(length, value);
@@ -177,7 +178,7 @@ export function series<T extends object>(...maps: AnyParser<T[keyof T], T>[]): P
     return new Series<T>(...mapTriaged.map(map => seriesOrSingle(...map)));
 }
 
-export function choose<T extends { [key in TKey]: number | string }, TResult, TKey extends Exclude<keyof T, number | symbol>>(name: TKey, parsers: { [key in T[TKey]]: AnyParser<TResult, T> })
+export function choose<T extends { [key in TKey]: number | string }, TKey extends Exclude<keyof T, number | symbol>, TResult>(name: TKey, parsers: { [key in T[TKey]]: AnyParser<TResult, T> })
 {
     return new Switch<T, TKey, TResult, T[TKey]>(name, parsers);
 }

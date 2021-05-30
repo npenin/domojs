@@ -10,7 +10,7 @@ The above copyright notice shall be included in all copies or substantial
 portions of this file.
 '----------------------------------------------------------------------------
 */
-import { uint8, uint16, uint32, int8, int16, int32, float, double, uint64, parsers } from '@domojs/protocol-parser';
+import { uint8, uint16, uint32, int8, int16, int32, float, double, uint64, parsers, Cursor, parserWrite } from '@domojs/protocol-parser';
 import { EventEmitter } from 'events';
 export { uint8, uint16, uint32, int8, int16, int32, float, double, uint64 }
 import { Queue, log as debug, eachAsync } from '@akala/core';
@@ -121,7 +121,6 @@ import * as TemperatureHumidity from './temperature and humidity';
 import { Interface } from 'readline';
 import { readdir } from 'fs';
 import { Duplex } from 'serialport';
-import { Cursor, parserWrite } from '@domojs/protocol-parser/dist/parsers/type';
 
 
 export namespace Type
