@@ -1,4 +1,5 @@
-import { MessageType, Protocol, uint8 } from './common';
+import { parsers, uint8 } from '@domojs/protocol-parser';
+import { messages, MessageType } from './_common';
 
 export interface StatusMessage
 {
@@ -8,12 +9,12 @@ export interface StatusMessage
     sequenceNumber: uint8;
 }
 
-Protocol.register<StatusMessage>('type', MessageType.Status, [
-    { name: 'status', type: 'uint8' },
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'subType', type: 'uint16', optional: true },
-    { name: 'message', type: 'string', optional: true, length: 'uint8' }
-]);
+messages.register(MessageType.Status, parsers.object<StatusMessage>(
+    parsers.property('status', parsers.uint8),
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.optional(parsers.property('subType', parsers.uint16)),
+    parsers.optional(parsers.property('message', parsers.string(parsers.uint8)))
+));
 
 export enum Status
 {
@@ -26,13 +27,13 @@ export enum Status
     StackAlreadyStarted = 5
 }
 
-Protocol.register<DefaultResponse>('type', MessageType.DefaultResponse, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint8' },
-    { name: 'commandId', type: 'uint8' },
-    { name: 'statusCode', type: 'uint8' },
-])
+messages.register(MessageType.DefaultResponse, parsers.object<DefaultResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint8),
+    parsers.property('commandId', parsers.uint8),
+    parsers.property('statusCode', parsers.uint8),
+))
 
 export interface DefaultResponse extends StatusMessage
 {

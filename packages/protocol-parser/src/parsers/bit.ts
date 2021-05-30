@@ -1,6 +1,7 @@
-import { Cursor, Parser } from "./type";
+import { Uint2 } from ".";
+import { Cursor, Parser } from "./_common";
 
-const length = .125;
+export const length = .125;
 
 export default class Bit implements Parser<number>
 {
@@ -55,26 +56,5 @@ export default class Bit implements Parser<number>
         var numberValue = (value & 1) << cursor.subByteOffset;
         buffer.writeUInt8(currentValue | numberValue, cursor.floorOffset);
         cursor.offset += length;
-    }
-}
-
-
-export class Boolean implements Parser<boolean>
-{
-    constructor()
-    {
-    }
-
-    length = length;
-
-    public read(buffer: Buffer, cursor: Cursor): boolean
-    {
-        return Bit.prototype.read(buffer, cursor) === 1
-    }
-
-    public write(buffer: Buffer, cursor: Cursor, value: boolean)
-    {
-        return Bit.prototype.write(buffer, cursor, value && 1 || 0);
-
     }
 }

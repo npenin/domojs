@@ -1,11 +1,11 @@
-import { Protocol, MessageType, uint64, uint32, uint8 } from './common'
+import { MessageType, messages } from './_common'
 import { DeviceType } from './network';
 import { StatusMessage } from './status';
 import { Device } from './devices';
-import { Frame } from '@domojs/protocol-parser';
+import { parsers, uint32, uint64, uint8 } from '@domojs/protocol-parser';
 
-Protocol.register<SetExtendedPanId>('type', MessageType.SetExtendedPanId, [{ name: 'panId', type: 'uint64' }]);
-Protocol.register<SetChannelMask>('type', MessageType.SetChannelMask, [{ name: 'mask', type: 'uint32' }], function (message)
+messages.register(MessageType.SetExtendedPanId, parsers.object<SetExtendedPanId>(parsers.property('panId', parsers.uint64)));
+messages.register(MessageType.SetChannelMask, parsers.prepare(function (message)
 {
     if (message.mask >= 11 || message.mask <= 26)
     {
@@ -16,31 +16,35 @@ Protocol.register<SetChannelMask>('type', MessageType.SetChannelMask, [{ name: '
         }
         message.mask = mask;
     }
-});
-Protocol.register<SetSecurityStateAndKey>('type', MessageType.SetSecurityStateAndKey, [{ name: 'keyType', type: 'uint8' }, { name: 'key', type: 'uint64' }]);
-Protocol.register<{ type: DeviceType }>('type', MessageType.SetDeviceType, [{ name: 'type', type: 'uint8' }]);
-Protocol.register<StatusMessage>('type', MessageType.Reset, []);
-Protocol.register<StatusMessage>('type', MessageType.ErasePersistentData, []);
-Protocol.register<StatusMessage>('type', MessageType.ZLO_ZLL_FactoryNew_Reset, []);
-Protocol.register('type', MessageType.GetDevicesList, []);
-Protocol.register<GetDeviceList>('type', MessageType.GetDevicesList | MessageType.Response, [
-    {
-        name: "devices", type: 'subFrame[]', length: undefined, frame: new Frame<Device>([
-            { name: 'id', type: 'uint8' },
-            { name: 'shortAddress', type: 'uint16' },
-            { name: 'IEEEAddress', type: 'uint64' },
-            { name: 'powerLined', type: 'uint8' },
-            { name: 'linkQuality', type: 'uint8' },
-        ])
-    }
-]);
+},
+    parsers.object<SetChannelMask>(parsers.property('mask', parsers.uint32))
+));
 
-Protocol.register<FactoryNewRestart>('type', MessageType.NonFactoryNewRestart, [
-    { name: 'status', type: 'uint8' }
-])
-Protocol.register<FactoryNewRestart>('type', MessageType.FactoryNewRestart, [
-    { name: 'status', type: 'uint8' }
-])
+const device = parsers.object<Device>(
+    parsers.property('id', parsers.uint8),
+    parsers.property('shortAddress', parsers.uint16),
+    parsers.property('IEEEAddress', parsers.uint64),
+    parsers.property('powerLined', parsers.boolean(parsers.uint8)),
+    parsers.property('linkQuality', parsers.uint8),
+);
+const devices = parsers.array<Device, any>(-1, device);
+
+messages.register(MessageType.SetSecurityStateAndKey, parsers.object<SetSecurityStateAndKey>(parsers.property('keyType', parsers.uint8), parsers.property('key', parsers.uint64)));
+messages.register(MessageType.SetDeviceType, parsers.object<{ type: DeviceType }>(parsers.property('type', parsers.uint8)));
+messages.register(MessageType.Reset, parsers.object<StatusMessage>());
+messages.register(MessageType.ErasePersistentData, parsers.object<StatusMessage>());
+messages.register(MessageType.ZLO_ZLL_FactoryNew_Reset, parsers.object<StatusMessage>());
+messages.register(MessageType.GetDevicesList, parsers.object<{}>());
+messages.register(MessageType.GetDevicesList | MessageType.Response, parsers.object<GetDeviceList>(
+    parsers.property("devices", devices)
+));
+
+messages.register(MessageType.NonFactoryNewRestart, parsers.object<FactoryNewRestart>(
+    parsers.property('status', parsers.uint8)
+))
+messages.register(MessageType.FactoryNewRestart, parsers.object<FactoryNewRestart>(
+    parsers.property('status', parsers.uint8)
+))
 
 export interface FactoryNewRestart
 {

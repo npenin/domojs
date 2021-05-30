@@ -9,8 +9,8 @@ export default interface Message extends CoreMessage
     properties: Properties;
 }
 
-Protocol.register<Message>('type', ControlPacketType.PUBREC, [
+messages.register(ControlPacketType.PUBREC, parsers.object<Message>(
     { name: 'packetId', type: 'uint16', },
-    { name: 'reason', type: 'uint8' },
+    parsers.property('reason', parsers.uint8),
     Object.assign({}, propertiesFrame, { name: 'properties' }),
 ]);

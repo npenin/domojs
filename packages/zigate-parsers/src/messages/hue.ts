@@ -1,162 +1,161 @@
-import { StatusMessage } from './status';
-import { Message, MessageType, uint8, uint16, Protocol } from './common';
-import { ShortAddressRequest } from './descriptors';
+import { MessageType, messages } from './_common';
 import { CommandMessage } from './move';
+import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
 
 
 
-Protocol.register<MoveToHue>('type', MessageType.MoveToHue, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'hue', type: 'uint8' },
-    { name: 'direction', type: 'uint8' },
-    { name: 'transitionTime', type: 'uint16' },
-]);
+messages.register(MessageType.MoveToHue, parsers.object<MoveToHue>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('hue', parsers.uint8),
+    parsers.property('direction', parsers.uint8),
+    parsers.property('transitionTime', parsers.uint16),
+));
 
-Protocol.register<MoveToHue>('type', MessageType.EnhancedMoveToHue, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'direction', type: 'uint8' },
-    { name: 'hue', type: 'uint16' },
-    { name: 'transitionTime', type: 'uint16' },
-]);
+messages.register(MessageType.EnhancedMoveToHue, parsers.object<MoveToHue>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('direction', parsers.uint8),
+    parsers.property('hue', parsers.uint16),
+    parsers.property('transitionTime', parsers.uint16),
+));
 
-Protocol.register<MoveHue>('type', MessageType.MoveHue, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'mode', type: 'uint8' },
-    { name: 'rate', type: 'uint8' },
-]);
+messages.register(MessageType.MoveHue, parsers.object<MoveHue>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('mode', parsers.uint8),
+    parsers.property('rate', parsers.uint8),
+));
 
-Protocol.register<MoveHue>('type', MessageType.EnhancedMoveHue, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'mode', type: 'uint8' },
-    { name: 'rate', type: 'uint8' },
-]);
+messages.register(MessageType.EnhancedMoveHue, parsers.object<MoveHue>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('mode', parsers.uint8),
+    parsers.property('rate', parsers.uint8),
+));
 
-Protocol.register<StepHue>('type', MessageType.StepHue, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'mode', type: 'uint8' },
-    { name: 'stepSize', type: 'uint8' },
-    { name: 'transitionTime', type: 'uint8' },
-]);
+messages.register(MessageType.StepHue, parsers.object<StepHue>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('mode', parsers.uint8),
+    parsers.property('stepSize', parsers.uint8),
+    parsers.property('transitionTime', parsers.uint8),
+));
 
-Protocol.register<StepHue>('type', MessageType.EnhancedStepHue, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'mode', type: 'uint8' },
-    { name: 'stepSize', type: 'uint8' },
-    { name: 'transitionTime', type: 'uint8' },
-]);
+messages.register(MessageType.EnhancedStepHue, parsers.object<StepHue>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('mode', parsers.uint8),
+    parsers.property('stepSize', parsers.uint8),
+    parsers.property('transitionTime', parsers.uint8),
+));
 
-Protocol.register<MoveToSaturation>('type', MessageType.MoveToSaturation, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'saturation', type: 'uint8' },
-    { name: 'transitionTime', type: 'uint16' },
-]);
+messages.register(MessageType.MoveToSaturation, parsers.object<MoveToSaturation>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('saturation', parsers.uint8),
+    parsers.property('transitionTime', parsers.uint16),
+));
 
-Protocol.register<MoveSaturation>('type', MessageType.MoveSaturation, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'mode', type: 'uint8' },
-    { name: 'rate', type: 'uint8' },
-]);
+messages.register(MessageType.MoveSaturation, parsers.object<MoveSaturation>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('mode', parsers.uint8),
+    parsers.property('rate', parsers.uint8),
+));
 
-Protocol.register<StepSaturation>('type', MessageType.StepSaturation, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'mode', type: 'uint8' },
-    { name: 'stepSize', type: 'uint8' },
-    { name: 'transitionTime', type: 'uint8' },
-]);
+messages.register(MessageType.StepSaturation, parsers.object<StepSaturation>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('mode', parsers.uint8),
+    parsers.property('stepSize', parsers.uint8),
+    parsers.property('transitionTime', parsers.uint8),
+));
 
-Protocol.register<MoveToHueAndSaturation>('type', MessageType.MoveToHueAndSaturation, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'hue', type: 'uint8' },
-    { name: 'saturation', type: 'uint8' },
-    { name: 'transitionTime', type: 'uint16' },
-]);
+messages.register(MessageType.MoveToHueAndSaturation, parsers.object<MoveToHueAndSaturation>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('hue', parsers.uint8),
+    parsers.property('saturation', parsers.uint8),
+    parsers.property('transitionTime', parsers.uint16),
+));
 
-Protocol.register<MoveToHueAndSaturation>('type', MessageType.EnhancedMoveToHueAndSaturation, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'hue', type: 'uint32' },
-    { name: 'saturation', type: 'uint32' },
-    { name: 'transitionTime', type: 'uint16' },
-]);
+messages.register(MessageType.EnhancedMoveToHueAndSaturation, parsers.object<MoveToHueAndSaturation>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('hue', parsers.uint32),
+    parsers.property('saturation', parsers.uint32),
+    parsers.property('transitionTime', parsers.uint16),
+));
 
-Protocol.register<MoveToColor>('type', MessageType.MoveToColor, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'colorX', type: 'uint16' },
-    { name: 'colorY', type: 'uint16' },
-    { name: 'transitionTime', type: 'uint16' },
-]);
+messages.register(MessageType.MoveToColor, parsers.object<MoveToColor>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('colorX', parsers.uint16),
+    parsers.property('colorY', parsers.uint16),
+    parsers.property('transitionTime', parsers.uint16),
+));
 
-Protocol.register<MoveToColor>('type', MessageType.MoveColor, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'colorX', type: 'uint16' },
-    { name: 'colorY', type: 'uint16' },
-]);
-Protocol.register<StepColor>('type', MessageType.StepColor, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'stepX', type: 'uint16' },
-    { name: 'stepY', type: 'uint16' },
-    { name: 'transitionTime', type: 'uint16' },
-]);
+messages.register(MessageType.MoveColor, parsers.object<MoveToColor>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('colorX', parsers.uint16),
+    parsers.property('colorY', parsers.uint16),
+));
+messages.register(MessageType.StepColor, parsers.object<StepColor>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('stepX', parsers.uint16),
+    parsers.property('stepY', parsers.uint16),
+    parsers.property('transitionTime', parsers.uint16),
+));
 
-Protocol.register<ColorLoopSet>('type', MessageType.ColorLoopSet, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'updateFlags', type: 'uint8' },
-    { name: 'action', type: 'uint8' },
-    { name: 'direction', type: 'uint8' },
-    { name: 'time', type: 'uint8' },
-    { name: 'startHue', type: 'uint32' },
-]);
+messages.register(MessageType.ColorLoopSet, parsers.object<ColorLoopSet>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('updateFlags', parsers.uint8),
+    parsers.property('action', parsers.uint8),
+    parsers.property('direction', parsers.uint8),
+    parsers.property('time', parsers.uint8),
+    parsers.property('startHue', parsers.uint32),
+));
 
-Protocol.register<CommandMessage>('type', MessageType.StopMoveStep, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-])
+messages.register(MessageType.StopMoveStep, parsers.object<CommandMessage>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+));
 
 export interface MoveToHue extends CommandMessage
 {

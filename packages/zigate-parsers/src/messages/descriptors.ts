@@ -1,60 +1,61 @@
 import { StatusMessage, Status } from './status';
-import { Message, MessageType, Protocol, uint16, uint8, Cluster } from './common';
+import { MessageType, Cluster, messages } from './_common';
+import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
 
-Protocol.register<ShortAddressRequest>('type', MessageType.NodeDescriptor, [{ name: 'targetShortAddress', type: 'uint16' }]);
-Protocol.register<SimpleDescriptorRequest>('type', MessageType.SimpleDescriptor, [
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'endpoint', type: 'uint8' }
-]);
-Protocol.register<ShortAddressRequest>('type', MessageType.PowerDescriptor, [{ name: 'targetShortAddress', type: 'uint16' }]);
-Protocol.register<ShortAddressRequest>('type', MessageType.ActiveEndpoint, [{ name: 'targetShortAddress', type: 'uint16' }]);
-Protocol.register<MatchDescriptorRequest>('type', MessageType.MatchDescriptor, [
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'profileId', type: 'uint16' },
-    { name: 'inputClusterList', type: 'uint16[]', length: 'uint8' },
-    { name: 'outputClusterList', type: 'uint16[]', length: 'uint8' }
-]);
+messages.register(MessageType.NodeDescriptor, parsers.object<ShortAddressRequest>(parsers.property('targetShortAddress', parsers.uint16)));
+messages.register(MessageType.SimpleDescriptor, parsers.object<SimpleDescriptorRequest>(
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('endpoint', parsers.uint8)
+));
+messages.register(MessageType.PowerDescriptor, parsers.object<ShortAddressRequest>(parsers.property('targetShortAddress', parsers.uint16)));
+messages.register(MessageType.ActiveEndpoint, parsers.object<ShortAddressRequest>(parsers.property('targetShortAddress', parsers.uint16)));
+messages.register(MessageType.MatchDescriptor, parsers.object<MatchDescriptorRequest>(
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('profileId', parsers.uint16),
+    parsers.property('inputClusterList', parsers.array(parsers.uint8, parsers.uint16)),
+    parsers.property('outputClusterList', parsers.array(parsers.uint8, parsers.uint16)),
+));
 
-Protocol.register<UserDescriptorSet>('type', MessageType.UserDescriptorSet, [
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'addressOfInterest', type: 'uint16' },
-    { name: 'text', type: 'string', length: 'uint8' }
-])
+messages.register(MessageType.UserDescriptorSet, parsers.object<UserDescriptorSet>(
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('addressOfInterest', parsers.uint16),
+    parsers.property('text', parsers.string(parsers.uint8))
+))
 
-Protocol.register<AddressOfInterestRequest>('type', MessageType.UserDescriptor, [
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'addressOfInterest', type: 'uint16' }
-])
+messages.register(MessageType.UserDescriptor, parsers.object<AddressOfInterestRequest>(
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('addressOfInterest', parsers.uint16)
+))
 
-Protocol.register<AddressOfInterestRequest>('type', MessageType.ComplexDescriptor, [
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'addressOfInterest', type: 'uint16' }
-])
+messages.register(MessageType.ComplexDescriptor, parsers.object<AddressOfInterestRequest>(
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('addressOfInterest', parsers.uint16)
+))
 
-Protocol.register<ClusterList>('type', MessageType.ObjectClustersList, [
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'profileId', type: 'uint16' },
-    { name: 'clusterList', type: 'uint16[]' }
-])
+messages.register(MessageType.ObjectClustersList, parsers.object<ClusterList>(
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('profileId', parsers.uint16),
+    parsers.property('clusterList', parsers.array(-1, parsers.uint16))
+))
 
 export interface UserDescriptorSet extends AddressOfInterestRequest
 {
     text: string;
 }
 
-Protocol.register<NodeDescriptor>('type', MessageType.NodeDescriptor | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'status', type: 'uint8' },
-    { name: 'networkAddress', type: 'uint16' },
-    { name: 'manufacturerCode', type: 'uint16' },
-    { name: 'maxRxSize', type: 'uint16' },
-    { name: 'maxTxSize', type: 'uint16' },
-    { name: 'serverMask', type: 'uint16' },
-    { name: 'descriptorCapability', type: 'uint8' },
-    { name: 'macFlags', type: 'uint8' },
-    { name: 'maxBufferSize', type: 'uint8' },
-    { name: 'information', type: 'uint16' },
-])
+messages.register(MessageType.NodeDescriptor | MessageType.Response, parsers.object<NodeDescriptor>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('status', parsers.uint8),
+    parsers.property('networkAddress', parsers.uint16),
+    parsers.property('manufacturerCode', parsers.uint16),
+    parsers.property('maxRxSize', parsers.uint16),
+    parsers.property('maxTxSize', parsers.uint16),
+    parsers.property('serverMask', parsers.uint16),
+    parsers.property('descriptorCapability', parsers.uint8),
+    parsers.property('macFlags', parsers.uint8),
+    parsers.property('maxBufferSize', parsers.uint8),
+    parsers.property('information', parsers.uint16),
+))
 
 export interface NodeDescriptor extends StatusMessage
 {
@@ -120,24 +121,24 @@ export interface SimpleDescriptor extends StatusMessage
     outputClusterList: Cluster[];
 }
 
-Protocol.register<SimpleDescriptor>('type', MessageType.SimpleDescriptor | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'status', type: 'uint8' },
-    { name: 'networkAddress', type: 'uint16' },
-    { name: 'length', type: 'uint8' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'profile', type: 'uint16' },
-    { name: 'deviceId', type: 'uint16' },
-    { name: 'deviceVersion', type: 'uint8' },
-    { name: 'inputClusterList', type: 'uint16[]', length: 'uint8' },
-    { name: 'outputClusterList', type: 'uint16[]', length: 'uint8' },
-])
+messages.register(MessageType.SimpleDescriptor | MessageType.Response, parsers.object<SimpleDescriptor>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('status', parsers.uint8),
+    parsers.property('networkAddress', parsers.uint16),
+    parsers.property('length', parsers.uint8),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('profile', parsers.uint16),
+    parsers.property('deviceId', parsers.uint16),
+    parsers.property('deviceVersion', parsers.uint8),
+    parsers.property('inputClusterList', parsers.array(parsers.uint8, parsers.uint16)),
+    parsers.property('outputClusterList', parsers.array(parsers.uint8, parsers.uint16)),
+))
 
-Protocol.register<PowerDescriptor>('type', MessageType.PowerDescriptor | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'status', type: 'uint8' },
-    { name: 'information', type: 'uint16' },
-])
+messages.register(MessageType.PowerDescriptor | MessageType.Response, parsers.object<PowerDescriptor>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('status', parsers.uint8),
+    parsers.property('information', parsers.uint16),
+))
 
 export interface PowerDescriptor extends StatusMessage
 {
@@ -208,12 +209,12 @@ export enum Power
     CurrentPowerSourceLevel15 = 0xF000,
 }
 
-Protocol.register<ActiveEndpointResponse>('type', MessageType.ActiveEndpoint | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'status', type: 'uint8' },
-    { name: 'address', type: 'uint16' },
-    { name: 'endpoints', type: 'uint8[]', length: 'uint8' },
-]);
+messages.register(MessageType.ActiveEndpoint | MessageType.Response, parsers.object<ActiveEndpointResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('status', parsers.uint8),
+    parsers.property('address', parsers.uint16),
+    parsers.property('endpoints', parsers.array(parsers.uint8, parsers.uint8)),
+));
 
 export interface ActiveEndpointResponse extends StatusMessage
 {
@@ -221,12 +222,12 @@ export interface ActiveEndpointResponse extends StatusMessage
     endpoints: uint8[];
 }
 
-Protocol.register<MatchDescriptorResponse>('type', MessageType.MatchDescriptor | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'status', type: 'uint8' },
-    { name: 'networkAddress', type: 'uint16' },
-    { name: 'matches', type: 'uint8[]', length: 'uint8' },
-]);
+messages.register(MessageType.MatchDescriptor | MessageType.Response, parsers.object<MatchDescriptorResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('status', parsers.uint8),
+    parsers.property('networkAddress', parsers.uint16),
+    parsers.property('matches', parsers.array(parsers.uint8, parsers.uint8)),
+));
 
 export interface MatchDescriptorResponse extends StatusMessage
 {
@@ -234,17 +235,17 @@ export interface MatchDescriptorResponse extends StatusMessage
     matches: uint8[];
 }
 
-Protocol.register<UserDescriptorResponse>('type', MessageType.UserDescriptor | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'status', type: 'uint8' },
-    { name: 'networkAddressOfInterest', type: 'uint16' },
-    { name: 'stream', type: 'buffer', length: 'uint8' },
-])
-Protocol.register<UserDescriptorNotifyMessage>('type', MessageType.UserDescriptorSet | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'status', type: 'uint8' },
-    { name: 'networkAddressOfInterest', type: 'uint16' },
-]);
+messages.register(MessageType.UserDescriptor | MessageType.Response, parsers.object<UserDescriptorResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('status', parsers.uint8),
+    parsers.property('networkAddressOfInterest', parsers.uint16),
+    parsers.property('stream', parsers.buffer(parsers.uint8)),
+))
+messages.register(MessageType.UserDescriptorSet | MessageType.Response, parsers.object<UserDescriptorNotifyMessage>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('status', parsers.uint8),
+    parsers.property('networkAddressOfInterest', parsers.uint16),
+));
 
 export interface UserDescriptorNotifyMessage extends StatusMessage
 {
@@ -287,12 +288,12 @@ export interface ClusterList
     clusterList: Cluster[];
 }
 
-Protocol.register<ComplexDescriptorResponse>('type', MessageType.ComplexDescriptor | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'status', type: 'uint8' },
-    { name: 'networkAddressOfInterest', type: 'uint16' },
-    { name: 'length', type: 'uint8' },
-])
+messages.register(MessageType.ComplexDescriptor | MessageType.Response, parsers.object<ComplexDescriptorResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('status', parsers.uint8),
+    parsers.property('networkAddressOfInterest', parsers.uint16),
+    parsers.property('length', parsers.uint8),
+))
 
 export interface ComplexDescriptorResponse extends StatusMessage
 {

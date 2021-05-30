@@ -4,7 +4,6 @@ import * as proto from '@domojs/protocol-parser'
 import { Duplex } from 'stream'
 import { EventEmitter } from 'events'
 import { parsers } from "@domojs/protocol-parser";
-import { Cursor } from "@domojs/protocol-parser/src/parsers/type";
 
 const log = debug('domojs:iscp:processor');
 
@@ -29,7 +28,7 @@ var prot = parsers.prepare(message =>
     parsers.property('dSize', parsers.uint32),
     parsers.property('version', parsers.uint8),
     parsers.skip(3),
-    parsers.property('value', parsers.string<IscpMessage, 'dSize'>('dSize')),
+    parsers.property('value', parsers.string<IscpMessage>('dSize')),
 ));
 
 class IscpMessage
@@ -73,7 +72,7 @@ export class ISCPProcessor extends CommandNameProcessor
         super('iscp');
         socket.on('data', data =>
         {
-            var response = prot.read(data, new Cursor(), {});
+            var response = prot.read(data, new proto.Cursor(), {});
             this.messages.emit('message', new IscpMessage(response));
         });
         if (handler)

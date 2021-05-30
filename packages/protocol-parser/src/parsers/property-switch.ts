@@ -1,10 +1,10 @@
-import { AnyParser, Cursor, ParserWithMessageWithoutKnownLength, parserWrite } from "./type";
+import { AnyParser, Cursor, ParserWithMessageWithoutKnownLength, parserWrite } from "./_common";
 
 export default class SwitchProperty<T, TKey extends keyof T, TKeyAssign extends keyof T, TResult, TValue extends (T[TKey] extends string | number | symbol ? T[TKey] : never)>
     implements ParserWithMessageWithoutKnownLength<TResult, T>
 {
-    private parsers: { [key in TValue]: AnyParser<TResult> };
-    constructor(private name: TKey, private assignProperty: TKeyAssign, parsers: { [key in TValue]: AnyParser<TResult> })
+    private parsers: { [key in TValue]: AnyParser<TResult, T[TKeyAssign]> };
+    constructor(private name: TKey, private assignProperty: TKeyAssign, parsers: { [key in TValue]: AnyParser<TResult, T[TKeyAssign]> })
     {
         this.parsers = parsers;
 
@@ -32,7 +32,7 @@ export default class SwitchProperty<T, TKey extends keyof T, TKeyAssign extends 
         return parserWrite(parser, value, message[this.assignProperty]);
     }
 
-    public register(value: TValue, parser: AnyParser<TResult>)
+    public register(value: TValue, parser: AnyParser<TResult, T[TKeyAssign]>)
     {
         if (typeof (this.parsers[value]) !== 'undefined')
             throw new Error('a parser is already registered for value ' + value);

@@ -1,37 +1,26 @@
 import { StatusMessage } from './status';
-import { Message, MessageType, uint8, uint16, Protocol } from './common';
+import { Message, MessageType, messages } from './_common';
 import { ShortAddressRequest } from './descriptors';
 import { CommandMessage } from './move';
+import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
 
-Protocol.register<DataIndication>('type', MessageType.DataIndication, [
-    { name: 'status', type: 'uint8' },
-    { name: 'profileId', type: 'uint16' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'sourceAddressMode', type: 'uint16' },
-    {
-        name: 'sourceAddress', type: function (instance)
-        {
-            switch (instance.sourceAddressMode)
-            {
-                default:
-                    return 'uint16';
-            }
-        }
-    },
-    { name: 'destinationAddressMode', type: 'uint16' },
-    {
-        name: 'destinationAddress', type: function (instance)
-        {
-            switch (instance.sourceAddressMode)
-            {
-                default:
-                    return 'uint16';
-            }
-        }
-    },
-    { name: 'payload', type: 'uint8[]', length: 'uint8' },
-])
+messages.register(MessageType.DataIndication, parsers.object<DataIndication>(
+    parsers.property('status', parsers.uint8),
+    parsers.property('profileId', parsers.uint16),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('sourceAddressMode', parsers.uint16),
+    parsers.chooseProperty<DataIndication>('sourceAddress', 'sourceAddressMode', {
+        0: parsers.uint16,
+        1: parsers.uint64
+    }),
+    parsers.property('destinationAddressMode', parsers.uint16),
+    parsers.chooseProperty<DataIndication>('destinationAddress', 'destinationAddressMode', {
+        0: parsers.uint16,
+        1: parsers.uint64
+    }),
+    parsers.property('payload', parsers.array(parsers.uint8, parsers.uint8)),
+))
 
 export interface DataIndication extends CommandMessage, StatusMessage
 {

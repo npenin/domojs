@@ -1,5 +1,5 @@
-import { StatusMessage } from './status';
-import { Protocol, MessageType } from './common';
+import { MessageType, messages } from './_common';
+import { parsers } from '@domojs/protocol-parser';
 
 // @type(MessageType.GetVersion)
 // export class VersionMessage extends StatusMessage
@@ -9,7 +9,7 @@ import { Protocol, MessageType } from './common';
 
 //     constructor(frame?: Buffer)
 //     {
-//         super(frame || MessageType.GetVersion, [{ name: 'major', type: 'uint16' }, { name: 'installer', type: 'uint16' }]);
+//         super(frame || MessageType.GetVersion, [parsers.property('major', parsers.uint16), parsers.property('installer', parsers.uint16)]);
 //     }
 // }
 
@@ -19,8 +19,8 @@ export interface VersionResponse
     installer: number;
 }
 
-Protocol.register<{}>('type', MessageType.GetVersion, []);
-Protocol.register<VersionResponse>('type', MessageType.GetVersion | MessageType.Response, [
-    { name: 'major', type: 'uint16' },
-    { name: 'installer', type: 'uint16' }
-]);
+messages.register(MessageType.GetVersion, parsers.object<{}>());
+messages.register(MessageType.GetVersion | MessageType.Response, parsers.object<VersionResponse>(
+    parsers.property('major', parsers.uint16),
+    parsers.property('installer', parsers.uint16)
+));

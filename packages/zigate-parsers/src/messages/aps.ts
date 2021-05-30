@@ -1,19 +1,20 @@
 import { StatusMessage } from './status';
-import { Message, MessageType, uint8, uint16, Protocol } from './common';
+import { Message, MessageType, messages } from './_common';
 import { ShortAddressRequest } from './descriptors';
 import { CommandMessage } from './move';
+import { parsers, uint16, uint64, uint8 } from '@domojs/protocol-parser';
 
-Protocol.register<APSRequest>('type', MessageType.RawAPSData, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'profileId', type: 'uint16' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'securityMode', type: 'uint8' },
-    { name: 'radius', type: 'uint8' },
-    { name: 'raw', type: 'uint8[]', length: 'uint8' },
-])
+messages.register(MessageType.RawAPSData, parsers.object<APSRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('profileId', parsers.uint16),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('securityMode', parsers.uint8),
+    parsers.property('radius', parsers.uint8),
+    parsers.property('raw', parsers.array(parsers.uint8, parsers.uint8)),
+))
 
 export interface APSRequest extends CommandMessage
 {
@@ -24,16 +25,16 @@ export interface APSRequest extends CommandMessage
     raw: uint8[];
 }
 
-Protocol.register<APSDataConfirmFail>('type', MessageType.APSDataConfirmFail, [
-    { name: 'status', type: 'uint8' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'destinationAddress', type: 'uint64' },
-    { name: 'sequenceNumber', type: 'uint8' },
-])
+messages.register(MessageType.APSDataConfirmFail, parsers.object<APSDataConfirmFail>(
+    parsers.property('status', parsers.uint8),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('destinationAddress', parsers.uint64),
+    parsers.property('sequenceNumber', parsers.uint8),
+))
 
 export interface APSDataConfirmFail extends CommandMessage, StatusMessage
 {
-    destinationAddress: 'uint64';
+    destinationAddress: uint64;
 }

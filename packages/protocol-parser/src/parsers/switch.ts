@@ -1,9 +1,9 @@
-import { AnyParser, Cursor, ParserWithMessageWithoutKnownLength, parserWrite } from "./type";
+import { AnyParser, Cursor, ParserWithMessageWithoutKnownLength, parserWrite } from "./_common";
 
 export default class Switch<T extends { [key in TKey]: TValue }, TKey extends keyof T, TResult, TValue extends string | number> implements ParserWithMessageWithoutKnownLength<TResult, T>
 {
-    private parsers: { [key in TValue]: AnyParser<TResult> };
-    constructor(private name: TKey, parsers: { [key in TValue]: AnyParser<TResult> })
+    private parsers: { [key in TValue]: AnyParser<TResult, T> };
+    constructor(private name: TKey, parsers: { [key in TValue]: AnyParser<TResult, T> })
     {
         this.parsers = parsers;
 

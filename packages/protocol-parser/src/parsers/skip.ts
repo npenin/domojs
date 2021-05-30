@@ -1,4 +1,4 @@
-import { Cursor, Parser } from "./type";
+import { Cursor, Parser } from "./_common";
 
 export default class Skip<T> implements Parser<T>
 {

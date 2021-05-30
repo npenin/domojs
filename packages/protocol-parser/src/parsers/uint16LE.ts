@@ -1,5 +1,5 @@
 import Bit from "./bit";
-import { Cursor, Parser } from "./type";
+import { Cursor, Parser } from "./_common";
 import Uint8 from "./uint8";
 
 const length = 2;

@@ -1,107 +1,107 @@
 import { StatusMessage } from './status';
-import { Message, MessageType, uint8, uint16, Protocol } from './common';
-import { ShortAddressRequest } from './descriptors';
+import { MessageType, messages } from './_common';
 import { CommandMessage } from './move';
-import { AddGroupRequest, GroupResponse } from './group';
+import { GroupResponse } from './group';
+import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
 
-Protocol.register<SceneRequest>('type', MessageType.ViewScene, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' },
-    { name: 'sceneId', type: 'uint8' },
-]);
+messages.register(MessageType.ViewScene, parsers.object<SceneRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('groupId', parsers.uint16),
+    parsers.property('sceneId', parsers.uint8),
+));
 
-Protocol.register<AddSceneRequest>('type', MessageType.AddScene, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' },
-    { name: 'sceneId', type: 'uint8' },
-    { name: 'transitionTime', type: 'uint8' },
-    { name: 'nameLength', type: 'uint8' },
-    { name: 'nameMaxLength', type: 'uint8' },
-    { name: 'name', type: 'string', length: 7 },
-]);
+messages.register(MessageType.AddScene, parsers.object<AddSceneRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('groupId', parsers.uint16),
+    parsers.property('sceneId', parsers.uint8),
+    parsers.property('transitionTime', parsers.uint8),
+    parsers.property('nameLength', parsers.uint8),
+    parsers.property('nameMaxLength', parsers.uint8),
+    parsers.property('name', parsers.string<AddSceneRequest>('nameLength')),
+));
 
-Protocol.register<SceneRequest>('type', MessageType.RemoveScene, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' },
-    { name: 'sceneId', type: 'uint8' },
-]);
+messages.register(MessageType.RemoveScene, parsers.object<SceneRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('groupId', parsers.uint16),
+    parsers.property('sceneId', parsers.uint8),
+));
 
-Protocol.register<SceneRequest>('type', MessageType.RemoveAllScene, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' },
-]);
+messages.register(MessageType.RemoveAllScene, parsers.object<SceneRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('groupId', parsers.uint16),
+));
 
-Protocol.register<SceneRequest>('type', MessageType.StoreScene, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' },
-    { name: 'sceneId', type: 'uint8' },
-]);
+messages.register(MessageType.StoreScene, parsers.object<SceneRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('groupId', parsers.uint16),
+    parsers.property('sceneId', parsers.uint8),
+));
 
-Protocol.register<SceneRequest>('type', MessageType.RecallScene, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' },
-    { name: 'sceneId', type: 'uint8' },
-]);
+messages.register(MessageType.RecallScene, parsers.object<SceneRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('groupId', parsers.uint16),
+    parsers.property('sceneId', parsers.uint8),
+));
 
-Protocol.register<SceneRequest>('type', MessageType.SceneMembership, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' },
-]);
+messages.register(MessageType.SceneMembership, parsers.object<SceneRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('groupId', parsers.uint16),
+));
 
-Protocol.register<AddSceneRequest>('type', MessageType.AddEnhancedScene, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' },
-    { name: 'sceneId', type: 'uint8' },
-    { name: 'transitionTime', type: 'uint8' },
-    { name: 'nameLength', type: 'uint8' },
-    { name: 'nameMaxLength', type: 'uint8' },
-    { name: 'name', type: 'string', length: 7 },
-]);
+messages.register(MessageType.AddEnhancedScene, parsers.object<AddSceneRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('groupId', parsers.uint16),
+    parsers.property('sceneId', parsers.uint8),
+    parsers.property('transitionTime', parsers.uint8),
+    parsers.property('nameLength', parsers.uint8),
+    parsers.property('nameMaxLength', parsers.uint8),
+    parsers.property('name', parsers.string<AddSceneRequest>('nameLength')),
+));
 
-Protocol.register<SceneRequest>('type', MessageType.ViewEnhancedHost_NodeScene, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' },
-    { name: 'sceneId', type: 'uint8' },
-]);
+messages.register(MessageType.ViewEnhancedHost_NodeScene, parsers.object<SceneRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('groupId', parsers.uint16),
+    parsers.property('sceneId', parsers.uint8),
+));
 
-Protocol.register<CopyScene>('type', MessageType.CopyScene, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'mode', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' },
-    { name: 'sceneId', type: 'uint8' },
-    { name: 'toGroupId', type: 'uint16' },
-    { name: 'toSceneId', type: 'uint8' },
-]);
+messages.register(MessageType.CopyScene, parsers.object<CopyScene>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('mode', parsers.uint8),
+    parsers.property('groupId', parsers.uint16),
+    parsers.property('sceneId', parsers.uint8),
+    parsers.property('toGroupId', parsers.uint16),
+    parsers.property('toSceneId', parsers.uint8),
+));
 
 export interface SceneRequest extends CommandMessage
 {
@@ -123,21 +123,21 @@ export interface CopyScene extends SceneRequest
     toSceneId: uint8;
 }
 
-Protocol.register<ViewSceneResponse>('type', MessageType.ViewScene | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'status', type: 'uint8' },
-    { name: 'groupId', type: 'uint8' },
-    { name: 'sceneId', type: 'uint8' },
-    { name: 'transitionTime', type: 'uint16' },
-    { name: 'nameLength', type: 'uint8' },
-    { name: 'nameMaxLength', type: 'uint8' },
-    { name: 'name', type: 'string', length: 7 },
-    { name: 'extensionLength', type: 'uint8' },
-    { name: 'extensionMaxLength', type: 'uint8' },
-    { name: 'extension', type: 'uint8[]', length: 10 },
-])
+messages.register(MessageType.ViewScene | MessageType.Response, parsers.object<ViewSceneResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('status', parsers.uint8),
+    parsers.property('groupId', parsers.uint8),
+    parsers.property('sceneId', parsers.uint8),
+    parsers.property('transitionTime', parsers.uint16),
+    parsers.property('nameLength', parsers.uint8),
+    parsers.property('nameMaxLength', parsers.uint8),
+    parsers.property('name', parsers.string<ViewSceneResponse>('nameLength')),
+    parsers.property('extensionLength', parsers.uint8),
+    parsers.property('extensionMaxLength', parsers.uint8),
+    parsers.property('extension', parsers.array<uint8, ViewSceneResponse>('extensionLength', parsers.uint8)),
+))
 
 export interface ViewSceneResponse extends GroupResponse
 {
@@ -147,45 +147,45 @@ export interface ViewSceneResponse extends GroupResponse
     name: string;
     nameMaxLength: uint8;
     nameLength: uint8;
-    extension: string;
+    extension: uint8[];
     extensionMaxLength: uint8;
     extensionLength: uint8;
 }
 
-Protocol.register<SceneResponse>('type', MessageType.AddScene | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'status', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' },
-    { name: 'sceneId', type: 'uint8' },
-])
+messages.register(MessageType.AddScene | MessageType.Response, parsers.object<SceneResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('status', parsers.uint8),
+    parsers.property('groupId', parsers.uint16),
+    parsers.property('sceneId', parsers.uint8),
+))
 
-Protocol.register<SceneResponse>('type', MessageType.RemoveScene | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'status', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' },
-    { name: 'sceneId', type: 'uint8' },
-])
+messages.register(MessageType.RemoveScene | MessageType.Response, parsers.object<SceneResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('status', parsers.uint8),
+    parsers.property('groupId', parsers.uint16),
+    parsers.property('sceneId', parsers.uint8),
+))
 
-Protocol.register<SceneResponse>('type', MessageType.RemoveAllScene | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'status', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' },
-])
+messages.register(MessageType.RemoveAllScene | MessageType.Response, parsers.object<SceneResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('status', parsers.uint8),
+    parsers.property('groupId', parsers.uint16),
+))
 
-Protocol.register<SceneResponse>('type', MessageType.StoreScene | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'status', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' },
-    { name: 'sceneId', type: 'uint8' },
-])
+messages.register(MessageType.StoreScene | MessageType.Response, parsers.object<SceneResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('status', parsers.uint8),
+    parsers.property('groupId', parsers.uint16),
+    parsers.property('sceneId', parsers.uint8),
+))
 
 export interface SceneResponse extends GroupResponse
 {
@@ -193,14 +193,14 @@ export interface SceneResponse extends GroupResponse
     sceneId: uint8;
 }
 
-Protocol.register<SceneMembershipResponse>('type', MessageType.SceneMembership | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'status', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' },
-    { name: 'scenes', type: 'uint8[]', length: 'uint8' },
-])
+messages.register(MessageType.SceneMembership | MessageType.Response, parsers.object<SceneMembershipResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('status', parsers.uint8),
+    parsers.property('groupId', parsers.uint16),
+    parsers.property('scenes', parsers.array(parsers.uint8, parsers.uint8)),
+))
 
 export interface SceneMembershipResponse extends StatusMessage
 {

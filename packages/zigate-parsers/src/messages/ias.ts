@@ -1,16 +1,15 @@
-import { StatusMessage } from './status';
-import { Message, MessageType, uint8, uint16, Protocol } from './common';
-import { ShortAddressRequest } from './descriptors';
+import { MessageType, messages } from './_common';
 import { CommandMessage } from './move';
+import { parsers, uint8 } from '@domojs/protocol-parser';
 
-Protocol.register<IASZoneMessage>('type', MessageType.IASZoneEnrollResponse, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'enrollResponseCode', type: 'uint16' },
-    { name: 'zoneId', type: 'uint8' },
-])
+messages.register(MessageType.IASZoneEnrollResponse, parsers.object<IASZoneMessage>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('enrollResponseCode', parsers.uint16),
+    parsers.property('zoneId', parsers.uint8),
+));
 
 export interface IASZoneMessage extends CommandMessage
 {

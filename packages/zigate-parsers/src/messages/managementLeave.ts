@@ -1,29 +1,29 @@
 import { ShortAddressRequest } from './descriptors';
-import { Message, MessageType, Protocol } from './common';
-import { StatusMessage } from './status';
+import { messages, MessageType } from './_common';
+import { parsers, uint64 } from '@domojs/protocol-parser';
 
-Protocol.register<ManagementLeave>('type', MessageType.ManagementLeave, [
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'extendedAddress', type: 'uint64' },
-    { name: 'rejoin', type: 'uint8' },
-    { name: 'keepChildren', type: 'uint8' },
-]);
+messages.register(MessageType.ManagementLeave, parsers.object<ManagementLeave>(
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('extendedAddress', parsers.uint64),
+    parsers.property('rejoin', parsers.boolean(parsers.uint8)),
+    parsers.property('keepChildren', parsers.boolean(parsers.uint8)),
+));
 
 export interface ManagementLeave extends ShortAddressRequest
 {
     type: MessageType.ManagementLeave;
-    extendedAddress: number;
+    extendedAddress: uint64;
     rejoin: boolean;
     keepChildren: boolean;
 }
 
-Protocol.register<LeaveIndicationResponse>('type', MessageType.LeaveIndication, [
-    { name: 'extendedAddress', type: 'uint64' },
-    { name: 'rejoinStatus', type: 'uint8' },
-])
+messages.register(MessageType.LeaveIndication, parsers.object<LeaveIndicationResponse>(
+    parsers.property('extendedAddress', parsers.uint64),
+    parsers.property('rejoinStatus', parsers.uint8),
+))
 
 export interface LeaveIndicationResponse
 {
-    extendedAddress: string;
+    extendedAddress: uint64;
     rejoinStatus: number;
 }

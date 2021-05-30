@@ -1,31 +1,31 @@
 import { StatusMessage } from './status';
-import { Message, MessageType, uint64, Protocol, uint32, uint8, uint16 } from './common';
-import { complexFrameType } from '@domojs/protocol-parser';
+import { Message, MessageType, messages } from './_common';
+import { parsers, uint16, uint32, uint64, uint8 } from '@domojs/protocol-parser';
 
-Protocol.register<OutOfBandCommissionningDataRequest>('type', MessageType.OutOfBandCommissionningData, [
-    { name: 'addressOfInterest', type: 'uint64' },
-    { name: 'key', type: <complexFrameType>'uint8[16]' }
-])
+messages.register(MessageType.OutOfBandCommissionningData, parsers.object<OutOfBandCommissionningDataRequest>(
+    parsers.property('addressOfInterest', parsers.uint64),
+    parsers.property('key', parsers.array(-1, parsers.buffer(16)))
+));
 
 export interface OutOfBandCommissionningDataRequest extends Message
 {
     addressOfInterest: uint64;
-    key: Buffer;
+    key: Buffer[];
 }
 
-Protocol.register<OutOfBandCommissionningDataResponse>('type', MessageType.OutOfBandCommissionningData | MessageType.Response, [
-    { name: 'deviceExtendedAddress', type: 'uint64' },
-    { name: 'key', type: <complexFrameType>'buffer[16]' },
-    { name: 'mic', type: 'uint32' },
-    { name: 'hostExtendedAddress', type: 'uint64' },
-    { name: 'activeKeySequenceNumber', type: 'uint8' },
-    { name: 'channel', type: 'uint64' },
-    { name: 'panId', type: 'uint64' },
-    { name: 'extendedPanId', type: 'uint64' },
-    { name: 'shortAddress', type: 'uint16' },
-    { name: 'deviceId', type: 'uint16' },
-    { name: 'status', type: 'uint8' },
-])
+messages.register(MessageType.OutOfBandCommissionningData | MessageType.Response, parsers.object<OutOfBandCommissionningDataResponse>(
+    parsers.property('deviceExtendedAddress', parsers.uint64),
+    parsers.property('key', parsers.buffer(16)),
+    parsers.property('mic', parsers.uint32),
+    parsers.property('hostExtendedAddress', parsers.uint64),
+    parsers.property('activeKeySequenceNumber', parsers.uint8),
+    parsers.property('channel', parsers.uint8),
+    parsers.property('panId', parsers.uint16),
+    parsers.property('extendedPanId', parsers.uint64),
+    parsers.property('shortAddress', parsers.uint16),
+    parsers.property('deviceId', parsers.uint16),
+    parsers.property('status', parsers.uint8),
+))
 
 export interface OutOfBandCommissionningDataResponse extends StatusMessage
 {

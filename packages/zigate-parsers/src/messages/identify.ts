@@ -1,21 +1,20 @@
-import { StatusMessage } from './status';
-import { Message, MessageType, uint8, uint16, Protocol } from './common';
-import { ShortAddressRequest } from './descriptors';
+import { MessageType, messages } from './_common';
 import { CommandMessage } from './move';
+import { parsers, uint16 } from '@domojs/protocol-parser';
 
-Protocol.register<IdentifySendRequest>('type', MessageType.IdentifySend, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'time', type: 'uint16' },
-])
-Protocol.register<CommandMessage>('type', MessageType.IdentifyQuery, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-])
+messages.register(MessageType.IdentifySend, parsers.object<IdentifySendRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('time', parsers.uint16),
+))
+messages.register(MessageType.IdentifyQuery, parsers.object<CommandMessage>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+))
 
 export interface IdentifySendRequest extends CommandMessage
 {

@@ -8,7 +8,7 @@ export default interface Message extends CoreMessage
     topicFilter: string[]
 }
 
-Protocol.register<Message>('type', ControlPacketType.UNSUBSCRIBE, [
+messages.register(ControlPacketType.UNSUBSCRIBE, parsers.object<Message>(
     Object.assign({}, propertiesFrame, { name: 'properties' }),
-    { name: 'topicFilter', type: 'string[]' }
+    parsers.property('topicFilter', parsers.string[])
 ]);

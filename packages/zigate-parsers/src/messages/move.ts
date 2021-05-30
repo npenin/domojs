@@ -1,59 +1,59 @@
 import { StatusMessage } from './status';
-import { Message, MessageType, uint8, uint16, Protocol } from './common';
+import { MessageType, messages } from './_common';
 import { ShortAddressRequest } from './descriptors';
-import { MoveToSaturation } from './hue';
+import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
 
-Protocol.register<MoveToLevel>('type', MessageType.MoveToLevel, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'onoff', type: 'uint8' },
-    { name: 'mode', type: 'uint8' },
-    { name: 'rate', type: 'uint8' },
-]);
+messages.register(MessageType.MoveToLevel, parsers.object<MoveToLevel>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('onoff', parsers.uint8),
+    parsers.property('mode', parsers.uint8),
+    parsers.property('rate', parsers.uint8),
+));
 
-Protocol.register<MoveToLevelWithWithoutOnOff>('type', MessageType.MoveToLevelWithWithoutOnOff, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'onoff', type: 'uint8' },
-    { name: 'level', type: 'uint8' },
-    { name: 'transitionTime', type: 'uint16' },
-]);
+messages.register(MessageType.MoveToLevelWithWithoutOnOff, parsers.object<MoveToLevelWithWithoutOnOff>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('onoff', parsers.uint8),
+    parsers.property('level', parsers.uint8),
+    parsers.property('transitionTime', parsers.uint16),
+));
 
-Protocol.register<MoveStep>('type', MessageType.MoveStep, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'onoff', type: 'uint8' },
-    { name: 'stepMode', type: 'uint8' },
-    { name: 'stepSize', type: 'uint8' },
-    { name: 'transitionTime', type: 'uint16' },
-]);
+messages.register(MessageType.MoveStep, parsers.object<MoveStep>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('onoff', parsers.uint8),
+    parsers.property('stepMode', parsers.uint8),
+    parsers.property('stepSize', parsers.uint8),
+    parsers.property('transitionTime', parsers.uint16),
+));
 
-Protocol.register<CommandMessage>('type', MessageType.MoveStopMove, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-]);
+messages.register(MessageType.MoveStopMove, parsers.object<CommandMessage>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+));
 
-Protocol.register<CommandMessage>('type', MessageType.MoveStopWithOnOff, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-]);
+messages.register(MessageType.MoveStopWithOnOff, parsers.object<CommandMessage>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+));
 
-Protocol.register<CommandList>('type', MessageType.ObjectCommandsList, [
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'profileId', type: 'uint16' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'commands', type: 'uint8[]' },
-])
+messages.register(MessageType.ObjectCommandsList, parsers.object<CommandList>(
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('profileId', parsers.uint16),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('commands', parsers.array(-1, parsers.uint8)),
+))
 
 export interface CommandMessage extends ShortAddressRequest
 {

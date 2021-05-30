@@ -1,9 +1,9 @@
-import { AnyParser, Cursor, Parser, ParsersWithMessage, ParserWithMessageWithoutKnownLength, parserWrite } from "./type";
+import { AnyParser, Cursor, Parser, ParsersWithMessage, ParserWithMessageWithoutKnownLength, parserWrite } from "./_common";
 
 export default class Sequence<T extends unknown[], TMessage = unknown> implements ParserWithMessageWithoutKnownLength<T, TMessage>
 {
-    private parsers: AnyParser<unknown>[];
-    constructor(...parsers: AnyParser<unknown>[])
+    private parsers: AnyParser<T, TMessage>[];
+    constructor(...parsers: AnyParser<T, TMessage>[])
     {
         this.parsers = parsers;
         for (const parser of parsers)
