@@ -1,41 +1,42 @@
 import { StatusMessage } from './status';
-import { Message, MessageType, uint8, uint16, Protocol } from './common';
+import { Message, MessageType, messages } from './_common';
 import { ShortAddressRequest } from './descriptors';
 import { CommandMessage } from './move';
+import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
 
-Protocol.register<MoveToColorTemperature>('type', MessageType.MoveToColorTemperature, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'temperature', type: 'uint16' },
-    { name: 'transitionTime', type: 'uint16' },
-]);
+messages.register(MessageType.MoveToColorTemperature, parsers.object<MoveToColorTemperature>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('temperature', parsers.uint16),
+    parsers.property('transitionTime', parsers.uint16),
+));
 
-Protocol.register<MoveColorTemperature>('type', MessageType.MoveColorTemperature, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'mode', type: 'uint8' },
-    { name: 'rate', type: 'uint16' },
-    { name: 'minTemperature', type: 'uint16' },
-    { name: 'maxTemperature', type: 'uint16' },
-    { name: 'optionsMask', type: 'uint8' },
-    { name: 'optionsOverride', type: 'uint8' },
-]);
+messages.register(MessageType.MoveColorTemperature, parsers.object<MoveColorTemperature>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('mode', parsers.uint8),
+    parsers.property('rate', parsers.uint16),
+    parsers.property('minTemperature', parsers.uint16),
+    parsers.property('maxTemperature', parsers.uint16),
+    parsers.property('optionsMask', parsers.uint8),
+    parsers.property('optionsOverride', parsers.uint8),
+));
 
-Protocol.register<StepColorTemperature>('type', MessageType.StepColorTemperature, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'mode', type: 'uint8' },
-    { name: 'stepSize', type: 'uint16' },
-    { name: 'transitionTime', type: 'uint16' },
-    { name: 'minTemperature', type: 'uint16' },
-    { name: 'maxTemperature', type: 'uint16' },
-]);
+messages.register(MessageType.StepColorTemperature, parsers.object<StepColorTemperature>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('mode', parsers.uint8),
+    parsers.property('stepSize', parsers.uint16),
+    parsers.property('transitionTime', parsers.uint16),
+    parsers.property('minTemperature', parsers.uint16),
+    parsers.property('maxTemperature', parsers.uint16),
+));
 
 export interface MoveToColorTemperature extends CommandMessage
 {

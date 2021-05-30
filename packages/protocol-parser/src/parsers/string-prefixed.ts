@@ -1,4 +1,4 @@
-import { Cursor, Parser, ParserWithoutKnownLength, parserWrite } from "./type";
+import { Cursor, Parser, ParserWithoutKnownLength, parserWrite } from "./_common";
 
 export default class PrefixedString implements ParserWithoutKnownLength<string>
 {

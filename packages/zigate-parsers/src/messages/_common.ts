@@ -1,6 +1,5 @@
-import { uint8, uint16, uint32, int8, int16, int32, float, double, Frame, FrameDescription, uint64, Protocol as CProtocol } from '@domojs/protocol-parser/dist/index';
+import { Cursor, parsers, parserWrite, uint16, uint8 } from '@domojs/protocol-parser/dist/index';
 import { EventEmitter } from 'events';
-export { uint8, uint16, uint32, int8, int16, int32, float, double, uint64 }
 import { log as debug } from '@akala/core';
 const log = debug('zigate');
 
@@ -129,46 +128,55 @@ export enum MessageType
     APSDataConfirmFail = 0x8702,
 }
 
-export var Protocol: CProtocol<Message> & { send?: (type: MessageType, message: any) => Buffer } = new CProtocol<Message>([
-    { name: 'start', type: 'uint8' },
-    { name: 'type', type: 'uint16' },
-    { name: 'length', type: 'uint16' },
-    { name: 'checksum', type: 'uint8' },
-    { name: 'message', type: 'subFrame', choose: { discriminator: 'type', subFrame: {} } },
-    { name: 'rssi', type: 'uint8', optional: true },
-    { name: 'end', type: 'uint8' }]);
+export const messages = parsers.chooseProperty<Message>('type', 'message', {});
 
-Protocol.send = function (this: CProtocol<Message>, type: MessageType, message)
-{
-    var buffer = this.write({ start: 0x01, type: type, message: message, end: 0x03, length: 2, checksum: 1 });
-    buffer.writeInt16BE(buffer.length - 8, 3);
-    log('encoding buffer', buffer);
+export const Message = parsers.series<Message>(
+    parsers.property('start', parsers.uint8 as parsers.Parser<1>),
+    parsers.property('type', parsers.uint16),
+    parsers.property('length', parsers.uint16),
+    parsers.property('checksum', parsers.uint8),
+    messages,
+    parsers.property('rssi', parsers.uint8),
+    parsers.property('end', parsers.uint8 as parsers.Parser<3>)
+);
 
-    var checksum = 0x00;
-    checksum ^= type;
-    checksum ^= buffer.length - 8;
-
-    for (let i = 6; i < buffer.length - 2; i++)
+export const Protocol = {
+    read(buffer: Buffer)
     {
-        checksum ^= buffer[i];
-    }
-
-    buffer[5] = checksum;
-    for (let index = 1; index < buffer.length - 1; index++)
+        return Message.read(buffer, new Cursor(), {});
+    },
+    send(type: MessageType, message: any)
     {
-        if (buffer[index] < 0x10)
+        var buffer = Buffer.concat(parserWrite(Message, { start: 0x01, type: type, message: message, end: 0x03, length: 2, checksum: 1 }));
+        buffer.writeInt16BE(buffer.length - 8, 3);
+        log('encoding buffer', buffer);
+
+        var checksum = 0x00;
+        checksum ^= type;
+        checksum ^= buffer.length - 8;
+
+        for (let i = 6; i < buffer.length - 2; i++)
         {
-            let newBuffer = Buffer.alloc(buffer.length + 1);
-            buffer.copy(newBuffer, 0, 0, index);
-            newBuffer[index] = 0x02;
-            newBuffer[index + 1] = buffer[index] ^ 0x10;
-            buffer.copy(newBuffer, index + 2, index + 1);
-            index++;
-            buffer = newBuffer;
+            checksum ^= buffer[i];
         }
+
+        buffer[5] = checksum;
+        for (let index = 1; index < buffer.length - 1; index++)
+        {
+            if (buffer[index] < 0x10)
+            {
+                let newBuffer = Buffer.alloc(buffer.length + 1);
+                buffer.copy(newBuffer, 0, 0, index);
+                newBuffer[index] = 0x02;
+                newBuffer[index + 1] = buffer[index] ^ 0x10;
+                buffer.copy(newBuffer, index + 2, index + 1);
+                index++;
+                buffer = newBuffer;
+            }
+        }
+        log('encoded buffer', buffer);
+        return buffer;
     }
-    log('encoded buffer', buffer);
-    return buffer;
 }
 
 export enum Cluster
@@ -242,7 +250,7 @@ export interface Message
 //     public start: uint8;
 //     public end: uint8;
 
-//     private static frame: FrameDescription<Message>[] = [{ type: 'uint8', name: 'start' }, { name: 'type', type: 'uint16' }, { name: 'data', type: 'buffer', length: 'uint8' }];
+//     private static frame: FrameDescription<Message>[] = [{ type: 'uint8', name: 'start' }, parsers.property('type', parsers.uint16), { name: 'data', type: 'buffer', length: 'uint8' }];
 
 //     public init(typeOrFrame: MessageType | Buffer, subFrame: FrameDescription<this>[])
 //     {

@@ -7,6 +7,6 @@ export default interface Message extends CoreMessage
     properties: Properties;
 }
 
-Protocol.register<Message>('type', ControlPacketType.SUBACK, [
+messages.register(ControlPacketType.SUBACK, parsers.object<Message>(
     Object.assign({}, propertiesFrame, { name: 'properties' }),
 ]);

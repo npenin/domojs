@@ -220,10 +220,10 @@ export type Device =
 
 
 var frames = parsers.object<Device>(
-    parsers.property('j1', parsers.boolean),
+    parsers.property('j1', parsers.boolean()),
     parsers.property('sw2', parsers.uint2),
     parsers.property('id1', parsers.uint5),
-    parsers.property('id2', parsers.boolean),
+    parsers.property('id2', parsers.boolean()),
     parsers.property('sw1', parsers.uint7),
     parsers.property('sw12', parsers.uint3),
     parsers.property('remId', parsers.uint5),

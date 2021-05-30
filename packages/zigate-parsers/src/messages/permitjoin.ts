@@ -1,14 +1,14 @@
-import { StatusMessage } from './status';
-import { Message, MessageType, uint8, Protocol } from './common';
+import { MessageType, messages } from './_common';
 import { ShortAddressRequest } from './descriptors';
+import { parsers, uint8 } from '@domojs/protocol-parser';
 
-Protocol.register('type', MessageType.PermitJoin, []);
-Protocol.register<PermitJoinResponse>('type', MessageType.PermitJoin | MessageType.Response, [{ name: 'status', type: 'uint8' }]);
-Protocol.register<PermitJoiningRequest>('type', MessageType.PermitJoining, [
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'interval', type: 'uint8' },
-    { name: 'TCSignificance', type: 'uint8' },
-]);
+messages.register(MessageType.PermitJoin, parsers.object());
+messages.register(MessageType.PermitJoin | MessageType.Response, parsers.object<PermitJoinResponse>(parsers.property('status', parsers.boolean(parsers.uint8))));
+messages.register(MessageType.PermitJoining, parsers.object<PermitJoiningRequest>(
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('interval', parsers.uint8),
+    parsers.property('TCSignificance', parsers.uint8),
+));
 
 export interface PermitJoinResponse
 {

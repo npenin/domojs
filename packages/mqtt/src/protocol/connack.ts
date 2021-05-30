@@ -15,15 +15,15 @@ export default interface Message extends CoreMessage
     reason: ReasonCodes;
 }
 
-Protocol.register<Message>('type', ControlPacketType.CONNACK, [
-    { name: 'reservedConnectFlag1', type: 'bit' },
-    { name: 'reservedConnectFlag2', type: 'bit' },
-    { name: 'reservedConnectFlag3', type: 'bit' },
-    { name: 'reservedConnectFlag4', type: 'bit' },
-    { name: 'reservedConnectFlag5', type: 'bit' },
-    { name: 'reservedConnectFlag6', type: 'bit' },
-    { name: 'reservedConnectFlag7', type: 'bit' },
-    { name: 'hasSession', type: 'bit' },
-    { name: 'reason', type: 'uint8' },
+messages.register(ControlPacketType.CONNACK, parsers.object<Message>(
+    parsers.property('reservedConnectFlag1', parsers.bit),
+    parsers.property('reservedConnectFlag2', parsers.bit),
+    parsers.property('reservedConnectFlag3', parsers.bit),
+    parsers.property('reservedConnectFlag4', parsers.bit),
+    parsers.property('reservedConnectFlag5', parsers.bit),
+    parsers.property('reservedConnectFlag6', parsers.bit),
+    parsers.property('reservedConnectFlag7', parsers.bit),
+    parsers.property('hasSession', parsers.bit),
+    parsers.property('reason', parsers.uint8),
     Object.assign({}, propertiesFrame, { name: 'properties' }),
 ]);

@@ -1,15 +1,14 @@
-import { StatusMessage } from './status';
-import { Message, MessageType, uint8, uint16, Protocol } from './common';
-import { ShortAddressRequest } from './descriptors';
+import { MessageType, messages } from './_common';
 import { CommandMessage } from './move';
+import { parsers } from '@domojs/protocol-parser';
 
-Protocol.register<LockUnlockMessage>('type', MessageType.LockUnlockDoor, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'unlock', type: 'uint8' },
-])
+messages.register(MessageType.LockUnlockDoor, parsers.object<LockUnlockMessage>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('unlock', parsers.boolean(parsers.uint8)),
+));
 
 export interface LockUnlockMessage extends CommandMessage
 {

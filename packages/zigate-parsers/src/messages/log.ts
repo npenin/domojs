@@ -1,6 +1,5 @@
-import { StatusMessage } from './status';
-import { Message, MessageType, uint8, uint16, Protocol } from './common';
-import { ShortAddressRequest } from './descriptors';
+import { MessageType, messages } from './_common';
+import { parsers } from '@domojs/protocol-parser';
 
 export enum LogLevel
 {
@@ -20,4 +19,7 @@ export interface LogMessage
     message: string
 }
 
-Protocol.register<LogMessage>('type', MessageType.LogMessage, [{ name: 'level', type: 'uint8' }, { name: 'message', type: 'string' }]);
+messages.register(MessageType.LogMessage, parsers.object<LogMessage>(
+    parsers.property('level', parsers.uint8),
+    parsers.property('message', parsers.string(-1))
+));

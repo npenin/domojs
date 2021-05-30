@@ -109,7 +109,7 @@ export enum PropertyKeys
 
 export const propertiesFrame: FrameDescription<{ properties: Properties }> = {
     name: 'properties', type: 'subFrame[]', length: 'vuint', frame: new Frame<{ property: PropertyKeys, value: unknown }>([
-        { name: 'property', type: 'uint8' },
+        parsers.property('property', parsers.uint8),
         {
             name: 'value', type: 'subFrame', choose: {
                 discriminator: 'property',

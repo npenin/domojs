@@ -1,7 +1,8 @@
 import { StatusMessage } from './status';
-import { Message, MessageType, uint8, uint16, Protocol, Cluster } from './common';
+import { Message, MessageType, Cluster, messages } from './_common';
 import { ShortAddressRequest } from './descriptors';
 import { CommandMessage } from './move';
+import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
 
 export enum Direction 
 {
@@ -9,17 +10,17 @@ export enum Direction
     FromClientToServer = 1,
 }
 
-Protocol.register<ReadAttributeMessage>('type', MessageType.ReadAttribute, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'direction', type: 'uint8' },
-    { name: 'manufacturerSpecific', type: 'uint8' },
-    { name: 'manufacturerId', type: 'uint16' },
-    { name: 'attributes', type: 'uint16[]', length: 'uint8' },
-]);
+messages.register(MessageType.ReadAttribute, parsers.object<ReadAttributeMessage>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('direction', parsers.uint8),
+    parsers.property('manufacturerSpecific', parsers.boolean(parsers.uint8)),
+    parsers.property('manufacturerId', parsers.uint16),
+    parsers.property('attributes', parsers.array(parsers.uint8, parsers.uint16)),
+));
 
 export interface AttributeMessage extends CommandMessage
 {
@@ -35,48 +36,48 @@ export interface ReadAttributeMessage extends AttributeMessage
 
 }
 
-Protocol.register<WriteAttributeMessage>('type', MessageType.WriteAttribute, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'direction', type: 'uint8' },
-    { name: 'manufacturerSpecific', type: 'uint8' },
-    { name: 'manufacturerId', type: 'uint16' },
-    { name: 'attributes', type: 'uint16[]', length: 'uint8' },
-])
+messages.register(MessageType.WriteAttribute, parsers.object<WriteAttributeMessage>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('direction', parsers.uint8),
+    parsers.property('manufacturerSpecific', parsers.boolean(parsers.uint8)),
+    parsers.property('manufacturerId', parsers.uint16),
+    parsers.property('attributes', parsers.array(parsers.uint8, parsers.uint16)),
+))
 
 export interface WriteAttributeMessage extends AttributeMessage
 {
     attributes: uint16[];
 }
 
-Protocol.register<ConfigureReportingRequest>('type', MessageType.ConfigureReporting, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'direction', type: 'uint8' },
-    { name: 'manufacturerSpecific', type: 'uint8' },
-    { name: 'manufacturerId', type: 'uint16' },
-    { name: 'attributes', type: 'uint16[]', length: 'uint8' },
-    { name: 'attributeDirection', type: 'uint8' },
-    { name: 'attributeType', type: 'uint8' },
-    { name: 'attributeId', type: 'uint16' },
-    { name: 'minInterval', type: 'uint16' },
-    { name: 'maxInterval', type: 'uint16' },
-    { name: 'timeout', type: 'uint16' },
-    { name: 'change', type: 'uint8' },
-]);
+messages.register(MessageType.ConfigureReporting, parsers.object<ConfigureReportingRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('direction', parsers.uint8),
+    parsers.property('manufacturerSpecific', parsers.boolean(parsers.uint8)),
+    parsers.property('manufacturerId', parsers.uint16),
+    parsers.property('attributes', parsers.array(parsers.uint8, parsers.uint16)),
+    parsers.property('attributeDirection', parsers.uint8),
+    parsers.property('attributeType', parsers.uint8),
+    parsers.property('attributeId', parsers.uint16),
+    parsers.property('minInterval', parsers.uint16),
+    parsers.property('maxInterval', parsers.uint16),
+    parsers.property('timeout', parsers.uint16),
+    parsers.property('change', parsers.uint8),
+));
 
-Protocol.register<AttributeList>('type', MessageType.ObjectAttributesList, [
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'profileId', type: 'uint16' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'attributes', type: 'uint16[]' },
-])
+messages.register(MessageType.ObjectAttributesList, parsers.object<AttributeList>(
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('profileId', parsers.uint16),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('attributes', parsers.array(-1, parsers.uint16)),
+))
 
 export interface ConfigureReportingRequest extends AttributeMessage
 {
@@ -90,13 +91,13 @@ export interface ConfigureReportingRequest extends AttributeMessage
     attributes: uint16[];
 }
 
-Protocol.register<ConfigureReportingResponse>('type', MessageType.ConfigureReporting | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'srcAddress', type: 'uint16' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'status', type: 'uint8' },
-])
+messages.register(MessageType.ConfigureReporting | MessageType.Response, parsers.object<ConfigureReportingResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('srcAddress', parsers.uint16),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('status', parsers.uint8),
+))
 export interface ConfigureReportingResponse extends StatusMessage
 {
     srcAddress: uint16;
@@ -104,19 +105,18 @@ export interface ConfigureReportingResponse extends StatusMessage
     clusterId: uint16;
 }
 
-Protocol.register<AttributeDiscoveryRequest>('type', MessageType.AttributeDiscovery, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'attributeId', type: 'uint16' },
-    { name: 'direction', type: 'uint8' },
-    { name: 'manufacturerSpecific', type: 'uint8' },
-    { name: 'manufacturerId', type: 'uint16' },
-    { name: 'maxNumberOfIdentifiers', type: 'uint8' },
-
-])
+messages.register(MessageType.AttributeDiscovery, parsers.object<AttributeDiscoveryRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('attributeId', parsers.uint16),
+    parsers.property('direction', parsers.uint8),
+    parsers.property('manufacturerSpecific', parsers.boolean(parsers.uint8)),
+    parsers.property('manufacturerId', parsers.uint16),
+    parsers.property('maxNumberOfIdentifiers', parsers.uint8),
+))
 export interface AttributeDiscoveryRequest extends AttributeMessage
 {
     attributeId: uint16;
@@ -139,11 +139,11 @@ export enum AttributeType
     string = 0x42,
 }
 
-Protocol.register<AttributeDiscoveryResponse>('type', MessageType.AttributeDiscovery | MessageType.Response, [
-    { name: 'complete', type: 'uint8' },
-    { name: 'attributeType', type: 'uint8' },
-    { name: 'attributeId', type: 'uint16' }
-])
+messages.register(MessageType.AttributeDiscovery | MessageType.Response, parsers.object<AttributeDiscoveryResponse>(
+    parsers.property('complete', parsers.boolean(parsers.uint8)),
+    parsers.property('attributeType', parsers.uint8),
+    parsers.property('attributeId', parsers.uint16)
+))
 
 export interface AttributeDiscoveryResponse 
 {
@@ -160,38 +160,38 @@ export interface AttributeList
     attributes: uint8[];
 }
 
-Protocol.register<AttributeResponse>('type', MessageType.ReadAttribute | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'sourceAddress', type: 'uint16' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint8' },
-    { name: 'attributeEnum', type: 'uint8' },
-    { name: 'status', type: 'uint8' },
-    { name: 'dataType', type: 'uint8' },
-    { name: 'value', type: 'buffer', length: 'uint16' },
-])
+messages.register(MessageType.ReadAttribute | MessageType.Response, parsers.object<AttributeResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('sourceAddress', parsers.uint16),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint8),
+    parsers.property('attributeEnum', parsers.uint8),
+    parsers.property('status', parsers.uint8),
+    parsers.property('dataType', parsers.uint8),
+    parsers.property('value', parsers.buffer(parsers.uint16)),
+))
 
-Protocol.register<AttributeResponse>('type', MessageType.WriteAttribute | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'sourceAddress', type: 'uint16' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint8' },
-    { name: 'attributeEnum', type: 'uint8' },
-    { name: 'status', type: 'uint8' },
-    { name: 'dataType', type: 'uint8' },
-    { name: 'value', type: 'buffer', length: 'uint16' },
-])
+messages.register(MessageType.WriteAttribute | MessageType.Response, parsers.object<AttributeResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('sourceAddress', parsers.uint16),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint8),
+    parsers.property('attributeEnum', parsers.uint8),
+    parsers.property('status', parsers.uint8),
+    parsers.property('dataType', parsers.uint8),
+    parsers.property('value', parsers.buffer(parsers.uint16)),
+))
 
-Protocol.register<AttributeResponse>('type', MessageType.ReportIndividualAttribute | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'sourceAddress', type: 'uint16' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'attributeEnum', type: 'uint16' },
-    { name: 'status', type: 'uint8' },
-    { name: 'dataType', type: 'uint8' },
-    { name: 'value', type: 'buffer', length: 'uint16' },
-])
+messages.register(MessageType.ReportIndividualAttribute | MessageType.Response, parsers.object<AttributeResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('sourceAddress', parsers.uint16),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('attributeEnum', parsers.uint16),
+    parsers.property('status', parsers.uint8),
+    parsers.property('dataType', parsers.uint8),
+    parsers.property('value', parsers.buffer(parsers.uint16)),
+))
 
 export interface AttributeResponse extends StatusMessage
 {

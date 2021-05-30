@@ -25,7 +25,7 @@ export interface ParserWithMessageWithoutKnownLength<T, TMessage>
 
 export type Parsers<T> = Parser<T> | ParserWithoutKnownLength<T>
 export type ParsersWithMessage<T, TMessage> = ParserWithMessage<T, TMessage> | ParserWithMessageWithoutKnownLength<T, TMessage>;
-export type AnyParser<T, TMessage = unknown> = Parsers<T> | ParsersWithMessage<T, TMessage>
+export type AnyParser<T, TMessage> = Parsers<T> | ParsersWithMessage<T, TMessage>
 
 export class Cursor
 {

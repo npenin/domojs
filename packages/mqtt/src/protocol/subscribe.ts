@@ -8,7 +8,7 @@ export default interface Message extends CoreMessage
     properties: Properties;
 }
 
-Protocol.register<Message>('type', ControlPacketType.SUBSCRIBE, [
+messages.register(ControlPacketType.SUBSCRIBE, parsers.object<Message>(
     { name: 'packetId', type: 'uint16', },
     Object.assign({}, propertiesFrame, { name: 'properties' }),
 ]);

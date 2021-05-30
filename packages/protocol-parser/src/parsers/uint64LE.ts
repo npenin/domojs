@@ -1,4 +1,4 @@
-import { Cursor, Parser } from "./type";
+import { Cursor, Parser } from "./_common";
 import Uint16 from "./uint16";
 import Uint32 from "./uint32";
 import Uint8 from "./uint8";

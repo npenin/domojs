@@ -1,17 +1,16 @@
-import { StatusMessage } from './status';
-import { Message, MessageType, uint8, uint16, Protocol } from './common';
-import { ShortAddressRequest } from './descriptors';
+import { MessageType, messages } from './_common';
+import { parsers } from '@domojs/protocol-parser';
 
-Protocol.register<{}>('type', MessageType.InitiateTouchlink, []);
-Protocol.register<{}>('type', MessageType.TouchlinkFactoryResetTarget, []);
+messages.register(MessageType.InitiateTouchlink, parsers.object<{}>());
+messages.register(MessageType.TouchlinkFactoryResetTarget, parsers.object<{}>());
 
 export interface TouchlinkStatus
 {
     failed: boolean;
-    joinedNodeShortAddress: uint16;
+    joinedNodeShortAddress: number;
 }
 
-Protocol.register<TouchlinkStatus>('type', MessageType.TouchlinkFactoryResetTarget | MessageType.Response, [
-    { name: 'failed', type: 'uint8' },
-    { name: 'joinedNodeShortAddress', type: 'uint16' },
-])
+messages.register(MessageType.TouchlinkFactoryResetTarget | MessageType.Response, parsers.object<TouchlinkStatus>(
+    parsers.property('failed', parsers.boolean(parsers.uint8)),
+    parsers.property('joinedNodeShortAddress', parsers.uint16),
+))

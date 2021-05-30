@@ -1,56 +1,56 @@
 import { StatusMessage } from './status';
-import { Message, MessageType, uint8, uint16, Protocol } from './common';
-import { ShortAddressRequest } from './descriptors';
+import { messages, MessageType } from './_common';
 import { CommandMessage } from './move';
+import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
 
-Protocol.register<AddGroupRequest>('type', MessageType.AddGroup, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'groupAddress', type: 'uint16' },
-]);
+messages.register(MessageType.AddGroup, parsers.object<AddGroupRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('groupAddress', parsers.uint16),
+));
 
-Protocol.register<ViewGroupRequest>('type', MessageType.ViewGroup, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'groupAddress', type: 'uint16' },
-]);
-Protocol.register<GetGroupMembershipRequest>('type', MessageType.GetGroupMembership, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'groupList', type: 'uint8[]', length: 'uint8' },
-]);
-Protocol.register<RemoveGroupRequest>('type', MessageType.RemoveGroup, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'groupAddress', type: 'uint16' },
-]);
-Protocol.register<CommandMessage>('type', MessageType.RemoveAllGroup, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-]);
-Protocol.register<AddGroupRequest>('type', MessageType.AddGroupIfIdentify, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'groupAddress', type: 'uint16' },
-]);
+messages.register(MessageType.ViewGroup, parsers.object<ViewGroupRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('groupAddress', parsers.uint16),
+));
+messages.register(MessageType.GetGroupMembership, parsers.object<GetGroupMembershipRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('groupList', parsers.array(parsers.uint8, parsers.uint8)),
+));
+messages.register(MessageType.RemoveGroup, parsers.object<RemoveGroupRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('groupAddress', parsers.uint16),
+));
+messages.register(MessageType.RemoveAllGroup, parsers.object<CommandMessage>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+));
+messages.register(MessageType.AddGroupIfIdentify, parsers.object<AddGroupRequest>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('groupAddress', parsers.uint16),
+));
 
-Protocol.register<GroupResponse>('type', MessageType.AddGroup | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' }
-])
+messages.register(MessageType.AddGroup | MessageType.Response, parsers.object<GroupResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16)
+))
 
 export interface GroupResponse extends StatusMessage
 {
@@ -68,13 +68,13 @@ export interface ViewGroupRequest extends CommandMessage
     groupAddress: uint16;
 }
 
-Protocol.register<ViewGroupResponse>('type', MessageType.ViewGroup | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'status', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' }
-])
+messages.register(MessageType.ViewGroup | MessageType.Response, parsers.object<ViewGroupResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('status', parsers.uint8),
+    parsers.property('groupId', parsers.uint16)
+))
 
 export interface ViewGroupResponse extends GroupResponse
 {
@@ -86,13 +86,13 @@ export interface GetGroupMembershipRequest extends CommandMessage
     groupList: uint8[];
 }
 
-Protocol.register<GetGroupMembershipResponse>('type', MessageType.GetGroupMembership | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'capacity', type: 'uint8' },
-    { name: 'groupIds', type: 'uint16[]', length: 'uint8' },
-])
+messages.register(MessageType.GetGroupMembership | MessageType.Response, parsers.object<GetGroupMembershipResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('capacity', parsers.uint8),
+    parsers.property('groupIds', parsers.array(parsers.uint8, parsers.uint16)),
+))
 
 export interface GetGroupMembershipResponse extends GroupResponse
 {
@@ -105,13 +105,13 @@ export interface RemoveGroupRequest extends CommandMessage
     groupAddress: uint16;
 }
 
-Protocol.register<RemoveGroupResponse>('type', MessageType.RemoveGroup | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'capacity', type: 'uint8' },
-    { name: 'groupId', type: 'uint16' },
-])
+messages.register(MessageType.RemoveGroup | MessageType.Response, parsers.object<RemoveGroupResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('capacity', parsers.uint8),
+    parsers.property('groupId', parsers.uint16),
+))
 
 export interface RemoveGroupResponse extends GroupResponse
 {

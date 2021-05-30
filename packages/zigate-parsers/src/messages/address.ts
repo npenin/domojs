@@ -1,6 +1,6 @@
 import { StatusMessage } from './status';
-import { Message, MessageType, Protocol } from './common';
-import { uint16, uint64, uint8 } from '@domojs/protocol-parser/dist/index';
+import { messages, MessageType } from './_common';
+import { parsers, uint16, uint64, uint8 } from '@domojs/protocol-parser/dist/index';
 
 export enum AddressRequestType
 {
@@ -8,22 +8,14 @@ export enum AddressRequestType
     Extended = 1
 }
 
-Protocol.register<SingleNetworkAddressRequest | ExtendedNetworkAddressRequest>('type', MessageType.NetworkAddress, [
-    {
-        name: 'target', type: function (instance)
-        {
-            switch (instance.requestType)
-            {
-                case AddressRequestType.Single:
-                    return 'uint16';
-                case AddressRequestType.Extended:
-                    return 'uint64';
-            }
-        }
-    },
-    { name: 'requestType', type: 'uint8' },
-    { name: 'startIndex', type: 'uint8' }
-])
+messages.register(MessageType.NetworkAddress, parsers.object<SingleNetworkAddressRequest | ExtendedNetworkAddressRequest>(
+    parsers.chooseProperty<SingleNetworkAddressRequest | ExtendedNetworkAddressRequest>('requestType', 'target', {
+        [AddressRequestType.Single]: parsers.uint16,
+        [AddressRequestType.Extended]: parsers.uint64
+    }),
+    parsers.property('requestType', parsers.uint8),
+    parsers.property('startIndex', parsers.uint8)
+));
 
 export interface SingleNetworkAddressRequest
 {
@@ -46,15 +38,15 @@ export interface IEEEAddressRequest
     startIndex: uint8;
 }
 
-Protocol.register<NetworkAddressResponse>('type', MessageType.NetworkAddress | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'status', type: 'uint8' },
-    { name: 'IEEEAddress', type: 'uint64' },
-    { name: 'shortAddress', type: 'uint16' },
-    { name: 'numberOfDevices', type: 'uint8' },
-    { name: 'startIndex', type: 'uint8' },
-    { name: 'deviceList', type: 'uint16[]', length: 4 },
-])
+messages.register(MessageType.NetworkAddress | MessageType.Response, parsers.object<NetworkAddressResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('status', parsers.uint8),
+    parsers.property('IEEEAddress', parsers.uint64),
+    parsers.property('shortAddress', parsers.uint16),
+    parsers.property('numberOfDevices', parsers.uint8),
+    parsers.property('startIndex', parsers.uint8),
+    parsers.property('deviceList', parsers.array<uint16, NetworkAddressResponse>('numberOfDevices', parsers.uint16)),
+));
 
 export interface NetworkAddressResponse extends StatusMessage
 {
@@ -65,12 +57,12 @@ export interface NetworkAddressResponse extends StatusMessage
     deviceList: uint16[];
 }
 
-Protocol.register<NetworkAddressResponse>('type', MessageType.IEEEAddress | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'status', type: 'uint8' },
-    { name: 'IEEEAddress', type: 'uint64' },
-    { name: 'shortAddress', type: 'uint16' },
-    { name: 'numberOfDevices', type: 'uint8' },
-    { name: 'startIndex', type: 'uint8' },
-    { name: 'deviceList', type: 'uint16[]', length: 4 },
-])
+messages.register(MessageType.IEEEAddress | MessageType.Response, parsers.object<NetworkAddressResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('status', parsers.uint8),
+    parsers.property('IEEEAddress', parsers.uint64),
+    parsers.property('shortAddress', parsers.uint16),
+    parsers.property('numberOfDevices', parsers.uint8),
+    parsers.property('startIndex', parsers.uint8),
+    parsers.property('deviceList', parsers.array(-1, parsers.uint16)),
+))

@@ -1,5 +1,5 @@
 import Bit from "./bit";
-import { Cursor, Parser } from "./type";
+import { Cursor, Parser } from "./_common";
 import Uint2 from "./uint2";
 import Uint3 from "./uint3";
 import Uint4 from "./uint4";

@@ -1,19 +1,20 @@
 import { StatusMessage } from './status';
-import { Message, MessageType, uint8, uint16, Protocol } from './common';
+import { Message, MessageType, messages } from './_common';
 import { ShortAddressRequest } from './descriptors';
 import { CommandMessage } from './move';
+import { parsers } from '@domojs/protocol-parser';
 
-Protocol.register<IdentifyTriggerEffectMessage>('type', MessageType.IdentifyTriggerEffect, [
-    { name: 'addressMode', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'sourceEndpoint', type: 'uint8' },
-    { name: 'destinationEndpoint', type: 'uint8' },
-    { name: 'effectId', type: 'uint8' },
-    { name: 'effectGradient', type: 'uint8' },
-])
+messages.register(MessageType.IdentifyTriggerEffect, parsers.object<IdentifyTriggerEffectMessage>(
+    parsers.property('addressMode', parsers.uint8),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('sourceEndpoint', parsers.uint8),
+    parsers.property('destinationEndpoint', parsers.uint8),
+    parsers.property('effectId', parsers.uint8),
+    parsers.property('effectGradient', parsers.uint8),
+))
 
 export interface IdentifyTriggerEffectMessage extends CommandMessage
 {
-    effectId: uint8;
-    effectGradient: uint8;
+    effectId: number;
+    effectGradient: number;
 }

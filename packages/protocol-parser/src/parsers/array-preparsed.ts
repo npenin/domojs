@@ -1,9 +1,9 @@
 import { AnyParser, ParserWithMessageWithoutKnownLength } from ".";
-import { Cursor, Parser, ParserWithoutKnownLength, parserWrite } from "./_common";
+import { Cursor, Parser, parserWrite } from "./_common";
 
-export default class PrefixedLengthArray<T, TMessage> implements ParserWithMessageWithoutKnownLength<T[], TMessage>
+export default class PreparsedLengthArray<T, TMessage> implements ParserWithMessageWithoutKnownLength<T[], TMessage>
 {
-    constructor(private prefix: Parser<number>, private valueParser: AnyParser<T, TMessage>)
+    constructor(private prefix: keyof TMessage, private valueParser: AnyParser<T, TMessage>)
     {
     }
 
@@ -13,7 +13,7 @@ export default class PrefixedLengthArray<T, TMessage> implements ParserWithMessa
         if (cursor.subByteOffset > 0)
             throw new Error('Cross byte value are not supported');
 
-        var length = this.prefix.read(buffer, cursor);
+        const length = message[this.prefix] as unknown as number;
         var result: T[] = new Array<T>(length);
         for (let index = 0; index < length; index++)
             result[index] = this.valueParser.read(buffer, cursor, message);
@@ -23,8 +23,7 @@ export default class PrefixedLengthArray<T, TMessage> implements ParserWithMessa
     write(value: T[], message: TMessage): Buffer[]
     {
         var buffers: Buffer[] = [];
-        buffers.push(...parserWrite(this.prefix, value.length, message));
-        for (let index = 0; index < value.length; index++)
+        for (let index = 0; index < (message[this.prefix] as unknown as number); index++)
             buffers.push(...parserWrite(this.valueParser, value[index], message));
         return buffers;
     }

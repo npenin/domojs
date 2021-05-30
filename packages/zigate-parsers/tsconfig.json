@@ -7,10 +7,7 @@
     },
     "references": [
         {
-            "path": "../devices"
-        },
-        {
-            "path": "../zigate-parsers"
+            "path": "../protocol-parser"
         }
     ]
 }

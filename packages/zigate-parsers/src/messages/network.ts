@@ -1,40 +1,39 @@
 import { StatusMessage } from './status';
-import { Message, MessageType, Protocol, uint8, uint16, uint32, uint64 } from './common';
+import { messages, MessageType, } from './_common';
 import { ShortAddressRequest, Mask } from './descriptors';
-import { Device } from './devices';
-import { Frame } from '@domojs/protocol-parser';
+import { parsers, uint16, uint32, uint64, uint8 } from '@domojs/protocol-parser';
 
-Protocol.register('type', MessageType.StartNetwork, []);
-Protocol.register('type', MessageType.StartNetworkScan, []);
-Protocol.register<NetworkResponse>('type', MessageType.StartNetworkScan | MessageType.Response, [
-    { name: 'isNewNetwork', type: 'uint8' },
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'extendedAddress', type: 'uint64' },
-    { name: 'channel', type: 'uint8' }
-]);
+messages.register(MessageType.StartNetwork, parsers.object<{}>());
+messages.register(MessageType.StartNetworkScan, parsers.object<{}>());
+messages.register(MessageType.StartNetworkScan | MessageType.Response, parsers.object<NetworkResponse>(
+    parsers.property('isNewNetwork', parsers.boolean(parsers.uint8)),
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('extendedAddress', parsers.uint64),
+    parsers.property('channel', parsers.uint8)
+));
 
-Protocol.register<ManagementNetworkUpdateRequest>('type', MessageType.ManagementNetworkUpdate, [
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'channelMask', type: 'uint32' },
-    { name: 'scanDuration', type: 'uint8' },
-    { name: 'scanCount', type: 'uint8' },
-    { name: 'networkUpdateId', type: 'uint8' },
-    { name: 'networkManagerShortAddress', type: 'uint8' }
-]);
+messages.register(MessageType.ManagementNetworkUpdate, parsers.object<ManagementNetworkUpdateRequest>(
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('channelMask', parsers.uint32),
+    parsers.property('scanDuration', parsers.uint8),
+    parsers.property('scanCount', parsers.uint8),
+    parsers.property('networkUpdateId', parsers.uint8),
+    parsers.property('networkManagerShortAddress', parsers.uint8)
+));
 
-Protocol.register<ManagementNetworkUpdateResponse>('type', MessageType.ManagementNetworkUpdate | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'status', type: 'uint8' },
-    { name: 'totalTransmission', type: 'uint16' },
-    { name: 'transmissionFailures', type: 'uint16' },
-    { name: 'scannedChannels', type: 'uint32' },
-    { name: 'channels', type: 'uint8[]', length: 'uint8' }
-]);
+messages.register(MessageType.ManagementNetworkUpdate | MessageType.Response, parsers.object<ManagementNetworkUpdateResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('status', parsers.uint8),
+    parsers.property('totalTransmission', parsers.uint16),
+    parsers.property('transmissionFailures', parsers.uint16),
+    parsers.property('scannedChannels', parsers.uint32),
+    parsers.property('channels', parsers.buffer(parsers.uint8))
+));
 
 export interface NetworkResponse extends ShortAddressRequest
 {
     isNewNetwork: boolean;
-    extendedAddress: string;
+    extendedAddress: uint64;
     channel: uint8;
 }
 
@@ -55,16 +54,16 @@ export interface ManagementNetworkUpdateResponse extends StatusMessage
     channels: Buffer;
 }
 
-Protocol.register<SystemServerDiscoveryRequest>('type', MessageType.SystemServerDiscovery, [
-    { name: 'targetShortAddress', type: 'uint16' },
-    { name: 'mask', type: 'uint16' },
-]);
+messages.register(MessageType.SystemServerDiscovery, parsers.object<SystemServerDiscoveryRequest>(
+    parsers.property('targetShortAddress', parsers.uint16),
+    parsers.property('mask', parsers.uint16),
+));
 
-Protocol.register<SystemServerDiscoveryResponse>('type', MessageType.SystemServerDiscovery | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'status', type: 'uint8' },
-    { name: 'mask', type: 'uint16' },
-]);
+messages.register(MessageType.SystemServerDiscovery | MessageType.Response, parsers.object<SystemServerDiscoveryResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('status', parsers.uint8),
+    parsers.property('mask', parsers.uint16),
+));
 
 export interface SystemServerDiscoveryRequest extends ShortAddressRequest
 {
@@ -76,28 +75,28 @@ export interface SystemServerDiscoveryResponse extends StatusMessage
     mask: Mask;
 }
 
-Protocol.register<ManagementLQIRequest>('type', MessageType.ManagementLQI, [
-    { name: 'targetAddress', type: 'uint16' },
-    { name: 'startIndex', type: 'uint8' },
-]);
+messages.register(MessageType.ManagementLQI, parsers.object<ManagementLQIRequest>(
+    parsers.property('targetAddress', parsers.uint16),
+    parsers.property('startIndex', parsers.uint8),
+));
 
-Protocol.register<ManagementLQIResponse>('type', MessageType.ManagementLQI | MessageType.Response, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'status', type: 'uint8' },
-    { name: 'neighboursCount', type: 'uint8' },
-    { name: 'neighboursListCount', type: 'uint8' },
-    { name: 'startIndex', type: 'uint8' },
-    {
-        name: 'neighbours', type: 'subFrame[]', length: 3, frame: new Frame<Neighbour>([
-            { name: 'networkAddress', type: 'uint16' },
-            { name: 'extendedPanId', type: 'uint64' },
-            { name: 'IEEEAddress', type: 'uint64' },
-            { name: 'depth', type: 'uint8' },
-            { name: 'linkQuality', type: 'uint8' },
-            { name: 'information', type: 'uint8' },
-        ])
-    },
-]);
+messages.register(MessageType.ManagementLQI | MessageType.Response, parsers.object<ManagementLQIResponse>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('status', parsers.uint8),
+    parsers.property('neighboursCount', parsers.uint8),
+    parsers.property('neighboursListCount', parsers.uint8),
+    parsers.property('startIndex', parsers.uint8),
+    parsers.property('neighbours',
+        parsers.array<Neighbour, ManagementLQIResponse>('neighboursListCount', parsers.object<Neighbour>(
+            parsers.property('networkAddress', parsers.uint16),
+            parsers.property('extendedPanId', parsers.uint64),
+            parsers.property('IEEEAddress', parsers.uint64),
+            parsers.property('depth', parsers.uint8),
+            parsers.property('linkQuality', parsers.uint8),
+            parsers.property('information', parsers.uint8),
+        ))
+    ),
+));
 
 export interface ManagementLQIRequest 
 {
@@ -108,7 +107,8 @@ export interface ManagementLQIRequest
 export interface Neighbour
 {
     networkAddress: uint16;
-    extendedPanId: string; IEEEAddress: string;
+    extendedPanId: uint64;
+    IEEEAddress: uint64;
     depth: uint8;
     linkQuality: uint8;
     type?: DeviceType;
@@ -144,32 +144,26 @@ export enum NeighbourInformation
 
 export interface ManagementLQIResponse extends StatusMessage
 {
-    neighboursCount: Neighbour[];
-    neighboursListCount: Neighbour[];
+    neighboursCount: uint8;
+    neighboursListCount: uint8;
     neighbours: Neighbour[];
     startIndex: number;
 }
 
-Protocol.register<ZoneStatusChangeNotification>('type', MessageType.ZoneStatusChangeNotification, [
-    { name: 'sequenceNumber', type: 'uint8' },
-    { name: 'endpoint', type: 'uint8' },
-    { name: 'clusterId', type: 'uint16' },
-    { name: 'sourceAddressMode', type: 'uint8' },
-    {
-        name: 'sourceAddress', type: function (instance)
-        {
-            switch (instance.sourceAddressMode)
-            {
-                default:
-                    return 'uint8';
-            }
-        }
-    },
-    { name: 'zoneStatus', type: 'uint16' },
-    { name: 'extendedStatus', type: 'uint8' },
-    { name: 'zoneId', type: 'uint8' },
-    { name: 'delay', type: 'uint16[]' },
-])
+messages.register(MessageType.ZoneStatusChangeNotification, parsers.object<ZoneStatusChangeNotification>(
+    parsers.property('sequenceNumber', parsers.uint8),
+    parsers.property('endpoint', parsers.uint8),
+    parsers.property('clusterId', parsers.uint16),
+    parsers.property('sourceAddressMode', parsers.uint8),
+    parsers.chooseProperty<ZoneStatusChangeNotification>('sourceAddress', 'sourceAddressMode', {
+        1: parsers.uint16,
+        2: parsers.uint64
+    }),
+    parsers.property('zoneStatus', parsers.uint16),
+    parsers.property('extendedStatus', parsers.uint8),
+    parsers.property('zoneId', parsers.uint8),
+    parsers.property('delay', parsers.array(-1, parsers.uint16)),
+))
 
 export interface ZoneStatusChangeNotification extends StatusMessage
 {
@@ -184,10 +178,10 @@ export interface ZoneStatusChangeNotification extends StatusMessage
     delay: uint16[];
 }
 
-Protocol.register<RouterDiscoveryConfirm>('type', MessageType.RouterDiscoveryConfirm, [
-    { name: 'status', type: 'uint8' },
-    { name: 'networkStatus', type: 'uint8' },
-])
+messages.register(MessageType.RouterDiscoveryConfirm, parsers.object<RouterDiscoveryConfirm>(
+    parsers.property('status', parsers.uint8),
+    parsers.property('networkStatus', parsers.uint8),
+))
 
 export interface RouterDiscoveryConfirm extends StatusMessage
 {
