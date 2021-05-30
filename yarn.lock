@@ -2314,6 +2314,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.43.tgz#26bcbb0595b305400e8ceaf9a127a7f905ae49c8"
   integrity sha512-3pwDJjp1PWacPTpH0LcfhgjvurQvrZFBrC6xxjaUEZ7ifUtT32jtjPxEMMblpqd2Mvx+k8haqQJLQxolyGN/cQ==
 
+"@types/node@^14.14.31":
+  version "14.17.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.17.1.tgz#5e07e0cb2ff793aa7a1b41deae76221e6166049f"
+  integrity sha512-/tpUyFD7meeooTRwl3sYlihx2BrJE7q9XF71EguPFIySj9B7qgnRtHsHTho+0AUm4m1SvWGm6uSncrR94q6Vtw==
+
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
@@ -2419,6 +2424,13 @@
   version "7.4.2"
   resolved "https://registry.yarnpkg.com/@types/ws/-/ws-7.4.2.tgz#bfe739b5f8b3a39742605fbe415ae7e88ee614c8"
   integrity sha512-PbeN0Eydl7LQl4OIav29YmkO2LxbVuz3nZD/kb19lOS+wLgIkRbWMNmU/QQR7ABpOJ7D7xDOU8co7iohObewrw==
+  dependencies:
+    "@types/node" "*"
+
+"@types/ws@^7.4.0":
+  version "7.4.4"
+  resolved "https://registry.yarnpkg.com/@types/ws/-/ws-7.4.4.tgz#93e1e00824c1de2608c30e6de4303ab3b4c0c9bc"
+  integrity sha512-d/7W23JAXPodQNbOZNXvl2K+bqAQrCMwlh/nuQsPSQk6Fq0opHoPrUw43aHsvSbIiQPr8Of2hkFbnz1XBFVyZQ==
   dependencies:
     "@types/node" "*"
 
@@ -9270,16 +9282,6 @@ reusify@^1.0.4:
   resolved "https://registry.yarnpkg.com/reusify/-/reusify-1.0.4.tgz#90da382b1e126efc02146e90845a88db12925d76"
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
 
-rfxtrx@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/rfxtrx/-/rfxtrx-1.1.6.tgz#4f6f0939884cfcf96eed45b800c9c4083f1c636b"
-  integrity sha512-ZDq17areE/1Q7/PYkVUyNFMYtR2Nsbb7nUPNsHFxhllbj3bKcebq/ZKemdFiD+eWI1glnlahSxLFh7JuBHswdA==
-  dependencies:
-    "@akala/core" "^6.0.5"
-    "@domojs/protocol-parser" "^1.3.11"
-    serialport "^9.0.7"
-    usb "^1.6.5"
-
 rimraf@^2.6.3:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.7.1.tgz#35797f13a7fdadc566142c29d4f07ccad483e3ec"
@@ -10860,6 +10862,11 @@ typescript@^4.1.3, typescript@~4.2.2, typescript@~4.2.4:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.4.tgz#8610b59747de028fda898a8aef0e103f156d0961"
   integrity sha512-V+evlYHZnQkaz8TRBuxTA92yZBPotr5H+WhQ7bD3hZUndx5tGOa1fuCgeSjxAzM1RiN5IzvadIXTVefuuwZCRg==
 
+typescript@^4.2.2:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.3.2.tgz#399ab18aac45802d6f2498de5054fcbbe716a805"
+  integrity sha512-zZ4hShnmnoVnAHpVHWpTcxdv7dWP60S2FsydQLV8V5PbS3FifjWFFRiHSWpDJahly88PRyV5teTSLoq4eG7mKw==
+
 uglify-js@^3.1.4:
   version "3.13.5"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.13.5.tgz#5d71d6dbba64cf441f32929b1efce7365bb4f113"
@@ -11597,16 +11604,6 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
-
-zigate@^1.1.4:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/zigate/-/zigate-1.1.5.tgz#2d9d157173d5b0cad042803925e6a40b1d49e324"
-  integrity sha512-6G7j/fehdykwYI3zbjJV/aqCvv1PD1IMO0d2GBeWdNWSGU8EebKTZJ4lwznHZNmVxSKpjE0lccIlW4pad6AioA==
-  dependencies:
-    "@akala/core" "^6.0.7"
-    "@domojs/protocol-parser" "^1.3.11"
-    debug "^4.3.1"
-    serialport "^9.0.7"
 
 zlibjs@^0.3.1:
   version "0.3.1"
