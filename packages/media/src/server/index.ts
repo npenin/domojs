@@ -1,10 +1,6 @@
-import * as akala from '@akala/server';
-import { EventEmitter } from 'events';
-export {  scrapper } from './scrapper';
-export { player } from '../client/playerApi'
+import * as akala from '@akala/core';
 export * from '../../metadata';
-import * as levenshtein from 'levenshtein';
-import { AssetRegistration } from '@akala-modules/core'
+import levenshtein from 'levenshtein';
 
 const confidenceLog = akala.log('domojs:media:confidence');
 
@@ -39,31 +35,4 @@ export function confidence(name: string, names: string[])
         });
     }
     return max;;
-};
-
-akala.injectWithName(['$isModule', '$master', '$worker'], function (isModule: akala.worker.IsModule, master: akala.worker.MasterRegistration, worker: EventEmitter)
-{
-    if (isModule('@domojs/media'))
-    {
-        worker.on('ready', function ()
-        {
-            require("./fileNameScrapper");
-            require("./tokenizer");
-        });
-        master(__filename, './master');
-
-
-
-        akala.injectWithName([AssetRegistration.name], function (virtualasset: PromiseLike<AssetRegistration>)
-        {
-            virtualasset.then((va) =>
-            {
-                va.register('/js/tiles.js', require.resolve('../tile'));
-                va.register('/js/routes.js', require.resolve('../routes'));
-            });
-            // virtualasset.then((va) => va.register('/js/device.js', path.resolve(__dirname, './device.js')));
-        })();
-
-        require('./commands/library')
-    }
-})();
+}

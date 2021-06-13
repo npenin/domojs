@@ -28,11 +28,17 @@ export default class FixedLengthArray<T, TMessage> implements ParserWithMessage<
         return result;
     }
 
+    write(value: T[], message: TMessage): Buffer[]
     write(buffer: Buffer, cursor: Cursor, value: T[], message: TMessage): void
+    write(buffer: Buffer | T[], cursor: Cursor | TMessage, value?: T[], message?: TMessage): void | Buffer[]
     {
-        if (this.length == -1)
-            for (let index = 0; index < value.length; index++)
-                parserWrite(this.valueParser, buffer, cursor, value[index], message);
+        if (!Buffer.isBuffer(buffer))
+        {
+            var buffers: Buffer[] = []
+            for (let index = 0; index < buffer.length; index++)
+                buffers.push(...parserWrite(this.valueParser, buffer[index], cursor));
+            return buffers;
+        }
         else
             for (let index = 0; index < this.length; index++)
                 parserWrite(this.valueParser, buffer, cursor, value[index], message);

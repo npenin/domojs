@@ -1,0 +1,104 @@
+{
+    "name": "player",
+    "commands": [
+        {
+            "name": "mute",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/server/commands/player/mute.js",
+                    "source": "src/server/commands/player/mute.ts",
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "next",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/server/commands/player/next.js",
+                    "source": "src/server/commands/player/next.ts",
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "pause",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/server/commands/player/pause.js",
+                    "source": "src/server/commands/player/pause.ts",
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "play",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/server/commands/player/play.js",
+                    "source": "src/server/commands/player/play.ts",
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "playlist",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/server/commands/player/playlist.js",
+                    "source": "src/server/commands/player/playlist.ts",
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "previous",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/server/commands/player/previous.js",
+                    "source": "src/server/commands/player/previous.ts",
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "stop",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/server/commands/player/stop.js",
+                    "source": "src/server/commands/player/stop.ts",
+                    "inject": []
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}

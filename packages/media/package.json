@@ -15,31 +15,30 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "@akala/client": "^2.0.71",
-    "@akala/core": "^2.0.65",
-    "ioredis": "^4.6.2",
-    "levenshtein": "^1.0.5"
+    "@akala/client": "^5.0.15",
+    "@akala/commands": "^1.0.8",
+    "@akala/config": "^0.2.14",
+    "@akala/core": "^7.0.13",
+    "levenshtein": "^1.0.5",
+    "typescript": "~4.3.2"
   },
   "peerDependencies": {
-    "@akala-modules/core": "^1.0.27",
     "@akala/server": "^2.1.10",
     "@domojs/db": "^1.1.0",
     "@domojs/theme-default": "^1.1.3"
   },
   "devDependencies": {
-    "@akala-modules/core": "^1.1.3",
-    "@akala/cli": "^0.0.9",
-    "@akala/json-rpc-ws": "^7.0.1",
-    "@akala/server": "^2.1.11",
+    "@akala/cli": "^1.0.8",
+    "@akala/json-rpc-ws": "^9.1.25",
+    "@akala/server": "^6.1.26",
     "@domojs/db": "^1.1.5",
-    "@domojs/theme-default": "^1.1.24",
+    "@domojs/theme-default": "^1.3.9",
     "@types/debug": "^4.1.0",
     "@types/ioredis": "^4.0.6",
     "@types/jquery": "^3.3.29",
     "@types/levenshtein": "^1.0.1",
     "@types/redis": "^2.8.10",
     "@types/request": "^2.48.1",
-    "@types/ws": "^6.0.1",
-    "popper.js": "^1.14.7"
+    "@types/ws": "^7.4.4"
   }
 }

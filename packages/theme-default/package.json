@@ -2,7 +2,7 @@
   "author": "npenin",
   "dependencies": {
     "@akala/client": "^5.0.3",
-    "@akala/commands": "^0.9.2",
+    "@akala/commands": "^1.0.8",
     "@akala/core": "^7.0.3",
     "@akala/server": "^6.1.2",
     "@fortawesome/fontawesome-common-types": "^0.2.28",
@@ -10,21 +10,21 @@
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@popperjs/core": "^2.8.6",
-    "bootstrap": "^4.5.0",
+    "bootstrap": "^5.0.1",
     "require-optional": "^0.4.0",
-    "sass-loader": "^11.0.1",
-    "snyk": "^1.461.0"
+    "sass-loader": "^12.0.0",
+    "snyk": "^1.618.0"
   },
   "deprecated": false,
   "description": "",
   "devDependencies": {
     "@types/debug": "^4.1.5",
-    "@types/node": "^14.14.20",
+    "@types/node": "^15.12.1",
     "@types/request": "^2.48.5",
     "@types/ws": "^7.2.4",
-    "typescript": "~4.2.4",
+    "typescript": "~4.3.2",
     "webpack": "^5.13.0",
-    "webpack-cli": "4.6.0"
+    "webpack-cli": "4.7.0"
   },
   "license": "MIT",
   "main": "dist/client/public_api.js",

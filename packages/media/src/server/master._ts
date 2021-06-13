@@ -1,10 +1,10 @@
-import * as akala from '@akala/server';
+import * as akala from '@akala/core';
 import { scrapper } from './scrapper';
 import { player, controller } from '../client/playerApi';
 import { MediaTypes, MediaType, Media } from '../../metadata';
 import { Connection } from '@akala/json-rpc-ws';
 import * as ws from 'ws';
-const log = akala.logger('@domojs/media')
+const log = akala.log('@domojs/media')
 var scrappers: { [type: string]: { priority: number, connection: Connection }[] } = {}
 var controllers: { [key: string]: Connection[] } = { all: [] }
 var players: { [key: string]: { connection: Connection, name: string, icons: { [key: string]: string } } } = {}
@@ -16,9 +16,9 @@ function playerProxy(connection: Connection)
 function controllerProxy()
 {
     return {
-        async status(p:{identity:string})
+        async status(p: { identity: string })
         {
-            var status=await playerProxy(players[p.identity].connection).status(p)
+            var status = await playerProxy(players[p.identity].connection).status(p)
 
             controllers[p.identity].forEach(connection =>
             {
@@ -80,10 +80,10 @@ akala.api.buildServer(new akala.DualApi(scrapper, new akala.DualApi(player, cont
                 media = m;
                 next();
             }, function (err)
-                {
-                    log.error(err);
-                    next();
-                });
+            {
+                log.error(err);
+                next();
+            });
         }).then((err) => { return media; });
     },
     play(param)

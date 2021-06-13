@@ -1,0 +1,155 @@
+{
+    "name": "library",
+    "commands": [
+        {
+            "name": "browse",
+            "inject": [
+                "param.0",
+                "param.1",
+                "param.2",
+                "param.3",
+                "param.4",
+                "param.5",
+                "param.6",
+                "param.7"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4",
+                        "param.5",
+                        "param.6",
+                        "param.7"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/server/commands/library/browse.js",
+                    "source": "src/server/commands/library/browse.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4",
+                        "param.5",
+                        "param.6",
+                        "param.7"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "dropbox",
+            "inject": [
+                "param.0",
+                "param.1",
+                "param.2",
+                "param.3",
+                "param.4",
+                "param.5",
+                "param.6",
+                "param.7"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4",
+                        "param.5",
+                        "param.6",
+                        "param.7"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/server/commands/library/dropbox.js",
+                    "source": "src/server/commands/library/dropbox.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4",
+                        "param.5",
+                        "param.6",
+                        "param.7"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "index",
+            "inject": [
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/server/commands/library/index.js",
+                    "source": "src/server/commands/library/index.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "register-scrapper",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/server/commands/library/register-scrapper.js",
+                    "source": "src/server/commands/library/register-scrapper.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "$container",
+                        "$connectionAsContainer",
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "scrap",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/server/commands/library/scrap.js",
+                    "source": "src/server/commands/library/scrap.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "param.0"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}

@@ -17,6 +17,7 @@ import Uint32LE from './uint32LE'
 import Uint64LE from './uint64LE'
 import Vuint from './vuint'
 import VuintLE from './vuintLE'
+import Varint from './protobuf/varint'
 
 import PrefixedString from './string-prefixed'
 import FixedString from './string-fixed'
@@ -38,6 +39,9 @@ import PropertyObject from './property-object'
 import { Prepare } from './prepare'
 import { ZeroOrOne } from './zero-or-one'
 import Between from './between'
+import * as protobuf from './protobuf'
+
+export { protobuf };
 
 export const bit = new Bit();
 export const uint2 = new Uint2();
@@ -57,6 +61,7 @@ export const uint32LE = new Uint32LE();
 export const uint64LE = new Uint64LE();
 export const vuint = new Vuint();
 export const vuintLE = new VuintLE();
+export const varint = new Varint();
 
 export { Parser, ParserWithMessage, ParserWithMessageWithoutKnownLength, ParserWithoutKnownLength, Parsers, ParsersWithMessage, AnyParser };
 
