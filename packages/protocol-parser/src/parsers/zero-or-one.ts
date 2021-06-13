@@ -13,10 +13,15 @@ export class ZeroOrOne<T, TMessage> implements ParserWithMessage<T, TMessage>
             return this.parser.read(buffer, cursor, partial);
         return undefined;
     }
+    write(value: T, message: TMessage): Buffer[]
     write(buffer: Buffer, cursor: Cursor, value: T, message: TMessage): void
+    write(buffer: Buffer | T, cursor: Cursor | TMessage, value?: T, message?: TMessage): void | Buffer[]
     {
+        if (!Buffer.isBuffer(buffer))
+            value = buffer;
         if (typeof (value) === 'undefined')
-            return parserWrite(this.parser, buffer, cursor, value, message);
+            return null;
+        return parserWrite(this.parser, buffer, cursor, value, message);
     }
 
     length: number;

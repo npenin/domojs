@@ -54,7 +54,7 @@ export class Cursor
 
 // type IsCursor<T> = (cursor: Cursor | T) => boolean;
 
-export function hasUknownLength<T, TMessage = unknown>(p: AnyParser<T, TMessage>): p is ParserWithoutKnownLength<T> | ParserWithMessageWithoutKnownLength<T, TMessage>
+export function hasUnknownLength<T, TMessage = unknown>(p: AnyParser<T, TMessage>): p is ParserWithoutKnownLength<T> | ParserWithMessageWithoutKnownLength<T, TMessage>
 {
     return p.length == -1;
 }
@@ -65,7 +65,7 @@ export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage
 export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, buffer: Buffer | T, cursor: Cursor | TMessage, value?: T, message?: TMessage): Buffer[] | void
 {
     if (Buffer.isBuffer(buffer) && cursor instanceof Cursor)
-        if (hasUknownLength(parser))
+        if (hasUnknownLength(parser))
         {
             if (!(cursor instanceof Cursor))
                 throw new Error('no cursor was provided');
@@ -84,7 +84,7 @@ export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage
         message = cursor as TMessage;
         value = buffer as T;
 
-        if (hasUknownLength(parser))
+        if (hasUnknownLength(parser))
             return parser.write(value, message);
         else
         {

@@ -1,17 +1,17 @@
-import * as akala from '@akala/server';
-import * as fs from 'fs';
+import * as akala from '@akala/core';
+import * as fs from 'fs/promises';
 import * as p from 'path';
 import * as utils from 'util';
 import { Media } from '../../../metadata';
-import { scrapper } from '../scrapper'
-import { client as db } from '@domojs/db';
 import * as redis from 'ioredis';
+import Configuration from '@akala/config';
+import { Container } from '@akala/commands'
 
 const debug = akala.log('domojs:media');
 
 var folderMapping: { [key: string]: string } = {};
 
-function translatePath(path: string): string
+async function translatePath(path: string): Promise<string>
 {
     if (path[0] == '/' && path[1] == '/' && process.platform != 'win32')
     {
@@ -21,7 +21,7 @@ function translatePath(path: string): string
         if (!folderMapping)
         {
             folderMapping = {};
-            var fstab = fs.readFileSync('/etc/fstab', 'ascii');
+            var fstab = await fs.readFile('/etc/fstab', 'ascii');
             var declarations = fstab.split(/\n/g);
             akala.each(declarations, function (line)
             {
@@ -234,9 +234,8 @@ var alphabetize = (function ()
     }
 })();
 
-export function processSource(config, source?: string, type?: 'music' | 'video', lastIndex?: Date, name?: string, season?: number, episode?: number, album?: string, artist?: string)
+export async function processSource(sources: string[], container: Container<Configuration>, type?: 'music' | 'video', lastIndex?: Date, name?: string, season?: number, episode?: number, album?: string, artist?: string)
 {
-    var sources = [config[source]] || [];
     var result: string[] = [];
     if (processing)
         return Promise.reject('Server is already processing (' + processing + ')');
@@ -252,88 +251,59 @@ export function processSource(config, source?: string, type?: 'music' | 'video',
             (!album || item.type == 'music' && item.album == album) &&
             (!artist || item.type == 'music' && item.artists && artist in item.artists);
     }
-    var self = this;
 
-    return new Promise<{ [key: string]: Media[] }>((resolve, reject) =>
+    await akala.eachAsync(sources, function (source)
     {
-        akala.eachAsync(sources, function (source, dummy, next)
+        return browse(source, extension, lastIndex).then(function (media)
         {
-            browse(source, extension, lastIndex).then(function (media)
+            result = result.concat(media);
+        });
+    }, false);
+    debug('found ' + result.length + ' new ' + type + '(s)');
+    processing = 'processing indexation';
+    var trueResult: { [key: string]: Media[] } = {};
+    await akala.eachAsync(result, async function (path)
+    {
+        var groups = Object.keys([]);
+        const item = await container.dispatch('scrap', { path: path, type: type, id: null });
+        if (item && matcher(item))
+        {
+            var name = item.type == 'music' && item.album || item.name;
+            var group = trueResult[name];
+            if (!group)
             {
-                result = result.concat(media);
-                next()
-            });
-        }, function ()
-            {
-                debug('found ' + result.length + ' new ' + type + '(s)');
-                processing = 'processing indexation';
-                var trueResult: { [key: string]: Media[] } = {};
-                akala.worker.createClient('media').then(function (client)
+                var groupName = groups.find(g => g.toLowerCase() == name.toLowerCase());
+                group = trueResult[groupName];
+                if (!group)
                 {
-                    var scrapperClient = akala.api.jsonrpcws(scrapper).createServerProxy(client);
-                    akala.eachAsync(result, function (path, dummy, next)
-                    {
-                        var groups = Object.keys([]);
-                        scrapperClient.scrap(<any>{ path: path, type: type, id: null }).then(function (item)
-                        {
-                            if (item && matcher(item))
-                            {
-                                var name = item.type == 'music' && item.album || item.name;
-                                var group = trueResult[name];
-                                if (!group)
-                                {
-                                    var groupName = groups.find(g => g.toLowerCase() == name.toLowerCase());
-                                    group = trueResult[groupName];
-                                    if (!group)
-                                    {
-                                        groups.push(name);
-                                        trueResult[name] = group = [];
-                                    }
-                                }
-                                group.push(item);
-                            }
-                            next();
-                        });
-                    }, function ()
-                        {
-                            processing = null;
-                            resolve(trueResult);
-                        });
-                });
-            });
+                    groups.push(name);
+                    trueResult[name] = group = [];
+                }
+            }
+            group.push(item);
+        }
     });
-};
+    processing = null;
+    return trueResult;
+}
 
-export function browse(folder: string, extension: RegExp, lastIndex: Date)
+export async function browse(folder: string, extension: RegExp, lastIndex: Date)
 {
-    return utils.promisify(fs.readdir)(translatePath(folder)).then(function (files)
+    const files = await fs.readdir(await translatePath(folder));
+    var result: string[] = [];
+    await akala.eachAsync(files, async function (file)
     {
-        var result: string[] = [];
-        return akala.eachAsync(files, function (file, index, next)
+        if (file == '$RECYCLE.BIN' || file == '.recycle')
+            return;
+        file = folder + '/' + file;
+        const stat = await fs.stat(await translatePath(file));
+        if (stat.isDirectory())
+            result.concat(await browse(file, extension, lastIndex));
+        else
         {
-            if (file == '$RECYCLE.BIN' || file == '.recycle')
-                return next();
-            file = folder + '/' + file;
-            fs.stat(translatePath(file), function (err, stat)
-            {
-                if (err)
-                {
-                    debug(err);
-                    next();
-                }
-                else if (stat.isDirectory())
-                    browse(file, extension, lastIndex).then(function (results)
-                    {
-                        result = result.concat(results);
-                        next();
-                    });
-                else
-                {
-                    if (extension.test(file) && stat.mtime > lastIndex)
-                        result.push(file);
-                    next();
-                }
-            });
-        }).then(() => { return result; });
+            if (extension.test(file) && stat.mtime > lastIndex)
+                result.push(file);
+        }
     });
+    return result;
 }

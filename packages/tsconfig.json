@@ -20,6 +20,9 @@
       "path": "devices"
     },
     {
+      "path": "media"
+    },
+    {
       "path": "rfx"
     },
     {

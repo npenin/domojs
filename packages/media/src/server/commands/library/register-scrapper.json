@@ -1,0 +1,14 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "": {
+        "inject": []
+    },
+    "jsonrpc": {
+        "inject": [
+            "$container",
+            "$connectionAsContainer",
+            "param.0",
+            "param.1"
+        ]
+    }
+}

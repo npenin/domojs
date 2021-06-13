@@ -1,8 +1,8 @@
-import { Cursor, Parser, ParserWithoutKnownLength, parserWrite } from "./_common";
+import { Cursor, Parser, Parsers, ParserWithoutKnownLength, parserWrite } from "./_common";
 
 export default class PrefixedString implements ParserWithoutKnownLength<string>
 {
-    constructor(private prefix: Parser<number>, private encoding: BufferEncoding = 'ascii')
+    constructor(private prefix: Parsers<number>, private encoding: BufferEncoding = 'ascii')
     {
 
     }

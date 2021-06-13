@@ -1,9 +1,9 @@
 import { AnyParser, ParserWithMessageWithoutKnownLength } from ".";
-import { Cursor, Parser, ParserWithoutKnownLength, parserWrite } from "./_common";
+import { Cursor, Parser, Parsers, ParserWithoutKnownLength, parserWrite } from "./_common";
 
 export default class PrefixedLengthArray<T, TMessage> implements ParserWithMessageWithoutKnownLength<T[], TMessage>
 {
-    constructor(private prefix: Parser<number>, private valueParser: AnyParser<T, TMessage>)
+    constructor(private prefix: Parsers<number>, private valueParser: AnyParser<T, TMessage>)
     {
     }
 
