@@ -13,7 +13,7 @@ export interface ParserWithMessage<T, TMessage>
 export interface ParserWithoutKnownLength<T>
 {
     length: -1;
-    read(buffer: Buffer, cursor: Cursor): T;
+    read(buffer: Buffer, cursor: Cursor, message?: unknown): T;
     write(value: T): Buffer[];
 }
 export interface ParserWithMessageWithoutKnownLength<T, TMessage>

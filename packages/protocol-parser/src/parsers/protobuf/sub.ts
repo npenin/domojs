@@ -1,4 +1,5 @@
 import { ParserWithMessageWithoutKnownLength, Cursor, ParsersWithMessage, parserWrite } from "../_common";
+import { WireType } from "./field";
 
 
 export class Sub<TResult, TMessage> implements ParserWithMessageWithoutKnownLength<TResult, TMessage>
@@ -12,11 +13,19 @@ export class Sub<TResult, TMessage> implements ParserWithMessageWithoutKnownLeng
             this.length = inner.length + lengthParser.length as -1;
     }
 
+    wireType: WireType = 'length-delimited';
+
     length: -1 = -1;
 
     read(buffer: Buffer, cursor: Cursor, message: TMessage): TResult
     {
+        const initialOffset = cursor.offset;
         var length = this.lengthParser.read(buffer, cursor, message);
+        if (buffer.length < cursor.offset + length)
+        {
+            cursor.offset = initialOffset;
+            return null;
+        }
         var result = this.inner.read(buffer.slice(cursor.offset, cursor.offset + length), new Cursor(), {} as TMessage);
         cursor.offset += length;
         return result;

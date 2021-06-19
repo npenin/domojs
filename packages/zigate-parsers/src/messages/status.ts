@@ -12,8 +12,8 @@ export interface StatusMessage
 messages.register(MessageType.Status, parsers.object<StatusMessage>(
     parsers.property('status', parsers.uint8),
     parsers.property('sequenceNumber', parsers.uint8),
-    parsers.optional(parsers.property('subType', parsers.uint16)),
-    parsers.optional(parsers.property('message', parsers.string(parsers.uint8)))
+    parsers.optional<MessageType, StatusMessage>(parsers.property('subType', parsers.uint16)),
+    parsers.optional<string, StatusMessage>(parsers.property('message', parsers.string(parsers.uint8)))
 ));
 
 export enum Status

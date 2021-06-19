@@ -4,6 +4,7 @@ import Uint7 from "../uint7";
 import Uint32LE from "../uint32LE";
 import Uint24LE from "../uint24LE";
 import Uint16LE from "../uint16LE";
+import { WireType } from "./field";
 
 export default class Varint implements ParserWithoutKnownLength<number>
 {
@@ -11,6 +12,8 @@ export default class Varint implements ParserWithoutKnownLength<number>
     {
 
     }
+
+    wireType: WireType = 'varint'
 
     length: -1 = -1;
 
