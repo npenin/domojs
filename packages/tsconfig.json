@@ -23,6 +23,12 @@
       "path": "media"
     },
     {
+      "path": "media-chromecast"
+    },
+    {
+      "path": "media-chromecast-parsers"
+    },
+    {
       "path": "rfx"
     },
     {

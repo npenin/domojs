@@ -48,12 +48,16 @@
             "inject": [],
             "config": {
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0"
+                    ]
                 },
                 "fs": {
                     "path": "dist/server/commands/player/play.js",
                     "source": "src/server/commands/player/play.ts",
-                    "inject": []
+                    "inject": [
+                        "param.0"
+                    ]
                 }
             }
         },

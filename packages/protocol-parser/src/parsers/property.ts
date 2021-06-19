@@ -1,9 +1,9 @@
-import { AnyParser, Cursor, Parser, ParserWithMessage, ParserWithMessageWithoutKnownLength, ParserWithoutKnownLength, parserWrite } from "./_common";
+import { AnyParser, Cursor, ParserWithMessage, parserWrite } from "./_common";
 
 
 export default class Property<T extends { [key in TKey]: Exclude<any, object> }, TKey extends keyof T> implements ParserWithMessage<T[TKey], T>
 {
-    constructor(public readonly name: TKey, private readonly parser: AnyParser<T[TKey], T>)
+    constructor(public readonly name: TKey, protected readonly parser: AnyParser<T[TKey], T>)
     {
         this.length = parser.length;
     }

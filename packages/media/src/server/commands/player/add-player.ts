@@ -1,10 +1,11 @@
 import { Command, Container } from "@akala/commands";
-import { State } from "../../player";
+import { PlayerStatus, State } from "../../player";
 
-export default async function addPlayer(this: State, name: string, remotePlayer: Container<void>)
+export default async function addPlayer(this: State, name: string, remotePlayer: Container<PlayerStatus>)
 {
     if (typeof this.players[name] != 'undefined')
         this.players[name] = remotePlayer;
+    remotePlayer.state = {};
 
     remotePlayer.register(new Command(() =>
     {

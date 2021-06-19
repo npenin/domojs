@@ -1,10 +1,10 @@
-import { Uint64LE } from "..";
-import PrefixedBuffer from "../buffer-prefixed";
-import Series from "../series";
-import Switch from "../switch";
-import { ParserWithMessageWithoutKnownLength, Cursor, ParsersWithMessage, parserWrite, ParserWithMessage } from "../_common";
+import FixedBuffer from "../buffer-fixed";
+import Uint32 from "../uint32";
+import Uint64 from "../uint64";
+import { Cursor, ParsersWithMessage, parserWrite, ParserWithoutKnownLength, ParserWithMessageWithoutKnownLength, ParserWithMessage, AnyParser } from "../_common";
 import { Field, WireType } from "./field";
-import Varint from "./varint";
+import String from "./string";
+import { Sub } from "./sub";
 
 // const varint = new Varint();
 // const prefixedBuffer = new PrefixedBuffer(varint);
@@ -21,23 +21,27 @@ export interface FieldModel<T, TKey extends keyof T>
     wireType: WireType;
 }
 
-export type ProtobufParser<TMessage, T = any> = ParsersWithMessage<T, TMessage> & { wireType: WireType };
+// type ProtobufParser<TMessage, T = any> = ParserWithMessage<T, TMessage> & { wireType: WireType };
 
 const field = new Field();
 
 export default class Message<TMessage> implements ParserWithMessageWithoutKnownLength<TMessage, Partial<TMessage>>
 {
-    private parsers: ProtobufParser<Partial<TMessage>>[];
+    private parsers: (ParserWithMessageWithoutKnownLength<any, Partial<TMessage>> & { wireType: WireType })[];
 
-    constructor(...parsers: ProtobufParser<Partial<TMessage>>[])
+    public readonly wireType: 'length-delimited';
+
+    constructor(...parsers: (ParserWithMessageWithoutKnownLength<any, Partial<TMessage>> & { wireType: WireType })[])
     {
         this.parsers = parsers;
     }
 
     length: -1 = -1;
 
-    public read(buffer: Buffer, cursor: Cursor, message: Partial<TMessage>): TMessage
+    public read(buffer: Buffer, cursor: Cursor, message?: Partial<TMessage>): TMessage
     {
+        if (typeof (message) == 'undefined')
+            message = {} as Partial<TMessage>;
         while (cursor.offset < buffer.length)
         {
             var parsedField = field.read(buffer, cursor);
@@ -109,6 +113,98 @@ export default class Message<TMessage> implements ParserWithMessageWithoutKnownL
             //     }
             // }
         }
+        return result;
+    }
+}
+
+
+export class UnknownMessage implements ParserWithMessageWithoutKnownLength<Record<number, unknown | unknown[]>, Record<number, unknown | unknown[]>>
+{
+    public readonly wireType: 'length-delimited';
+
+    constructor(private varint: ParserWithoutKnownLength<number>, private raw: AnyParser<unknown, Record<number, unknown | unknown[]>>, private bit32: Uint32, private bit64: Uint64)
+    {
+    }
+
+    length: -1 = -1;
+
+    public read(buffer: Buffer, cursor: Cursor, message?: Record<number, unknown | unknown[]>): Record<number, unknown | unknown[]>
+    {
+        if (typeof (message) == 'undefined')
+            message = {};
+        while (cursor.offset < buffer.length)
+        {
+            var parsedField = field.read(buffer, cursor);
+            var value;
+            switch (parsedField.type)
+            {
+                case '32-bit':
+                    value = this.bit32.read(buffer, cursor);
+                    break;
+                case '64-bit':
+                    value = this.bit64.read(buffer, cursor);
+                    break;
+                case 'end-group':
+                case 'start-group':
+                case 'length-delimited':
+                    value = this.raw.read(buffer, cursor, message)
+                    break;
+                case 'varint':
+                    value = this.varint.read(buffer, cursor);
+                    break;
+                default:
+                    var x: never = parsedField.type;
+            }
+            if (Array.isArray(message[parsedField.fieldId]))
+                (message[parsedField.fieldId] as unknown[]).push(value);
+            else if (typeof message[parsedField.fieldId] != 'undefined')
+                message[parsedField.fieldId] = [message[parsedField.fieldId], value];
+            else
+                message[parsedField.fieldId] = value;
+        }
+        return message;
+    }
+
+    public write(value: Record<number, unknown | unknown[]>): Buffer[]
+    {
+        var result: Buffer[] = [];
+        // for (let fieldId = 0; fieldId < this.parsers.length; fieldId++)
+        // {
+
+        //     const fieldParser = this.parsers[fieldId];
+        //     var valueBuffers = parserWrite(fieldParser, value, value);
+        //     if (valueBuffers !== null)
+        //     {
+        //         var fieldDefinition = Buffer.alloc(1);
+        //         result.push(fieldDefinition);
+        //         field.write(fieldDefinition, new Cursor(), { fieldId: fieldId + 1, type: fieldParser.wireType });
+        //         result.push(...valueBuffers);
+        //     }
+        //     // let buffer: Buffer;
+        //     // if (typeof (value) !== 'undefined')
+        //     // {
+        //     //     switch (fieldParser.wireType)
+        //     //     {
+        //     //         case 'varint':
+        //     //             result.push(...varint.write(value[field.name] as any));
+        //     //             break;
+        //     //         case '64-bit':
+        //     //             buffer = Buffer.alloc(8);
+        //     //             Uint64LE.prototype.write(buffer, new Cursor(), value[field.name] as any);
+        //     //             break;
+        //     //         case 'length-delimited':
+        //     //             if (!Buffer.isBuffer(value[field.name]))
+        //     //                 prefixedBuffer.write(Buffer.from(value[field.name] as any));
+        //     //             else
+        //     //                 prefixedBuffer.write(value[field.name] as any);
+        //     //             break;
+        //     //         case '32-bit':
+        //     //             buffer = Buffer.alloc(4);
+        //     //             Uint64LE.prototype.write(buffer, new Cursor(), value[field.name] as any);
+        //     //             break;
+        //     //     }
+        //     // }
+        // }
         return result;
     }
 }

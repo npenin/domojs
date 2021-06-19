@@ -3,7 +3,7 @@ import { Cursor, AnyParser, ParserWithMessageWithoutKnownLength, ParserWithMessa
 import { WireType } from "./field";
 import { ArrayItem } from "./property";
 
-export default class UnpackedProperty<T, TKey extends keyof T> implements ParserWithMessage<ArrayItem<T[TKey]>[] | ArrayItem<T[TKey]>, T>
+export default class PackedProperty<T, TKey extends keyof T> implements ParserWithMessage<ArrayItem<T[TKey]>[] | ArrayItem<T[TKey]>, T>
 {
     constructor(private name: TKey, public readonly wireType: WireType, private parser: AnyParser<ArrayItem<T[TKey]>, Partial<ArrayItem<T[TKey]>>>)
     {

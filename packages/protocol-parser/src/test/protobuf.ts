@@ -12,9 +12,9 @@ describe('protobuf', function ()
 
     var message1 = protobuf.object<Message1>(protobuf.property('a', 'varint', protobuf.varint));
     const message = protobuf.object<Message4>(
-        protobuf.property('a', 'varint', protobuf.varint),
-        protobuf.property('b', 'length-delimited', protobuf.string()),
-        protobuf.property<Message4>('c', 'length-delimited', message1),
+        protobuf.property('a', protobuf.varint),
+        protobuf.property('b', protobuf.string()),
+        protobuf.property('c', protobuf.sub(message1)),
         protobuf.packed('d', protobuf.varint)
     );
 
@@ -43,7 +43,6 @@ describe('protobuf', function ()
             0x8E, 0x02,
             0x9E, 0xA7, 0x05
         ]));
-        debugger;
         assert.deepStrictEqual(expected, message.read(buffer, new Cursor(), {}));
     })
     it('should parse object with string', function ()

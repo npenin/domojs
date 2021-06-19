@@ -1,4 +1,5 @@
 import { parsers } from "@domojs/protocol-parser";
+import { ProtobufMessage } from "@domojs/protocol-parser/src/parsers/protobuf";
 
 const protobuf = parsers.protobuf;
 
@@ -166,7 +167,7 @@ class AggregatedSocketEvent
 class Log
 {
     // Each AggregatedSocketEvent represents events recorded for a socket.
-    aggregated_socket_event: AggregatedSocketEvent[];
+    aggregated_socket_event: AggregatedSocketEvent;
 
     // Number of socket log entries evicted by the logger due to size constraints.
     num_evicted_aggregated_socket_events: number;
@@ -177,9 +178,9 @@ class Log
 
 export const socketEvent = protobuf.object<SocketEvent>(
     protobuf.property('type', 'varint', protobuf.varint),
-    protobuf.property('timestamp_micros', 'varint', protobuf.varint),
+    protobuf.property('timestamp_micros', protobuf.int64),
     protobuf.property('details', 'length-delimited', protobuf.string()),
-    protobuf.property('net_return_value', '32-bit', protobuf.int32),
+    protobuf.property('net_return_value', protobuf.int32),
     protobuf.property('message_namespace', 'length-delimited', protobuf.string()),
     protobuf.property('ready_state', 'varint', protobuf.varint),
     protobuf.property('connection_state', 'varint', protobuf.varint),
@@ -195,16 +196,13 @@ export const aggregateSocketEvent = protobuf.object<AggregatedSocketEvent>(
     protobuf.property('id', '32-bit', protobuf.int32),
     protobuf.property('endpoint_id', '32-bit', protobuf.int32),
     protobuf.property('channel_auth_type', 'varint', protobuf.varint),
-    protobuf.property('socket_event', '32-bit', protobuf.int32),
+    protobuf.property('socket_event', '32-bit', protobuf.sub(socketEvent)),
     protobuf.property('bytes_read', '64-bit', protobuf.int64),
     protobuf.property('bytes_written', '64-bit', protobuf.int64),
 );
 
-export const log = protobuf.object<Log>(
-    protobuf.property('aggregated_socket_event', 'length-delimited', protobuf.array(aggregateSocketEvent)),
-    protobuf.property('endpoint_id', '32-bit', protobuf.int32),
-    protobuf.property('channel_auth_type', 'varint', protobuf.varint),
-    protobuf.property('socket_event', '32-bit', protobuf.int32),
-    protobuf.property('bytes_read', '64-bit', protobuf.int64),
-    protobuf.property('bytes_written', '64-bit', protobuf.int64),
+export const log = protobuf.object<ProtobufMessage<Log>>(
+    protobuf.property('aggregated_socket_event', protobuf.sub(aggregateSocketEvent)),
+    protobuf.property('num_evicted_aggregated_socket_events', protobuf.int32),
+    protobuf.property('num_evicted_socket_events', protobuf.varint),
 );
