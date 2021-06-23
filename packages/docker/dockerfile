@@ -1,3 +1,5 @@
-FROM npenin/akala
+FROM npenin/akala AS builder
 RUN apk add --no-cache alpine-sdk python3 linux-headers eudev-dev libusb-dev
 RUN yarn add serialport usb
+FROM npenin/akala
+COPY --from=builder node_modules node_modules
