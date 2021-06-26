@@ -1,6 +1,6 @@
 {
 	"name": "@domojs/weather",
-	"version": "0.2.11",
+	"version": "0.2.12",
 	"commands": "./commands.json",
 	"repository": {
 		"type": "git",
@@ -10,5 +10,5 @@
 		"@akala/commands": "^1.0.18",
 		"@akala/config": "^0.2.24"
 	},
-	"gitHead": "cc2e617424207c6fd8eb8393610386418b903c64"
+	"gitHead": "e6b92f7f9a34adffc2a2666ae07e14461a913aa5"
 }
