@@ -1,6 +1,6 @@
 {
 	"name": "@domojs/mqtt",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
@@ -12,7 +12,7 @@
 	"dependencies": {
 		"@akala/core": "^7.0.20",
 		"@akala/server": "^6.1.36",
-		"@domojs/protocol-parser": "^2.0.4"
+		"@domojs/protocol-parser": "^2.0.5"
 	},
 	"devDependencies": {
 		"@types/debug": "^4.1.5",
