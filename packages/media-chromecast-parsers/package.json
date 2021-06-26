@@ -1,13 +1,13 @@
 {
   "name": "@domojs/media-chromecast-parsers",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "> TODO: description",
   "author": "npenin <nicolas.penin@dragon-angel.fr>",
   "homepage": "https://github.com/npenin/domojs#readme",
   "license": "MIT",
   "main": "dist/index.js",
   "dependencies": {
-    "@domojs/protocol-parser": "^2.0.7"
+    "@domojs/protocol-parser": "^2.0.8"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,5 @@
   "bugs": {
     "url": "https://github.com/npenin/domojs/issues"
   },
-  "gitHead": "e6b92f7f9a34adffc2a2666ae07e14461a913aa5"
+  "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }

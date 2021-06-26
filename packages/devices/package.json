@@ -1,6 +1,6 @@
 {
   "name": "@domojs/devices",
-  "version": "1.5.20",
+  "version": "1.5.21",
   "author": {
     "name": "npenin"
   },
@@ -30,8 +30,8 @@
   "deprecated": false,
   "description": "",
   "devDependencies": {
-    "@domojs/lifttt": "^3.0.17",
-    "@domojs/theme-default": "^1.3.17",
+    "@domojs/lifttt": "^3.0.18",
+    "@domojs/theme-default": "^1.3.18",
     "@popperjs/core": "^2.8.6",
     "@types/debug": "^4.1.5",
     "@types/express-serve-static-core": "^4.17.18",
@@ -66,5 +66,5 @@
   },
   "typings": "dist/index.d.ts",
   "snyk": true,
-  "gitHead": "e6b92f7f9a34adffc2a2666ae07e14461a913aa5"
+  "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }
