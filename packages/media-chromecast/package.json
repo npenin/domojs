@@ -1,6 +1,6 @@
 {
   "name": "@domojs/media-chromecast",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.2-alpha.0",
   "description": "> TODO: description",
   "author": "npenin <nicolas.penin@dragon-angel.fr>",
   "homepage": "https://github.com/npenin/domojs#readme",
@@ -8,7 +8,7 @@
   "main": "dist/index.js",
   "dependencies": {
     "@akala/commands": "^1.0.18",
-    "@domojs/media-chromecast-parsers": "^0.0.1-alpha.0"
+    "@domojs/media-chromecast-parsers": "^0.0.2-alpha.0"
   },
   "publishConfig": {
     "registry": "https://registry.yarnpkg.com"
@@ -22,5 +22,6 @@
   },
   "bugs": {
     "url": "https://github.com/npenin/domojs/issues"
-  }
+  },
+  "gitHead": "a046bba9ef654c87ddcd2fa57348eab01b9d9a7c"
 }
