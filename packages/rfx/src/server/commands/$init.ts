@@ -7,6 +7,7 @@ import { registerDeviceType } from '@domojs/devices';
 
 var state: State = null;
 var setGateway: (gw: Rfxtrx) => void = null;
+const logger = akala.logger('@domojs/rfx');
 
 export default async function init(this: State)
 {
@@ -29,7 +30,7 @@ export default async function init(this: State)
         addDeviceIfMatch();
         usb.on('attach', function ()
         {
-            akala.logger.info('detected new usb device');
+            logger.info('detected new usb device');
             addDeviceIfMatch();
         });
     }
@@ -46,7 +47,7 @@ async function addDeviceIfMatch()
     if (serials.length > 0)
     {
         var device = serials[0]
-        akala.logger.info('idenfified a RFXCOM potential serial device');
+        logger.info('idenfified a RFXCOM potential serial device');
         setGateway(await Rfxtrx.getSerial(device))
         try
         {
@@ -66,7 +67,7 @@ async function addDeviceIfMatch()
         }
     }
     else
-        akala.logger.info('no RFXCOM device found');
+        logger.info('no RFXCOM device found');
 }
 
 init.$inject = ['container', 'options.path']
