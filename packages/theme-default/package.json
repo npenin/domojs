@@ -1,30 +1,30 @@
 {
   "author": "npenin",
   "dependencies": {
-    "@akala/client": "^5.0.3",
-    "@akala/commands": "^1.0.8",
-    "@akala/core": "^7.0.3",
-    "@akala/server": "^6.1.2",
+    "@akala/client": "^5.0.25",
+    "@akala/commands": "^1.0.18",
+    "@akala/core": "^7.0.20",
+    "@akala/server": "^6.1.36",
     "@fortawesome/fontawesome-common-types": "^0.2.28",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@popperjs/core": "^2.8.6",
-    "bootstrap": "^5.0.1",
+    "bootstrap": "^5.0.2",
     "require-optional": "^0.4.0",
-    "sass-loader": "^12.0.0",
-    "snyk": "^1.618.0"
+    "sass-loader": "^12.1.0",
+    "snyk": "^1.645.0"
   },
   "deprecated": false,
   "description": "",
   "devDependencies": {
     "@types/debug": "^4.1.5",
-    "@types/node": "^15.12.1",
+    "@types/node": "^15.12.4",
     "@types/request": "^2.48.5",
-    "@types/ws": "^7.2.4",
-    "typescript": "~4.3.2",
-    "webpack": "^5.13.0",
-    "webpack-cli": "4.7.0"
+    "@types/ws": "^7.4.5",
+    "typescript": "~4.3.4",
+    "webpack": "^5.40.0",
+    "webpack-cli": "4.7.2"
   },
   "license": "MIT",
   "main": "dist/client/public_api.js",

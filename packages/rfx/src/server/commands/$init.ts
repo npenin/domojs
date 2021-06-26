@@ -65,6 +65,8 @@ async function addDeviceIfMatch()
             console.error('detaching is not supported on this platform');
         }
     }
+    else
+        akala.logger.info('no RFXCOM device found');
 }
 
 init.$inject = ['container', 'options.path']
