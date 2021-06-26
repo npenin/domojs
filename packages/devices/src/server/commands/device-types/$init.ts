@@ -15,7 +15,7 @@ export default async function (this: devices.DeviceTypeCollection & { initializi
     }
     catch (e)
     {
-        if (e.code !== 'MODULE_NOT_FOUND')
+        if (e.code !== 'INVALID_CMD')
             throw e;
     }
 }
