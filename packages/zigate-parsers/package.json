@@ -1,6 +1,6 @@
 {
   "name": "zigate",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "@akala/core": "^7.0.20",
-    "@domojs/protocol-parser": "^2.0.1",
+    "@domojs/protocol-parser": "^2.0.2",
     "debug": "^4.3.1",
     "serialport": "^9.2.0"
   },
@@ -23,5 +23,5 @@
     "source-map-support": "^0.5.19",
     "typescript": "^4.3.4"
   },
-  "gitHead": "5ff2e079cca1f7f621af57eb4b07b6b6c3ad7f43"
+  "gitHead": "2589b52a78d46a3294c104f1d8d0ace790d177e1"
 }

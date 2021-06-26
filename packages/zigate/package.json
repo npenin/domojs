@@ -1,6 +1,6 @@
 {
 	"name": "@domojs/zigate",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"description": "",
 	"main": "dist/server/index.js",
 	"scripts": {
@@ -20,13 +20,13 @@
 		"@akala/core": "^7.0.20",
 		"@akala/server": "^6.1.36",
 		"serialport": "^9.2.0",
-		"zigate": "^2.0.1"
+		"zigate": "^2.0.2"
 	},
 	"devDependencies": {
-		"@domojs/devices": "^1.5.14",
+		"@domojs/devices": "^1.5.15",
 		"@types/debug": "^4.1.5",
 		"@types/request": "^2.48.5",
 		"lerna": "^4.0.0"
 	},
-	"gitHead": "5ff2e079cca1f7f621af57eb4b07b6b6c3ad7f43"
+	"gitHead": "2589b52a78d46a3294c104f1d8d0ace790d177e1"
 }
