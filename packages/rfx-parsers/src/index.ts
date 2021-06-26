@@ -713,7 +713,7 @@ export class Rfxtrx extends EventEmitter
         });
     }
 
-    public static async listEligibleSerials()
+    public static async listEligibleSerials(): Promise<string[]>
     {
 
         const devices = usb.getDeviceList().filter(d => d.deviceDescriptor.idVendor == 1027 && d.deviceDescriptor.idProduct == 24577);
