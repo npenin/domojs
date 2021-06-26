@@ -1,13 +1,13 @@
 {
   "name": "@domojs/protocol-parser",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "mocha --require source-map-support/register dist/test",
-    "prepublishOnly": "tsc -p src",
-    "build": "tsc -p src"
+    "prepublishOnly": "tsc -p .",
+    "build": "tsc -p ."
   },
   "author": "npenin",
   "license": "MIT",
@@ -25,5 +25,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "1d7d7cce60fc94a7ffe9d35a4eca2b00850cb114"
+  "gitHead": "5ff2e079cca1f7f621af57eb4b07b6b6c3ad7f43"
 }
