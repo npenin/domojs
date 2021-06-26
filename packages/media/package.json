@@ -1,6 +1,6 @@
 {
   "name": "@domojs/media",
-  "version": "1.1.67-alpha.1",
+  "version": "1.1.67",
   "description": "",
   "main": "dist/server/index.js",
   "types": "dist/server/index.d.ts",
@@ -31,7 +31,7 @@
     "@akala/json-rpc-ws": "^9.1.31",
     "@akala/server": "^6.1.36",
     "@domojs/db": "^1.1.5",
-    "@domojs/theme-default": "^1.3.10-alpha.1",
+    "@domojs/theme-default": "^1.3.10",
     "@types/debug": "^4.1.0",
     "@types/ioredis": "^4.0.6",
     "@types/jquery": "^3.3.29",
@@ -40,5 +40,5 @@
     "@types/request": "^2.48.1",
     "@types/ws": "^7.4.5"
   },
-  "gitHead": "a046bba9ef654c87ddcd2fa57348eab01b9d9a7c"
+  "gitHead": "1d7d7cce60fc94a7ffe9d35a4eca2b00850cb114"
 }
