@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@akala/pm": "^2.1.35",
-    "rfxtrx": "^1.2.9",
+    "rfxtrx": "^1.2.10",
     "serialport": "^9.2.0",
     "usb": "^1.6.3"
   },
@@ -39,6 +39,6 @@
     "build": "npm run build:js && ac generate dist/server/commands commands.json"
   },
   "typings": "dist/index.d.ts",
-  "version": "1.3.60",
+  "version": "1.3.61",
   "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }
