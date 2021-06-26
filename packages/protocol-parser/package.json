@@ -1,6 +1,6 @@
 {
   "name": "@domojs/protocol-parser",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,5 +25,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "cc2e617424207c6fd8eb8393610386418b903c64"
+  "gitHead": "e6b92f7f9a34adffc2a2666ae07e14461a913aa5"
 }
