@@ -2,10 +2,10 @@ import Configuration from "../../configuration";
 
 export default async function (config: Configuration)
 {
-    var libs = config.get('media.libraries');
+    var libs = config.libraries;
     if (typeof (libs) === 'undefined')
     {
-        config.set('media.libraries', libs = {});
+        config.libraries=libs = {};
         await config.commit();
     }
     return libs;
