@@ -18,7 +18,7 @@ export default async function init(this: State)
         setGateway = resolve;
     })
 
-    await fs.readFile(require.resolve('../../views/new-RFY.html'), 'utf-8').then(newDeviceTemplate =>
+    var p = fs.readFile(require.resolve('../../views/new-RFY.html'), 'utf-8').then(newDeviceTemplate =>
         registerDeviceType({
             name: 'RFY',
             view: newDeviceTemplate,
@@ -38,6 +38,8 @@ export default async function init(this: State)
     {
         console.error(e);
     }
+
+    return p;
 }
 
 
