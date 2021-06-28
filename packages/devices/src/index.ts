@@ -10,7 +10,7 @@ import { Container } from '@akala/commands';
 
 export async function registerDeviceType(deviceType: devices.DeviceType)
 {
-    var container = await sidecar<{ deviceTypeContainer: deviceTypeContainer.container } & SidecarMap>().deviceTypeContainer;
+    var container = await sidecar<SidecarMap>()['@domojs/devicetype'];
     container.dispatch('register', deviceType);
 }
 
