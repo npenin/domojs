@@ -2,6 +2,7 @@ import { State } from "../state";
 import * as usb from 'usb';
 import * as akala from '@akala/server';
 import { Rfxtrx } from 'rfxtrx';
+import * as path from 'path'
 import * as fs from 'fs/promises';
 import { registerDeviceType } from '@domojs/devices';
 
@@ -18,7 +19,7 @@ export default async function init(this: State)
         setGateway = resolve;
     })
 
-    var p = fs.readFile(require.resolve('../../views/new-RFY.html'), 'utf-8').then(newDeviceTemplate =>
+    var p = fs.readFile(path.resolve(__dirname, '../../views/new-RFY.html'), 'utf-8').then(newDeviceTemplate =>
         registerDeviceType({
             name: 'RFY',
             view: newDeviceTemplate,

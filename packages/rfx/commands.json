@@ -3,21 +3,27 @@
     "commands": [
         {
             "name": "$init",
-            "inject": [],
+            "inject": [
+                "container",
+                "options.path"
+            ],
             "config": {
                 "": {
-                    "inject": []
+                    "inject": [
+                        "container",
+                        "options.path"
+                    ]
                 },
                 "fs": {
                     "path": "dist/server/commands/$init.js",
                     "source": "src/server/commands/$init.ts",
-                    "inject": []
+                    "inject": [
+                        "container",
+                        "options.path"
+                    ]
                 },
                 "cli": {
-                    "inject": [
-                        "options.path",
-                        "options.v"
-                    ]
+                    "inject": []
                 }
             }
         },

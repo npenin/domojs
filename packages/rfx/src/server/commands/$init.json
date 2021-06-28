@@ -1,14 +1,6 @@
 {
     "cli": {
-        "inject": [
-            "options.path",
-            "options.v"
-        ],
-        "options": {
-            "normalize": [
-                "path"
-            ]
-        }
+        "inject": []
     },
     "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json"
 }
