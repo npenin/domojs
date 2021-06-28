@@ -19,7 +19,7 @@ export default async function init(this: State)
         setGateway = resolve;
     })
 
-    var p = fs.readFile(path.resolve(__dirname, '../../views/new-RFY.html'), 'utf-8').then(newDeviceTemplate =>
+    var p = fs.readFile(path.resolve(__dirname, '../../../views/new-RFY.html'), 'utf-8').then(newDeviceTemplate =>
         registerDeviceType({
             name: 'RFY',
             view: newDeviceTemplate,
