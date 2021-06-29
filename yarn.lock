@@ -11,20 +11,20 @@
     mock-require "^3.0.2"
     reflect-metadata "^0.1.13"
 
-"@akala/client@^5.0.25":
-  version "5.0.25"
-  resolved "https://registry.yarnpkg.com/@akala/client/-/client-5.0.25.tgz#69e1d14471492798c6ae458a0e74c0abbbddba94"
-  integrity sha512-glqK2zezgPBJR179LGCCusVVg3L7EKI/4pc2heE4qMNzA8YBGtnHCZeZjdGpiTD5+TPB75b2VU6/ldMFTfEzGg==
+"@akala/client@^5.0.27":
+  version "5.0.27"
+  resolved "https://registry.yarnpkg.com/@akala/client/-/client-5.0.27.tgz#df3b41da1ae2656f79a3e737cbe75c339ff7f4ec"
+  integrity sha512-zjSVY3u2NOIuiBJ7i5yjyshFDTXrxysbgwEqQ3iBGto75d4mwjALwKPnM4PrOY0XExyC2ru/JJJfyJZ5nFd+tg==
   dependencies:
     reflect-metadata "^0.1.13"
   optionalDependencies:
     "@popperjs/core" "^2.8.4"
     showdown "^1.8.6"
 
-"@akala/commands@^1.0.18":
-  version "1.0.18"
-  resolved "https://registry.yarnpkg.com/@akala/commands/-/commands-1.0.18.tgz#dde610b28ad6c624a13a28488e1d6f2985d1f14a"
-  integrity sha512-AmEId/9DlI2H7BhNvUd8KSh9yBpToP5ciVlmwo/KxQYUTGMAXS87Y85rhMzuK5X/BJwSpIF2HSEhU8NxVjvGqA==
+"@akala/commands@^1.0.20":
+  version "1.0.20"
+  resolved "https://registry.yarnpkg.com/@akala/commands/-/commands-1.0.20.tgz#aa57bab4555834382cb4f8dc1b7548e00dcee2db"
+  integrity sha512-8kU63j4UxnWIK+/6TT0q74bY0UUTQMTg+Fcvqg8kyh5PNe0lzbUHYbMVk4drfFaS22Q9IduFyJzRZoIyN/d59Q==
   dependencies:
     "@akala/cli" "^1.0.15"
     "@akala/core" "^7.0.20"
@@ -34,12 +34,12 @@
     reflect-metadata "^0.1.13"
     ws "^7.4.5"
 
-"@akala/config@^0.2.24":
-  version "0.2.24"
-  resolved "https://registry.yarnpkg.com/@akala/config/-/config-0.2.24.tgz#c6afec4326d9ce05e5969b3037d9c98f80ba1ccb"
-  integrity sha512-p7gZJ3ocrXQ4Y0U8nq4ki9GBXtbblqAYc0mdoumoCiUQ+CcrpkUQzaomQ5qlylP7PBWfSj6vSnbNKMisM5imEA==
+"@akala/config@^0.2.25":
+  version "0.2.25"
+  resolved "https://registry.yarnpkg.com/@akala/config/-/config-0.2.25.tgz#f82a6cda5f879efb64c35e23f6229c7457f9df0f"
+  integrity sha512-jT9rYQXw2KS07XzTVqqKygrjzW0fjVwJ59UCH7bs4jEFEYZERTryF7ElBfgCgikaqgz43ONRNqKLRKSRy2nXhQ==
   dependencies:
-    "@akala/commands" "^1.0.18"
+    "@akala/commands" "^1.0.20"
     "@akala/core" "^7.0.20"
 
 "@akala/core@^2.0.0", "@akala/core@^2.0.87":
@@ -104,13 +104,13 @@
     uuid "^8.0.0"
     ws "^7.4.5"
 
-"@akala/pm@^2.1.35":
-  version "2.1.35"
-  resolved "https://registry.yarnpkg.com/@akala/pm/-/pm-2.1.35.tgz#408512ebb671e5c9be53132e5e83ad4674aa9f60"
-  integrity sha512-ZpoROTEJ0TLdiWXCEA6p8mTxbUSdnUGKst6ufH9CNfKD+31EBst1xW2W4F69EfqgulCJjYzCJdWhF5grBDL5ug==
+"@akala/pm@^2.1.37":
+  version "2.1.37"
+  resolved "https://registry.yarnpkg.com/@akala/pm/-/pm-2.1.37.tgz#1792ebff795ac4e74ce065b05106d40d1f3cf899"
+  integrity sha512-7Yk4bJJNHYtoRk3YnyU5npjm571rpkdIXGmjyYbRUmECeUAh07QwotqYeeFVkQf7kfAqmMmIEB9GPGZu2R2lsA==
   dependencies:
     "@akala/cli" "^1.0.15"
-    "@akala/commands" "^1.0.18"
+    "@akala/commands" "^1.0.20"
     "@akala/core" "^7.0.20"
     "@akala/json-rpc-ws" "^9.1.31"
     debug "^4.1.1"
@@ -137,15 +137,15 @@
     ws "^7.1.1"
     xml2js "^0.4.19"
 
-"@akala/server@^6.1.36":
-  version "6.1.36"
-  resolved "https://registry.yarnpkg.com/@akala/server/-/server-6.1.36.tgz#cd1efee4d40583d0d7fcef85702639c85a4df584"
-  integrity sha512-Dg8TTR17zNOp6xKW9SG5UC6WUck0CGj8iLpKwigFKX+VwHt2bc9y3ArMw/nVfvyLAp5H9aLABQp0O/GiWfrvUg==
+"@akala/server@^6.1.38":
+  version "6.1.38"
+  resolved "https://registry.yarnpkg.com/@akala/server/-/server-6.1.38.tgz#aabb76f36763264977ec5721b40f267ad1639b5f"
+  integrity sha512-ieG0TFbNn+f9aipiCZWKM+jOFECxoQiaCdCvddzKsrvNZcerZskFa1+QMMWLt9t7X0kcmgcz/euksklfJMabXw==
   dependencies:
-    "@akala/commands" "^1.0.18"
+    "@akala/commands" "^1.0.20"
     "@akala/core" "^7.0.20"
     "@akala/json-rpc-ws" "^9.1.31"
-    "@akala/pm" "^2.1.35"
+    "@akala/pm" "^2.1.37"
     chokidar "^3.3.1"
     co-body "^6.1.0"
     cookie "^0.4.1"
@@ -171,10 +171,10 @@
     webpack "^5.35.1"
     xml2js "^0.4.23"
 
-"@akala/storage@^2.1.20":
-  version "2.1.20"
-  resolved "https://registry.yarnpkg.com/@akala/storage/-/storage-2.1.20.tgz#1c5e61f74b74e14bd73b12242eb47a945cf539a9"
-  integrity sha512-Q5WSD/lzxFQg4bG+SDPMG3uJgn/y48Q5UbZWrsCc70uXlKe2NIWJbpbDrxE/e5LwNbsUxag4bkGR+sGKc7j6eQ==
+"@akala/storage@^2.1.22":
+  version "2.1.22"
+  resolved "https://registry.yarnpkg.com/@akala/storage/-/storage-2.1.22.tgz#346a1a81a997bfb0ef50d32d0ddd4111bfd34581"
+  integrity sha512-SnPh56E1GhprC3ePQXTd+TJTJDskmTzoVvM4NTDej4BZZcfBnR8NPcAfewzeKZGHn7NRP34Y1LfY9Zob/aXojA==
   dependencies:
     "@akala/core" "^7.0.20"
     reflect-metadata "^0.1.13"
@@ -1990,10 +1990,10 @@
     p-map "^4.0.0"
     strip-ansi "6.0.0"
 
-"@snyk/fix@1.641.0":
-  version "1.641.0"
-  resolved "https://registry.yarnpkg.com/@snyk/fix/-/fix-1.641.0.tgz#8f1d7d07788357ee22a0f3ee7d30844e728931b2"
-  integrity sha512-y3eEbzBIFUAkWLwh4nQ7AWAc57w5ZoKB0T9TZZi2AlluLAR45rDgr33uwksA4els14vLOfucACvrejdjLverlw==
+"@snyk/fix@1.648.0":
+  version "1.648.0"
+  resolved "https://registry.yarnpkg.com/@snyk/fix/-/fix-1.648.0.tgz#bc256a42a4b46d4bf0d72a3eb9a72a8beea07c30"
+  integrity sha512-UZxBdzrOlu2fAINbJWfohAj1b4Bbo0P2NNy0QT62gPi5jIiQHnowAyAlsLHiQzmskYBvWMk9ks3XJdhjL2MELQ==
   dependencies:
     "@snyk/dep-graph" "^1.21.0"
     "@snyk/fix-pipenv-pipfile" "0.5.4"
@@ -2240,7 +2240,7 @@
     "@types/estree" "*"
     "@types/json-schema" "*"
 
-"@types/estree@*":
+"@types/estree@*", "@types/estree@^0.0.48":
   version "0.0.48"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.48.tgz#18dc8091b285df90db2f25aa7d906cfc394b7f74"
   integrity sha512-LfZwXoGUDo0C3me81HXgkBg5CTQYb6xzEl+fNmbO4JdRiSKQ8A0GD1OBBvKAIsbCUgoyAty7m99GqqMQe784ew==
@@ -2255,10 +2255,10 @@
   resolved "https://registry.yarnpkg.com/@types/expect/-/expect-1.20.4.tgz#8288e51737bf7e3ab5d7c77bfa695883745264e5"
   integrity sha512-Q5Vn3yjTDyCMV50TB6VRIbQNxSE4OmZR86VSbGaNpfUolm0iePBB4KdEEHmxoY5sT2+2DIvXW0rvMDP2nHZ4Mg==
 
-"@types/express-serve-static-core@^4.17.18":
-  version "4.17.21"
-  resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.17.21.tgz#a427278e106bca77b83ad85221eae709a3414d42"
-  integrity sha512-gwCiEZqW6f7EoR8TTEfalyEhb1zA5jQJnRngr97+3pzMaO1RKoI1w2bw07TK72renMUVWcWS5mLI6rk1NqN0nA==
+"@types/express-serve-static-core@^4.17.22":
+  version "4.17.22"
+  resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.17.22.tgz#e011c55de3f17ddf1161f790042a15c5a218744d"
+  integrity sha512-WdqmrUsRS4ootGha6tVwk/IVHM1iorU8tGehftQD2NWiPniw/sm7xdJOIlXLwqdInL9wBw/p7oO8vaYEF3NDmA==
   dependencies:
     "@types/node" "*"
     "@types/qs" "*"
@@ -2422,10 +2422,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.13.52.tgz#03c13be70b9031baaed79481c0c0cfb0045e53f7"
   integrity sha512-s3nugnZumCC//n4moGGe6tkNMyYEdaDBitVjwPxXmR5lnMG5dHePinH2EdxkG3Rh1ghFHHixAG4NJhpJW1rthQ==
 
-"@types/node@^15.12.4":
-  version "15.12.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-15.12.4.tgz#e1cf817d70a1e118e81922c4ff6683ce9d422e26"
-  integrity sha512-zrNj1+yqYF4WskCMOHwN+w9iuD12+dGm0rQ35HLl9/Ouuq52cEtd0CH9qMgrdNmi5ejC1/V7vKEXYubB+65DkA==
+"@types/node@^15.12.5":
+  version "15.12.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-15.12.5.tgz#9a78318a45d75c9523d2396131bd3cca54b2d185"
+  integrity sha512-se3yX7UHv5Bscf8f1ERKvQOD6sTyycH3hdaoozvaLxgUiY5lIGEeH37AD0G0Qi9kPqihPn0HOfd2yaIEN9VwEg==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -9384,17 +9384,17 @@ snyk@^1.460.0:
     wrap-ansi "^5.1.0"
     yaml "^1.10.2"
 
-snyk@^1.645.0:
-  version "1.645.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.645.0.tgz#6f3bde741d78b7f7b66d1f4548ef55bddaf36d29"
-  integrity sha512-hNUJmivOFLLx6KxBO7s6E8Qpgb3DNqLEXs2QO+ujaYQ4zw5rFp4X6usTS7eVQc/jfWAuxxIehZuVxil5/bo2xQ==
+snyk@^1.650.0:
+  version "1.650.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.650.0.tgz#81cc2c8967a9d8c35d0fb3617708d4a3a296bf7a"
+  integrity sha512-+ErRNirt/+8YR3ZgAsEV3gDt7j/eVxAHGesk/VyQBjOqKmJrEs7XJGPoDWR2TyGfMiwf6tx0CO1H0PjIPj64xw==
   dependencies:
     "@open-policy-agent/opa-wasm" "^1.2.0"
     "@snyk/cli-interface" "2.11.0"
     "@snyk/cloud-config-parser" "^1.9.2"
     "@snyk/code-client" "3.9.0"
     "@snyk/dep-graph" "^1.27.1"
-    "@snyk/fix" "1.641.0"
+    "@snyk/fix" "1.648.0"
     "@snyk/gemfile" "1.2.0"
     "@snyk/graphlib" "^2.1.9-patch.3"
     "@snyk/inquirer" "^7.3.3-patch"
@@ -10513,13 +10513,13 @@ webpack@^5.35.1:
     watchpack "^2.2.0"
     webpack-sources "^2.3.0"
 
-webpack@^5.40.0:
-  version "5.40.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.40.0.tgz#3182cfd324759d715252cf541901a226e57b5061"
-  integrity sha512-c7f5e/WWrxXWUzQqTBg54vBs5RgcAgpvKE4F4VegVgfo4x660ZxYUF2/hpMkZUnLjgytVTitjeXaN4IPlXCGIw==
+webpack@^5.41.0:
+  version "5.41.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.41.0.tgz#217daa27bdd30287c1d7f9d9e0a2304fe33c5a51"
+  integrity sha512-pCVO7hVm8XiL6DpPtXrFLS8ktmH/tpvtbEex6hn4RweTFe6z6Cugh5FlQoEPZotb15HiirjM2Kv7THTA7sKLzQ==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
-    "@types/estree" "^0.0.47"
+    "@types/estree" "^0.0.48"
     "@webassemblyjs/ast" "1.11.0"
     "@webassemblyjs/wasm-edit" "1.11.0"
     "@webassemblyjs/wasm-parser" "1.11.0"
