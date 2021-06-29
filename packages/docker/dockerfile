@@ -1,13 +1,4 @@
-FROM node:current-alpine as builder
-ENV NODE_ENV production
-WORKDIR /usr/src/akala
-RUN mkdir /root/.yarn && ln -s /usr/src/akala/.yarn /root/.yarn
-# RUN yarn set version berry
-VOLUME ["/usr/src/akala/build"]
+FROM npenin/akala
 RUN apk add --no-cache alpine-sdk python3 linux-headers eudev-dev libusb git
-# RUN yarn init -p
-RUN echo '{"name":"domojs", "private":true}' > package.json
 RUN yarn add serialport usb
 RUN yarn add @akala/pm
-ENTRYPOINT yarn pm-fork pm
-CMD local tcp --tcpPort 31416

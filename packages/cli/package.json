@@ -8,8 +8,8 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "@akala/commands": "^1.0.18",
-    "@akala/pm": "^2.1.35",
+    "@akala/commands": "^1.0.20",
+    "@akala/pm": "^2.1.37",
     "yargs": "^17.0.1"
   },
   "devDependencies": {

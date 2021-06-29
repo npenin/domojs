@@ -6,7 +6,7 @@
     "url": "https://github.com/domojs/domojs-rfxcom/issues"
   },
   "dependencies": {
-    "@akala/pm": "^2.1.35",
+    "@akala/pm": "^2.1.37",
     "rfxtrx": "^1.2.10",
     "serialport": "^9.2.0",
     "usb": "^1.6.3"
@@ -15,7 +15,7 @@
   "deprecated": false,
   "description": "",
   "devDependencies": {
-    "@akala/server": "^6.1.36",
+    "@akala/server": "^6.1.38",
     "@domojs/devices": "^1.5.25",
     "@types/debug": "^4.1.5",
     "@types/serialport": "^8.0.1",
