@@ -17,7 +17,6 @@ import Uint32LE from './uint32LE'
 import Uint64LE from './uint64LE'
 import Vuint from './vuint'
 import VuintLE from './vuintLE'
-import Varint from './protobuf/varint'
 
 import PrefixedString from './string-prefixed'
 import FixedString from './string-fixed'
@@ -40,28 +39,28 @@ import { Prepare } from './prepare'
 import { ZeroOrOne } from './zero-or-one'
 import Between from './between'
 import * as protobuf from './protobuf'
+import { Sub } from './sub'
 
 export { protobuf };
 
-export const bit = new Bit();
-export const uint2 = new Uint2();
-export const uint3 = new Uint3();
-export const uint4 = new Uint4();
-export const uint5 = new Uint5();
-export const uint6 = new Uint6();
-export const uint7 = new Uint7();
-export const uint8 = new Uint8();
-export const uint16 = new Uint16();
-export const uint24 = new Uint24();
-export const uint32 = new Uint32();
-export const uint64 = new Uint64();
-export const uint16LE = new Uint16LE();
-export const uint24LE = new Uint24LE();
-export const uint32LE = new Uint32LE();
-export const uint64LE = new Uint64LE();
-export const vuint = new Vuint();
-export const vuintLE = new VuintLE();
-export const varint = new Varint();
+export const bit: Parser<number> = new Bit();
+export const uint2: Parser<number> = new Uint2();
+export const uint3: Parser<number> = new Uint3();
+export const uint4: Parser<number> = new Uint4();
+export const uint5: Parser<number> = new Uint5();
+export const uint6: Parser<number> = new Uint6();
+export const uint7: Parser<number> = new Uint7();
+export const uint8: Parser<number> = new Uint8();
+export const uint16: Parser<number> = new Uint16();
+export const uint24: Parser<number> = new Uint24();
+export const uint32: Parser<number> = new Uint32();
+export const uint64: Parser<bigint> = new Uint64();
+export const uint16LE: Parser<number> = new Uint16LE();
+export const uint24LE: Parser<number> = new Uint24LE();
+export const uint32LE: Parser<number> = new Uint32LE();
+export const uint64LE: Parser<bigint> = new Uint64LE();
+export const vuint: ParserWithoutKnownLength<number> = new Vuint();
+export const vuintLE: ParserWithoutKnownLength<number> = new VuintLE();
 
 export { Parser, ParserWithMessage, ParserWithMessageWithoutKnownLength, ParserWithoutKnownLength, Parsers, ParsersWithMessage, AnyParser };
 
@@ -96,6 +95,10 @@ export
 export function skip<T = void>(length: number): Parsers<T>
 {
     return new Skip<T>(length);
+}
+export function sub<TResult, TMessage>(length: AnyParser<number, TMessage>, inner: AnyParser<TResult, TMessage>): ParserWithMessageWithoutKnownLength<TResult, TMessage>
+{
+    return new Sub(length, inner);
 }
 export function boolean(parser?: Parser<number>): Parser<boolean>
 {
