@@ -1,17 +1,17 @@
-import { Cursor, Parser } from "./_common";
+import { Cursor, ParserWithoutKnownLength } from "./_common";
 import Uint16LE from "./uint16LE";
 import Uint24LE from "./uint24LE";
 import Uint32LE from "./uint32LE";
 import Uint8 from "./uint8";
 
-export default class Vuint implements Parser<number>
+export default class Vuint implements ParserWithoutKnownLength<number>
 {
     constructor()
     {
 
     }
 
-    length = -1;
+    length: -1 = -1;
 
     public read(buffer: Buffer, cursor: Cursor): number
     {
@@ -33,17 +33,32 @@ export default class Vuint implements Parser<number>
         }
     }
 
-    public write(buffer: Buffer, cursor: Cursor, value: number)
+    public write(value: number)
     {
         if (value <= 0x7f)
-            Uint8.prototype.write(buffer, cursor, value);
+        {
+            const buffer = Buffer.alloc(1);
+            Uint8.prototype.write(buffer, new Cursor(), value);
+            return [buffer];
+        }
         else if (value <= 0xff7f)
-            Uint16LE.prototype.write(buffer, cursor, value);
+        {
+            const buffer = Buffer.alloc(2);
+            Uint16LE.prototype.write(buffer, new Cursor(), value);
+            return [buffer];
+        }
         else if (value <= 0xffff7f)
-            Uint24LE.prototype.write(buffer, cursor, value);
+        {
+            const buffer = Buffer.alloc(3);
+            Uint24LE.prototype.write(buffer, new Cursor(), value);
+            return [buffer];
+        }
         else if (value <= 0xffffff7f)
-            Uint32LE.prototype.write(buffer, cursor, value);
-
+        {
+            const buffer = Buffer.alloc(4);
+            Uint32LE.prototype.write(buffer, new Cursor(), value);
+            return [buffer];
+        }
         else
             throw new Error('invalid value for vuint');
     }
