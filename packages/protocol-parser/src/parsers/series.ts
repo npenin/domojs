@@ -13,6 +13,8 @@ export default class Series<TMessage> implements ParserWithMessageWithoutKnownLe
         {
             if (previous == -1)
                 return -1;
+            if (current == -1)
+                return -1;
             return current + previous;
         }, 0) as -1;
     }
