@@ -1,5 +1,5 @@
 import assert from "assert";
-import { varint, protobuf } from "../parsers"
+import { protobuf } from "../parsers"
 import { ProtobufMessage, string } from "../parsers/protobuf";
 import { Cursor, parserWrite } from "../parsers/_common"
 
@@ -21,9 +21,9 @@ describe('protobuf', function ()
     it('should parse varint', function ()
     {
         const expected = 300;
-        const buffer = Buffer.concat(varint.write(expected));
+        const buffer = Buffer.concat(protobuf.varint.write(expected));
         assert.deepStrictEqual(Buffer.from([0b10101100, 0b00000010]), buffer);
-        assert.deepStrictEqual(expected, varint.read(buffer, new Cursor()));
+        assert.deepStrictEqual(expected, protobuf.varint.read(buffer, new Cursor()));
     })
     it('should parse object with varint', function ()
     {

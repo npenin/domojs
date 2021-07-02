@@ -57,8 +57,6 @@ export namespace Internal
         id3: number;
         unitCode: TUnitCode;
         command: Commands;
-        rfu: number;
-        filler: number;
         rssi: number;
     }
 
@@ -134,20 +132,20 @@ export namespace Internal
     }
 }
 
-export enum Commands
+export const Commands =
 {
-    stop = Internal.Commands.stop,
-    up = Internal.Commands.up,
-    down = Internal.Commands.down,
-    program = Internal.Commands.program,
-    removeRemote = Internal.Commands.removeRemote,
-    remoteRemotes = Internal.Commands.remoteRemotes,
-    upShort = Internal.Commands.upShort,
-    downShort = Internal.Commands.downShort,
-    upLong = Internal.Commands.upLong,
-    downLong = Internal.Commands.downLong,
-    enableSunWindDetection = Internal.Commands.enableSunWindDetection,
-    disableSunWindDetection = Internal.Commands.disableSunWindDetection,
+    stop: Internal.Commands.stop,
+    up: Internal.Commands.up,
+    down: Internal.Commands.down,
+    program: Internal.Commands.program,
+    removeRemote: Internal.Commands.removeRemote,
+    remoteRemotes: Internal.Commands.remoteRemotes,
+    upShort: Internal.Commands.upShort,
+    downShort: Internal.Commands.downShort,
+    upLong: Internal.Commands.upLong,
+    downLong: Internal.Commands.downLong,
+    enableSunWindDetection: Internal.Commands.enableSunWindDetection,
+    disableSunWindDetection: Internal.Commands.disableSunWindDetection,
 };
 
 export type Device =
@@ -163,10 +161,7 @@ export function init()
         parsers.property('id3', parsers.uint8),
         parsers.property('unitCode', parsers.uint8),
         parsers.property('command', parsers.uint8),
-        parsers.property('rfu', parsers.uint8),
-        parsers.property('rfu', parsers.uint8),
-        parsers.property('rfu', parsers.uint8),
-        parsers.skip(.5),
+        parsers.skip(3.5),
         parsers.property('rssi', parsers.uint4),
     ));
 
@@ -176,10 +171,7 @@ export function init()
         parsers.property('id3', parsers.uint8),
         parsers.property('unitCode', parsers.uint8),
         parsers.property('command', parsers.uint8),
-        parsers.property('rfu', parsers.uint8),
-        parsers.property('rfu', parsers.uint8),
-        parsers.property('rfu', parsers.uint8),
-        parsers.skip(.5),
+        parsers.skip(3.5),
         parsers.property('rssi', parsers.uint4),
     ));
 
@@ -189,10 +181,7 @@ export function init()
         parsers.property('id3', parsers.uint8),
         parsers.property('unitCode', parsers.uint8),
         parsers.property('command', parsers.uint8),
-        parsers.property('rfu', parsers.uint8),
-        parsers.property('rfu', parsers.uint8),
-        parsers.property('rfu', parsers.uint8),
-        parsers.skip(.5),
+        parsers.skip(3.5),
         parsers.property('rssi', parsers.uint4),
     ));
 }
