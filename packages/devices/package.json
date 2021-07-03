@@ -12,12 +12,12 @@
     "@domojs/devicetype": "./devicetype-commands.json"
   },
   "dependencies": {
-    "@akala/client": "^5.0.30",
-    "@akala/commands": "^1.0.23",
-    "@akala/core": "^7.0.21",
-    "@akala/json-rpc-ws": "^9.1.31",
-    "@akala/server": "^6.1.50",
-    "@akala/storage": "^2.1.23",
+    "@akala/client": "^5.0.31",
+    "@akala/commands": "^1.0.24",
+    "@akala/core": "^7.0.22",
+    "@akala/json-rpc-ws": "^9.1.32",
+    "@akala/server": "^6.1.51",
+    "@akala/storage": "^2.1.24",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "snyk": "^1.653.0",
     "uuid": "^8.0.0",
