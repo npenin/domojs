@@ -1,6 +1,6 @@
 {
   "name": "@domojs/cron",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "dist/index.js",
   "repository": "https://github.com/npenin/domojs",
   "author": "npenin",
