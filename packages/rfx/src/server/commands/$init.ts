@@ -28,7 +28,7 @@ export default async function init(this: State)
 
     try
     {
-        addDeviceIfMatch();
+        await addDeviceIfMatch();
         usb.on('attach', function ()
         {
             logger.info('detected new usb device');

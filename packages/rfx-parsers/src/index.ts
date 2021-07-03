@@ -270,7 +270,6 @@ export class Rfxtrx extends EventEmitter
 
     public static async listEligibleSerials(): Promise<string[]>
     {
-
         const devices = usb.getDeviceList().filter(d => d.deviceDescriptor.idVendor == 1027 && d.deviceDescriptor.idProduct == 24577);
         const result: usb.Device[] = [];
         await eachAsync(devices, (d, i, next) =>
