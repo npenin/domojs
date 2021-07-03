@@ -1,6 +1,6 @@
 {
   "name": "zigate",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "@akala/core": "^7.0.20",
-    "@domojs/protocol-parser": "^2.0.9",
+    "@domojs/protocol-parser": "^2.0.10",
     "debug": "^4.3.1",
     "serialport": "^9.2.0"
   },
