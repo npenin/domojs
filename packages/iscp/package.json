@@ -8,7 +8,7 @@
   "dependencies": {
     "@akala/core": "^7.0.21",
     "@akala/server": "^6.1.50",
-    "@domojs/devices": "^1.5.26"
+    "@domojs/devices": "^1.5.27"
   },
   "devDependencies": {
     "@types/ws": "^7.4.6"
@@ -33,6 +33,6 @@
     "build": "npm run build:js"
   },
   "typings": "dist/index.d.ts",
-  "version": "1.1.26",
+  "version": "1.1.27",
   "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }
