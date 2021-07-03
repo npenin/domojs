@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@akala/pm": "^2.1.50",
-    "rfxtrx": "^1.2.12",
+    "rfxtrx": "^1.2.13",
     "serialport": "^9.2.0",
     "usb": "^1.6.3"
   },
@@ -16,7 +16,7 @@
   "description": "",
   "devDependencies": {
     "@akala/server": "^6.1.51",
-    "@domojs/devices": "^1.5.27",
+    "@domojs/devices": "^1.5.28",
     "@types/debug": "^4.1.6",
     "@types/serialport": "^8.0.1",
     "@types/usb": "^1.5.2",
@@ -39,6 +39,6 @@
     "build": "npm run build:js && ac generate dist/server/commands commands.json"
   },
   "typings": "dist/index.d.ts",
-  "version": "1.3.68",
+  "version": "1.3.69",
   "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }
