@@ -11,7 +11,7 @@ import { Container } from '@akala/commands';
 export async function registerDeviceType(deviceType: devices.DeviceType)
 {
     var container = await sidecar<SidecarMap>()['@domojs/devicetype'];
-    container.dispatch('register', deviceType);
+    await container.dispatch('register', deviceType);
 }
 
 declare module '@akala/pm'
