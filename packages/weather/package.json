@@ -1,6 +1,6 @@
 {
 	"name": "@domojs/weather",
-	"version": "0.2.17",
+	"version": "0.2.18",
 	"commands": "./commands.json",
 	"repository": {
 		"type": "git",

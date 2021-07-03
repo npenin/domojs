@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@akala/core": "^7.0.20",
-    "@domojs/protocol-parser": "^2.0.9",
+    "@domojs/protocol-parser": "^2.0.10",
     "serialport": "^9.2.0",
     "usb": "^1.6.5"
   },
@@ -18,7 +18,7 @@
     "test": "echo 1"
   },
   "name": "rfxtrx",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "main": "dist/index.js",
   "repository": "https://github.com/npenin/rfx.git",
   "author": "Nicolas Penin <nicolas.penin@dragon-angel.fr>",
