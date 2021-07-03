@@ -27,7 +27,7 @@
     "description": "",
     "types": "dist/server/index.d.ts",
     "dependencies": {
-        "@akala/server": "^6.1.38",
+        "@akala/server": "^6.1.50",
         "@fortawesome/fontawesome-common-types": "^0.2.28",
         "uuid": "^8.0.0"
     },
@@ -35,12 +35,12 @@
         "@domojs/theme-default": "^1.2.38"
     },
     "devDependencies": {
-        "@akala/client": "^5.0.27",
+        "@akala/client": "^5.0.30",
         "@domojs/theme-default": "^1.3.20",
         "@popperjs/core": "^2.8.6",
-        "@types/debug": "^4.1.5",
-        "@types/uuid": "^8.3.0",
-        "typescript": "~4.3.4"
+        "@types/debug": "^4.1.6",
+        "@types/uuid": "^8.3.1",
+        "typescript": "~4.3.5"
     },
     "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }

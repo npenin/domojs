@@ -8,12 +8,12 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "@akala/commands": "^1.0.20",
-    "@akala/pm": "^2.1.37",
+    "@akala/commands": "^1.0.23",
+    "@akala/pm": "^2.1.49",
     "yargs": "^17.0.1"
   },
   "devDependencies": {
-    "@types/yargs": "^17.0.0"
+    "@types/yargs": "^17.0.1"
   },
   "gitHead": "5c8b6cb938eb920110c9a48ec210f2a65ee04176"
 }
