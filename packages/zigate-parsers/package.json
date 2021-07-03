@@ -11,17 +11,17 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "@akala/core": "^7.0.20",
+    "@akala/core": "^7.0.21",
     "@domojs/protocol-parser": "^2.0.10",
     "debug": "^4.3.1",
     "serialport": "^9.2.0"
   },
   "devDependencies": {
-    "@types/debug": "^4.1.5",
+    "@types/debug": "^4.1.6",
     "@types/serialport": "^8.0.1",
-    "@types/ws": "^7.4.5",
+    "@types/ws": "^7.4.6",
     "source-map-support": "^0.5.19",
-    "typescript": "^4.3.4"
+    "typescript": "^4.3.5"
   },
   "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }

@@ -12,15 +12,15 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "@types/debug": "^4.1.1",
+    "@types/debug": "^4.1.6",
     "debug": "^4.1.1"
   },
   "devDependencies": {
     "@types/mocha": "^8.2.0",
-    "@types/node": "^15.12.5",
-    "mocha": "^9.0.1",
+    "@types/node": "^16.0.0",
+    "mocha": "^9.0.2",
     "source-map-support": "^0.5.10",
-    "typescript": "^4.3.4"
+    "typescript": "^4.3.5"
   },
   "publishConfig": {
     "access": "public"
