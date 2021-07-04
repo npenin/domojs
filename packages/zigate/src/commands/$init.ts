@@ -10,7 +10,7 @@ export default async function (this: State)
     this.devicesByAddress = {};
 
 
-    await fs.readFile(path.resolve(__dirname, '../../../views/new-RFY.html'), 'utf-8').then(newDeviceTemplate =>
+    await fs.readFile(path.resolve(__dirname, '../../views/device.html'), 'utf-8').then(newDeviceTemplate =>
         registerDeviceType({
             name: 'zigate',
             commandMode: 'static',
