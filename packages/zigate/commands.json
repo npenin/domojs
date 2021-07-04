@@ -1,0 +1,127 @@
+{
+    "name": "commands",
+    "commands": [
+        {
+            "name": "$init",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts",
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "exec",
+            "inject": [
+                "param.0",
+                "param.1",
+                "param.2"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/exec.js",
+                    "source": "src/commands/exec.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "gateways",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/commands/gateways.js",
+                    "source": "src/commands/gateways.ts",
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "getStatus",
+            "inject": [
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/getStatus.js",
+                    "source": "src/commands/getStatus.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "pendingDevices",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/commands/pendingDevices.js",
+                    "source": "src/commands/pendingDevices.ts",
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "save",
+            "inject": [
+                "param.0",
+                "param.1",
+                "connectionAsContainer"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "connectionAsContainer"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/save.js",
+                    "source": "src/commands/save.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "connectionAsContainer"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "connectionAsContainer"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}
