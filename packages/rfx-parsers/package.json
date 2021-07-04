@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@akala/core": "^7.0.22",
+    "@akala/core": "^7.0.24",
     "@domojs/protocol-parser": "^2.0.11",
     "serialport": "^9.2.0",
     "usb": "^1.6.5"
