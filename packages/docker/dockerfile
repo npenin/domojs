@@ -1,4 +1,6 @@
 FROM npenin/akala
 RUN apk add --no-cache alpine-sdk python3 linux-headers eudev-dev libusb git
 RUN yarn add serialport usb
-RUN yarn add @akala/pm
+RUN yarn add @akala/pm @akala/server @domojs/devices
+VOLUME ["/root/.pm.config.json", "package.json"]
+COPY .pm.config.json /root/.pm.config.json

@@ -1,0 +1,64 @@
+{
+    "containers": {
+        "pm": [
+            "/usr/src/akala"
+        ]
+    },
+    "mapping": {
+        "pm": {
+            "path": "/usr/src/akala/node_modules/@akala/pm/commands.json",
+            "commandable": false,
+            "connect": {
+                "socket": [
+                    {
+                        "path": "/usr/src/akala/pm.sock"
+                    },
+                    {
+                        "port": 31416
+                    }
+                ]
+            }
+        },
+        "@akala/server": {
+            "path": "/usr/src/akala/node_modules/@akala/server/commands.json",
+            "commandable": true,
+            "connect": {
+                "socket": [
+                    {
+                        "path": "/usr/src/akala/akala-server.sock"
+                    }
+                ],
+                "http": {
+                    "port": 80
+                }
+            }
+        },
+        "@domojs/devices": {
+            "path": "/usr/src/akala/node_modules/@domojs/devices/device-commands.json",
+            "commandable": true,
+            "connect": {}
+        },
+        "@domojs/devicetype": {
+            "path": "/usr/src/akala/node_modules/@domojs/devices/devicetype-commands.json",
+            "commandable": true,
+            "connect": {
+                "socket": [
+                    {
+                        "path": "/usr/src/akala/domojs-devicetype.sock"
+                    }
+                ]
+            }
+        },
+        "@domojs/rfx": {
+            "path": "/usr/src/akala/node_modules/@domojs/rfx/commands.json",
+            "commandable": true,
+            "connect": {}
+        },
+        "@domojs/zigate": {
+            "path": "/usr/src/akala/node_modules/@domojs/zigate/commands.json",
+            "commandable": true,
+            "connect": {}
+        }
+    },
+    "externals": []
+}
