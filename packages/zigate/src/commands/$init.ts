@@ -3,6 +3,7 @@ import { registerDeviceType } from '@domojs/devices';
 import { State } from '../state'
 import fs from 'fs/promises'
 import path from 'path';
+import { Zigate } from 'zigate';
 
 export default async function (this: State)
 {
@@ -18,5 +19,11 @@ export default async function (this: State)
         })
     );
 
-    this.deviceServer = await sidecar()['@domojs/devices'];
+    this.gateway = Zigate.listEligibleSerials().then(serials =>
+    {
+        if (serials && serials.length)
+            return Zigate.getSerial(serials[0].path);
+    })
+
+    // this.deviceServer = await sidecar()['@domojs/devices'];
 }
