@@ -1,5 +1,5 @@
 import * as devices from "../../../devices";
-import { Container, CommandProxy, Metadata, updateCommands } from "@akala/commands";
+import { Container, CommandProxy, Metadata, updateCommands, Command } from "@akala/commands";
 
 
 export default async function register(this: devices.DeviceTypeCollection, type: devices.DeviceType, self: Container<any>, container: Container<void>)
@@ -13,6 +13,11 @@ export default async function register(this: devices.DeviceTypeCollection, type:
         { name: type + '.save', config: { "": { "inject": ['$params'] } } },
         { name: type + '.exec', config: { "": { "inject": ['$params'] } } }], container.processor, container);
     self.register(type.name, container);
+    container.register(new Command(() =>
+    {
+        delete this[type.name];
+        self.unregister(type.name);
+    }, '$disconnect'));
     // self.register(new CommandProxy(container.processor, type.name + '.save'));
     // self.register(new CommandProxy(container.processor, type.name + '.exec'));
 }
