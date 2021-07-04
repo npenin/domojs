@@ -14,10 +14,10 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "@akala/client": "^5.0.31",
-    "@akala/commands": "^1.0.24",
-    "@akala/config": "^0.2.29",
-    "@akala/core": "^7.0.22",
+    "@akala/client": "^5.0.33",
+    "@akala/commands": "^1.0.26",
+    "@akala/config": "^0.2.31",
+    "@akala/core": "^7.0.24",
     "levenshtein": "^1.0.5",
     "typescript": "~4.3.5"
   },
@@ -27,9 +27,9 @@
     "@domojs/theme-default": "^1.1.3"
   },
   "devDependencies": {
-    "@akala/cli": "^1.0.17",
-    "@akala/json-rpc-ws": "^9.1.32",
-    "@akala/server": "^6.1.51",
+    "@akala/cli": "^1.0.19",
+    "@akala/json-rpc-ws": "^9.1.34",
+    "@akala/server": "^6.1.53",
     "@domojs/db": "^1.1.5",
     "@domojs/theme-default": "^1.3.22",
     "@types/debug": "^4.1.6",

@@ -17,8 +17,8 @@
 	"author": "npenin",
 	"license": "MIT",
 	"dependencies": {
-		"@akala/core": "^7.0.22",
-		"@akala/server": "^6.1.51",
+		"@akala/core": "^7.0.24",
+		"@akala/server": "^6.1.53",
 		"serialport": "^9.2.0",
 		"zigate": "^2.0.12"
 	},

@@ -5,7 +5,7 @@
   "main": "dist/test.js",
   "license": "MIT",
   "dependencies": {
-    "@akala/json-rpc-ws": "^9.1.32",
+    "@akala/json-rpc-ws": "^9.1.34",
     "@nlpjs/basic": "^4.19.0",
     "node-nlp": "^4.19.0"
   },
