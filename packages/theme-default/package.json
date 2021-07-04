@@ -40,7 +40,7 @@
     "snyk-protect": "snyk protect"
   },
   "types": "dist/client/public_api.d.ts",
-  "version": "1.3.22",
+  "version": "1.3.23",
   "snyk": true,
   "commands": "./commands.json",
   "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
