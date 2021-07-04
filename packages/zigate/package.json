@@ -1,6 +1,6 @@
 {
 	"name": "@domojs/zigate",
-	"version": "1.2.22",
+	"version": "1.2.23",
 	"description": "",
 	"main": "dist/index.js",
 	"commands": "./commands.json",
@@ -24,7 +24,7 @@
 		"zigate": "^2.0.13"
 	},
 	"devDependencies": {
-		"@domojs/devices": "^1.5.29",
+		"@domojs/devices": "^1.5.30",
 		"@types/debug": "^4.1.6",
 		"@types/request": "^2.48.5",
 		"lerna": "^4.0.0"
