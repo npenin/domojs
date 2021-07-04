@@ -7,7 +7,7 @@
   "dependencies": {
     "@akala/core": "^7.0.24",
     "mongodb": "^3.5.8",
-    "ws": "^7.5.1"
+    "ws": "^7.4.6"
   },
   "devDependencies": {
     "@types/debug": "^4.1.6",
