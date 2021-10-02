@@ -65,6 +65,11 @@ export interface ListRFYRemote
     filler: number[];
 }
 
+export interface UnknownRTSRemote
+{
+    command: number; //2
+}
+
 export interface CheckRFXCOMDevice
 {
     command: number; //7
@@ -116,6 +121,11 @@ export function init()
         parsers.property('randomCode', parsers.uint8),
         parsers.property('rollingCodeHigh', parsers.uint8),
         parsers.property('rollingCodeLow', parsers.uint8),
+        parsers.skip(7)
+    ));
+
+    Protocol.register(Type.INTERFACE_MESSAGE.unknownRTSRemote, parsers.object<UnknownRTSRemote>(
+        parsers.property('command', parsers.uint8),
         parsers.skip(7)
     ));
 
