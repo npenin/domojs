@@ -10,13 +10,13 @@
 	"author": "npenin",
 	"license": "MIT",
 	"dependencies": {
-		"@akala/core": "^7.0.24",
-		"@akala/server": "^6.1.53",
+		"@akala/core": "^7.5.9",
+		"@akala/server": "^6.3.4",
 		"@domojs/protocol-parser": "^2.0.11"
 	},
 	"devDependencies": {
-		"@types/debug": "^4.1.6",
-		"@types/request": "^2.48.5"
+		"@types/debug": "^4.1.7",
+		"@types/request": "^2.48.7"
 	},
 	"gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }

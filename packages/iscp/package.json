@@ -6,12 +6,12 @@
     "url": "https://github.com/domojs/domojs-pioneer/issues"
   },
   "dependencies": {
-    "@akala/core": "^7.0.24",
-    "@akala/server": "^6.1.53",
+    "@akala/core": "^7.5.9",
+    "@akala/server": "^6.3.4",
     "@domojs/devices": "^1.5.30"
   },
   "devDependencies": {
-    "@types/ws": "^7.4.6"
+    "@types/ws": "^8.2.0"
   },
   "deprecated": false,
   "description": "",

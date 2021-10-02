@@ -6,22 +6,22 @@
     "url": "https://github.com/domojs/domojs-rfxcom/issues"
   },
   "dependencies": {
-    "@akala/pm": "^2.1.52",
+    "@akala/pm": "^2.4.1",
     "rfxtrx": "^1.2.14",
-    "serialport": "^9.2.0",
-    "usb": "^1.6.3"
+    "serialport": "^9.2.4",
+    "usb": "^1.7.2"
   },
   "commands": "./commands.json",
   "deprecated": false,
   "description": "",
   "devDependencies": {
-    "@akala/server": "^6.1.53",
+    "@akala/server": "^6.3.4",
     "@domojs/devices": "^1.5.30",
-    "@types/debug": "^4.1.6",
-    "@types/serialport": "^8.0.1",
-    "@types/usb": "^1.5.2",
-    "@types/ws": "^7.4.6",
-    "typescript": "~4.3.5"
+    "@types/debug": "^4.1.7",
+    "@types/serialport": "^8.0.2",
+    "@types/usb": "^1.5.3",
+    "@types/ws": "^8.2.0",
+    "typescript": "~4.4.3"
   },
   "homepage": "https://github.com/domojs/domojs-rfxcom#readme",
   "license": "MIT",
