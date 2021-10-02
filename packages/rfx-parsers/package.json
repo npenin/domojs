@@ -1,16 +1,16 @@
 {
   "dependencies": {
-    "@akala/core": "^7.0.24",
+    "@akala/core": "^7.5.9",
     "@domojs/protocol-parser": "^2.0.11",
-    "serialport": "^9.2.0",
-    "usb": "^1.6.5"
+    "serialport": "^9.2.4",
+    "usb": "^1.7.2"
   },
   "devDependencies": {
-    "@types/debug": "^4.1.6",
-    "@types/node": "^16.0.0",
-    "@types/serialport": "^8.0.1",
-    "@types/usb": "^1.5.2",
-    "typescript": "^4.3.5"
+    "@types/debug": "^4.1.7",
+    "@types/node": "^16.10.2",
+    "@types/serialport": "^8.0.2",
+    "@types/usb": "^1.5.3",
+    "typescript": "^4.4.3"
   },
   "scripts": {
     "build": "tsc -p .",
