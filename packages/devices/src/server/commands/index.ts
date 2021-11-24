@@ -10,7 +10,7 @@ export namespace DeviceType
         exec(): PromiseLike<any>
     }
 
-    export async function create(type: types.DeviceType, processor: ac.CommandNameProcessor)
+    export async function create(type: types.DeviceType, processor: ac.CommandProcessor)
     {
         var container = new ac.Container('deviceTypes', {}, processor);
 

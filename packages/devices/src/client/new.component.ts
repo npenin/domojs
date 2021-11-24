@@ -1,6 +1,6 @@
 import { mdule2 } from './main.module'
 import * as client from '@akala/client'
-import { Container, Command } from '@akala/commands'
+import { Container, Metadata } from '@akala/commands'
 import { inject } from '@akala/core';
 import { LocationService, PartDefinition } from '@akala/client';
 import deviceTypes from '../server/devicetype-commands';
@@ -48,7 +48,7 @@ export class NewDeviceCommand
     async controller(scope: client.IScope<any>, _element: Element)
     {
         scope.$set('commands', [{ name: 'new' }]);
-        scope.$set('dispatch', (cmd: Command) =>
+        scope.$set('dispatch', (cmd: Metadata.Command) =>
         {
             switch (cmd.name)
             {

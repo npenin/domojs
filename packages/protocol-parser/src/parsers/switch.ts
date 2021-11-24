@@ -6,8 +6,15 @@ export default class Switch<T extends { [key in TKey]: TValue }, TKey extends ke
     constructor(private name: TKey, parsers: { [key in TValue]: AnyParser<TResult, T> })
     {
         this.parsers = parsers;
-
     }
+    register(key: TValue, parser: AnyParser<TResult, T>)
+    {
+        if (key in this.parsers)
+            throw new Error('a parser for ' + key + ' is already registered');
+
+        this.parsers[key] = parser;
+    }
+
     length: -1 = -1;
     read(buffer: Buffer, cursor: Cursor, message: T): TResult
     {

@@ -3,15 +3,96 @@ import { devices } from "@domojs/devices";
 import { Rfy } from 'rfxtrx';
 import { State } from "../state";
 import * as ac from '@akala/commands'
+import * as pm from '@akala/pm'
+import * as http from 'http'
+import * as https from 'https'
+import * as net from 'net'
+import { protocols_msg3, protocols_msg4, protocols_msg5, protocols_msg6 } from "rfxtrx/dist/protocol/0.interface.mode";
+
 
 export default async function save(this: State, body: any, device: devices.IDevice, container: ac.Container<any>)
 {
     if (!body)
         return device;
+    if (typeof body.rfxType == 'undefined')
+        throw new pm.InteractError('please provide an rfxType', 'body.rfxType');
     var type: PacketType = (body.rfxType & 0xff00) >> 8;
-    var gateway = await this.gateway;
+    if (type !== PacketType.INTERFACE_CONTROL)
+        var gateway = await this.gateway;
     switch (type)
     {
+        case PacketType.INTERFACE_CONTROL: //hack to add a gateway
+            let p: Promise<Rfxtrx>;
+            switch (body.mode)
+            {
+                case 'http':
+                    const url = new URL(body.path);
+                    let req: http.ClientRequest;
+                    switch (url.protocol)
+                    {
+                        case 'http':
+                            p = new Promise<Rfxtrx>((resolve, reject) =>
+                            {
+                                req = http.request(url, { headers: { connection: 'Upgrade', upgrade: 'raw' } }, async res =>
+                                {
+                                    if (res.statusCode == 101)
+                                    {
+                                        const socket = res.socket;
+                                        socket.once('error', reject);
+                                        this.setGateway(new Rfxtrx(socket)).then(resolve, reject);
+                                    }
+                                    else
+                                    {
+                                        res.socket.end();
+                                        reject(new Error(`unable to connect over http: ${res.statusCode} ${res.statusMessage}`));
+                                    }
+                                });
+                            });
+                            break;
+                        case 'https':
+                            p = new Promise<Rfxtrx>((resolve, reject) =>
+                            {
+                                req = https.request(url, { headers: { connection: 'Upgrade', upgrade: 'raw' } }, async res =>
+                                {
+                                    if (res.statusCode == 101)
+                                    {
+                                        const socket = res.socket;
+                                        socket.once('error', reject);
+                                        this.setGateway(new Rfxtrx(socket)).then(resolve, reject);
+                                    }
+                                    else
+                                    {
+                                        res.socket.end();
+                                        reject(new Error(`unable to connect over http: ${res.statusCode} ${res.statusMessage}`));
+                                    }
+                                });
+                            });
+                            break;
+                    }
+                    req.flushHeaders();
+                    break;
+                case 'tcp':
+                    p = new Promise<Rfxtrx>((resolve, reject) =>
+                    {
+                        const socket = net.connect(body, async () =>
+                        {
+                            this.setGateway(new Rfxtrx(socket)).then(resolve, reject);
+                        });
+                    });
+                    break;
+                case 'usb':
+                    p = this.setGateway(await Rfxtrx.getSerial(body.path));
+                    break;
+            }
+            gateway = await p;
+            this.devices[device.name] = { type: PacketType.INTERFACE_CONTROL, gateway };
+            device.commands = Object.fromEntries([
+                ...Object.keys(protocols_msg3).filter(k => typeof (k) == 'string').map<[string, devices.Command]>((k: keyof protocols_msg3) => [k, { type: "toggle" }]),
+                ...Object.keys(protocols_msg4).filter(k => typeof (k) == 'string').map<[string, devices.Command]>((k: keyof protocols_msg4) => [k, { type: "toggle" }]),
+                ...Object.keys(protocols_msg5).filter(k => typeof (k) == 'string').map<[string, devices.Command]>((k: keyof protocols_msg5) => [k, { type: "toggle" }]),
+                ...Object.keys(protocols_msg6).filter(k => typeof (k) == 'string').map<[string, devices.Command]>((k: keyof protocols_msg6) => [k, { type: "toggle" }]),
+            ]);
+            break;
         case PacketType.RFY:
             this.devices[device.name] = { type: body.rfxType, id1: body.id1, id2: body.id2, id3: body.id3, unitCode: body.unitCode, gateway };
             device.commands = Object.keys(Rfy.Commands).filter(v => isNaN(Number(v)));

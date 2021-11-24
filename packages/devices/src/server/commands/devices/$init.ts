@@ -15,7 +15,7 @@ export default async function (this: { initializing: boolean }, container: Conta
     var state = this;
     var mdule = akala.module('@domojs/devices');
 
-    var sidecars = sidecar<SidecarMap>();
+    var sidecars = sidecar();
     try
     {
         var webc = await sidecars['@akala/server'];

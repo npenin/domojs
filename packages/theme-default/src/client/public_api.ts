@@ -5,7 +5,7 @@ import { LocationService, IScope, PartDefinition, Template, HotKeyTrigger } from
 import template from '../../views/tiles.html'
 import * as client from '@akala/client';
 import { ObservableArray } from '@akala/core';
-import { Command, Container, inject } from '@akala/commands';
+import { Metadata, Container, inject } from '@akala/commands';
 
 export interface Tile
 {
@@ -42,7 +42,7 @@ export interface TileService
     array: akala.ObservableArray<TileDef>;
 }
 var commandContainer = new Container<void>('local', null);
-var commands = new ObservableArray<Command>([]);
+var commands = new ObservableArray<Metadata.Command>([]);
 commands.on('collectionChanged', function (ev)
 {
     switch (ev.action)
@@ -61,11 +61,11 @@ commands.on('collectionChanged', function (ev)
 });
 
 export const keyBinding = new Container<void>('keybinding', undefined);
-keyBinding.attach(HotKeyTrigger, null);
+keyBinding.attach(HotKeyTrigger);
 
 export const tiles: string = template;
 
-export function tileComponent(list: ObservableArray<TileDef> | TileDef[], cmds?: Command[] | ObservableArray<Command>): PartDefinition<any>
+export function tileComponent(list: ObservableArray<TileDef> | TileDef[], cmds?: Metadata.Command[] | ObservableArray<Metadata.Command>): PartDefinition<any>
 {
     return {
         template: template, controller: async function (scope, element)
@@ -75,7 +75,7 @@ export function tileComponent(list: ObservableArray<TileDef> | TileDef[], cmds?:
             scope.tile = { list };
 
             scope['$root'].$set('commands', cmds || commands);
-            scope.$set('dispatch', inject('command')(function (cmd: Command, ...rest: any[]) 
+            scope.$set('dispatch', inject('command')(function (cmd: Metadata.Command, ...rest: any[]) 
             {
                 return commandContainer.dispatch(cmd, ...rest);
             }));

@@ -1,5 +1,5 @@
 import { State } from "../state";
-import { Processors, NetSocketAdapter, Metadata, proxy, Processor, Container } from "@akala/commands";
+import { Processors, NetSocketAdapter, Metadata, proxy, Container } from "@akala/commands";
 import * as net from 'net'
 import * as web from '@akala/server'
 import Configuration from '@akala/config'
@@ -22,7 +22,7 @@ export default async function init(this: State)
         commandMode: 'dynamic'
     });
 
-    const webc = await sidecar<SidecarMap>()['@akala/server'];
+    const webc = await sidecar()['@akala/server'];
 
     await webc.dispatch('remote-container', '/api/weather', require('../../commands.json'))
 

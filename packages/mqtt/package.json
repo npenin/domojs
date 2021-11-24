@@ -11,7 +11,8 @@
 	"license": "MIT",
 	"dependencies": {
 		"@akala/core": "^7.5.9",
-		"@akala/server": "^6.3.4",
+		"@akala/pubsub": "^0.0.5",
+		"@akala/server": "^6.3.6",
 		"@domojs/protocol-parser": "^2.0.11"
 	},
 	"devDependencies": {

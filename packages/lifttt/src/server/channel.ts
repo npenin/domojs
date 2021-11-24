@@ -2,7 +2,7 @@ import * as akala from '@akala/core';
 import * as jsonrpcws from '@akala/json-rpc-ws';
 import { IconName } from '@fortawesome/fontawesome-common-types';
 import { Readable } from 'stream';
-import { proxy, Processors, Container, registerCommands, Processor } from '@akala/commands';
+import { proxy, Processors, Container, registerCommands } from '@akala/commands';
 import { SocketAdapter } from '@akala/json-rpc-ws';
 import taskManager from '../task-manager'
 

@@ -11,9 +11,9 @@ export default class ObjectParser<T extends object> extends Series<T> implements
         super(...parsers)
     }
 
-    read(buffer: Buffer, cursor: Cursor): T
+    read(buffer: Buffer, cursor: Cursor, message?: T): T
     {
-        var result = {} as T;
+        var result = message || {} as T;
 
         return super.read(buffer, cursor, result);
     }

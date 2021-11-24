@@ -1,12 +1,14 @@
 import { uint8, uint16, parsers } from '@domojs/protocol-parser';
 
-export var Protocol = parsers.object<Message>(
+export const Protocol = parsers.choose<Message, 'type', any>('type', {} as any);
+
+export const Messages = parsers.object<Message>(
     parsers.property('type', parsers.uint4),
     parsers.property('dup', parsers.boolean()),
     parsers.property('qos', parsers.uint2),
     parsers.property('retain', parsers.boolean()),
-    parsers.choose<Message, 'type'>('type', {} as any),
-]);
+    parsers.series<Message>(Protocol) as any,
+);
 
 export enum ControlPacketType
 {
@@ -107,7 +109,8 @@ export enum PropertyKeys
     sharedSubscriptionAvailable = 0x2A,
 }
 
-export const propertiesFrame = parsers.property<{ properties: { property: PropertyKeys, value: unknown }[] }, 'properties'>('properties',
+export const propertiesFrame =
+    // parsers.property<{ properties: { property: PropertyKeys, value: unknown }[] }, 'properties'>('properties',
     parsers.array(parsers.vuint, parsers.object<{ property: PropertyKeys, value: unknown }>(
         parsers.property('property', parsers.uint8),
         parsers.chooseProperty<{ value: unknown, property: PropertyKeys }>('value', 'property',
@@ -143,10 +146,10 @@ export const propertiesFrame = parsers.property<{ properties: { property: Proper
                 [PropertyKeys.subscriptionIdentifierAvailable]: parsers.uint8,
                 [PropertyKeys.sharedSubscriptionAvailable]: parsers.uint8,
             }
-            }
-        }
-    ])
-};
+        )
+    )
+    )
+// );
 
 export interface PropertiesMap
 {

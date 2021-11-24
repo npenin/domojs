@@ -3,7 +3,7 @@ import * as mongo from 'mongodb'
 
 if (require.main == module)
 {
-    var client = new mongo.MongoClient('mongodb://172.17.0.5:27017', { useNewUrlParser: true, useUnifiedTopology: true });
+    var client = new mongo.MongoClient('mongodb://172.17.0.5:27017'/*, { useNewUrlParser: true, useUnifiedTopology: true }*/);
     client.connect().then(async (c) =>
     {
         var db = c.db('kitchen');
