@@ -1,4 +1,4 @@
-import { Command, Container } from "@akala/commands";
+import { Container, SelfDefinedCommand } from "@akala/commands";
 import { PlayerStatus, State } from "../../player";
 
 export default async function addPlayer(this: State, name: string, remotePlayer: Container<PlayerStatus>)
@@ -7,7 +7,7 @@ export default async function addPlayer(this: State, name: string, remotePlayer:
         this.players[name] = remotePlayer;
     remotePlayer.state = {};
 
-    remotePlayer.register(new Command(() =>
+    remotePlayer.register(new SelfDefinedCommand(() =>
     {
         delete this.players[name];
     }, '$disconnect'))

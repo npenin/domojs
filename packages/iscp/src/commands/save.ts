@@ -1,4 +1,4 @@
-import { devices } from "@domojs/devices";
+import { devices } from '@domojs/devices';
 import { State } from "../state";
 import * as ac from '@akala/commands'
 import * as api from '../api'
@@ -26,7 +26,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
         return device;
     var socket = new Socket();
 
-    this.collection[device.name] = new Container('iscp-' + device.name, {}, new ISCPProcessor(socket, (message) =>
+    this.collection[device.name] = new Container<object>('iscp-' + device.name, {}, new ISCPProcessor(socket, (message) =>
     {
         switch (message.command)
         {

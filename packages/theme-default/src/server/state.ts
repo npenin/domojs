@@ -14,5 +14,5 @@ export interface State
     socketPath: NetConnectOpts;
     modules: { [key: string]: ModuleDefinition };
     pm: Container<void>
-    sidecar: pm.Sidecar<pm.SidecarMap>
+    sidecar: pm.Sidecar
 }

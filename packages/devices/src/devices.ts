@@ -86,7 +86,7 @@ export interface DeviceType
 {
     name: string;
     commandMode: 'dynamic' | 'static';
-    view: string
+    view: string;
 }
 
 export interface DeviceTypeCollection

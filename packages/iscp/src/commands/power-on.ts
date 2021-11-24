@@ -11,7 +11,7 @@ export default function (target: string)
     })
     socket.connect({ host: target, port: 60128 }, async () =>
     {
-        var container = new Container('iscp', {}, new ISCPProcessor(socket));
+        var container = new Container<object>('iscp', {}, new ISCPProcessor(socket));
         console.log(await container.dispatch('PWR', '01'));
         socket.end();
     })

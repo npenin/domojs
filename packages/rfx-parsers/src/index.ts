@@ -20,7 +20,11 @@ import { Protocol, Message, PacketType, Type, InterfaceControl, InterfaceMessage
 import { Cursor, parserWrite } from '@domojs/protocol-parser';
 import { Duplex } from 'stream';
 import { readdir } from 'fs';
+import { Socket } from 'net';
+import { ModeResponse } from './protocol/1.interface.response';
+import { ModeCommand } from './protocol/0.interface.mode';
 
+type Modes = Pick<InterfaceControl.ModeCommand, 'msg3' | 'msg4' | 'msg5' | 'msg6'>;
 const log = debug('rfxtrx');
 
 export class Rfxtrx extends EventEmitter
@@ -33,8 +37,13 @@ export class Rfxtrx extends EventEmitter
     {
         if (this.isOpen)
         {
-            this.wire.write(message.buffer)
-            this.wire.drain(message.callback);
+            if ('drain' in this.wire)
+            {
+                this.wire.write(message.buffer)
+                this.wire.drain(message.callback);
+            }
+            else
+                this.wire.write(message.buffer, message.callback);
         }
         next(this.isOpen);
     })
@@ -67,12 +76,14 @@ export class Rfxtrx extends EventEmitter
 
         log(buffer);
         var message = Protocol.read(buffer, new Cursor(), {});
-        this.sqnce = message.sequenceNumber;
+        // this.sqnce = message.sequenceNumber;
         log(message);
         this.emit('message', message);
         next(true);
     });
-    public constructor(private wire: Duplex & { close(cb: (err?: any) => void), drain(cb: (err?: any) => void), flush(cb: (err?: any) => void) })
+    private _modes: Modes;
+    public get modes() { return Object.assign({}, this._modes); }
+    public constructor(private wire: Socket | Duplex & { close(cb: (err?: any) => void), drain?(cb: (err?: any) => void), flush(cb: (err?: any) => void) })
     {
         super();
 
@@ -81,6 +92,11 @@ export class Rfxtrx extends EventEmitter
             log(err);
         })
         this.wire.on('open', () =>
+        {
+            this.isOpen = true;
+            this.sendQueue.process();
+        })
+        this.wire.on('connect', () =>
         {
             this.isOpen = true;
             this.sendQueue.process();
@@ -98,87 +114,51 @@ export class Rfxtrx extends EventEmitter
         {
             this.emit(message.type.toString(), message.message);
 
-            this.emit(PacketType[(message.type & 0xff00) >> 8] as keyof PacketType, message.message);
+            this.emit(PacketType[(message.type & 0xff00) >> 8] as Exclude<keyof PacketType, number>, message.message);
             this.emit(Type[PacketType[(message.type & 0xff00) >> 8]][message.type], message.message);
         })
     }
 
-    private isStarted: boolean;
-
-    start(modes?: Partial<InterfaceControl.ModeCommand>)
+    async setModes(modes: Modes)
     {
-        modes = modes || {}
-        if (typeof (modes.msg3) == 'undefined')
-            modes.msg3 = 0;
-        if (typeof (modes.msg4) == 'undefined')
-            modes.msg4 = 0;
-        if (typeof (modes.msg5) == 'undefined')
-            modes.msg5 = 0;
-        if (typeof (modes.msg6) == 'undefined')
-            modes.msg6 = 0;
-        return new Promise<void>(async (resolve, reject) =>
+        var m: Message<ModeResponse> = await this.send(Type.INTERFACE_CONTROL.Mode, Object.assign({
+            command: InterfaceControl.Commands.setMode,
+        }, modes));
+
+        if (
+            (m.message.msg3 & modes.msg3) != modes.msg3 ||
+            (m.message.msg4 & modes.msg4) != modes.msg4 ||
+            (m.message.msg5 & modes.msg5) != modes.msg5 ||
+            (m.message.msg6 & modes.msg6) != modes.msg6
+        )
         {
-            await this.send(Type.INTERFACE_CONTROL.Mode, {
-                command: InterfaceControl.Commands.reset
-            })
-            var m = await this.send(Type.INTERFACE_CONTROL.Mode, {
-                command: InterfaceControl.Commands.status
-            });
-            log(modes);
-            log(m);
-            if (
-                (m.message.msg3 & modes.msg3) != modes.msg3 ||
-                (m.message.msg4 & modes.msg4) != modes.msg4 ||
-                (m.message.msg5 & modes.msg5) != modes.msg5 ||
-                (m.message.msg6 & modes.msg6) != modes.msg6
-            )
-            {
-                m = await this.send(Type.INTERFACE_CONTROL.Mode, Object.assign({
-                    command: InterfaceControl.Commands.setMode,
-                }, modes));
+            this.close()
+            throw new Error('Modes could not be set; Exiting');
+        }
+        else
+            this._modes = m.message;
+    }
 
-                if (
-                    (m.message.msg3 & modes.msg3) != modes.msg3 ||
-                    (m.message.msg4 & modes.msg4) != modes.msg4 ||
-                    (m.message.msg5 & modes.msg5) != modes.msg5 ||
-                    (m.message.msg6 & modes.msg6) != modes.msg6
-                )
-                {
-                    this.close()
-                    reject(new Error('Modes could not be set; Exiting'));
-                    return;
-                }
-
-                var copyright: Message<InterfaceMessage.CheckRFXCOMDevice> = await this.send(Type.INTERFACE_CONTROL.Mode, { command: InterfaceControl.Commands.start });
-                console.log(copyright);
-                if (copyright.message.copyright != 'Copyright RFXCOM')
-                {
-                    this.close()
-                    reject(new Error('Invalid RFXCOM devince; Exiting'));
-                    return;
-                }
-                else
-                {
-                    this.isStarted = true;
-                    resolve();
-                }
-            }
-            else
-            {
-                var copyright: Message<InterfaceMessage.CheckRFXCOMDevice> = await this.send(Type.INTERFACE_CONTROL.Mode, { command: InterfaceControl.Commands.start });
-                if (copyright.message.copyright != 'Copyright RFXCOM')
-                {
-                    this.close()
-                    reject(new Error('Invalid RFXCOM devince; Exiting'));
-                    return;
-                }
-                else
-                {
-                    this.isStarted = true;
-                    resolve();
-                }
-            }
+    async start()
+    {
+        await this.send(Type.INTERFACE_CONTROL.Mode, {
+            command: InterfaceControl.Commands.reset
         })
+        var m: Message<ModeResponse> = await this.send(Type.INTERFACE_CONTROL.Mode, {
+            command: InterfaceControl.Commands.status
+        });
+        await new Promise<void>(resolve => setTimeout(() => resolve(), 1000))
+
+        log(m);
+        this._modes == m.message;
+
+        await new Promise<void>(resolve => setTimeout(() => resolve(), 1000))
+        var copyright: Message<InterfaceMessage.CheckRFXCOMDevice> = await this.send(Type.INTERFACE_CONTROL.Mode, { command: InterfaceControl.Commands.start });
+        if (copyright.message.copyright != 'Copyright RFXCOM')
+        {
+            this.close()
+            throw new Error(`Invalid RFXCOM device ${copyright.message.copyright}; Exiting`);
+        }
     }
 
     public on<T>(type: keyof Type.INTERFACE_MESSAGE, handler: (message: T) => void)
@@ -204,13 +184,19 @@ export class Rfxtrx extends EventEmitter
     {
         return new Promise((resolve, reject) =>
         {
-            this.wire.close(function (err)
-            {
-                if (err)
-                    reject(err);
-                else
+            if ('close' in this.wire)
+                this.wire.close(function (err)
+                {
+                    if (err)
+                        reject(err);
+                    else
+                        resolve();
+                });
+            else
+                this.wire.end(() =>
+                {
                     resolve();
-            });
+                })
         })
     }
 
@@ -236,13 +222,16 @@ export class Rfxtrx extends EventEmitter
                     if (type == Type.INTERFACE_CONTROL.Mode && (message as Partial<InterfaceControl.ModeCommand>).command == InterfaceControl.Commands.reset)
                         setTimeout(() =>
                         {
-                            this.wire.flush(function (err)
-                            {
-                                if (err)
-                                    reject(err);
-                                else
-                                    resolve(null);
-                            });
+                            if ('flush' in this.wire)
+                                this.wire.flush(function (err)
+                                {
+                                    if (err)
+                                        reject(err);
+                                    else
+                                        resolve(null);
+                                });
+                            else
+                                resolve(null);
                         }, 1000)
                 }
             };

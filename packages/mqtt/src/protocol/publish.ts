@@ -1,5 +1,5 @@
-import { Frame, uint16, uint8 } from '@domojs/protocol-parser';
-import { ControlPacketType, Properties, propertiesFrame, Protocol, Message as CoreMessage } from './protocol'
+import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
+import { ControlPacketType, Properties, propertiesFrame, Protocol, Message as CoreMessage, Messages } from './_protocol'
 
 export default interface Message extends CoreMessage
 {
@@ -8,8 +8,8 @@ export default interface Message extends CoreMessage
     properties: Properties;
 }
 
-messages.register(ControlPacketType.PUBLISH, parsers.object<Message>(
-    { name: 'topic', type: 'string', length: 'uint16' },
-    { name: 'packetId', type: 'uint16', optional: 'dup' },
-    Object.assign({}, propertiesFrame, { name: 'properties' }),
-]);
+Protocol.register(ControlPacketType.PUBLISH, parsers.object<Message>(
+    parsers.property('topic', parsers.string(parsers.uint16)),
+    parsers.property('packetId', parsers.condition<number, Message>(m => m.qos > 0, parsers.uint16)),
+    parsers.property('properties', propertiesFrame),
+));

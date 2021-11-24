@@ -9,7 +9,7 @@ export default async function (this: devices.DeviceTypeCollection & { initializi
     container.register('pm', pm);
     try
     {
-        var webc = await sidecar<SidecarMap>()['@akala/server'];
+        var webc = await sidecar()['@akala/server'];
 
         await webc.dispatch('remote-container', '/api/devices/types', require('../../../../devicetype-commands.json'))
     }

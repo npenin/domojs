@@ -1,14 +1,16 @@
-import { Frame, uint16, uint8 } from '@domojs/protocol-parser';
-import { ControlPacketType, Properties, propertiesFrame, Protocol, Message as CoreMessage, ReasonCodes } from './protocol'
+import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
+import { ControlPacketType, Properties, propertiesFrame, Protocol, Message as CoreMessage, ReasonCodes } from './_protocol'
 
 
 export default interface Message extends CoreMessage
 {
     properties: Properties;
-    topicFilter: string[]
+    packetId: number;
+    topics: string[]
 }
 
-messages.register(ControlPacketType.UNSUBSCRIBE, parsers.object<Message>(
-    Object.assign({}, propertiesFrame, { name: 'properties' }),
-    parsers.property('topicFilter', parsers.string[])
-]);
+Protocol.register(ControlPacketType.UNSUBSCRIBE, parsers.object<Message>(
+    parsers.property('packetId', parsers.uint16),
+    parsers.property('properties', propertiesFrame),
+    parsers.property('topics', parsers.array<string, Message>(-1, parsers.string(parsers.uint16)))
+));

@@ -1,5 +1,5 @@
-import { uint16, uint8 } from '@domojs/protocol-parser';
-import { ControlPacketType, Properties, propertiesFrame, Protocol, Message as CoreMessage } from './protocol'
+import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
+import { ControlPacketType, Properties, propertiesFrame, Protocol, Message as CoreMessage } from './_protocol'
 
 export default interface Message extends CoreMessage
 {
@@ -11,39 +11,42 @@ export default interface Message extends CoreMessage
     willQoS?: number;
     hasWill?: boolean;
     cleanStart?: boolean;
-    reservedConnectFlag: false;
-    keepAlive: uint16;
+    reservedConnectFlag?: boolean;
+    keepAlive?: uint16;
     properties: Properties,
     clientId: string,
-    willProperties?: boolean,
+    willProperties?: Properties,
     willTopic?: string,
-    willPayload?: boolean,
+    willPayload?: Buffer,
     userName: string,
-    password: string,
+    password: Buffer,
 }
 
-messages.register(ControlPacketType.CONNECT, parsers.object<Message>(
-    { name: 'protocol', type: 'string', length: 'uint16' },
-    parsers.property('version', parsers.uint8),
-    parsers.property('hasUserName', parsers.bit),
-    parsers.property('hasPassword', parsers.bit),
-    parsers.property('willRetain', parsers.bit),
-    parsers.property('willQoS', parsers.uint2),
-    parsers.property('hasWill', parsers.bit),
-    parsers.property('cleanStart', parsers.bit),
-    parsers.property('reservedConnectFlag', parsers.bit),
-    parsers.property('keepAlive', parsers.uint16),
-    parsers.property('clientId', parsers.string),
-    Object.assign({}, propertiesFrame, { name: 'willProperties' }),
-    { name: 'willTopic', optional: 'hasWill', type: 'string', length: 'uint16' },
-    { name: 'willPayload', optional: 'hasWill', type: 'buffer', length: 'uint16' },
-    { name: 'userName', optional: 'hasUserName', type: 'string', length: 'uint16' },
-    { name: 'password', optional: 'hasPassword', type: 'buffer', length: 'uint16' },
-], m =>
-    {
-        m.hasPassword = typeof m.password != 'undefined';
-        m.hasUserName = typeof m.userName != 'undefined';
-        m.hasWill = typeof m.willTopic != 'undefined' || typeof m.willPayload != 'undefined' || typeof m.willProperties != 'undefined'
-        if (m.hasWill && (typeof m.willTopic == 'undefined' || typeof m.willPayload == 'undefined' || typeof m.willProperties === 'undefined'))
-            throw new Error('Invalid will');
-    });
+Protocol.register(ControlPacketType.CONNECT, parsers.prepare(m =>
+{
+    m.hasPassword = typeof m.password != 'undefined';
+    m.hasUserName = typeof m.userName != 'undefined';
+    m.hasWill = typeof m.willTopic != 'undefined' || typeof m.willPayload != 'undefined' || typeof m.willProperties != 'undefined'
+    if (m.hasWill && (typeof m.willTopic == 'undefined' || typeof m.willPayload == 'undefined' || typeof m.willProperties === 'undefined'))
+        throw new Error('Invalid will');
+}, parsers.object<Message>(
+    parsers.property('protocol', parsers.string(parsers.uint16)),
+    parsers.prefixedSeries<Message>(parsers.vuint,
+        parsers.property('version', parsers.uint8),
+        parsers.property('hasUserName', parsers.boolean()),
+        parsers.property('hasPassword', parsers.boolean()),
+        parsers.property('willRetain', parsers.boolean()),
+        parsers.property('willQoS', parsers.uint2),
+        parsers.property('hasWill', parsers.boolean()),
+        parsers.property('cleanStart', parsers.boolean()),
+        parsers.property('reservedConnectFlag', parsers.boolean()),
+        parsers.property('keepAlive', parsers.uint16),
+        parsers.property('clientId', parsers.string(parsers.vuint)),
+        parsers.condition<Properties, Partial<Message>>(m => m.hasWill, parsers.property('willProperties', propertiesFrame)),
+        parsers.condition<string, Partial<Message>>(m => m.hasWill, parsers.property('willTopic', parsers.string(parsers.uint16))),
+        parsers.condition<Buffer, Partial<Message>>(m => m.hasWill, parsers.property('willPayload', parsers.buffer(parsers.uint16))),
+        parsers.condition<string, Partial<Message>>(m => m.hasUserName, parsers.property('userName', parsers.string(parsers.uint16))),
+        parsers.condition<Buffer, Partial<Message>>(m => m.hasPassword, parsers.property('password', parsers.buffer(parsers.uint16)))
+    )
+)
+));

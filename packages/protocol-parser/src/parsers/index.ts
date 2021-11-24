@@ -33,6 +33,7 @@ import Switch from './switch'
 import SwitchProperty from './property-switch'
 import Sequence from './sequence'
 import Series from './series'
+import PrefixedLengthSeries from './series-prefixed'
 import Property from './property'
 import PropertyObject from './property-object'
 import { Prepare } from './prepare'
@@ -40,6 +41,7 @@ import { ZeroOrOne } from './zero-or-one'
 import Between from './between'
 import * as protobuf from './protobuf'
 import { Sub } from './sub'
+import { Conditional } from './conditional-parser'
 
 export { protobuf };
 
@@ -105,15 +107,15 @@ export function boolean(parser?: Parser<number>): Parser<boolean>
     return new Boolean(parser || bit);
 }
 export function string(length: number, encoding?: BufferEncoding): Parser<string>
-export function string(length: Parser<number>, encoding?: BufferEncoding): ParserWithoutKnownLength<string>
+export function string(length: Parsers<number>, encoding?: BufferEncoding): ParserWithoutKnownLength<string>
 export function string<T>(length: keyof T, encoding?: BufferEncoding): ParserWithMessageWithoutKnownLength<string, T>
-export function string<T>(length: Parser<number> | number | keyof T, encoding?: BufferEncoding): AnyParser<string, T>
+export function string<T>(length: Parsers<number> | number | keyof T, encoding?: BufferEncoding): AnyParser<string, T>
 {
     if (typeof (length) === 'number')
         return new FixedString(length, encoding);
     if (typeof (length) === 'string' || typeof (length) === 'symbol')
         return new PreparsedLengthString<T, typeof length>(length, encoding);
-    return new PrefixedString(length as Parser<number>, encoding);
+    return new PrefixedString(length as Parsers<number>, encoding);
 }
 export function buffer(length: Parser<number> | number): Parsers<Buffer>
 {
@@ -122,7 +124,7 @@ export function buffer(length: Parser<number> | number): Parsers<Buffer>
     return new PrefixedBuffer(length);
 }
 export function array<T, TMessage>(length: Parser<number>, value: Parser<T>): Parser<T[]>
-export function array<T, TMessage>(length: ParserWithoutKnownLength<number>, value: Parser<T>): ParserWithoutKnownLength<T[]>
+export function array<T, TMessage>(length: ParserWithoutKnownLength<number>, value: AnyParser<T, TMessage>): ParserWithoutKnownLength<T[]>
 export function array<T, TMessage>(length: -1, value: Parser<T>): ParserWithoutKnownLength<T[]>
 export function array<T, TMessage>(length: -1, value: ParserWithMessage<T, unknown>): ParserWithMessageWithoutKnownLength<T[], TMessage>
 export function array<T, TMessage>(length: -1, value: ParserWithMessageWithoutKnownLength<T, unknown>): ParserWithMessageWithoutKnownLength<T[], TMessage>
@@ -137,7 +139,7 @@ export function array<T, TMessage>(length: keyof TMessage | number | Parsers<num
     return new PrefixedArray<T, TMessage>(length as Parser<number>, value);
 }
 
-export function object<T extends object>(...maps: AnyParser<T[keyof T], T>[]): ParserWithMessageWithoutKnownLength<T, Partial<T>>
+export function object<T extends object>(...maps: AnyParser<T[keyof T] | T, T>[]): ParserWithMessageWithoutKnownLength<T, Partial<T>>
 {
     var mapTriaged: AnyParser<T[keyof T], T>[][] = [];
     var lastKnowsLength: boolean;
@@ -149,7 +151,7 @@ export function object<T extends object>(...maps: AnyParser<T[keyof T], T>[]): P
             lastKnowsLength = parser.length !== -1;
         }
 
-        mapTriaged[mapTriaged.length - 1].push(parser);
+        mapTriaged[mapTriaged.length - 1].push(parser as any);
     });
 
     if (mapTriaged.length == 1)
@@ -186,6 +188,11 @@ export function series<T extends object>(...maps: AnyParser<T[keyof T], T>[]): P
     return new Series<T>(...mapTriaged.map(map => seriesOrSingle(...map)));
 }
 
+export function prefixedSeries<T extends object>(length: Parsers<number>, ...maps: AnyParser<T[keyof T] | T, T>[]): ParserWithMessageWithoutKnownLength<T, Partial<T>>
+{
+    return new PrefixedLengthSeries(length, series<T>(...maps as any));
+}
+
 export function choose<T extends { [key in TKey]: number | string }, TKey extends Exclude<keyof T, number | symbol>, TResult>(name: TKey, parsers: { [key in T[TKey]]: AnyParser<TResult, T> })
 {
     return new Switch<T, TKey, TResult, T[TKey]>(name, parsers);
@@ -200,6 +207,11 @@ export function chooseProperty<T, TKey extends keyof T = keyof T, TKeyAssign ext
 export function optional<T, TMessage>(parser: AnyParser<T, TMessage>)
 {
     return new ZeroOrOne<T, TMessage>(parser);
+}
+
+export function condition<T, TMessage>(condition: (message: TMessage) => boolean, parser: AnyParser<T, TMessage>): ParserWithMessage<T, TMessage>
+{
+    return new Conditional<T, TMessage>(condition, parser);
 }
 
 export function property<T, TKey extends keyof T>(name: TKey, valueParser: Parser<T[TKey]>): AnyParser<T[TKey], T>

@@ -1,4 +1,4 @@
-import { Command, Container } from "@akala/commands";
+import { SelfDefinedCommand, Container } from "@akala/commands";
 import { v4 as uuid } from 'uuid'
 import { eachAsync, Injector, Interpolate } from "@akala/core";
 import { ChannelState, Task } from "../../channel-state";
@@ -12,7 +12,8 @@ export default async function (this: ChannelState, container: Container<void>, t
     else
         triggerId = uuid();
     var results = {};
-    container.register(new Command(async function (this: ChannelState, ...params)
+    const interpolator = new Interpolate();
+    container.register(new SelfDefinedCommand(async function (this: ChannelState, ...params)
     {
         if (this.triggers[triggerId].preventNextRun)
         {
@@ -29,7 +30,7 @@ export default async function (this: ChannelState, container: Container<void>, t
                 args = step.parameters.map(p =>
                 {
                     if (typeof p == 'object' && typeof p.$interpolate == 'string')
-                        return Interpolate.build(p.$interpolate)(results);
+                        return interpolator.build(p.$interpolate)(results);
                     return p;
                 });
                 args.push(...params);

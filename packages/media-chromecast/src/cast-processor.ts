@@ -1,16 +1,16 @@
-import { CommandNameProcessor, Container, Processors } from '@akala/commands';
+import { CommandProcessor, Container, Metadata, Processors } from '@akala/commands';
 import { MiddlewarePromise } from '@akala/core';
 import CastStream, { castMessage, CastMessage, PayloadType } from '@domojs/media-chromecast-parsers'
 import net from 'net';
 import trigger from './cast-trigger';
 
-export default class CastProcessor extends CommandNameProcessor
+export default class CastProcessor extends CommandProcessor
 {
     private requestId: number;
 
     private requestHandlers: { [key: number]: (response: CastMessage) => void } = {};
 
-    async handle(cmd: string, param: { [key: string]: unknown; param: unknown[]; }): MiddlewarePromise
+    async handle(container: Container<unknown>, cmd: Metadata.Command, param: { [key: string]: unknown; param: unknown[]; }): MiddlewarePromise
     {
         if (!this.stream || this.stream['readyState'] !== 'open')
             return new Error('there is no socket or the socket is not writable');
@@ -36,7 +36,7 @@ export default class CastProcessor extends CommandNameProcessor
 
     constructor(container: Container<void>, private socket: net.Socket, namespace: string, requestResponseMapping: { [requestCmd: string]: string })
     {
-        super('googlecast', container);
+        super('googlecast');
         container.attach(trigger, { socket, namespace, inputOutputMapping: requestResponseMapping });
     }
 }

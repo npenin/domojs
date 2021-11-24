@@ -12,7 +12,7 @@ const log = akala.log('domojs:theme-default')
 export default async function $init(this: State, enableAllCommands: boolean)
 {
     this.modules = {};
-    this.sidecar = sidecar<SidecarMap>();
+    this.sidecar = sidecar();
     const container = await this.sidecar['@akala/server'];
 
     await container.dispatch('webpack-html', { title: 'Output management', template: path.join(__dirname, '../../../views/index.html'), excludeChunks: ['sw'] });

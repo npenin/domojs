@@ -1,6 +1,6 @@
 import * as devices from "../../../devices";
 import * as akala from '@akala/core'
-import { Container, Command } from "@akala/commands";
+import { Container, SelfDefinedCommand } from "@akala/commands";
 import { deviceTypeContainer, deviceContainer } from "../../..";
 import { LiveStore } from "../../store";
 import { expressions } from "@akala/storage";
@@ -49,7 +49,7 @@ export default async function register(db: LiveStore, deviceTypeContainer: Conta
                         return deviceTypeContainer.dispatch(device.type + '.exec', device.name, command, value);
                     }
                 };
-                deviceContainer.register(new Command(commands[command].run, device.name + '-' + command));
+                deviceContainer.register(new SelfDefinedCommand(commands[command].run, device.name + '-' + command));
             })
             device.commands = commands;
         }
@@ -93,7 +93,7 @@ export default async function register(db: LiveStore, deviceTypeContainer: Conta
                     });
                 }
 
-                deviceContainer.register(new Command(commands[name].run, device.name + '-' + name));
+                deviceContainer.register(new SelfDefinedCommand(commands[name].run, device.name + '-' + name));
 
             })
             device.commands = commands;

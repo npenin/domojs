@@ -1,7 +1,7 @@
 import * as akala from '@akala/core'
 import { mdule } from './main.module'
 import * as client from '@akala/client'
-import { Container, Processors, Metadata, Command } from '@akala/commands'
+import { Container, Processors, Metadata, SelfDefinedCommand } from '@akala/commands'
 import { Tile } from '@domojs/theme-default';
 import { inject } from '@akala/core';
 import { LocationService } from '@akala/client';
@@ -42,7 +42,7 @@ export class Main
     {
         if (!commandRegistered)
         {
-            scope['commands'].push(new Command((location: LocationService) => location.show('/devices/new'), 'new', ['$modules.akala-services.$location']));
+            scope['commands'].push(new SelfDefinedCommand((location: LocationService) => location.show('/devices/new'), 'new', ['$modules.akala-services.$location']));
             commandRegistered = true;
         }
         if (this.location.current.startsWith('/devices/category') || this.location.current == '/devices')

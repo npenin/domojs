@@ -1,4 +1,4 @@
-import { CommandNameProcessor } from "@akala/commands";
+import { Container, Metadata, CommandProcessor } from "@akala/commands";
 import { log as debug, MiddlewarePromise } from "@akala/core";
 import * as proto from '@domojs/protocol-parser'
 import { Duplex } from 'stream'
@@ -64,7 +64,7 @@ class IscpMessage
     version: number;
 }
 
-export class ISCPProcessor extends CommandNameProcessor
+export class ISCPProcessor extends CommandProcessor
 {
     private messages = new EventEmitter();
     constructor(private socket: Duplex, handler?: (message: IscpMessage) => void)
@@ -79,22 +79,22 @@ export class ISCPProcessor extends CommandNameProcessor
             this.messages.on('message', handler);
     }
 
-    handle(cmd: string, param: { [key: string]: any; param: string[]; }): MiddlewarePromise
+    handle(container: Container<object>, cmd: Metadata.Command, param: { [key: string]: any; param: string[]; }): MiddlewarePromise
     {
         return new Promise((resolve, reject) =>
         {
             var buffer = prot.write(new IscpMessage(
-                cmd,
+                cmd.name,
                 param.param[0] || ''
             ), undefined);
             var responded = false;
             var handler = (response: IscpMessage) =>
             {
                 responded = true;
-                if (response.command !== cmd)
+                if (response.command !== cmd.name)
                     return;
                 this.messages.off('message', handler);
-                if (response.command == cmd && (param.param[0] == 'QSTN' || param.param[0] == response.arg))
+                if (response.command == cmd.name && (param.param[0] == 'QSTN' || param.param[0] == response.arg))
                     reject(response);
                 else
                     reject(response);

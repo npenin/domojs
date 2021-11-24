@@ -1,6 +1,6 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
 import * as server from '@akala/server'
-import { CommandProxy, Triggers } from '@akala/commands'
+import { Triggers } from '@akala/commands'
 import * as ws from 'ws'
 
 const logger = server.logger('domojs:theme-default:pm')
@@ -9,8 +9,7 @@ export default function (this: server.State, router: server.HttpRouter)
 {
     const wsserver = new ws.Server({ noServer: true });
     const pm = this.pm;
-    pm.unregister('$metadata');
-    pm.register(new CommandProxy(pm.processor, '$metadata', ['param.0']));
+
     wsserver.on('connection', (socket) =>
     {
         logger.info('attaching pm to socket');

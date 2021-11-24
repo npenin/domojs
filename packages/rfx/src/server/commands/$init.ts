@@ -17,7 +17,20 @@ export default async function init(this: State)
     this.gateway = new Promise((resolve) =>
     {
         setGateway = resolve;
-    })
+    });
+    this.setGateway = async (gw: Rfxtrx) =>
+    {
+        await gw.start();
+        setGateway(gw);
+        return gw;
+    };
+
+    var p = fs.readFile(path.resolve(__dirname, '../../../views/new-RFXCOM.html'), 'utf-8').then(newDeviceTemplate =>
+        registerDeviceType({
+            name: 'RFXCOM',
+            view: newDeviceTemplate,
+            commandMode: 'static'
+        }));
 
     var p = fs.readFile(path.resolve(__dirname, '../../../views/new-RFY.html'), 'utf-8').then(newDeviceTemplate =>
         registerDeviceType({

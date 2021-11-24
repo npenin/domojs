@@ -18,7 +18,7 @@ export default class SwitchProperty<T, TKey extends keyof T, TKeyAssign extends 
 
         message[this.assignProperty] = message[this.assignProperty] || {} as T[TKeyAssign];
 
-        return parser.read(buffer, cursor, message[this.assignProperty]);
+        return message[this.assignProperty] = parser.read(buffer, cursor, message[this.assignProperty]) as any;
     }
     write(value: TResult, message: T): Buffer[]
     {

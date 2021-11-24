@@ -14,14 +14,14 @@
     "@akala/core": "^7.5.9",
     "@domojs/protocol-parser": "^2.0.11",
     "debug": "^4.3.2",
-    "serialport": "^9.2.4"
+    "serialport": "^9.2.7"
   },
   "devDependencies": {
     "@types/debug": "^4.1.7",
     "@types/serialport": "^8.0.2",
     "@types/ws": "^8.2.0",
-    "source-map-support": "^0.5.20",
-    "typescript": "^4.4.3"
+    "source-map-support": "^0.5.21",
+    "typescript": "^4.5.2"
   },
   "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }
