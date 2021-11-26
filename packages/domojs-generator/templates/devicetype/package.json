@@ -13,12 +13,12 @@
 	"author": "npenin",
 	"license": "MIT",
 	"dependencies": {
-		"@akala/core": "^6.0.7",
+		"@akala/core": "^7.0.0",
 		"@akala/server": "^5.1.8"
 	},
 	"devDependencies": {
-		"@domojs/devices": "^1.5.9",
-		"@types/debug": "^4.1.5",
-		"@types/request": "^2.48.5"
+		"@domojs/devices": "1.5.30",
+		"@types/debug": "4.1.7",
+		"@types/request": "2.48.7"
 	}
 }
