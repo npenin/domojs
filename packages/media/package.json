@@ -26,19 +26,19 @@
     "@domojs/theme-default": "workspace:^"
   },
   "devDependencies": {
-    "@akala/cli": "^1.5.6",
-    "@akala/json-rpc-ws": "^9.3.2",
-    "@akala/server": "^6.3.8",
-    "@akala/storage": "^2.3.4",
+    "@akala/cli": "1.5.6",
+    "@akala/json-rpc-ws": "9.3.2",
+    "@akala/server": "6.3.8",
+    "@akala/storage": "2.3.4",
     "@domojs/theme-default": "workspace:^",
-    "@types/debug": "^4.1.7",
-    "@types/ioredis": "^4.28.1",
-    "@types/jquery": "^3.5.9",
-    "@types/levenshtein": "^1.0.1",
-    "@types/redis": "^2.8.32",
-    "@types/request": "^2.48.7",
-    "@types/ws": "^8.2.0",
-    "typescript": "~4.5.2"
+    "@types/debug": "4.1.7",
+    "@types/ioredis": "4.28.2",
+    "@types/jquery": "3.5.9",
+    "@types/levenshtein": "1.0.1",
+    "@types/redis": "2.8.32",
+    "@types/request": "2.48.7",
+    "@types/ws": "8.2.1",
+    "typescript": "4.5.2"
   },
   "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }
