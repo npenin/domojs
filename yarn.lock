@@ -20,12 +20,21 @@
     reflect-metadata "^0.1.13"
     winston "^3.3.3"
 
-"@akala/cli@1.5.6", "@akala/cli@^1.0.29", "@akala/cli@^1.5.6":
+"@akala/cli@1.5.6", "@akala/cli@^1.0.29":
   version "1.5.6"
   resolved "https://registry.yarnpkg.com/@akala/cli/-/cli-1.5.6.tgz#8ed3ff099abd5ae3487e37cc02ba83e01b0e7c73"
   integrity sha512-ZlI+qghqtHCDBSBJgOVoG+v+KDlYKlFvluiT5oIcgi5KT+kWdO6FN5P2Ig7EWCc8D5bOipvGoEpbpSIzyveNxQ==
   dependencies:
     "@akala/core" "7.5.10"
+    reflect-metadata "^0.1.13"
+    winston "^3.3.3"
+
+"@akala/cli@1.5.8":
+  version "1.5.8"
+  resolved "https://registry.yarnpkg.com/@akala/cli/-/cli-1.5.8.tgz#6d8839710996c311a788dd7e8f3b0e0c11e8f6a3"
+  integrity sha512-X8qHDNEPZaRz/5lSKVdZ14Oj09e3bWL2JuBgHsTltdkD2szPERjhH9cLAJaL4/DiZG1wv+uhqMs7FFO92HZ4wg==
+  dependencies:
+    "@akala/core" "7.5.12"
     reflect-metadata "^0.1.13"
     winston "^3.3.3"
 
@@ -88,6 +97,19 @@
     reflect-metadata "^0.1.13"
     ws "^8.0.0"
 
+"@akala/commands@2.6.3":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@akala/commands/-/commands-2.6.3.tgz#cabb8ab770472032e376bff844166c8165e7b4d8"
+  integrity sha512-C0+9D4q+uj8UbTP6IOYqH5k/b3RyBCJE9IZHB/acZtSWpg27xmrKh+e7GnWPsDsJvF1aQielx9Q6vDTKVlMKBQ==
+  dependencies:
+    "@akala/cli" "1.5.8"
+    "@akala/core" "7.5.12"
+    "@akala/json-rpc-ws" "9.3.4"
+    debug "^4.1.1"
+    path-to-regexp "^6.1.0"
+    reflect-metadata "^0.1.13"
+    ws "^8.0.0"
+
 "@akala/commands@^1.0.26":
   version "1.0.40"
   resolved "https://registry.yarnpkg.com/@akala/commands/-/commands-1.0.40.tgz#8a3b50dbbb07d129ef245bc0bb759651e6bcec8b"
@@ -101,15 +123,13 @@
     reflect-metadata "^0.1.13"
     ws "^7.5.1"
 
-"@akala/config@0.4.6":
-  version "0.4.6"
-  resolved "https://registry.yarnpkg.com/@akala/config/-/config-0.4.6.tgz#1fd9859e6d31292ad3444fadd6f64dd2ab61a315"
-  integrity sha512-7BE6Y6FiEEH+TCWVM14HXY3rChzx9RmJAYpuOkrwj6/AupesdtgbZda9EqecmcMTDKV5MnEkh9FlsIm8KHWqIg==
+"@akala/config@0.4.9":
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/@akala/config/-/config-0.4.9.tgz#42a28a62c54ce36a9a5e8ea887364b17a194571b"
+  integrity sha512-7kj564tdrfYLHHjcqR3ftIo4fMaHZaQUSCGsfxorfVNXrAwZ0VzBlmsIXuHLb83Cpd1LlyDPA3RIUyiZHLVzDw==
   dependencies:
-    "@akala/commands" "2.6.0"
-    "@akala/core" "7.5.9"
-  optionalDependencies:
-    "@akala/pm" "workspace:*"
+    "@akala/commands" "2.6.3"
+    "@akala/core" "7.5.12"
 
 "@akala/config@^0.4.7":
   version "0.4.7"
@@ -127,6 +147,21 @@
   integrity sha512-j3Miok/q35Hq3OOWgCuSCX4Bmy2H7qXZGQy3/SoagqWuIeZT5TISctZWg6+y0638hgx8dgz8FppWHASEd+lb6g==
   dependencies:
     "@akala/json-rpc-ws" "9.3.2"
+    browser-process-hrtime "^1.0.0"
+    debug "^4.1.1"
+    isomorphic-fetch "^3.0.0"
+    mock-require "^3.0.3"
+    orchestrator "^0.3.8"
+    path-to-regexp "^6.1.0"
+    reflect-metadata "^0.1.13"
+    ws "^8.0.0"
+
+"@akala/core@7.5.12":
+  version "7.5.12"
+  resolved "https://registry.yarnpkg.com/@akala/core/-/core-7.5.12.tgz#55090426f4b3a7beec162fcf53842cae84be4c33"
+  integrity sha512-k6WM/XYt3dyS+Z/sApmryRqrokNaKrYNOInaLBSaEGdl6Y7U2SZUOkchUxRZ/bUPmvCbOzcfgwnhX0BWYXXkSg==
+  dependencies:
+    "@akala/json-rpc-ws" "9.3.4"
     browser-process-hrtime "^1.0.0"
     debug "^4.1.1"
     isomorphic-fetch "^3.0.0"
@@ -161,10 +196,20 @@
     uuid "^8.0.0"
     ws "^8.0.0"
 
-"@akala/json-rpc-ws@9.3.2", "@akala/json-rpc-ws@^9.1.44", "@akala/json-rpc-ws@^9.3.2":
+"@akala/json-rpc-ws@9.3.2", "@akala/json-rpc-ws@^9.1.44":
   version "9.3.2"
   resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.3.2.tgz#81481159fa21b645e64fe765c46bc7f098d99ca1"
   integrity sha512-wCrS6AgoYzna9uknbmeHerXT5FlGPq2msQ13IQMPIZwNGfa9sx0ydHbFFcaMLKiyx9AQ52HKLVgdYUk8rpZr+w==
+  dependencies:
+    debug "^4.1.1"
+    reflect-metadata "^0.1.13"
+    uuid "^8.0.0"
+    ws "^8.0.0"
+
+"@akala/json-rpc-ws@9.3.4":
+  version "9.3.4"
+  resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-9.3.4.tgz#1ebea27c3e00b38fc10488874066dcdd35d01372"
+  integrity sha512-R77F+HWVLBVKKisrN1WNTsgXRF0RQqTCR2gcnOJQBIh1tHZpRAbimAm1tLUaSYQSINDtDTQYtuTIWQVSPDpwIw==
   dependencies:
     debug "^4.1.1"
     reflect-metadata "^0.1.13"
@@ -252,7 +297,7 @@
     webpack "^5.42.0"
     xml2js "^0.4.23"
 
-"@akala/server@^6.1.53", "@akala/server@^6.3.8":
+"@akala/server@6.3.8", "@akala/server@^6.1.53":
   version "6.3.8"
   resolved "https://registry.yarnpkg.com/@akala/server/-/server-6.3.8.tgz#377cef150575cc996ddec5e4b977a12d6bde663d"
   integrity sha512-CDUOtUdkxcURZVpi3UbJfgXZ6kTfEAWJogd2KK9KpSZIV8OgJuyanxDrxVjKE6SjH6vAbjOoRu4kblp8nNAXtg==
@@ -320,21 +365,21 @@
     webpack "^5.42.0"
     xml2js "^0.4.23"
 
+"@akala/storage@2.3.4":
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/@akala/storage/-/storage-2.3.4.tgz#9eef0f63e19066276de02fda24626f2a91443b4b"
+  integrity sha512-xfbMr5Tr78YAFPv/i7yjH+86nhE3l5ADLVP6Z0Oaf3O6i6tD2VU55N0qBII0o1zvepahxXanDCzxtNj68a9SIQ==
+  dependencies:
+    "@akala/core" "7.5.10"
+    reflect-metadata "^0.1.13"
+    uuid "^8.0.0"
+
 "@akala/storage@^2.3.3":
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/@akala/storage/-/storage-2.3.3.tgz#ef17e69bcc4f892de214ccc22c9b490164832c53"
   integrity sha512-CX1oajgbWTdTQRakL/ceq2wXGHHMVP3qRRQfMfzdhWawypVUoMdTdsNKHVH5MRkwZ2CTgQ6ZQ66UmyvVYNaRnw==
   dependencies:
     "@akala/core" "7.5.9"
-    reflect-metadata "^0.1.13"
-    uuid "^8.0.0"
-
-"@akala/storage@^2.3.4":
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/@akala/storage/-/storage-2.3.4.tgz#9eef0f63e19066276de02fda24626f2a91443b4b"
-  integrity sha512-xfbMr5Tr78YAFPv/i7yjH+86nhE3l5ADLVP6Z0Oaf3O6i6tD2VU55N0qBII0o1zvepahxXanDCzxtNj68a9SIQ==
-  dependencies:
-    "@akala/core" "7.5.10"
     reflect-metadata "^0.1.13"
     uuid "^8.0.0"
 
@@ -2432,14 +2477,14 @@
     "@types/through" "*"
     rxjs "^6.4.0"
 
-"@types/ioredis@^4.28.1":
-  version "4.28.1"
-  resolved "https://registry.yarnpkg.com/@types/ioredis/-/ioredis-4.28.1.tgz#27d66f4c0540145826d984b6d0a5b54bbb88c32a"
-  integrity sha512-raYHPqRWrfnEoym94BY28mG1+tcZqh3dsp2q7x5IyMAAEvIdu+H0X8diASMpncIm+oHyH9dalOeOnGOL/YnuOA==
+"@types/ioredis@4.28.2":
+  version "4.28.2"
+  resolved "https://registry.yarnpkg.com/@types/ioredis/-/ioredis-4.28.2.tgz#7ff68944cbb58afefb2a1d8b250ebf48760e93c9"
+  integrity sha512-kOCG4ExodOAoslFjsUzwAK1fxqVRx3JX5m7lm3MkWf5WkDwNTtXBtlBig6cQyFwS7P7TPaTWRreQaMwl7e1FFA==
   dependencies:
     "@types/node" "*"
 
-"@types/jquery@^3.5.9":
+"@types/jquery@3.5.9":
   version "3.5.9"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.5.9.tgz#08e4b1dcff0626926ffe545a2bc90f18140c53d6"
   integrity sha512-B8pDk+sH/tSv/HKdx6EQER6BfUOb2GtKs0LOmozziS4h7cbe8u/eYySfUAeTwD+J09SqV3man7AMWIA5mgzCBA==
@@ -2468,7 +2513,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/levenshtein@^1.0.1":
+"@types/levenshtein@1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/levenshtein/-/levenshtein-1.0.1.tgz#0a8084347279058c43f9a0627c88d0435f9f823b"
   integrity sha1-CoCENHJ5BYxD+aBifIjQQ1+fgjs=
@@ -2581,14 +2626,14 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
   integrity sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
 
-"@types/redis@^2.8.32":
+"@types/redis@2.8.32":
   version "2.8.32"
   resolved "https://registry.yarnpkg.com/@types/redis/-/redis-2.8.32.tgz#1d3430219afbee10f8cfa389dad2571a05ecfb11"
   integrity sha512-7jkMKxcGq9p242exlbsVzuJb57KqHRhNl4dHoQu2Y5v9bCAbtIXXH0R3HleSQW4CTOqpHIYUW3t6tpUj4BVQ+w==
   dependencies:
     "@types/node" "*"
 
-"@types/request@2.48.7", "@types/request@^2.48.7":
+"@types/request@2.48.7":
   version "2.48.7"
   resolved "https://registry.yarnpkg.com/@types/request/-/request-2.48.7.tgz#a962d11a26e0d71d9a9913d96bb806dc4d4c2f19"
   integrity sha512-GWP9AZW7foLd4YQxyFZDBepl0lPsWLMEXDZUjQ/c1gqVPDPECrRZyEzuhJdnPWioFCq3Tv0qoGpMD6U+ygd4ZA==
@@ -2692,10 +2737,17 @@
     "@types/node" "*"
     "@types/webidl-conversions" "*"
 
-"@types/ws@8.2.0", "@types/ws@^8.2.0":
+"@types/ws@8.2.0":
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/@types/ws/-/ws-8.2.0.tgz#75faefbe2328f3b833cb8dc640658328990d04f3"
   integrity sha512-cyeefcUCgJlEk+hk2h3N+MqKKsPViQgF5boi9TTHSK+PoR9KWBb/C5ccPcDyAqgsbAYHTwulch725DV84+pSpg==
+  dependencies:
+    "@types/node" "*"
+
+"@types/ws@8.2.1":
+  version "8.2.1"
+  resolved "https://registry.yarnpkg.com/@types/ws/-/ws-8.2.1.tgz#7bdf6b12869726c9f3cc3c48485efea5d4505274"
+  integrity sha512-SqQ+LhVZaJi7c7sYVkjWALDigi/Wy7h7Iu72gkQp8Y8OWw/DddEVBrTSKu86pQftV2+Gm8lYM61hadPKqyaIeg==
   dependencies:
     "@types/node" "*"
 
@@ -10423,7 +10475,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@4.5.2, typescript@~4.5.2:
+typescript@4.5.2:
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.2.tgz#8ac1fba9f52256fdb06fb89e4122fa6a346c2998"
   integrity sha512-5BlMof9H1yGt0P8/WF+wPNw6GfctgGjXp5hkblpyT+8rkASSmkUKMXrxR0Xg8ThVCi/JnHQiKXeBaEwCeQwMFw==
