@@ -19,7 +19,7 @@
     "@domojs/devices": "^1.5.30",
     "@types/debug": "4.1.7",
     "@types/serialport": "8.0.2",
-    "@types/usb": "1.5.3",
+    "@types/usb": "1.5.4",
     "@types/ws": "8.2.0",
     "typescript": "4.5.2"
   },
