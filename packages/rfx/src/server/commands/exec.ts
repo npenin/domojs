@@ -1,6 +1,6 @@
 import { State } from "../state";
-import { RFXDevice, PacketType, InterfaceControl } from "rfxtrx";
-import { Rfy } from 'rfxtrx';
+import { RFXDevice, PacketType, InterfaceControl } from "@domojs/rfx-parsers";
+import { Rfy } from "@domojs/rfx-parsers";
 
 export default function (this: State, deviceName: string, command: string, value: any)
 {

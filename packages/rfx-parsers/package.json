@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "@akala/core": "^7.5.9",
-    "@domojs/protocol-parser": "^2.0.11",
+    "@domojs/protocol-parser": "^2.0.11"
+  },
+  "optionalDependencies": {
     "serialport": "^9.2.7",
     "usb": "^1.9.1"
   },
@@ -17,7 +19,7 @@
     "prepublishOnly": "tsc -p .",
     "test": "echo 1"
   },
-  "name": "rfxtrx",
+  "name": "@domojs/rfx-parsers",
   "version": "1.2.14",
   "main": "dist/index.js",
   "repository": "https://github.com/npenin/rfx.git",

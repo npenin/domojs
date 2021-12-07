@@ -31,12 +31,9 @@
         "@fortawesome/fontawesome-common-types": "^0.2.36",
         "uuid": "^8.0.0"
     },
-    "peerDependencies": {
-        "@domojs/theme-default": "^1.2.38"
-    },
     "devDependencies": {
         "@akala/client": "5.2.6",
-        "@domojs/theme-default": "^1.3.23",
+        "@domojs/theme-default": "1.3.23",
         "@popperjs/core": "2.10.2",
         "@types/debug": "4.1.7",
         "@types/uuid": "8.3.3",

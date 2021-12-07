@@ -1,6 +1,5 @@
 import { State } from "../state";
-import { RFXDevice, Type } from "rfxtrx";
-import { Rfy } from 'rfxtrx';
+import { RFXDevice, Type, Rfy } from "@domojs/rfx-parsers";
 import interact from '@akala/pm'
 
 export default async function (this: State, unitCode: number, id1: number, id2: number, id3: number, command: keyof typeof Rfy.Commands)

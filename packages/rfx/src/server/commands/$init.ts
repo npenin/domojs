@@ -1,7 +1,7 @@
 import { State } from "../state";
 import * as usb from 'usb';
 import * as akala from '@akala/server';
-import { Rfxtrx } from 'rfxtrx';
+import { Rfxtrx } from "@domojs/rfx-parsers";
 import * as path from 'path'
 import * as fs from 'fs/promises';
 import { registerDeviceType } from '@domojs/devices';

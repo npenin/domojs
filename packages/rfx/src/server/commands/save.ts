@@ -1,13 +1,11 @@
-import { Rfxtrx, PacketType } from "rfxtrx";
+import { Rfxtrx, PacketType, Rfy, InterfaceControl } from "@domojs/rfx-parsers";
 import { devices } from "@domojs/devices";
-import { Rfy } from 'rfxtrx';
 import { State } from "../state";
 import * as ac from '@akala/commands'
 import * as pm from '@akala/pm'
 import * as http from 'http'
 import * as https from 'https'
 import * as net from 'net'
-import { protocols_msg3, protocols_msg4, protocols_msg5, protocols_msg6 } from "rfxtrx/dist/protocol/0.interface.mode";
 
 
 export default async function save(this: State, body: any, device: devices.IDevice, container: ac.Container<any>)
@@ -87,10 +85,10 @@ export default async function save(this: State, body: any, device: devices.IDevi
             gateway = await p;
             this.devices[device.name] = { type: PacketType.INTERFACE_CONTROL, gateway };
             device.commands = Object.fromEntries([
-                ...Object.keys(protocols_msg3).filter(k => typeof (k) == 'string').map<[string, devices.Command]>((k: keyof protocols_msg3) => [k, { type: "toggle" }]),
-                ...Object.keys(protocols_msg4).filter(k => typeof (k) == 'string').map<[string, devices.Command]>((k: keyof protocols_msg4) => [k, { type: "toggle" }]),
-                ...Object.keys(protocols_msg5).filter(k => typeof (k) == 'string').map<[string, devices.Command]>((k: keyof protocols_msg5) => [k, { type: "toggle" }]),
-                ...Object.keys(protocols_msg6).filter(k => typeof (k) == 'string').map<[string, devices.Command]>((k: keyof protocols_msg6) => [k, { type: "toggle" }]),
+                ...Object.keys(InterfaceControl.protocols_msg3).filter(k => typeof (k) == 'string').map<[string, devices.Command]>((k: keyof InterfaceControl.protocols_msg3) => [k, { type: "toggle" }]),
+                ...Object.keys(InterfaceControl.protocols_msg4).filter(k => typeof (k) == 'string').map<[string, devices.Command]>((k: keyof InterfaceControl.protocols_msg4) => [k, { type: "toggle" }]),
+                ...Object.keys(InterfaceControl.protocols_msg5).filter(k => typeof (k) == 'string').map<[string, devices.Command]>((k: keyof InterfaceControl.protocols_msg5) => [k, { type: "toggle" }]),
+                ...Object.keys(InterfaceControl.protocols_msg6).filter(k => typeof (k) == 'string').map<[string, devices.Command]>((k: keyof InterfaceControl.protocols_msg6) => [k, { type: "toggle" }]),
             ]);
             break;
         case PacketType.RFY:
