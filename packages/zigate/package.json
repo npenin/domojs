@@ -12,9 +12,6 @@
 		"prepublishOnly": "npm run build",
 		"build": "npm run build:js"
 	},
-	"peerDependencies": {
-		"@domojs/devices": "^1.5.9"
-	},
 	"author": "npenin",
 	"license": "MIT",
 	"dependencies": {

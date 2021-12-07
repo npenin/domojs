@@ -1,8 +1,8 @@
 {
-  "name": "domojs",
+  "name": "@domojs/cli",
   "private": true,
   "version": "0.0.16",
-  "description": "command line interface for domotics needs",
+  "description": "command line interface for home automation needs",
   "main": "dist/cli.js",
   "repository": "https://github.com/npenin/domojs",
   "author": "npenin",

@@ -1,5 +1,5 @@
-import * as common from 'rfxtrx'
-import { Rfy } from 'rfxtrx'
+import * as common from "@domojs/rfx-parsers"
+import { Rfy } from "@domojs/rfx-parsers"
 import assert = require('assert');
 import net from 'net'
 import https from 'https'

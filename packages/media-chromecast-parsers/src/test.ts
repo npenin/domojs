@@ -1,6 +1,5 @@
 import * as parsers from './index'
 import net from 'net'
-import { castArray } from 'lodash';
 import { Cursor, protobuf } from '@domojs/protocol-parser';
 
 describe('cast', function ()

@@ -1,4 +1,4 @@
-import { Rfxtrx, RFXDevice } from "rfxtrx";
+import { Rfxtrx, RFXDevice } from "@domojs/rfx-parsers";
 
 export interface State
 {
