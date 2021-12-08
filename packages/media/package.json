@@ -24,7 +24,7 @@
     "@akala/cli": "1.5.6",
     "@akala/json-rpc-ws": "9.3.2",
     "@akala/server": "6.3.8",
-    "@akala/storage": "2.3.4",
+    "@akala/storage": "2.3.6",
     "@domojs/theme-default": "workspace:^",
     "@types/debug": "4.1.7",
     "@types/ioredis": "4.28.2",
