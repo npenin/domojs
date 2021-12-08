@@ -11,7 +11,7 @@
     "@domojs/devices": "workspace:^"
   },
   "devDependencies": {
-    "@types/ws": "8.2.0"
+    "@types/ws": "8.2.2"
   },
   "deprecated": false,
   "description": "",
