@@ -372,6 +372,42 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@akala/server@npm:6.3.10, @akala/server@npm:^6.3.6":
+  version: 6.3.10
+  resolution: "@akala/server@npm:6.3.10"
+  dependencies:
+    "@akala/commands": 2.6.3
+    "@akala/core": 7.5.12
+    "@akala/json-rpc-ws": 9.3.4
+    "@akala/pm": 2.5.3
+    chokidar: ^3.5.2
+    co-body: ^6.1.0
+    cookie: ^0.4.1
+    css-loader: ^6.0.0
+    express: ^4.16.2
+    file-loader: ^6.0.0
+    html-webpack-plugin: ^5.3.2
+    mini-css-extract-plugin: ^2.0.0
+    on-finished: ^2.3.0
+    orchestrator: ^0.3.8
+    raw-loader: ^4.0.1
+    reflect-metadata: ^0.1.13
+    require-optional: ^0.4.0
+    sass: ^1.35.1
+    sass-loader: ^12.1.0
+    send: ^0.17.1
+    sequencify: 0.0.7
+    snyk: ^1.769.0
+    source-map-loader: ^3.0.0
+    source-map-support: ^0.5.19
+    style-loader: ^3.0.0
+    ts-loader: ^9.2.3
+    webpack: ^5.42.0
+    xml2js: ^0.4.23
+  checksum: 2af2a3c8baf7836caab3b08bebf1011eaef3264f0ce4a4556924504bfd8824d5a2c2ac434ecb5fd79368d42f8df27bc1ad56550023e74ece42bc9ed8013c3511
+  languageName: node
+  linkType: hard
+
 "@akala/server@npm:6.3.8":
   version: 6.3.8
   resolution: "@akala/server@npm:6.3.8"
@@ -441,42 +477,6 @@ __metadata:
     webpack: ^5.42.0
     xml2js: ^0.4.23
   checksum: 520c08a6072497f7b6ba8928c336c0afc29b2c8a9070b576cf9efd759f40e7d2d0420edea8d2de5b91ad53db78c2f7169fafaeca4a7497484596886f3606e71d
-  languageName: node
-  linkType: hard
-
-"@akala/server@npm:^6.3.6, @akala/server@npm:^6.3.8":
-  version: 6.3.10
-  resolution: "@akala/server@npm:6.3.10"
-  dependencies:
-    "@akala/commands": 2.6.3
-    "@akala/core": 7.5.12
-    "@akala/json-rpc-ws": 9.3.4
-    "@akala/pm": 2.5.3
-    chokidar: ^3.5.2
-    co-body: ^6.1.0
-    cookie: ^0.4.1
-    css-loader: ^6.0.0
-    express: ^4.16.2
-    file-loader: ^6.0.0
-    html-webpack-plugin: ^5.3.2
-    mini-css-extract-plugin: ^2.0.0
-    on-finished: ^2.3.0
-    orchestrator: ^0.3.8
-    raw-loader: ^4.0.1
-    reflect-metadata: ^0.1.13
-    require-optional: ^0.4.0
-    sass: ^1.35.1
-    sass-loader: ^12.1.0
-    send: ^0.17.1
-    sequencify: 0.0.7
-    snyk: ^1.769.0
-    source-map-loader: ^3.0.0
-    source-map-support: ^0.5.19
-    style-loader: ^3.0.0
-    ts-loader: ^9.2.3
-    webpack: ^5.42.0
-    xml2js: ^0.4.23
-  checksum: 2af2a3c8baf7836caab3b08bebf1011eaef3264f0ce4a4556924504bfd8824d5a2c2ac434ecb5fd79368d42f8df27bc1ad56550023e74ece42bc9ed8013c3511
   languageName: node
   linkType: hard
 
@@ -698,7 +698,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/protocol-parser@workspace:packages/protocol-parser"
   dependencies:
-    "@types/debug": ^4.1.7
+    "@types/debug": 4.1.7
     "@types/mocha": 9.0.0
     "@types/node": 16.11.10
     debug: ^4.3.2
@@ -734,7 +734,7 @@ __metadata:
   resolution: "@domojs/rfx@workspace:packages/rfx"
   dependencies:
     "@akala/pm": ^2.5.1
-    "@akala/server": ^6.3.8
+    "@akala/server": 6.3.10
     "@domojs/devices": ^1.5.30
     "@domojs/rfx-parsers": "workspace:^"
     "@types/debug": 4.1.7
@@ -742,7 +742,7 @@ __metadata:
     "@types/usb": 1.5.3
     "@types/ws": 8.2.0
     serialport: ^9.2.7
-    typescript: ^4.5.2
+    typescript: 4.5.2
     usb: ^1.9.1
   dependenciesMeta:
     serialport:
@@ -2759,7 +2759,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/debug@npm:*, @types/debug@npm:4.1.7, @types/debug@npm:^4.1.7":
+"@types/debug@npm:*, @types/debug@npm:4.1.7":
   version: 4.1.7
   resolution: "@types/debug@npm:4.1.7"
   dependencies:
@@ -10768,7 +10768,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.5.2, typescript@npm:^4.5.2":
+"typescript@npm:4.5.2":
   version: 4.5.2
   resolution: "typescript@npm:4.5.2"
   bin:
@@ -10778,7 +10778,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.5.2#~builtin<compat/typescript>, typescript@patch:typescript@^4.5.2#~builtin<compat/typescript>":
+"typescript@patch:typescript@4.5.2#~builtin<compat/typescript>":
   version: 4.5.2
   resolution: "typescript@patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=493e53"
   bin:
