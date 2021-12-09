@@ -402,7 +402,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/protocol-parser@workspace:packages/protocol-parser"
   dependencies:
-    "@types/debug": ^4.1.7
+    "@types/debug": 4.1.7
     "@types/mocha": 9.0.0
     "@types/node": 16.11.10
     debug: ^4.3.2
@@ -2482,7 +2482,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/debug@npm:*, @types/debug@npm:4.1.7, @types/debug@npm:^4.1.7":
+"@types/debug@npm:*, @types/debug@npm:4.1.7":
   version: 4.1.7
   resolution: "@types/debug@npm:4.1.7"
   dependencies:
