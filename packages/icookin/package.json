@@ -5,7 +5,7 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "@akala/core": "7.5.9",
+    "@akala/core": "7.5.12",
     "mongodb": "4.2.0",
     "ws": "8.3.0"
   },
