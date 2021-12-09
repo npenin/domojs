@@ -15,10 +15,10 @@
 	"author": "npenin",
 	"license": "MIT",
 	"dependencies": {
-		"@akala/core": "^7.5.9",
-		"@akala/server": "^6.3.6",
-		"serialport": "^9.2.7",
-		"zigate": "^2.0.13"
+		"@akala/core": "7.5.12",
+		"@akala/server": "6.3.10",
+		"@domojs/zigate-parsers": "workspace:^",
+		"serialport": "9.2.8"
 	},
 	"devDependencies": {
 		"@domojs/devices": "^1.5.30",

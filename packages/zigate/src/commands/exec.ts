@@ -1,8 +1,6 @@
-import { MessageType, MessageTypes } from "zigate";
+import { MessageType, MessageTypes, status, permitjoin } from "@domojs/zigate-parsers";
 import { State } from "../state";
 import * as akala from '@akala/core';
-import { TCSignificance } from "zigate/dist/messages/permitjoin";
-import { Status } from "zigate/dist/messages/status";
 const log = akala.log('domojs:zigate');
 
 export default function (this: State, deviceName: string, command: keyof typeof MessageType, value: any)
@@ -16,10 +14,10 @@ export default function (this: State, deviceName: string, command: keyof typeof 
                 case 'PermitJoining':
                     return new Promise<void>((resolve, reject) =>
                     {
-                        this.devices[deviceName].gateway.send<MessageTypes.PermitJoiningRequest>(MessageType.PermitJoining, { interval: 0xFE, TCSignificance: TCSignificance.NoChangeInAuthentication, targetShortAddress: 0xFFFC });
+                        this.devices[deviceName].gateway.send(MessageType.PermitJoining, { interval: 0xFE, TCSignificance: permitjoin.TCSignificance.NoChangeInAuthentication, targetShortAddress: 0xFFFC });
                         this.devices[deviceName].gateway.once<MessageTypes.PermitJoiningResponse>(MessageType.Status, (message) =>
                         {
-                            if (message.status != Status.Success)
+                            if (message.status != status.Status.Success)
                                 reject(message.message);
                             else
                                 resolve();
@@ -45,7 +43,7 @@ export default function (this: State, deviceName: string, command: keyof typeof 
                         this.devices[deviceName].gateway.send<MessageTypes.GetVersionRequest>(MessageType[command]);
                         this.devices[deviceName].gateway.once<MessageTypes.Status>(MessageType.Status, (message) =>
                         {
-                            if (message.status != Status.Success)
+                            if (message.status != status.Status.Success)
                                 reject(message.message);
                         });
                         this.devices[deviceName].gateway.once<MessageTypes.GetVersionResponse>(MessageType.GetVersion | MessageType.Response, (message) =>

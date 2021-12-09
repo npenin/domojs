@@ -7,7 +7,7 @@
 		"url": "https://github.com/npenin/domojs-weather.git"
 	},
 	"dependencies": {
-		"@akala/commands": "2.6.0",
+		"@akala/commands": "2.6.3",
 		"@akala/config": "0.4.9"
 	},
 	"gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"

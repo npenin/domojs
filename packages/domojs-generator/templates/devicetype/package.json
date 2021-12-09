@@ -10,8 +10,8 @@
 	"author": "npenin",
 	"license": "MIT",
 	"dependencies": {
-		"@akala/core": "^7.0.0",
-		"@akala/server": "^5.1.8"
+		"@akala/core": "7.5.12",
+		"@akala/server": "6.3.10"
 	},
 	"devDependencies": {
 		"@domojs/devices": "^1.5.30",
