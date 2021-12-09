@@ -42,9 +42,9 @@
     },
     {
       "path": "lifttt"
-    },
-    {
-      "path": "icookin"
+      // },
+      // {
+      //   "path": "icookin"
     },
     {
       "path": "zigate-parsers"
