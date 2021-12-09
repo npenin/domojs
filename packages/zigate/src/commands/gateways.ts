@@ -1,4 +1,4 @@
-import { Zigate } from "zigate";
+import { Zigate } from "@domojs/zigate-parsers";
 import * as akala from '@akala/core'
 
 export default async function ()

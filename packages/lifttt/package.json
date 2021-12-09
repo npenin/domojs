@@ -27,17 +27,20 @@
     "description": "",
     "types": "dist/server/index.d.ts",
     "dependencies": {
-        "@akala/server": "^6.3.6",
-        "@fortawesome/fontawesome-common-types": "^0.2.36",
-        "uuid": "^8.0.0"
+        "@akala/server": "6.3.10",
+        "@fortawesome/fontawesome-common-types": "0.2.36",
+        "uuid": "8.3.2"
     },
     "devDependencies": {
-        "@akala/client": "5.2.6",
+        "@akala/client": "5.2.9",
+        "@akala/commands": "2.6.3",
+        "@akala/core": "7.5.12",
+        "@akala/json-rpc-ws": "9.3.4",
         "@domojs/theme-default": "1.3.23",
-        "@popperjs/core": "2.10.2",
+        "@popperjs/core": "2.11.0",
         "@types/debug": "4.1.7",
         "@types/uuid": "8.3.3",
+        "node-fetch": "3.1.0",
         "typescript": "4.5.2"
-    },
-    "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
+    }
 }

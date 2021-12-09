@@ -1,9 +1,7 @@
 import { devices } from "@domojs/devices";
 import { State } from "../state";
 import * as ac from '@akala/commands'
-import { Cluster, MessageType, MessageTypes, Zigate } from "zigate";
-import { DeviceType } from "zigate/dist/messages/network";
-import { AttributeType } from "zigate/dist/messages/attributes";
+import { Cluster, MessageType, MessageTypes, Zigate, network, attributes } from "@domojs/zigate-parsers";
 import * as akala from '@akala/core';
 const log = akala.log('domojs:zigate');
 
@@ -44,7 +42,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
         zigate.send<MessageTypes.SetChannelMaskRequest>(MessageType.SetChannelMask, { mask: 11 })
         zigate.once(MessageType.Status, (response: MessageTypes.SetChannelMaskResponse) =>
         {
-            zigate.send<MessageTypes.SetDeviceTypeRequest>(MessageType.SetDeviceType, { type: DeviceType.Coordinator });
+            zigate.send<MessageTypes.SetDeviceTypeRequest>(MessageType.SetDeviceType, { type: network.DeviceType.Coordinator });
             zigate.once(MessageType.Status, (response: MessageTypes.SetDeviceTypeResponse) =>
             {
                 zigate.send<MessageTypes.StartNetworkRequest>(MessageType.StartNetwork);
@@ -121,39 +119,39 @@ export default async function save(this: State, body: any, device: devices.IDevi
 
                 switch (attribute.dataType)
                 {
-                    case AttributeType.bitmap:
+                    case attributes.AttributeType.bitmap:
                         break;
-                    case AttributeType.bool:
+                    case attributes.AttributeType.bool:
                         this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = attribute.value.readUInt8(0);
                         break;
-                    case AttributeType.enum:
+                    case attributes.AttributeType.enum:
                         this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = attribute.value.readUInt8(0);
                         break;
-                    case AttributeType.int16:
+                    case attributes.AttributeType.int16:
                         this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = attribute.value.readInt16BE(0);
                         break;
-                    case AttributeType.int32:
+                    case attributes.AttributeType.int32:
                         this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = attribute.value.readInt32BE(0);
                         break;
-                    case AttributeType.int8:
+                    case attributes.AttributeType.int8:
                         this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = attribute.value.readInt8(0);
                         break;
-                    case AttributeType.null:
+                    case attributes.AttributeType.null:
                         this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = null;
                         break;
-                    case AttributeType.string:
+                    case attributes.AttributeType.string:
                         this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = attribute.value.toString();
                         break;
-                    case AttributeType.uint16:
+                    case attributes.AttributeType.uint16:
                         this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = attribute.value.readUInt16BE(0);
                         break;
-                    case AttributeType.uint32:
+                    case attributes.AttributeType.uint32:
                         this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = attribute.value.readUInt32BE(0);
                         break;
-                    case AttributeType.uint48:
+                    case attributes.AttributeType.uint48:
                         this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = attribute.value.readUIntBE(0, 6);
                         break;
-                    case AttributeType.uint8:
+                    case attributes.AttributeType.uint8:
                         this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = attribute.value.readUInt8(0);
                         break;
                     default:

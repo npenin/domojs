@@ -8,9 +8,9 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "@akala/commands": "2.6.0",
-    "@akala/pm": "2.5.0",
-    "yargs": "17.2.1"
+    "@akala/commands": "2.6.3",
+    "@akala/pm": "2.5.3",
+    "yargs": "17.3.0"
   },
   "devDependencies": {
     "@types/yargs": "17.0.7"

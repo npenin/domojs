@@ -60,6 +60,11 @@ import './messages/trigger';
 import * as version from './messages/version';
 import './messages/version';
 export { Protocol, MessageType }
+export
+{
+    address, aps, attributes, bind, dataIndication, descriptors, devices, door, enablePermissionsControlJoin, gateway, group, hue, ias, identify, logs,
+    managementLeave, move, network, onoff, outOfBandCommissionningData, permitjoin, scenes, status, temperature, touchlink, trigger, version
+};
 const log = debug('zigate');
 
 export namespace MessageTypes

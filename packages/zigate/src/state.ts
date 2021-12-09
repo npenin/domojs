@@ -1,5 +1,5 @@
 import { deviceContainer, deviceTypeContainer } from '@domojs/devices';
-import { Cluster, Zigate } from 'zigate';
+import { Cluster, Zigate } from '@domojs/zigate-parsers';
 
 export type ZDevices = ZGateway | ZDevice;
 

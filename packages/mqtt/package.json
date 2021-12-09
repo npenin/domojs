@@ -10,9 +10,9 @@
 	"author": "npenin",
 	"license": "MIT",
 	"dependencies": {
-		"@akala/core": "^7.5.9",
-		"@akala/pubsub": "^0.0.5",
-		"@akala/server": "^6.3.6",
+		"@akala/core": "7.5.12",
+		"@akala/pubsub": "0.0.8",
+		"@akala/server": "6.3.10",
 		"@domojs/protocol-parser": "workspace:^"
 	},
 	"devDependencies": {

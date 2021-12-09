@@ -3,7 +3,7 @@ import { registerDeviceType } from '@domojs/devices';
 import { State } from '../state'
 import fs from 'fs/promises'
 import path from 'path';
-import { Zigate } from 'zigate';
+import { Zigate } from '@domojs/zigate-parsers';
 
 export default async function (this: State)
 {

@@ -1,5 +1,5 @@
 import * as akala from '@akala/core';
-import { Cluster } from 'zigate';
+import { Cluster } from '@domojs/zigate-parsers';
 import { State, ZDevice } from '../state'
 
 export default function (this: State)
