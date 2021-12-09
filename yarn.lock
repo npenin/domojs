@@ -5,6 +5,38 @@ __metadata:
   version: 5
   cacheKey: 8
 
+"@akala/automate-yamlloader@npm:0.2.10":
+  version: 0.2.10
+  resolution: "@akala/automate-yamlloader@npm:0.2.10"
+  dependencies:
+    "@akala/automate": 0.10.8
+    "@akala/config": 0.4.9
+    "@akala/pm": 2.5.3
+  checksum: d0f5aa463575ce5a81990020aa8d9c4bcf24b1b6f24129324884c0f70a59e399000164bdaf03b809a4fe8b4bc1712a8f5878018cbf2649226944903909df5a73
+  languageName: node
+  linkType: hard
+
+"@akala/automate@npm:0.10.8":
+  version: 0.10.8
+  resolution: "@akala/automate@npm:0.10.8"
+  dependencies:
+    "@akala/cli": 1.5.8
+    "@akala/commands": 2.6.3
+    "@akala/config": 0.4.9
+    "@akala/core": 7.5.12
+    "@akala/cron": 0.4.3
+    "@akala/json-rpc-ws": 9.3.4
+    "@akala/pm": 2.5.3
+    "@akala/pubsub": 0.0.8
+    "@akala/server": 6.3.10
+    orchestrator: ^0.3.8
+    winston: ^3.3.3
+  bin:
+    akala-automate-runner: dist/cli.js
+  checksum: d04b904d2e5a42669f98bff1b5ed5ea1a1f48dfa809eb77e7a5b7b40b6413c9411020c1af85265f0ad6a03209cddce10324aec46cbd2f3d9d3cd9873b27edb30
+  languageName: node
+  linkType: hard
+
 "@akala/cli@npm:1.5.8":
   version: 1.5.8
   resolution: "@akala/cli@npm:1.5.8"
@@ -99,6 +131,18 @@ __metadata:
     reflect-metadata: ^0.1.13
     ws: ^8.0.0
   checksum: 471c02f927c4c79a175d9e8f722df0849e5bb4af7698bb3ef8bb21a72f74155c13158472ee5b20cbd1fc96bbf97a3d0b7042bd77178f1299a09bd5f04f6a77fa
+  languageName: node
+  linkType: hard
+
+"@akala/cron@npm:0.4.3":
+  version: 0.4.3
+  resolution: "@akala/cron@npm:0.4.3"
+  dependencies:
+    "@akala/commands": 2.6.3
+    "@akala/pubsub": 0.0.8
+    debug: ^4.3.1
+    suncalc: ^1.8.0
+  checksum: 483c31b60c2929d78e8314405e9a90149bba61a30e03443f7a52c3238ab5426f446bd1894788618409ae1ce3b634832ba68ca835da456a469066c105fb8308ea
   languageName: node
   linkType: hard
 
@@ -4721,6 +4765,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "domojs@workspace:."
   dependencies:
+    "@akala/automate": 0.10.8
+    "@akala/automate-yamlloader": 0.2.10
     typescript: 4.5.2
   languageName: unknown
   linkType: soft
@@ -10126,6 +10172,13 @@ __metadata:
   peerDependencies:
     webpack: ^5.0.0
   checksum: 470feef680f59e2fce4d6601b5c55b88c01ad8d1dd693c528ffd591ff5fd7c01a4eff3bdbe62f26f847d6bd2430c9ab594be23307cfe7a3446ab236683f0d066
+  languageName: node
+  linkType: hard
+
+"suncalc@npm:^1.8.0":
+  version: 1.8.0
+  resolution: "suncalc@npm:1.8.0"
+  checksum: 4c8eb97f1d211c4c666853dde10037cc09a889a0711828435e6258523a078be9fa503a4be280e950991ef38ff09134a3d0316014ca6ecb7d810bdc1e577bd654
   languageName: node
   linkType: hard
 
