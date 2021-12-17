@@ -255,6 +255,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@akala/pubsub@npm:0.0.10":
+  version: 0.0.10
+  resolution: "@akala/pubsub@npm:0.0.10"
+  dependencies:
+    "@akala/commands": 2.7.1
+    "@akala/pm": 2.5.5
+  checksum: 5177fdd04cfe2be7db078eb2df836a7714eb50f9c680bb396403e5227c0a7aa376dc77a952c6a4dbfa1703d3e89315111758c57eacbbac7eebe1fd1fd8bf1aeb
+  languageName: node
+  linkType: hard
+
 "@akala/pubsub@npm:0.0.8":
   version: 0.0.8
   resolution: "@akala/pubsub@npm:0.0.8"
@@ -537,7 +547,7 @@ __metadata:
   resolution: "@domojs/mqtt@workspace:packages/mqtt"
   dependencies:
     "@akala/core": 7.5.12
-    "@akala/pubsub": 0.0.8
+    "@akala/pubsub": 0.0.10
     "@akala/server": 6.3.11
     "@domojs/protocol-parser": "workspace:^"
     "@types/debug": 4.1.7
