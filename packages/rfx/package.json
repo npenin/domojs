@@ -6,7 +6,7 @@
     "url": "https://github.com/domojs/domojs-rfxcom/issues"
   },
   "dependencies": {
-    "@akala/pm": "2.5.3",
+    "@akala/pm": "2.5.5",
     "@domojs/rfx-parsers": "workspace:^"
   },
   "optionalDependencies": {
