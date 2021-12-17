@@ -117,23 +117,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@akala/core@npm:7.5.9":
-  version: 7.5.9
-  resolution: "@akala/core@npm:7.5.9"
-  dependencies:
-    "@akala/json-rpc-ws": 9.3.1
-    browser-process-hrtime: ^1.0.0
-    debug: ^4.1.1
-    isomorphic-fetch: ^3.0.0
-    mock-require: ^3.0.3
-    orchestrator: ^0.3.8
-    path-to-regexp: ^6.1.0
-    reflect-metadata: ^0.1.13
-    ws: ^8.0.0
-  checksum: 471c02f927c4c79a175d9e8f722df0849e5bb4af7698bb3ef8bb21a72f74155c13158472ee5b20cbd1fc96bbf97a3d0b7042bd77178f1299a09bd5f04f6a77fa
-  languageName: node
-  linkType: hard
-
 "@akala/cron@npm:0.4.3":
   version: 0.4.3
   resolution: "@akala/cron@npm:0.4.3"
@@ -143,18 +126,6 @@ __metadata:
     debug: ^4.3.1
     suncalc: ^1.8.0
   checksum: 483c31b60c2929d78e8314405e9a90149bba61a30e03443f7a52c3238ab5426f446bd1894788618409ae1ce3b634832ba68ca835da456a469066c105fb8308ea
-  languageName: node
-  linkType: hard
-
-"@akala/json-rpc-ws@npm:9.3.1":
-  version: 9.3.1
-  resolution: "@akala/json-rpc-ws@npm:9.3.1"
-  dependencies:
-    debug: ^4.1.1
-    reflect-metadata: ^0.1.13
-    uuid: ^8.0.0
-    ws: ^8.0.0
-  checksum: cae47819588197611b09d50ff46b1e643c5d8e22bc6d11924d0b012266acc2453e16c6065608a6de7e5928daecead5976d02eb9fe82594b4c7aea341d69cd523
   languageName: node
   linkType: hard
 
@@ -344,7 +315,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/icookin@workspace:packages/icookin"
   dependencies:
-    "@akala/core": 7.5.9
+    "@akala/core": 7.5.12
     "@types/debug": 4.1.7
     "@types/mongodb": 4.0.7
     "@types/node": 16.11.10
