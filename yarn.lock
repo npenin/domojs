@@ -63,6 +63,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@akala/cli@npm:1.6.1":
+  version: 1.6.1
+  resolution: "@akala/cli@npm:1.6.1"
+  dependencies:
+    "@akala/core": 7.5.12
+    reflect-metadata: ^0.1.13
+    winston: ^3.3.3
+  bin:
+    akala: ./dist/cli.js
+  checksum: 754035abf754010b5ee73c13cd57ceb1814faf6d5d1a2111271c14c44736993a1145259a4b20ed93843e75ad059ad42751bff10adddd1ba1f791b315e188bbae
+  languageName: node
+  linkType: hard
+
 "@akala/client@npm:5.2.9":
   version: 5.2.9
   resolution: "@akala/client@npm:5.2.9"
@@ -110,6 +123,23 @@ __metadata:
   bin:
     ac: dist/cli.js
   checksum: f82bb3380b3200fcd6d7011b90d0b3b8395a61a877fd6b088281d4776126666a31bdce503dafc435cc567f7141fe0eff5b08eb70bd36feac30cc6d830e883e4d
+  languageName: node
+  linkType: hard
+
+"@akala/commands@npm:2.7.1":
+  version: 2.7.1
+  resolution: "@akala/commands@npm:2.7.1"
+  dependencies:
+    "@akala/cli": 1.6.1
+    "@akala/core": 7.5.12
+    "@akala/json-rpc-ws": 9.3.4
+    debug: ^4.1.1
+    path-to-regexp: ^6.1.0
+    reflect-metadata: ^0.1.13
+    ws: ^8.0.0
+  bin:
+    ac: dist/cli.js
+  checksum: d15da743070a0b95887bad4bbe77adf07c9921de7b13cc549f4e256b1a03787e37510880fe1f489f4be47fe656a17ff570a7995f745b42f423fb22576bec9b8c
   languageName: node
   linkType: hard
 
@@ -204,6 +234,24 @@ __metadata:
     pm: dist/cli.js
     pm-fork: dist/fork.js
   checksum: fd8e7895211b5ab5bee9cc2ab61c6a8b53f91dbc79e0be8163ec6c6bc67c7d2de493a2a9e7fb1a093f07127014412a13764e333b58361754bcbbe37f911c0fea
+  languageName: node
+  linkType: hard
+
+"@akala/pm@npm:2.5.5":
+  version: 2.5.5
+  resolution: "@akala/pm@npm:2.5.5"
+  dependencies:
+    "@akala/cli": 1.6.1
+    "@akala/commands": 2.7.1
+    "@akala/core": 7.5.12
+    "@akala/json-rpc-ws": 9.3.4
+    debug: ^4.1.1
+    reflect-metadata: ^0.1.13
+    source-map-support: ^0.5.19
+  bin:
+    pm: dist/cli.js
+    pm-fork: dist/fork.js
+  checksum: dae187b91194ec4ed859b780eb3fb27be96f2ff870912dc364fea19771c3f833695f79a3d8de8ce30f40e444fc68371c483266fdfe0da3c5e5ecd3e82f8dbf08
   languageName: node
   linkType: hard
 
@@ -362,7 +410,7 @@ __metadata:
   resolution: "@domojs/cli@workspace:packages/cli"
   dependencies:
     "@akala/commands": 2.7.0
-    "@akala/pm": 2.5.3
+    "@akala/pm": 2.5.5
     "@types/yargs": 17.0.7
     yargs: 17.3.0
   languageName: unknown
@@ -536,7 +584,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/rfx@workspace:packages/rfx"
   dependencies:
-    "@akala/pm": 2.5.3
+    "@akala/pm": 2.5.5
     "@akala/server": 6.3.11
     "@domojs/devices": 1.5.30
     "@domojs/rfx-parsers": "workspace:^"
