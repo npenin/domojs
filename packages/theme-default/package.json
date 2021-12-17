@@ -2,7 +2,7 @@
   "author": "npenin",
   "dependencies": {
     "@akala/client": "5.2.9",
-    "@akala/commands": "2.6.3",
+    "@akala/commands": "2.7.0",
     "@akala/core": "7.5.12",
     "@akala/server": "6.3.11",
     "@fortawesome/fontawesome-common-types": "^0.2.36",
