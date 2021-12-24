@@ -29,7 +29,7 @@
     "@domojs/theme-default": "1.4.0",
     "@popperjs/core": "2.11.0",
     "@types/debug": "4.1.7",
-    "@types/express-serve-static-core": "4.17.26",
+    "@types/express-serve-static-core": "4.17.27",
     "@types/uuid": "8.3.3",
     "@types/webpack-env": "1.16.3",
     "@types/ws": "8.2.2",
