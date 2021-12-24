@@ -21,7 +21,7 @@
     "@fortawesome/free-brands-svg-icons": "5.15.4",
     "snyk": "1.809.0",
     "uuid": "8.3.2",
-    "ws": "8.3.0"
+    "ws": "8.4.0"
   },
   "deprecated": false,
   "description": "",
