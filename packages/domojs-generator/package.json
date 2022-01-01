@@ -1,6 +1,6 @@
 {
 	"name": "generator-domojs",
-	"version": "0.0.15",
+	"version": "0.1.0",
 	"description": "a",
 	"scripts": {
 		"test": "echo \"Error: no test specified\""
