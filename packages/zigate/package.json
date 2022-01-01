@@ -16,7 +16,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"@akala/core": "7.5.12",
-		"@akala/server": "6.3.13",
+		"@akala/server": "6.3.14",
 		"@domojs/zigate-parsers": "workspace:^",
 		"serialport": "9.2.8"
 	},
