@@ -27,13 +27,13 @@
     "description": "",
     "types": "dist/server/index.d.ts",
     "dependencies": {
-        "@akala/server": "6.3.13",
+        "@akala/server": "6.3.14",
         "@fortawesome/fontawesome-common-types": "0.2.36",
         "uuid": "8.3.2"
     },
     "devDependencies": {
-        "@akala/client": "5.2.12",
-        "@akala/commands": "2.7.2",
+        "@akala/client": "5.2.13",
+        "@akala/commands": "2.8.0",
         "@akala/core": "7.5.12",
         "@akala/json-rpc-ws": "9.3.4",
         "@domojs/theme-default": "1.4.0",
