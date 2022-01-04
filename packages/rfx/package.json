@@ -11,7 +11,7 @@
   },
   "optionalDependencies": {
     "serialport": "^9.2.8",
-    "usb": "^1.9.2"
+    "usb": "^2.0.3"
   },
   "commands": "./commands.json",
   "deprecated": false,
