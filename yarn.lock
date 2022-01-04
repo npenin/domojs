@@ -575,6 +575,9 @@ __metadata:
     "@types/request": 2.48.8
     lerna: 4.0.0
     serialport: 9.2.8
+  dependenciesMeta:
+    serialport:
+      optional: true
   languageName: unknown
   linkType: soft
 
