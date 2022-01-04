@@ -426,7 +426,7 @@ __metadata:
     "@akala/storage": 2.3.6
     "@domojs/theme-default": "workspace:^"
     "@types/debug": 4.1.7
-    "@types/ioredis": 4.28.5
+    "@types/ioredis": 4.28.7
     "@types/jquery": 3.5.11
     "@types/levenshtein": 1.0.1
     "@types/redis": 4.0.11
@@ -2703,12 +2703,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ioredis@npm:4.28.5":
-  version: 4.28.5
-  resolution: "@types/ioredis@npm:4.28.5"
+"@types/ioredis@npm:4.28.7":
+  version: 4.28.7
+  resolution: "@types/ioredis@npm:4.28.7"
   dependencies:
     "@types/node": "*"
-  checksum: 6df1826ef10b8eb36f1f7147903b54952d6cb06556a6bb14e2b670c34229c0764a61e61d24e2a22c4e73688e42dc5bf933acf730978ad6292634f882961f13c3
+  checksum: 80d3dd96acf8c7a329fcc05bd66c201f4836001649f069bc9f675d42ac88b81e4408ed8a907d7a4dde12910eca6cc2ded7fab68c99a803614bd968910e807c75
   languageName: node
   linkType: hard
 
