@@ -17,7 +17,9 @@
 	"dependencies": {
 		"@akala/core": "7.5.12",
 		"@akala/server": "6.3.14",
-		"@domojs/zigate-parsers": "workspace:^",
+		"@domojs/zigate-parsers": "workspace:^"
+	},
+	"optionalDependencies": {
 		"serialport": "9.2.8"
 	},
 	"devDependencies": {
