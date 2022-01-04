@@ -27,11 +27,11 @@
     "@akala/storage": "2.3.6",
     "@domojs/theme-default": "workspace:^",
     "@types/debug": "4.1.7",
-    "@types/ioredis": "4.28.5",
+    "@types/ioredis": "4.28.7",
     "@types/jquery": "3.5.11",
     "@types/levenshtein": "1.0.1",
     "@types/redis": "4.0.11",
-    "@types/request": "2.48.7",
+    "@types/request": "2.48.8",
     "@types/ws": "8.2.2",
     "typescript": "4.5.4"
   }
