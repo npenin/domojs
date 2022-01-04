@@ -333,7 +333,7 @@ __metadata:
     "@akala/storage": 2.3.6
     "@domojs/theme-default": 1.5.0
     "@fortawesome/free-brands-svg-icons": 5.15.4
-    "@popperjs/core": 2.11.0
+    "@popperjs/core": 2.11.2
     "@types/debug": 4.1.7
     "@types/express-serve-static-core": 4.17.27
     "@types/uuid": 8.3.3
@@ -386,7 +386,7 @@ __metadata:
     "@akala/server": 6.3.14
     "@domojs/theme-default": 1.5.0
     "@fortawesome/fontawesome-common-types": 0.2.36
-    "@popperjs/core": 2.11.0
+    "@popperjs/core": 2.11.2
     "@types/debug": 4.1.7
     "@types/uuid": 8.3.3
     node-fetch: 3.1.0
@@ -2454,7 +2454,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@popperjs/core@npm:2.11.0, @popperjs/core@npm:^2.11.0, @popperjs/core@npm:^2.8.4":
+"@popperjs/core@npm:2.11.2":
+  version: 2.11.2
+  resolution: "@popperjs/core@npm:2.11.2"
+  checksum: 5695bf020eda54636e16a62dc9b5fdd92beaf7b2d19f62fcef049d57c5cff92773562d80cbf760b217c3ec928da310eb24994ab6a00fd39dffa0af9b5dfc01a6
+  languageName: node
+  linkType: hard
+
+"@popperjs/core@npm:^2.11.0, @popperjs/core@npm:^2.8.4":
   version: 2.11.0
   resolution: "@popperjs/core@npm:2.11.0"
   checksum: 84d6f197d3ddfd8a5b05c7276c3692d8404c96128a946ab0a800b25567d8fc231928319c1f97a67e0817e76ce2a1b735589ef0f38f8e8835692408660a2395a1
