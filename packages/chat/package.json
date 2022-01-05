@@ -10,7 +10,7 @@
     "node-nlp": "4.22.1"
   },
   "devDependencies": {
-    "@nlpjs/directline-connector": "4.22.0",
+    "@nlpjs/directline-connector": "4.22.8",
     "@nlpjs/express-api-server": "4.22.0"
   }
 }
