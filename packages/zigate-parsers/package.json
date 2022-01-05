@@ -15,8 +15,13 @@
     "@domojs/protocol-parser": "^2.2.0",
     "debug": "^4.3.3"
   },
-  "optionalDependencies": {
+  "peerDependencies": {
     "serialport": "^9.2.8"
+  },
+  "peerDependenciesMeta": {
+    "serialport": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/debug": "4.1.7",

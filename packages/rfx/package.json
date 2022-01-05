@@ -9,9 +9,17 @@
     "@akala/pm": "2.5.7",
     "@domojs/rfx-parsers": "workspace:^"
   },
-  "optionalDependencies": {
+  "peerDependencies": {
     "serialport": "^9.2.8",
     "usb": "^1.9.2"
+  },
+  "peerDependenciesMeta": {
+    "serialport": {
+      "optional": true
+    },
+    "usb": {
+      "optional": true
+    }
   },
   "commands": "./commands.json",
   "deprecated": false,
