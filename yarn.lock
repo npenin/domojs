@@ -169,9 +169,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@akala/semantic-release@npm:0.9.16":
-  version: 0.9.16
-  resolution: "@akala/semantic-release@npm:0.9.16"
+"@akala/semantic-release@npm:0.10.0":
+  version: 0.10.0
+  resolution: "@akala/semantic-release@npm:0.10.0"
   dependencies:
     "@akala/commands": 2.8.0
     "@yarnpkg/core": ^3.0.0
@@ -179,7 +179,7 @@ __metadata:
     debug: ^4.3.1
     git-semver-tags: ^4.1.1
     yarn: ^1.22.10
-  checksum: fe944d77ee119b17904bc1f93095b5af926f7734b16308f1ff28f87e989a60d919673ea2e78977f195b4b52b49fe7a8fc1d92a86314f9782a213010df14ebbea
+  checksum: ffa421070f1f200e7810721fdc35ae9dd92f08cbcd54291abb8ee55c5299c30137500ddef817857263116f6f49c8fc5bacdc633432a8d3bb96e3cb4d2da09582
   languageName: node
   linkType: hard
 
@@ -341,7 +341,7 @@ __metadata:
     "@types/ws": 8.2.2
     sass: 1.45.2
     sass-loader: 12.4.0
-    snyk: 1.814.0
+    snyk: 1.816.0
     typescript: 4.5.4
     uuid: 8.3.2
     ws: 8.4.0
@@ -528,7 +528,7 @@ __metadata:
     bootstrap: ^5.1.3
     require-optional: ^0.4.0
     sass-loader: ^12.4.0
-    snyk: ^1.813.0
+    snyk: ^1.816.0
     typescript: 4.5.4
     webpack: 5.65.0
     webpack-cli: 4.9.1
@@ -5124,7 +5124,7 @@ __metadata:
   dependencies:
     "@akala/automate": 0.11.3
     "@akala/automate-yamlloader": 0.2.14
-    "@akala/semantic-release": 0.9.16
+    "@akala/semantic-release": 0.10.0
     typescript: 4.5.4
   languageName: unknown
   linkType: soft
@@ -10370,12 +10370,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"snyk@npm:1.814.0":
-  version: 1.814.0
-  resolution: "snyk@npm:1.814.0"
+"snyk@npm:1.816.0, snyk@npm:^1.816.0":
+  version: 1.816.0
+  resolution: "snyk@npm:1.816.0"
   bin:
     snyk: bin/snyk
-  checksum: 0753cf1b18561be924b81a274be525bb7d0fb9ccbe4bfcb864eea6ffd9c6524df349c51d2c11a00501b50f6179fbf2239d67bfa4e33eab9e7aa4a18c8171dae2
+  checksum: 510b7cd8ad705ed719c9d7d5c2ed3aab3817e14cdee920360901ec17058114ae3fc68be7b4b7aabd82b604f8fc9e5c7417c57c6bb31d3331d4a40e082fa5bdff
   languageName: node
   linkType: hard
 
@@ -10385,15 +10385,6 @@ __metadata:
   bin:
     snyk: bin/snyk
   checksum: be7ced7c078acb8296b4d8650c9a838ef06bc7143f477b830cbd0602154fded4ee6c3b2ee85e0e5e907cc39e68a0a5405cedf9e3138bcf6aa053b7e25397ae45
-  languageName: node
-  linkType: hard
-
-"snyk@npm:^1.813.0":
-  version: 1.813.0
-  resolution: "snyk@npm:1.813.0"
-  bin:
-    snyk: bin/snyk
-  checksum: ca93cd2b1890714702702e1246fd33c1ceb873f1398e1aa98f7845465fca4a0cca585918cd08b0781c555597379b20fb6f3197b43dd2980b5c56a8b68cfab19e
   languageName: node
   linkType: hard
 
