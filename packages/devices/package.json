@@ -19,7 +19,7 @@
     "@akala/server": "6.3.14",
     "@akala/storage": "2.3.6",
     "@fortawesome/free-brands-svg-icons": "5.15.4",
-    "snyk": "1.814.0",
+    "snyk": "1.816.0",
     "uuid": "8.3.2",
     "ws": "8.4.0"
   },
