@@ -3,9 +3,17 @@
     "@akala/core": "7.5.12",
     "@domojs/protocol-parser": "workspace:^"
   },
-  "optionalDependencies": {
+  "peerDependencies": {
     "serialport": "^9.2.8",
     "usb": "^1.9.2"
+  },
+  "peerDependenciesMeta": {
+    "serialport": {
+      "optional": true
+    },
+    "usb": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/debug": "4.1.7",

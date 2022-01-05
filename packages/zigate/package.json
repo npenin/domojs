@@ -19,8 +19,13 @@
 		"@akala/server": "6.3.14",
 		"@domojs/zigate-parsers": "workspace:^"
 	},
-	"optionalDependencies": {
-		"serialport": "9.2.8"
+	"peerDependencies": {
+		"serialport": "^9.2.8"
+	},
+	"peerDependenciesMeta": {
+		"serialport": {
+			"optional": true
+		}
 	},
 	"devDependencies": {
 		"@domojs/devices": "^1.7.0",
