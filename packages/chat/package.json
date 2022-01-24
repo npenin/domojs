@@ -7,7 +7,7 @@
   "dependencies": {
     "@akala/json-rpc-ws": "9.3.4",
     "@nlpjs/basic": "4.22.0",
-    "node-nlp": "4.22.1"
+    "node-nlp": "4.22.12"
   },
   "devDependencies": {
     "@nlpjs/directline-connector": "4.22.0",
