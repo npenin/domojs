@@ -11,6 +11,6 @@
   },
   "devDependencies": {
     "@nlpjs/directline-connector": "4.22.0",
-    "@nlpjs/express-api-server": "4.22.0"
+    "@nlpjs/express-api-server": "4.22.14"
   }
 }
