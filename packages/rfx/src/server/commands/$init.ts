@@ -1,10 +1,10 @@
 import { State } from "../state";
-import * as usb from 'usb';
 import * as akala from '@akala/server';
 import { Rfxtrx } from "@domojs/rfx-parsers";
 import * as path from 'path'
 import * as fs from 'fs/promises';
 import { registerDeviceType } from '@domojs/devices';
+import { usb as usbType } from 'usb'
 
 var state: State = null;
 var setGateway: (gw: Rfxtrx) => void = null;
@@ -41,11 +41,12 @@ export default async function init(this: State)
 
     try
     {
-        await addDeviceIfMatch();
+        const { usb } = await import('usb')
+        await addDeviceIfMatch(usb);
         usb.on('attach', function ()
         {
             logger.info('detected new usb device');
-            addDeviceIfMatch();
+            addDeviceIfMatch(usb);
         });
     }
     catch (e)
@@ -57,7 +58,7 @@ export default async function init(this: State)
 }
 
 
-async function addDeviceIfMatch()
+async function addDeviceIfMatch(usb: typeof usbType)
 {
     var serials = await Rfxtrx.listEligibleSerials();
     if (serials.length > 0)

@@ -13,8 +13,6 @@ portions of this file.
 import { EventEmitter } from 'events';
 import { Queue, log as debug, eachAsync } from '@akala/core';
 export * from './protocol'
-import * as usb from 'usb'
-import SerialPort from 'serialport'
 import * as os from 'os';
 import { Protocol, Message, PacketType, Type, InterfaceControl, InterfaceMessage, EventMap, Rfy, RFXDevice } from './protocol';
 import { Cursor, parserWrite } from '@domojs/protocol-parser';
@@ -239,9 +237,11 @@ export class Rfxtrx extends EventEmitter
         })
     }
 
-    public static getSerial(path?: string)
+    public static async getSerial(path?: string)
     {
-        return new Promise<Rfxtrx>((resolve, reject) =>
+        const { default: SerialPort } = await import('serialport');
+
+        return await new Promise<Rfxtrx>((resolve, reject) =>
         {
             if (!path)
                 Rfxtrx.listEligibleSerials().then(devices =>
@@ -259,8 +259,9 @@ export class Rfxtrx extends EventEmitter
 
     public static async listEligibleSerials(): Promise<string[]>
     {
-        const devices = usb.getDeviceList().filter(d => d.deviceDescriptor.idVendor == 1027 && d.deviceDescriptor.idProduct == 24577);
-        const result: usb.Device[] = [];
+        const { getDeviceList } = await import('usb');
+        const devices = getDeviceList().filter(d => d.deviceDescriptor.idVendor == 1027 && d.deviceDescriptor.idProduct == 24577);
+        const result = [];
         await eachAsync(devices, (d, i, next) =>
         {
             d.open();
@@ -292,6 +293,8 @@ export class Rfxtrx extends EventEmitter
 
             return serials;
         }
+        const { default: SerialPort } = await import('serialport');
+
         return (await SerialPort.list()).filter(port => port.manufacturer && port.manufacturer == 'RFXCOM').map(sp => sp.path);
     }
 }
