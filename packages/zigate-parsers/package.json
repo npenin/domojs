@@ -28,7 +28,7 @@
     "@types/serialport": "8.0.2",
     "@types/ws": "8.2.2",
     "source-map-support": "0.5.21",
-    "typescript": "4.5.4"
+    "typescript": "4.5.5"
   },
   "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }

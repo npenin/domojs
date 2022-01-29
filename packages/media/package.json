@@ -14,25 +14,25 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "@akala/client": "5.2.13",
-    "@akala/commands": "2.8.0",
-    "@akala/config": "0.4.13",
+    "@akala/client": "5.2.14",
+    "@akala/commands": "2.8.1",
+    "@akala/config": "0.4.14",
     "@akala/core": "7.5.12",
     "levenshtein": "1.0.5"
   },
   "devDependencies": {
     "@akala/cli": "1.6.2",
     "@akala/json-rpc-ws": "9.3.4",
-    "@akala/server": "6.3.14",
+    "@akala/server": "6.3.15",
     "@akala/storage": "2.3.6",
     "@domojs/theme-default": "workspace:^",
     "@types/debug": "4.1.7",
     "@types/ioredis": "4.28.7",
-    "@types/jquery": "3.5.11",
+    "@types/jquery": "3.5.13",
     "@types/levenshtein": "1.0.1",
     "@types/redis": "4.0.11",
     "@types/request": "2.48.8",
     "@types/ws": "8.2.2",
-    "typescript": "4.5.4"
+    "typescript": "4.5.5"
   }
 }
