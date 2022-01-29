@@ -321,7 +321,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@domojs/devices@1.7.0, @domojs/devices@^1.7.0, @domojs/devices@workspace:^, @domojs/devices@workspace:packages/devices":
+"@domojs/devices@1.8.0, @domojs/devices@^1.8.0, @domojs/devices@workspace:^, @domojs/devices@workspace:packages/devices":
   version: 0.0.0-use.local
   resolution: "@domojs/devices@workspace:packages/devices"
   dependencies:
@@ -331,7 +331,7 @@ __metadata:
     "@akala/json-rpc-ws": 9.3.4
     "@akala/server": 6.3.15
     "@akala/storage": 2.3.6
-    "@domojs/theme-default": 1.5.0
+    "@domojs/theme-default": "workspace:*"
     "@fortawesome/free-brands-svg-icons": 5.15.4
     "@popperjs/core": 2.11.2
     "@types/debug": 4.1.7
@@ -384,7 +384,7 @@ __metadata:
     "@akala/core": 7.5.12
     "@akala/json-rpc-ws": 9.3.4
     "@akala/server": 6.3.15
-    "@domojs/theme-default": 1.5.0
+    "@domojs/theme-default": "workspace:*"
     "@fortawesome/fontawesome-common-types": 0.2.36
     "@popperjs/core": 2.11.2
     "@types/debug": 4.1.7
@@ -450,7 +450,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@domojs/protocol-parser@^2.2.0, @domojs/protocol-parser@workspace:^, @domojs/protocol-parser@workspace:packages/protocol-parser":
+"@domojs/protocol-parser@^2.3.0, @domojs/protocol-parser@workspace:^, @domojs/protocol-parser@workspace:packages/protocol-parser":
   version: 0.0.0-use.local
   resolution: "@domojs/protocol-parser@workspace:packages/protocol-parser"
   dependencies:
@@ -492,7 +492,7 @@ __metadata:
   dependencies:
     "@akala/pm": 2.5.8
     "@akala/server": 6.3.15
-    "@domojs/devices": 1.7.0
+    "@domojs/devices": 1.8.0
     "@domojs/rfx-parsers": "workspace:^"
     "@types/debug": 4.1.7
     "@types/serialport": 8.0.2
@@ -510,7 +510,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@domojs/theme-default@1.5.0, @domojs/theme-default@workspace:^, @domojs/theme-default@workspace:packages/theme-default":
+"@domojs/theme-default@workspace:*, @domojs/theme-default@workspace:^, @domojs/theme-default@workspace:packages/theme-default":
   version: 0.0.0-use.local
   resolution: "@domojs/theme-default@workspace:packages/theme-default"
   dependencies:
@@ -551,7 +551,7 @@ __metadata:
   resolution: "@domojs/zigate-parsers@workspace:packages/zigate-parsers"
   dependencies:
     "@akala/core": ^7.5.12
-    "@domojs/protocol-parser": ^2.2.0
+    "@domojs/protocol-parser": ^2.3.0
     "@types/debug": 4.1.7
     "@types/serialport": 8.0.2
     "@types/ws": 8.2.2
@@ -572,7 +572,7 @@ __metadata:
   dependencies:
     "@akala/core": 7.5.12
     "@akala/server": 6.3.15
-    "@domojs/devices": ^1.7.0
+    "@domojs/devices": ^1.8.0
     "@domojs/zigate-parsers": "workspace:^"
     "@types/debug": 4.1.7
     "@types/request": 2.48.8
