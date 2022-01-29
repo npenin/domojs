@@ -8,8 +8,8 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@akala/automate": "0.11.4",
-    "@akala/automate-yamlloader": "0.2.15",
+    "@akala/automate": "0.11.5",
+    "@akala/automate-yamlloader": "0.2.16",
     "@akala/semantic-release": "0.10.1",
     "typescript": "4.5.5"
   },
