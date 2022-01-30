@@ -1,10 +1,10 @@
 {
   "author": "npenin",
   "dependencies": {
-    "@akala/client": "5.2.14",
-    "@akala/commands": "2.8.1",
+    "@akala/client": "5.2.16",
+    "@akala/commands": "2.9.1",
     "@akala/core": "7.5.12",
-    "@akala/server": "6.3.16",
+    "@akala/server": "6.3.22",
     "@fortawesome/fontawesome-common-types": "^0.2.36",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
