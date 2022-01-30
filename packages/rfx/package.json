@@ -26,7 +26,7 @@
   "description": "",
   "devDependencies": {
     "@akala/server": "6.3.22",
-    "@domojs/devices": "1.8.0",
+    "@domojs/devices": "1.8.1",
     "@types/debug": "4.1.7",
     "@types/serialport": "8.0.2",
     "@types/usb": "2.0.5",
@@ -49,6 +49,6 @@
     "build": "npm run build:js && ac generate dist/server/commands commands.json"
   },
   "typings": "dist/index.d.ts",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }
