@@ -8,7 +8,7 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "@akala/commands": "2.9.1",
+    "@akala/commands": "2.9.2",
     "@akala/pm": "2.6.4",
     "yargs": "17.3.1"
   },

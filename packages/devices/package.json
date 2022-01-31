@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@akala/client": "5.2.16",
-    "@akala/commands": "2.9.1",
+    "@akala/commands": "2.9.2",
     "@akala/core": "7.5.12",
     "@akala/json-rpc-ws": "9.3.4",
     "@akala/server": "6.3.22",
