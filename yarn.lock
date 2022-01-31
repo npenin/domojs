@@ -50,9 +50,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@akala/client@npm:5.2.16":
-  version: 5.2.16
-  resolution: "@akala/client@npm:5.2.16"
+"@akala/client@npm:5.2.17":
+  version: 5.2.17
+  resolution: "@akala/client@npm:5.2.17"
   dependencies:
     "@popperjs/core": ^2.8.4
     reflect-metadata: ^0.1.13
@@ -62,7 +62,7 @@ __metadata:
       optional: true
     showdown:
       optional: true
-  checksum: ddb85a730ecab9ab02aa11e93c1697fce81ac6a251a31bb89188df1a70aa4b5a44a2faafb4f633cf3e034506c6b071a3e448f21d3cd3687f4cb8c109b4034c23
+  checksum: f061208ab97ef594568f9f6fd301a6531b2ba709a40a456de38c6103f5238f9e9192a407055117193afb612deb7fcdb04f0b987099dcf14784ea4b64f211911f
   languageName: node
   linkType: hard
 
@@ -325,7 +325,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/devices@workspace:packages/devices"
   dependencies:
-    "@akala/client": 5.2.16
+    "@akala/client": 5.2.17
     "@akala/commands": 2.9.1
     "@akala/core": 7.5.12
     "@akala/json-rpc-ws": 9.3.4
@@ -379,7 +379,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/lifttt@workspace:packages/lifttt"
   dependencies:
-    "@akala/client": 5.2.16
+    "@akala/client": 5.2.17
     "@akala/commands": 2.9.1
     "@akala/core": 7.5.12
     "@akala/json-rpc-ws": 9.3.4
@@ -417,7 +417,7 @@ __metadata:
   resolution: "@domojs/media@workspace:packages/media"
   dependencies:
     "@akala/cli": 1.6.2
-    "@akala/client": 5.2.16
+    "@akala/client": 5.2.17
     "@akala/commands": 2.9.1
     "@akala/config": 0.4.16
     "@akala/core": 7.5.12
@@ -515,7 +515,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/theme-default@workspace:packages/theme-default"
   dependencies:
-    "@akala/client": 5.2.16
+    "@akala/client": 5.2.17
     "@akala/commands": 2.9.1
     "@akala/core": 7.5.12
     "@akala/server": 6.3.22

@@ -1,7 +1,7 @@
 {
   "author": "npenin",
   "dependencies": {
-    "@akala/client": "5.2.16",
+    "@akala/client": "5.2.17",
     "@akala/commands": "2.9.1",
     "@akala/core": "7.5.12",
     "@akala/server": "6.3.22",
