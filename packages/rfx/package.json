@@ -25,7 +25,7 @@
   "deprecated": false,
   "description": "",
   "devDependencies": {
-    "@akala/server": "6.3.22",
+    "@akala/server": "6.3.25",
     "@domojs/devices": "1.8.1",
     "@types/debug": "4.1.7",
     "@types/serialport": "8.0.2",

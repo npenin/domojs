@@ -12,7 +12,7 @@
 	"dependencies": {
 		"@akala/core": "7.5.12",
 		"@akala/pubsub": "0.0.20",
-		"@akala/server": "6.3.22",
+		"@akala/server": "6.3.25",
 		"@domojs/protocol-parser": "workspace:^"
 	},
 	"devDependencies": {
