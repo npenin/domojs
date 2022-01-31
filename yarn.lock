@@ -50,6 +50,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@akala/cli@npm:1.6.3":
+  version: 1.6.3
+  resolution: "@akala/cli@npm:1.6.3"
+  dependencies:
+    "@akala/core": 7.5.13
+    reflect-metadata: ^0.1.13
+    winston: ^3.3.3
+  bin:
+    akala: ./dist/cli.js
+  checksum: 553a4141f74e92fe07a74d26904165476e5ea140180214e4962e7e6f4f22c396c96ff63ca506feefcdd561c41ae3dbe5ad4c1b6fdfdb98a8e573be786a5eef7e
+  languageName: node
+  linkType: hard
+
 "@akala/client@npm:5.2.16":
   version: 5.2.16
   resolution: "@akala/client@npm:5.2.16"
@@ -83,6 +96,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@akala/commands@npm:2.9.2":
+  version: 2.9.2
+  resolution: "@akala/commands@npm:2.9.2"
+  dependencies:
+    "@akala/cli": 1.6.3
+    "@akala/core": 7.5.13
+    "@akala/json-rpc-ws": 9.3.5
+    debug: ^4.1.1
+    path-to-regexp: ^6.1.0
+    reflect-metadata: ^0.1.13
+    ws: ^8.0.0
+  bin:
+    ac: dist/cli.js
+  checksum: f75f03ca5aee4199b7e765d7d2774fbf7cfc40cf9de30279b54c101487faff424e4618282921750a0a655a665d8fa07c78586c8a9b14de036b7c9e3b9058d917
+  languageName: node
+  linkType: hard
+
 "@akala/config@npm:0.4.16":
   version: 0.4.16
   resolution: "@akala/config@npm:0.4.16"
@@ -100,6 +130,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@akala/config@npm:0.4.17":
+  version: 0.4.17
+  resolution: "@akala/config@npm:0.4.17"
+  dependencies:
+    "@akala/commands": 2.9.2
+    "@akala/core": 7.5.13
+  peerDependencies:
+    "@akala/pm": "*"
+  peerDependenciesMeta:
+    "@akala/pm":
+      optional: true
+  bin:
+    uci2: ./dist/cli.js
+  checksum: 0550a7b094e895fc51c346f8ac2e23829610a7205331625ccc51571862fdec0396c357b2e2c4337ca1d45b975250f59d43a54d272e10bc8e45c6dfbdcb7897b4
+  languageName: node
+  linkType: hard
+
 "@akala/core@npm:7.5.12, @akala/core@npm:^7.5.12":
   version: 7.5.12
   resolution: "@akala/core@npm:7.5.12"
@@ -114,6 +161,23 @@ __metadata:
     reflect-metadata: ^0.1.13
     ws: ^8.0.0
   checksum: f923f1aae8d567041567c074898b9e3d1d40d06a91f4a7f79e094012c303c328cbaadcf052ae3141b628fcc22f74f0feb0f78c6ab020ce0a4be9ad1171337991
+  languageName: node
+  linkType: hard
+
+"@akala/core@npm:7.5.13":
+  version: 7.5.13
+  resolution: "@akala/core@npm:7.5.13"
+  dependencies:
+    "@akala/json-rpc-ws": 9.3.5
+    browser-process-hrtime: ^1.0.0
+    debug: ^4.1.1
+    isomorphic-fetch: ^3.0.0
+    mock-require: ^3.0.3
+    orchestrator: ^0.3.8
+    path-to-regexp: ^6.1.0
+    reflect-metadata: ^0.1.13
+    ws: ^8.0.0
+  checksum: 28e0bd670058d6741b02ffaf6daec04c9216b3c8d53d5c0a5cde5d2a1b743b7e11bf8c019301a1652356d83ab5382253f928a81fbe3f98cbf91e1a08d6b7160f
   languageName: node
   linkType: hard
 
@@ -138,6 +202,18 @@ __metadata:
     uuid: ^8.0.0
     ws: ^8.0.0
   checksum: c32a00d28c756a393e97773be81dd85a28209587930ef3f6517e85db6134593e57ce07cbdb337b631db55e43c804e43ef36a1be40077f998df72dd7424ed4a50
+  languageName: node
+  linkType: hard
+
+"@akala/json-rpc-ws@npm:9.3.5":
+  version: 9.3.5
+  resolution: "@akala/json-rpc-ws@npm:9.3.5"
+  dependencies:
+    debug: ^4.1.1
+    reflect-metadata: ^0.1.13
+    uuid: ^8.0.0
+    ws: ^8.0.0
+  checksum: 871b8dcd811d5554c9391d01307cf7cc6c1ce5502c5c2b0444c51f76f024b1ece865aa8568024f2b528546a33999d4c7e56363a28a5bb7bf63bec802026d2fb6
   languageName: node
   linkType: hard
 
@@ -419,7 +495,7 @@ __metadata:
     "@akala/cli": 1.6.2
     "@akala/client": 5.2.16
     "@akala/commands": 2.9.1
-    "@akala/config": 0.4.16
+    "@akala/config": 0.4.17
     "@akala/core": 7.5.12
     "@akala/json-rpc-ws": 9.3.4
     "@akala/server": 6.3.22
@@ -543,7 +619,7 @@ __metadata:
   resolution: "@domojs/weather@workspace:packages/weather"
   dependencies:
     "@akala/commands": 2.9.1
-    "@akala/config": 0.4.16
+    "@akala/config": 0.4.17
   languageName: unknown
   linkType: soft
 
