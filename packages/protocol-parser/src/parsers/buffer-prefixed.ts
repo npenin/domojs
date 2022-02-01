@@ -1,4 +1,4 @@
-import { Cursor, hasUnknownLength, Parser, Parsers, ParserWithoutKnownLength, parserWrite } from "./_common";
+import { Cursor, Parsers, ParserWithoutKnownLength, parserWrite } from "./_common";
 
 export default class PrefixedBuffer implements ParserWithoutKnownLength<Buffer>
 {

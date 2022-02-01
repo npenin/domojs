@@ -1,5 +1,4 @@
 import { Cursor, parsers, parserWrite, uint16, uint8 } from '@domojs/protocol-parser/dist/index';
-import { EventEmitter } from 'events';
 import { log as debug } from '@akala/core';
 const log = debug('zigate');
 

@@ -1,6 +1,5 @@
 import { devices } from '@domojs/devices';
 import { State } from "../state";
-import * as ac from '@akala/commands'
 import * as api from '../api'
 import { Socket } from 'net'
 import { Container } from "@akala/commands";
@@ -20,7 +19,7 @@ export function getMainDevice(name)
     return deviceCollection[mainDevice];
 }
 
-export default async function save(this: State, body: any, device: devices.IDevice, container: ac.Container<any>)
+export default async function save(this: State, body: any, device: devices.IDevice)
 {
     if (device.name.indexOf('.') > -1)
         return device;
@@ -85,7 +84,6 @@ export default async function save(this: State, body: any, device: devices.IDevi
             statusMethod: 'pull',
             status: function ()
             {
-                var status = {};
                 return api.send('?V', device.name).then(function (result)
                 {
                     return { state: Number(/\d+/.exec(result)) * 100 / 185 };

@@ -1,10 +1,7 @@
-import FixedBuffer from "../buffer-fixed";
 import Uint32 from "../uint32";
 import Uint64 from "../uint64";
-import { Cursor, ParsersWithMessage, parserWrite, ParserWithoutKnownLength, ParserWithMessageWithoutKnownLength, ParserWithMessage, AnyParser } from "../_common";
+import { Cursor, parserWrite, ParserWithoutKnownLength, ParserWithMessageWithoutKnownLength, AnyParser } from "../_common";
 import { Field, WireType } from "./field";
-import String from "./string";
-import { Sub } from "./sub";
 
 // const varint = new Varint();
 // const prefixedBuffer = new PrefixedBuffer(varint);
@@ -154,6 +151,7 @@ export class UnknownMessage implements ParserWithMessageWithoutKnownLength<Recor
                     break;
                 default:
                     var x: never = parsedField.type;
+                    break;
             }
             if (Array.isArray(message[parsedField.fieldId]))
                 (message[parsedField.fieldId] as unknown[]).push(value);

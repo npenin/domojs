@@ -1,7 +1,6 @@
 import * as akala from '@akala/core';
 import * as fs from 'fs/promises';
 import * as p from 'path';
-import * as utils from 'util';
 import { Media } from '../../../metadata';
 import * as redis from 'ioredis';
 import Configuration from '@akala/config';

@@ -1,4 +1,3 @@
-import { uint2 } from ".";
 import Bit from "./bit";
 import { Cursor, Parser } from "./_common";
 import Uint2 from "./uint2";

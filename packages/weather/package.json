@@ -6,9 +6,13 @@
 		"type": "git",
 		"url": "https://github.com/npenin/domojs-weather.git"
 	},
+	"peerDependencies": {
+		"@akala/server": "6.3.25",
+		"@domojs/devices": "workspace:*"
+	},
 	"dependencies": {
-		"@akala/commands": "2.9.1",
-		"@akala/config": "0.4.16"
+		"@akala/commands": "2.9.2",
+		"@akala/config": "0.4.17"
 	},
 	"gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }

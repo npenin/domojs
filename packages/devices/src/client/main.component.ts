@@ -1,7 +1,6 @@
-import * as akala from '@akala/core'
 import { mdule } from './main.module'
 import * as client from '@akala/client'
-import { Container, Processors, Metadata, SelfDefinedCommand } from '@akala/commands'
+import { Container, Metadata, SelfDefinedCommand } from '@akala/commands'
 import { Tile } from '@domojs/theme-default';
 import { inject } from '@akala/core';
 import { LocationService } from '@akala/client';

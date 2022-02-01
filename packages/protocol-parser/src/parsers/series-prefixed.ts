@@ -1,5 +1,5 @@
 import { AnyParser, ParserWithMessageWithoutKnownLength } from ".";
-import { Cursor, Parser, Parsers, ParserWithoutKnownLength, parserWrite } from "./_common";
+import { Cursor, Parsers, parserWrite } from "./_common";
 
 export default class PrefixedLengthSeries<T, TMessage> implements ParserWithMessageWithoutKnownLength<T, TMessage>
 {

@@ -1,5 +1,4 @@
 import { Http } from '@akala/core';
-import fs from 'fs/promises'
 import { Weather } from '../state';
 import { cache as getFromCache, Position } from './common';
 
@@ -11,16 +10,16 @@ const cache = getFromCache('openweathermap',
 export function today(http: Http, position: Position)
 {
 	return cache.getInfo(http, position).then(v =>
-		({
-			temp: v.main.temp,
-			feelslike: v.main.feels_like,
-			tempMin: v.main.temp_min,
-			tempMax: v.main.temp_max,
-			pressure: v.pressure,
-			humidity: v.humidity,
-			weather: v.weather[0].id as Weather,
-			isNight: !(v.dt > v.sys.sunrise && v.dt < v.sys.sunset)
-		}));
+	({
+		temp: v.main.temp,
+		feelslike: v.main.feels_like,
+		tempMin: v.main.temp_min,
+		tempMax: v.main.temp_max,
+		pressure: v.pressure,
+		humidity: v.humidity,
+		weather: v.weather[0].id as Weather,
+		isNight: !(v.dt > v.sys.sunrise && v.dt < v.sys.sunset)
+	}));
 }
 export function temperature(http: Http, position: Position)
 {

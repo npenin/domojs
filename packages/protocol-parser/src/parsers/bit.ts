@@ -1,4 +1,3 @@
-import { Uint2 } from ".";
 import { Cursor, Parser } from "./_common";
 
 export const length = .125;

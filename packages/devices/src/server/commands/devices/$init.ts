@@ -1,13 +1,10 @@
 import '@akala/server'
-import * as devices from "../../../devices";
 import { LiveStore, Store } from "../../store";
 import "../../store";
 import * as akala from '@akala/core'
-import { connectByPreference, Container, NetSocketAdapter, Processors, proxy, serve, ServeMetadata } from "@akala/commands";
-import { deviceContainer, deviceTypeContainer } from "../../..";
-import * as web from '@akala/server'
-import * as net from 'net'
-import { connect, Container as pmContainer, sidecar, SidecarMap } from '@akala/pm'
+import { Container } from "@akala/commands";
+import { deviceContainer } from "../../..";
+import { Container as pmContainer, sidecar } from '@akala/pm'
 
 export default async function (this: { initializing: boolean }, container: Container<any> & deviceContainer.container, pm: Container<any> & pmContainer)
 {

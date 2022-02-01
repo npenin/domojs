@@ -11,7 +11,7 @@ portions of this file.
 '----------------------------------------------------------------------------
 */
 import { parsers } from "@domojs/protocol-parser";
-import { messages as Protocol, Type, PacketType } from ".";
+import { messages as Protocol, Type } from ".";
 
 export enum Commands
 {

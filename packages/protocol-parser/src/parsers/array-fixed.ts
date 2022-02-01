@@ -1,5 +1,5 @@
 import { AnyParser, ParserWithMessage } from ".";
-import { Cursor, Parser, ParserWithoutKnownLength, parserWrite } from "./_common";
+import { Cursor, parserWrite } from "./_common";
 
 export default class FixedLengthArray<T, TMessage> implements ParserWithMessage<T[], TMessage>
 {

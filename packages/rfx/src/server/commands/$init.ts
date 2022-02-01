@@ -1,5 +1,5 @@
 import { State } from "../state";
-import * as akala from '@akala/server';
+import * as akala from '@akala/core';
 import { Rfxtrx } from "@domojs/rfx-parsers";
 import * as path from 'path'
 import * as fs from 'fs/promises';
@@ -8,7 +8,7 @@ import { usb as usbType } from 'usb'
 
 var state: State = null;
 var setGateway: (gw: Rfxtrx) => void = null;
-const logger = akala.logger('@domojs/rfx');
+const logger = akala.log('@domojs/rfx');
 
 export default async function init(this: State)
 {
@@ -45,7 +45,7 @@ export default async function init(this: State)
         await addDeviceIfMatch(usb);
         usb.on('attach', function ()
         {
-            logger.info('detected new usb device');
+            logger('detected new usb device');
             addDeviceIfMatch(usb);
         });
     }
@@ -61,10 +61,10 @@ export default async function init(this: State)
 async function addDeviceIfMatch(usb: typeof usbType)
 {
     var serials = await Rfxtrx.listEligibleSerials();
-    if (serials.length > 0)
+    if (serials && serials.length > 0)
     {
         var device = serials[0]
-        logger.info('idenfified a RFXCOM potential serial device');
+        logger('idenfified a RFXCOM potential serial device');
         setGateway(await Rfxtrx.getSerial(device))
         try
         {
@@ -84,7 +84,7 @@ async function addDeviceIfMatch(usb: typeof usbType)
         }
     }
     else
-        logger.info('no RFXCOM device found');
+        logger('no RFXCOM device found');
 }
 
 init.$inject = ['container', 'options.path']

@@ -57,6 +57,7 @@ bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.
         })
 
     @client.control('fa')
+    // @ts-ignore
     class FA extends client.controls.GenericControlInstance<fa.IconLookup | akala.Proxy<fa.IconLookup, akala.Binding>>
     {
         @akala.inject('@domojs/theme-default.faIcon')

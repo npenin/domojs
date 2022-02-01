@@ -1,6 +1,5 @@
-import { Container, Processors, proxy } from "@akala/commands";
-import { ChannelState, Task } from "../../channel-state";
-import { Channel } from "../../server";
+import { Container, Processors } from "@akala/commands";
+import { ChannelState } from "../../channel-state";
 import taskManager from "../../task-manager";
 
 export default async function (this: ChannelState, container: Container<ChannelState> & taskManager)

@@ -1,4 +1,4 @@
-import { AnyParser, Cursor, ParsersWithMessage, ParserWithMessage, parserWrite } from "./_common";
+import { AnyParser, Cursor, ParserWithMessage, parserWrite } from "./_common";
 
 export class Prepare<T, TMessage> implements ParserWithMessage<T, TMessage>
 {

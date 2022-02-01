@@ -1,10 +1,8 @@
 import * as akala from '@akala/server';
-import * as net from 'net'
 import * as path from 'path';
 import requireIfExists from 'require-optional'
 import { State } from '../state';
-import { connectByPreference, Container } from '@akala/commands';
-import { connect, sidecar, SidecarMap } from '@akala/pm'
+import { sidecar } from '@akala/pm'
 
 const log = akala.log('domojs:theme-default')
 

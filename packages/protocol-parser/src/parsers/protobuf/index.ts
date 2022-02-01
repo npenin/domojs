@@ -3,12 +3,11 @@ import ProtobufString from "./string";
 import FixedLengthArray from "../array-fixed";
 import Uint32 from "../uint32";
 import Uint64 from "../uint64";
-import { AnyParser, ParsersWithMessage, ParserWithMessage, ParserWithMessageWithoutKnownLength, ParserWithoutKnownLength } from "../_common";
+import { AnyParser, ParsersWithMessage, ParserWithMessageWithoutKnownLength } from "../_common";
 import Property, { ArrayItem } from "./property";
 import { WireType } from "./field";
 import Message, { UnknownMessage } from "./message";
 import { Sub } from "./sub";
-import PackedProperty from "./packed-property";
 import Varint from "./varint";
 import { ZeroOrOne } from "../zero-or-one";
 

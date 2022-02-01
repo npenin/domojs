@@ -1,4 +1,3 @@
-import * as parsers from './index'
 import net from 'net'
 import { Cursor, protobuf } from '@domojs/protocol-parser';
 

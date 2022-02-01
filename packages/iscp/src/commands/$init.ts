@@ -1,5 +1,4 @@
 import { State } from "../state";
-import * as assert from 'assert'
 import fs from 'fs/promises'
 import { registerDeviceType } from "@domojs/devices";
 

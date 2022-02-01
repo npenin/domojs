@@ -1,14 +1,9 @@
 import { State } from "../state";
-import { Processors, NetSocketAdapter, Metadata, proxy, Container } from "@akala/commands";
-import * as net from 'net'
-import * as web from '@akala/server'
 import Configuration from '@akala/config'
-import * as assert from 'assert'
 import { registerDeviceType } from "@domojs/devices";
-import { connect, sidecar, SidecarMap } from "@akala/pm";
+import { sidecar } from "@akala/pm";
 
 var state: State = null;
-const log = web.log('domojs:iscp:devicetype');
 
 export default async function init(this: State)
 {

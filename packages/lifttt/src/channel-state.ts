@@ -1,5 +1,4 @@
-import { Container } from "@akala/commands";
-import { PayloadDataType, SerializableObject } from "@akala/json-rpc-ws";
+import { SerializableObject } from "@akala/json-rpc-ws";
 
 export interface ChannelState
 {

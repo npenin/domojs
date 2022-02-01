@@ -11,7 +11,7 @@ portions of this file.
 '----------------------------------------------------------------------------
 */
 import { parsers } from "@domojs/protocol-parser";
-import { messages as Protocol, Type, Message } from ".";
+import { messages as Protocol, Type } from ".";
 import { Frequences, protocols_msg3, protocols_msg4, protocols_msg5, protocols_msg6 } from './0.interface.mode'
 
 export enum SubType

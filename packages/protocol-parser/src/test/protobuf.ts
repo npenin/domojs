@@ -1,6 +1,6 @@
 import assert from "assert";
 import { protobuf } from "../parsers"
-import { ProtobufMessage, string } from "../parsers/protobuf";
+import { ProtobufMessage } from "../parsers/protobuf";
 import { Cursor, parserWrite } from "../parsers/_common"
 
 describe('protobuf', function ()

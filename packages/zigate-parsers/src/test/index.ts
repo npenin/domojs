@@ -1,9 +1,7 @@
 import 'source-map-support/register'
 import * as debug from 'debug';
 debug.enable('zigate,domojs:protocol-parser');
-import { Zigate } from '../index'
-import { MessageType, Protocol } from '../';
-import { PassThrough } from 'stream';
+import { Protocol } from '../';
 
 // var s = new PassThrough();
 

@@ -1,6 +1,5 @@
-import { ProtobufMessage } from ".";
 import CoreProperty from "../property";
-import { Cursor, AnyParser, ParserWithMessageWithoutKnownLength, ParserWithMessage, parserWrite } from "../_common";
+import { AnyParser } from "../_common";
 import { WireType } from "./field";
 
 export type ArrayItem<T> = T extends ((infer X)[]) ? X : T;

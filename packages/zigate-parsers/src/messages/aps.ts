@@ -1,6 +1,5 @@
 import { StatusMessage } from './status';
-import { Message, MessageType, messages } from './_common';
-import { ShortAddressRequest } from './descriptors';
+import { MessageType, messages } from './_common';
 import { CommandMessage } from './move';
 import { parsers, uint16, uint64, uint8 } from '@domojs/protocol-parser';
 
