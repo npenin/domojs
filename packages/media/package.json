@@ -14,16 +14,16 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "@akala/client": "5.2.17",
-    "@akala/commands": "2.9.2",
-    "@akala/config": "0.4.17",
+    "@akala/client": "5.2.18",
+    "@akala/commands": "2.9.3",
+    "@akala/config": "0.4.18",
     "@akala/core": "7.5.13",
     "levenshtein": "1.0.5"
   },
   "devDependencies": {
     "@akala/cli": "1.6.3",
     "@akala/json-rpc-ws": "9.3.5",
-    "@akala/server": "6.3.25",
+    "@akala/server": "6.3.26",
     "@akala/storage": "2.3.7",
     "@domojs/theme-default": "workspace:^",
     "@types/debug": "4.1.7",
