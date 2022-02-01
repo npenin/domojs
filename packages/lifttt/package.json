@@ -27,15 +27,14 @@
     "description": "",
     "types": "dist/server/index.d.ts",
     "dependencies": {
-        "@akala/server": "6.3.22",
         "@fortawesome/fontawesome-common-types": "0.2.36",
         "uuid": "8.3.2"
     },
     "devDependencies": {
-        "@akala/client": "5.2.16",
-        "@akala/commands": "2.9.1",
-        "@akala/core": "7.5.12",
-        "@akala/json-rpc-ws": "9.3.4",
+        "@akala/client": "5.2.17",
+        "@akala/commands": "2.9.2",
+        "@akala/core": "7.5.13",
+        "@akala/json-rpc-ws": "9.3.5",
         "@domojs/theme-default": "workspace:*",
         "@popperjs/core": "2.11.2",
         "@types/debug": "4.1.7",

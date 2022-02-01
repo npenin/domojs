@@ -1,5 +1,4 @@
-import CoreProperty from "../property";
-import { Cursor, AnyParser, ParserWithMessageWithoutKnownLength, ParserWithMessage, parserWrite } from "../_common";
+import { Cursor, AnyParser, ParserWithMessage, parserWrite } from "../_common";
 import { WireType } from "./field";
 import { ArrayItem } from "./property";
 

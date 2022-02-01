@@ -1,4 +1,3 @@
-import { Uint16 } from ".";
 import { Cursor, Parser } from "./_common";
 import Uint8 from "./uint8";
 

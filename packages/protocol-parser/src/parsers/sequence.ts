@@ -1,4 +1,4 @@
-import { AnyParser, Cursor, Parser, ParsersWithMessage, ParserWithMessageWithoutKnownLength, parserWrite } from "./_common";
+import { AnyParser, Cursor, ParserWithMessageWithoutKnownLength, parserWrite } from "./_common";
 
 export default class Sequence<T extends unknown[], TMessage = unknown> implements ParserWithMessageWithoutKnownLength<T, TMessage>
 {

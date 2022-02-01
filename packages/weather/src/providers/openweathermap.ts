@@ -1,5 +1,4 @@
 import { Http } from '@akala/core';
-import fs from 'fs/promises'
 import { Weather } from '../state';
 import { cache as getFromCache, Position } from './common';
 

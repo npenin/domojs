@@ -1,4 +1,3 @@
-import { sidecar } from '@akala/pm';
 import { registerDeviceType } from '@domojs/devices';
 import { State } from '../state'
 import fs from 'fs/promises'

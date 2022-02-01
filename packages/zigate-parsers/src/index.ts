@@ -1,6 +1,5 @@
 import serialport from 'serialport';
 import { Protocol, MessageType, Message, Cluster } from './messages/_common';
-import * as fs from 'fs'
 import { EventEmitter } from 'events';
 import { Duplex } from 'stream';
 import { Queue, log as debug } from '@akala/core';

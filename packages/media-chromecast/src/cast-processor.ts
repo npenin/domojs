@@ -1,6 +1,6 @@
-import { CommandProcessor, Container, Metadata, Processors } from '@akala/commands';
+import { CommandProcessor, Container, Metadata } from '@akala/commands';
 import { MiddlewarePromise } from '@akala/core';
-import CastStream, { castMessage, CastMessage, PayloadType } from '@domojs/media-chromecast-parsers'
+import CastStream, { castMessage } from '@domojs/media-chromecast-parsers'
 import net from 'net';
 import trigger from './cast-trigger';
 
@@ -8,7 +8,7 @@ export default class CastProcessor extends CommandProcessor
 {
     private requestId: number;
 
-    private requestHandlers: { [key: number]: (response: CastMessage) => void } = {};
+    // private requestHandlers: { [key: number]: (response: CastMessage) => void } = {};
 
     async handle(container: Container<unknown>, cmd: Metadata.Command, param: { [key: string]: unknown; param: unknown[]; }): MiddlewarePromise
     {

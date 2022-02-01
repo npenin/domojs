@@ -12,9 +12,7 @@ portions of this file.
 */
 import { uint8, uint16, uint32, int8, int16, int32, float, double, uint64, parsers } from '@domojs/protocol-parser';
 export { uint8, uint16, uint32, int8, int16, int32, float, double, uint64 }
-import { log as debug } from '@akala/core';
 
-const log = debug('rfxtrx');
 
 export enum PacketType
 {

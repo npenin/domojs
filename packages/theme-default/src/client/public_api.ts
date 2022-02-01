@@ -1,5 +1,4 @@
 import * as akala from '@akala/core';
-import { IconName, IconPrefix } from '@fortawesome/fontawesome-common-types'
 import * as fa from '@fortawesome/fontawesome-svg-core'
 import { LocationService, IScope, PartDefinition, Template, HotKeyTrigger } from '@akala/client';
 import template from '../../views/tiles.html'
@@ -33,7 +32,7 @@ export enum BlockColors
     viridian,
 }
 
-type TileCallback = (Tile) => void;
+// type TileCallback = (Tile) => void;
 export type TileDef = Tile | PromiseLike<Tile>;
 
 export interface TileService

@@ -1,4 +1,3 @@
-import Bit, { length as BitLength } from './bit'
 
 import { Cursor, Parser } from "./_common";
 

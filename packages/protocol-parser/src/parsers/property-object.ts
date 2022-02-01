@@ -1,4 +1,4 @@
-import { AnyParser, Cursor, Parser, ParserWithMessage, ParserWithMessageWithoutKnownLength, ParserWithoutKnownLength, parserWrite } from "./_common";
+import { AnyParser, Cursor, ParserWithMessage, parserWrite } from "./_common";
 
 
 export default class Property<T extends object, TKey extends keyof T> implements ParserWithMessage<T[TKey], T>

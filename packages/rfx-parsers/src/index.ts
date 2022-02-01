@@ -20,7 +20,6 @@ import { Duplex } from 'stream';
 import { readdir } from 'fs';
 import { Socket } from 'net';
 import { ModeResponse } from './protocol/1.interface.response';
-import { ModeCommand } from './protocol/0.interface.mode';
 
 type Modes = Pick<InterfaceControl.ModeCommand, 'msg3' | 'msg4' | 'msg5' | 'msg6'>;
 const log = debug('rfxtrx');
@@ -293,8 +292,16 @@ export class Rfxtrx extends EventEmitter
 
             return serials;
         }
-        const { default: SerialPort } = await import('serialport');
+        try
+        {
+            const { default: SerialPort } = await import('serialport');
 
-        return (await SerialPort.list()).filter(port => port.manufacturer && port.manufacturer == 'RFXCOM').map(sp => sp.path);
+            return (await SerialPort.list()).filter(port => port.manufacturer && port.manufacturer == 'RFXCOM').map(sp => sp.path);
+        }
+        catch (e)
+        {
+            if (e.code !== 'MODULE_NOT_FOUND')
+                throw e;
+        }
     }
 }

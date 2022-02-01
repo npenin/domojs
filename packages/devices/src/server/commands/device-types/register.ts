@@ -1,5 +1,5 @@
 import * as devices from "../../../devices";
-import { CommandWithProcessorAffinity, Container, inject, Metadata, updateCommands } from "@akala/commands";
+import { CommandWithProcessorAffinity, Container, updateCommands } from "@akala/commands";
 import { Local } from "@akala/commands/dist/processors";
 
 

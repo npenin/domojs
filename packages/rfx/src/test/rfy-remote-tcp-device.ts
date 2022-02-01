@@ -1,8 +1,6 @@
 import * as common from "@domojs/rfx-parsers"
 import { Rfy } from "@domojs/rfx-parsers"
-import assert = require('assert');
 import net from 'net'
-import https from 'https'
 
 
 (async function (host: string, port: number, cmd: Rfy.Internal.Commands)

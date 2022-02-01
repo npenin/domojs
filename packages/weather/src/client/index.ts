@@ -1,5 +1,5 @@
 import { Container } from '@akala/commands';
-import { Binding, ObservableArray } from '@akala/core';
+import { ObservableArray } from '@akala/core';
 import * as web from '@domojs/theme-default'
 import * as fa from '@fortawesome/free-solid-svg-icons'
 import { description } from '../commander';

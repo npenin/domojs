@@ -1,5 +1,5 @@
 import * as db from '@akala/storage'
-import { LiveStore, Store } from "../../store";
+import { LiveStore } from "../../store";
 
 export default async function getDevice(store: LiveStore, name: string)
 {

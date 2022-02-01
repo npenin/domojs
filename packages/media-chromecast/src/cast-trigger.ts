@@ -1,5 +1,4 @@
-import { Container, Processors, Trigger } from '@akala/commands';
-import { MiddlewarePromise } from '@akala/core';
+import { Trigger } from '@akala/commands';
 import CastStream, { castMessage, CastMessage, PayloadType } from '@domojs/media-chromecast-parsers'
 import net from 'net';
 

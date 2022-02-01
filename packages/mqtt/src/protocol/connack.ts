@@ -1,4 +1,4 @@
-import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
+import { parsers } from '@domojs/protocol-parser';
 import { ControlPacketType, Properties, propertiesFrame, Protocol, Message as CoreMessage, ReasonCodes } from './_protocol'
 
 export default interface Message extends CoreMessage

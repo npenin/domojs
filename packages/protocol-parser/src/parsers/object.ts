@@ -1,7 +1,6 @@
 import { ParsersWithMessage } from ".";
-import Property from "./property";
 import Series from "./series";
-import { AnyParser, Cursor, Parser, ParserWithMessage, ParserWithMessageWithoutKnownLength, ParserWithoutKnownLength, parserWrite } from "./_common";
+import { AnyParser, Cursor, Parser } from "./_common";
 
 export default class ObjectParser<T extends object> extends Series<T> implements Parser<T>
 {

@@ -1,7 +1,7 @@
 import * as devices from "../../../devices";
-import { Container, serve } from "@akala/commands";
+import { Container } from "@akala/commands";
 import deviceType from "../../devicetype-commands";
-import { sidecar, SidecarMap } from '@akala/pm';
+import { sidecar } from '@akala/pm';
 
 
 export default async function (this: devices.DeviceTypeCollection & { initializing: boolean }, container: Container<any> & deviceType.container, pm: Container<any>)

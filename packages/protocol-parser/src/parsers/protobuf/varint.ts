@@ -1,4 +1,4 @@
-import { Cursor, Parser, ParserWithoutKnownLength } from "../_common";
+import { Cursor, ParserWithoutKnownLength } from "../_common";
 import Uint8 from "../uint8";
 import Uint7 from "../uint7";
 import Uint32LE from "../uint32LE";

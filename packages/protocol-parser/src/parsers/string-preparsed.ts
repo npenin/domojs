@@ -1,6 +1,4 @@
-import { Cursor, Parser, ParserWithMessageWithoutKnownLength, ParserWithoutKnownLength, parserWrite } from "./_common";
-
-type KeyReturningNumbers<T, TKey extends keyof T = keyof T> = T[TKey] extends number ? TKey : never;
+import { Cursor, ParserWithMessageWithoutKnownLength } from "./_common";
 
 export default class PreparsedString<T, TKey extends keyof T> implements ParserWithMessageWithoutKnownLength<string, T>
 {

@@ -1,5 +1,4 @@
 import { State } from "../state";
-import * as api from '../api'
 
 export default function (this: State, deviceName: string, command: string)
 {

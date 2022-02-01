@@ -1,6 +1,6 @@
 import { SelfDefinedCommand, Container } from "@akala/commands";
 import { v4 as uuid } from 'uuid'
-import { eachAsync, Injector, Interpolate } from "@akala/core";
+import { eachAsync, Interpolate } from "@akala/core";
 import { ChannelState, Task } from "../../channel-state";
 import { SerializableObject } from "@akala/json-rpc-ws";
 
