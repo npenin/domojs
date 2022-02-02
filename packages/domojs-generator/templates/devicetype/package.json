@@ -10,7 +10,7 @@
 	"author": "npenin",
 	"license": "MIT",
 	"dependencies": {
-		"@akala/core": "7.5.12",
+		"@akala/core": "7.5.14",
 		"@akala/server": "6.3.14"
 	},
 	"devDependencies": {
