@@ -1,6 +1,6 @@
 {
 	"name": "@domojs/zigate",
-	"version": "1.5.3",
+	"version": "1.5.4",
 	"description": "",
 	"main": "dist/index.js",
 	"commands": "./commands.json",
@@ -19,7 +19,7 @@
 		"@domojs/zigate-parsers": "workspace:^"
 	},
 	"peerDependencies": {
-		"@domojs/devices": "^1.8.4",
+		"@domojs/devices": "^1.8.5",
 		"serialport": "^9.2.8"
 	},
 	"peerDependenciesMeta": {
@@ -28,7 +28,7 @@
 		}
 	},
 	"devDependencies": {
-		"@domojs/devices": "^1.8.4",
+		"@domojs/devices": "^1.8.5",
 		"@types/debug": "4.1.7"
 	},
 	"gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"

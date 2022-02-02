@@ -465,7 +465,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@domojs/devices@^1.8.4, @domojs/devices@workspace:^, @domojs/devices@workspace:packages/devices":
+"@domojs/devices@^1.8.5, @domojs/devices@workspace:^, @domojs/devices@workspace:packages/devices":
   version: 0.0.0-use.local
   resolution: "@domojs/devices@workspace:packages/devices"
   dependencies:
@@ -614,7 +614,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@domojs/protocol-parser@^2.3.2, @domojs/protocol-parser@workspace:*, @domojs/protocol-parser@workspace:^, @domojs/protocol-parser@workspace:packages/protocol-parser":
+"@domojs/protocol-parser@^2.3.3, @domojs/protocol-parser@workspace:*, @domojs/protocol-parser@workspace:^, @domojs/protocol-parser@workspace:packages/protocol-parser":
   version: 0.0.0-use.local
   resolution: "@domojs/protocol-parser@workspace:packages/protocol-parser"
   dependencies:
@@ -719,7 +719,7 @@ __metadata:
   resolution: "@domojs/zigate-parsers@workspace:packages/zigate-parsers"
   dependencies:
     "@akala/core": ^7.5.14
-    "@domojs/protocol-parser": ^2.3.2
+    "@domojs/protocol-parser": ^2.3.3
     "@types/debug": 4.1.7
     "@types/serialport": 8.0.2
     "@types/ws": 8.2.2
@@ -739,11 +739,11 @@ __metadata:
   resolution: "@domojs/zigate@workspace:packages/zigate"
   dependencies:
     "@akala/core": 7.5.14
-    "@domojs/devices": ^1.8.4
+    "@domojs/devices": ^1.8.5
     "@domojs/zigate-parsers": "workspace:^"
     "@types/debug": 4.1.7
   peerDependencies:
-    "@domojs/devices": ^1.8.4
+    "@domojs/devices": ^1.8.5
     serialport: ^9.2.8
   peerDependenciesMeta:
     serialport:
