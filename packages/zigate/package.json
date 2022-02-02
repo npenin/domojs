@@ -15,7 +15,7 @@
 	"author": "npenin",
 	"license": "MIT",
 	"dependencies": {
-		"@akala/core": "7.5.13",
+		"@akala/core": "7.5.14",
 		"@domojs/zigate-parsers": "workspace:^"
 	},
 	"peerDependencies": {

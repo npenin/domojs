@@ -12,12 +12,12 @@
     "@domojs/devicetype": "./devicetype-commands.json"
   },
   "dependencies": {
-    "@akala/client": "5.2.18",
-    "@akala/commands": "2.9.3",
-    "@akala/core": "7.5.13",
-    "@akala/json-rpc-ws": "9.3.5",
-    "@akala/server": "6.3.26",
-    "@akala/storage": "2.3.7",
+    "@akala/client": "5.2.19",
+    "@akala/commands": "2.9.4",
+    "@akala/core": "7.5.14",
+    "@akala/json-rpc-ws": "9.3.6",
+    "@akala/server": "6.3.27",
+    "@akala/storage": "2.3.8",
     "@fortawesome/free-brands-svg-icons": "5.15.4",
     "snyk": "1.844.0",
     "uuid": "8.3.2",
@@ -33,7 +33,7 @@
     "@types/uuid": "8.3.4",
     "@types/webpack-env": "1.16.3",
     "@types/ws": "8.2.2",
-    "sass": "1.49.4",
+    "sass": "1.49.7",
     "sass-loader": "12.4.0",
     "typescript": "4.5.5"
   },
