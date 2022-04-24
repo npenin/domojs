@@ -447,7 +447,7 @@ __metadata:
     "@nlpjs/basic": 4.22.17
     "@nlpjs/directline-connector": 4.22.12
     "@nlpjs/express-api-server": 4.22.14
-    node-nlp: 4.22.17
+    node-nlp: 4.23.5
   languageName: unknown
   linkType: soft
 
@@ -894,22 +894,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nlpjs/builtin-duckling@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/builtin-duckling@npm:4.22.7"
+"@nlpjs/builtin-duckling@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/builtin-duckling@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: df9bbecb6191e909eb8fa5ced0a2db71873491b88eff789f68d780fa3dd05d2a785bedcfe54c10c120bac20f0328507e84c0aeaaba8b07f34db0cd600fc61118
+    "@nlpjs/core": ^4.23.4
+  checksum: a601bf278da982f8d1d9b577c387daf4ae0bd2a0c5f774bd33e27f0fe8d5e542079830efadb85b74f6d94cc0c8a1aa241c61adf3cdc1eb5471d6dcaa56376308
   languageName: node
   linkType: hard
 
-"@nlpjs/builtin-microsoft@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/builtin-microsoft@npm:4.22.7"
+"@nlpjs/builtin-microsoft@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/builtin-microsoft@npm:4.23.4"
   dependencies:
     "@microsoft/recognizers-text-suite": 1.3.0
-    "@nlpjs/core": ^4.22.7
-  checksum: d03b302be09b6f7615a841da0729cf92ce0540eb8316a0389081829a04a5c062032ada663961393cae0c00f261f017b5b724a974b4e8448dcc1c2842dcbcc56d
+    "@nlpjs/core": ^4.23.4
+  checksum: 05638e7a85fdc3bcb028ca45585107fbeb0d7188fd74c21b8e2d2b5f9dd10012efaacf91b82459f7392b49a7bf74cc965ad00cb3420813c4632f102962cd9619
   languageName: node
   linkType: hard
 
@@ -942,10 +942,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nlpjs/core-loader@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/core-loader@npm:4.23.4"
+  dependencies:
+    "@nlpjs/core": ^4.23.4
+    "@nlpjs/request": ^4.22.7
+  checksum: eb0ab4aad9478fcf3bf8907aa0427b3d753c574f77352397af08fe1508aa74a49f111a64ecf0eab4edf7f7bf359933d8aabd580f00e80c1305e0e36d6d2a4234
+  languageName: node
+  linkType: hard
+
 "@nlpjs/core@npm:^4.22.7":
   version: 4.22.7
   resolution: "@nlpjs/core@npm:4.22.7"
   checksum: 59692fb4c2af4de3e006a79217637f0e9a1e144a5c966c28ded623ca623c32a6b99ecd1c54e91125b096c3e897943d34bc37e9f775b8267c30355d8e05302460
+  languageName: node
+  linkType: hard
+
+"@nlpjs/core@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/core@npm:4.23.4"
+  checksum: 7b1a2b6519665dbbfaa0618e77937879d252eb674904e90f18c4f9ae2125159291dbbefb03115269fd4d4ac0fe53a10d5a2745a7c6f4e7824ece5c7faae33fe1
   languageName: node
   linkType: hard
 
@@ -961,12 +978,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nlpjs/emoji@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/emoji@npm:4.22.7"
+"@nlpjs/emoji@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/emoji@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 819fbaecef21ddb71a08819e828045b10123c7d0e00bb9758b2fa1162502a0a8675bd61e78be9a3aa87b792fa305a4025bb05f7c670b6ff58e538d415b7c7f82
+    "@nlpjs/core": ^4.23.4
+  checksum: 59c97e10dc0871adc8382c2a6e9f3f20b6906303809cb43e713e5e62ba6371ad95f1590224795d0659d6d2855645f3a1755ce7e5e042b6f863db4ba962bbe698
   languageName: node
   linkType: hard
 
@@ -991,116 +1008,116 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-all@npm:^4.22.12":
-  version: 4.22.12
-  resolution: "@nlpjs/lang-all@npm:4.22.12"
+"@nlpjs/lang-all@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-all@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-    "@nlpjs/lang-ar": ^4.22.7
-    "@nlpjs/lang-bn": ^4.22.7
-    "@nlpjs/lang-ca": ^4.22.7
-    "@nlpjs/lang-cs": ^4.22.7
-    "@nlpjs/lang-da": ^4.22.7
-    "@nlpjs/lang-de": ^4.22.7
-    "@nlpjs/lang-el": ^4.22.7
-    "@nlpjs/lang-en": ^4.22.7
-    "@nlpjs/lang-es": ^4.22.7
-    "@nlpjs/lang-eu": ^4.22.7
-    "@nlpjs/lang-fa": ^4.22.7
-    "@nlpjs/lang-fi": ^4.22.7
-    "@nlpjs/lang-fr": ^4.22.7
-    "@nlpjs/lang-ga": ^4.22.7
-    "@nlpjs/lang-gl": ^4.22.7
-    "@nlpjs/lang-hi": ^4.22.7
-    "@nlpjs/lang-hu": ^4.22.7
-    "@nlpjs/lang-hy": ^4.22.7
-    "@nlpjs/lang-id": ^4.22.7
-    "@nlpjs/lang-it": ^4.22.7
-    "@nlpjs/lang-ja": ^4.22.12
-    "@nlpjs/lang-ko": ^4.22.7
-    "@nlpjs/lang-lt": ^4.22.7
-    "@nlpjs/lang-ms": ^4.22.7
-    "@nlpjs/lang-ne": ^4.22.7
-    "@nlpjs/lang-nl": ^4.22.7
-    "@nlpjs/lang-no": ^4.22.7
-    "@nlpjs/lang-pl": ^4.22.7
-    "@nlpjs/lang-pt": ^4.22.7
-    "@nlpjs/lang-ro": ^4.22.7
-    "@nlpjs/lang-ru": ^4.22.7
-    "@nlpjs/lang-sl": ^4.22.7
-    "@nlpjs/lang-sr": ^4.22.7
-    "@nlpjs/lang-sv": ^4.22.7
-    "@nlpjs/lang-ta": ^4.22.7
-    "@nlpjs/lang-th": ^4.22.7
-    "@nlpjs/lang-tl": ^4.22.7
-    "@nlpjs/lang-tr": ^4.22.7
-    "@nlpjs/lang-uk": ^4.22.7
-    "@nlpjs/lang-zh": ^4.22.7
+    "@nlpjs/core": ^4.23.4
+    "@nlpjs/lang-ar": ^4.23.4
+    "@nlpjs/lang-bn": ^4.23.4
+    "@nlpjs/lang-ca": ^4.23.4
+    "@nlpjs/lang-cs": ^4.23.4
+    "@nlpjs/lang-da": ^4.23.4
+    "@nlpjs/lang-de": ^4.23.4
+    "@nlpjs/lang-el": ^4.23.4
+    "@nlpjs/lang-en": ^4.23.4
+    "@nlpjs/lang-es": ^4.23.4
+    "@nlpjs/lang-eu": ^4.23.4
+    "@nlpjs/lang-fa": ^4.23.4
+    "@nlpjs/lang-fi": ^4.23.4
+    "@nlpjs/lang-fr": ^4.23.4
+    "@nlpjs/lang-ga": ^4.23.4
+    "@nlpjs/lang-gl": ^4.23.4
+    "@nlpjs/lang-hi": ^4.23.4
+    "@nlpjs/lang-hu": ^4.23.4
+    "@nlpjs/lang-hy": ^4.23.4
+    "@nlpjs/lang-id": ^4.23.4
+    "@nlpjs/lang-it": ^4.23.4
+    "@nlpjs/lang-ja": ^4.23.4
+    "@nlpjs/lang-ko": ^4.23.4
+    "@nlpjs/lang-lt": ^4.23.4
+    "@nlpjs/lang-ms": ^4.23.4
+    "@nlpjs/lang-ne": ^4.23.4
+    "@nlpjs/lang-nl": ^4.23.4
+    "@nlpjs/lang-no": ^4.23.4
+    "@nlpjs/lang-pl": ^4.23.4
+    "@nlpjs/lang-pt": ^4.23.4
+    "@nlpjs/lang-ro": ^4.23.4
+    "@nlpjs/lang-ru": ^4.23.4
+    "@nlpjs/lang-sl": ^4.23.4
+    "@nlpjs/lang-sr": ^4.23.4
+    "@nlpjs/lang-sv": ^4.23.4
+    "@nlpjs/lang-ta": ^4.23.4
+    "@nlpjs/lang-th": ^4.23.4
+    "@nlpjs/lang-tl": ^4.23.4
+    "@nlpjs/lang-tr": ^4.23.4
+    "@nlpjs/lang-uk": ^4.23.4
+    "@nlpjs/lang-zh": ^4.23.4
     "@nlpjs/language": ^4.22.7
-  checksum: 0f8ea61f79eb525b68db64baa04801aed5aef18582176fc996e9f4a41dd3dbca443dd2a2b3956be11f8d6ef6db4c9782f29f7d12f144757dffe85d35e778a1c8
+  checksum: d44de15a35a87ce398a792f480873c6a32febdf838323c7c13ddeb6ba883ec7b9d7160fc2376b353475fe66836dee4837642be65bae09afb0e36a5091585b3fa
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-ar@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-ar@npm:4.22.7"
+"@nlpjs/lang-ar@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-ar@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 931ee99b37149732222e1b6c438cccb1a6632a88e7d3d3922431bce488305568c3d8d1be38d252e664a9b4183a939606bfbe34a4bffde50e84be7b4ef15ae94f
+    "@nlpjs/core": ^4.23.4
+  checksum: 16e537efffbc0181e790d768be794aed89c288a7145d89104a0f255923e7ab6574a73f674f725ba257e725277d91ea0adf5b9140be011ffbb119702301d84914
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-bn@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-bn@npm:4.22.7"
+"@nlpjs/lang-bn@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-bn@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 54ab700e5640d5d2c9aa2970d405dad3254ce46f02fb4e52454c9816e240cd12393cd86ad04c1dba6522ca32724ace338613008b7614687dc8befcdeb5f6ef46
+    "@nlpjs/core": ^4.23.4
+  checksum: 6262474c091701e2e16447458294424fb9103a354fbd51c1aa640b48295cc58e9da691bdc514605d3a4da6f94e115d7c7c41cab4dee78d58d9e905addb8f0cb3
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-ca@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-ca@npm:4.22.7"
+"@nlpjs/lang-ca@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-ca@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: bbc3f6a47a941f1b01f92bc677e9091d5356e84ed7688b6866c1c537400f2dfaf32762f98ee5aa0f6353639fddc659f6b5ffa85a96491a57a5fdedc53e16fca6
+    "@nlpjs/core": ^4.23.4
+  checksum: c25310534c1d13060fffbfd81d698adc8d6328a6dd2d783e2df5d7f9b1922959a317763e1b36fce04e653c5af00468e556d2969363d47fa4b1ff96f2dec72646
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-cs@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-cs@npm:4.22.7"
+"@nlpjs/lang-cs@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-cs@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: fbba2ba9b9977d48795a241a483e7320ec5ef5b4f63406f100e9163102a2148bb6431727ea44aa11e5348a9868cfe1e83d62689507b20806e5db7a8bd6063e17
+    "@nlpjs/core": ^4.23.4
+  checksum: 3acfef89beac6d2022fb7c0c6c816e0b627d6fd978a150ecd6fd3243b8a1be713f489146e47a214ca0eeecef595a26eabcbfbb3a6b0fc3d4e22eee1fed2773be
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-da@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-da@npm:4.22.7"
+"@nlpjs/lang-da@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-da@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 65a0a4a85f866ecb44f08c56c821b7d02eda06b2c675f4e69a970e5d3d053655537549150f781f55b0b42efe4aecf83ebedc1cadb12770de2004ab663ecbb643
+    "@nlpjs/core": ^4.23.4
+  checksum: abc46774609b4cde63bb7d243cca109ac53bba50d8f53f4ed0166ef74912deeaf85d0ab7c5806b61f849f445dea89e7c29d1a9aee23c1f7cf98be6f640126f8b
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-de@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-de@npm:4.22.7"
+"@nlpjs/lang-de@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-de@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 16b275daaece80e9bbb71e1cfe276f1c9f668a2026cd1209a46599c89002efaed1700978edcfc3c58c1ce43524b14467526277fb3f567e15d87116ceddd0046b
+    "@nlpjs/core": ^4.23.4
+  checksum: 0179c682de2d96c86ffcfdb69a13c957e2c01bf91dc3039d2f57d83ebe13a60e448b1e68174d4e6aef5e6511a3505487d73044945fbf9522c0dc3af60722dce0
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-el@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-el@npm:4.22.7"
+"@nlpjs/lang-el@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-el@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: eec029bc69292041c149b01f060fc25221a928ffd5045fae764208e0d0931435a90c42a661433d0e685ff3b026f497830c72eadccfea22e80c975479f2497b91
+    "@nlpjs/core": ^4.23.4
+  checksum: 221df245213ac7c8f7dffcc148984adaea023fdc1facc7d618dd5ba87557b9999f245a15bc4fbbfb1bf3dfdb7753fe9fa8228852c3d87f2d0f5c36e76832f8bf
   languageName: node
   linkType: hard
 
@@ -1110,6 +1127,15 @@ __metadata:
   dependencies:
     "@nlpjs/core": ^4.22.7
   checksum: 858aa71ee8a6ae4fe5d4dba0db3bf6201896dd7f92349b5395bbfea174b1d4080172aaeb6e0392162f263427d5b9ad9a404feadc92f3eb7a3fccdfd4b24fea7f
+  languageName: node
+  linkType: hard
+
+"@nlpjs/lang-en-min@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-en-min@npm:4.23.4"
+  dependencies:
+    "@nlpjs/core": ^4.23.4
+  checksum: a27f0b80f43337f4a4e39bfda958132c85c1e7ad0f4d6e32ffa76ad367b3419193e6fabe620c29f5ddb742ccb74035e292352e13a17eda1c31c5efc92ed06693
   languageName: node
   linkType: hard
 
@@ -1123,293 +1149,303 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-es@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-es@npm:4.22.7"
+"@nlpjs/lang-en@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-en@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: e569b3b1a3a779c3af588adf58cbe2dc2bdf3b07da93d02da2e98063fb8a9bf681d4fffe2386e1b4366ccf8c8be955f8ed6c510711754790eac14e5fec20b105
+    "@nlpjs/core": ^4.23.4
+    "@nlpjs/lang-en-min": ^4.23.4
+  checksum: 9baf58c945e6bf800b449225458d52fbc2a799e92fb78cf85f756cd7e8964b896716ae04df3589d5579cff5e67a65cc2c8d599a4064c7260ffedbec0189c732c
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-eu@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-eu@npm:4.22.7"
+"@nlpjs/lang-es@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-es@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: baa81c078966e91ad8a08d9ce9d6522eacc498ab9a40dbce733b9e47ae74a8faa443856461c99baf5e684ef0df59a29b9da68735552111e2c2e95acfe908118c
+    "@nlpjs/core": ^4.23.4
+  checksum: 47ebc875f107a96fcced09c4e1725da12b24b5195ec1d55ff6ac11ec146844d3deadcc8c7660572257f015f2252a5eeccdb01e131740db027c65e6bad6c15cfc
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-fa@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-fa@npm:4.22.7"
+"@nlpjs/lang-eu@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-eu@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: b34176db88385c28ba98ad1c779fd15b208cf9dd3761f2c0072bd6451ebd02d23bc29d25950160468d4aadeb361ef764c7f877eda9b28cd6ec8db1fc62e30b96
+    "@nlpjs/core": ^4.23.4
+  checksum: 99557811c2c17b351a3381819d3e53379516eb72106e27b1f67c92cbcb5fc3ebe01d6af605f12cab3b1f9a710a9e2cc3b1fcf72ded1ad58f9253eb5096fe2382
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-fi@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-fi@npm:4.22.7"
+"@nlpjs/lang-fa@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-fa@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 4b809eb29869cdcdd28fd1af1bf3b5798d8f3201286c33dd68970bdaf83b96786cbb7a355e737fdc7286b36f81a7c50de7c8d7649f6f21c6e57d33cb67f6d876
+    "@nlpjs/core": ^4.23.4
+  checksum: 24300f87bacba4153c82e4fc96d2a03c8f9c746c88a90ad558ba5fc0a414fc883fe35da2a16034ab8d7d8ebb232409dcee1556a0c9bda54b4843855d4fc382eb
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-fr@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-fr@npm:4.22.7"
+"@nlpjs/lang-fi@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-fi@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 64d17dacca7999b532d9216073c4b9b2f3755bd0d9c47e466e1a6bc320dbe7b1ede2705ffb9ca16023f19378d958affc98093bbb2e038c40ac05d5238fb7dca5
+    "@nlpjs/core": ^4.23.4
+  checksum: 662e5bbcfbdfa362f6fdd4107583db3af3f9b4b837edb599fcee3d000815d6dcce865dbbbc88ef82dfb9aca7c3231766dbc3a70102974528364bce8796c76d34
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-ga@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-ga@npm:4.22.7"
+"@nlpjs/lang-fr@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-fr@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: ffae687ffe86b53628a2969289e51b18e537d02a8be83e7c2dfaccd15b00fa1f96d1f6fd53f452ba009fa90112082d3450ae67ce4b5bd77c9021f660569b3654
+    "@nlpjs/core": ^4.23.4
+  checksum: 481960482950d7627d4c88b1878cb6c9567b914dc057b96e46b9321989f33dcc4258a41557068d1ff859de1f35d887ed72a573ff2f042f17b2cdd33b757c8b9d
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-gl@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-gl@npm:4.22.7"
+"@nlpjs/lang-ga@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-ga@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 2c7cd08c48319531352c9cd380ac8fcd3e4aaeabfab2d648ffffbd0676956abb7e9fd16d89cd9d3f6889bc5fc8fb7034aa1ae8070d7a882f50539c5b9d80c967
+    "@nlpjs/core": ^4.23.4
+  checksum: 5d12f6c9024a5531cc53a1f2b70bbea9cff66a633f3bfccd43c7c7dbaf2309b1e41c68efaddceadfe894413fd447f17652adc4f571d82b57e81b00b855fc913c
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-hi@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-hi@npm:4.22.7"
+"@nlpjs/lang-gl@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-gl@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 5dbdab186be44947145fc8324870907c88f03aa9be1db3c79a5ff3cd6cc3c1c46799c6ddf66686949d233b5bbb4de3e24272b4e0315a15e2074f14ca801255ee
+    "@nlpjs/core": ^4.23.4
+  checksum: 568618f38233873a67c6ebceaf4bd3b8701924186ba0995d146f19c5f2d4fed9da26511f6f849ce862488a70fd67ad128e306d807e778d481ee8ceb2c82eaa78
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-hu@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-hu@npm:4.22.7"
+"@nlpjs/lang-hi@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-hi@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: f033c77ead0a9471eddd456d69d67b3940e130bb39dcb25a965db1d8bbbacba28feee40d0c3c65befd31837cf3600b3af0823817297569fb8f4c3f4af8df31d2
+    "@nlpjs/core": ^4.23.4
+  checksum: 72adc920457468b8347e76a06ae463dee1c01ae089f0035eb58b93341bb67c44cec5d08f9f16cfb4a993802d862ddd99deb81585bf87274d99a3511fdfef79fc
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-hy@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-hy@npm:4.22.7"
+"@nlpjs/lang-hu@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-hu@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: a4bb8c3e48e0115649ab3962a950dc1474e90e7feafac6a0f74dccd156b79bdd30f54ffa04bbecf616099a03e6a6e2e3d5e7d72908133906b10244c092c3177a
+    "@nlpjs/core": ^4.23.4
+  checksum: 232d8dff16f74ec74e76adf8ec85b536aec2a7a103efc5c31b8a8098f53fd72f4ad343f96f06fbd17634a4764547d8326e3acf914dd679b56fe49d61e4d9b925
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-id@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-id@npm:4.22.7"
+"@nlpjs/lang-hy@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-hy@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 554766aade90aae68ef8ddea244330958d8214186184d9834002ab75ab18fc22f9c8aff8d074b6c299eeccb83bea911cfdd616195ad88c30dcd147bcb1b1bf14
+    "@nlpjs/core": ^4.23.4
+  checksum: 423e9f6b65fa8b2be9b49b724c3c98c1eb38fe9e1a6d2bea987118077cad58f2ca0f8b23955b73c6ecc28e16d173e4250fcf432639721dcf2848924fb7c3ab9a
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-it@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-it@npm:4.22.7"
+"@nlpjs/lang-id@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-id@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: cf4b41bb1d62c483a0a269d97f73eb16bd8ca82362bf6320731252e3a0aa4178f1066bb8a98bf32679ed84b7ff1dbd695b71336744ad004a58545d675f22a822
+    "@nlpjs/core": ^4.23.4
+  checksum: 00068186cee220be9d88e83c88c8268bfe8687b2b831e85ed821426ade26aed3ac01eee0b124d3e789faafdb6aa8c33757490fe07c34681aa4a4f813b9af5697
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-ja@npm:^4.22.12":
-  version: 4.22.12
-  resolution: "@nlpjs/lang-ja@npm:4.22.12"
+"@nlpjs/lang-it@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-it@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
+    "@nlpjs/core": ^4.23.4
+  checksum: a3c84eeae722d2ec7e1741a8e1b13ccec7e409b00f5165290aa57228aef24adfc8cb07addf1f5c44164aa71850750237ca1be46880477fc07bc34c19529db4f5
+  languageName: node
+  linkType: hard
+
+"@nlpjs/lang-ja@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-ja@npm:4.23.4"
+  dependencies:
+    "@nlpjs/core": ^4.23.4
     kuromoji: ^0.1.2
-  checksum: d219a9f1146d60d4348af9e4d5ad966c547e4964444f8f41aa7d290610d4de7a111f13e5c62369a6b49d5480c77074cbc2a666058645002315438d100e72e174
+  checksum: c0499d6769d4cdf05100a1c5e6a48558547b366ad7d81d17f144b1fa58820f87e94fa01b035f8de92f47fc9fdd2b0bec39f7a5d773f66f7e3a121b22d611997a
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-ko@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-ko@npm:4.22.7"
+"@nlpjs/lang-ko@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-ko@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 30e9063b0067f73055ede70c455dc3b81f2407b9a177ce6c351bd71618ba8e08458212e3e82c0a1d0897897b5f8a947d35326518ca9bf18368e79bad3031ccc0
+    "@nlpjs/core": ^4.23.4
+  checksum: cc2bf189a122dd1189626655523a0a880a7e7bc79824b0f4885fca743ad21ceca4ea06c6237d0f8d871877c510a4e17404c59f753b3bd69783bb401c63029ed4
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-lt@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-lt@npm:4.22.7"
+"@nlpjs/lang-lt@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-lt@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 24dca53b2b1158000b6e18702e903a0df6d03681ef8bd68d0c5f9dbf250fb162889d3456f1e656c1f71b9935a8da7be1abe0208e19034730ea943d129d031d17
+    "@nlpjs/core": ^4.23.4
+  checksum: 157417d518888b7a33c2348d24d23ffcaf1115c89a3481b3ece02105ce73e258791a2978d28202a1d4742c1d57f193f87f637d77ec1f300ab9b41ced940244e7
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-ms@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-ms@npm:4.22.7"
+"@nlpjs/lang-ms@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-ms@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-    "@nlpjs/lang-id": ^4.22.7
-  checksum: b8184c7a20fa26b75be97ffe6d6585315fb7af9127f97fe5e2457c74201088771362111d02a56bb049280ed9a756bca0423e8c3eca0a634c45f0966b69329bcf
+    "@nlpjs/core": ^4.23.4
+    "@nlpjs/lang-id": ^4.23.4
+  checksum: e14967ecbfb7747942f7431734507cdc5df2c55993d7eb4ebe969379f4250c375ba513177525c904fce395b671091770540380a4f664119b5d59d90bddb2f344
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-ne@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-ne@npm:4.22.7"
+"@nlpjs/lang-ne@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-ne@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: da901ee78f06bd50cae628735e1f8ac90311b717f0300005f7828a81f9f2e16ec81043323269384396ae3466a37f389e0ecef415824cd70f1aa17b87e0841d65
+    "@nlpjs/core": ^4.23.4
+  checksum: 77bd224148c3bfcdd9d49b8acefb84e1599aafc8ea311675e2bbde10bdfc05d8460c48ad5f72992975d34d989c09edbee5294241357093c829e5b0e19b0cc547
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-nl@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-nl@npm:4.22.7"
+"@nlpjs/lang-nl@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-nl@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: c0e100626d4cfd1d6b7141925f84483a14672d76e34d29afdceedd617d1f47054e3c531b86de71fdfdfd5203792cd95418aaccdec412f79f0a3a788e6bcbd45f
+    "@nlpjs/core": ^4.23.4
+  checksum: 50ef27ad1710a0373d757cc027d0e396e6da50508ce8aaed968f81ac547716ae87a76e162c45edd868b0f407e2977cb5a168ed4fffd2693cb2fcd0c433688c85
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-no@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-no@npm:4.22.7"
+"@nlpjs/lang-no@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-no@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 99979ad603d81d7bb43ae747046ca20f763f6a5c6f6b6ce1cea3d50e3eb5afd81dfc8f8b449571ee594e604d7953abd1b4bc3ffbbb5af32440414efb419be369
+    "@nlpjs/core": ^4.23.4
+  checksum: fc82511b60cd28b70b5fdf0221d90163378ed567568363c730b7800b8563dcd2758791ba89b038e83df3ba6898e8936171f871171cd0af10e1e410c1d1d69bc2
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-pl@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-pl@npm:4.22.7"
+"@nlpjs/lang-pl@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-pl@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 2f146538ea24798dc1af4a5a551fdfb39a08a447fd0e2f68dc39750ade4c17d5c5120ba1722e49277d448d14123fb730af2ce04c3e114e278e624b64d6c11d66
+    "@nlpjs/core": ^4.23.4
+  checksum: 44bd17b033830849d5669604ce8ba73adb7977fb36f168fae424e37ef8c86790a4bca8e4e5d05eedeba8b422644b620ad6374f61180563e9f9e45315fc2c667e
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-pt@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-pt@npm:4.22.7"
+"@nlpjs/lang-pt@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-pt@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 53fed5d35a9ead3d9d26e5fb8e63c77009bcf3e8df9927ceef71e43f5cc94c395731ca15d0bf532841136ce7c7aabff3b8fae9fe0b3a955563769872b8027fd6
+    "@nlpjs/core": ^4.23.4
+  checksum: fa7fd97e73b0495457b1fb1ed7d9c574e51b91b607d946d852d6e29e4099b49d3325b6373a1f0a5a935525cc2bb32bff5fb9369e1eec7b55a3c2f85db8c2e8a9
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-ro@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-ro@npm:4.22.7"
+"@nlpjs/lang-ro@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-ro@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 8730cfd32f96ae76d906f3f4be7f96f319736f313337e410288fea82907003f2900b2869b0400e2d3744d050e1afd0f4ac2b79f7e4089b0424ed6e10246f21a6
+    "@nlpjs/core": ^4.23.4
+  checksum: 036fb9685a6537e09eef7518097824fbb9abcd17b3a463a9d784fa515d79892b6686d578ad7502eb6f138cdd0c7d196fc4e3adcafa7793e41caef008cbd381c7
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-ru@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-ru@npm:4.22.7"
+"@nlpjs/lang-ru@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-ru@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 6a1415e00722474ac351ba9a2de1fc480f1a775fbbe37b88ab7b42d64145d2e4882abc9a12da7599596ab18bf2ae633cc21d42d0ba2f4d5ffd76696f88f3851e
+    "@nlpjs/core": ^4.23.4
+  checksum: f5243da37e1d932da999aceb2cb0febd771ccfb81150bb746d6268dac3cd403d7796f2cf8dc92de7e28dee771b55bebf2a34915d3b448f90fc92f2be9a452402
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-sl@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-sl@npm:4.22.7"
+"@nlpjs/lang-sl@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-sl@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 7ba69543d476c33d57b020ac1814ffd077128a7802e9ca4fb840ae2d4376de62c751d1583144964cc66a306c770f40a02274170976c95f79c2fffc8cc1be9b0c
+    "@nlpjs/core": ^4.23.4
+  checksum: baa4cef4fff41f227018a382b6b975c09d1ee52f7e798683699cc84d704bd0c6159223299d1b7db56488e428a5260258e46f9b6538ec0003ae34c9c175929bcd
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-sr@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-sr@npm:4.22.7"
+"@nlpjs/lang-sr@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-sr@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 8d903804ae4114434445429957676341b3571f2cdb17f6418eccf8ff0fc9db061a4db4a71a124a85a288647f5ca3913b498e0aeb1e3adfd82fd19948663d7b7d
+    "@nlpjs/core": ^4.23.4
+  checksum: 2b70064c5d5087e0395cf00ec5d316454b3bb43ddf5e5095713633a307f58a7a5d8a4acdcd0dfd3648c2473719f76870c61d3b86f876a77c7e1c199c148f82df
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-sv@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-sv@npm:4.22.7"
+"@nlpjs/lang-sv@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-sv@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: ec61fdb2cb71bda20f7e1444db5b48294e33e559d0bbcef7199486d6aa9a28771cbf24b70e9fb290b5490bcb2a0b1a0e6217fb87c0dd08c617d77ac9ac2af0f3
+    "@nlpjs/core": ^4.23.4
+  checksum: 16865d3697834290714e3981f55340c2793afd9891144481563487fc820fa127615641047b7c27a27c8fad49466abb61d6d675b2ac63627fe6482b3584a02448
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-ta@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-ta@npm:4.22.7"
+"@nlpjs/lang-ta@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-ta@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 5f9520e0d11810d3ef7b1fc47c360a8ea3cb6137655d7a4e22737931818c5bb159dd42888380ebc4b9f362d6240caf8960572e38dcfaf39a5c8f31919418b2a0
+    "@nlpjs/core": ^4.23.4
+  checksum: bfc18cced04ef225a1f9a97fb57de15c0b3b1d8e17f5f3335dfb0f848f85143a4c0494be86fe46e651356f43b0fe13d6359661a28bed38d8ef494060bcc42f7b
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-th@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-th@npm:4.22.7"
+"@nlpjs/lang-th@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-th@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 22515ebd7ed7a1558d5525e5a2d973568954cfb2877802d1bdc649316da1ebb5e2957e8e1df3a317d8030b40d82897aa8374bf9c95b3668b1d44f0fbfb0f1247
+    "@nlpjs/core": ^4.23.4
+  checksum: b85c2e3b64a203f02b374cf51f14dc180974ddbf4b9aa152c1fbea0ea6e011b09af6e5728f569b0703ef4940d6e4c8c5c831d9bdb91b0afc16edce4fa1fe4081
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-tl@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-tl@npm:4.22.7"
+"@nlpjs/lang-tl@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-tl@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 4b4c056451380887eff7c6113732eecfd3f61644a622b1c903d2e3ba3120f96fbb1ad5a9248d45f48b9c4aca00e7da4b2c6b09cc7ddfb45ca5c2793914e230fa
+    "@nlpjs/core": ^4.23.4
+  checksum: 1510f1c4d7de2b5293cd92ecc417c7bf2b1a85149e50ef4ef77aaf6a9fc33105570eb30a201283280d0e61f70488406c1cf63f1b6363c73aa0d14b22d0393647
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-tr@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-tr@npm:4.22.7"
+"@nlpjs/lang-tr@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-tr@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 521d220e9d45f3542b8712ca693bf7cddbb1d25700378761e8432d5d963a019ea47bad4faf02a587de1145c6355d145a2673f7e48b7231ccd1ec1dc13ae96b9f
+    "@nlpjs/core": ^4.23.4
+  checksum: 28f7b20ad10d26fb93441205dbac60da0682fcacd1802c11a32a27f2c0aa76c323a3dbfd85c30d5e993e35a6d6aa0aba3a19f67f01dd5cb5151de1795c0125db
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-uk@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-uk@npm:4.22.7"
+"@nlpjs/lang-uk@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-uk@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 69105e84d6febeaa06b3390baae32aa063f30b2fe5ce3f032db67a6ace3e34b58a7633dda6c4f35e73c5aaa21e36e03dbdf20c85de5261ab736bba3f5902cd44
+    "@nlpjs/core": ^4.23.4
+  checksum: 01278c05a21b896f5c3dc3aba83abe1e846c37e19083d8d47161e377509b849c4dad1ea9cf25a68a1b5f37254e0b6a875c14a07039d57c4cc679c94bcb183289
   languageName: node
   linkType: hard
 
-"@nlpjs/lang-zh@npm:^4.22.7":
-  version: 4.22.7
-  resolution: "@nlpjs/lang-zh@npm:4.22.7"
+"@nlpjs/lang-zh@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/lang-zh@npm:4.23.4"
   dependencies:
-    "@nlpjs/core": ^4.22.7
-  checksum: 7a851279c714b1fa4a344b02910e6eb1db64746c2e771f533005a78b5d88d6ebb33aba1c1822a16d34a453dfceb10f2686524519a4511627abb288a890b249e0
+    "@nlpjs/core": ^4.23.4
+  checksum: c1098cf77a9cd223bde05bff9fb0da451a545f3d79105ba0a79b81e6ab177658a21a3051f70384441c62ea76efa74d52624d8747e774311538f308048319e42c
   languageName: node
   linkType: hard
 
@@ -1448,6 +1484,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nlpjs/ner@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/ner@npm:4.23.4"
+  dependencies:
+    "@nlpjs/core": ^4.23.4
+    "@nlpjs/language-min": ^4.22.7
+    "@nlpjs/similarity": ^4.22.7
+  checksum: 85870290049239542e89fb560ecd078a5d24eb3374eae80002949340a22d642500c88b42df4ea6af241186f8ae8602f89b5f61e9c1c7c79e30f1c47530e0009e
+  languageName: node
+  linkType: hard
+
 "@nlpjs/neural@npm:^4.22.7":
   version: 4.22.7
   resolution: "@nlpjs/neural@npm:4.22.7"
@@ -1461,6 +1508,15 @@ __metadata:
   dependencies:
     "@nlpjs/core": ^4.22.7
   checksum: 5f3c9db090631df5171bb7d1c1025031a3c685cf386880ef8383685be7258da098c9f8ddbc7148b9d06a490ddef10cb5086b8d5c6b9e17cd5d283f345afc4623
+  languageName: node
+  linkType: hard
+
+"@nlpjs/nlg@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/nlg@npm:4.23.4"
+  dependencies:
+    "@nlpjs/core": ^4.23.4
+  checksum: 813fa2c5d4247d43fdc3cff4aefbdfe5e4f53857358253b19592274c79b59d672ff8de65694cb56f7ad811d8cc554c57962708fbbb66c8a5dd4e432bf56d7943
   languageName: node
   linkType: hard
 
@@ -1478,6 +1534,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nlpjs/nlp@npm:^4.23.5":
+  version: 4.23.5
+  resolution: "@nlpjs/nlp@npm:4.23.5"
+  dependencies:
+    "@nlpjs/core": ^4.23.4
+    "@nlpjs/ner": ^4.23.4
+    "@nlpjs/nlg": ^4.23.4
+    "@nlpjs/nlu": ^4.23.5
+    "@nlpjs/sentiment": ^4.23.4
+    "@nlpjs/slot": ^4.22.17
+  checksum: c13b80b61995b12d28d4704c2fbc8dc8c256dfe6700b83d2d00513ab9429268c77c99c5276e46d38881ec6419a8cfe9626a778463dce0f59a85f9207e5d962fa
+  languageName: node
+  linkType: hard
+
 "@nlpjs/nlu@npm:^4.22.7":
   version: 4.22.7
   resolution: "@nlpjs/nlu@npm:4.22.7"
@@ -1487,6 +1557,18 @@ __metadata:
     "@nlpjs/neural": ^4.22.7
     "@nlpjs/similarity": ^4.22.7
   checksum: 629fbe7fd78e8a60433cd35a2f3fe044680643f18e5ecc68ec62b0f1b04ec5f7bcff7f028e78d42906afff251d9fbd1fa3d7468718fd3cdbaf4078648aabcfa4
+  languageName: node
+  linkType: hard
+
+"@nlpjs/nlu@npm:^4.23.5":
+  version: 4.23.5
+  resolution: "@nlpjs/nlu@npm:4.23.5"
+  dependencies:
+    "@nlpjs/core": ^4.23.4
+    "@nlpjs/language-min": ^4.22.7
+    "@nlpjs/neural": ^4.22.7
+    "@nlpjs/similarity": ^4.22.7
+  checksum: 3a42cbfc94769724fd54e0d87097c1c82540a1b2ae10f7ad02f893aac4ab8670e1b576d81dcd76c3a05666a6061ea77bec22dd3bd5c11e245cf3f5cd2495753b
   languageName: node
   linkType: hard
 
@@ -1511,6 +1593,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nlpjs/sentiment@npm:^4.23.4":
+  version: 4.23.4
+  resolution: "@nlpjs/sentiment@npm:4.23.4"
+  dependencies:
+    "@nlpjs/core": ^4.23.4
+    "@nlpjs/language-min": ^4.22.7
+    "@nlpjs/neural": ^4.22.7
+  checksum: 20dfce3d0fc3764835bc8f550ace2bd66f9a3fe6cb51f83f97e33b0b62a867629c27b07f00d7824764b3c73fe8610a1e997237bcba27868644a040ce50434429
+  languageName: node
+  linkType: hard
+
 "@nlpjs/similarity@npm:^4.22.7":
   version: 4.22.7
   resolution: "@nlpjs/similarity@npm:4.22.7"
@@ -1525,12 +1618,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nlpjs/xtables@npm:^4.22.14":
-  version: 4.22.14
-  resolution: "@nlpjs/xtables@npm:4.22.14"
+"@nlpjs/xtables@npm:^4.23.5":
+  version: 4.23.5
+  resolution: "@nlpjs/xtables@npm:4.23.5"
   dependencies:
-    xlsx: ^0.17.4
-  checksum: aaa39a88977e17e4d2015a048e89b1cb004029652b778dfe2f1b2f70b58dd4a3fc864de518b374bffc1402685596343f891663a70033c6500dc5a400279f8b88
+    xlsx: ^0.18.0
+  checksum: ff738e2f3e77dfb6b842953f86070268f464f16cbd41cdbb3672597d723f1c50917b09aa890c4ce609e1eb339b20d8fe4c0cf6cb1b19e086e53463fbe986a3b3
   languageName: node
   linkType: hard
 
@@ -2648,18 +2741,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"adler-32@npm:~1.2.0":
-  version: 1.2.0
-  resolution: "adler-32@npm:1.2.0"
-  dependencies:
-    exit-on-epipe: ~1.0.1
-    printj: ~1.1.0
-  bin:
-    adler32: ./bin/adler32.njs
-  checksum: aa611316fa224349b3eb1b7fcccc05195c38e425ff2b678fde67c0440b27074c42ad97b03efb7478f045b094f0dcb51a8711a2d5571d8940e1c5c52593af7bf6
-  languageName: node
-  linkType: hard
-
 "adler-32@npm:~1.3.0":
   version: 1.3.0
   resolution: "adler-32@npm:1.3.0"
@@ -3187,14 +3268,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cfb@npm:^1.1.4":
-  version: 1.2.1
-  resolution: "cfb@npm:1.2.1"
+"cfb@npm:~1.2.1":
+  version: 1.2.2
+  resolution: "cfb@npm:1.2.2"
   dependencies:
     adler-32: ~1.3.0
     crc-32: ~1.2.0
-    printj: ~1.3.0
-  checksum: 6d21a58c07d3315a5a253a7acdd4b0238771881f42faee2c0ff6a793d5b59c7304388b3ff2c8d45da2aa9d7a87cfc5ab4f5a54bedfe3152a5ac6f63029da4efd
+  checksum: cfb63a7d630a7fa415c1b25655dca66666584f29c95fb0ee90866ada1a28090857827f2ba70a9a50df28bdce05728ae58d495bce417249f305ef7b3c85840024
   languageName: node
   linkType: hard
 
@@ -3582,6 +3662,15 @@ __metadata:
   bin:
     crc32: bin/crc32.njs
   checksum: b8942a404766990b1ebbcc488fe5972afbabfea870362325165e26d1156abc3e987afb22cc74bd624a1570d8837d7b910534e83a8ffb9413e6ff02ec5cc638aa
+  languageName: node
+  linkType: hard
+
+"crc-32@npm:~1.2.1":
+  version: 1.2.2
+  resolution: "crc-32@npm:1.2.2"
+  bin:
+    crc32: bin/crc32.njs
+  checksum: ad2d0ad0cbd465b75dcaeeff0600f8195b686816ab5f3ba4c6e052a07f728c3e70df2e3ca9fd3d4484dc4ba70586e161ca5a2334ec8bf5a41bf022a6103ff243
   languageName: node
   linkType: hard
 
@@ -6052,26 +6141,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-nlp@npm:4.22.17":
-  version: 4.22.17
-  resolution: "node-nlp@npm:4.22.17"
+"node-nlp@npm:4.23.5":
+  version: 4.23.5
+  resolution: "node-nlp@npm:4.23.5"
   dependencies:
-    "@nlpjs/builtin-duckling": ^4.22.7
-    "@nlpjs/builtin-microsoft": ^4.22.7
-    "@nlpjs/core-loader": ^4.22.7
-    "@nlpjs/emoji": ^4.22.7
+    "@nlpjs/builtin-duckling": ^4.23.4
+    "@nlpjs/builtin-microsoft": ^4.23.4
+    "@nlpjs/core-loader": ^4.23.4
+    "@nlpjs/emoji": ^4.23.4
     "@nlpjs/evaluator": ^4.22.7
-    "@nlpjs/lang-all": ^4.22.12
+    "@nlpjs/lang-all": ^4.23.4
     "@nlpjs/language": ^4.22.7
     "@nlpjs/neural": ^4.22.7
-    "@nlpjs/nlg": ^4.22.7
-    "@nlpjs/nlp": ^4.22.17
-    "@nlpjs/nlu": ^4.22.7
+    "@nlpjs/nlg": ^4.23.4
+    "@nlpjs/nlp": ^4.23.5
+    "@nlpjs/nlu": ^4.23.5
     "@nlpjs/request": ^4.22.7
-    "@nlpjs/sentiment": ^4.22.7
+    "@nlpjs/sentiment": ^4.23.4
     "@nlpjs/similarity": ^4.22.7
-    "@nlpjs/xtables": ^4.22.14
-  checksum: ae8e00af0fc27888972b521a163e4087998e4d846ce4f4aaa9d26433d7c87e2388f04afc1d92550ac3587bb25fc277f4d548b5ce902b1cff1ac0f3562d6eb1d0
+    "@nlpjs/xtables": ^4.23.5
+  checksum: 10c866291460e2134560348993b962ed79e98b2195777f056410779a769a1ca99856b33041214177f8fbbdef3b9671409ab30037d23f2296d9b6a19f54aedb2a
   languageName: node
   linkType: hard
 
@@ -6638,15 +6727,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"printj@npm:~1.1.0":
-  version: 1.1.2
-  resolution: "printj@npm:1.1.2"
-  bin:
-    printj: ./bin/printj.njs
-  checksum: 1c0c66844545415e339356ad62009cdc467819817b1e0341aba428087a1414d46b84089edb4e77ef24705829f8aae6349724b9c7bd89d8690302b2de7a89b315
-  languageName: node
-  linkType: hard
-
 "printj@npm:~1.2.2":
   version: 1.2.3
   resolution: "printj@npm:1.2.3"
@@ -6656,7 +6736,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"printj@npm:~1.3.0, printj@npm:~1.3.1":
+"printj@npm:~1.3.1":
   version: 1.3.1
   resolution: "printj@npm:1.3.1"
   bin:
@@ -8452,20 +8532,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"xlsx@npm:^0.17.4":
-  version: 0.17.5
-  resolution: "xlsx@npm:0.17.5"
+"xlsx@npm:^0.18.0":
+  version: 0.18.5
+  resolution: "xlsx@npm:0.18.5"
   dependencies:
-    adler-32: ~1.2.0
-    cfb: ^1.1.4
+    adler-32: ~1.3.0
+    cfb: ~1.2.1
     codepage: ~1.15.0
-    crc-32: ~1.2.0
+    crc-32: ~1.2.1
     ssf: ~0.11.2
     wmf: ~1.0.1
     word: ~0.3.0
   bin:
     xlsx: bin/xlsx.njs
-  checksum: f2dc48671994ba13aa98c4aaa14d7cb13f75f248964f555809ec3d4069e80e99a0bcb6657273e3872af3765118aa30630d566b991a14b6193f1ad79022542e46
+  checksum: c5774d3c6abdf2db24f33a7b786e305255dac0e41a4e6bf6167c3f8517bfb5bfcb98e8207c39d5105f8304aa7416758da0400a993fb79aaf8e2ea4cfa8801f2e
   languageName: node
   linkType: hard
 
