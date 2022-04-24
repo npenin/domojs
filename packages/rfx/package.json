@@ -11,7 +11,7 @@
   "peerDependencies": {
     "@akala/pm": "^2.7.0",
     "serialport": "^9.2.8",
-    "usb": "^1.9.2"
+    "usb": "^2.0.0"
   },
   "peerDependenciesMeta": {
     "serialport": {

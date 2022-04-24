@@ -639,7 +639,7 @@ __metadata:
     "@types/serialport": 8.0.2
     "@types/usb": 2.0.5
     typescript: 4.5.5
-    usb: 2.1.0
+    usb: 2.3.1
   peerDependencies:
     serialport: ^9.2.8
     usb: ^2.0.3
@@ -666,7 +666,7 @@ __metadata:
   peerDependencies:
     "@akala/pm": ^2.7.0
     serialport: ^9.2.8
-    usb: ^1.9.2
+    usb: ^2.0.0
   peerDependenciesMeta:
     serialport:
       optional: true
@@ -2184,6 +2184,13 @@ __metadata:
     "@types/expect": ^1.20.4
     "@types/node": "*"
   checksum: 5012fb61e3a29e7deaac7e66b6d8cb73d87d15965c8a38cb69277c2beb851a9a8ec09d4a1b07a3151e143afc2e3a102ca368b9a0e08f2f29de9183c97f9c7d85
+  languageName: node
+  linkType: hard
+
+"@types/w3c-web-usb@npm:1.0.6":
+  version: 1.0.6
+  resolution: "@types/w3c-web-usb@npm:1.0.6"
+  checksum: 9f30948cb84174fa290066b08274bdfb034d38c6db0976e9a826508732fba04d81e3300bca41ea23b737f1424c51adec5ae810cdf85d5b5a158d5840914f0417
   languageName: node
   linkType: hard
 
@@ -8106,7 +8113,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"usb@npm:*, usb@npm:2.1.0":
+"usb@npm:*":
   version: 2.1.0
   resolution: "usb@npm:2.1.0"
   dependencies:
@@ -8115,6 +8122,18 @@ __metadata:
     node-gyp: latest
     node-gyp-build: ^4.3.0
   checksum: 18d1b5e6f510743199ef0d6b7909bde17d593f7872b5423ed2e531a4773d44e7cee0a23b80cc30efbbd6dedcb3deb1d56946f912bd9f3d57ad8693ed4ded358d
+  languageName: node
+  linkType: hard
+
+"usb@npm:2.3.1":
+  version: 2.3.1
+  resolution: "usb@npm:2.3.1"
+  dependencies:
+    "@types/w3c-web-usb": 1.0.6
+    node-addon-api: ^4.2.0
+    node-gyp: latest
+    node-gyp-build: ^4.3.0
+  checksum: 7bc95ef8f3d10d762bf29be7743b5130cc575be34410ad393e5b596695eff87f5de43faccf64a218ee1288a9b1a082cadb31c899521d3a5ea64d36afbef3c42b
   languageName: node
   linkType: hard
 
