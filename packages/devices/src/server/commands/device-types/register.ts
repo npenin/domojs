@@ -1,9 +1,10 @@
 import * as devices from "../../../devices";
 import { CommandWithProcessorAffinity, Container, updateCommands } from "@akala/commands";
 import { Local } from "@akala/commands/dist/processors";
+import { BinaryOperator } from "@akala/core";
 
 
-export default async function register(this: devices.DeviceTypeCollection, type: devices.DeviceType, self: Container<any>, container: Container<void>)
+export default async function register(this: devices.DeviceTypeState, type: devices.DeviceType, self: Container<any>, container: Container<void>)
 {
     if (typeof this[type.name] != 'undefined')
         throw new Error(`a device type with name ${type.name} already exists`);
@@ -24,6 +25,10 @@ export default async function register(this: devices.DeviceTypeCollection, type:
             }
         }), config: {}, inject: []
     } as CommandWithProcessorAffinity);
+
+    if (this.store)
+        for await (var device of this.store.DeviceInit.where('type', BinaryOperator.Equal, type.name))
+            container.dispatch('add', device.name, Promise.resolve(device.body));
     // self.register(new CommandProxy(container.processor, type.name + '.save'));
     // self.register(new CommandProxy(container.processor, type.name + '.exec'));
 }

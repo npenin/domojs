@@ -1,5 +1,7 @@
 import { EventEmitter } from 'events';
 import { SerializableObject } from '@akala/json-rpc-ws'
+import { DbSet, StoreDefinition } from '@akala/storage';
+import { Sidecar } from '@akala/sidecar';
 
 export interface register
 {
@@ -30,13 +32,23 @@ export interface IDevice
     type: string;
     room: string;
     category?: string;
-    classes?: string[];
+    class: DeviceClass;
     statusMethod?: string | number;
     status?(): PromiseLike<string | { state: boolean, color: string } | SerializableObject>;
     statusUnit?: string;
     commands: { [key: string]: Command } | string[];
     subdevices?: IDevice[];
     remove?(): void;
+}
+
+export enum DeviceClass
+{
+    None = -1,
+    Gateway = 0,
+    Switch = 1,
+    SingleValueSensor = 2,
+    Range = 3,
+    Discrete = 4,
 }
 
 export type CommandDescription = GenericCommand | RangeCommand | InputCommand | ToggleCommand;
@@ -92,4 +104,16 @@ export interface DeviceType
 export interface DeviceTypeCollection
 {
     [name: string]: DeviceType;
+}
+
+export interface DeviceTypeStoreDefinition extends StoreDefinition
+{
+    DeviceInit: DbSet<{ name: string, type: string, body: any }>
+}
+
+
+export interface DeviceTypeState extends Sidecar<DeviceTypeStoreDefinition>
+{
+    types: DeviceTypeCollection;
+    initializing?: boolean
 }

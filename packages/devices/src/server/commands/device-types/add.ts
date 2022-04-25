@@ -1,11 +1,9 @@
 import * as devices from "../../../devices";
 import { Container } from "@akala/commands";
-import { Store } from "../../store";
 import { deviceContainer } from '../../..';
-import { State } from "..";
 
-export default async function persist(this: State,
-    // deviceTypeContainer: Container<devices.DeviceTypeCollection>,
+export default async function persist(this: devices.DeviceTypeState,
+    deviceTypeContainer: Container<devices.DeviceTypeCollection>,
     deviceContainer: Container<devices.IDeviceCollection> & deviceContainer.container,
     type: string,
     bodyasync: Promise<any>)
@@ -27,7 +25,7 @@ export default async function persist(this: State,
         await this.store.DevicesInit.createSingle({ ...body, type });
     }
 
-    device = await (await this.sidecars['@domojs/devicetype']).dispatch(type + '.save', body, device);
+    device = await deviceTypeContainer.dispatch(type + '.save', body, device);
 
     await deviceContainer.dispatch('register', device);
 };
