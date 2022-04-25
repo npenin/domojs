@@ -45,7 +45,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             name: "power",
             type: 'iscp',
             category: 'switch',
-            classes: ['power', 'switch'],
+            class: devices.DeviceClass.Switch,
             statusMethod: 'pull',
             status: function ()
             {
@@ -63,6 +63,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             room: device.room,
             name: "mute",
             type: 'iscp',
+            class: devices.DeviceClass.Switch,
             category: 'switch',
             statusMethod: 'pull',
             status: function ()
@@ -80,6 +81,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             room: device.room,
             name: "volume",
             type: 'iscp',
+            class: devices.DeviceClass.Range,
             category: 'input',
             statusMethod: 'pull',
             status: function ()
@@ -95,6 +97,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             room: device.room,
             name: "input",
             type: 'iscp',
+            class: devices.DeviceClass.Discrete,
             category: 'values',
             statusMethod: 'pull',
             status: function ()

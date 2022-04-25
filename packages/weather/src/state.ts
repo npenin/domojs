@@ -1,8 +1,9 @@
-import Configuration from "@akala/config";
+import Configuration, { ProxyConfiguration } from "@akala/config";
+import { SerializableObject } from "@akala/json-rpc-ws";
 
 export interface State
 {
-	locations: Configuration;
+	locations: ProxyConfiguration<SerializableObject[]>;
 }
 
 export enum Weather

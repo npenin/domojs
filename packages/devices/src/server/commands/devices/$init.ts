@@ -4,18 +4,21 @@ import "../../store";
 import * as akala from '@akala/core'
 import { Container } from "@akala/commands";
 import { deviceContainer } from "../../..";
-import { Container as pmContainer, sidecar } from '@akala/pm'
+import { Container as pmContainer } from '@akala/pm'
+import app, { Sidecar } from '@akala/sidecar'
+import Configuration from '@akala/config'
+import { State } from '..';
 
-export default async function (this: { initializing: boolean }, container: Container<any> & deviceContainer.container, pm: Container<any> & pmContainer)
+export default async function (this: State, config: Configuration, container: Container<any> & deviceContainer.container, pm: Container<any> & pmContainer)
 {
+    const context = await app(akala.logger('domojs:devices', akala.LogLevels.warn), config, pm);
     container.register('pm', pm);
     var state = this;
     var mdule = akala.module('@domojs/devices');
 
-    var sidecars = sidecar();
     try
     {
-        var webc = await sidecars['@akala/server'];
+        var webc = await context.sidecars['@akala/server'];
         await webc.dispatch('remote-container', '/api/devices', require('../../../../device-commands.json'))
 
         await webc.dispatch('asset', 'main', require.resolve('../../../client'))
@@ -24,25 +27,26 @@ export default async function (this: { initializing: boolean }, container: Conta
     {
         console.warn('no web available');
     }
-    const deviceTypeContainer = await sidecars['@domojs/devicetype'];
+    const deviceTypeContainer = await context.sidecars['@domojs/devicetype'];
 
     mdule.register('deviceType', deviceTypeContainer);
 
-    mdule.readyAsync(['db', 'livedb'], async function (db: Store, livedb: LiveStore)
-    {
-        this.waitUntil((async () =>
-        {
-            var devices = await db.DevicesInit.toArray();
-            container.register('db', db);
-            container.register('livedb', livedb);
-            state.initializing = true;
+    // mdule.readyAsync(['db', 'livedb'], async function (db: Store, livedb: LiveStore)
+    // {
+    //     this.waitUntil((async () =>
+    //     {
+    //         var devices = await db.DevicesInit.toArray();
+    //         container.register('db', db);
+    //         container.register('livedb', livedb);
 
-            await akala.eachAsync(devices, async (device) =>
-            {
-                await container.dispatch('add', device.type, Promise.resolve(device));
-            });
-            state.initializing = false;
-        })());
-    })
-    mdule.start();
+    //         state.initializing = true;
+
+    //         await akala.eachAsync(devices, async (device) =>
+    //         {
+    //             await container.dispatch('add', device.type, Promise.resolve(device));
+    //         });
+    //         state.initializing = false;
+    //     })());
+    // })
+    // mdule.start();
 }

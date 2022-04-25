@@ -2,7 +2,7 @@ import * as akala from '@akala/core';
 export * from '../../metadata';
 import levenshtein from 'levenshtein';
 
-const confidenceLog = akala.log('domojs:media:confidence');
+const confidenceLog = akala.logger('domojs:media:confidence');
 
 export function confidence(name: string, names: string[])
 {
@@ -10,7 +10,7 @@ export function confidence(name: string, names: string[])
     name = name.toLowerCase().replace(/[^A-Z0-9 ]/gi, '');
     if (names)
     {
-        confidenceLog(`${name} confidence in ${names}`);
+        confidenceLog.debug(`${name} confidence in ${names}`);
         akala.each(names, function (n)
         {
             var tokens = n.replace(/ \([0-9]{4}\)$/, '').replace(/[^A-Z0-9 ]/gi, '').toLowerCase();

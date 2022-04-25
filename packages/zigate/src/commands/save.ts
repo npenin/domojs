@@ -1,11 +1,10 @@
 import { devices } from "@domojs/devices";
 import { State } from "../state";
-import * as ac from '@akala/commands'
 import { Cluster, MessageType, MessageTypes, Zigate, network, attributes } from "@domojs/zigate-parsers";
 import * as akala from '@akala/core';
-const log = akala.log('domojs:zigate');
+const log = akala.logger('domojs:zigate');
 
-export default async function save(this: State, body: any, device: devices.IDevice, container: ac.Container<any>)
+export default async function save(this: State, body: any, device: devices.IDevice)
 {
     if (!body)
         return device;
@@ -100,6 +99,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                     await this.deviceServer.dispatch('register',
                         {
                             type: 'zigate',
+                            class: devices.DeviceClass.SingleValueSensor,
                             category: this.devicesByAddress[attribute.sourceAddress].category,
                             room: this.devicesByAddress[attribute.sourceAddress].room,
                             name: this.devicesByAddress[attribute.sourceAddress].name + '.' + Cluster[attribute.clusterId],
@@ -169,11 +169,11 @@ export default async function save(this: State, body: any, device: devices.IDevi
                 }
                 // if (this.devicesByAddress[attribute.sourceAddress].registered)
                 //     await this.server.dispatch('pushStatus', { device: this.devicesByAddress[attribute.sourceAddress].name + '.' + Cluster[attribute.clusterId], state: this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] });
-                log(this.devicesByAddress[attribute.sourceAddress].attributes);
+                log.debug(this.devicesByAddress[attribute.sourceAddress].attributes);
             }
             catch (e)
             {
-                log(e);
+                log.error(e);
             }
         })
 
@@ -225,6 +225,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                 device.subdevices.push({
                     name: Cluster[cluster],
                     commands: [],
+                    class: devices.DeviceClass.SingleValueSensor,
                     room: device.room,
                     statusUnit: statusUnit,
                     category: device.category,
@@ -259,6 +260,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             device.subdevices.push({
                 name: Cluster[cluster],
                 commands: [],
+                class: devices.DeviceClass.SingleValueSensor,
                 room: device.room,
                 statusUnit: statusUnit,
                 category: device.category,

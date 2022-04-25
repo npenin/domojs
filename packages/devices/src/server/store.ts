@@ -1,7 +1,7 @@
 import * as akala from '@akala/core'
 import * as db from '@akala/storage'
 import * as devices from '../devices';
-import { PersistenceEngine, ModelDefinition, Types, Generator } from '@akala/storage';
+import { PersistenceEngine, ModelDefinition, Types, Generator, MultiStore } from '@akala/storage';
 
 export interface Store
 {
@@ -35,6 +35,8 @@ akala.module('@domojs/devices').activate(['$config.@domojs/devices.storage'], as
         engines.persistent = persistent;
 
     })());
+
+    MultiStore.create({ 'DevicesInit': engines.persistent, 'Devices': engines.volatile });
     akala.module('@domojs/devices').registerFactory('db', () =>
     {
         return db.Store.create<Store>(engines.persistent, 'DevicesInit');

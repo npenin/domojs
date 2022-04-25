@@ -11,7 +11,7 @@ portions of this file.
 '----------------------------------------------------------------------------
 */
 import { EventEmitter } from 'events';
-import { Queue, log as debug, eachAsync } from '@akala/core';
+import { Queue, logger, eachAsync } from '@akala/core';
 export * from './protocol'
 import * as os from 'os';
 import { Protocol, Message, PacketType, Type, InterfaceControl, InterfaceMessage, EventMap, Rfy, RFXDevice } from './protocol';
@@ -22,7 +22,7 @@ import { Socket } from 'net';
 import { ModeResponse } from './protocol/1.interface.response';
 
 type Modes = Pick<InterfaceControl.ModeCommand, 'msg3' | 'msg4' | 'msg5' | 'msg6'>;
-const log = debug('rfxtrx');
+const log = logger('rfxtrx');
 
 export class Rfxtrx extends EventEmitter
 {
@@ -46,23 +46,23 @@ export class Rfxtrx extends EventEmitter
     })
     private queue: Queue<Buffer> = new Queue((buffer, next) =>
     {
-        log('processing queue')
+        log.debug('processing queue')
         if (buffer == Rfxtrx.emptyBuffer)
         {
             buffer = this.chunk;
 
-            log('splitting buffer', buffer);
+            log.debug('splitting buffer', buffer);
 
             let offset = 0;
             while (buffer.length > offset + buffer[offset] + 1)
             {
                 this.queue.enqueue(buffer.slice(offset, buffer[offset] + 1));
                 offset += buffer[offset] + 1;
-                log('frame complete');
+                log.debug('frame complete');
             }
             if (buffer.length < offset + buffer[offset] + 1)
             {
-                log('incomplete frame', buffer.slice(offset));
+                log.debug('incomplete frame', buffer.slice(offset));
 
                 this.chunk = buffer.slice(offset);
                 next(true);
@@ -71,10 +71,10 @@ export class Rfxtrx extends EventEmitter
             this.chunk = undefined;
         }
 
-        log(buffer);
+        log.debug(buffer);
         var message = Protocol.read(buffer, new Cursor(), {});
         // this.sqnce = message.sequenceNumber;
-        log(message);
+        log.info(message);
         this.emit('message', message);
         next(true);
     });
@@ -86,7 +86,7 @@ export class Rfxtrx extends EventEmitter
 
         this.wire.on('error', function (err)
         {
-            log(err);
+            log.error(err);
         })
         this.wire.on('open', () =>
         {
@@ -146,7 +146,7 @@ export class Rfxtrx extends EventEmitter
         });
         await new Promise<void>(resolve => setTimeout(() => resolve(), 1000))
 
-        log(m);
+        log.info(m);
         this._modes == m.message;
 
         await new Promise<void>(resolve => setTimeout(() => resolve(), 1000))
@@ -203,11 +203,11 @@ export class Rfxtrx extends EventEmitter
     public send<T extends RFXDevice>(type: number, message?: Partial<T>)
     {
         var msg: Message<Partial<T>> = { type: type, message: message, sequenceNumber: this.sqnce++ };
-        log(msg);
+        log.info(msg);
         var buffer = Buffer.concat(parserWrite(Protocol, msg));
         return new Promise<Message<any>>((resolve, reject) =>
         {
-            log(buffer);
+            log.debug(buffer);
             if (type != Type.INTERFACE_CONTROL.Mode || (message as Partial<InterfaceControl.ModeCommand>).command != InterfaceControl.Commands.reset)
                 this.once('message', resolve);
             var cb = (err) =>

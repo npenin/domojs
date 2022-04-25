@@ -15,11 +15,11 @@
 	"author": "npenin",
 	"license": "MIT",
 	"dependencies": {
-		"@akala/core": "7.5.14",
-		"@domojs/zigate-parsers": "workspace:^"
+		"@akala/core": "8.1.1",
+		"@domojs/zigate-parsers": "workspace:*"
 	},
 	"peerDependencies": {
-		"@domojs/devices": "^1.8.5",
+		"@domojs/devices": "workspace:*",
 		"serialport": "^9.2.8"
 	},
 	"peerDependenciesMeta": {
@@ -28,7 +28,7 @@
 		}
 	},
 	"devDependencies": {
-		"@domojs/devices": "^1.8.5",
+		"@domojs/devices": "workspace:*",
 		"@types/debug": "4.1.7"
 	},
 	"gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"

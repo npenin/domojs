@@ -2,7 +2,7 @@ import serialport from 'serialport';
 import { Protocol, MessageType, Message, Cluster } from './messages/_common';
 import { EventEmitter } from 'events';
 import { Duplex } from 'stream';
-import { Queue, log as debug } from '@akala/core';
+import { Queue, logger } from '@akala/core';
 
 import * as address from './messages/address';
 import './messages/address';
@@ -64,7 +64,7 @@ export
     address, aps, attributes, bind, dataIndication, descriptors, devices, door, enablePermissionsControlJoin, gateway, group, hue, ias, identify, logs,
     managementLeave, move, network, onoff, outOfBandCommissionningData, permitjoin, scenes, status, temperature, touchlink, trigger, version
 };
-const log = debug('zigate');
+const log = logger('zigate');
 
 export namespace MessageTypes
 {
@@ -284,7 +284,7 @@ export class Zigate extends EventEmitter
         {
             buffer = this.chunk;
 
-            log('splitting buffer', buffer);
+            log.debug('splitting buffer', buffer);
 
             let offset = 0;
             for (let index = 1; index < buffer.length; index++)
@@ -296,19 +296,19 @@ export class Zigate extends EventEmitter
                     this.queue.enqueue(buffer.slice(offset, index + 1));
                     this.chunk = remaining;
                     offset = index + 1;
-                    log('frame complete');
+                    log.debug('frame complete');
                 }
             }
             if (buffer[buffer.length - 1] != 0x03)
             {
-                log('incomplete frame', buffer);
+                log.debug('incomplete frame', buffer);
 
                 this.chunk = buffer;
                 next(true);
                 return;
             }
         }
-        log('decoding buffer', buffer);
+        log.debug('decoding buffer', buffer);
 
         for (let index = 1; index < buffer.length; index++)
         {
@@ -321,7 +321,7 @@ export class Zigate extends EventEmitter
                 buffer = newBuffer;
             }
         }
-        log('decoded buffer', buffer);
+        log.debug('decoded buffer', buffer);
         this.emit('message', Protocol.read(buffer));
         next(true);
     });

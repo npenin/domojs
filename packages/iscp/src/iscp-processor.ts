@@ -1,11 +1,11 @@
 import { Container, Metadata, CommandProcessor } from "@akala/commands";
-import { log as debug, MiddlewarePromise } from "@akala/core";
+import { logger, MiddlewarePromise } from "@akala/core";
 import * as proto from '@domojs/protocol-parser'
 import { Duplex } from 'stream'
 import { EventEmitter } from 'events'
 import { parsers } from "@domojs/protocol-parser";
 
-const log = debug('domojs:iscp:processor');
+const log = logger('domojs:iscp:processor');
 
 export class TimeoutError extends Error
 {
@@ -105,14 +105,14 @@ export class ISCPProcessor extends CommandProcessor
             {
                 if (error)
                 {
-                    log(error.toString());
+                    log.error(error);
                     responded = true;
                     resolve(error);
                 }
-                log('message written');
+                log.debug('message written');
                 setTimeout(() =>
                 {
-                    log('timeout');
+                    log.warn('timeout');
                     if (!responded)
                     {
                         responded = true;

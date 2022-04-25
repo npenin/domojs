@@ -1,0 +1,42 @@
+{
+    "@domojs/devicetype": {
+        "plugins": [
+            {
+                "optional": true,
+                "sidecar": "@akala/server",
+                "command": "remote-container",
+                "parameters": [
+                    "/api/devices/types",
+                    "@domojs/devices/devicetype-commands.json"
+                ]
+            }
+        ]
+    },
+    "@domojs/devices": {
+        "store": {
+            "models": []
+        },
+        "plugins": [
+            {
+                "optional": true,
+                "sidecar": "@akala/server",
+                "command": "remote-container",
+                "parameters": [
+                    "/api/devices",
+                    "@domojs/devices/device-commands.json"
+                ]
+            },
+            {
+                "optional": true,
+                "sidecar": "@akala/server",
+                "command": "asset",
+                "parameters": [
+                    "main",
+                    "@domojs/devices/dist/client"
+                ]
+            }
+        ]
+    }
+}
+// await webc.dispatch('remote-container', '/api/devices', require('../../../../device-commands.json'))
+// await webc.dispatch('asset', 'main', require.resolve('../../../client'))

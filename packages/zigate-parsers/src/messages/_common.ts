@@ -1,6 +1,6 @@
 import { Cursor, parsers, parserWrite, uint16, uint8 } from '@domojs/protocol-parser/dist/index';
-import { log as debug } from '@akala/core';
-const log = debug('zigate');
+import { logger } from '@akala/core';
+const log = logger('zigate');
 
 export enum MessageType
 {
@@ -148,7 +148,7 @@ export const Protocol = {
     {
         var buffer = Buffer.concat(parserWrite(Message, { start: 0x01, type: type, message: message, end: 0x03, length: 2, checksum: 1 }));
         buffer.writeInt16BE(buffer.length - 8, 3);
-        log('encoding buffer', buffer);
+        log.debug('encoding buffer', buffer);
 
         var checksum = 0x00;
         checksum ^= type;
@@ -173,7 +173,7 @@ export const Protocol = {
                 buffer = newBuffer;
             }
         }
-        log('encoded buffer', buffer);
+        log.debug('encoded buffer', buffer);
         return buffer;
     }
 }

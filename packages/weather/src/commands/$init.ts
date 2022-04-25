@@ -2,6 +2,7 @@ import { State } from "../state";
 import Configuration from '@akala/config'
 import { registerDeviceType } from "@domojs/devices";
 import { sidecar } from "@akala/pm";
+import { SerializableObject } from "@akala/json-rpc-ws";
 
 var state: State = null;
 
@@ -9,7 +10,7 @@ export default async function init(this: State)
 {
     state = this;
 
-    state.locations = (await Configuration.load("./weather.json")) || new Configuration("./weather.json", []);
+    state.locations = (await Configuration.load("./weather.json")) || Configuration.new<SerializableObject[]>("./weather.json", []);
 
     await registerDeviceType({
         name: 'Weather',

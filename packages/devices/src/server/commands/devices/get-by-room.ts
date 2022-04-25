@@ -1,11 +1,12 @@
 import { LiveStore } from "../../store";
 import * as db from "@akala/storage";
+import { BinaryOperator } from "@akala/core";
 
 export default async function getByCategory(store: LiveStore, room?: string)
 {
     console.log(arguments);
     if (room)
-        return await store.Devices.where('room', db.expressions.BinaryOperator.Equal, room)
+        return await store.Devices.where('room', BinaryOperator.Equal, room)
             .select({ name: 'name', length: 'commands && commands.length + subdevices && subdevices.length' }).toArray();
     else
         return await store.Devices

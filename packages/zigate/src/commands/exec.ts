@@ -1,11 +1,11 @@
 import { MessageType, MessageTypes, status, permitjoin } from "@domojs/zigate-parsers";
 import { State } from "../state";
 import * as akala from '@akala/core';
-const log = akala.log('domojs:zigate');
+const log = akala.logger('domojs:zigate');
 
 export default function (this: State, deviceName: string, command: keyof typeof MessageType, value: any)
 {
-    log(arguments);
+    log.debug(arguments);
     switch (this.devices[deviceName].type)
     {
         case 'gateway':

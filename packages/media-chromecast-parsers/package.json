@@ -7,7 +7,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "dependencies": {
-    "@domojs/protocol-parser": "workspace:^"
+    "@domojs/protocol-parser": "workspace:*"
   },
   "repository": {
     "type": "git",
