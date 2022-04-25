@@ -1,9 +1,9 @@
-#  (2022-01-30)
+#  (2022-04-25)
 
 
 ### Bug Fixes
 
-* made devdependencies using workspace reference d2024b5
+* update dependencies to major 181380b
 
 
 
