@@ -1,45 +1,35 @@
 {
     "": {
         "inject": [
-            "$modules.@domojs/devices.deviceType",
             "$container",
-            "db",
             "param.0",
             "param.1"
         ]
     },
     "jsonrpc": {
         "inject": [
-            "$modules.@domojs/devices.deviceType",
             "$container",
-            "db",
             "param.0",
             "param.1"
         ]
     },
     "fs": {
         "inject": [
-            "$modules.@domojs/devices.deviceType",
             "$container",
-            "db",
             "param.0",
             "param.1"
         ]
     },
     "cli": {
         "inject": [
-            "$modules.@domojs/devices.deviceType",
             "$container",
-            "db",
             "param.0",
             "stdin"
         ]
     },
     "http": {
         "inject": [
-            "$modules.@domojs/devices.deviceType",
             "$container",
-            "db",
             "route.type",
             "body"
         ],

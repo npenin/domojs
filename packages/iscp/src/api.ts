@@ -1,12 +1,12 @@
 import * as net from 'net';
 import * as akala from '@akala/core';
-const log = akala.log('domojs:iscp');
+const log = akala.logger('domojs:iscp');
 
 function buildQueue(device: string)
 {
     var connection = net.createConnection({ port: 60128, allowHalfOpen: true, host: device }, function ()
     {
-        log('connected');
+        log.info('connected');
         queue.process();
     });
     var queue = new akala.Queue<{ command: string, callback: (error: Error, data?: string) => void }>((message, next) =>
@@ -30,7 +30,7 @@ function buildQueue(device: string)
                     if (!firstRReceived)
                         data = data.replace(/(?:^R+)|(?:R+$)/, '');
                     data = data.replace(/[\r\n]+/g, '');
-                    log('received:' + data);
+                    log.debug('received:' + data);
                     message.callback(null, data);
                 }
             }

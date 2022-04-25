@@ -2,8 +2,9 @@ import * as jsonrpcws from '@akala/json-rpc-ws'
 import * as server from '@akala/server'
 import { Triggers } from '@akala/commands'
 import * as ws from 'ws'
+import { logger as LoggerBuilder, LogLevels } from '@akala/core'
 
-const logger = server.logger('domojs:theme-default:pm')
+const logger = LoggerBuilder('domojs:theme-default:pm', LogLevels.info)
 
 export default function (this: server.State, router: server.HttpRouter)
 {

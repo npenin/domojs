@@ -6,7 +6,6 @@ import { sidecar } from '@akala/pm';
 
 export default async function (this: devices.DeviceTypeCollection & { initializing: boolean }, container: Container<any> & deviceType.container, pm: Container<any>)
 {
-    container.register('pm', pm);
     try
     {
         var webc = await sidecar()['@akala/server'];

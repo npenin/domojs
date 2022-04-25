@@ -6,17 +6,17 @@
     "url": "https://github.com/domojs/domojs-pioneer/issues"
   },
   "dependencies": {
-    "@domojs/devices": "workspace:^"
+    "@domojs/devices": "workspace:*"
   },
   "peerDependencies": {
     "@akala/commands": "^2.9.2",
     "@akala/pm": "^2.7.0"
   },
   "devDependencies": {
-    "@akala/commands": "^2.9.4",
-    "@akala/core": "^7.5.14",
-    "@akala/server": "^6.3.27",
-    "@types/ws": "8.2.2"
+    "@akala/commands": "^2.11.1",
+    "@akala/core": "^8.1.1",
+    "@akala/server": "^7.1.1",
+    "@types/ws": "8.5.3"
   },
   "deprecated": false,
   "description": "",

@@ -6,7 +6,7 @@ import * as redis from 'ioredis';
 import Configuration from '@akala/config';
 import { Container } from '@akala/commands'
 
-const debug = akala.log('domojs:media');
+const log = akala.logger('domojs:media');
 
 var folderMapping: { [key: string]: string } = {};
 
@@ -30,7 +30,7 @@ async function translatePath(path: string): Promise<string>
                     folderMapping[declaration[0]] = declaration[1]
                 }
             });
-            debug(folderMapping);
+            log.debug(folderMapping);
         }
         akala.each(folderMapping, function (remotePath, localPath)
         {
@@ -47,12 +47,12 @@ var interval = setInterval(function ()
 {
     if (processing)
     {
-        debug(processing);
+        log.info(processing);
         wasProcessing = processing;
     }
     else if (wasProcessing)
     {
-        debug('process finished');
+        log.info('process finished');
         wasProcessing = null;
         clearInterval(interval);
     }
@@ -258,7 +258,7 @@ export async function processSource(sources: string[], container: Container<Conf
             result = result.concat(media);
         });
     }, false);
-    debug('found ' + result.length + ' new ' + type + '(s)');
+    log.info('found ' + result.length + ' new ' + type + '(s)');
     processing = 'processing indexation';
     var trueResult: { [key: string]: Media[] } = {};
     await akala.eachAsync(result, async function (path)

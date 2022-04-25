@@ -3,8 +3,9 @@ import * as path from 'path';
 import requireIfExists from 'require-optional'
 import { State } from '../state';
 import { sidecar } from '@akala/pm'
+import { logger, LogLevels } from '@akala/core';
 
-const log = akala.log('domojs:theme-default')
+const log = logger('domojs:theme-default', LogLevels.info);
 
 
 export default async function $init(this: State, enableAllCommands: boolean)
@@ -28,7 +29,7 @@ export default async function $init(this: State, enableAllCommands: boolean)
 
     if (enableAllCommands)
     {
-        log('enabling all pm commands');
+        log.info('enabling all pm commands');
         await container.dispatch('asset', 'main', require.resolve('../../client/pm'))
         await container.dispatch('require', require.resolve('../pm'), process.cwd())
     }

@@ -1,12 +1,10 @@
 import { Metadata } from '@akala/commands';
 import CoreConfiguration from '@akala/config'
 
-export default class Configuration extends CoreConfiguration
+export default interface Configuration extends CoreConfiguration
 {
-    get libraries(): LibrariesConfiguration { return this.get<LibrariesConfiguration>('libraries'); }
-    set libraries(value: LibrariesConfiguration) { this.set('libraries', value); }
-    get scrappers(): ScrappersConfiguration { return this.get<ScrappersConfiguration>('scrappers'); }
-    set scrappers(value: ScrappersConfiguration) { this.set('scrappers', value); }
+    libraries: LibrariesConfiguration;
+    scrappers: ScrappersConfiguration;
 }
 
 export interface LibrariesConfiguration

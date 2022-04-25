@@ -1,11 +1,11 @@
 {
   "dependencies": {
-    "@akala/core": "7.5.14",
-    "@domojs/protocol-parser": "workspace:^"
+    "@akala/core": "8.1.1",
+    "@domojs/protocol-parser": "workspace:*"
   },
   "peerDependencies": {
     "serialport": "^9.2.8",
-    "usb": "^2.0.3"
+    "usb": "^2.1.2"
   },
   "peerDependenciesMeta": {
     "serialport": {
@@ -17,11 +17,11 @@
   },
   "devDependencies": {
     "@types/debug": "4.1.7",
-    "@types/node": "17.0.14",
+    "@types/node": "17.0.25",
     "@types/serialport": "8.0.2",
     "@types/usb": "2.0.5",
-    "typescript": "4.5.5",
-    "usb": "2.1.0"
+    "typescript": "4.6.3",
+    "usb": "2.3.1"
   },
   "scripts": {
     "build": "tsc -p .",

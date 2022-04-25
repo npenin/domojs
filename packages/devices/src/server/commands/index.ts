@@ -1,6 +1,9 @@
 import * as ac from '@akala/commands'
+import { Sidecar } from '@akala/sidecar';
 import * as  types from '../../devices'
+import { Store } from '../store';
 
+export type State = Sidecar<Store> & { initializing: boolean };
 
 export namespace DeviceType
 {
