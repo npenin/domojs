@@ -5,9 +5,6 @@
             "name": "$init",
             "inject": [],
             "config": {
-                "": {
-                    "inject": []
-                },
                 "fs": {
                     "path": "dist/server/commands/devices/$init.js",
                     "source": "src/server/commands/devices/$init.ts",
@@ -26,102 +23,37 @@
                         "options.deviceType",
                         "options"
                     ]
-                }
-            }
-        },
-        {
-            "name": "add",
-            "inject": [
-                "$modules.@domojs/devices.deviceType",
-                "$container",
-                "db",
-                "param.0",
-                "param.1"
-            ],
-            "config": {
+                },
                 "": {
-                    "inject": [
-                        "$modules.@domojs/devices.deviceType",
-                        "$container",
-                        "db",
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "fs": {
-                    "path": "dist/server/commands/devices/add.js",
-                    "source": "src/server/commands/devices/add.ts",
-                    "inject": [
-                        "$modules.@domojs/devices.deviceType",
-                        "$container",
-                        "db",
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "jsonrpc": {
-                    "inject": [
-                        "$modules.@domojs/devices.deviceType",
-                        "$container",
-                        "db",
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "$modules.@domojs/devices.deviceType",
-                        "$container",
-                        "db",
-                        "param.0",
-                        "stdin"
-                    ]
-                },
-                "http": {
-                    "inject": [
-                        "$modules.@domojs/devices.deviceType",
-                        "$container",
-                        "db",
-                        "route.type",
-                        "body"
-                    ],
-                    "type": "json",
-                    "method": "post",
-                    "route": "/new/:type"
+                    "inject": []
                 }
             }
         },
         {
             "name": "exec",
-            "inject": [
-                "livedb",
-                "param.0",
-                "param.1",
-                "param.2",
-                "$modules.@domojs/devices.deviceType"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "livedb",
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "$modules.@domojs/devices.deviceType"
-                    ]
-                },
                 "fs": {
-                    "path": "dist/server/commands/devices/exec.js",
-                    "source": "src/server/commands/devices/exec.ts",
                     "inject": [
                         "livedb",
                         "param.0",
                         "param.1",
                         "param.2",
                         "$modules.@domojs/devices.deviceType"
-                    ]
+                    ],
+                    "path": "dist/server/commands/devices/exec.js",
+                    "source": "src/server/commands/devices/exec.ts"
                 },
                 "jsonrpc": {
+                    "inject": [
+                        "livedb",
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "$modules.@domojs/devices.deviceType"
+                    ]
+                },
+                "": {
                     "inject": [
                         "livedb",
                         "param.0",
@@ -145,26 +77,23 @@
         },
         {
             "name": "get-by-category",
-            "inject": [
-                "livedb",
-                "param.0"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "livedb",
-                        "param.0"
-                    ]
-                },
                 "fs": {
-                    "path": "dist/server/commands/devices/get-by-category.js",
-                    "source": "src/server/commands/devices/get-by-category.ts",
                     "inject": [
                         "livedb",
                         "param.0"
-                    ]
+                    ],
+                    "path": "dist/server/commands/devices/get-by-category.js",
+                    "source": "src/server/commands/devices/get-by-category.ts"
                 },
                 "jsonrpc": {
+                    "inject": [
+                        "livedb",
+                        "param.0"
+                    ]
+                },
+                "": {
                     "inject": [
                         "livedb",
                         "param.0"
@@ -182,26 +111,23 @@
         },
         {
             "name": "get-by-name",
-            "inject": [
-                "livedb",
-                "param.0"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "livedb",
-                        "param.0"
-                    ]
-                },
                 "fs": {
-                    "path": "dist/server/commands/devices/get-by-name.js",
-                    "source": "src/server/commands/devices/get-by-name.ts",
                     "inject": [
                         "livedb",
                         "param.0"
-                    ]
+                    ],
+                    "path": "dist/server/commands/devices/get-by-name.js",
+                    "source": "src/server/commands/devices/get-by-name.ts"
                 },
                 "jsonrpc": {
+                    "inject": [
+                        "livedb",
+                        "param.0"
+                    ]
+                },
+                "": {
                     "inject": [
                         "livedb",
                         "param.0"
@@ -219,26 +145,23 @@
         },
         {
             "name": "get-by-room",
-            "inject": [
-                "livedb",
-                "param.0"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "livedb",
-                        "param.0"
-                    ]
-                },
                 "fs": {
-                    "path": "dist/server/commands/devices/get-by-room.js",
-                    "source": "src/server/commands/devices/get-by-room.ts",
                     "inject": [
                         "livedb",
                         "param.0"
-                    ]
+                    ],
+                    "path": "dist/server/commands/devices/get-by-room.js",
+                    "source": "src/server/commands/devices/get-by-room.ts"
                 },
                 "jsonrpc": {
+                    "inject": [
+                        "livedb",
+                        "param.0"
+                    ]
+                },
+                "": {
                     "inject": [
                         "livedb",
                         "param.0"
@@ -256,28 +179,23 @@
         },
         {
             "name": "register",
-            "inject": [
-                "livedb",
-                "$modules.@domojs/devices.deviceType",
-                "$container",
-                "param.0"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "livedb",
-                        "$modules.@domojs/devices.deviceType",
-                        "$container",
-                        "param.0"
-                    ]
-                },
                 "fs": {
                     "path": "dist/server/commands/devices/register.js",
                     "source": "src/server/commands/devices/register.ts",
                     "inject": [
                         "ignore",
                         "ignore",
-                        "ignore",
+                        "$container",
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "livedb",
+                        "$modules.@domojs/devices.deviceType",
+                        "$container",
                         "param.0"
                     ]
                 },

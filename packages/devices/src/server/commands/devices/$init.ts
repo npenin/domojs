@@ -8,17 +8,18 @@ import { Container as pmContainer } from '@akala/pm'
 import app, { Sidecar } from '@akala/sidecar'
 import Configuration from '@akala/config'
 import { State } from '..';
+import { CliContext } from '@akala/cli';
 
-export default async function (this: State, config: Configuration, container: Container<any> & deviceContainer.container, pm: Container<any> & pmContainer)
+export default async function (this: State, context: CliContext, config: Configuration, container: Container<any> & deviceContainer.container, pm: Container<any> & pmContainer)
 {
-    const context = await app(akala.logger('domojs:devices', akala.LogLevels.warn), config, pm);
+    const sidecar = await app(context, config, pm);
     container.register('pm', pm);
     var state = this;
     var mdule = akala.module('@domojs/devices');
 
     try
     {
-        var webc = await context.sidecars['@akala/server'];
+        var webc = await sidecar.sidecars['@akala/server'];
         await webc.dispatch('remote-container', '/api/devices', require('../../../../device-commands.json'))
 
         await webc.dispatch('asset', 'main', require.resolve('../../../client'))
@@ -27,7 +28,7 @@ export default async function (this: State, config: Configuration, container: Co
     {
         console.warn('no web available');
     }
-    const deviceTypeContainer = await context.sidecars['@domojs/devicetype'];
+    const deviceTypeContainer = await sidecar.sidecars['@domojs/devicetype'];
 
     mdule.register('deviceType', deviceTypeContainer);
 

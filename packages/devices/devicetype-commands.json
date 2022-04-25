@@ -5,26 +5,66 @@
             "name": "$init",
             "inject": [],
             "config": {
-                "": {
-                    "inject": []
-                },
                 "fs": {
                     "path": "dist/server/commands/device-types/$init.js",
                     "source": "src/server/commands/device-types/$init.ts",
                     "inject": []
                 },
                 "cli": {
-                    "options": {
-                        "normalize": [
-                            "path"
-                        ]
-                    },
+                    "inject": [
+                        "context",
+                        "$container",
+                        "pm"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "add",
+            "inject": [],
+            "config": {
+                "fs": {
                     "inject": [
                         "$container",
-                        "pm",
-                        "options.path",
-                        "options"
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/server/commands/device-types/add.js",
+                    "source": "src/server/commands/device-types/add.ts"
+                },
+                "": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1"
                     ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "stdin"
+                    ]
+                },
+                "http": {
+                    "inject": [
+                        "$container",
+                        "route.type",
+                        "body"
+                    ],
+                    "type": "json",
+                    "method": "post",
+                    "route": "/new/:type"
                 }
             }
         },
@@ -32,12 +72,12 @@
             "name": "list",
             "inject": [],
             "config": {
-                "": {
-                    "inject": []
-                },
                 "fs": {
+                    "inject": [],
                     "path": "dist/server/commands/device-types/list.js",
-                    "source": "src/server/commands/device-types/list.ts",
+                    "source": "src/server/commands/device-types/list.ts"
+                },
+                "": {
                     "inject": []
                 },
                 "http": {
@@ -49,49 +89,41 @@
         },
         {
             "name": "push-status",
-            "inject": [
-                "param.0"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                },
                 "fs": {
                     "path": "dist/server/commands/device-types/push-status.js",
                     "source": "src/server/commands/device-types/push-status.ts",
                     "inject": [
                         "param.0"
                     ]
+                },
+                "": {
+                    "inject": []
                 }
             }
         },
         {
             "name": "register",
-            "inject": [
-                "param.0",
-                "$container",
-                "connectionAsContainer"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "param.0",
-                        "$container",
-                        "connectionAsContainer"
-                    ]
-                },
                 "fs": {
-                    "path": "dist/server/commands/device-types/register.js",
-                    "source": "src/server/commands/device-types/register.ts",
                     "inject": [
                         "param.0",
                         "$container",
                         "connectionAsContainer"
-                    ]
+                    ],
+                    "path": "dist/server/commands/device-types/register.js",
+                    "source": "src/server/commands/device-types/register.ts"
                 },
                 "jsonrpc": {
+                    "inject": [
+                        "param.0",
+                        "$container",
+                        "connectionAsContainer"
+                    ]
+                },
+                "": {
                     "inject": [
                         "param.0",
                         "$container",

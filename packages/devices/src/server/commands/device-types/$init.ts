@@ -1,10 +1,15 @@
 import * as devices from "../../../devices";
 import { Container } from "@akala/commands";
 import deviceType from "../../devicetype-commands";
-import { sidecar } from '@akala/pm';
+import { sidecar, Container as pmContainer } from '@akala/pm';
+import app, { Sidecar } from "@akala/sidecar";
+import { Logger } from "@akala/core";
+import { DbSet } from "@akala/storage";
+import { $init } from "@akala/sidecar/dist/init";
+import { CliContext } from "@akala/cli";
 
 
-export default async function (this: devices.DeviceTypeCollection & { initializing: boolean }, container: Container<any> & deviceType.container, pm: Container<any>)
+export default async function (this: devices.DeviceTypeState, context: CliContext, container: Container<any> & deviceType.container, pm: pmContainer & Container<any>)
 {
     try
     {
@@ -14,7 +19,8 @@ export default async function (this: devices.DeviceTypeCollection & { initializi
     }
     catch (e)
     {
-        if (e.code !== 'INVALID_CMD')
+        if (e.code !== 'INVALID_CMD' && e.statusCode !== 404)
             throw e;
     }
+    Object.assign(this, await app<{ DeviceInit: DbSet<{ name: string, body: any }> }>(context, require.resolve('../../../../devicetype-app.json'), pm));
 }
