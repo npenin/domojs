@@ -168,17 +168,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@akala/semantic-release@npm:0.11.4":
-  version: 0.11.4
-  resolution: "@akala/semantic-release@npm:0.11.4"
+"@akala/semantic-release@npm:0.11.5":
+  version: 0.11.5
+  resolution: "@akala/semantic-release@npm:0.11.5"
   dependencies:
     "@akala/commands": ^2.11.1
     "@yarnpkg/core": ^3.2.0
     conventional-changelog-writer: ^5.0.1
+    conventional-commits-parser: ^3.2.4
     debug: ^4.3.3
     git-semver-tags: ^4.1.1
     yarn: ^1.22.17
-  checksum: 5f0ebb52483cb794f12218ae3ee736023cc8a853bd515cbc622ac0c2c2f0d09ecec350389beccbfdd0e46365ac17658ecb222cc3fbc7016dbd787c43315525ea
+  checksum: 9b5f10ecdcb8c42b3e5c71e7f3e2ef55243e72a7828db9d5690a7add22c7513449a2a5d43b792af460bca8105699ef16f0fb562cefb27e7791e55db2f0beab2b
   languageName: node
   linkType: hard
 
@@ -363,7 +364,7 @@ __metadata:
     "@akala/core": 8.1.1
     "@types/debug": 4.1.7
     "@types/mongodb": 4.0.7
-    "@types/node": 17.0.25
+    "@types/node": 17.0.26
     "@types/ws": 8.5.3
     mongodb: 4.5.0
     typescript: 4.6.3
@@ -468,7 +469,7 @@ __metadata:
   dependencies:
     "@types/debug": 4.1.7
     "@types/mocha": 9.1.1
-    "@types/node": 17.0.25
+    "@types/node": 17.0.26
     debug: ^4.3.4
     mocha: 9.2.2
     source-map-support: 0.5.21
@@ -483,7 +484,7 @@ __metadata:
     "@akala/core": 8.1.1
     "@domojs/protocol-parser": "workspace:*"
     "@types/debug": 4.1.7
-    "@types/node": 17.0.25
+    "@types/node": 17.0.26
     "@types/serialport": 8.0.2
     "@types/usb": 2.0.5
     typescript: 4.6.3
@@ -542,7 +543,7 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": ^6.1.1
     "@popperjs/core": ^2.11.5
     "@types/debug": 4.1.7
-    "@types/node": 17.0.25
+    "@types/node": 17.0.26
     "@types/request": 2.48.8
     "@types/ws": 8.5.3
     bootstrap: ^5.1.3
@@ -1924,10 +1925,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:17.0.25":
-  version: 17.0.25
-  resolution: "@types/node@npm:17.0.25"
-  checksum: 6a820bd624e69ea772f52a6cdb326484eff5829443dc981939373929ade109f58c21698b9f0a831bd6ceea799e722a75dc49c5fa7a6bc32a81e1cbdfc6507b64
+"@types/node@npm:17.0.26":
+  version: 17.0.26
+  resolution: "@types/node@npm:17.0.26"
+  checksum: 59f92f46cc76703921ddf50d34b920afe3bbf916360e46321d54507b28c0ead4c3aed57cfdc64eee7c089ed12321dc4a728aa63a1205f7c1115105467f7a2b31
   languageName: node
   linkType: hard
 
@@ -2485,6 +2486,18 @@ __metadata:
   bin:
     shell: ./lib/cli.js
   checksum: c1ec5f08a3512de538534492e895db631b4a92fdf907c605ba7c7ca60477a865ee796802b96de717fcdfa6ee820183f3d2bbd9962fe5ff302ab47b39fa93592f
+  languageName: node
+  linkType: hard
+
+"JSONStream@npm:^1.0.4":
+  version: 1.3.5
+  resolution: "JSONStream@npm:1.3.5"
+  dependencies:
+    jsonparse: ^1.2.0
+    through: ">=2.2.7 <3"
+  bin:
+    JSONStream: ./bin.js
+  checksum: 2605fa124260c61bad38bb65eba30d2f72216a78e94d0ab19b11b4e0327d572b8d530c0c9cc3b0764f727ad26d39e00bf7ebad57781ca6368394d73169c59e46
   languageName: node
   linkType: hard
 
@@ -3418,6 +3431,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"conventional-commits-parser@npm:^3.2.4":
+  version: 3.2.4
+  resolution: "conventional-commits-parser@npm:3.2.4"
+  dependencies:
+    JSONStream: ^1.0.4
+    is-text-path: ^1.0.1
+    lodash: ^4.17.15
+    meow: ^8.0.0
+    split2: ^3.0.0
+    through2: ^4.0.0
+  bin:
+    conventional-commits-parser: cli.js
+  checksum: 1627ff203bc9586d89e47a7fe63acecf339aba74903b9114e23d28094f79d4e2d6389bf146ae561461dcba8fc42e7bc228165d2b173f15756c43f1d32bc50bfd
+  languageName: node
+  linkType: hard
+
 "cookie-signature@npm:1.0.6":
   version: 1.0.6
   resolution: "cookie-signature@npm:1.0.6"
@@ -3761,7 +3790,7 @@ __metadata:
     "@akala/automate": 1.0.14
     "@akala/automate-yamlloader": 1.0.14
     "@akala/commands": 2.11.1
-    "@akala/semantic-release": 0.11.4
+    "@akala/semantic-release": 0.11.5
     typescript: 4.6.3
   languageName: unknown
   linkType: soft
@@ -5060,6 +5089,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-text-path@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "is-text-path@npm:1.0.1"
+  dependencies:
+    text-extensions: ^1.0.0
+  checksum: fb5d78752c22b3f73a7c9540768f765ffcfa38c9e421e2b9af869565307fa1ae5e3d3a2ba016a43549742856846566d327da406e94a5846ec838a288b1704fd2
+  languageName: node
+  linkType: hard
+
 "is-unicode-supported@npm:^0.1.0":
   version: 0.1.0
   resolution: "is-unicode-supported@npm:0.1.0"
@@ -5207,6 +5245,13 @@ __metadata:
   bin:
     json5: lib/cli.js
   checksum: 74b8a23b102a6f2bf2d224797ae553a75488b5adbaee9c9b6e5ab8b510a2fc6e38f876d4c77dea672d4014a44b2399e15f2051ac2b37b87f74c0c7602003543b
+  languageName: node
+  linkType: hard
+
+"jsonparse@npm:^1.2.0":
+  version: 1.3.1
+  resolution: "jsonparse@npm:1.3.1"
+  checksum: 6514a7be4674ebf407afca0eda3ba284b69b07f9958a8d3113ef1005f7ec610860c312be067e450c569aab8b89635e332cee3696789c750692bb60daba627f4d
   languageName: node
   linkType: hard
 
@@ -6813,7 +6858,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"readable-stream@npm:3, readable-stream@npm:^3.1.1, readable-stream@npm:^3.6.0":
+"readable-stream@npm:3, readable-stream@npm:^3.0.0, readable-stream@npm:^3.1.1, readable-stream@npm:^3.6.0":
   version: 3.6.0
   resolution: "readable-stream@npm:3.6.0"
   dependencies:
@@ -7542,6 +7587,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"split2@npm:^3.0.0":
+  version: 3.2.2
+  resolution: "split2@npm:3.2.2"
+  dependencies:
+    readable-stream: ^3.0.0
+  checksum: 8127ddbedd0faf31f232c0e9192fede469913aa8982aa380752e0463b2e31c2359ef6962eb2d24c125bac59eeec76873678d723b1c7ff696216a1cd071e3994a
+  languageName: node
+  linkType: hard
+
 "split2@npm:^4.0.0":
   version: 4.1.0
   resolution: "split2@npm:4.1.0"
@@ -7815,6 +7869,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"text-extensions@npm:^1.0.0":
+  version: 1.9.0
+  resolution: "text-extensions@npm:1.9.0"
+  checksum: 56a9962c1b62d39b2bcb369b7558ca85c1b55e554b38dfd725edcc0a1babe5815782a60c17ff6b839093b163dfebb92b804208aaaea616ec7571c8059ae0cf44
+  languageName: node
+  linkType: hard
+
 "text-table@npm:^0.2.0":
   version: 0.2.0
   resolution: "text-table@npm:0.2.0"
@@ -7840,7 +7901,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"through@npm:2":
+"through@npm:2, through@npm:>=2.2.7 <3":
   version: 2.3.8
   resolution: "through@npm:2.3.8"
   checksum: a38c3e059853c494af95d50c072b83f8b676a9ba2818dcc5b108ef252230735c54e0185437618596c790bbba8fcdaef5b290405981ffa09dce67b1f1bf190cbd
