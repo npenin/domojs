@@ -11,7 +11,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"@akala/core": "7.5.12",
-		"@akala/server": "6.3.14"
+		"@akala/server": "6.3.27"
 	},
 	"devDependencies": {
 		"@domojs/devices": "workspace:*",
