@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
+      - run: apt install libudev-dev
       - run: yarn
       - run: yarn tsc -b packages
       - name: publish updates
