@@ -1,4 +1,25 @@
-#  (2022-01-30)
+#  (2022-04-25)
+
+
+### Bug Fixes
+
+* update dependencies to major 181380b
+
+
+### Build System
+
+* move to yarn v3 80ad402
+
+
+### chore
+
+* update dependencies 956f9e3
+
+
+### BREAKING CHANGES
+
+* move zigate to @domojs/zigate-parsers
+* move from rfxtrx to rfx-parsers
 
 
 
