@@ -23,7 +23,7 @@ jobs:
       - run: yarn
       - run: yarn tsc -b packages
       - name: publish updates
-        run: yarn akala-automate-runner --loader @akala/automate-yamlloader/ --file @akala/semantic-release/publish.yml --verbose=info
+        run: yarn akala-automate-runner --loader @akala/automate-yamlloader/ --file @akala/semantic-release/publish.yml --verbose=silly
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
