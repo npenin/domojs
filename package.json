@@ -11,7 +11,7 @@
     "@akala/automate": "1.0.15",
     "@akala/automate-yamlloader": "1.0.15",
     "@akala/commands": "2.11.2",
-    "@akala/semantic-release": "0.11.6",
+    "@akala/semantic-release": "0.11.7",
     "typescript": "4.6.3"
   },
   "scripts": {
