@@ -350,7 +350,7 @@ __metadata:
     "@types/uuid": 8.3.4
     "@types/webpack-env": 1.16.4
     "@types/ws": 8.5.3
-    sass: 1.50.1
+    sass: 1.51.0
     sass-loader: 12.6.0
     snyk: 1.912.0
     typescript: 4.6.3
@@ -7304,7 +7304,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:1.50.1, sass@npm:^1.50.1":
+"sass@npm:1.51.0":
+  version: 1.51.0
+  resolution: "sass@npm:1.51.0"
+  dependencies:
+    chokidar: ">=3.0.0 <4.0.0"
+    immutable: ^4.0.0
+    source-map-js: ">=0.6.2 <2.0.0"
+  bin:
+    sass: sass.js
+  checksum: d674fd87be863961d5e5233a148e381a72b06ca1749ffd95a08be2c3f4aa8fc77e3e21840347a84d7d4542cbf97cd6f9bfae19ecb1f5eefa6c207a3d8f923dbc
+  languageName: node
+  linkType: hard
+
+"sass@npm:^1.50.1":
   version: 1.50.1
   resolution: "sass@npm:1.50.1"
   dependencies:
