@@ -3,7 +3,7 @@
   "dependencies": {
     "@akala/client": "5.2.26",
     "@akala/commands": "2.11.3",
-    "@akala/core": "8.1.2",
+    "@akala/core": "8.2.0",
     "@akala/json-rpc-ws": "^9.4.1",
     "@akala/pm": "^3.1.3",
     "@akala/server": "7.1.3",

@@ -14,7 +14,7 @@
 	},
 	"dependencies": {
 		"@akala/commands": "^2.11.3",
-		"@akala/core": "8.1.2",
+		"@akala/core": "8.2.0",
 		"@domojs/protocol-parser": "workspace:*"
 	},
 	"devDependencies": {
