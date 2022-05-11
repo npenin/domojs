@@ -3,21 +3,24 @@
         "inject": [
             "param.0",
             "$container",
-            "connectionAsContainer"
+            "connectionAsContainer",
+            "connection"
         ]
     },
     "": {
         "inject": [
             "param.0",
             "$container",
-            "connectionAsContainer"
+            "connectionAsContainer",
+            "connection"
         ]
     },
     "fs": {
         "inject": [
             "param.0",
             "$container",
-            "connectionAsContainer"
+            "connectionAsContainer",
+            "connection"
         ]
     }
 }

@@ -111,7 +111,8 @@
                     "inject": [
                         "param.0",
                         "$container",
-                        "connectionAsContainer"
+                        "connectionAsContainer",
+                        "connection"
                     ],
                     "path": "dist/server/commands/device-types/register.js",
                     "source": "src/server/commands/device-types/register.ts"
@@ -120,14 +121,16 @@
                     "inject": [
                         "param.0",
                         "$container",
-                        "connectionAsContainer"
+                        "connectionAsContainer",
+                        "connection"
                     ]
                 },
                 "": {
                     "inject": [
                         "param.0",
                         "$container",
-                        "connectionAsContainer"
+                        "connectionAsContainer",
+                        "connection"
                     ]
                 }
             }

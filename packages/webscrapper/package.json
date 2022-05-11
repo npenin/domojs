@@ -1,6 +1,6 @@
 {
-	"name": "@domojs/weather",
-	"version": "0.5.5",
+	"name": "@domojs/webscrapper",
+	"version": "0.0.0",
 	"commands": "./commands.json",
 	"repository": {
 		"type": "git",

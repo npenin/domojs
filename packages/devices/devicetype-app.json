@@ -7,7 +7,7 @@
         },
         "models": {
             "DeviceInit": {
-                "fields": {
+                "members": {
                     "name": {
                         "isKey": true,
                         "type": {
