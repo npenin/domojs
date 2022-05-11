@@ -3,45 +3,27 @@
     "commands": [
         {
             "name": "$init",
-            "inject": [
-                "container",
-                "options.path"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "container",
-                        "options.path"
-                    ]
-                },
                 "fs": {
                     "path": "dist/server/commands/$init.js",
                     "source": "src/server/commands/$init.ts",
-                    "inject": [
-                        "container",
-                        "options.path"
-                    ]
+                    "inject": []
                 },
                 "cli": {
+                    "inject": [
+                        "$container"
+                    ]
+                },
+                "": {
                     "inject": []
                 }
             }
         },
         {
             "name": "exec",
-            "inject": [
-                "param.0",
-                "param.1",
-                "param.2"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
                 "fs": {
                     "path": "dist/server/commands/exec.js",
                     "source": "src/server/commands/exec.ts",
@@ -50,28 +32,28 @@
                         "param.1",
                         "param.2"
                     ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "cli": {
+                    "usage": "exec <device> <command> [value]",
+                    "inject": [
+                        "options.device",
+                        "options.command",
+                        "param.0"
+                    ]
                 }
             }
         },
         {
             "name": "rfy",
-            "inject": [
-                "param.0",
-                "param.1",
-                "param.2",
-                "param.3",
-                "param.4"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3",
-                        "param.4"
-                    ]
-                },
                 "fs": {
                     "path": "dist/server/commands/rfy.js",
                     "source": "src/server/commands/rfy.ts",
@@ -84,6 +66,15 @@
                     ]
                 },
                 "jsonrpc": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4"
+                    ]
+                },
+                "": {
                     "inject": [
                         "param.0",
                         "param.1",
@@ -105,27 +96,16 @@
         },
         {
             "name": "save",
-            "inject": [
-                "param.0",
-                "param.1",
-                "connectionAsContainer"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "connectionAsContainer"
-                    ]
-                },
                 "fs": {
-                    "path": "dist/server/commands/save.js",
-                    "source": "src/server/commands/save.ts",
                     "inject": [
                         "param.0",
                         "param.1",
                         "connectionAsContainer"
-                    ]
+                    ],
+                    "path": "dist/server/commands/save.js",
+                    "source": "src/server/commands/save.ts"
                 },
                 "jsonrpc": {
                     "inject": [
@@ -133,6 +113,9 @@
                         "param.1",
                         "connectionAsContainer"
                     ]
+                },
+                "": {
+                    "inject": []
                 }
             }
         }

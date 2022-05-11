@@ -5,12 +5,13 @@ import * as path from 'path'
 import * as fs from 'fs/promises';
 import { registerDeviceType } from '@domojs/devices';
 import { usb as usbType } from 'usb'
+import { Container } from "@akala/commands";
 
 var state: State = null;
 var setGateway: (gw: Rfxtrx) => void = null;
 const logger = akala.logger('@domojs/rfx');
 
-export default async function init(this: State)
+export default async function init(this: State, container: Container<void>)
 {
     state = this;
     state.devices = {};
@@ -25,19 +26,20 @@ export default async function init(this: State)
         return gw;
     };
 
-    var p = fs.readFile(path.resolve(__dirname, '../../../views/new-RFXCOM.html'), 'utf-8').then(newDeviceTemplate =>
-        registerDeviceType({
+    var p1 = fs.readFile(path.resolve(__dirname, '../../../views/new-RFXCOM.html'), 'utf-8').then(newDeviceTemplate =>
+        registerDeviceType(container, {
             name: 'RFXCOM',
             view: newDeviceTemplate,
             commandMode: 'static'
         }));
 
-    var p = fs.readFile(path.resolve(__dirname, '../../../views/new-RFY.html'), 'utf-8').then(newDeviceTemplate =>
-        registerDeviceType({
-            name: 'RFY',
-            view: newDeviceTemplate,
-            commandMode: 'static'
-        }));
+    var p2 = Promise.resolve();
+    // var p2 = fs.readFile(path.resolve(__dirname, '../../../views/new-RFY.html'), 'utf-8').then(newDeviceTemplate =>
+    //     registerDeviceType({
+    //         name: 'RFY',
+    //         view: newDeviceTemplate,
+    //         commandMode: 'static'
+    //     }));
 
     try
     {
@@ -54,7 +56,7 @@ export default async function init(this: State)
         console.error(e);
     }
 
-    return p;
+    return Promise.all([p1, p2]);
 }
 
 

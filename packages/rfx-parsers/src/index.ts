@@ -80,7 +80,7 @@ export class Rfxtrx extends EventEmitter
     });
     private _modes: Modes;
     public get modes() { return Object.assign({}, this._modes); }
-    public constructor(private wire: Socket | Duplex & { close(cb: (err?: any) => void), drain?(cb: (err?: any) => void), flush(cb: (err?: any) => void) })
+    public constructor(private wire: Socket | Duplex & { close(cb: (err?: any) => void), drain?(cb: (err?: any) => void), flush(cb: (err?: any) => void) }, isSocketAlreadyOpen?: boolean)
     {
         super();
 
@@ -113,7 +113,9 @@ export class Rfxtrx extends EventEmitter
 
             this.emit(PacketType[(message.type & 0xff00) >> 8] as Exclude<keyof PacketType, number>, message.message);
             this.emit(Type[PacketType[(message.type & 0xff00) >> 8]][message.type], message.message);
-        })
+        });
+        if (isSocketAlreadyOpen)
+            this.isOpen = true;
     }
 
     async setModes(modes: Modes)

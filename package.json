@@ -8,11 +8,11 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@akala/automate": "1.0.17",
-    "@akala/automate-yamlloader": "1.0.17",
-    "@akala/commands": "2.11.3",
-    "@akala/semantic-release": "0.11.8",
-    "typescript": "4.6.3"
+    "@akala/automate": "^1.0.55",
+    "@akala/automate-yamlloader": "^1.0.55",
+    "@akala/commands": "^3.4.0",
+    "@akala/semantic-release": "^0.12.9",
+    "typescript": "4.6.4"
   },
   "scripts": {
     "publish-all": "yarn akala-automate-runner --loader @akala/automate-yamlloader/ --file @akala/semantic-release/publish.yml --verbose=silly",

@@ -1,6 +1,8 @@
 {
     "cli": {
-        "inject": []
+        "inject": [
+            "$container"
+        ]
     },
     "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json"
 }

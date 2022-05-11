@@ -23,7 +23,7 @@ export default async function register(db: LiveStore, deviceTypeContainer: Conta
             if (!~subDeviceIndex)
                 mainDevice.subdevices.push(device);
             else
-                mainDevice.subdevices[subDeviceIndex] = akala.extend(mainDevice.subdevices[subDeviceIndex], device);
+                mainDevice.subdevices[subDeviceIndex] = Object.assign(mainDevice.subdevices[subDeviceIndex], device);
         }
     }
 
@@ -75,7 +75,7 @@ export default async function register(db: LiveStore, deviceTypeContainer: Conta
                     };
                 else
                 {
-                    commands[name] = akala.extend(command, {
+                    commands[name] = Object.assign(command, {
                         run: function (value)
                         {
                             switch (command.type)
@@ -104,7 +104,7 @@ export default async function register(db: LiveStore, deviceTypeContainer: Conta
     {
         await akala.eachAsync(device.subdevices, (item: devices.Device) =>
         {
-            return register(db, deviceTypeContainer, deviceContainer, akala.extend(item, { name: device.name + '.' + item.name, type: item.type || device.type }));
+            return register(db, deviceTypeContainer, deviceContainer, Object.assign(item, { name: device.name + '.' + item.name, type: item.type || device.type }));
         }, false);
     }
 }

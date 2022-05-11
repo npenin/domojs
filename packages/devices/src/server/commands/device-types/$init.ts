@@ -13,14 +13,15 @@ export default async function (this: devices.DeviceTypeState, context: CliContex
 {
     try
     {
-        var webc = await sidecar()['@akala/server'];
+        var webc = await sidecar({ container })['@akala/server'];
 
         await webc.dispatch('remote-container', '/api/devices/types', require('../../../../devicetype-commands.json'))
     }
     catch (e)
     {
-        if (e.code !== 'INVALID_CMD' && e.statusCode !== 404)
+        if (e && e.code !== 'INVALID_CMD' && e.statusCode !== 404)
             throw e;
     }
+    this.initializing = [];
     Object.assign(this, await app<{ DeviceInit: DbSet<{ name: string, body: any }> }>(context, require.resolve('../../../../devicetype-app.json'), pm));
 }

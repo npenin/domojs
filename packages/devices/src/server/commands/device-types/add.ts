@@ -3,12 +3,14 @@ import { Container } from "@akala/commands";
 import { deviceContainer } from '../../..';
 
 export default async function persist(this: devices.DeviceTypeState,
-    deviceTypeContainer: Container<devices.DeviceTypeCollection>,
-    deviceContainer: Container<devices.IDeviceCollection> & deviceContainer.container,
+    self: Container<devices.DeviceTypeCollection>,
     type: string,
-    bodyasync: Promise<any>)
+    bodyasync: Promise<any> | string)
 {
-    var body = await bodyasync;
+    if (typeof bodyasync == 'string')
+        var body = JSON.parse(bodyasync);
+    else
+        var body = await bodyasync;
 
     console.log(arguments);
 
@@ -20,12 +22,14 @@ export default async function persist(this: devices.DeviceTypeState,
         commands: null
     };
 
-    if (body && !this.initializing)
+    if (body && this.initializing.indexOf(type) == -1)
     {
-        await this.store.DevicesInit.createSingle({ ...body, type });
+        await this.store.DeviceInit.createSingle({ ...body, type });
     }
 
-    device = await deviceTypeContainer.dispatch(type + '.save', body, device);
+    device = await self.dispatch(type + '.save', body, device);
 
-    await deviceContainer.dispatch('register', device);
+    await this.pubsub?.publish('/device/new', device);
+    await this.pubsub?.publish('/device/' + type, device);
+
 };

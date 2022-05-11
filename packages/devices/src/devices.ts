@@ -49,6 +49,7 @@ export enum DeviceClass
     SingleValueSensor = 2,
     Range = 3,
     Discrete = 4,
+    Shutter = 5,
 }
 
 export type CommandDescription = GenericCommand | RangeCommand | InputCommand | ToggleCommand;
@@ -115,5 +116,5 @@ export interface DeviceTypeStoreDefinition extends StoreDefinition
 export interface DeviceTypeState extends Sidecar<DeviceTypeStoreDefinition>
 {
     types: DeviceTypeCollection;
-    initializing?: boolean
+    initializing?: string[]
 }
