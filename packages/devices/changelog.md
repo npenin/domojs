@@ -1,19 +1,9 @@
-#  (2022-04-25)
+#  (2022-05-12)
 
 
 ### Bug Fixes
 
-* update dependencies to major 181380b
-
-
-### Features
-
-* move device management to devicetype 948145c
-
-
-### BREAKING CHANGES
-
-* move device management to devicetype
+* update dependencies and fix devices communications bb308f5
 
 
 
