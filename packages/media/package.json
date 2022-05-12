@@ -1,6 +1,6 @@
 {
   "name": "@domojs/media",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "",
   "main": "dist/server/index.js",
   "types": "dist/server/index.d.ts",
