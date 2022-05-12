@@ -1,9 +1,9 @@
-#  (2022-04-25)
+#  (2022-05-12)
 
 
 ### Bug Fixes
 
-* update dependencies to major 181380b
+* update dependencies and fix devices communications bb308f5
 
 
 
