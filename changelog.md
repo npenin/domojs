@@ -1,12 +1,14 @@
-#  (2022-05-12)
+#  (2022-05-13)
 
 
 ### Bug Fixes
 
 * made devdependencies using workspace reference d2024b5
+* make webscrapper private 26b5752
 * update dependencies and checkout depth 35d588c
 * update dependencies and fix devices communications bb308f5
 * update dependencies to major 181380b
+* update lock file e390acd
 * yarn state 71163e0
 
 
