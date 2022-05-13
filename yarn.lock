@@ -166,9 +166,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@akala/semantic-release@npm:^0.12.10":
-  version: 0.12.10
-  resolution: "@akala/semantic-release@npm:0.12.10"
+"@akala/semantic-release@npm:^0.12.11":
+  version: 0.12.11
+  resolution: "@akala/semantic-release@npm:0.12.11"
   dependencies:
     "@akala/commands": ^3.4.1
     "@yarnpkg/core": ^3.2.0
@@ -179,7 +179,7 @@ __metadata:
     debug: ^4.3.4
     git-semver-tags: ^4.1.1
     yarn: ^1.22.18
-  checksum: 9978ccd85f284da381cdbbfdb8ac5342f2950332986fd8449a29aaa437f414ee8e8bfc5acc9ce6dde764af9f661010228f8d29dd4825f3c780a1e65cc61dc17f
+  checksum: 8dcc22277d9b261b4350718d771d47b665eca14cf48a64111ffaea226443a8128e7068796f042eb324ca92396c14d18637d77f5735fde64fa1d2ee42cb99cc95
   languageName: node
   linkType: hard
 
@@ -350,7 +350,7 @@ __metadata:
     "@types/ws": 8.5.3
     sass: 1.51.0
     sass-loader: 12.6.0
-    snyk: 1.927.0
+    snyk: 1.928.0
     typescript: 4.6.4
     uuid: 8.3.2
     ws: 8.6.0
@@ -364,7 +364,7 @@ __metadata:
     "@akala/core": ^9.0.6
     "@types/debug": 4.1.7
     "@types/mongodb": 4.0.7
-    "@types/node": 17.0.32
+    "@types/node": 17.0.33
     "@types/ws": 8.5.3
     mongodb: 4.6.0
     typescript: 4.6.4
@@ -469,7 +469,7 @@ __metadata:
   dependencies:
     "@types/debug": 4.1.7
     "@types/mocha": 9.1.1
-    "@types/node": 17.0.32
+    "@types/node": 17.0.33
     debug: ^4.3.4
     mocha: 10.0.0
     source-map-support: 0.5.21
@@ -484,7 +484,7 @@ __metadata:
     "@akala/core": ^9.0.6
     "@domojs/protocol-parser": "workspace:*"
     "@types/debug": 4.1.7
-    "@types/node": 17.0.32
+    "@types/node": 17.0.33
     "@types/serialport": 8.0.2
     "@types/usb": 2.0.5
     typescript: 4.6.4
@@ -543,13 +543,13 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": ^6.1.1
     "@popperjs/core": ^2.11.5
     "@types/debug": 4.1.7
-    "@types/node": 17.0.32
+    "@types/node": 17.0.33
     "@types/request": 2.48.8
     "@types/ws": 8.5.3
     bootstrap: ^5.1.3
     require-optional: ^0.4.0
     sass-loader: ^12.6.0
-    snyk: ^1.927.0
+    snyk: ^1.928.0
     typescript: 4.6.4
     webpack: 5.72.1
     webpack-cli: 4.9.2
@@ -1944,10 +1944,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:17.0.32":
-  version: 17.0.32
-  resolution: "@types/node@npm:17.0.32"
-  checksum: afb05704b42032566b3da8b2d80a68883cd3b888472d1b8b4dd6c84f8fad371454f083d4e28bd30c10589187296119d92aba255638b30067afe062b5922388a5
+"@types/node@npm:17.0.33":
+  version: 17.0.33
+  resolution: "@types/node@npm:17.0.33"
+  checksum: 6620652cc89ce125e1162e060ec4608c25b3635185e3e5dcaae4ed09e4770dc8bf168ba48bcd7059a1a56087a05000d7ed562e81aea7b6a512e2b13d4409c6b6
   languageName: node
   linkType: hard
 
@@ -3894,7 +3894,7 @@ __metadata:
     "@akala/automate": ^1.0.57
     "@akala/automate-yamlloader": ^1.0.57
     "@akala/commands": ^3.4.1
-    "@akala/semantic-release": ^0.12.10
+    "@akala/semantic-release": ^0.12.11
     typescript: 4.6.4
   languageName: unknown
   linkType: soft
@@ -7554,12 +7554,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"snyk@npm:1.927.0, snyk@npm:^1.927.0":
-  version: 1.927.0
-  resolution: "snyk@npm:1.927.0"
+"snyk@npm:1.928.0, snyk@npm:^1.928.0":
+  version: 1.928.0
+  resolution: "snyk@npm:1.928.0"
   bin:
     snyk: bin/snyk
-  checksum: 69e4476dff2734ce091659872fda5c36ab1841a082992bd4322df9ef5947fe99facbc6debd2196440b0a4897c15b4f036855c3074b93d36d8a360ccf6cdccf4f
+  checksum: 92a659aa936f10a13c879ee7514606b6f28de1f8189c79c6df838feb709045d3f5f39e891c6c0cc8fbb8519f2ea841a89ba7da93bde5227996466f787df3bd78
   languageName: node
   linkType: hard
 
