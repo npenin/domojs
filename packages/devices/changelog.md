@@ -1,9 +1,9 @@
-#  (2022-05-12)
+#  (2022-05-13)
 
 
 ### Bug Fixes
 
-* update dependencies and fix devices communications bb308f5
+* update lock file e390acd
 
 
 
