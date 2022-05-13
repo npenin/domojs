@@ -166,9 +166,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@akala/semantic-release@npm:^0.12.11":
-  version: 0.12.11
-  resolution: "@akala/semantic-release@npm:0.12.11"
+"@akala/semantic-release@npm:^0.12.12":
+  version: 0.12.12
+  resolution: "@akala/semantic-release@npm:0.12.12"
   dependencies:
     "@akala/commands": ^3.4.1
     "@yarnpkg/core": ^3.2.0
@@ -179,7 +179,7 @@ __metadata:
     debug: ^4.3.4
     git-semver-tags: ^4.1.1
     yarn: ^1.22.18
-  checksum: 8dcc22277d9b261b4350718d771d47b665eca14cf48a64111ffaea226443a8128e7068796f042eb324ca92396c14d18637d77f5735fde64fa1d2ee42cb99cc95
+  checksum: 5584e40d2bcd298f97cab4c120dd65838433dfc3d9864b9012474798000f48d3f16673822a48f7fb9e96e79c6905cdcea8827d5d13388f029c6453942e7c4b1b
   languageName: node
   linkType: hard
 
@@ -351,7 +351,7 @@ __metadata:
     "@types/ws": 8.5.3
     sass: 1.51.0
     sass-loader: 12.6.0
-    snyk: ^1.928.0
+    snyk: ^1.931.0
     typescript: 4.6.4
     uuid: 8.3.2
     ws: 8.6.0
@@ -550,7 +550,7 @@ __metadata:
     bootstrap: ^5.1.3
     require-optional: ^0.4.0
     sass-loader: ^12.6.0
-    snyk: ^1.928.0
+    snyk: ^1.931.0
     typescript: 4.6.4
     webpack: 5.72.1
     webpack-cli: 4.9.2
@@ -3895,7 +3895,7 @@ __metadata:
     "@akala/automate": ^1.0.57
     "@akala/automate-yamlloader": ^1.0.57
     "@akala/commands": ^3.4.1
-    "@akala/semantic-release": ^0.12.11
+    "@akala/semantic-release": ^0.12.12
     typescript: 4.6.4
   languageName: unknown
   linkType: soft
@@ -7564,12 +7564,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"snyk@npm:^1.928.0":
-  version: 1.928.0
-  resolution: "snyk@npm:1.928.0"
+"snyk@npm:^1.931.0":
+  version: 1.931.0
+  resolution: "snyk@npm:1.931.0"
   bin:
     snyk: bin/snyk
-  checksum: 92a659aa936f10a13c879ee7514606b6f28de1f8189c79c6df838feb709045d3f5f39e891c6c0cc8fbb8519f2ea841a89ba7da93bde5227996466f787df3bd78
+  checksum: 5f9e09bd64789a1f9dde075a1e3dd4adbe712698b98a361410c2993ec0222d601161da518842b8c8e512e856f656870112c05c0c2fa3799cc26ab44e4fab8e0d
   languageName: node
   linkType: hard
 
