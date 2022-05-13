@@ -2,6 +2,7 @@
 	"name": "@domojs/webscrapper",
 	"version": "0.0.1",
 	"commands": "./commands.json",
+	"private": true,
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/npenin/domojs-weather.git"
