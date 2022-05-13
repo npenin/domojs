@@ -3,6 +3,7 @@
 
 ### Bug Fixes
 
+* add missing dependency 3eb49a6
 * made devdependencies using workspace reference d2024b5
 * make webscrapper private 26b5752
 * update dependencies and checkout depth 35d588c
