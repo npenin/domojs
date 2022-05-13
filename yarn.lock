@@ -570,7 +570,7 @@ __metadata:
     "@domojs/devices": "workspace:*"
   peerDependencies:
     "@akala/pm": ^3.0.2
-    "@akala/server": ^7.0.2
+    "@akala/server": ^8.0.0
     "@domojs/devices": "workspace:*"
   languageName: unknown
   linkType: soft
@@ -589,7 +589,7 @@ __metadata:
     "@domojs/devices": "workspace:*"
   peerDependencies:
     "@akala/pm": ^3.0.2
-    "@akala/server": ^7.0.2
+    "@akala/server": ^8.0.0
     "@domojs/devices": "workspace:*"
   languageName: unknown
   linkType: soft
