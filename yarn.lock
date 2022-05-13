@@ -350,7 +350,7 @@ __metadata:
     "@types/ws": 8.5.3
     sass: 1.51.0
     sass-loader: 12.6.0
-    snyk: 1.928.0
+    snyk: ^1.928.0
     typescript: 4.6.4
     uuid: 8.3.2
     ws: 8.6.0
@@ -7554,21 +7554,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"snyk@npm:1.928.0, snyk@npm:^1.928.0":
-  version: 1.928.0
-  resolution: "snyk@npm:1.928.0"
-  bin:
-    snyk: bin/snyk
-  checksum: 92a659aa936f10a13c879ee7514606b6f28de1f8189c79c6df838feb709045d3f5f39e891c6c0cc8fbb8519f2ea841a89ba7da93bde5227996466f787df3bd78
-  languageName: node
-  linkType: hard
-
 "snyk@npm:^1.912.0":
   version: 1.925.0
   resolution: "snyk@npm:1.925.0"
   bin:
     snyk: bin/snyk
   checksum: 7eb12b1de38704307443f494d2f9f511f81ca4864fb7ce5c4cdde7a8f5cf8065bc34893ae3c632ae6b9b73b44ba574fbd17e609d5bb639c07d726d0346310c63
+  languageName: node
+  linkType: hard
+
+"snyk@npm:^1.928.0":
+  version: 1.928.0
+  resolution: "snyk@npm:1.928.0"
+  bin:
+    snyk: bin/snyk
+  checksum: 92a659aa936f10a13c879ee7514606b6f28de1f8189c79c6df838feb709045d3f5f39e891c6c0cc8fbb8519f2ea841a89ba7da93bde5227996466f787df3bd78
   languageName: node
   linkType: hard
 
