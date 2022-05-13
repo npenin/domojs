@@ -38,6 +38,6 @@
     "build": "npm run build:js"
   },
   "typings": "dist/index.d.ts",
-  "version": "1.4.13",
+  "version": "1.4.14",
   "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }
