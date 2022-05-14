@@ -166,9 +166,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@akala/semantic-release@npm:^0.12.14":
-  version: 0.12.14
-  resolution: "@akala/semantic-release@npm:0.12.14"
+"@akala/semantic-release@npm:^0.12.15":
+  version: 0.12.15
+  resolution: "@akala/semantic-release@npm:0.12.15"
   dependencies:
     "@akala/commands": ^3.4.1
     "@yarnpkg/core": ^3.2.0
@@ -179,7 +179,7 @@ __metadata:
     debug: ^4.3.4
     git-semver-tags: ^4.1.1
     yarn: ^1.22.18
-  checksum: ab1d95f022a0fce91b03277b6a39d1a539500c1eb7537150c9649ce4a5c5391575a3d1c82e55a9cb7bbc2b06e579cc8c75fe74d58b77d0d85a799b33ffed2eb6
+  checksum: f9c8a0ce79e7d652703c8db7b38c1b2d302384a416e7474ea0af1e1b14dec9256f671ce2c5baea2deba66240c2a0c62f485d0e26ffedeedf68798241e71c7b1e
   languageName: node
   linkType: hard
 
@@ -3895,7 +3895,7 @@ __metadata:
     "@akala/automate": ^1.0.58
     "@akala/automate-yamlloader": ^1.0.58
     "@akala/commands": ^3.4.1
-    "@akala/semantic-release": ^0.12.14
+    "@akala/semantic-release": ^0.12.15
     typescript: 4.6.4
   languageName: unknown
   linkType: soft
