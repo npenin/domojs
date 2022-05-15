@@ -12,7 +12,7 @@
   },
   "peerDependencies": {
     "@akala/commands": "^2.9.2",
-    "@akala/pm": "^2.7.0"
+    "@akala/pm": "^3.0.0"
   },
   "devDependencies": {
     "@akala/commands": "^3.4.1",
