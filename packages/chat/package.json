@@ -1,6 +1,6 @@
 {
   "name": "@domojs/chat",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "private": true,
   "main": "dist/test.js",
   "license": "MIT",
