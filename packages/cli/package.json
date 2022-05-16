@@ -8,7 +8,7 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "yargs": "17.5.0"
+    "yargs": "17.5.1"
   },
   "peerDependencies": {
     "@akala/commands": "^2.9.2",
