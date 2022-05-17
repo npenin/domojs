@@ -1,6 +1,9 @@
 import * as devices from "../../../devices";
 import { Container } from "@akala/commands";
 import { deviceContainer } from '../../..';
+import { logger } from "@akala/core";
+
+const log = logger('domojs:devices:types:add')
 
 export default async function persist(this: devices.DeviceTypeState,
     self: Container<devices.DeviceTypeCollection>,
@@ -12,7 +15,8 @@ export default async function persist(this: devices.DeviceTypeState,
     else
         var body = await bodyasync;
 
-    console.log(arguments);
+    log.info(arguments);
+    log.debug(body);
 
     var device = {
         name: body.name,
