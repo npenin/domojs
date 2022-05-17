@@ -14,8 +14,8 @@
 	},
 	"devDependencies": {
 		"@akala/json-rpc-ws": "^9.5.2",
-		"@akala/pm": "^3.5.11",
-		"@akala/server": "^8.1.18",
+		"@akala/pm": "^3.5.12",
+		"@akala/server": "^8.1.19",
 		"@domojs/devices": "workspace:*"
 	},
 	"dependencies": {
