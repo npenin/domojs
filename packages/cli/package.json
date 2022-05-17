@@ -8,7 +8,7 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "yargs": "17.5.0"
+    "yargs": "17.5.1"
   },
   "peerDependencies": {
     "@akala/commands": "^2.9.2",
@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@akala/commands": "^3.4.1",
-    "@akala/pm": "^3.5.11",
+    "@akala/pm": "^3.5.12",
     "@types/yargs": "17.0.10"
   },
   "gitHead": "5c8b6cb938eb920110c9a48ec210f2a65ee04176"
