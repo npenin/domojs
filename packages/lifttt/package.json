@@ -31,8 +31,8 @@
         "uuid": "8.3.2"
     },
     "devDependencies": {
-        "@akala/client": "^5.2.51",
-        "@akala/commands": "^3.5.0",
+        "@akala/client": "^5.2.52",
+        "@akala/commands": "^3.5.1",
         "@akala/core": "^9.0.6",
         "@akala/json-rpc-ws": "^9.5.2",
         "@domojs/theme-default": "workspace:*",
