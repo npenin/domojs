@@ -10,6 +10,7 @@
 * update dependencies and fix devices communications bb308f5
 * update dependencies to major 181380b
 * update lock file e390acd
+* update to proper logging d960966
 * yarn state 71163e0
 
 
