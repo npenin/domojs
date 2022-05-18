@@ -350,7 +350,7 @@ __metadata:
     "@types/webpack-env": 1.16.4
     "@types/ws": 8.5.3
     sass: 1.51.0
-    sass-loader: 12.6.0
+    sass-loader: 13.0.0
     snyk: ^1.931.0
     typescript: 4.6.4
     uuid: 8.3.2
@@ -549,7 +549,7 @@ __metadata:
     "@types/ws": 8.5.3
     bootstrap: ^5.1.3
     require-optional: ^0.4.0
-    sass-loader: ^12.6.0
+    sass-loader: ^13.0.0
     snyk: ^1.931.0
     typescript: 4.6.4
     webpack: 5.72.1
@@ -7263,7 +7263,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass-loader@npm:12.6.0, sass-loader@npm:^12.6.0":
+"sass-loader@npm:13.0.0, sass-loader@npm:^13.0.0":
+  version: 13.0.0
+  resolution: "sass-loader@npm:13.0.0"
+  dependencies:
+    klona: ^2.0.4
+    neo-async: ^2.6.2
+  peerDependencies:
+    fibers: ">= 3.1.0"
+    node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
+    sass: ^1.3.0
+    sass-embedded: "*"
+    webpack: ^5.0.0
+  peerDependenciesMeta:
+    fibers:
+      optional: true
+    node-sass:
+      optional: true
+    sass:
+      optional: true
+    sass-embedded:
+      optional: true
+  checksum: f7af03813dccf0405eb02917cd10c97571ab81f42e9ea1f3da6d9e96991e076521809a452ad319d57c1a63273ce07c23ddfdbda5cd071a56d261dc28913afdaa
+  languageName: node
+  linkType: hard
+
+"sass-loader@npm:^12.6.0":
   version: 12.6.0
   resolution: "sass-loader@npm:12.6.0"
   dependencies:
