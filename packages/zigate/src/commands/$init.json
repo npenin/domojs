@@ -1,0 +1,9 @@
+{
+    "cli": {
+        "inject": [
+            "context",
+            "$container"
+        ]
+    },
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json"
+}

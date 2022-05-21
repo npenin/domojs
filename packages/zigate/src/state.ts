@@ -1,3 +1,5 @@
+import PubSubContainer from '@akala/pubsub';
+import { Sidecar } from '@akala/sidecar';
 import { deviceContainer } from '@domojs/devices';
 import { Cluster, Zigate } from '@domojs/zigate-parsers';
 
@@ -24,11 +26,10 @@ export interface ZDevice
     attributes: { [key: number]: string | number }
 }
 
-export interface State
+export interface State extends Sidecar
 {
-    deviceServer: deviceContainer.container;
-    gateway: Promise<Zigate>;
-    devices: { [name: string]: ZDevices };
     devicesByAddress: { [address: number]: ZDevice };
-
+    devices: { [key: string]: ZDevices & { gateway: Promise<Zigate> } };
+    gateway: Promise<Zigate>;
+    setGateway(gw: Zigate): Promise<Zigate>;
 }

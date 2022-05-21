@@ -1,8 +1,9 @@
-import serialport from 'serialport';
 import { Protocol, MessageType, Message, Cluster } from './messages/_common';
 import { EventEmitter } from 'events';
 import { Duplex } from 'stream';
-import { Queue, logger } from '@akala/core';
+import { Queue, logger, eachAsync } from '@akala/core';
+import os from 'os';
+import { readdir } from 'fs'
 
 import * as address from './messages/address';
 import './messages/address';
@@ -367,8 +368,9 @@ export class Zigate extends EventEmitter
 
     public static getSerial(path?: string)
     {
-        return new Promise<Zigate>((resolve, reject) =>
+        return new Promise<Zigate>(async (resolve, reject) =>
         {
+            const serialport = (await import('serialport')).default
             if (!path)
                 Zigate.listEligibleSerials().then(ports =>
                 {
@@ -376,18 +378,59 @@ export class Zigate extends EventEmitter
                         return reject('no matching port could be found');
                     if (ports.length > 1)
                         return reject('multiple Prolific adapters found');
-                    resolve(new Zigate(new serialport(ports[0].path, { baudRate: 115200, dataBits: 8 })));
+                    resolve(new Zigate(new serialport(ports[0], { baudRate: 115200, dataBits: 8 })));
                 });
             else
                 resolve(new Zigate(new serialport(path, { baudRate: 115200, dataBits: 8 })));
         })
     }
 
-    public static listEligibleSerials()
+    public static async listEligibleSerials()
     {
-        return serialport.list().then((ports: { manufacturer: string, path: string }[]) =>
+        const { getDeviceList } = await import('usb');
+        const devices = getDeviceList().filter(d => d.deviceDescriptor.idVendor == 1027 && d.deviceDescriptor.idProduct == 24577);
+        const result = [];
+        await eachAsync(devices, (d, i, next) =>
         {
-            return ports.filter(port => port.manufacturer && port.manufacturer.startsWith('Prolific'));
-        })
+            d.open();
+            d.getStringDescriptor(d.deviceDescriptor.iManufacturer, function (error, data)
+            {
+                if (data.toString().startsWith('Prolific'))
+                    result.push(d);
+                d.close();
+                next();
+            });
+        });
+        if (os.platform() == "linux" && result.length > 0)
+        {
+            const serials: string[] = [];
+            await eachAsync(result, (d, i, next) =>
+            {
+                readdir('/sys/bus/usb/devices/' + d.busNumber + '-' + d.portNumbers.join('.') + '/' + d.busNumber + '-' + d.portNumbers.join('.') + ':1.0', function (err, files)
+                {
+
+                    if (files)
+                    {
+                        var tty = files.find(f => f.startsWith('tty'));
+                        if (tty)
+                            serials.push('/dev/' + tty);
+                    }
+                    next(err);
+                });
+            });
+
+            return serials;
+        }
+        try
+        {
+            const { default: SerialPort } = await import('serialport');
+
+            return (await SerialPort.list()).filter(port => port.manufacturer && port.manufacturer == 'RFXCOM').map(sp => sp.path);
+        }
+        catch (e)
+        {
+            if (e.code !== 'MODULE_NOT_FOUND')
+                throw e;
+        }
     }
 }

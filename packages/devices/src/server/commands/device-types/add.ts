@@ -26,12 +26,13 @@ export default async function persist(this: devices.DeviceTypeState,
         commands: null
     };
 
+    device = await self.dispatch(type + '.save', body, device);
+
     if (body && this.initializing.indexOf(type) == -1)
     {
         await this.store.DeviceInit.createSingle({ ...body, type });
     }
 
-    device = await self.dispatch(type + '.save', body, device);
 
     await this.pubsub?.publish('/device/new', device);
     await this.pubsub?.publish('/device/' + type, device);

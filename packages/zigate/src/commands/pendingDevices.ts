@@ -4,9 +4,9 @@ import { State, ZDevice } from '../state'
 
 export default function (this: State)
 {
-    return akala.map(this.devices, function (device: ZDevice)
+    return akala.map(this.devices, function (device)
     {
-        return {
+        return device.type == 'device' && {
             name: (device.internalName || device.address) + ' (' + (device.clusters.map(function (cluster)
             {
                 return Cluster[cluster];

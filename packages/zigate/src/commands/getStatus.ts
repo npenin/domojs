@@ -1,4 +1,4 @@
-import { State } from "../state";
+import { State, ZDevices } from "../state";
 
 export default async function (this: State, deviceName: string)
 {
