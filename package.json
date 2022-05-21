@@ -19,23 +19,5 @@
     "ci-deps": "git commit -m 'chore(deps): update dependencies'"
   },
   "packageManager": "yarn@3.2.0",
-  "resolutions": {
-    "@akala/authentication": "link:/home/coder/akala/packages/authentication",
-    "@akala/automate": "link:/home/coder/akala/packages/automate",
-    "@akala/automate-yamlloader": "link:/home/coder/akala/packages/automate-yamlloader",
-    "@akala/cli": "link:/home/coder/akala/packages/cli",
-    "@akala/client": "link:/home/coder/akala/packages/client",
-    "@akala/commands": "link:/home/coder/akala/packages/commands",
-    "@akala/config": "link:/home/coder/akala/packages/config",
-    "@akala/core": "link:/home/coder/akala/packages/core",
-    "@akala/cron": "link:/home/coder/akala/packages/cron",
-    "@akala/json-rpc-ws": "link:/home/coder/akala/packages/json-rpc-ws",
-    "@akala/pm": "link:/home/coder/akala/packages/pm",
-    "@akala/pubsub": "link:/home/coder/akala/packages/pubsub",
-    "@akala/semantic-release": "link:/home/coder/akala/packages/semantic-release",
-    "@akala/server": "link:/home/coder/akala/packages/server",
-    "@akala/sidecar": "link:/home/coder/akala/packages/sidecar",
-    "@akala/storage": "link:/home/coder/akala/packages/storage",
-    "@akala/tacl": "link:/home/coder/akala/packages/tacl"
-  }
+  "resolutions": {}
 }
