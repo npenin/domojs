@@ -1,6 +1,6 @@
 {
     "name": "@domojs/zigate",
-    "version": "1.5.22",
+    "version": "1.6.0",
     "description": "",
     "main": "dist/index.js",
     "commands": "./commands.json",
