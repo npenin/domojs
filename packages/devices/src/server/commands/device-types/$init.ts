@@ -23,5 +23,6 @@ export default async function (this: devices.DeviceTypeState, context: CliContex
             throw e;
     }
     this.initializing = [];
+    this.types = {};
     Object.assign(this, await app<{ DeviceInit: DbSet<{ name: string, body: any }> }>(context, require.resolve('../../../../devicetype-app.json'), pm));
 }

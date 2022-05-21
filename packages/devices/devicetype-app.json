@@ -1,5 +1,5 @@
 {
-    "pubusub": "@domojs/pubsub",
+    "pubsub": "@domojs/pubsub",
     "store": {
         "provider": "file",
         "providerOptions": {

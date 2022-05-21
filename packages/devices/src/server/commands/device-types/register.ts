@@ -11,7 +11,7 @@ export default async function register(this: devices.DeviceTypeState, type: devi
         throw new Error(`a device type with name ${type.name} already exists`);
     if (typeof container === 'undefined')
         throw new Error(`no container to be registered`);
-    this[type.name] = type;
+    this.types[type.name] = type;
 
     container.name = type.name;
     updateCommands([

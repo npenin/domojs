@@ -1,7 +1,9 @@
 import { devices } from "@domojs/devices";
 import { State } from "../state";
 import { Cluster, MessageType, MessageTypes, Zigate, network, attributes } from "@domojs/zigate-parsers";
+import net from 'net';
 import * as akala from '@akala/core';
+import { punch } from "http-punch-hole";
 const log = akala.logger('domojs:zigate');
 
 export default async function save(this: State, body: any, device: devices.IDevice)
@@ -12,13 +14,30 @@ export default async function save(this: State, body: any, device: devices.IDevi
     if (Object.keys(devices).length == 0 && !body.IP && !body.port)
         throw new Error('A gateway first need to be registered');
 
-    if (body.IP || body.port) //gateway
+    if (body.mode) //gateway
     {
-        if (!body.IP)
-            this.gateway = Zigate.getSerial(body.port.path);
-        else
-            throw new Error('Wifi zigate are not (yet) supported');
-
+        let p: Promise<Zigate>;
+        switch (body.mode)
+        {
+            case 'http':
+                const socket: net.Socket = await punch(body.path, 'raw')
+                const gateway = new Zigate(socket);
+                p = this.setGateway(gateway);
+                break;
+            case 'tcp':
+                p = new Promise<Zigate>((resolve, reject) =>
+                {
+                    const socket = net.connect(body, async () =>
+                    {
+                        this.setGateway(new Zigate(socket)).then(resolve, reject);
+                    });
+                });
+                break;
+            case 'usb':
+                p = this.setGateway(await Zigate.getSerial(body.path));
+                break;
+        }
+        await p;
         var zigate = await this.gateway;
         device.commands = {
             'GetVersion': { type: 'button' },
@@ -96,7 +115,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                             break;
                     }
 
-                    await this.deviceServer.dispatch('register',
+                    await this.pubsub?.publish('/device/discovered',
                         {
                             type: 'zigate',
                             class: devices.DeviceClass.SingleValueSensor,
