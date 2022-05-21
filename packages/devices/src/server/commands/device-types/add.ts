@@ -30,7 +30,7 @@ export default async function persist(this: devices.DeviceTypeState,
 
     if (body && this.initializing.indexOf(type) == -1)
     {
-        await this.store.DeviceInit.createSingle({ ...body, type });
+        await this.store.DeviceInit.createSingle({ body, type, name: body.name });
     }
 
 
