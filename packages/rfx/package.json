@@ -28,7 +28,7 @@
   "deprecated": false,
   "description": "",
   "devDependencies": {
-    "@akala/pm": "^3.5.16",
+    "@akala/pm": "^3.5.17",
     "@domojs/devices": "workspace:*",
     "@types/debug": "4.1.7",
     "@types/serialport": "8.0.2",
