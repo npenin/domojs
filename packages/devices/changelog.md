@@ -1,14 +1,9 @@
-#  (2022-05-21)
+#  (2022-05-22)
 
 
 ### Bug Fixes
 
-* device init saving e728268
-
-
-### Features
-
-* various fixes and improvements ec01382
+* remove failing pubsub 2fad35b
 
 
 
