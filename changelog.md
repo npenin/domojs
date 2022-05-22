@@ -1,11 +1,14 @@
-#  (2022-05-18)
+#  (2022-05-21)
 
 
 ### Bug Fixes
 
 * add missing dependency 3eb49a6
+* device init saving e728268
+* lock file 659742d
 * made devdependencies using workspace reference d2024b5
 * make webscrapper private 26b5752
+* remove resolutions a866f1e
 * update dependencies and checkout depth 35d588c
 * update dependencies and fix devices communications bb308f5
 * update dependencies to major 181380b
@@ -28,6 +31,7 @@
 
 * add unknown RTS message support b0ee68f
 * move device management to devicetype 948145c
+* various fixes and improvements ec01382
 
 
 ### BREAKING CHANGES
