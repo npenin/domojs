@@ -50,6 +50,7 @@ export enum DeviceClass
     Range = 3,
     Discrete = 4,
     Shutter = 5,
+    Multi = 6,
 }
 
 export type CommandDescription = GenericCommand | RangeCommand | InputCommand | ToggleCommand;

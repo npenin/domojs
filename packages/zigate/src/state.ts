@@ -1,3 +1,4 @@
+import { Logger } from '@akala/core';
 import PubSubContainer from '@akala/pubsub';
 import { Sidecar } from '@akala/sidecar';
 import { deviceContainer } from '@domojs/devices';
@@ -32,4 +33,5 @@ export interface State extends Sidecar
     devices: { [key: string]: ZDevices & { gateway: Promise<Zigate> } };
     gateway: Promise<Zigate>;
     setGateway(gw: Zigate): Promise<Zigate>;
+    logger: Logger;
 }
