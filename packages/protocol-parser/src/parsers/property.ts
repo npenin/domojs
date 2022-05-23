@@ -10,7 +10,7 @@ export default class Property<T extends { [key in TKey]: Exclude<any, object> },
     length: number;
     read(buffer: Buffer, cursor: Cursor, message: T): T[TKey]
     {
-        return message[this.name] = this.parser.read(buffer, cursor, message[this.name]);
+        return message[this.name] = this.parser.read(buffer, cursor, message);
     }
 
     write(value: T[TKey], message: T): Buffer[]

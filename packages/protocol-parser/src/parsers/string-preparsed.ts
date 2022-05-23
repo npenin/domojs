@@ -13,7 +13,7 @@ export default class PreparsedString<T, TKey extends keyof T> implements ParserW
             throw new Error('Cross byte value are not supported');
 
         var value = buffer.toString(this.encoding, cursor.offset, cursor.offset + Number(message[this.lengthProperty]));
-        cursor.offset += length;
+        cursor.offset += value.length;
         return value;
     }
     write(value: string, message: T): Buffer[]
