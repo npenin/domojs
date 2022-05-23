@@ -1,10 +1,11 @@
-#  (2022-05-22)
+#  (2022-05-23)
 
 
 ### Bug Fixes
 
 * add missing dependency 3eb49a6
 * device init saving e728268
+* iscp parsing 61d30cd
 * lock file 659742d
 * made devdependencies using workspace reference d2024b5
 * make webscrapper private 26b5752
@@ -16,6 +17,7 @@
 * update lock file e390acd
 * update to proper logging d960966
 * yarn state 71163e0
+* zigate logging d860129
 
 
 ### Build System
