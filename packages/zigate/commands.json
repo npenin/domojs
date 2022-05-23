@@ -12,7 +12,24 @@
                 },
                 "cli": {
                     "inject": [
+                        "context",
                         "$container"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "getStatus",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/getStatus.js",
+                    "source": "src/commands/getStatus.ts",
+                    "inject": [
+                        "param.0"
                     ]
                 },
                 "": {
@@ -47,22 +64,6 @@
                         "options.command",
                         "param.0"
                     ]
-                }
-            }
-        },
-        {
-            "name": "getStatus",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/getStatus.js",
-                    "source": "src/commands/getStatus.ts",
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "": {
-                    "inject": []
                 }
             }
         },

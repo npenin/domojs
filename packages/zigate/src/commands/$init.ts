@@ -13,6 +13,7 @@ export default async function (this: State, context: CliContext, container: Cont
 {
     this.devicesByAddress = {};
     this.devices = {};
+    this.logger = context.logger;
 
     this.gateway = new Promise((resolve) =>
     {

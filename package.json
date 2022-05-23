@@ -16,7 +16,8 @@
   },
   "scripts": {
     "publish-all": "yarn akala-automate-runner --loader @akala/automate-yamlloader/ --file @akala/semantic-release/publish.yml --verbose=silly",
-    "ci-deps": "git commit -m 'chore(deps): update dependencies'"
+    "ci-deps": "git commit -m 'chore(deps): update dependencies'",
+    "generate": "yarn workspaces foreach -A run generate"
   },
   "packageManager": "yarn@3.2.0"
 }
