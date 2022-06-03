@@ -352,7 +352,7 @@ __metadata:
     sass: 1.52.1
     sass-loader: 13.0.0
     snyk: ^1.935.0
-    typescript: 4.6.4
+    typescript: 4.7.3
     uuid: 8.3.2
     ws: 8.6.0
   languageName: unknown
@@ -368,7 +368,7 @@ __metadata:
     "@types/node": 17.0.35
     "@types/ws": 8.5.3
     mongodb: 4.6.0
-    typescript: 4.6.4
+    typescript: 4.7.3
     ws: 8.6.0
   languageName: unknown
   linkType: soft
@@ -402,7 +402,7 @@ __metadata:
     "@types/debug": 4.1.7
     "@types/uuid": 8.3.4
     node-fetch: 3.2.4
-    typescript: 4.6.4
+    typescript: 4.7.3
     uuid: 8.3.2
   languageName: unknown
   linkType: soft
@@ -446,7 +446,7 @@ __metadata:
     "@types/request": 2.48.8
     "@types/ws": 8.5.3
     levenshtein: 1.0.5
-    typescript: 4.6.4
+    typescript: 4.7.3
   languageName: unknown
   linkType: soft
 
@@ -474,7 +474,7 @@ __metadata:
     debug: ^4.3.4
     mocha: 10.0.0
     source-map-support: 0.5.21
-    typescript: 4.6.4
+    typescript: 4.7.3
   languageName: unknown
   linkType: soft
 
@@ -488,7 +488,7 @@ __metadata:
     "@types/node": 17.0.35
     "@types/serialport": 8.0.2
     "@types/usb": 2.0.5
-    typescript: 4.6.4
+    typescript: 4.7.3
     usb: 2.4.1
   peerDependencies:
     serialport: ^9.2.8
@@ -515,7 +515,7 @@ __metadata:
     "@types/usb": 2.0.5
     "@types/ws": 8.5.3
     http-punch-hole: ^1.0.12
-    typescript: 4.6.4
+    typescript: 4.7.3
   peerDependencies:
     "@akala/pm": ^3.5.11
     serialport: ^9.2.8
@@ -551,7 +551,7 @@ __metadata:
     require-optional: ^0.4.0
     sass-loader: ^13.0.0
     snyk: ^1.935.0
-    typescript: 4.6.4
+    typescript: 4.7.3
     webpack: 5.72.1
     webpack-cli: 4.9.2
   languageName: unknown
@@ -607,7 +607,7 @@ __metadata:
     "@types/ws": 8.5.3
     debug: ^4.3.4
     source-map-support: 0.5.21
-    typescript: 4.6.4
+    typescript: 4.7.3
     usb: 2.4.1
   peerDependencies:
     serialport: ^9.2.8
@@ -3906,7 +3906,7 @@ __metadata:
     "@akala/automate-yamlloader": ^1.0.65
     "@akala/commands": ^3.5.2
     "@akala/semantic-release": ^0.12.18
-    typescript: 4.6.4
+    typescript: 4.7.3
   languageName: unknown
   linkType: soft
 
@@ -4586,7 +4586,7 @@ __metadata:
   resolution: "generator-domojs@workspace:packages/domojs-generator"
   dependencies:
     "@types/yeoman-generator": 5.2.10
-    typescript: 4.6.4
+    typescript: 4.7.3
     yeoman-generator: 5.6.1
   languageName: unknown
   linkType: soft
@@ -8226,23 +8226,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.6.4":
-  version: 4.6.4
-  resolution: "typescript@npm:4.6.4"
+"typescript@npm:4.7.3":
+  version: 4.7.3
+  resolution: "typescript@npm:4.7.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: e7bfcc39cd4571a63a54e5ea21f16b8445268b9900bf55aee0e02ad981be576acc140eba24f1af5e3c1457767c96cea6d12861768fb386cf3ffb34013718631a
+  checksum: fd13a1ce53790a36bb8350e1f5e5e384b5f6cb9b0635114a6d01d49cb99916abdcfbc13c7521cdae2f2d3f6d8bc4a8ae7625edf645a04ee940588cd5e7597b2f
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.6.4#~builtin<compat/typescript>":
-  version: 4.6.4
-  resolution: "typescript@patch:typescript@npm%3A4.6.4#~builtin<compat/typescript>::version=4.6.4&hash=de8f8a"
+"typescript@patch:typescript@4.7.3#~builtin<compat/typescript>":
+  version: 4.7.3
+  resolution: "typescript@patch:typescript@npm%3A4.7.3#~builtin<compat/typescript>::version=4.7.3&hash=de8f8a"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 8cff08bf66d9ecfbf9fcc5edde04a5a7923e6cac3b21d99b4e9a06973bf5bd7f9a83ec7eed24129c1b9e13fd861de8c1070110d4b9ce9f18ab57c6999e9c9a6f
+  checksum: 8257ce7ecbbf9416da60045a76a99d473698ca9e973fa0ddab7137cacb1587255431176cbbcc801a650938c4dc8109ab88355774829a714fabe56a53a2fe4524
   languageName: node
   linkType: hard
 
