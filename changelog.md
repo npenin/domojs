@@ -1,4 +1,4 @@
-#  (2022-05-23)
+#  (2022-06-12)
 
 
 ### Bug Fixes
@@ -9,6 +9,7 @@
 * lock file 659742d
 * made devdependencies using workspace reference d2024b5
 * make webscrapper private 26b5752
+* recover from closed socket 4676ab4
 * remove failing pubsub 2fad35b
 * remove resolutions a866f1e
 * update dependencies and checkout depth 35d588c
