@@ -29,10 +29,11 @@ export class Rfxtrx extends EventEmitter
     private static emptyBuffer = Buffer.allocUnsafe(0);
 
     private chunk: Buffer;
-    private isOpen = false;
+    private _isOpen = false;
+    public get isOpen() { return this._isOpen };
     private sendQueue: Queue<{ buffer: Buffer, callback: (err) => void }> = new Queue((message, next) =>
     {
-        if (this.isOpen)
+        if (this._isOpen)
         {
             if ('drain' in this.wire)
             {
@@ -42,8 +43,15 @@ export class Rfxtrx extends EventEmitter
             else
                 this.wire.write(message.buffer, message.callback);
         }
-        next(this.isOpen);
-    })
+        next(this._isOpen);
+    });
+
+    public stop()
+    {
+        this._isOpen = false;
+        return new Promise<void>((resolve) => { this.wire.end(resolve) });
+    }
+
     private queue: Queue<Buffer> = new Queue((buffer, next) =>
     {
         log.debug('processing queue')
@@ -99,12 +107,12 @@ export class Rfxtrx extends EventEmitter
         })
         this.wire.on('open', () =>
         {
-            this.isOpen = true;
+            this._isOpen = true;
             this.sendQueue.process();
         })
         this.wire.on('connect', () =>
         {
-            this.isOpen = true;
+            this._isOpen = true;
             this.sendQueue.process();
         })
         this.wire.on('data', (buffer: Buffer) =>
@@ -124,7 +132,7 @@ export class Rfxtrx extends EventEmitter
             this.emit(Type[PacketType[(message.type & 0xff00) >> 8]][message.type], message.message);
         });
         if (isSocketAlreadyOpen)
-            this.isOpen = true;
+            this._isOpen = true;
     }
 
     async setModes(modes: Modes)

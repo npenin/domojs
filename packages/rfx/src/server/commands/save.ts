@@ -27,9 +27,12 @@ export default async function save(this: State, body: any, device: devices.IDevi
                     const gateway = new Rfxtrx(socket, socket.readyState == "open");
                     async function reopen()
                     {
-                        const socket = await punch(body.path, 'raw');
-                        gateway.replaceClosedSocket(socket, socket.readyState == 'open');
-                        socket.on('close', reopen);
+                        if (gateway.isOpen)
+                        {
+                            const socket = await punch(body.path, 'raw');
+                            socket.on('close', reopen);
+                            gateway.replaceClosedSocket(socket, socket.readyState == 'open');
+                        }
                     }
                     socket.on('close', reopen);
                     p = this.setGateway(gateway);
