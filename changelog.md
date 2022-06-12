@@ -12,6 +12,7 @@
 * recover from closed socket 4676ab4
 * remove failing pubsub 2fad35b
 * remove resolutions a866f1e
+* support for gateway closure 847ba60
 * update dependencies and checkout depth 35d588c
 * update dependencies and fix devices communications bb308f5
 * update dependencies to major 181380b
