@@ -1,9 +1,14 @@
 {
-    "extends": "../tsconfig.settings.json",
+    "extends": "../tsconfig.json",
     "compileOnSave": true,
     "compilerOptions": {
         "rootDir": "src",
-        "outDir": "dist"
+        "outDir": "dist",
+        "allowJs": false
     },
-    "references": []
+    "references": [
+        {
+            "path": "./tsconfig.wasm.json"
+        }
+    ]
 }

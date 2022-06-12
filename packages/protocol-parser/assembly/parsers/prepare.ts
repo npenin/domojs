@@ -1,0 +1,25 @@
+import { IBuffer as Buffer } from "../core";
+import { AnyParser, Cursor, ParserWithMessage, parserWrite } from "./_common";
+
+export class Prepare<T, TMessage> implements ParserWithMessage<T, TMessage>
+{
+    constructor(private prepareMessage: (t: T | undefined) => void, private parser: AnyParser<T, TMessage>)
+    {
+        this.length = parser.length;
+    }
+
+    length: number;
+    read(buffer: Buffer, cursor: Cursor, message: TMessage): T
+    {
+        return this.parser.read(buffer, cursor, message);
+    }
+
+    write(value: T, message: TMessage): Buffer[]
+    write(buffer: Buffer, cursor: Cursor, value: T, message: TMessage): void
+    write(buffer: Buffer | T, cursor?: Cursor | TMessage, value?: T, message?: TMessage)
+    {
+        this.prepareMessage(value);
+        return parserWrite(this.parser, buffer, cursor, value, message);
+    }
+
+}

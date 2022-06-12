@@ -1,0 +1,1 @@
+{"version":3,"file":"property.js","sourceRoot":"","sources":["../../../assembly/parsers/protobuf/property.ts"],"names":[],"mappings":";;AAAA,0CAAuC;AAMvC,MAAqB,QAAkC,SAAQ,kBAAqB;IAEzE,QAAQ,CAAW;IAE1B,YAAY,IAAU,EAAE,QAAkB,EAAE,MAA6C;QAErF,KAAK,CAAC,IAAI,EAAE,MAAM,CAAC,CAAC;QACpB,IAAI,CAAC,QAAQ,GAAG,QAAQ,CAAC;IAC7B,CAAC;CACJ;AATD,2BASC"}

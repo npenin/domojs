@@ -6,24 +6,37 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "mocha --require source-map-support/register dist/test",
-    "prepublishOnly": "tsc -p .",
-    "build": "tsc -p ."
+    "prepublishOnly": "asc tsc -p .",
+    "build": "tsc -p .",
+    "asbuild:debug": "asc assembly/index.ts --target debug",
+    "asbuild:release": "asc assembly/index.ts --target release",
+    "asbuild": "npm run asbuild:debug && npm run asbuild:release",
+    "start": "npx serve ."
   },
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
+    "assemblyscript": "^0.20.10",
     "debug": "^4.3.4"
   },
   "devDependencies": {
     "@types/debug": "4.1.7",
     "@types/mocha": "9.1.1",
-    "@types/node": "17.0.35",
+    "@types/node": "17.0.42",
+    "assemblyscript": "^0.20.10",
     "mocha": "10.0.0",
     "source-map-support": "0.5.21",
-    "typescript": "4.6.4"
+    "typescript": "4.7.3"
   },
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
+  "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./build/release.js",
+      "types": "./build/release.d.ts"
+    }
+  }
 }

@@ -24,9 +24,9 @@
     "@akala/sidecar": "^0.2.24",
     "@akala/storage": "^3.1.5",
     "@fortawesome/free-brands-svg-icons": "6.1.1",
-    "snyk": "^1.935.0",
+    "snyk": "^1.947.0",
     "uuid": "8.3.2",
-    "ws": "8.6.0"
+    "ws": "8.8.0"
   },
   "deprecated": false,
   "description": "",
@@ -38,9 +38,9 @@
     "@types/uuid": "8.3.4",
     "@types/webpack-env": "1.17.0",
     "@types/ws": "8.5.3",
-    "sass": "1.52.1",
+    "sass": "1.52.3",
     "sass-loader": "13.0.0",
-    "typescript": "4.6.4"
+    "typescript": "4.7.3"
   },
   "homepage": "https://github.com/domojs/devices#readme",
   "license": "MIT",

@@ -1,0 +1,14 @@
+{
+    "extends": "assemblyscript/std/portable.json",
+    "compileOnSave": true,
+    "compilerOptions": {
+        "rootDir": "assembly",
+        "outDir": "build",
+        "sourceMap": true,
+        "allowJs": false
+    },
+    "include": [
+        "assembly/**/*.ts"
+    ],
+    "references": []
+}
