@@ -84,6 +84,15 @@ export class Rfxtrx extends EventEmitter
     {
         super();
 
+        this.replaceClosedSocket(wire, isSocketAlreadyOpen);
+    }
+
+    public replaceClosedSocket(wire: Socket | Duplex & { close(cb: (err?: any) => void), drain?(cb: (err?: any) => void), flush(cb: (err?: any) => void) }, isSocketAlreadyOpen?: boolean)
+    {
+        if (this.wire?.writable && this.wire != wire)
+            throw new Error('The existing wire is still online');
+
+        this.wire = wire;
         this.wire.on('error', function (err)
         {
             log.error(err);
