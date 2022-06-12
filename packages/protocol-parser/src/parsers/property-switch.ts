@@ -14,7 +14,7 @@ export default class SwitchProperty<T, TKey extends keyof T, TKeyAssign extends 
     {
         var parser = this.parsers[message[this.name] as TValue];
         if (!parser)
-            throw new Error(`No parser could be found for ${this.name} in ${JSON.stringify(message)}`);
+            throw new Error(`No parser could be found for ${this.name.toString()} in ${JSON.stringify(message)}`);
 
         message[this.assignProperty] = message[this.assignProperty] || {} as T[TKeyAssign];
 
@@ -27,7 +27,7 @@ export default class SwitchProperty<T, TKey extends keyof T, TKeyAssign extends 
 
         var parser = this.parsers[message[this.name] as TValue];
         if (!parser)
-            throw new Error(`No parser could be found for ${this.name} in ${JSON.stringify(value)}`);
+            throw new Error(`No parser could be found for ${this.name.toString()} in ${JSON.stringify(value)}`);
 
         return parserWrite(parser, value, message[this.assignProperty]);
     }
@@ -35,7 +35,7 @@ export default class SwitchProperty<T, TKey extends keyof T, TKeyAssign extends 
     public register(value: TValue, parser: AnyParser<TResult, T[TKeyAssign]>)
     {
         if (typeof (this.parsers[value]) !== 'undefined')
-            throw new Error('a parser is already registered for value ' + value);
+            throw new Error('a parser is already registered for value ' + value.toString());
         this.parsers[value] = parser;
     }
 }

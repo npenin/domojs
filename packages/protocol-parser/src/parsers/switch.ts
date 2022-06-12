@@ -20,7 +20,7 @@ export default class Switch<T extends { [key in TKey]: TValue }, TKey extends ke
     {
         var parser = this.parsers[message[this.name]];
         if (!parser)
-            throw new Error(`No parser could be found for ${this.name} in ${JSON.stringify(message)}`);
+            throw new Error(`No parser could be found for ${this.name.toString()} in ${JSON.stringify(message)}`);
 
         return parser.read(buffer, cursor, message);
     }
@@ -31,7 +31,7 @@ export default class Switch<T extends { [key in TKey]: TValue }, TKey extends ke
 
         var parser = this.parsers[message[this.name]];
         if (!parser)
-            throw new Error(`No parser could be found for ${this.name} in ${JSON.stringify(value)}`);
+            throw new Error(`No parser could be found for ${this.name.toString()} in ${JSON.stringify(value)}`);
 
         return parserWrite(parser, value, message);
     }
