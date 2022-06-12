@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* recover from closed socket 4676ab4
+* support for gateway closure 847ba60
 
 
 
