@@ -22,6 +22,18 @@ export default async function save(this: State, body: any, device: devices.IDevi
             case 'http':
                 const socket: net.Socket = await punch(body.path, 'raw')
                 const gateway = new Zigate(socket);
+                async function reopen()
+                {
+                    if (gateway.isOpen)
+                    {
+                        const socket = await punch(body.path, 'raw');
+                        socket.on('close', reopen);
+                        gateway.replaceClosedSocket(socket);
+                        await gateway.start();
+                    }
+                }
+                socket.on('close', reopen);
+
                 p = this.setGateway(gateway);
                 break;
             case 'tcp':
