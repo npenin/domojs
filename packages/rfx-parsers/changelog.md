@@ -1,9 +1,9 @@
-#  (2022-06-12)
+#  (2022-06-13)
 
 
-### Bug Fixes
+### Features
 
-* support for gateway closure 847ba60
+* shared gateway implementation 32291ed
 
 
 
