@@ -32,6 +32,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                             const socket = await punch(body.path, 'raw');
                             socket.on('close', reopen);
                             gateway.replaceClosedSocket(socket, socket.readyState == 'open');
+                            await gateway.start()
                         }
                     }
                     socket.on('close', reopen);

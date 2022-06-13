@@ -483,6 +483,7 @@ __metadata:
   resolution: "@domojs/rfx-parsers@workspace:packages/rfx-parsers"
   dependencies:
     "@akala/core": ^9.0.7
+    "@domojs/devices": "workspace:*"
     "@domojs/protocol-parser": "workspace:*"
     "@types/debug": 4.1.7
     "@types/node": 17.0.42
@@ -600,6 +601,7 @@ __metadata:
   resolution: "@domojs/zigate-parsers@workspace:packages/zigate-parsers"
   dependencies:
     "@akala/core": ^9.0.7
+    "@domojs/devices": "workspace:*"
     "@domojs/protocol-parser": "workspace:*"
     "@types/debug": 4.1.7
     "@types/serialport": 8.0.2

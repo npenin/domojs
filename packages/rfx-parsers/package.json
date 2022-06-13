@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@akala/core": "^9.0.7",
+    "@domojs/devices": "workspace:*",
     "@domojs/protocol-parser": "workspace:*"
   },
   "peerDependencies": {
