@@ -1,4 +1,4 @@
-#  (2022-06-12)
+#  (2022-06-13)
 
 
 ### Bug Fixes
@@ -36,6 +36,7 @@
 
 * add unknown RTS message support b0ee68f
 * move device management to devicetype 948145c
+* shared gateway implementation 32291ed
 * various fixes and improvements ec01382
 
 
