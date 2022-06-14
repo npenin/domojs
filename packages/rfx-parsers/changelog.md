@@ -1,9 +1,9 @@
-#  (2022-06-13)
+#  (2022-06-14)
 
 
-### Features
+### Bug Fixes
 
-* shared gateway implementation 32291ed
+* buffer slicing in rfx e4ed1ae
 
 
 
