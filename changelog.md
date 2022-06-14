@@ -1,9 +1,10 @@
-#  (2022-06-13)
+#  (2022-06-14)
 
 
 ### Bug Fixes
 
 * add missing dependency 3eb49a6
+* buffer slicing in rfx e4ed1ae
 * device init saving e728268
 * iscp parsing 61d30cd
 * lock file 659742d
