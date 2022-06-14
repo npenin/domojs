@@ -30,11 +30,14 @@ export class Rfxtrx extends Gateway
     protected splitBuffer(buffer: Buffer): Buffer[]
     {
         const buffers = [];
-        for (let offset = 0; buffer.length > offset + buffer[offset] + 1; offset += buffer[offset + 1])
+        let offset = 0
+        for (; buffer.length > offset + buffer[offset] + 1; offset += buffer[offset + 1])
         {
-            buffers.push(buffer.slice(offset, buffer[offset] + 1));
+            buffers.push(buffer.slice(offset, offset + buffer[offset] + 1));
             log.debug('frame complete');
         }
+        if (offset != buffer.length)
+            buffers.push(buffer.slice(offset));
         return buffers;
     }
     protected isCompleteFrame(buffer: Buffer): boolean
