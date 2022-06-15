@@ -34,7 +34,7 @@
     "@domojs/theme-default": "workspace:*",
     "@popperjs/core": "2.11.5",
     "@types/debug": "4.1.7",
-    "@types/express-serve-static-core": "4.17.28",
+    "@types/express-serve-static-core": "4.17.29",
     "@types/uuid": "8.3.4",
     "@types/webpack-env": "1.17.0",
     "@types/ws": "8.5.3",
