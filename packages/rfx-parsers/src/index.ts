@@ -31,18 +31,18 @@ export class Rfxtrx extends Gateway
     {
         const buffers = [];
         let offset = 0
-        for (; buffer.length > offset + buffer[offset] + 1; offset += buffer[offset + 1])
+        for (; buffer.length >= offset + buffer[offset] + 1; offset += buffer[offset])
         {
             buffers.push(buffer.slice(offset, offset + buffer[offset] + 1));
             log.debug('frame complete');
         }
-        if (offset != buffer.length)
+        if (offset != buffer.length - 1)
             buffers.push(buffer.slice(offset));
         return buffers;
     }
     protected isCompleteFrame(buffer: Buffer): boolean
     {
-        return buffer.length < buffer[0] + 1
+        return buffer.length == buffer[0] + 1
     }
     protected processFrame(buffer: Buffer): void | Promise<void>
     {
