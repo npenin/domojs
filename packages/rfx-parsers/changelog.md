@@ -1,9 +1,9 @@
-#  (2022-06-14)
+#  (2022-06-16)
 
 
 ### Bug Fixes
 
-* buffer slicing in rfx e4ed1ae
+* rfx parsing 22f8014
 
 
 
