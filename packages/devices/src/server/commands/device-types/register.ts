@@ -16,7 +16,18 @@ export default async function register(this: devices.DeviceTypeState, type: devi
     container.name = type.name;
     updateCommands([
         { name: 'save', "inject": ['$params'], config: { "": { "inject": ['$params'] } } },
-        { name: 'exec', "inject": ['$params'], config: { "": { "inject": ['$params'] } } }], processor, container);
+        {
+            name: 'exec', "inject": ['$params'], config: {
+                "": { "inject": ['$params'] }, "cli": {
+                    "usage": "exec <device> <command> [value]",
+                    "inject": [
+                        "options.device",
+                        "options.command",
+                        "param.0"
+                    ]
+                }
+            }
+        }], processor, container);
     self.register(type.name, container);
     container.register(new SelfDefinedCommand(
         async () =>
