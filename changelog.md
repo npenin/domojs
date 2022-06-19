@@ -1,4 +1,4 @@
-#  (2022-06-16)
+#  (2022-06-19)
 
 
 ### Bug Fixes
@@ -37,6 +37,7 @@
 ### Features
 
 * add unknown RTS message support b0ee68f
+* make exec on devicetype CLI compatible f882f8b
 * move device management to devicetype 948145c
 * shared gateway implementation 32291ed
 * various fixes and improvements ec01382
