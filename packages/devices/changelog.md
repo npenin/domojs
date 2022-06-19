@@ -1,9 +1,9 @@
-#  (2022-06-14)
+#  (2022-06-19)
 
 
-### Bug Fixes
+### Features
 
-* buffer slicing in rfx e4ed1ae
+* make exec on devicetype CLI compatible f882f8b
 
 
 
