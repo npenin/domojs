@@ -1,4 +1,4 @@
-#  (2022-06-19)
+#  (2022-06-23)
 
 
 ### Bug Fixes
@@ -15,6 +15,7 @@
 * remove resolutions a866f1e
 * rfx parsing 22f8014
 * support for gateway closure 847ba60
+* support for tcp gateway 1703bd9
 * update dependencies and checkout depth 35d588c
 * update dependencies and fix devices communications bb308f5
 * update dependencies to major 181380b
