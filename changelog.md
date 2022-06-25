@@ -1,4 +1,4 @@
-#  (2022-06-23)
+#  (2022-06-25)
 
 
 ### Bug Fixes
@@ -13,6 +13,7 @@
 * recover from closed socket 4676ab4
 * remove failing pubsub 2fad35b
 * remove resolutions a866f1e
+* reopen on close ffc8d15
 * rfx parsing 22f8014
 * support for gateway closure 847ba60
 * support for tcp gateway 1703bd9
