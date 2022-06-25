@@ -15,8 +15,8 @@
     "@akala/pm": "^2.7.0"
   },
   "devDependencies": {
-    "@akala/commands": "^3.5.3",
-    "@akala/pm": "^3.5.18",
+    "@akala/commands": "^3.5.4",
+    "@akala/pm": "^3.5.19",
     "@types/yargs": "17.0.10"
   },
   "gitHead": "5c8b6cb938eb920110c9a48ec210f2a65ee04176"
