@@ -1,9 +1,9 @@
-#  (2022-06-23)
+#  (2022-06-25)
 
 
 ### Bug Fixes
 
-* support for tcp gateway 1703bd9
+* reopen on close ffc8d15
 
 
 
