@@ -30,7 +30,7 @@
     "test": "echo 1"
   },
   "name": "@domojs/rfx-parsers",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "main": "dist/index.js",
   "repository": "https://github.com/npenin/rfx.git",
   "author": "Nicolas Penin <nicolas.penin@dragon-angel.fr>",
