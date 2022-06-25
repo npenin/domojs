@@ -42,6 +42,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                             await gateway.start()
                         }
                     }
+                    socket.on('close', reopen);
                     socket.on('error', e =>
                     {
                         if (e && e['code'] == 'EPIPE')
