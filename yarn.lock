@@ -345,7 +345,7 @@ __metadata:
     "@fortawesome/free-brands-svg-icons": 6.1.1
     "@popperjs/core": 2.11.5
     "@types/debug": 4.1.7
-    "@types/express-serve-static-core": 4.17.28
+    "@types/express-serve-static-core": 4.17.30
     "@types/uuid": 8.3.4
     "@types/webpack-env": 1.17.0
     "@types/ws": 8.5.3
@@ -1789,14 +1789,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express-serve-static-core@npm:4.17.28":
-  version: 4.17.28
-  resolution: "@types/express-serve-static-core@npm:4.17.28"
+"@types/express-serve-static-core@npm:4.17.30":
+  version: 4.17.30
+  resolution: "@types/express-serve-static-core@npm:4.17.30"
   dependencies:
     "@types/node": "*"
     "@types/qs": "*"
     "@types/range-parser": "*"
-  checksum: 826489811a5b371c10f02443b4ca894ffc05813bfdf2b60c224f5c18ac9a30a2e518cb9ef9fdfcaa2a1bb17f8bfa4ed1859ccdb252e879c9276271b4ee2df5a9
+  checksum: c40d9027884ab9e97fa29d9d41d1b75a5966109312e26594cf03c61b278b5bf8e095f53589e47899b34a2e224291a44043617695c3e8bd22284f988e48582ee6
   languageName: node
   linkType: hard
 
