@@ -401,7 +401,7 @@ __metadata:
     "@popperjs/core": 2.11.5
     "@types/debug": 4.1.7
     "@types/uuid": 8.3.4
-    node-fetch: 3.2.6
+    node-fetch: 3.2.10
     typescript: 4.7.4
     uuid: 8.3.2
   languageName: unknown
@@ -6101,14 +6101,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:3.2.6":
-  version: 3.2.6
-  resolution: "node-fetch@npm:3.2.6"
+"node-fetch@npm:3.2.10":
+  version: 3.2.10
+  resolution: "node-fetch@npm:3.2.10"
   dependencies:
     data-uri-to-buffer: ^4.0.0
     fetch-blob: ^3.1.4
     formdata-polyfill: ^4.0.10
-  checksum: ece307ace3a3ff28638ccb0fa0545bb5c0cfd673a9d06fc314d937a73ae6a55917d5bacd7f080f9a9f1449ca20a5c01b1281d0e616acb20315e5ac315971da46
+  checksum: e65322431f4897ded04197aa5923eaec63a8d53e00432de4e70a4f7006625c8dc32629c5c35f4fe8ee719a4825544d07bf53f6e146a7265914262f493e8deac1
   languageName: node
   linkType: hard
 
