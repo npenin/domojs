@@ -11,7 +11,7 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "@akala/core": "^9.0.8",
+    "@akala/core": "^9.1.0",
     "@domojs/devices": "workspace:*",
     "@domojs/protocol-parser": "workspace:*",
     "debug": "^4.3.4"
@@ -34,8 +34,8 @@
     "@types/usb": "2.0.5",
     "@types/ws": "8.5.3",
     "source-map-support": "0.5.21",
-    "typescript": "4.7.4",
-    "usb": "2.4.3"
+    "typescript": "4.8.2",
+    "usb": "2.5.1"
   },
   "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }
