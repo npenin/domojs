@@ -19,5 +19,5 @@
     "ci-deps": "git commit -m 'chore(deps): update dependencies'",
     "generate": "yarn workspaces foreach -A run generate"
   },
-  "packageManager": "yarn@3.2.0"
+  "packageManager": "yarn@3.2.3"
 }
