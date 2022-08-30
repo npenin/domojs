@@ -460,7 +460,7 @@ __metadata:
     "@types/debug": 4.1.7
     "@types/request": 2.48.8
   peerDependencies:
-    "@akala/pubsub": ^0.0.23
+    "@akala/pubsub": ^0.2.0
   languageName: unknown
   linkType: soft
 
