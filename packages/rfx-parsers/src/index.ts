@@ -31,13 +31,13 @@ export class Rfxtrx extends Gateway
     {
         const buffers = [];
         let offset = 0
-        for (; buffer.length >= offset + buffer[offset] + 1; offset += buffer[offset])
+        for (; buffer.length >= offset + buffer[offset] + 1; offset += buffer[offset] + 1)
         {
-            buffers.push(buffer.slice(offset, offset + buffer[offset] + 1));
+            buffers.push(buffer.subarray(offset, offset + buffer[offset] + 1));
             log.debug('frame complete');
         }
-        if (offset != buffer.length - 1)
-            buffers.push(buffer.slice(offset));
+        if (offset != buffer.length)
+            buffers.push(buffer.subarray(offset));
         return buffers;
     }
     protected isCompleteFrame(buffer: Buffer): boolean

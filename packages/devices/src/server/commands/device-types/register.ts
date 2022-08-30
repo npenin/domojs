@@ -1,7 +1,8 @@
 import * as devices from "../../../devices";
 import { CommandWithProcessorAffinity, Container, ICommandProcessor, Processors, SelfDefinedCommand, updateCommands } from "@akala/commands";
-import { BinaryOperator, logger } from "@akala/core";
+import { logger } from "@akala/core";
 import { sidecar } from "@akala/pm";
+import { BinaryOperator } from "@akala/core/expressions";
 
 const log = logger('domojs:devices');
 

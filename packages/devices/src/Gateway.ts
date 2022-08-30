@@ -53,6 +53,7 @@ export abstract class Gateway extends EventEmitter
             {
                 for (let i = 0; i < buffers.length; i++)
                     this.queue.enqueue(buffers[i]);
+                next(true);
                 return;
             }
 
