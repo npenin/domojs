@@ -13,7 +13,7 @@ export default async function (this: ChannelState, container: Container<void>, t
         triggerId = uuid();
     var results = {};
     const interpolator = new Interpolate();
-    container.register(new SelfDefinedCommand(async function (this: ChannelState, ...params)
+    container.register(new SelfDefinedCommand(async function (this: ChannelState, ...params: SerializableObject[])
     {
         if (this.triggers[triggerId].preventNextRun)
         {

@@ -1,5 +1,5 @@
 import { Container } from '@akala/commands';
-import { BinaryOperator } from '@akala/core';
+import { BinaryOperator } from '@akala/core/expressions';;
 import { deviceTypeContainer } from '../../..';
 import { LiveStore } from "../../store";
 

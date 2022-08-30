@@ -9,7 +9,7 @@
     "allowJs": true,
     "sourceMap": true,
     "target": "ES2019",
-    "moduleResolution": "node",
+    "moduleResolution": "Node16",
     "module": "commonjs",
     // "noUnusedLocals": true
   }

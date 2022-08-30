@@ -20,9 +20,9 @@
         },
         {
             "type": "node",
+            "port": 9229,
             "request": "attach",
-            "name": "Docker: Attach to Node",
-            "remoteRoot": "/usr/src/app",
+            "name": "Attach to Node",
             "skipFiles": [
                 "<node_internals>/**/*.js"
             ]

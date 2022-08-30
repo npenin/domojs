@@ -15,12 +15,12 @@ export default class PackedProperty<T, TKey extends keyof T> implements ParserWi
     {
         var result: ArrayItem<T[TKey]>[] = message[this.name] as any;
         if (typeof result == 'undefined')
-            message[this.name] = this.parser.read(buffer, cursor, message) as any;
+            message[this.name] = this.parser.read(buffer, cursor, message as unknown as Partial<ArrayItem<T[TKey]>>) as any;
         else
         {
             if (!Array.isArray(result))
                 message[this.name] = [result] as any;
-            result.push(this.parser.read(buffer, cursor, message));
+            result.push(this.parser.read(buffer, cursor, message as unknown as Partial<ArrayItem<T[TKey]>>));
             return result;
         }
         return message[this.name] as ArrayItem<T[TKey]>;

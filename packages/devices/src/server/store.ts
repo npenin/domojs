@@ -14,7 +14,7 @@ export interface LiveStore
     Devices: db.DbSet<devices.IDevice>;
 }
 
-akala.module('@domojs/devices').activate(['$config.@domojs/devices.storage'], async function (storage)
+akala.module('@domojs/devices').activate(['$config.@domojs/devices.storage'], async function (storage?: { provider?: string, init: any })
 {
     var devicesInit = new ModelDefinition<{ name: String, body: string }>('DevicesInit', 'devices', 'devices');
     devicesInit.defineMember('name', true, Types.string(50), Generator.business);
