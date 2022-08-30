@@ -1,7 +1,0 @@
-{
-    "class": 0,
-    "name": "zigate",
-    "path": "https://wrt3200acm.dragon-angel.fr/serial/ttyUSB1?baud=115200",
-    "mode": "http",
-    "type": "zigate"
-}
