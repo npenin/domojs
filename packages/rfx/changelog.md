@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* enable keepalive on tcp and http sockets 6cdf866
+* fix wrong unit in keepalive b162a24
 
 
 
