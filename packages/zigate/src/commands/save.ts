@@ -21,7 +21,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
         {
             case 'http':
                 const socket: net.Socket = await punch(body.path, 'raw')
-                socket.setKeepAlive(true, 60);
+                socket.setKeepAlive(true, 60000);
                 const gateway = new Zigate(socket);
                 async function reopen()
                 {
@@ -44,7 +44,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                     {
                         this.setGateway(new Zigate(socket)).then(resolve, reject);
                     });
-                    socket.setKeepAlive(true, 60);
+                    socket.setKeepAlive(true, 60000);
                 });
                 break;
             case 'usb':
