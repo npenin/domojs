@@ -26,6 +26,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             {
                 case 'http':
                     const socket: net.Socket = await punch(body.path, 'raw')
+                    socket.setKeepAlive(true, 60);
                     const gateway = new Rfxtrx(socket, socket.readyState == "open");
                     async function reopen()
                     {
@@ -58,6 +59,8 @@ export default async function save(this: State, body: any, device: devices.IDevi
                             socket.on('error', e => log.error(e));
                             this.setGateway(new Rfxtrx(socket, true)).then(resolve, reject);
                         });
+                        socket.setKeepAlive(true, 60);
+
                     });
                     break;
                 case 'usb':
