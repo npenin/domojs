@@ -6,6 +6,7 @@
 * add missing dependency 3eb49a6
 * buffer slicing in rfx e4ed1ae
 * device init saving e728268
+* enable keepalive on tcp and http sockets 34ce209
 * enable keepalive on tcp and http sockets 6cdf866
 * iscp parsing 61d30cd
 * lock file 659742d
