@@ -8,6 +8,7 @@
 * device init saving e728268
 * enable keepalive on tcp and http sockets 34ce209
 * enable keepalive on tcp and http sockets 6cdf866
+* fix wrong unit in keepalive b162a24
 * iscp parsing 61d30cd
 * lock file 659742d
 * made devdependencies using workspace reference d2024b5
