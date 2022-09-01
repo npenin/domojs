@@ -19,7 +19,7 @@ export default async function register(this: devices.DeviceTypeState, type: devi
         { name: 'save', "inject": ['$params'], config: { "": { "inject": ['$params'] } } },
         {
             name: 'exec', "inject": ['$params'], config: {
-                "": { "inject": ['$params'] }, "cli": {
+                "": { "inject": ['param.0', 'param.1', 'param.2'] }, "jsonrpc": { inject: ['param.0', 'param.1', 'param.2'] }, "cli": {
                     "usage": "exec <device> <command> [value]",
                     "inject": [
                         "options.device",
