@@ -1,4 +1,4 @@
-#  (2022-08-31)
+#  (2022-09-01)
 
 
 ### Bug Fixes
@@ -20,6 +20,7 @@
 * rfx parsing 22f8014
 * support for gateway closure 847ba60
 * support for tcp gateway 1703bd9
+* transparent proxy inject parameters 3a3531d
 * update dependencies and checkout depth 35d588c
 * update dependencies and fix devices communications bb308f5
 * update dependencies to major 181380b
