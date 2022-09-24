@@ -6,7 +6,7 @@ import { Media } from '../..';
 import { Container } from '@akala/commands';
 import Configuration from '../../configuration';
 
-export default async function (container: Container<Configuration>, source: string, type: 'music' | 'video', name?: string, season?: number, episode?: number, album?: string, artist?: string)
+export default async function (this: Configuration, container: Container<Configuration>, source: string, type: 'music' | 'video', name?: string, season?: number, episode?: number, album?: string, artist?: string)
 {
     var lastIndex: Date;
 
@@ -14,7 +14,7 @@ export default async function (container: Container<Configuration>, source: stri
     if (stat != null)
         lastIndex = stat.mtime;
 
-    var results = await process.processSource(container.state.libraries[source].paths, container, type, lastIndex, name, season, episode, album, artist);
+    var results = await process.processSource(this.libraries[source].paths, container, type, lastIndex, name, season, episode, album, artist);
 
     if (Object.keys(results).length)
     {
