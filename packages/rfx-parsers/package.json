@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@akala/core": "^9.1.0",
+    "@akala/core": "^9.2.1",
     "@domojs/devices": "workspace:*",
     "@domojs/protocol-parser": "workspace:*"
   },
@@ -18,11 +18,11 @@
   },
   "devDependencies": {
     "@types/debug": "4.1.7",
-    "@types/node": "18.7.14",
+    "@types/node": "18.7.20",
     "@types/serialport": "8.0.2",
     "@types/usb": "2.0.5",
-    "typescript": "4.8.2",
-    "usb": "2.5.1"
+    "typescript": "4.8.3",
+    "usb": "2.5.2"
   },
   "scripts": {
     "build": "tsc -p .",

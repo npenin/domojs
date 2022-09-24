@@ -1,31 +1,40 @@
 {
-    "name": "library",
+    "name": "@domojs/media",
     "commands": [
         {
-            "name": "browse",
-            "inject": [
-                "param.0",
-                "param.1",
-                "param.2",
-                "param.3",
-                "param.4",
-                "param.5",
-                "param.6",
-                "param.7"
-            ],
+            "name": "$init",
+            "inject": [],
             "config": {
-                "": {
+                "fs": {
                     "inject": [
                         "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3",
-                        "param.4",
-                        "param.5",
-                        "param.6",
-                        "param.7"
-                    ]
+                        "param.1"
+                    ],
+                    "path": "dist/server/commands/library/$init.js",
+                    "source": "src/server/commands/library/$init.ts"
                 },
+                "cli": {
+                    "inject": [
+                        "context",
+                        "options.configPath"
+                    ],
+                    "options": {
+                        "configPath": {
+                            "normalize": true,
+                            "doc": "Path to the configuration file",
+                            "needsValue": true
+                        }
+                    }
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "browse",
+            "inject": [],
+            "config": {
                 "fs": {
                     "path": "dist/server/commands/library/browse.js",
                     "source": "src/server/commands/library/browse.ts",
@@ -39,34 +48,16 @@
                         "param.6",
                         "param.7"
                     ]
+                },
+                "": {
+                    "inject": []
                 }
             }
         },
         {
             "name": "dropbox",
-            "inject": [
-                "param.0",
-                "param.1",
-                "param.2",
-                "param.3",
-                "param.4",
-                "param.5",
-                "param.6",
-                "param.7"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3",
-                        "param.4",
-                        "param.5",
-                        "param.6",
-                        "param.7"
-                    ]
-                },
                 "fs": {
                     "path": "dist/server/commands/library/dropbox.js",
                     "source": "src/server/commands/library/dropbox.ts",
@@ -80,26 +71,25 @@
                         "param.6",
                         "param.7"
                     ]
+                },
+                "": {
+                    "inject": []
                 }
             }
         },
         {
             "name": "index",
-            "inject": [
-                "param.0"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                },
                 "fs": {
                     "path": "dist/server/commands/library/index.js",
                     "source": "src/server/commands/library/index.ts",
                     "inject": [
                         "param.0"
                     ]
+                },
+                "": {
+                    "inject": []
                 }
             }
         },
@@ -107,9 +97,6 @@
             "name": "register-scrapper",
             "inject": [],
             "config": {
-                "": {
-                    "inject": []
-                },
                 "fs": {
                     "path": "dist/server/commands/library/register-scrapper.js",
                     "source": "src/server/commands/library/register-scrapper.ts",
@@ -117,6 +104,9 @@
                         "param.0",
                         "param.1"
                     ]
+                },
+                "": {
+                    "inject": []
                 },
                 "jsonrpc": {
                     "inject": [
@@ -132,15 +122,15 @@
             "name": "scrap",
             "inject": [],
             "config": {
-                "": {
-                    "inject": []
-                },
                 "fs": {
                     "path": "dist/server/commands/library/scrap.js",
                     "source": "src/server/commands/library/scrap.ts",
                     "inject": [
                         "param.0"
                     ]
+                },
+                "": {
+                    "inject": []
                 },
                 "cli": {
                     "inject": [
