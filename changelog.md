@@ -1,4 +1,4 @@
-#  (2022-09-01)
+#  (2022-09-24)
 
 
 ### Bug Fixes
@@ -46,6 +46,7 @@
 * make exec on devicetype CLI compatible f882f8b
 * move device management to devicetype 948145c
 * shared gateway implementation 32291ed
+* start to upgrade media to container 12af69b
 * various fixes and improvements ec01382
 
 
