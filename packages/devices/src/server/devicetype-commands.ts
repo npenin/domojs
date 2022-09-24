@@ -5,18 +5,18 @@ namespace deviceTypeContainer
 {
 	export interface container 
 	{
-		dispatch (cmd:'list', ...args: []): ReturnType<typeof import('./commands/device-types/list').default>
-		dispatch (cmd:'push-status', ...args: [Argument0<typeof import('./commands/device-types/push-status').default>]): ReturnType<typeof import('./commands/device-types/push-status').default>
-		dispatch (cmd:'$init', ...args: []): ReturnType<typeof import('./commands/device-types/$init').default>
 		dispatch (cmd:'add', ...args: [Argument1<typeof import('./commands/device-types/add').default>, Argument2<typeof import('./commands/device-types/add').default>]): ReturnType<typeof import('./commands/device-types/add').default>
+		dispatch (cmd:'list', ...args: []): ReturnType<typeof import('./commands/device-types/list').default>
+		dispatch (cmd:'$init', ...args: []): ReturnType<typeof import('./commands/device-types/$init').default>
+		dispatch (cmd:'push-status', ...args: [Argument0<typeof import('./commands/device-types/push-status').default>]): ReturnType<typeof import('./commands/device-types/push-status').default>
 		dispatch (cmd:'register', ...args: [Argument0<typeof import('./commands/device-types/register').default>]): ReturnType<typeof import('./commands/device-types/register').default>
 	}
 	export interface proxy 
 	{
-		'list'(...args: []): ReturnType<typeof import('./commands/device-types/list').default>
-		'push-status'(...args: [Argument0<typeof import('./commands/device-types/push-status').default>]): ReturnType<typeof import('./commands/device-types/push-status').default>
-		'$init'(...args: []): ReturnType<typeof import('./commands/device-types/$init').default>
 		'add'(...args: [Argument1<typeof import('./commands/device-types/add').default>, Argument2<typeof import('./commands/device-types/add').default>]): ReturnType<typeof import('./commands/device-types/add').default>
+		'list'(...args: []): ReturnType<typeof import('./commands/device-types/list').default>
+		'$init'(...args: []): ReturnType<typeof import('./commands/device-types/$init').default>
+		'push-status'(...args: [Argument0<typeof import('./commands/device-types/push-status').default>]): ReturnType<typeof import('./commands/device-types/push-status').default>
 		'register'(...args: [Argument0<typeof import('./commands/device-types/register').default>]): ReturnType<typeof import('./commands/device-types/register').default>
 	}
 }

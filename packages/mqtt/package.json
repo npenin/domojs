@@ -13,8 +13,8 @@
 		"@akala/pubsub": "^0.0.23"
 	},
 	"dependencies": {
-		"@akala/commands": "^3.6.0",
-		"@akala/core": "^9.1.0",
+		"@akala/commands": "^3.8.0",
+		"@akala/core": "^9.2.1",
 		"@domojs/protocol-parser": "workspace:*"
 	},
 	"devDependencies": {
