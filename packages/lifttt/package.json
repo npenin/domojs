@@ -1,6 +1,6 @@
 {
     "name": "@domojs/lifttt",
-    "version": "3.3.26",
+    "version": "3.3.27",
     "main": "dist/server/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\"",
