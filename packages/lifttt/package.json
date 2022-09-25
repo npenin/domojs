@@ -31,9 +31,9 @@
         "uuid": "9.0.0"
     },
     "devDependencies": {
-        "@akala/client": "^5.3.7",
-        "@akala/commands": "^3.8.0",
-        "@akala/core": "^9.2.1",
+        "@akala/client": "^5.3.8",
+        "@akala/commands": "^3.8.1",
+        "@akala/core": "^9.2.2",
         "@akala/json-rpc-ws": "^9.6.0",
         "@domojs/theme-default": "workspace:*",
         "@popperjs/core": "2.11.6",
