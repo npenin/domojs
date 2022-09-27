@@ -34,7 +34,7 @@
     "@types/usb": "2.0.5",
     "@types/ws": "8.5.3",
     "source-map-support": "0.5.21",
-    "typescript": "4.8.3",
+    "typescript": "4.8.4",
     "usb": "2.5.2"
   },
   "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
