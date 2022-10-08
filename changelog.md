@@ -1,4 +1,4 @@
-#  (2022-09-25)
+#  (2022-10-08)
 
 
 ### Bug Fixes
@@ -16,6 +16,7 @@
 * recover from closed socket 4676ab4
 * remove failing pubsub 2fad35b
 * remove resolutions a866f1e
+* remove temporary resolutions f0f1d90
 * reopen on close ffc8d15
 * rfx parsing 22f8014
 * support for gateway closure 847ba60
@@ -26,6 +27,7 @@
 * update dependencies to major 181380b
 * update lock file e390acd
 * update to proper logging d960966
+* update to working akala 9853c40
 * yarn state 71163e0
 * zigate logging d860129
 
@@ -42,6 +44,7 @@
 
 ### Features
 
+* add lots of commands 4a1cbf5
 * add unknown RTS message support b0ee68f
 * make exec on devicetype CLI compatible f882f8b
 * move device management to devicetype 948145c
