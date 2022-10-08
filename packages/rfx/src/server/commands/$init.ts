@@ -53,7 +53,8 @@ export default async function init(this: State, container: Container<void>)
     }
     catch (e)
     {
-        console.error(e);
+        if (e.code !== 'ERR_MODULE_NOT_FOUND')
+            console.error(e);
     }
 
     return Promise.all([p1, p2]);

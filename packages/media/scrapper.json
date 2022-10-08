@@ -1,0 +1,78 @@
+{
+    "name": "scrapper",
+    "commands": [
+        {
+            "name": "$init",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "pm",
+                        "$container"
+                    ],
+                    "path": "dist/server/commands/scrapper/$init.js",
+                    "source": "src/server/commands/scrapper/$init.ts"
+                },
+                "": {
+                    "inject": [
+                        "pm",
+                        "$container"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "cleanFileName",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/server/commands/scrapper/cleanFileName.js",
+                    "source": "src/server/commands/scrapper/cleanFileName.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "scrapTVShowFileName",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/server/commands/scrapper/scrapTVShowFileName.js",
+                    "source": "src/server/commands/scrapper/scrapTVShowFileName.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "scrapVideo",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/server/commands/scrapper/scrapVideo.js",
+                    "source": "src/server/commands/scrapper/scrapVideo.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}
