@@ -14,7 +14,7 @@ export default async function (this: Configuration, container: Container<Configu
     if (stat != null)
         lastIndex = stat.mtime;
 
-    var results = await process.processSource(this.libraries[source].paths, container, type, lastIndex, name, season, episode, album, artist);
+    var results = await process.processSource(this.libraries[source].paths, container, type, this.libraries[source].scrappers, lastIndex, name, season, episode, album, artist);
 
     if (Object.keys(results).length)
     {

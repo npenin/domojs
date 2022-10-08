@@ -5,6 +5,8 @@ import { Media } from '../../../metadata';
 import * as redis from 'ioredis';
 import Configuration from '@akala/config';
 import { Container } from '@akala/commands'
+import { LibrariesConfiguration, ScrappersConfiguration } from '../configuration';
+import { eachAsync } from '@akala/core';
 
 const log = akala.logger('domojs:media');
 
@@ -40,23 +42,6 @@ async function translatePath(path: string): Promise<string>
     }
     return path;
 }
-
-var processing: string = null;
-var wasProcessing: string = null;
-var interval = setInterval(function ()
-{
-    if (processing)
-    {
-        log.info(processing);
-        wasProcessing = processing;
-    }
-    else if (wasProcessing)
-    {
-        log.info('process finished');
-        wasProcessing = null;
-        clearInterval(interval);
-    }
-}, 10000);
 
 export var extensions = {
     video: /\.(avi|mkv|flv|mp4|mpg|ts)$/i,
@@ -233,11 +218,28 @@ var alphabetize = (function ()
     }
 })();
 
-export async function processSource(sources: string[], container: Container<Configuration>, type?: 'music' | 'video', lastIndex?: Date, name?: string, season?: number, episode?: number, album?: string, artist?: string)
+var processing: string = null;
+export async function processSource(sources: string[], container: Container<Configuration>, type: string, scrappers: string[], lastIndex?: Date, name?: string, season?: number, episode?: number, album?: string, artist?: string)
 {
+    var wasProcessing: string = null;
+
     var result: string[] = [];
     if (processing)
         return Promise.reject('Server is already processing (' + processing + ')');
+    var interval = setInterval(function ()
+    {
+        if (processing)
+        {
+            log.info(processing);
+            wasProcessing = processing;
+        }
+        else if (wasProcessing)
+        {
+            log.info('process finished');
+            wasProcessing = null;
+            clearInterval(interval);
+        }
+    }, 10000);
     processing = 'processing folders';
     var extension = extensions[type];
     if (!lastIndex)
@@ -264,7 +266,7 @@ export async function processSource(sources: string[], container: Container<Conf
     await akala.eachAsync(result, async function (path)
     {
         var groups = Object.keys([]);
-        const item = await container.dispatch('scrap', { path: path, type: type, id: null });
+        const item = await container.dispatch('scrap', path, scrappers);
         if (item && matcher(item))
         {
             var name = item.type == 'music' && item.album || item.name;
