@@ -15,14 +15,6 @@
     "@akala/semantic-release": "^0.14.18",
     "typescript": "^4.8.4"
   },
-  "resolutions": {
-    "@akala/pm": "portal:../akala/packages/pm",
-    "@akala/cli": "portal:../akala/packages/cli",
-    "@akala/commands": "portal:../akala/packages/commands",
-    "@akala/core": "portal:../akala/packages/core",
-    "@akala/config": "portal:../akala/packages/config",
-    "@akala/json-rpc-ws": "portal:../akala/packages/json-rpc-ws"
-  },
   "scripts": {
     "publish-all": "yarn akala-automate-runner --loader @akala/automate-yamlloader/ --file @akala/semantic-release/publish.yml --verbose=silly",
     "ci-deps": "git commit -m 'chore(deps): update dependencies'",
