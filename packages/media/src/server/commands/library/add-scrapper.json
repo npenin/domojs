@@ -8,16 +8,14 @@
     },
     "cli": {
         "inject": [
-            "context",
-            "options.configPath"
+            "options.name",
+            "options.type"
         ],
         "options": {
-            "configPath": {
-                "normalize": true,
-                "doc": "Path to the configuration file",
-                "needsValue": true
-            }
-        }
+            "name": {},
+            "type": {}
+        },
+        "usage": "add scrapper <name> <type>"
     },
     "": {
         "inject": [

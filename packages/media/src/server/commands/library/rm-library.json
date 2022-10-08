@@ -1,0 +1,25 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "fs": {
+        "inject": [
+            "param.0"
+        ]
+    },
+    "cli": {
+        "inject": [
+            "options.name"
+        ],
+        "options": {
+            "name": {},
+            "path": {
+                "normalize": true
+            }
+        },
+        "usage": "rm library <name>"
+    },
+    "": {
+        "inject": [
+            "param.0"
+        ]
+    }
+}

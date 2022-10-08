@@ -16,4 +16,8 @@ export default async function (this: LibraryState, context: CliContext, configPa
         this.config.set('libraries', {});
         await this.config.commit();
     }
+    if (!this.config.scrappers)
+        this.config.set('scrappers', { music: [], video: [] });
+
+    this.scrappers = { music: [], video: [] };
 }
