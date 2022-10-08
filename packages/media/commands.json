@@ -1,0 +1,24 @@
+{
+    "name": "scrapper",
+    "commands": [
+        {
+            "name": "$init",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "$container"
+                    ],
+                    "path": "dist/server/commands/scrapper/$init.js",
+                    "source": "src/server/commands/scrapper/$init.ts"
+                },
+                "": {
+                    "inject": [
+                        "$container"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}

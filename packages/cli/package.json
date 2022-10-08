@@ -8,15 +8,15 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "yargs": "17.5.1"
+    "yargs": "17.6.0"
   },
   "peerDependencies": {
-    "@akala/commands": "^2.9.2",
-    "@akala/pm": "^2.7.0"
+    "@akala/commands": "^3.8.3",
+    "@akala/pm": "^3.7.12"
   },
   "devDependencies": {
-    "@akala/commands": "^3.8.1",
-    "@akala/pm": "^3.7.10",
+    "@akala/commands": "^3.9.4",
+    "@akala/pm": "^3.10.1",
     "@types/yargs": "17.0.13"
   },
   "gitHead": "5c8b6cb938eb920110c9a48ec210f2a65ee04176"
