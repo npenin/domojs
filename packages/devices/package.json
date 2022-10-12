@@ -24,7 +24,7 @@
     "@akala/sidecar": "^0.3.23",
     "@akala/storage": "^3.2.7",
     "@fortawesome/free-brands-svg-icons": "6.2.0",
-    "snyk": "^1.1025.0",
+    "snyk": "^1.1026.0",
     "uuid": "9.0.0",
     "ws": "8.9.0"
   },
