@@ -1,66 +1,55 @@
-import Configuration, { ProxyConfiguration } from "@akala/config";
-import { SerializableObject } from "@akala/json-rpc-ws";
+import { HttpOptions } from "@akala/core";
 
-export interface State
+export default interface State
 {
-	locations: ProxyConfiguration<SerializableObject[]>;
+	sites: Record<string, Site>;
 }
 
-export enum Weather
+export interface Site
 {
-	thunderstorm_with_light_rain = 200,
-	thunderstorm_with_rain = 201,
-	thunderstorm_with_heavy_rain = 202,
-	light_thunderstorm = 210,
-	thunderstorm = 211,
-	heavy_thunderstorm = 212,
-	ragged_thunderstorm = 221,
-	thunderstorm_with_light_drizzle = 230,
-	thunderstorm_with_drizzle = 231,
-	thunderstorm_with_heavy_drizzle = 232,
-	light_intensity_drizzle = 300,
-	drizzle = 301,
-	heavy_intensity_drizzle = 302,
-	light_intensity_drizzle_rain = 310,
-	drizzle_rain = 311,
-	heavy_intensity_drizzle_rain = 312,
-	shower_rain_and_drizzle = 313,
-	heavy_shower_rain_and_drizzle = 314,
-	shower_drizzle = 321,
-	light_rain = 500,
-	moderate_rain = 501,
-	heavy_intensity_rain = 502,
-	very_heavy_rain = 503,
-	extreme_rain = 504,
-	freezing_rain = 511,
-	light_intensity_shower_rain = 520,
-	shower_rain = 521,
-	heavy_intensity_shower_rain = 522,
-	ragged_shower_rain = 531,
-	light_snow = 600,
-	Snow = 601,
-	Heavy_snow = 602,
-	Sleet = 611,
-	Light_shower_sleet = 612,
-	Shower_sleet = 613,
-	Light_rain_and_snow = 615,
-	Rain_and_snow = 616,
-	Light_shower_snow = 620,
-	Shower_snow = 621,
-	Heavy_shower_snow = 622,
-	mist = 701,
-	Smoke = 711,
-	Haze = 721,
-	sand_dust_whirls = 731,
-	fog = 741,
-	sand = 751,
-	dust = 761,
-	volcanic_ash = 762,
-	squalls = 771,
-	tornado = 781,
-	clear_sky = 800,
-	few_clouds_11_25 = 801,
-	scattered_clouds_25_50 = 802,
-	broken_clouds_51_84 = 803,
-	overcast_clouds_85_100 = 804,
+	authentication?: BasicAuthentication | OAuth;
+	request?: RequestAuthentication
+	login?: Page;
+	page: Page;
+}
+
+export interface BasicAuthentication
+{
+	user: string;
+	pass: string;
+}
+
+export interface OAuth
+{
+	clientId: string;
+	clientSecret: string;
+
+}
+
+export type RequestAuthentication = { headers?: Record<string, string>, query?: Record<string, string> }
+
+export interface Page
+{
+	method?: string;
+	url: string | URL | Scrap;
+	items: Item;
+	totalCountSelector?: string;
+	nextPage?: RequestAuthentication;
+}
+
+export interface Item
+{
+	selector: string;
+	details?: Page;
+	scrap?: Record<string, Scrap>
+}
+
+export interface Scrap
+{
+	selector: string;
+	multiple?: boolean;
+	scrap?: Record<string, Scrap>;
+	attribute?: string;
+	dataset?: string;
+	textNode?: number;
 }
