@@ -201,6 +201,35 @@
             }
         },
         {
+            "name": "list-folders",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/server/commands/library/list-folders.js",
+                    "source": "src/server/commands/library/list-folders.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.library"
+                    ],
+                    "options": {
+                        "library": {
+                            "needsValue": true
+                        }
+                    },
+                    "usage": "list folders <library>"
+                }
+            }
+        },
+        {
             "name": "list-libraries",
             "inject": [],
             "config": {
