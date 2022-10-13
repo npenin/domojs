@@ -139,8 +139,8 @@ __metadata:
   linkType: hard
 
 "@akala/pm@npm:^3.10.1":
-  version: 3.10.1
-  resolution: "@akala/pm@npm:3.10.1"
+  version: 3.10.2
+  resolution: "@akala/pm@npm:3.10.2"
   dependencies:
     "@akala/cli": ^2.4.4
     "@akala/commands": ^3.9.4
@@ -152,7 +152,7 @@ __metadata:
   bin:
     pm: dist/cli.js
     pm-fork: dist/fork.js
-  checksum: 71569dc5083a14b6855091f7463bc04132c35b2ad926abb4e3cc83df43e41c34c9ba7f6a54a5337d7e11bc72f637c97ad690b1a0b9724ebdf440a6d5c7e0b3c7
+  checksum: c1f68b44c403e3078732f1d14f0ed33f33156c4b90ccbbb09542e387133158b59b535ec070a236ea4d609d3a20047dd416f780ec5d30002035b5c2f08b232703
   languageName: node
   linkType: hard
 
