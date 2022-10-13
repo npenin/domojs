@@ -156,13 +156,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@akala/pm@npm:^3.10.2":
+  version: 3.10.2
+  resolution: "@akala/pm@npm:3.10.2"
+  dependencies:
+    "@akala/cli": ^2.4.4
+    "@akala/commands": ^3.9.4
+    "@akala/config": ^1.3.14
+    "@akala/core": ^9.4.1
+    "@akala/json-rpc-ws": ^9.6.1
+    reflect-metadata: ^0.1.13
+    source-map-support: ^0.5.21
+  bin:
+    pm: dist/cli.js
+    pm-fork: dist/fork.js
+  checksum: c1f68b44c403e3078732f1d14f0ed33f33156c4b90ccbbb09542e387133158b59b535ec070a236ea4d609d3a20047dd416f780ec5d30002035b5c2f08b232703
+  languageName: node
+  linkType: hard
+
 "@akala/pubsub@npm:^0.2.22":
-  version: 0.2.22
-  resolution: "@akala/pubsub@npm:0.2.22"
+  version: 0.2.23
+  resolution: "@akala/pubsub@npm:0.2.23"
   dependencies:
     "@akala/commands": ^3.9.4
-    "@akala/pm": ^3.10.1
-  checksum: 40ed3dd4fb5c94e2bcf500b20a367b2f8ebc3ec2fd4660a2e34580dfcbe9741fed206746204b36b7324c5a32d9f51e764ade39e446594190a4f39ad5940fc63d
+    "@akala/pm": ^3.10.2
+  checksum: 9c8854cac17f60e5a1cf3eb1c6aedaf227dcbef0795a7c7baca1f2b47b4fc85f9967bc95ffb65d99b10d214556596fa23c40fa6630ea8eb76fe6da9ef7cb98de
   languageName: node
   linkType: hard
 
