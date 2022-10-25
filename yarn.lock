@@ -364,7 +364,7 @@ __metadata:
     "@akala/core": ^9.4.1
     "@types/debug": 4.1.7
     "@types/mongodb": 4.0.7
-    "@types/node": 18.8.3
+    "@types/node": 18.11.5
     "@types/ws": 8.5.3
     mongodb: 4.10.0
     typescript: 4.8.4
@@ -472,7 +472,7 @@ __metadata:
   dependencies:
     "@types/debug": 4.1.7
     "@types/mocha": 10.0.0
-    "@types/node": 18.8.3
+    "@types/node": 18.11.5
     debug: ^4.3.4
     mocha: 10.0.0
     source-map-support: 0.5.21
@@ -488,7 +488,7 @@ __metadata:
     "@domojs/devices": "workspace:*"
     "@domojs/protocol-parser": "workspace:*"
     "@types/debug": 4.1.7
-    "@types/node": 18.8.3
+    "@types/node": 18.11.5
     "@types/serialport": 8.0.2
     "@types/usb": 2.0.5
     typescript: 4.8.4
@@ -547,7 +547,7 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": ^6.2.0
     "@popperjs/core": ^2.11.6
     "@types/debug": 4.1.7
-    "@types/node": 18.8.3
+    "@types/node": 18.11.5
     "@types/request": 2.48.8
     "@types/ws": 8.5.3
     bootstrap: ^5.2.2
@@ -1997,10 +1997,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.8.3":
-  version: 18.8.3
-  resolution: "@types/node@npm:18.8.3"
-  checksum: 9201adc6dc389644c9f478f950ef8926a93e5827865dcd80d7d12fefacab665c96879c87cd6ec74d5eccdd998c4603d02e1e07a35d71a63fe4c20670a381f6ef
+"@types/node@npm:18.11.5":
+  version: 18.11.5
+  resolution: "@types/node@npm:18.11.5"
+  checksum: ac54e9287dd4549ea3dc8aabc0cf7bfa04c52f02925d7fd68414789617ec770f034c8ae2e111e8bd00d446a46fcac42587b5a316a1303e2f6ea094854248c9ff
   languageName: node
   linkType: hard
 
