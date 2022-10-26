@@ -11,7 +11,7 @@
     "@akala/automate": "^1.2.22",
     "@akala/automate-yamlloader": "^1.1.23",
     "@akala/commands": "^3.9.4",
-    "@akala/pm": "^3.10.1",
+    "@akala/pm": "^4.0.1",
     "@akala/semantic-release": "^0.14.18",
     "typescript": "^4.8.4"
   },
