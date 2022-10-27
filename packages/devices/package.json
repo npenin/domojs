@@ -18,7 +18,7 @@
     "@akala/config": "^1.3.14",
     "@akala/core": "^9.4.1",
     "@akala/json-rpc-ws": "^9.6.1",
-    "@akala/pm": "^3.10.1",
+    "@akala/pm": "^4.0.2",
     "@akala/pubsub": "^0.2.22",
     "@akala/server": "^8.3.22",
     "@akala/sidecar": "^0.3.23",
