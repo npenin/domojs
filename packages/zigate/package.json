@@ -34,7 +34,7 @@
     "devDependencies": {
         "@akala/cli": "^2.4.4",
         "@akala/commands": "^3.9.4",
-        "@akala/pubsub": "^0.2.22",
+        "@akala/pubsub": "^1.0.4",
         "@domojs/devices": "workspace:*",
         "@types/debug": "4.1.7"
     },
