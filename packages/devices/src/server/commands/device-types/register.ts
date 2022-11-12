@@ -16,9 +16,9 @@ export default async function register(this: devices.DeviceTypeState, type: devi
 
     container.name = type.name;
     updateCommands([
-        { name: 'save', "inject": ['$params'], config: { "": { "inject": ['$params'] } } },
+        { name: 'save', config: { "": { "inject": ['$params'] } } },
         {
-            name: 'exec', "inject": ['$params'], config: {
+            name: 'exec', config: {
                 "": { "inject": ['param.0', 'param.1', 'param.2'] }, "jsonrpc": { inject: ['param.0', 'param.1', 'param.2'] }, "cli": {
                     "usage": "exec <device> <command> [value]",
                     "inject": [

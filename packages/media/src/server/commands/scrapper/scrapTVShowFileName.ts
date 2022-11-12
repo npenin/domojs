@@ -16,7 +16,7 @@ export default function scrapTVShowFileName<T extends TVShow | Movie>(media: T):
         if (!seasonMatch)
         {
             episodeMatch = /([0-9]+)(?:x|\.)([0-9]+)/.exec(media.name);
-            if (episodeMatch && episodeMatch[2])
+            if (episodeMatch && episodeMatch[2])    
             {
                 seasonMatch = episodeMatch;
                 episodeMatch = [false, episodeMatch[2]] as RegExpExecArray;

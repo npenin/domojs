@@ -8,11 +8,11 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@akala/automate": "^1.2.23",
-    "@akala/automate-yamlloader": "^1.1.24",
-    "@akala/commands": "^3.9.4",
-    "@akala/pm": "^3.10.2",
-    "@akala/semantic-release": "^0.14.18",
+    "@akala/automate": "^2.1.4",
+    "@akala/automate-yamlloader": "^1.1.34",
+    "@akala/commands": "^4.2.4",
+    "@akala/pm": "^4.1.4",
+    "@akala/semantic-release": "^1.0.7",
     "typescript": "^4.8.4"
   },
   "scripts": {

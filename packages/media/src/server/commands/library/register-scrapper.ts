@@ -6,7 +6,7 @@ import { LibraryState } from "../../state";
 export default async function registerScrapper(this: LibraryState, container: Container<LibraryState>, remote: Container<void>, type: keyof ScrappersConfiguration, scrapper: ScrapperConfiguration)
 {
     debugger;
-    container.register({ name: scrapper.name, inject: scrapper.inject, config: scrapper.config, processor: remote });
+    container.register({ name: scrapper.name, inject: scrapper.config[''].inject, config: scrapper.config, processor: remote });
     this.scrappers[type].push(scrapper);
     var disconnect = remote.resolve<Metadata.Command & { scrappers?: ScrapperConfiguration[] }>('$disconnect');
     if (!disconnect)
