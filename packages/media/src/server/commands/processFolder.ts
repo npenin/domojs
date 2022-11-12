@@ -50,7 +50,7 @@ export var extensions = {
 
 export function saveMedia(db: redis.Pipeline, media: Media)
 {
-    var multi = db.multi()
+    var multi = db
         .hmset(media.id, media)
         .set(media.path, media.id);
 
