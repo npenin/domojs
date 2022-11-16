@@ -31,9 +31,11 @@ interface Recipe
 (async function ()
 {
     var results = [];
-    for (var category of ['desserts'])
-    // for (var category of ['apéritifs', 'entrées', 'plats', 'desserts', 'glaces', 'boulangerie', 'accompagnements', 'boissons', 'soupes et crèmes', 'cakes et quiches salés', 'sauces', 'autres'])
+    // for (var category of ['desserts'])
+    for (var category of ['apéritifs', 'entrées', 'plats', 'desserts', 'glaces', 'boulangerie', 'accompagnements', 'boissons', 'soupes et crèmes', 'cakes et quiches salés', 'sauces', 'autres'])
     {
+        console.time(category);
+        console.log(category);
         var categoryResults = await scrap({
             page: {
                 url: 'https://www.guydemarle.com/recettes?is_icookable=true', nextPage: { query: { page: '{{$page}}', categories: category } }, items: {
@@ -45,6 +47,12 @@ interface Recipe
                             scrap: {
                                 name: {
                                     selector: 'h1.single-recipe__title'
+                                },
+                                favorites: {
+                                    selector: '.single-recipe__buttons .add_recipe_to_favorite_list > div.label'
+                                },
+                                mark: {
+                                    selector: '.rating_comments .rating_comments__title'
                                 },
                                 category: {
                                     selector: '.custom-label--category'
@@ -108,6 +116,7 @@ interface Recipe
             }
         }, new FetchHttp()) as Recipe[];
         results.push(...categoryResults.map(e => (e.category = category, e)));
+        console.timeEnd(category);
     }
-    console.log(JSON.stringify(results));
+    console.error(JSON.stringify(results));
 })()
