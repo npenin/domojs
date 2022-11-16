@@ -15,7 +15,7 @@ export default async function scrap(site: Site, http: Http)
     {
         while (true)
         {
-            console.error('processing page ' + (++pageIndex));
+            console.log('processing page ' + (++pageIndex));
 
             let intermediateResults = await scrapPage(site.page, http, Object.assign({}, site.request, nextPage({ $page: pageIndex, $skip: results.length })));
             if (intermediateResults.length == 0)
@@ -26,7 +26,7 @@ export default async function scrap(site: Site, http: Http)
     return results;
 }
 
-async function scrapPage(page: Page, http: Http, options?: RequestAuthentication)
+export async function scrapPage(page: Page, http: Http, options?: RequestAuthentication)
 {
     var url = new URL(page.url as string | URL);
     if (options?.query)
@@ -34,6 +34,7 @@ async function scrapPage(page: Page, http: Http, options?: RequestAuthentication
     var response = await http.call({ url: url, method: page.method, headers: options?.headers })
 
     let $ = cheerio(await response.text())
+    // console.time('process page ' + page.url)
     return await Promise.all(Array.from($(page.items.selector).map(async function ()
     {
         var result = {};
@@ -51,7 +52,11 @@ async function scrapPage(page: Page, http: Http, options?: RequestAuthentication
             Object.assign(result, (await scrapPage(details, http, options))[0]);
         }
         return result;
-    })));
+    }))).then((result) =>
+    {
+        // console.timeEnd('process page ' + page.url);
+        return result;
+    });
 }
 
 function isScrap(obj: string | URL | Scrap): obj is Scrap
