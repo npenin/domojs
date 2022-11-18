@@ -3,6 +3,15 @@ import { AnyNode, Cheerio, CheerioAPI, load as cheerio, Node } from "cheerio";
 import { ElementType } from "htmlparser2";
 import { Page, RequestAuthentication, Scrap, Site } from "../state";
 
+export class ScrapError extends Error
+{
+    constructor(public readonly page: Page, public readonly inner: Error)
+    {
+        super();
+
+    }
+}
+
 export default async function scrap(site: Site, http: Http)
 {
     if (site.authentication)
@@ -56,7 +65,7 @@ export async function scrapPage(page: Page, http: Http, options?: RequestAuthent
     {
         // console.timeEnd('process page ' + page.url);
         return result;
-    });
+    }, err => { throw new ScrapError(page, err) });
 }
 
 function isScrap(obj: string | URL | Scrap): obj is Scrap
@@ -75,6 +84,8 @@ function scrapscraps(item: CheerioAPI, objectDefinition: Record<string, Scrap>)
 
 function scrapscrap(property: Cheerio<AnyNode>, scrap: Scrap)
 {
+    if (!property.length && !scrap.scrap)
+        return undefined;
     if (scrap.attribute)
         return property.attr()[scrap.attribute];
     if (scrap.dataset)
@@ -84,7 +95,7 @@ function scrapscrap(property: Cheerio<AnyNode>, scrap: Scrap)
         return (property.contents().filter(function ()
         {
             return this.type == ElementType.Text
-        })[scrap.textNode] as any).data
+        })[scrap.textNode] as any)?.data
     }
     if (scrap.scrap)
     {

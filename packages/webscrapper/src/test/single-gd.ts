@@ -1,5 +1,6 @@
 import { FetchHttp } from '@akala/core'
 import { scrapPage } from '../commands/scrap'
+import { inspect } from 'util'
 
 interface Recipe
 {
@@ -31,8 +32,8 @@ interface Recipe
 (async function ()
 {
     // for (var category of ['desserts'])
-    console.log(await scrapPage({
-        url: 'https://www.guydemarle.com/recettes/gaufres-facon-pizza-5617',
+    console.log(inspect(await scrapPage({
+        url: 'https://www.guydemarle.com/recettes/croquettes-aux-crevettes-13346',
         items: {
             selector: '#context > .recipe-wrap',
             scrap: {
@@ -61,6 +62,19 @@ interface Recipe
                 },
                 prepTime: {
                     selector: '.clock-and-text .time'
+                },
+                products: {
+                    selector: '#products-slider li.glide__slide',
+                    multiple: true,
+                    scrap: {
+                        name: {
+                            selector: '.content .product-name'
+                        },
+                        pictureUrl: {
+                            selector: '.product-link img',
+                            attribute: 'src'
+                        }
+                    }
                 },
                 preparations: {
                     selector: '.prep-wrap',
@@ -96,5 +110,5 @@ interface Recipe
                 }
             }
         }
-    }, new FetchHttp()));
+    }, new FetchHttp()), false, 5, true));
 })()
