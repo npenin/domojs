@@ -7,6 +7,7 @@ interface Recipe
     url: string,
     category: string;
     timings: { name: string, value: string }[],
+    is_icookable: boolean;
     prepTime: string,
     preparations: {
         topings: { quantity: number, type: string }[],
@@ -28,8 +29,9 @@ interface Recipe
 
 }
 
-(async function ()
+(async function (is_icookableArg: string)
 {
+    const is_icookable = Boolean(is_icookableArg);
     var results = [];
     // for (var category of ['desserts'])
     for (var category of ['apéritifs', 'entrées', 'plats', 'desserts', 'glaces', 'boulangerie', 'accompagnements', 'boissons', 'soupes et crèmes', 'cakes et quiches salés', 'sauces', 'autres'])
@@ -38,7 +40,7 @@ interface Recipe
         console.log(category);
         var categoryResults = await scrap({
             page: {
-                url: 'https://www.guydemarle.com/recettes?is_icookable=true', nextPage: { query: { page: '{{$page}}', categories: category } }, items: {
+                url: 'https://www.guydemarle.com/recettes', nextPage: { query: { page: '{{$page}}', categories: category, is_icookable: is_icookable.toString() } }, items: {
                     selector: 'div.column > div.card.custom-card',
                     details: {
                         url: { selector: 'div.content.recipe-card h2.recipe-title__wrap > a', attribute: 'href' },
@@ -70,6 +72,19 @@ interface Recipe
                                 },
                                 prepTime: {
                                     selector: '.clock-and-text .time'
+                                },
+                                products: {
+                                    selector: '#products-slider li.glide__slide',
+                                    multiple: true,
+                                    scrap: {
+                                        name: {
+                                            selector: '.content .product-name'
+                                        },
+                                        pictureUrl: {
+                                            selector: '.product-link img',
+                                            attribute: 'src'
+                                        }
+                                    }
                                 },
                                 preparations: {
                                     selector: '.prep-wrap',
@@ -115,8 +130,9 @@ interface Recipe
                 }
             }
         }, new FetchHttp()) as Recipe[];
-        results.push(...categoryResults.map(e => (e.category = category, e)));
+        results.push(...categoryResults.map(e => (e.category = category, e.is_icookable = is_icookable, e)));
         console.timeEnd(category);
+        console.log(categoryResults.length);
     }
     console.error(JSON.stringify(results));
-})()
+})(process.argv[3])
