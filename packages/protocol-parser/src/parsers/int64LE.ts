@@ -4,7 +4,7 @@ import Uint8 from "./uint8";
 
 const length = 8;
 
-export default class Uint64 implements Parser<bigint>
+export default class Int64 implements Parser<bigint>
 {
     constructor()
     {
@@ -26,12 +26,11 @@ export default class Uint64 implements Parser<bigint>
             tmpBuffer.writeUInt8(Uint8.prototype.read(buffer, cursor), 5);
             tmpBuffer.writeUInt8(Uint8.prototype.read(buffer, cursor), 6);
             tmpBuffer.writeUInt8(Uint8.prototype.read(buffer, cursor), 7);
-            return tmpBuffer.readBigUInt64BE(0);
+            return tmpBuffer.readBigInt64LE(0);
         }
-        const value = buffer.readBigUInt64BE(cursor.offset);
+        const value = buffer.readBigInt64LE(cursor.offset);
         cursor.offset += length;
         return value;
-
     }
 
     public write(buffer: Buffer, cursor: Cursor, value: bigint)
@@ -39,13 +38,13 @@ export default class Uint64 implements Parser<bigint>
         if (cursor.subByteOffset > 0)
         {
             let tmpBuffer = Buffer.alloc(8);
-            tmpBuffer.writeBigUInt64BE(value, 0);
-            Uint32.prototype.write(buffer, cursor, tmpBuffer.readUInt32BE(0));
-            Uint32.prototype.write(buffer, cursor, tmpBuffer.readUInt32BE(4));
+            tmpBuffer.writeBigInt64LE(value, 0);
+            Uint32.prototype.write(buffer, cursor, tmpBuffer.readUInt32LE(2));
+            Uint32.prototype.write(buffer, cursor, tmpBuffer.readUInt32LE(0));
         }
         else
         {
-            buffer.writeBigUInt64BE(value, cursor.offset);
+            buffer.writeBigInt64LE(value, cursor.offset);
             cursor.offset += length;
         }
     }
