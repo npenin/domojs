@@ -17,6 +17,18 @@ import Uint32LE from './uint32LE'
 import Uint64LE from './uint64LE'
 import Vuint from './vuint'
 import VuintLE from './vuintLE'
+import Int16 from './int16'
+import Int24 from './int24'
+import Int32 from './int32'
+import Int64 from './int64'
+import Int16LE from './int16LE'
+import Int24LE from './int24LE'
+import Int32LE from './int32LE'
+import Int64LE from './int64LE'
+import Float from './float'
+import FloatLE from './floatLE'
+import Double from './double'
+import DoubleLE from './doubleLE'
 
 import PrefixedString from './string-prefixed'
 import FixedString from './string-fixed'
@@ -42,6 +54,7 @@ import Between from './between'
 import * as protobuf from './protobuf'
 import { Sub } from './sub'
 import { Conditional } from './conditional-parser'
+import * as types from '../core'
 
 export { protobuf };
 
@@ -61,8 +74,21 @@ export const uint16LE: Parser<number> = new Uint16LE();
 export const uint24LE: Parser<number> = new Uint24LE();
 export const uint32LE: Parser<number> = new Uint32LE();
 export const uint64LE: Parser<bigint> = new Uint64LE();
+export const int16: Parser<number> = new Int16();
+export const int24: Parser<number> = new Int24();
+export const int32: Parser<number> = new Int32();
+export const int64: Parser<bigint> = new Int64();
+export const int16LE: Parser<number> = new Int16LE();
+export const int24LE: Parser<number> = new Int24LE();
+export const int32LE: Parser<number> = new Int32LE();
+export const int64LE: Parser<bigint> = new Int64LE();
 export const vuint: ParserWithoutKnownLength<number> = new Vuint();
 export const vuintLE: ParserWithoutKnownLength<number> = new VuintLE();
+
+export const floatLE: Parser<types.float> = new FloatLE();
+export const float: Parser<types.float> = new Float();
+export const double: Parser<types.double> = new Double();
+export const doubleLE: Parser<types.double> = new DoubleLE();
 
 export { Parser, ParserWithMessage, ParserWithMessageWithoutKnownLength, ParserWithoutKnownLength, Parsers, ParsersWithMessage, AnyParser };
 
@@ -84,6 +110,14 @@ export
     Uint24LE,
     Uint32LE,
     Uint64LE,
+    Int16,
+    Int24,
+    Int32,
+    Int64,
+    Int16LE,
+    Int24LE,
+    Int32LE,
+    Int64LE,
     Vuint,
     VuintLE,
     PrefixedString as String,
@@ -91,7 +125,11 @@ export
     PrefixedArray as Array,
     Sequence,
     Series,
-    Between
+    Between,
+    Float,
+    FloatLE,
+    Double,
+    DoubleLE
 };
 
 export function skip<T = void>(length: number): Parsers<T>
@@ -106,16 +144,16 @@ export function boolean(parser?: Parser<number>): Parser<boolean>
 {
     return new Boolean(parser || bit);
 }
-export function string(length: number, encoding?: BufferEncoding): Parser<string>
-export function string(length: Parsers<number>, encoding?: BufferEncoding): ParserWithoutKnownLength<string>
-export function string<T>(length: keyof T, encoding?: BufferEncoding): ParserWithMessageWithoutKnownLength<string, T>
-export function string<T>(length: Parsers<number> | number | keyof T, encoding?: BufferEncoding): AnyParser<string, T>
+export function string<TString extends string = string>(length: number, encoding?: BufferEncoding): Parser<TString>
+export function string<TString extends string = string>(length: Parsers<number>, encoding?: BufferEncoding): ParserWithoutKnownLength<TString>
+export function string<T, TString extends string = string>(length: keyof T, encoding?: BufferEncoding): ParserWithMessageWithoutKnownLength<TString, T>
+export function string<T, TString extends string = string>(length: Parsers<number> | number | keyof T, encoding?: BufferEncoding): AnyParser<TString, T>
 {
     if (typeof (length) === 'number')
-        return new FixedString(length, encoding);
+        return new FixedString<TString>(length, encoding);
     if (typeof (length) === 'string' || typeof (length) === 'symbol')
-        return new PreparsedLengthString<T, typeof length>(length, encoding);
-    return new PrefixedString(length as Parsers<number>, encoding);
+        return new PreparsedLengthString<T, typeof length, TString>(length, encoding);
+    return new PrefixedString<TString>(length as Parsers<number>, encoding);
 }
 export function buffer(length: Parser<number> | number): Parsers<Buffer>
 {

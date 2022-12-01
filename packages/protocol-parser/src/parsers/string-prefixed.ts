@@ -1,13 +1,13 @@
 import { Cursor, Parsers, ParserWithoutKnownLength, parserWrite } from "./_common";
 
-export default class PrefixedString implements ParserWithoutKnownLength<string>
+export default class PrefixedString<TString extends string = string> implements ParserWithoutKnownLength<TString>
 {
     constructor(private prefix: Parsers<number>, private encoding: BufferEncoding = 'ascii')
     {
 
     }
     length: -1 = -1;
-    read(buffer: Buffer, cursor: Cursor): string
+    read(buffer: Buffer, cursor: Cursor): TString
     {
         if (cursor.subByteOffset > 0)
             throw new Error('Cross byte value are not supported');
@@ -16,9 +16,9 @@ export default class PrefixedString implements ParserWithoutKnownLength<string>
 
         var value = buffer.toString(this.encoding, cursor.offset, cursor.offset + length);
         cursor.offset += length;
-        return value;
+        return value as TString;
     }
-    write(value: string): Buffer[]
+    write(value: TString): Buffer[]
     {
         var buffers: Buffer[] = [];
         buffers.push(...parserWrite(this.prefix, value.length));

@@ -1,10 +1,10 @@
 import { Cursor, Parser } from "./_common";
 import Uint8 from "./uint8";
-import { uint16 } from "../core";
+import { int16 } from "../core";
 
 const length = 2;
 
-export default class Uint16 implements Parser<uint16>
+export default class Int16 implements Parser<int16>
 {
     constructor()
     {
@@ -13,21 +13,21 @@ export default class Uint16 implements Parser<uint16>
 
     readonly length = length;
 
-    public read(buffer: Buffer, cursor: Cursor): uint16
+    public read(buffer: Buffer, cursor: Cursor): int16
     {
         if (cursor.subByteOffset > 0)
         {
             let tmpBuffer = Buffer.alloc(2);
             tmpBuffer.writeUInt8(Uint8.prototype.read(buffer, cursor), 0);
             tmpBuffer.writeUInt8(Uint8.prototype.read(buffer, cursor), 1);
-            return tmpBuffer.readUInt16BE(0);
+            return tmpBuffer.readInt16BE(0);
         }
-        const value = buffer.readUInt16BE(cursor.offset);
+        const value = buffer.readInt16BE(cursor.offset);
         cursor.offset += length;
         return value;
     }
 
-    public write(buffer: Buffer, cursor: Cursor, value: uint16)
+    public write(buffer: Buffer, cursor: Cursor, value: int16)
     {
         if (cursor.subByteOffset > 0)
         {
@@ -36,7 +36,7 @@ export default class Uint16 implements Parser<uint16>
         }
         else
         {
-            buffer.writeUInt16BE(value, cursor.offset);
+            buffer.writeInt16BE(value, cursor.offset);
             cursor.offset += length;
         }
     }
