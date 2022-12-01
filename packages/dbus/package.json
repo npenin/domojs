@@ -1,0 +1,12 @@
+{
+    "name": "@domojs/dbus",
+    "version": "0.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\""
+    },
+    "dependencies": {
+        "@domojs/protocol-parser": "workspace:^"
+    }
+}
