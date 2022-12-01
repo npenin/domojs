@@ -3,7 +3,6 @@
     "commands": [
         {
             "name": "$init",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -36,7 +35,6 @@
         },
         {
             "name": "add-folder",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -69,7 +67,6 @@
         },
         {
             "name": "add-library",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -99,7 +96,6 @@
         },
         {
             "name": "add-scrapper",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -130,7 +126,6 @@
         },
         {
             "name": "browse",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -179,7 +174,6 @@
         },
         {
             "name": "dropbox",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/server/commands/library/dropbox.js",
@@ -196,13 +190,21 @@
                     ]
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4",
+                        "param.5",
+                        "param.6",
+                        "param.7"
+                    ]
                 }
             }
         },
         {
             "name": "list-folders",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -231,7 +233,6 @@
         },
         {
             "name": "list-libraries",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [],
@@ -249,7 +250,6 @@
         },
         {
             "name": "list-scrappers",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [],
@@ -269,7 +269,6 @@
         },
         {
             "name": "register-scrapper",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -301,7 +300,6 @@
         },
         {
             "name": "rm-folder",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -334,7 +332,6 @@
         },
         {
             "name": "rm-library",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -364,7 +361,6 @@
         },
         {
             "name": "rm-scrapper",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -395,7 +391,6 @@
         },
         {
             "name": "scrap",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/server/commands/library/scrap.js",
@@ -437,5 +432,5 @@
             }
         }
     ],
-    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
 }

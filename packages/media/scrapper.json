@@ -3,7 +3,6 @@
     "commands": [
         {
             "name": "$init",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -23,7 +22,6 @@
         },
         {
             "name": "cleanFileName",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -41,7 +39,6 @@
         },
         {
             "name": "scrapTVShowFileName",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -56,23 +53,7 @@
                     ]
                 }
             }
-        },
-        {
-            "name": "scrapVideo",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/server/commands/scrapper/scrapVideo.js",
-                    "source": "src/server/commands/scrapper/scrapVideo.ts",
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
         }
     ],
-    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
 }

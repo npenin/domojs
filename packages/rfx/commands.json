@@ -3,7 +3,6 @@
     "commands": [
         {
             "name": "$init",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/server/commands/$init.js",
@@ -22,7 +21,6 @@
         },
         {
             "name": "exec",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/server/commands/exec.js",
@@ -52,7 +50,6 @@
         },
         {
             "name": "rfy",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/server/commands/rfy.js",
@@ -96,7 +93,6 @@
         },
         {
             "name": "save",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -120,5 +116,5 @@
             }
         }
     ],
-    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
 }
