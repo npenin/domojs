@@ -1,0 +1,78 @@
+{
+    "name": "@domojs/mdns",
+    "commands": [
+        {
+            "name": "$init",
+            "config": {
+                "fs": {
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "$stop",
+            "config": {
+                "fs": {
+                    "path": "dist/commands/$stop.js",
+                    "source": "src/commands/$stop.ts",
+                    "inject": []
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "browse",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/commands/browse.js",
+                    "source": "src/commands/browse.ts"
+                },
+                "": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.type",
+                        "options.wait"
+                    ],
+                    "usage": "browse [type]",
+                    "options": {
+                        "wait": {
+                            "needsValue": true
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
+}
