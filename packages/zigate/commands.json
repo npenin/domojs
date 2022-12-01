@@ -3,7 +3,6 @@
     "commands": [
         {
             "name": "$init",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/$init.js",
@@ -23,7 +22,6 @@
         },
         {
             "name": "exec",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/exec.js",
@@ -53,7 +51,6 @@
         },
         {
             "name": "getStatus",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/getStatus.js",
@@ -63,13 +60,14 @@
                     ]
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0"
+                    ]
                 }
             }
         },
         {
             "name": "pendingDevices",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/pendingDevices.js",
@@ -83,7 +81,6 @@
         },
         {
             "name": "save",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -107,5 +104,5 @@
             }
         }
     ],
-    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
 }
