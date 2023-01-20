@@ -7294,21 +7294,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"snyk@npm:^1.1012.0":
-  version: 1.1012.0
-  resolution: "snyk@npm:1.1012.0"
+"snyk@npm:^1.1012.0, snyk@npm:^1.1025.0":
+  version: 1.1088.0
+  resolution: "snyk@npm:1.1088.0"
   bin:
     snyk: bin/snyk
-  checksum: 7d1288ecc2161899e8eb29007bfd6c7fecd3ac11cdf651e700da55022e940dac2c59806dc8eb81049d7b63b41f32df6b18fed4cd718e13e2f362921f4f356557
-  languageName: node
-  linkType: hard
-
-"snyk@npm:^1.1025.0":
-  version: 1.1025.0
-  resolution: "snyk@npm:1.1025.0"
-  bin:
-    snyk: bin/snyk
-  checksum: ac964d4e24c03e5d1f485404faee50249578deb12943e2a0aa7b9d5134475e9f62f2e7338265336d9a9696016499a9209c3258c90a06d89e0c1fe7c84e755165
+  checksum: 7802a26b6f814ea41fac3e0726a6cb5a309d7895fcc424b38e34c07741fc3e7fc8250f21c9d0c44756f2f996a1a0b9cccb3fb9cd11fdf6fd0bedab412b600a15
   languageName: node
   linkType: hard
 
