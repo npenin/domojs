@@ -4,6 +4,8 @@ import app from '@akala/sidecar';
 import { CliContext } from '@akala/cli';
 import { Configuration } from '@akala/config'
 import { logger } from '@akala/core'
+import { State } from '../state';
+import { Service } from '../index';
 
 export const dnsEqual = (function ()
 {
@@ -66,7 +68,7 @@ export const decodeTxt = (function ()
     }
 })();
 
-export default async function (context: CliContext, signal: AbortSignal)
+export default async function (this: State, context: CliContext, signal: AbortSignal)
 {
     const self = await app(context, Configuration.new('./mdns.json', {}))
 
@@ -85,7 +87,7 @@ export default async function (context: CliContext, signal: AbortSignal)
             })
             .map(function (ptr: StringAnswer)
             {
-                const service: any = {
+                const service: Partial<Service> = {
                     addresses: []
                 }
 
@@ -136,7 +138,7 @@ export default async function (context: CliContext, signal: AbortSignal)
                 return !!rr
             }).forEach(c =>
             {
-                this.services[c.fqdn] = c;
+                this.services[c.fqdn] = c as Service;
                 const parts = c.fqdn.split('.').reverse();
                 for (let i = 0; i < parts.length; i++)
                     self.pubsub?.publish('/zeroconf/' + parts.slice(0, i).join('/'), c);
