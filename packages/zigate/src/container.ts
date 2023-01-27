@@ -7,6 +7,7 @@ namespace commands
 	{
 		dispatch (cmd:'$init', ...args: []): ReturnType<typeof import('./commands/$init').default>
 		dispatch (cmd:'exec', ...args: [Argument0<typeof import('./commands/exec').default>, Argument1<typeof import('./commands/exec').default>, Argument2<typeof import('./commands/exec').default>]): ReturnType<typeof import('./commands/exec').default>
+		dispatch (cmd:'getStatus', ...args: [Argument0<typeof import('./commands/getStatus').default>]): ReturnType<typeof import('./commands/getStatus').default>
 		dispatch (cmd:'pendingDevices', ...args: []): ReturnType<typeof import('./commands/pendingDevices').default>
 		dispatch (cmd:'save', ...args: [Argument0<typeof import('./commands/save').default>, Argument1<typeof import('./commands/save').default>]): ReturnType<typeof import('./commands/save').default>
 	}
@@ -14,6 +15,7 @@ namespace commands
 	{
 		'$init'(...args: []): ReturnType<typeof import('./commands/$init').default>
 		'exec'(...args: [Argument0<typeof import('./commands/exec').default>, Argument1<typeof import('./commands/exec').default>, Argument2<typeof import('./commands/exec').default>]): ReturnType<typeof import('./commands/exec').default>
+		'getStatus'(...args: [Argument0<typeof import('./commands/getStatus').default>]): ReturnType<typeof import('./commands/getStatus').default>
 		'pendingDevices'(...args: []): ReturnType<typeof import('./commands/pendingDevices').default>
 		'save'(...args: [Argument0<typeof import('./commands/save').default>, Argument1<typeof import('./commands/save').default>]): ReturnType<typeof import('./commands/save').default>
 	}
