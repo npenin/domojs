@@ -6,10 +6,14 @@ namespace scrapper
 	export interface container 
 	{
 		dispatch (cmd:'$init', ...args: []): ReturnType<typeof import('./server/commands/scrapper/$init').default>
+		dispatch (cmd:'cleanFileName', ...args: [Argument0<typeof import('./server/commands/scrapper/cleanFileName').default>]): ReturnType<typeof import('./server/commands/scrapper/cleanFileName').default>
+		dispatch (cmd:'scrapTVShowFileName', ...args: [Argument0<typeof import('./server/commands/scrapper/scrapTVShowFileName').default>]): ReturnType<typeof import('./server/commands/scrapper/scrapTVShowFileName').default>
 	}
 	export interface proxy 
 	{
 		'$init'(...args: []): ReturnType<typeof import('./server/commands/scrapper/$init').default>
+		'cleanFileName'(...args: [Argument0<typeof import('./server/commands/scrapper/cleanFileName').default>]): ReturnType<typeof import('./server/commands/scrapper/cleanFileName').default>
+		'scrapTVShowFileName'(...args: [Argument0<typeof import('./server/commands/scrapper/scrapTVShowFileName').default>]): ReturnType<typeof import('./server/commands/scrapper/scrapTVShowFileName').default>
 	}
 }
 
