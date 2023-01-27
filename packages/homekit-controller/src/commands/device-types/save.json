@@ -1,0 +1,25 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "": {
+        "inject": [
+            "param.0",
+            "param.1"
+        ]
+    },
+    "types": {
+        "inject": [
+            "body",
+            "device"
+        ],
+        "types": [
+            "unknown",
+            "import('@domojs/devices').devices.Device"
+        ]
+    },
+    "fs": {
+        "inject": [
+            "param.0",
+            "param.1"
+        ]
+    }
+}

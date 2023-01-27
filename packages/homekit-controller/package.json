@@ -1,0 +1,29 @@
+{
+    "name": "@domojs/homekit-controller",
+    "version": "0.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\"",
+        "generate": "ac generate dist/commands commands.json --name @domojs/homekit-controller",
+        "generate-metadata": "ac generate-metadata commands.json src/container.ts"
+    },
+    "keywords": [
+        "HomeKit",
+        "HAP",
+        "Domojs"
+    ],
+    "dependencies": {
+        "@akala/config": "^1.3.22",
+        "@akala/core": "^9.6.3",
+        "@akala/sidecar": "^1.0.8",
+        "@domojs/devices": "workspace:^",
+        "@domojs/protocol-parser": "workspace:^",
+        "fast-srp-hap": "^2.0.4",
+        "hap-nodejs": "^0.11.0"
+    },
+    "devDependencies": {
+        "@akala/commands": "^4.2.4",
+        "@domojs/mdns": "workspace:^"
+    }
+}
