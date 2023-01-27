@@ -1,14 +1,15 @@
-#  (2022-10-08)
+#  (2023-01-27)
 
 
 ### Bug Fixes
 
-* update to working akala 9853c40
+* update dependencies f3a88fe
+* update generated metadata 2ca070f
 
 
 ### Features
 
-* add lots of commands 4a1cbf5
+* add list folders command 3b25858
 
 
 
