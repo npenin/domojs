@@ -1,0 +1,38 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "fs": {
+        "inject": [
+            "param.0",
+            "http",
+            "param.1"
+        ]
+    },
+    "": {
+        "inject": [
+            "param.0",
+            "http",
+            "param.1"
+        ]
+    },
+    "http": {
+        "method": "post",
+        "route": "/pair",
+        "inject": [
+            "body.accessory",
+            "http",
+            "body.pinCode"
+        ]
+    },
+    "types": {
+        "inject": [
+            "accessory",
+            "http",
+            "pinCode"
+        ],
+        "types": [
+            "string",
+            "import('@akala/core').Http",
+            "string"
+        ]
+    }
+}

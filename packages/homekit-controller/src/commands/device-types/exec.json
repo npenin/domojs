@@ -1,0 +1,39 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "": {
+        "inject": [
+            "param.0",
+            "param.1",
+            "param.2"
+        ]
+    },
+    "jsonrpc": {
+        "inject": [
+            "param.0",
+            "param.1",
+            "param.2"
+        ]
+    },
+    "types": {
+        "inject": [
+            "device: string",
+            "command: string",
+            "value: unknown"
+        ]
+    },
+    "cli": {
+        "usage": "exec <device> <command> [value]",
+        "inject": [
+            "options.device",
+            "options.command",
+            "param.0"
+        ]
+    },
+    "fs": {
+        "inject": [
+            "param.0",
+            "param.1",
+            "param.2"
+        ]
+    }
+}
