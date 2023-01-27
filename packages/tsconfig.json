@@ -60,6 +60,12 @@
     },
     {
       "path": "mdns"
+    },
+    {
+      "path": "homekit-controller"
+    },
+    {
+      "path": "homekit-server"
     }
   ]
 }
