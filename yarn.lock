@@ -49,6 +49,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@akala/cli@npm:^2.6.0":
+  version: 2.6.0
+  resolution: "@akala/cli@npm:2.6.0"
+  dependencies:
+    "@akala/core": ^9.8.0
+    reflect-metadata: ^0.1.13
+  bin:
+    akala: ./dist/cli.js
+  checksum: a77a6abd10f6e8ecc5cfa9352f747dc3973e4c93e589e315c3d3a1f629fe0bc625968feca2a3acd84fbf2f7d67a28a158abe6bac2e9bb7ed0147d9e760c83745
+  languageName: node
+  linkType: hard
+
 "@akala/client@npm:^5.3.26":
   version: 5.3.26
   resolution: "@akala/client@npm:5.3.26"
@@ -82,6 +94,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@akala/commands@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "@akala/commands@npm:4.4.0"
+  dependencies:
+    "@akala/cli": ^2.6.0
+    "@akala/core": ^9.8.0
+    "@akala/json-rpc-ws": ^9.7.1
+    debug: ^4.3.4
+    path-to-regexp: ^6.2.1
+    reflect-metadata: ^0.1.13
+    ws: ^8.12.0
+  bin:
+    ac: dist/cli.js
+  checksum: 1791ebfaf1b212ee2216487af99e2771d39343084bbd95c7140f3efc4ecc210d698760048bc1ecda6e3ced0855db91ddc180c1166a2b4e32e0ee0a1242f30436
+  languageName: node
+  linkType: hard
+
 "@akala/config@npm:^1.3.22":
   version: 1.3.22
   resolution: "@akala/config@npm:1.3.22"
@@ -99,6 +128,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@akala/config@npm:^1.3.26":
+  version: 1.3.26
+  resolution: "@akala/config@npm:1.3.26"
+  dependencies:
+    "@akala/commands": ^4.4.0
+    "@akala/core": ^9.8.0
+  peerDependencies:
+    "@akala/pm": "*"
+  peerDependenciesMeta:
+    "@akala/pm":
+      optional: true
+  bin:
+    uci2: ./dist/cli.js
+  checksum: 03031812f370d4682c33eae319d570d657d2be6b06a7a2b01324dddb0924784e89ac95fa57c25e19d355ec3df2ab08710a5af7cb3f159f7ce12a304003c3d4b6
+  languageName: node
+  linkType: hard
+
 "@akala/core@npm:^9.6.3":
   version: 9.6.3
   resolution: "@akala/core@npm:9.6.3"
@@ -111,6 +157,20 @@ __metadata:
     reflect-metadata: ^0.1.13
     ws: ^8.9.0
   checksum: 091aeeb9e902226a8631b2659e106aeff9793576b0d7a00188d34b80cbe18aaabea0822f563fac02675cac8132e35b6a1d345030810ea4011018dd1768be60b8
+  languageName: node
+  linkType: hard
+
+"@akala/core@npm:^9.8.0":
+  version: 9.8.0
+  resolution: "@akala/core@npm:9.8.0"
+  dependencies:
+    "@akala/json-rpc-ws": ^9.7.1
+    debug: ^4.3.4
+    orchestrator: ^0.3.8
+    path-to-regexp: ^6.2.1
+    reflect-metadata: ^0.1.13
+    ws: ^8.12.0
+  checksum: 16024b50c3d429d5a03b0644cbf3ced183e19c2ed3890ebdd2a33370f72cdec1c4bfe02aff3da13fe6dd1042e163dfec3a2f28f0a8ec2c0fffc7e4eb125f2439
   languageName: node
   linkType: hard
 
@@ -138,6 +198,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@akala/json-rpc-ws@npm:^9.7.1":
+  version: 9.7.1
+  resolution: "@akala/json-rpc-ws@npm:9.7.1"
+  dependencies:
+    debug: ^4.3.4
+    reflect-metadata: ^0.1.13
+    uuid: ^9.0.0
+    ws: ^8.12.0
+  checksum: 8e5f86294aa723d56cc69141425e9ce68ba76eba31fecf3463c0315cc1a1704ade71c4ddb1c49513d2eda7e397aa3ed99086798eadd574ee44b7904c52f4ce0c
+  languageName: node
+  linkType: hard
+
 "@akala/pm@npm:^4.1.4":
   version: 4.1.4
   resolution: "@akala/pm@npm:4.1.4"
@@ -153,6 +225,24 @@ __metadata:
     pm: dist/cli.js
     pm-fork: dist/fork.js
   checksum: 2c96125ed63009f1f77a72163e833dceec344f0747e4e4bd23144faee4dd794af4b00de371c8ebe9845205a923bfeae59551d58e6abb4d8f43700e33efadef5d
+  languageName: node
+  linkType: hard
+
+"@akala/pm@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "@akala/pm@npm:4.2.0"
+  dependencies:
+    "@akala/cli": ^2.6.0
+    "@akala/commands": ^4.4.0
+    "@akala/config": ^1.3.26
+    "@akala/core": ^9.8.0
+    "@akala/json-rpc-ws": ^9.7.1
+    reflect-metadata: ^0.1.13
+    source-map-support: ^0.5.21
+  bin:
+    pm: dist/cli.js
+    pm-fork: dist/fork.js
+  checksum: 15678b109511a2015b1a63647b5c7e2a16a49357c15b957d68a48c53737b7c8c773385d844135aec0a507fb6ac3a5b25a18349c294529364bdd1109929e3ad43
   languageName: node
   linkType: hard
 
@@ -222,13 +312,13 @@ __metadata:
   linkType: hard
 
 "@akala/sidecar@npm:^1.0.8":
-  version: 1.0.8
-  resolution: "@akala/sidecar@npm:1.0.8"
+  version: 1.0.12
+  resolution: "@akala/sidecar@npm:1.0.12"
   dependencies:
-    "@akala/commands": ^4.2.4
-    "@akala/config": ^1.3.22
-    "@akala/pm": ^4.1.4
-  checksum: 95d1894b686987aa8a45b31f1a37e4a1894f4eb92293007f042254c4e06011e90f3c3f51e96e96bf9998876da1f367dc005eb58d6059f598ed9167e9ede5f41e
+    "@akala/commands": ^4.4.0
+    "@akala/config": ^1.3.26
+    "@akala/pm": ^4.2.0
+  checksum: e3815882c73218d1c4fc806de0c6e797c07a58a68ec95324653fa3cf4315556b4be10a5fad1fdcbdee3d71db6b3cb0327cee7e73e69469cc1932e8d7ad8a7e6f
   languageName: node
   linkType: hard
 
@@ -9982,6 +10072,21 @@ __metadata:
     utf-8-validate:
       optional: true
   checksum: 316b33aba32f317cd217df66dbfc5b281a2f09ff36815de222bc859e3424d83766d9eb2bd4d667de658b6ab7be151f258318fb1da812416b30be13103e5b5c67
+  languageName: node
+  linkType: hard
+
+"ws@npm:^8.12.0":
+  version: 8.12.0
+  resolution: "ws@npm:8.12.0"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ">=5.0.2"
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 818ff3f8749c172a95a114cceb8b89cedd27e43a82d65c7ad0f7882b1e96a2ee6709e3746a903c3fa88beec0c8bae9a9fcd75f20858b32a166dfb7519316a5d7
   languageName: node
   linkType: hard
 
