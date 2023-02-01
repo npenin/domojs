@@ -5,7 +5,7 @@
     "@akala/commands": "^4.2.4",
     "@akala/core": "^9.6.3",
     "@akala/json-rpc-ws": "^9.7.0",
-    "@akala/pm": "^4.1.4",
+    "@akala/pm": "^5.1.1",
     "@akala/server": "^9.1.4",
     "@fortawesome/fontawesome-common-types": "^6.2.0",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
