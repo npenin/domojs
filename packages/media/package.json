@@ -36,7 +36,7 @@
     "devDependencies": {
         "@akala/cli": "^2.5.4",
         "@akala/json-rpc-ws": "^9.7.0",
-        "@akala/pm": "^4.1.4",
+        "@akala/pm": "^5.2.3",
         "@akala/server": "^9.1.4",
         "@akala/storage": "^3.4.5",
         "@domojs/theme-default": "workspace:*",
