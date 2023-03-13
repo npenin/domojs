@@ -1,17 +1,5 @@
-import * as akala from '@akala/server';
-
-akala.register('$agent', akala.chain(function (key: string)
-{
-    return new Promise(akala.noop);
-}, function (keys, key)
-    {
-        keys.push(key);
-        return keys;
-    }), true);
-
-import { scrapTVShowInfo as scrapper } from '../fileNameScrapper';
-import { fileNameCleaner as scrapper2 } from '../fileNameScrapper';
-import { extensions } from '../commands/processFolder';
+import cleanFileName from '../commands/scrapper/cleanFileName';
+import scrapTVShowFileName from '../commands/scrapper/scrapTVShowFileName';
 
 for (var file of [
     { original: 'Arrow.S06E23.FiNAL.FRENCH.WEBRip.x264-AMB3R', expected: 'Arrow - S6 - E23' },
@@ -40,10 +28,9 @@ for (var file of [
     { original: '[TNF]_Magic_Kaito_[Kid_l\'insaisissable][SP][X264_1280x720][vostfr].mp4', expected: 'Magic Kaito' },
     { original: '[eXe]_DragonBlade_Film_[C8DD75F3].avi', expected: 'DragonBlade' },
     { original: '[KLF]_[FFS]_Prism_Ark_Trailer.avi', expected: 'Prism Ark Trailer' },
-    
+
 ])
 {
-    var actual = scrapper({ name: scrapper2(file.original, extensions.video), type: 'video', id: '', path: '' });
-    // console.log(actual);
-    console.assert(actual.displayName == file.expected, JSON.stringify({ original: file.original, expected: file.expected, actual: actual }, null, 4));
+    var actual = scrapTVShowFileName(cleanFileName({ path: file.original, id: null, type: 'video', name: '', displayName: '' }));
+    console.assert(actual.displayName == file.expected, JSON.stringify({ original: file.original, expected: file.expected, actual }, null, 4));
 }

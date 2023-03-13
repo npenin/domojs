@@ -7,7 +7,7 @@
             "param.0"
         ]
     },
-    "jsonrpcws": {
+    "jsonrpc": {
         "inject": [
             "livedb",
             "$modules.@domojs/devices.deviceType",

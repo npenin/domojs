@@ -57,6 +57,15 @@
     },
     {
       "path": "domojs-generator"
+    },
+    {
+      "path": "mdns"
+    },
+    {
+      "path": "homekit-controller"
+    },
+    {
+      "path": "homekit-server"
     }
   ]
 }

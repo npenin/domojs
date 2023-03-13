@@ -15,7 +15,7 @@ export interface LibrariesConfiguration
 export interface LibraryConfiguration
 {
     paths: string[];
-    scappers: string[];
+    scrappers: string[];
 }
 
 export interface ScrappersConfiguration

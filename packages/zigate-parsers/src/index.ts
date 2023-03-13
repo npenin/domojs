@@ -2,8 +2,10 @@ import { Protocol, MessageType, Message, Cluster } from './messages/_common';
 import { EventEmitter } from 'events';
 import { Duplex } from 'stream';
 import { Queue, logger, eachAsync } from '@akala/core';
+import { Gateway } from '@domojs/devices';
 import os from 'os';
 import { readdir } from 'fs'
+import { Socket } from 'net'
 
 import * as address from './messages/address';
 import './messages/address';
@@ -274,43 +276,36 @@ export namespace MessageTypes
 
 export { Cluster };
 
-export class Zigate extends EventEmitter
+export class Zigate extends Gateway
 {
-    private static emptyBuffer = Buffer.allocUnsafe(0);
-
-    private chunk: Buffer;
-    private queue: Queue<Buffer> = new Queue((buffer, next) =>
+    protected splitBuffer(buffer: Buffer): Buffer[]
     {
-        if (buffer == Zigate.emptyBuffer)
+        const buffers = [];
+        let offset = 0;
+        let remaining: Buffer;
+        for (let index = 1; index < buffer.length; index++)
         {
-            buffer = this.chunk;
-
-            log.debug('splitting buffer', buffer);
-
-            let offset = 0;
-            for (let index = 1; index < buffer.length; index++)
+            if (buffer[index] == 0x03)
             {
+                remaining = buffer.slice(index + 1);
+                buffers.push(buffer.slice(offset, index + 1));
 
-                if (buffer[index] == 0x03)
-                {
-                    var remaining = buffer.slice(index + 1);
-                    this.queue.enqueue(buffer.slice(offset, index + 1));
-                    this.chunk = remaining;
-                    offset = index + 1;
-                    log.debug('frame complete');
-                }
-            }
-            if (buffer[buffer.length - 1] != 0x03)
-            {
-                log.debug('incomplete frame', buffer);
-
-                this.chunk = buffer;
-                next(true);
-                return;
+                offset = index + 1;
+                log.debug('frame complete');
             }
         }
-        log.debug('decoding buffer', buffer);
 
+        if (remaining)
+            buffers.push(remaining);
+
+        return buffers;
+    }
+    protected isCompleteFrame(buffer: Buffer): boolean
+    {
+        return buffer[buffer.length - 1] == 0x03;
+    }
+    protected processFrame(buffer: Buffer): void | Promise<void>
+    {
         for (let index = 1; index < buffer.length; index++)
         {
             if (buffer[index] == 0x02)
@@ -322,27 +317,17 @@ export class Zigate extends EventEmitter
                 buffer = newBuffer;
             }
         }
-        log.debug('decoded buffer', buffer);
-        this.emit('message', Protocol.read(buffer));
-        next(true);
-    });
-    public constructor(private wire: Duplex)
-    {
-        super();
-        this.wire.on('data', (buffer: Buffer) =>
-        {
-            if (typeof (this.chunk) != 'undefined')
-                this.chunk = Buffer.concat([this.chunk, buffer]);
-            else
-                this.chunk = buffer;
 
-            this.queue.enqueue(Zigate.emptyBuffer);
-        })
-        this.on('message', (message: Message) =>
-        {
-            this.emit(message.type.toString(), message.message);
-            this.emit(MessageType[message.type] as keyof MessageType, message.message);
-        })
+        this.emit('message', Protocol.read(buffer));
+    }
+
+    public constructor(wire: Socket | (Duplex & {
+        close(cb: (err?: any) => void): any;
+        drain?(cb: (err?: any) => void): any;
+        flush?(cb: (err?: any) => void): any;
+    }))
+    {
+        super(wire, true);
     }
 
     public on<T>(type: keyof MessageType, handler: (message: T) => void)
@@ -363,7 +348,13 @@ export class Zigate extends EventEmitter
 
     public send<T>(type: MessageType, message?: T)
     {
-        this.wire.write(Protocol.send(type, message));
+        this.sendQueue.enqueue({
+            buffer: Protocol.send(type, message), callback(err)
+            {
+                if (err)
+                    log.error(err);
+            }
+        })
     }
 
     public static getSerial(path?: string)

@@ -5,7 +5,7 @@ const deviceMetaContainer: ac.Metadata.Container = require('../../device-command
 const deviceTypeMetaContainer: ac.Metadata.Container = require('../../devicetype-commands.json')
 
 export const mdule = akala.module('@domojs/devices', '@domojs/devices/type');
-const resolveUrl = mdule.resolve('$resolveUrl');
+const resolveUrl = mdule.resolve<(string) => string>('$resolveUrl');
 mdule.register('$resolveUrl', (url: string) =>
 {
     return resolveUrl('/api/devices/' + url);

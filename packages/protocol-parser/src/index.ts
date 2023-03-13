@@ -4,3 +4,5 @@ import * as protobuf from '../build/parsers/protobuf'
 export { protobuf };
 export { parserWrite, Cursor } from '../build/parsers/_common'
 export * from '../build/core'
+import tlv from './build/parsers/tlv'
+export { tlv };

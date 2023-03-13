@@ -1,4 +1,4 @@
-import { BinaryOperator } from '@akala/core';
+import { BinaryOperator } from '@akala/core/expressions';;
 import * as db from '@akala/storage'
 import { LiveStore } from "../../store";
 

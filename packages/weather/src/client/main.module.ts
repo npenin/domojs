@@ -7,7 +7,7 @@ import * as fa from '@fortawesome/free-solid-svg-icons'
 const metaContainer: ac.Metadata.Container = require('../../commands.json')
 
 export const mdule = akala.module('@domojs/weather', '@domojs/theme-default');
-const resolveUrl = mdule.resolve('$resolveUrl');
+const resolveUrl = mdule.resolve<(string) => string>('$resolveUrl');
 mdule.register('$resolveUrl', (url: string) =>
 {
     return resolveUrl('/api/weather/' + url);

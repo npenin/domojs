@@ -21,7 +21,20 @@ export default async function save(this: State, body: any, device: devices.IDevi
         {
             case 'http':
                 const socket: net.Socket = await punch(body.path, 'raw')
+                socket.setKeepAlive(true, 60000);
                 const gateway = new Zigate(socket);
+                async function reopen()
+                {
+                    if (gateway.isOpen)
+                    {
+                        const socket = await punch(body.path, 'raw');
+                        socket.on('close', reopen);
+                        gateway.replaceClosedSocket(socket);
+                        await gateway.start();
+                    }
+                }
+                socket.on('close', reopen);
+
                 p = this.setGateway(gateway);
                 break;
             case 'tcp':
@@ -31,6 +44,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                     {
                         this.setGateway(new Zigate(socket)).then(resolve, reject);
                     });
+                    socket.setKeepAlive(true, 60000);
                 });
                 break;
             case 'usb':
@@ -85,6 +99,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             }
 
             if (!(attribute.sourceAddress in this.devicesByAddress))
+            {
                 this.devicesByAddress[attribute.sourceAddress] = {
                     type: 'device',
                     gateway: zigate,
@@ -94,6 +109,8 @@ export default async function save(this: State, body: any, device: devices.IDevi
                     clusters: [],
                     attributes: {}
                 }
+                this.logger.info('new device with address: ' + attribute.sourceAddress);
+            }
 
             if (this.devicesByAddress[attribute.sourceAddress].clusters.indexOf(attribute.clusterId) == -1)
             {
@@ -179,7 +196,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                 switch (attribute.clusterId)
                 {
                     case Cluster.Pressure:
-                        this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = (this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] as number) / 1000;
+                        this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = (this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] as number) / 10000;
                         break;
                     case Cluster.Temperature:
                     case Cluster.Humidity:
@@ -188,7 +205,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                 }
                 // if (this.devicesByAddress[attribute.sourceAddress].registered)
                 //     await this.server.dispatch('pushStatus', { device: this.devicesByAddress[attribute.sourceAddress].name + '.' + Cluster[attribute.clusterId], state: this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] });
-                log.debug(this.devicesByAddress[attribute.sourceAddress].attributes);
+                log.debug({ address: attribute.sourceAddress, attributes: this.devicesByAddress[attribute.sourceAddress] });
             }
             catch (e)
             {

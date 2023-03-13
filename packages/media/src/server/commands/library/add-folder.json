@@ -1,0 +1,28 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "fs": {
+        "inject": [
+            "param.0",
+            "param.1"
+        ]
+    },
+    "cli": {
+        "inject": [
+            "options.name",
+            "options.path"
+        ],
+        "options": {
+            "name": {},
+            "path": {
+                "normalize": true
+            }
+        },
+        "usage": "add folder <name> <path>"
+    },
+    "": {
+        "inject": [
+            "param.0",
+            "param.1"
+        ]
+    }
+}

@@ -8,6 +8,9 @@
     "references": [
         {
             "path": "../protocol-parser"
+        },
+        {
+            "path": "../devices"
         }
     ]
 }

@@ -1,0 +1,26 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "fs": {
+        "inject": [
+            "param.0",
+            "param.1"
+        ]
+    },
+    "cli": {
+        "inject": [
+            "options.name",
+            "options.scrapper"
+        ],
+        "options": {
+            "name": {},
+            "path": {}
+        },
+        "usage": "rm scrapper <name> <scrapper>"
+    },
+    "": {
+        "inject": [
+            "param.0",
+            "param.1"
+        ]
+    }
+}

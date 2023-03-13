@@ -15,7 +15,7 @@ export default class SwitchProperty<T, TKey extends Exclude<keyof T, Symbol>, TK
     {
         var parser = this.parsers[message[this.name] as TValue];
         if (!parser)
-            throw new Error(`No parser could be found for ${this.name} in ${JSON.stringify(message)}`);
+            throw new Error(`No parser could be found for ${this.name.toString()} in ${JSON.stringify(message)}`);
 
         message[this.assignProperty] = message[this.assignProperty] || {} as T[TKeyAssign];
 
@@ -28,7 +28,7 @@ export default class SwitchProperty<T, TKey extends Exclude<keyof T, Symbol>, TK
 
         var parser = this.parsers[message[this.name] as TValue];
         if (!parser)
-            throw new Error(`No parser could be found for ${this.name} in ${JSON.stringify(value)}`);
+            throw new Error(`No parser could be found for ${this.name.toString()} in ${JSON.stringify(value)}`);
 
         return parserWrite(parser, value, message[this.assignProperty]);
     }

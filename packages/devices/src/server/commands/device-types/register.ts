@@ -1,7 +1,8 @@
 import * as devices from "../../../devices";
 import { CommandWithProcessorAffinity, Container, ICommandProcessor, Processors, SelfDefinedCommand, updateCommands } from "@akala/commands";
-import { BinaryOperator, logger } from "@akala/core";
+import { logger } from "@akala/core";
 import { sidecar } from "@akala/pm";
+import { BinaryOperator } from "@akala/core/expressions";
 
 const log = logger('domojs:devices');
 
@@ -15,8 +16,19 @@ export default async function register(this: devices.DeviceTypeState, type: devi
 
     container.name = type.name;
     updateCommands([
-        { name: 'save', "inject": ['$params'], config: { "": { "inject": ['$params'] } } },
-        { name: 'exec', "inject": ['$params'], config: { "": { "inject": ['$params'] } } }], processor, container);
+        { name: 'save', config: { "": { "inject": ['$params'] } } },
+        {
+            name: 'exec', config: {
+                "": { "inject": ['param.0', 'param.1', 'param.2'] }, "jsonrpc": { inject: ['param.0', 'param.1', 'param.2'] }, "cli": {
+                    "usage": "exec <device> <command> [value]",
+                    "inject": [
+                        "options.device",
+                        "options.command",
+                        "param.0"
+                    ]
+                }
+            }
+        }], processor, container);
     self.register(type.name, container);
     container.register(new SelfDefinedCommand(
         async () =>

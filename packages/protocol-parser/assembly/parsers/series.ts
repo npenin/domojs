@@ -55,19 +55,6 @@ export default class Series<TMessage extends Map<string | number, any>> implemen
         }
 
         return buffers;
-
-
-
-
-
-
-
-
-        // if ()
-        //     var buffers: Buffer[] = [];
-        // for (let index = 0; index < this.parsers.length; index++)
-        //     buffers.push(...parserWrite(this.parsers[index], value, message));
-        // return buffers;
     }
 
 }

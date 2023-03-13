@@ -1,12 +1,31 @@
 {
     "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
     "": {
-        "inject": []
+        "inject": [
+            "$container",
+            "param.0",
+            "param.1"
+        ]
+    },
+    "jsonrpc": {
+        "inject": [
+            "$container",
+            "param.0",
+            "param.1"
+        ]
     },
     "cli": {
         "inject": [
             "$container",
-            "param.0"
-        ]
+            "options.path",
+            "context.args"
+        ],
+        "options": {
+            "path": {
+                "needsValue": true,
+                "normalize": true
+            }
+        },
+        "usage": "scrap <path> [...scrappers]"
     }
 }

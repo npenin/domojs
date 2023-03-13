@@ -3,8 +3,7 @@ import * as akala from '@akala/core'
 import { Container, SelfDefinedCommand } from "@akala/commands";
 import { deviceTypeContainer, deviceContainer } from "../../..";
 import { LiveStore } from "../../store";
-import { expressions } from "@akala/storage";
-import { BinaryOperator } from "@akala/core";
+import { BinaryOperator } from "@akala/core/expressions";
 
 export default async function register(db: LiveStore, deviceTypeContainer: Container<devices.DeviceTypeCollection> & deviceTypeContainer.container, deviceContainer: Container<devices.IDeviceCollection> & deviceContainer.container, device: devices.IDevice)
 {

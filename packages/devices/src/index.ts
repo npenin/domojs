@@ -6,6 +6,7 @@ import * as devices from './devices';
 import { sidecarSingleton } from '@akala/pm';
 import { Container } from '@akala/commands';
 export { devices, deviceContainer, deviceTypeContainer }
+import { logger } from '@akala/core';
 
 
 export async function registerDeviceType(container: Container<void>, ...deviceTypes: devices.DeviceType[])
@@ -23,3 +24,7 @@ declare module '@akala/pm'
         ['@domojs/devicetype']: deviceTypeContainer.container;
     }
 }
+
+
+
+export { Gateway } from './Gateway'

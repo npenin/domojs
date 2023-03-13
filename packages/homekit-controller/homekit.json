@@ -1,0 +1,52 @@
+{
+    "name": "@domojs/homekit-client",
+    "commands": [
+        {
+            "name": "pair-setup",
+            "config": {
+                "http": {
+                    "method": "post",
+                    "route": "/pair-setup",
+                    "inject": []
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "pair-verify",
+            "config": {
+                "http": {
+                    "inject": []
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "pairings",
+            "config": {
+                "http": {
+                    "inject": []
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "secure-message",
+            "config": {
+                "http": {
+                    "inject": []
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
+}

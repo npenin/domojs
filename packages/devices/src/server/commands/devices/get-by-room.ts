@@ -1,6 +1,6 @@
 import { LiveStore } from "../../store";
 import * as db from "@akala/storage";
-import { BinaryOperator } from "@akala/core";
+import { BinaryOperator } from "@akala/core/expressions";
 
 export default async function getByCategory(store: LiveStore, room?: string)
 {

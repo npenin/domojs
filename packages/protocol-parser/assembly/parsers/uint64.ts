@@ -42,7 +42,7 @@ export default class Uint64 implements Parser<uint64>
             let tmpBuffer = Buffer.alloc(8);
             tmpBuffer.writeBigUInt64BE(value, 0);
             Uint32.prototype.write(buffer, cursor, tmpBuffer.readUInt32BE(0));
-            Uint32.prototype.write(buffer, cursor, tmpBuffer.readUInt32BE(2));
+            Uint32.prototype.write(buffer, cursor, tmpBuffer.readUInt32BE(4));
         }
         else
         {

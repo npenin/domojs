@@ -1,0 +1,59 @@
+{
+    "name": "scrapper",
+    "commands": [
+        {
+            "name": "$init",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "pm",
+                        "$container"
+                    ],
+                    "path": "dist/server/commands/scrapper/$init.js",
+                    "source": "src/server/commands/scrapper/$init.ts"
+                },
+                "": {
+                    "inject": [
+                        "pm",
+                        "$container"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "cleanFileName",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/server/commands/scrapper/cleanFileName.js",
+                    "source": "src/server/commands/scrapper/cleanFileName.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "scrapTVShowFileName",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/server/commands/scrapper/scrapTVShowFileName.js",
+                    "source": "src/server/commands/scrapper/scrapTVShowFileName.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
+}

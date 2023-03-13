@@ -1,0 +1,36 @@
+{
+    "": {
+        "inject": [
+            "$container",
+            "param.0",
+            "param.1"
+        ]
+    },
+    "jsonrpc": {
+        "inject": [
+            "$container",
+            "param.0",
+            "param.1"
+        ]
+    },
+    "fs": {
+        "inject": [
+            "$container",
+            "param.0",
+            "param.1"
+        ]
+    },
+    "cli": {
+        "inject": [
+            "options.type",
+            "options.wait"
+        ],
+        "usage": "browse [type]",
+        "options": {
+            "wait": {
+                "needsValue": true
+            }
+        }
+    },
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json"
+}

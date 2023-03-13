@@ -4,7 +4,7 @@ import { Buffer, IBuffer, uint16 } from "../core";
 
 const length = 2;
 
-export default class Uint16 implements Parser<number>
+export default class Uint16 implements Parser<uint16>
 {
     constructor()
     {

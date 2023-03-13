@@ -3,7 +3,6 @@
     "commands": [
         {
             "name": "$init",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/server/commands/device-types/$init.js",
@@ -24,7 +23,6 @@
         },
         {
             "name": "add",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -70,7 +68,6 @@
         },
         {
             "name": "list",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [],
@@ -92,7 +89,6 @@
         },
         {
             "name": "push-status",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/server/commands/device-types/push-status.js",
@@ -102,13 +98,14 @@
                     ]
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0"
+                    ]
                 }
             }
         },
         {
             "name": "register",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -139,5 +136,5 @@
             }
         }
     ],
-    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
 }

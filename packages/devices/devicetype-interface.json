@@ -1,0 +1,61 @@
+{
+    "name": "device-types",
+    "commands": [
+        {
+            "name": "save",
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "types": {
+                    "inject": [
+                        "body",
+                        "device"
+                    ],
+                    "types": [
+                        "unknown",
+                        "import('@domojs/devices').devices.Device"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "exec",
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "types": {
+                    "inject": [
+                        "device: string",
+                        "command: string",
+                        "value: unknown"
+                    ]
+                },
+                "cli": {
+                    "usage": "exec <device> <command> [value]",
+                    "inject": [
+                        "options.device",
+                        "options.command",
+                        "param.0"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
+}

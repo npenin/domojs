@@ -9,8 +9,8 @@
     "allowJs": true,
     "sourceMap": true,
     "target": "ES2019",
-    "moduleResolution": "node",
-    "module": "commonjs",
+    "moduleResolution": "Node16",
+    "module": "Node16",
     // "noUnusedLocals": true
   }
 }

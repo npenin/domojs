@@ -7,7 +7,9 @@ import * as http from 'http'
 import * as https from 'https'
 import * as net from 'net'
 import { punch } from "http-punch-hole";
+import { logger } from '@akala/core'
 
+const log = logger('domojs:rfx')
 
 export default async function save(this: State, body: any, device: devices.IDevice, container: ac.Container<any>)
 {
@@ -24,7 +26,29 @@ export default async function save(this: State, body: any, device: devices.IDevi
             {
                 case 'http':
                     const socket: net.Socket = await punch(body.path, 'raw')
+                    socket.setKeepAlive(true, 60000);
                     const gateway = new Rfxtrx(socket, socket.readyState == "open");
+                    async function reopen()
+                    {
+                        if (gateway.isOpen)
+                        {
+                            const socket = await punch(body.path, 'raw');
+                            socket.on('close', reopen);
+                            socket.on('error', e =>
+                            {
+                                if (e && e['code'] == 'EPIPE')
+                                    socket.end();
+                            })
+                            gateway.replaceClosedSocket(socket, socket.readyState == 'open');
+                            await gateway.start()
+                        }
+                    }
+                    socket.on('close', reopen);
+                    socket.on('error', e =>
+                    {
+                        if (e && e['code'] == 'EPIPE')
+                            socket.end();
+                    })
                     p = this.setGateway(gateway);
                     break;
                 case 'tcp':
@@ -32,8 +56,11 @@ export default async function save(this: State, body: any, device: devices.IDevi
                     {
                         const socket = net.connect(body, async () =>
                         {
-                            this.setGateway(new Rfxtrx(socket)).then(resolve, reject);
+                            socket.on('error', e => log.error(e));
+                            this.setGateway(new Rfxtrx(socket, true)).then(resolve, reject);
                         });
+                        socket.setKeepAlive(true, 60000);
+
                     });
                     break;
                 case 'usb':

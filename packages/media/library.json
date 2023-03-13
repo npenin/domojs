@@ -2,71 +2,179 @@
     "name": "library",
     "commands": [
         {
-            "name": "browse",
-            "inject": [
-                "param.0",
-                "param.1",
-                "param.2",
-                "param.3",
-                "param.4",
-                "param.5",
-                "param.6",
-                "param.7"
-            ],
+            "name": "$init",
             "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/server/commands/library/$init.js",
+                    "source": "src/server/commands/library/$init.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "context",
+                        "options.configPath"
+                    ],
+                    "options": {
+                        "configPath": {
+                            "normalize": true,
+                            "doc": "Path to the configuration file",
+                            "needsValue": true
+                        }
+                    }
+                },
                 "": {
                     "inject": [
                         "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3",
-                        "param.4",
-                        "param.5",
-                        "param.6",
-                        "param.7"
+                        "param.1"
                     ]
-                },
+                }
+            }
+        },
+        {
+            "name": "add-folder",
+            "config": {
                 "fs": {
-                    "path": "dist/server/commands/library/browse.js",
-                    "source": "src/server/commands/library/browse.ts",
                     "inject": [
                         "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3",
-                        "param.4",
-                        "param.5",
-                        "param.6",
-                        "param.7"
+                        "param.1"
+                    ],
+                    "path": "dist/server/commands/library/add-folder.js",
+                    "source": "src/server/commands/library/add-folder.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "options.path"
+                    ],
+                    "options": {
+                        "name": {},
+                        "path": {
+                            "normalize": true
+                        }
+                    },
+                    "usage": "add folder <name> <path>"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "add-library",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/server/commands/library/add-library.js",
+                    "source": "src/server/commands/library/add-library.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "options.name"
+                    ],
+                    "options": {
+                        "name": {},
+                        "path": {
+                            "normalize": true
+                        }
+                    },
+                    "usage": "add library <name>"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "add-scrapper",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/server/commands/library/add-scrapper.js",
+                    "source": "src/server/commands/library/add-scrapper.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "options.type"
+                    ],
+                    "options": {
+                        "name": {},
+                        "type": {}
+                    },
+                    "usage": "add scrapper <name> <type>"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "browse",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/server/commands/library/browse.js",
+                    "source": "src/server/commands/library/browse.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "options.library",
+                        "options.type"
+                    ],
+                    "options": {
+                        "library": {},
+                        "type": {},
+                        "name": {
+                            "needsValue": true
+                        },
+                        "season": {
+                            "needsValue": true
+                        },
+                        "episode": {
+                            "needsValue": true
+                        },
+                        "album": {
+                            "needsValue": true
+                        },
+                        "artist": {
+                            "needsValue": true
+                        }
+                    },
+                    "usage": "browse <library> <type>"
+                },
+                "": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1"
                     ]
                 }
             }
         },
         {
             "name": "dropbox",
-            "inject": [
-                "param.0",
-                "param.1",
-                "param.2",
-                "param.3",
-                "param.4",
-                "param.5",
-                "param.6",
-                "param.7"
-            ],
             "config": {
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3",
-                        "param.4",
-                        "param.5",
-                        "param.6",
-                        "param.7"
-                    ]
-                },
                 "fs": {
                     "path": "dist/server/commands/library/dropbox.js",
                     "source": "src/server/commands/library/dropbox.ts",
@@ -80,40 +188,102 @@
                         "param.6",
                         "param.7"
                     ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4",
+                        "param.5",
+                        "param.6",
+                        "param.7"
+                    ]
                 }
             }
         },
         {
-            "name": "index",
-            "inject": [
-                "param.0"
-            ],
+            "name": "list-folders",
             "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/server/commands/library/list-folders.js",
+                    "source": "src/server/commands/library/list-folders.ts"
+                },
                 "": {
                     "inject": [
                         "param.0"
                     ]
                 },
-                "fs": {
-                    "path": "dist/server/commands/library/index.js",
-                    "source": "src/server/commands/library/index.ts",
+                "cli": {
                     "inject": [
-                        "param.0"
-                    ]
+                        "options.library"
+                    ],
+                    "options": {
+                        "library": {
+                            "needsValue": true
+                        }
+                    },
+                    "usage": "list folders <library>"
+                }
+            }
+        },
+        {
+            "name": "list-libraries",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/server/commands/library/list-libraries.js",
+                    "source": "src/server/commands/library/list-libraries.ts"
+                },
+                "": {
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [],
+                    "usage": "list libraries"
+                }
+            }
+        },
+        {
+            "name": "list-scrappers",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/server/commands/library/list-scrappers.js",
+                    "source": "src/server/commands/library/list-scrappers.ts"
+                },
+                "": {
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "options.type"
+                    ],
+                    "usage": "list scrappers [type]"
                 }
             }
         },
         {
             "name": "register-scrapper",
-            "inject": [],
             "config": {
-                "": {
-                    "inject": []
-                },
                 "fs": {
-                    "path": "dist/server/commands/library/register-scrapper.js",
-                    "source": "src/server/commands/library/register-scrapper.ts",
                     "inject": [
+                        "$container",
+                        "$container",
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/server/commands/library/register-scrapper.js",
+                    "source": "src/server/commands/library/register-scrapper.ts"
+                },
+                "": {
+                    "inject": [
+                        "$container",
+                        "$container",
                         "param.0",
                         "param.1"
                     ]
@@ -121,7 +291,98 @@
                 "jsonrpc": {
                     "inject": [
                         "$container",
-                        "$connectionAsContainer",
+                        "connectionAsContainer",
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "rm-folder",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/server/commands/library/rm-folder.js",
+                    "source": "src/server/commands/library/rm-folder.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "options.path"
+                    ],
+                    "options": {
+                        "name": {},
+                        "path": {
+                            "normalize": true
+                        }
+                    },
+                    "usage": "rm folder <name> <path>"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "rm-library",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/server/commands/library/rm-library.js",
+                    "source": "src/server/commands/library/rm-library.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "options.name"
+                    ],
+                    "options": {
+                        "name": {},
+                        "path": {
+                            "normalize": true
+                        }
+                    },
+                    "usage": "rm library <name>"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "rm-scrapper",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/server/commands/library/rm-scrapper.js",
+                    "source": "src/server/commands/library/rm-scrapper.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "options.scrapper"
+                    ],
+                    "options": {
+                        "name": {},
+                        "path": {}
+                    },
+                    "usage": "rm scrapper <name> <scrapper>"
+                },
+                "": {
+                    "inject": [
                         "param.0",
                         "param.1"
                     ]
@@ -130,26 +391,46 @@
         },
         {
             "name": "scrap",
-            "inject": [],
             "config": {
-                "": {
-                    "inject": []
-                },
                 "fs": {
                     "path": "dist/server/commands/library/scrap.js",
                     "source": "src/server/commands/library/scrap.ts",
                     "inject": [
-                        "param.0"
+                        "$container",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1"
                     ]
                 },
                 "cli": {
                     "inject": [
                         "$container",
-                        "param.0"
-                    ]
+                        "options.path",
+                        "context.args"
+                    ],
+                    "options": {
+                        "path": {
+                            "needsValue": true,
+                            "normalize": true
+                        }
+                    },
+                    "usage": "scrap <path> [...scrappers]"
                 }
             }
         }
     ],
-    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
 }

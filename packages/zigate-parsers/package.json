@@ -1,6 +1,6 @@
 {
   "name": "@domojs/zigate-parsers",
-  "version": "2.2.0",
+  "version": "2.3.10",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,7 +11,8 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "@akala/core": "^9.0.6",
+    "@akala/core": "^9.6.3",
+    "@domojs/devices": "workspace:*",
     "@domojs/protocol-parser": "workspace:*",
     "debug": "^4.3.4"
   },
@@ -33,8 +34,8 @@
     "@types/usb": "2.0.5",
     "@types/ws": "8.5.3",
     "source-map-support": "0.5.21",
-    "typescript": "4.7.3",
-    "usb": "2.4.2"
+    "typescript": "4.8.4",
+    "usb": "2.5.2"
   },
   "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }

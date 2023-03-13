@@ -1,0 +1,175 @@
+{
+    "name": "@domojs/homekit-controller",
+    "commands": [
+        {
+            "name": "$init",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "$container"
+                    ],
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "$container"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "context",
+                        "$container"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "device-discovered",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/commands/device-discovered.js",
+                    "source": "src/commands/device-discovered.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "exec",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ],
+                    "path": "dist/commands/device-types/exec.js",
+                    "source": "src/commands/device-types/exec.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "types": {
+                    "inject": [
+                        "device: string",
+                        "command: string",
+                        "value: unknown"
+                    ]
+                },
+                "cli": {
+                    "usage": "exec <device> <command> [value]",
+                    "inject": [
+                        "options.device",
+                        "options.command",
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "save",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/commands/device-types/save.js",
+                    "source": "src/commands/device-types/save.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "types": {
+                    "inject": [
+                        "body",
+                        "device"
+                    ],
+                    "types": [
+                        "unknown",
+                        "import('@domojs/devices').devices.Device"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "setup-pair",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "http",
+                        "param.1"
+                    ],
+                    "path": "dist/commands/setup-pair.js",
+                    "source": "src/commands/setup-pair.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "http",
+                        "param.1"
+                    ]
+                },
+                "http": {
+                    "method": "post",
+                    "route": "/pair",
+                    "inject": [
+                        "body.accessory",
+                        "http",
+                        "body.pinCode"
+                    ]
+                },
+                "types": {
+                    "inject": [
+                        "accessory",
+                        "http",
+                        "pinCode"
+                    ],
+                    "types": [
+                        "string",
+                        "import('@akala/core').Http",
+                        "string"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "verify-pair",
+            "config": {
+                "fs": {
+                    "path": "dist/commands/verify-pair.js",
+                    "source": "src/commands/verify-pair.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
+}
