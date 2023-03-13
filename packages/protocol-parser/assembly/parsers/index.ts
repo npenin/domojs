@@ -157,7 +157,7 @@ export function string<T, TString extends string = string>(length: Parsers<numbe
     return new PrefixedString<TString>(length as Parsers<number>, encoding);
 }
 
-export function buffer(length: Parser<number> | number): Parsers<IBuffer>
+export function buffer(length: Parser<number> | ParserWithoutKnownLength<number> | number): Parsers<IBuffer>
 {
     if (typeof length == 'number')
         return new BufferRaw(length);
