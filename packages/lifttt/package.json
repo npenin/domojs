@@ -27,7 +27,7 @@
     "description": "",
     "types": "dist/server/index.d.ts",
     "dependencies": {
-        "@fortawesome/fontawesome-common-types": "6.2.0",
+        "@fortawesome/fontawesome-common-types": "6.4.0",
         "uuid": "9.0.0"
     },
     "devDependencies": {

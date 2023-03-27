@@ -23,7 +23,7 @@
     "@akala/server": "^9.1.4",
     "@akala/sidecar": "^1.0.8",
     "@akala/storage": "^3.4.5",
-    "@fortawesome/free-brands-svg-icons": "6.2.0",
+    "@fortawesome/free-brands-svg-icons": "6.4.0",
     "snyk": "^1.1058.0",
     "uuid": "9.0.0",
     "ws": "8.11.0"
