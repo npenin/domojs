@@ -1263,7 +1263,7 @@ __metadata:
     "@types/mongodb": 4.0.7
     "@types/node": 18.11.9
     "@types/ws": 8.5.3
-    mongodb: 4.11.0
+    mongodb: 4.15.0
     typescript: 4.8.4
     ws: 8.11.0
   languageName: unknown
@@ -3996,6 +3996,15 @@ __metadata:
   dependencies:
     buffer: ^5.6.0
   checksum: 83e7b64afdad5a505073a7e6206e7b345f59e7888fbcb1948fba72b6101a1baf58b7499314f8e24b650567665f7973eda048aabbb1ddcfbadfba7d6c6b0f5e83
+  languageName: node
+  linkType: hard
+
+"bson@npm:^4.7.2":
+  version: 4.7.2
+  resolution: "bson@npm:4.7.2"
+  dependencies:
+    buffer: ^5.6.0
+  checksum: f357d12c5679c8eb029a62e410ad40fb862b7b91f0fc12a3399fb3668e14aecaa63205ffeeee48735a01d393171743607dcd527eb8c058b6f2bd294079ee4125
   languageName: node
   linkType: hard
 
@@ -7309,13 +7318,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb@npm:4.11.0":
-  version: 4.11.0
-  resolution: "mongodb@npm:4.11.0"
+"mongodb@npm:4.15.0":
+  version: 4.15.0
+  resolution: "mongodb@npm:4.15.0"
   dependencies:
     "@aws-sdk/credential-providers": ^3.186.0
-    bson: ^4.7.0
-    denque: ^2.1.0
+    bson: ^4.7.2
     mongodb-connection-string-url: ^2.5.4
     saslprep: ^1.0.3
     socks: ^2.7.1
@@ -7324,7 +7332,7 @@ __metadata:
       optional: true
     saslprep:
       optional: true
-  checksum: 3080c2f58dc712ca6d0a34b0f4101c3ca66fbf86360b2a5ea2b64a9f757b4a0d7b77851688657fc3240ac748ddcd69c21ec2f7c785f10cb7d41e00e863f415ec
+  checksum: 7d219d92d112aa8a548ca7c999778f2d6efe398abe19b81a0c0e7056ab94526d7c37552afb5d698cb9ec3d417e28ba54d44d9c382d4b1a7faf9e57b1518cdcc7
   languageName: node
   linkType: hard
 
