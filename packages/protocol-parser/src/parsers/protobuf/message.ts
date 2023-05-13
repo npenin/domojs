@@ -1,6 +1,6 @@
-import Uint32 from "../uint32";
-import Uint64 from "../uint64";
-import { Cursor, parserWrite, ParserWithoutKnownLength, ParserWithMessageWithoutKnownLength, AnyParser } from "../_common";
+import Uint32 from "../uint32.js";
+import Uint64 from "../uint64.js";
+import { Cursor, parserWrite, ParserWithoutKnownLength, ParserWithMessageWithoutKnownLength, AnyParser } from "../_common.js";
 import { Field, WireType } from "./field";
 
 // const varint = new Varint();

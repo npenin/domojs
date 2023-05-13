@@ -1,4 +1,4 @@
-import { AnyParser, ParserWithMessage } from ".";
+import { AnyParser, ParserWithMessage } from "./index.js";
 import { Cursor, parserWrite } from "./_common";
 
 export class ZeroOrOne<T, TMessage> implements ParserWithMessage<T, TMessage>

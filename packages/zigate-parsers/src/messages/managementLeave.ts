@@ -1,5 +1,5 @@
-import { ShortAddressRequest } from './descriptors';
-import { messages, MessageType } from './_common';
+import { ShortAddressRequest } from './descriptors.js';
+import { messages, MessageType } from './_common.js';
 import { parsers, uint64 } from '@domojs/protocol-parser';
 
 messages.register(MessageType.ManagementLeave, parsers.object<ManagementLeave>(

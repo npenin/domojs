@@ -1,4 +1,4 @@
-import { Protocol, Rfy, Type } from "../protocol"
+import { Protocol, Rfy, Type } from "../protocol/index.js"
 
 describe('rfy', function ()
 {

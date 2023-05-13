@@ -1,6 +1,6 @@
 import ws from 'ws'
 import { EventEmitter } from 'events';
-import gettoken from './gettoken'
+import gettoken from './gettoken.js'
 
 var client = new ws('wss://fr-icookin.group-taurus.com:9998');
 var event = new EventEmitter();

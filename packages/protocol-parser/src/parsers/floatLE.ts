@@ -1,5 +1,5 @@
 import { Cursor, Parser } from "./_common";
-import { float } from "../core";
+import { float } from "../core.js";
 import Uint32 from "./uint32";
 
 const length = 4;

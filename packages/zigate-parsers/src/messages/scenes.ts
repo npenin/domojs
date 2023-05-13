@@ -1,7 +1,7 @@
-import { StatusMessage } from './status';
-import { MessageType, messages } from './_common';
-import { CommandMessage } from './move';
-import { GroupResponse } from './group';
+import { StatusMessage } from './status.js';
+import { MessageType, messages } from './_common.js';
+import { CommandMessage } from './move.js';
+import { GroupResponse } from './group.js';
 import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
 
 messages.register(MessageType.ViewScene, parsers.object<SceneRequest>(

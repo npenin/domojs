@@ -5,7 +5,7 @@ import { Media } from '../../../metadata';
 import * as redis from 'ioredis';
 import Configuration from '@akala/config';
 import { Container } from '@akala/commands'
-import { LibrariesConfiguration, ScrappersConfiguration } from '../configuration';
+import { LibrariesConfiguration, ScrappersConfiguration } from '../configuration.js';
 import { eachAsync } from '@akala/core';
 
 const log = akala.logger('domojs:media');

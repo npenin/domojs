@@ -1,5 +1,5 @@
 import { parsers } from "@domojs/protocol-parser";
-import { Type, messages as Protocol } from ".";
+import { Type, messages as Protocol } from "./index.js";
 
 /*
 Copyright 2011-2019, RFXCOM

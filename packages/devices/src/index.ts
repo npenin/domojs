@@ -1,8 +1,8 @@
 
-import deviceTypeContainer from './server/devicetype-commands'
-import deviceContainer from './server/device-commands'
+import deviceTypeContainer from './server/devicetype-commands.js'
+import deviceContainer from './server/device-commands.js'
 
-import * as devices from './devices';
+import * as devices from './devices.js';
 import { sidecarSingleton } from '@akala/pm';
 import { Container } from '@akala/commands';
 export { devices, deviceContainer, deviceTypeContainer }
@@ -27,4 +27,4 @@ declare module '@akala/pm'
 
 
 
-export { Gateway } from './Gateway'
+export { Gateway } from './Gateway.js'

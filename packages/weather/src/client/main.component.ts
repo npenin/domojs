@@ -1,10 +1,10 @@
-import { mdule } from './main.module'
+import { mdule } from './main.module.js'
 import * as client from '@akala/client'
 import { Container, Metadata } from '@akala/commands'
 import { Tile } from '@domojs/theme-default';
 import { inject } from '@akala/core';
 import { LocationService } from '@akala/client';
-import { description } from '../commander';
+import { description } from '../commander.js';
 
 @client.component(mdule)
 export class Main

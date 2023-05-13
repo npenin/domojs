@@ -1,5 +1,5 @@
 import { Dock } from "@nlpjs/basic";
-import { SerializableObject } from '@akala/json-rpc-ws'
+import { SerializableObject } from '@akala/core'
 import { TrimType } from "@nlpjs/ner";
 
 export default async function positionedEntity(this: { dock: Dock }, locale: string, name: string, srcWords: string[] | string, srcOptions?: SerializableObject)

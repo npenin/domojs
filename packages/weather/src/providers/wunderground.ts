@@ -1,6 +1,6 @@
 import { Http } from '@akala/core';
-import { Weather } from '../state';
-import { cache as getFromCache, Position } from './common';
+import { Weather } from '../state.js';
+import { cache as getFromCache, Position } from './common.js';
 
 const cache = getFromCache('openweathermap',
 	(position: Position) => `https://api.weather.com/v2/pws/observations/current?stationId=IMULHO3&format=json&units=e&apiKey=6cdb65c94a874a749b65c94a87da745f`,

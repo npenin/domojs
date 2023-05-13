@@ -1,5 +1,5 @@
 import { registerDeviceType } from '@domojs/devices';
-import { State } from '../state'
+import { State } from '../state.js'
 import fs from 'fs/promises'
 import path from 'path';
 import { Zigate } from '@domojs/zigate-parsers';

@@ -1,7 +1,7 @@
 import * as akala from '@akala/server';
 import * as path from 'path';
 import requireIfExists from 'require-optional'
-import { State } from '../state';
+import { State } from '../state.js';
 import { sidecar } from '@akala/pm'
 import { logger, LogLevels } from '@akala/core';
 

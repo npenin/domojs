@@ -2,8 +2,8 @@ import { Container } from '@akala/commands';
 import { ObservableArray } from '@akala/core';
 import * as web from '@domojs/theme-default'
 import * as fa from '@fortawesome/free-solid-svg-icons'
-import { description } from '../commander';
-import mdule, { weatherToIcon } from './main.module'
+import { description } from '../commander.js';
+import mdule, { weatherToIcon } from './main.module.js'
 // import './main.component'
 
 mdule.ready(['@domojs/theme-default.tiles', '@domojs/theme-default.faIcon', 'container'], function (tiles: web.TileService, lib: web.FaIconLibraryInterface, container: Container<void> & description.commands)

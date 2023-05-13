@@ -1,5 +1,5 @@
 import { MessageType, MessageTypes, status, permitjoin } from "@domojs/zigate-parsers";
-import { State } from "../state";
+import { State } from "../state.js";
 import * as akala from '@akala/core';
 const log = akala.logger('domojs:zigate');
 

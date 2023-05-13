@@ -1,6 +1,6 @@
 import { BinaryOperator } from '@akala/core/expressions';;
 import * as db from '@akala/storage'
-import { LiveStore } from "../../store";
+import { LiveStore } from "../../store.js";
 
 export default async function getDevice(store: LiveStore, name: string)
 {

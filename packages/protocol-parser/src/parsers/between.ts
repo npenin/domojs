@@ -1,4 +1,4 @@
-import { ParserWithMessage } from ".";
+import { ParserWithMessage } from "./index.js";
 import Series from "./series";
 import { Cursor, ParserWithMessageWithoutKnownLength } from "./_common";
 

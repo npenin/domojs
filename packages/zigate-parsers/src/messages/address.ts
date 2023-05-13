@@ -1,6 +1,6 @@
-import { StatusMessage } from './status';
-import { messages, MessageType } from './_common';
-import { parsers, uint16, uint64, uint8 } from '@domojs/protocol-parser/dist/index';
+import { StatusMessage } from './status.js';
+import { messages, MessageType } from './_common.js';
+import { parsers, uint16, uint64, uint8 } from '@domojs/protocol-parser';
 
 export enum AddressRequestType
 {

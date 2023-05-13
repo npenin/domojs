@@ -2,7 +2,7 @@ import { SelfDefinedCommand, Container } from "@akala/commands";
 import { v4 as uuid } from 'uuid'
 import { eachAsync, Interpolate } from "@akala/core";
 import { ChannelState, Task } from "../../channel-state";
-import { SerializableObject } from "@akala/json-rpc-ws";
+import { SerializableObject } from "@akala/core";
 
 export default async function (this: ChannelState, container: Container<void>, task: Task)
 {

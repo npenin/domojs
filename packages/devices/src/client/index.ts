@@ -1,6 +1,6 @@
 import * as web from '@domojs/theme-default'
 import * as fa from '@fortawesome/free-brands-svg-icons'
-import mdule from './main.module'
+import mdule from './main.module.js'
 import './new.component'
 import './main.component'
 

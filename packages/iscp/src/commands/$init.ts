@@ -1,4 +1,4 @@
-import { State } from "../state";
+import { State } from "../state.js";
 import fs from 'fs/promises'
 import { registerDeviceType } from "@domojs/devices";
 import { Container } from "@akala/commands";

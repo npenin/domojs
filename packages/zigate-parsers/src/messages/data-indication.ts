@@ -1,6 +1,6 @@
-import { StatusMessage } from './status';
-import { MessageType, messages } from './_common';
-import { CommandMessage } from './move';
+import { StatusMessage } from './status.js';
+import { MessageType, messages } from './_common.js';
+import { CommandMessage } from './move.js';
 import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
 
 messages.register(MessageType.DataIndication, parsers.object<DataIndication>(

@@ -1,7 +1,7 @@
 import net from 'net'
-import { Protocol, ControlPacketType, Message, Properties, Messages } from './protocol/_protocol'
-import connect from './protocol/connect';
-import connack from './protocol/connack';
+import { Protocol, ControlPacketType, Message, Properties, Messages } from './protocol/_protocol.js'
+import connect from './protocol/connect.js';
+import connack from './protocol/connack.js';
 import { Cursor } from '@domojs/protocol-parser';
 import { EventEmitter } from 'events';
 

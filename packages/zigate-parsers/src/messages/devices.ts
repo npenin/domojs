@@ -1,6 +1,6 @@
-import { StatusMessage } from './status';
-import { Message, MessageType, messages } from './_common';
-import { ShortAddressRequest } from './descriptors';
+import { StatusMessage } from './status.js';
+import { Message, MessageType, messages } from './_common.js';
+import { ShortAddressRequest } from './descriptors.js';
 import { parsers, uint16, uint64, uint8 } from '@domojs/protocol-parser';
 
 messages.register(MessageType.RemoveDevice, parsers.object<RemoveDevice>(

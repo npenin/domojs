@@ -1,5 +1,5 @@
-import { StatusMessage } from './status';
-import { Message, MessageType, messages } from './_common';
+import { StatusMessage } from './status.js';
+import { Message, MessageType, messages } from './_common.js';
 import { parsers, uint16, uint32, uint64, uint8 } from '@domojs/protocol-parser';
 
 messages.register(MessageType.OutOfBandCommissionningData, parsers.object<OutOfBandCommissionningDataRequest>(

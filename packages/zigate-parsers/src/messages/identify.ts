@@ -1,5 +1,5 @@
-import { MessageType, messages } from './_common';
-import { CommandMessage } from './move';
+import { MessageType, messages } from './_common.js';
+import { CommandMessage } from './move.js';
 import { parsers, uint16 } from '@domojs/protocol-parser';
 
 messages.register(MessageType.IdentifySend, parsers.object<IdentifySendRequest>(

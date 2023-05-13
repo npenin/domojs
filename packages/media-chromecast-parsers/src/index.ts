@@ -4,7 +4,7 @@ export * from './log'
 
 import { Cursor } from '@domojs/protocol-parser'
 import stream from 'stream'
-import { castMessage } from './cast'
+import { castMessage } from './cast.js'
 
 export class CastStream extends stream.Transform
 {

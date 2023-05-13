@@ -12,14 +12,14 @@ portions of this file.
 */
 import { EventEmitter } from 'events';
 import { Queue, logger, eachAsync } from '@akala/core';
-export * from './protocol'
+export * from './protocol/index.js'
 import * as os from 'os';
-import { Protocol, Message, PacketType, Type, InterfaceControl, InterfaceMessage, EventMap, Rfy, RFXDevice } from './protocol';
+import { Protocol, Message, PacketType, Type, InterfaceControl, InterfaceMessage, EventMap, Rfy, RFXDevice } from './protocol/index.js';
 import { Cursor, parserWrite } from '@domojs/protocol-parser';
 import { Duplex } from 'stream';
 import { readdir } from 'fs';
 import { Socket } from 'net';
-import { ModeResponse } from './protocol/1.interface.response';
+import { ModeResponse } from './protocol/1.interface.response.js';
 import { Gateway } from '@domojs/devices'
 
 type Modes = Pick<InterfaceControl.ModeCommand, 'msg3' | 'msg4' | 'msg5' | 'msg6'>;

@@ -1,5 +1,5 @@
-import PrefixedBuffer from "../buffer-prefixed";
-import { Cursor, Parsers } from "../_common";
+import PrefixedBuffer from "../buffer-prefixed.js";
+import { Cursor, Parsers } from "../_common.js";
 
 export class TLVBuffer extends PrefixedBuffer
 {
@@ -7,8 +7,6 @@ export class TLVBuffer extends PrefixedBuffer
     {
         super(length)
     }
-
-    length: -1;
 
     write(value: Buffer): Buffer[]
     {

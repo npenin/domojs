@@ -13,7 +13,7 @@ portions of this file.
 '----------------------------------------------------------------------------
 */
 import { parsers } from "@domojs/protocol-parser";
-import { Type, messages as Protocol } from ".";
+import { Type, messages as Protocol } from "./index.js";
 
 export enum SubType
 {

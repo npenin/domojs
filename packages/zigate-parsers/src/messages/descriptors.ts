@@ -1,5 +1,5 @@
-import { StatusMessage, Status } from './status';
-import { MessageType, Cluster, messages } from './_common';
+import { StatusMessage, Status } from './status.js';
+import { MessageType, Cluster, messages } from './_common.js';
 import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
 
 messages.register(MessageType.NodeDescriptor, parsers.object<ShortAddressRequest>(parsers.property('targetShortAddress', parsers.uint16)));

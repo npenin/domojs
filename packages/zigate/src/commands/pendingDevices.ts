@@ -1,6 +1,6 @@
 import * as akala from '@akala/core';
 import { Cluster } from '@domojs/zigate-parsers';
-import { State, ZDevice } from '../state'
+import { State, ZDevice } from '../state.js'
 
 export default function (this: State)
 {

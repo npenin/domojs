@@ -4,6 +4,7 @@
     "description": "",
     "main": "dist/index.js",
     "commands": "./commands.json",
+    "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\"",
         "build:js": "tsc -p .",
@@ -17,8 +18,8 @@
     "author": "npenin",
     "license": "MIT",
     "dependencies": {
-        "@akala/core": "^9.6.3",
-        "@akala/sidecar": "^1.0.8",
+        "@akala/core": "^10.5.1",
+        "@akala/sidecar": "^2.2.51",
         "@domojs/zigate-parsers": "workspace:*",
         "http-punch-hole": "^1.0.12"
     },
@@ -32,9 +33,9 @@
         }
     },
     "devDependencies": {
-        "@akala/cli": "^2.5.4",
-        "@akala/commands": "^4.2.4",
-        "@akala/pubsub": "^1.0.9",
+        "@akala/cli": "^2.9.25",
+        "@akala/commands": "^5.5.5",
+        "@akala/pubsub": "^1.2.51",
         "@domojs/devices": "workspace:*",
         "@types/debug": "4.1.7"
     },

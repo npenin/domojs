@@ -1,8 +1,8 @@
-import { State } from "../state";
+import { State } from "../state.js";
 import Configuration from '@akala/config'
 import { registerDeviceType } from "@domojs/devices";
 import { sidecar } from "@akala/pm";
-import { SerializableObject } from "@akala/json-rpc-ws";
+import { SerializableObject } from "@akala/core";
 import { Container } from "@akala/commands";
 
 var state: State = null;

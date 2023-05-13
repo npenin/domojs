@@ -1,5 +1,5 @@
-import { MessageType, messages } from './_common';
-import { ShortAddressRequest } from './descriptors';
+import { MessageType, messages } from './_common.js';
+import { ShortAddressRequest } from './descriptors.js';
 import { parsers, uint8 } from '@domojs/protocol-parser';
 
 messages.register(MessageType.PermitJoin, parsers.object());

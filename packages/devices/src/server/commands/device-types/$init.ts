@@ -1,11 +1,9 @@
-import * as devices from "../../../devices";
+import * as devices from "../../../devices.js";
 import { Container } from "@akala/commands";
-import deviceType from "../../devicetype-commands";
+import deviceType from "../../devicetype-commands.js";
 import { sidecar, Container as pmContainer } from '@akala/pm';
-import app, { Sidecar } from "@akala/sidecar";
-import { Logger } from "@akala/core";
+import app from "@akala/sidecar";
 import { DbSet } from "@akala/storage";
-import { $init } from "@akala/sidecar/dist/init";
 import { CliContext } from "@akala/cli";
 
 

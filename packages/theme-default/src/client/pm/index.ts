@@ -1,6 +1,6 @@
-import * as web from '../public_api'
+import * as web from '../public_api.js'
 import * as fa from '@fortawesome/free-solid-svg-icons'
-import { module } from './main.module'
+import { module } from './main.module.js'
 import './main.component'
 
 web.bootstrap.addDependency(module);

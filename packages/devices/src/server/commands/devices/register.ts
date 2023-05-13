@@ -1,8 +1,8 @@
-import * as devices from "../../../devices";
+import * as devices from "../../../devices.js";
 import * as akala from '@akala/core'
 import { Container, SelfDefinedCommand } from "@akala/commands";
-import { deviceTypeContainer, deviceContainer } from "../../..";
-import { LiveStore } from "../../store";
+import { deviceTypeContainer, deviceContainer } from "../../../index.js";
+import { LiveStore } from "../../store.js";
 import { BinaryOperator } from "@akala/core/expressions";
 
 export default async function register(db: LiveStore, deviceTypeContainer: Container<devices.DeviceTypeCollection> & deviceTypeContainer.container, deviceContainer: Container<devices.IDeviceCollection> & deviceContainer.container, device: devices.IDevice)

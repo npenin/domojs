@@ -1,7 +1,7 @@
-import { MessageType, messages } from './_common'
-import { DeviceType } from './network';
-import { StatusMessage } from './status';
-import { Device } from './devices';
+import { MessageType, messages } from './_common.js'
+import { DeviceType } from './network.js';
+import { StatusMessage } from './status.js';
+import { Device } from './devices.js';
 import { parsers, uint32, uint64, uint8 } from '@domojs/protocol-parser';
 
 messages.register(MessageType.SetExtendedPanId, parsers.object<SetExtendedPanId>(parsers.property('panId', parsers.uint64)));

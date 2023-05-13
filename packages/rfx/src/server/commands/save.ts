@@ -1,6 +1,6 @@
 import { Rfxtrx, PacketType, Rfy, InterfaceControl } from "@domojs/rfx-parsers";
 import { devices } from "@domojs/devices";
-import { State } from "../state";
+import { State } from "../state.js";
 import * as ac from '@akala/commands'
 import * as pm from '@akala/pm'
 import * as http from 'http'

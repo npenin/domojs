@@ -1,7 +1,7 @@
-import { module } from './main.module'
+import { module } from './main.module.js'
 import * as client from '@akala/client'
 import { Container, Metadata } from '@akala/commands'
-import { Tile } from '../public_api';
+import { Tile } from '../public_api.js';
 import { inject } from '@akala/core';
 
 

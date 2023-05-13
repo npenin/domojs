@@ -1,7 +1,7 @@
 import assert from "assert";
-import { protobuf } from "../parsers"
-import { ProtobufMessage } from "../parsers/protobuf";
-import { Cursor, parserWrite } from "../parsers/_common"
+import { protobuf } from "../parsers/index.js"
+import { ProtobufMessage } from "../parsers/protobuf/index.js";
+import { Cursor, parserWrite } from "../parsers/_common.js"
 
 describe('protobuf', function ()
 {

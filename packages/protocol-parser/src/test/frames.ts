@@ -2,8 +2,8 @@
 import * as self from '..'
 import * as assert from 'assert'
 import 'source-map-support/register'
-import { object, uint16, uint8, string, buffer, bit, property, chooseProperty } from '../parsers'
-import { Cursor, parserWrite } from '../parsers/_common'
+import { object, uint16, uint8, string, buffer, bit, property, chooseProperty } from '../parsers/index.js'
+import { Cursor, parserWrite } from '../parsers/_common.js'
 
 interface TestType
 {

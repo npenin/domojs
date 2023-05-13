@@ -1,4 +1,4 @@
-import { LiveStore } from "../../store";
+import { LiveStore } from "../../store.js";
 import { BinaryOperator } from "@akala/core/expressions";
 
 export default async function getByCategory(store: LiveStore, category?: string)

@@ -1,4 +1,4 @@
-import { State } from "../state";
+import { State } from "../state.js";
 import * as akala from '@akala/core';
 import { Rfxtrx } from "@domojs/rfx-parsers";
 import * as path from 'path'

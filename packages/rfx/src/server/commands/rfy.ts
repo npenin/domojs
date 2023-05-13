@@ -1,4 +1,4 @@
-import { State } from "../state";
+import { State } from "../state.js";
 import { RFXDevice, Type, Rfy } from "@domojs/rfx-parsers";
 import interact from '@akala/pm'
 

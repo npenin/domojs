@@ -19,6 +19,6 @@ declare type Argument16<T> = T extends ((a: any, b: any, c: any, d: any, e: any,
 declare type Argument17<T> = T extends ((a: any, b: any, c: any, d: any, e: any, f: any, g: any, h: any, i: any, j: any, k: any, l: any, m: any, n: any, o: any, p: any, q: any, x: infer X, ...z: any[]) => any) ? X : never;
 export default interface organizer 
 {
-	dispatch(cmd: 'list', ...args: []): ReturnType<typeof import('./commands/organizer/list').default>
-	dispatch(cmd: 'new', ...args: [Argument1<typeof import('./commands/organizer/new').default>]): ReturnType<typeof import('./commands/organizer/new').default>
+	dispatch(cmd: 'list', ...args: []): ReturnType<typeof import('./commands/organizer/list.js').default>
+	dispatch(cmd: 'new', ...args: [Argument1<typeof import('./commands/organizer/new.js').default>]): ReturnType<typeof import('./commands/organizer/new.js').default>
 }

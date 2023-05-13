@@ -1,4 +1,4 @@
-import { messages, MessageType } from './_common';
+import { messages, MessageType } from './_common.js';
 import { parsers } from '@domojs/protocol-parser';
 
 messages.register(MessageType.EnablePermissionsControlJoin, parsers.object<EnablePermissionsControlJoin>(

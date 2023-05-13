@@ -1,5 +1,5 @@
-import cleanFileName from '../commands/scrapper/cleanFileName';
-import scrapTVShowFileName from '../commands/scrapper/scrapTVShowFileName';
+import cleanFileName from '../commands/scrapper/cleanFileName.js';
+import scrapTVShowFileName from '../commands/scrapper/scrapTVShowFileName.js';
 
 for (var file of [
     { original: 'Arrow.S06E23.FiNAL.FRENCH.WEBRip.x264-AMB3R', expected: 'Arrow - S6 - E23' },

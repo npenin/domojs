@@ -1,5 +1,5 @@
-import { PairedAccessory, PairSetupClientInfo } from "./commands/setup-pair";
-import container from './container'
+import { PairedAccessory, PairSetupClientInfo } from "./commands/setup-pair.js";
+import container from './container.js'
 
 export default interface State extends container.proxy
 {

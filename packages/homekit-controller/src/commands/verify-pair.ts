@@ -1,7 +1,7 @@
 import { Http, parser } from "@akala/core";
 import { Cursor, parserWrite } from "@domojs/protocol-parser";
-import State from "../state";
-import { chacha20_poly1305_decryptAndVerify, chacha20_poly1305_encryptAndSeal, PairMessage, pairMessage, PairMethod, PairState, PairTypeFlags } from "./setup-pair";
+import State from "../state.js";
+import { chacha20_poly1305_decryptAndVerify, chacha20_poly1305_encryptAndSeal, PairMessage, pairMessage, PairMethod, PairState, PairTypeFlags } from "./setup-pair.js";
 import assert from 'assert/strict'
 import { SrpClient } from "fast-srp-hap";
 import hkdf from 'futoin-hkdf'

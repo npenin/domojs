@@ -1,4 +1,4 @@
-import State from "../state";
+import State from "../state.js";
 import { Container } from "@akala/commands";
 import * as cheerio from 'cheerio';
 

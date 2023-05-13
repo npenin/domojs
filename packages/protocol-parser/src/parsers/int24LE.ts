@@ -1,6 +1,6 @@
 import { Cursor, Parser } from "./_common";
 import Uint8 from "./uint8";
-import { int32 } from "../core";
+import { int32 } from "../core.js";
 
 export default class Int24LE implements Parser<int32>
 {

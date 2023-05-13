@@ -1,6 +1,6 @@
-import { State } from "../state";
+import { State } from "../state.js";
 import interact from '@akala/pm'
-import * as helper from '../providers/openweathermap'
+import * as helper from '../providers/openweathermap.js'
 import { Http } from "@akala/core";
 
 export default async function (this: State, http: Http, latitude: number, longitude: number)

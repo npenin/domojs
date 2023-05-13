@@ -1,7 +1,7 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
 import * as server from '@akala/server'
 import { Triggers } from '@akala/commands'
-import * as ws from 'ws'
+import ws from 'ws'
 import { logger as LoggerBuilder, LogLevels } from '@akala/core'
 
 const logger = LoggerBuilder('domojs:theme-default:pm', LogLevels.info)

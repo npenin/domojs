@@ -19,11 +19,11 @@ declare type Argument16<T> = T extends ((a: any, b: any, c: any, d: any, e: any,
 declare type Argument17<T> = T extends ((a: any, b: any, c: any, d: any, e: any, f: any, g: any, h: any, i: any, j: any, k: any, l: any, m: any, n: any, o: any, p: any, q: any, x: infer X, ...z: any[]) => any) ? X : never;
 export default interface taskManager 
 {
-	dispatch (cmd:'$init', ...args: [Argument0<typeof import('./commands/task-manager/$init').default>]): ReturnType<typeof import('./commands/task-manager/$init').default>
-	dispatch (cmd:'get', ...args: []): ReturnType<typeof import('./commands/task-manager/get').default>
-	dispatch (cmd:'new-channel', ...args: [Argument0<typeof import('./commands/task-manager/new-channel').default>, Argument1<typeof import('./commands/task-manager/new-channel').default>]): ReturnType<typeof import('./commands/task-manager/new-channel').default>
-	dispatch (cmd:'new', ...args: [Argument1<typeof import('./commands/task-manager/new').default>]): ReturnType<typeof import('./commands/task-manager/new').default>
-	dispatch (cmd:'pause-trigger', ...args: [Argument0<typeof import('./commands/task-manager/pause-trigger').default>]): ReturnType<typeof import('./commands/task-manager/pause-trigger').default>
-	dispatch (cmd:'prevent-next-trigger', ...args: [Argument0<typeof import('./commands/task-manager/prevent-next-trigger').default>]): ReturnType<typeof import('./commands/task-manager/prevent-next-trigger').default>
-	dispatch (cmd:'resume-trigger', ...args: [Argument0<typeof import('./commands/task-manager/resume-trigger').default>]): ReturnType<typeof import('./commands/task-manager/resume-trigger').default>
+	dispatch(cmd: '$init', ...args: [Argument0<typeof import('./commands/task-manager/$init.js').default>]): ReturnType<typeof import('./commands/task-manager/$init.js').default>
+	dispatch(cmd: 'get', ...args: []): ReturnType<typeof import('./commands/task-manager/get.js').default>
+	dispatch(cmd: 'new-channel', ...args: [Argument0<typeof import('./commands/task-manager/new-channel.js').default>, Argument1<typeof import('./commands/task-manager/new-channel.js').default>]): ReturnType<typeof import('./commands/task-manager/new-channel.js').default>
+	dispatch(cmd: 'new', ...args: [Argument1<typeof import('./commands/task-manager/new.js').default>]): ReturnType<typeof import('./commands/task-manager/new.js').default>
+	dispatch(cmd: 'pause-trigger', ...args: [Argument0<typeof import('./commands/task-manager/pause-trigger.js').default>]): ReturnType<typeof import('./commands/task-manager/pause-trigger.js').default>
+	dispatch(cmd: 'prevent-next-trigger', ...args: [Argument0<typeof import('./commands/task-manager/prevent-next-trigger.js').default>]): ReturnType<typeof import('./commands/task-manager/prevent-next-trigger.js').default>
+	dispatch(cmd: 'resume-trigger', ...args: [Argument0<typeof import('./commands/task-manager/resume-trigger.js').default>]): ReturnType<typeof import('./commands/task-manager/resume-trigger.js').default>
 }

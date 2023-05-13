@@ -1,8 +1,8 @@
 import { Http } from '@akala/core';
 import { Service } from '@domojs/mdns'
-import State from '../state';
-import pair from './setup-pair';
-import verifyPair from './verify-pair';
+import State from '../state.js';
+import pair from './setup-pair.js';
+import verifyPair from './verify-pair.js';
 
 export default async function deviceDiscovered(this: State, service: Service, http: Http)
 {
