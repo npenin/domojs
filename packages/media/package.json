@@ -31,7 +31,7 @@
         "levenshtein": "1.0.5"
     },
     "peerDependencies": {
-        "@akala/pm": "^3.7.12"
+        "@akala/pm": "^6.0.0"
     },
     "devDependencies": {
         "@akala/cli": "^2.9.25",

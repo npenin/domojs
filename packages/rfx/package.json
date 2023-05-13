@@ -13,7 +13,7 @@
   },
   "type": "module",
   "peerDependencies": {
-    "@akala/pm": "^3.7.12",
+    "@akala/pm": "^6.0.0",
     "serialport": "^9.2.8",
     "usb": "^2.1.2"
   },
