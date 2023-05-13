@@ -1,6 +1,6 @@
 import * as akala from '@akala/core'
 import * as db from '@akala/storage'
-import * as devices from '../devices';
+import * as devices from '../devices.js';
 import { PersistenceEngine, ModelDefinition, Types, Generator, MultiStore } from '@akala/storage';
 
 export interface Store

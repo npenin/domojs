@@ -1,5 +1,5 @@
 import Configuration, { ProxyConfiguration } from "@akala/config";
-import { SerializableObject } from "@akala/json-rpc-ws";
+import { SerializableObject } from "@akala/core";
 
 export interface State
 {

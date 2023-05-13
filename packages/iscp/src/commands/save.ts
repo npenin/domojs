@@ -1,9 +1,9 @@
 import { devices } from '@domojs/devices';
-import { State } from "../state";
-import * as api from '../api'
+import { State } from "../state.js";
+import * as api from '../api.js'
 import { Socket } from 'net'
 import { Container } from "@akala/commands";
-import { ISCPProcessor } from "../iscp-processor";
+import { ISCPProcessor } from "../iscp-processor.js";
 
 
 const deviceCollection: { [name: string]: devices.IDevice } = {};

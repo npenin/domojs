@@ -1,4 +1,4 @@
-import { Cursor, Parser, Parsers, parserWrite } from "../_common";
+import { Cursor, Parser, Parsers, parserWrite } from "../_common.js";
 
 export class TLVNumber implements Parser<number>
 {

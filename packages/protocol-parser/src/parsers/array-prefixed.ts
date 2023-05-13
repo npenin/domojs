@@ -1,4 +1,4 @@
-import { AnyParser, ParserWithMessageWithoutKnownLength } from ".";
+import { AnyParser, ParserWithMessageWithoutKnownLength } from "./index.js";
 import { Cursor, Parsers, parserWrite } from "./_common";
 
 export default class PrefixedLengthArray<T, TMessage> implements ParserWithMessageWithoutKnownLength<T[], TMessage>

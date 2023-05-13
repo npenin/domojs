@@ -1,7 +1,7 @@
 import { Http, HttpOptions, Interpolate } from "@akala/core";
 import { AnyNode, Cheerio, CheerioAPI, load as cheerio, Node } from "cheerio";
 import { ElementType } from "htmlparser2";
-import { Page, RequestAuthentication, Scrap, Site } from "../state";
+import { Page, RequestAuthentication, Scrap, Site } from "../state.js";
 
 export class ScrapError extends Error
 {

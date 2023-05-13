@@ -1,6 +1,6 @@
 import { Http } from '@akala/core';
-import { Weather } from '../state';
-import { cache as getFromCache, Position } from './common';
+import { Weather } from '../state.js';
+import { cache as getFromCache, Position } from './common.js';
 
 const cache = getFromCache('openweathermap',
 	(position: Position) => `https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=930cde9194d9199d70f37ff56945c548&units=metric`,

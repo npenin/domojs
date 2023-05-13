@@ -1,5 +1,5 @@
 import { TVShow, Movie } from "../../index";
-import { extensions } from "../processFolder";
+import { extensions } from "../processFolder.js";
 
 
 const episodeNumber = /(?:\.E(?:p(?:isode)?)?|Part|Chapitre)\.?([0-9]+)(?:v\d)?/i;
@@ -19,7 +19,7 @@ export default function scrapTVShowFileName<T extends TVShow | Movie>(media: T):
             if (episodeMatch && episodeMatch[2])    
             {
                 seasonMatch = episodeMatch;
-                episodeMatch = [false, episodeMatch[2]] as RegExpExecArray;
+                episodeMatch = [false, episodeMatch[2]] as unknown as RegExpExecArray;
                 episodeMatch.index = episodeMatch.index;
             }
         }
@@ -30,7 +30,7 @@ export default function scrapTVShowFileName<T extends TVShow | Movie>(media: T):
             if (episodeMatch && episodeMatch[2])
             {
                 seasonMatch = episodeMatch;
-                episodeMatch = [false, episodeMatch[2]] as RegExpExecArray;
+                episodeMatch = [false, episodeMatch[2]] as unknown as RegExpExecArray;
                 episodeMatch.index = seasonMatch.index
             }
             else

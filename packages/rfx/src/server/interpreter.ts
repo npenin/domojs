@@ -1,6 +1,6 @@
 // import { KeywordInterpreter, KeywordContext, Interpreter } from '@domojs/chat/dist/server/language';
 // import { Context } from '@domojs/chat';
-// import * as rfx from './protocols'
+// import * as rfx from './protocols.js'
 
 // export type KeywordWithTimeContext = KeywordContext & Context;
 

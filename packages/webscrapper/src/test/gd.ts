@@ -1,5 +1,5 @@
 import { FetchHttp } from '@akala/core'
-import scrap from '../commands/scrap'
+import scrap from '../commands/scrap.js'
 
 interface Recipe
 {

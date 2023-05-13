@@ -1,4 +1,4 @@
-import { State } from "../state";
+import { State } from "../state.js";
 import { RFXDevice, PacketType, InterfaceControl } from "@domojs/rfx-parsers";
 import { Rfy } from "@domojs/rfx-parsers";
 

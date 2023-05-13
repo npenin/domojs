@@ -1,10 +1,10 @@
-import { mdule } from './main.module'
+import { mdule } from './main.module.js'
 import * as client from '@akala/client'
 import { Container, Metadata, SelfDefinedCommand } from '@akala/commands'
 import { Tile } from '@domojs/theme-default';
 import { inject } from '@akala/core';
 import { LocationService } from '@akala/client';
-import devices from '../server/device-commands';
+import devices from '../server/device-commands.js';
 import * as website from '@domojs/theme-default'
 
 var commandRegistered = false;

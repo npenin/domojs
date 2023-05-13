@@ -1,4 +1,4 @@
-import { Cursor, AnyParser, ParserWithMessage, parserWrite } from "../_common";
+import { Cursor, AnyParser, ParserWithMessage, parserWrite } from "../_common.js";
 import { WireType } from "./field";
 import { ArrayItem } from "./property";
 

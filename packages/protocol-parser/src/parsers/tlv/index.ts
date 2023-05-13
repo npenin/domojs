@@ -1,8 +1,8 @@
 import * as parsers from '../';
-import { TLVBuffer } from './buffer';
-import { TLVNumber } from './number';
-import TLVObject, { Map, MapByName } from './object';
-import { TLVString } from './string';
+import { TLVBuffer } from './buffer.js';
+import { TLVNumber } from './number.js';
+import TLVObject, { Map, MapByName } from './object.js';
+import { TLVString } from './string.js';
 
 export default function tlv(parser: parsers.Parsers<number>, maxLength: number, encoding?: BufferEncoding)
 {

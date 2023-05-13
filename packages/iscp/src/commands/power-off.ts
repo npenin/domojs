@@ -1,5 +1,5 @@
 import { Container } from '@akala/commands'
-import { ISCPProcessor } from '../iscp-processor'
+import { ISCPProcessor } from '../iscp-processor.js'
 import * as net from 'net'
 
 export default function (target: string)

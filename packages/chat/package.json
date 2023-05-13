@@ -5,12 +5,12 @@
   "main": "dist/test.js",
   "license": "MIT",
   "dependencies": {
-    "@akala/json-rpc-ws": "^9.7.0",
-    "@nlpjs/basic": "4.23.5",
-    "node-nlp": "4.24.0"
+    "@akala/json-rpc-ws": "^10.2.33",
+    "@nlpjs/basic": "4.26.1",
+    "node-nlp": "4.26.1"
   },
   "devDependencies": {
-    "@nlpjs/directline-connector": "4.23.4",
-    "@nlpjs/express-api-server": "4.23.4"
+    "@nlpjs/directline-connector": "4.26.1",
+    "@nlpjs/express-api-server": "4.26.1"
   }
 }

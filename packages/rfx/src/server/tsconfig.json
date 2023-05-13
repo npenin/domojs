@@ -6,5 +6,13 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "declaration": true
-    }
+    },
+    "references": [
+        {
+            "path": "../../../devices"
+        },
+        {
+            "path": "../../../rfx-parsers"
+        }
+    ]
 }

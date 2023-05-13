@@ -1,6 +1,5 @@
-import * as devices from "../../../devices";
+import * as devices from "../../../devices.js";
 import { Container } from "@akala/commands";
-import { deviceContainer } from '../../..';
 import { logger } from "@akala/core";
 
 const log = logger('domojs:devices:types:add')

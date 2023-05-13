@@ -1,6 +1,6 @@
 import { Video } from "../../metadata";
-import cleanFileName from "../server/commands/scrapper/cleanFileName";
-import scrapTVShowFileName from "../server/commands/scrapper/scrapTVShowFileName";
+import cleanFileName from "../server/commands/scrapper/cleanFileName.js";
+import scrapTVShowFileName from "../server/commands/scrapper/scrapTVShowFileName.js";
 
 (async function ()
 {

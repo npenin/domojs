@@ -1,5 +1,5 @@
 import { devices } from "@domojs/devices";
-import { State } from "../state";
+import { State } from "../state.js";
 import { Cluster, MessageType, MessageTypes, Zigate, network, attributes } from "@domojs/zigate-parsers";
 import net from 'net';
 import * as akala from '@akala/core';

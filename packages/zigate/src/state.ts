@@ -1,7 +1,5 @@
 import { Logger } from '@akala/core';
-import PubSubContainer from '@akala/pubsub';
 import { Sidecar } from '@akala/sidecar';
-import { deviceContainer } from '@domojs/devices';
 import { Cluster, Zigate } from '@domojs/zigate-parsers';
 
 export type ZDevices = ZGateway | ZDevice;

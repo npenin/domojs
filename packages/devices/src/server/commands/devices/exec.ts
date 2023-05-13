@@ -1,7 +1,7 @@
 import { Container } from '@akala/commands';
 import { BinaryOperator } from '@akala/core/expressions';;
-import { deviceTypeContainer } from '../../..';
-import { LiveStore } from "../../store";
+import { deviceTypeContainer } from '../../../index.js';
+import { LiveStore } from "../../store.js";
 
 export default async function exec(store: LiveStore, name: string, command: string, value: any, deviceTypeContainer: deviceTypeContainer.container & Container<void>)
 {

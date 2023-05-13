@@ -1,5 +1,5 @@
 import { parsers, uint8 } from '@domojs/protocol-parser';
-import { messages, MessageType } from './_common';
+import { messages, MessageType } from './_common.js';
 
 export interface StatusMessage
 {

@@ -1,4 +1,4 @@
-import { MessageType, messages } from './_common';
+import { MessageType, messages } from './_common.js';
 import { parsers } from '@domojs/protocol-parser';
 
 messages.register(MessageType.InitiateTouchlink, parsers.object<{}>());

@@ -1,11 +1,11 @@
-import { mdule2 } from './main.module'
+import { mdule2 } from './main.module.js'
 import * as client from '@akala/client'
 import { Container, Metadata } from '@akala/commands'
 import { inject } from '@akala/core';
 import { LocationService, PartDefinition } from '@akala/client';
-import deviceTypes from '../server/devicetype-commands';
+import deviceTypes from '../server/devicetype-commands.js';
 import template from '../../views/new.html'
-import { DeviceType, IDevice } from '../devices';
+import { DeviceType, IDevice } from '../devices.js';
 
 @client.component(mdule2)
 export class NewDevice implements PartDefinition<any>
@@ -26,7 +26,7 @@ export class NewDevice implements PartDefinition<any>
         scope.$set('send', this.send);
     }
 
-    public send(this: { device: IDevice, type: DeviceType }, @inject('$modules.@domojs/devices.container') container: Container<void> & import('../server/device-commands').default.container)
+    public send(this: { device: IDevice, type: DeviceType }, @inject('$modules.@domojs/devices.container') container: Container<void> & import('../server/device-commands.js').default.container)
     {
         return container.dispatch('add', this.type.name, this.device);
     }

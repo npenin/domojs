@@ -1,6 +1,6 @@
-import Uint3 from "../uint3";
-import Uint5 from "../uint5";
-import { Cursor, Parser } from "../_common";
+import Uint3 from "../uint3.js";
+import Uint5 from "../uint5.js";
+import { Cursor, Parser } from "../_common.js";
 
 export type WireType = 'varint' | '64-bit' | 'length-delimited' | 'start-group' | 'end-group' | '32-bit';
 

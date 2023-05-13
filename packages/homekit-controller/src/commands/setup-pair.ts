@@ -4,7 +4,7 @@ import { Http } from "@akala/core";
 import hkdf from 'futoin-hkdf'
 import { Cursor, parsers, parserWrite, tlv } from '@domojs/protocol-parser'
 import assert from 'assert/strict'
-import State from "../state";
+import State from "../state.js";
 
 const tlv8 = tlv(parsers.uint8, 0xFF, 'utf8');
 

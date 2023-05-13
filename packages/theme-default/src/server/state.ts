@@ -1,6 +1,6 @@
 import { Container } from "@akala/commands";
 import { NetConnectOpts } from "net";
-import * as pm from '@akala/pm'
+import type * as pm from '@akala/pm'
 
 export interface ModuleDefinition
 {

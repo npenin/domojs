@@ -1,5 +1,5 @@
-import { uint8 } from "../index";
-import { AnyParser, Cursor, Parsers, ParserWithMessage, ParserWithMessageWithoutKnownLength, ParserWithoutKnownLength, parserWrite } from "../_common";
+import { uint8 } from "../index.js";
+import { AnyParser, Cursor, Parsers, ParserWithMessage, ParserWithMessageWithoutKnownLength, ParserWithoutKnownLength, parserWrite } from "../_common.js";
 import { TLVBuffer } from "./buffer";
 
 export type Map<TMessage> = Record<number, { name: keyof TMessage, parser: AnyParser<TMessage[keyof TMessage], Partial<TMessage>> }>

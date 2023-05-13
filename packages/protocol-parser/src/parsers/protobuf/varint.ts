@@ -1,9 +1,9 @@
-import { Cursor, ParserWithoutKnownLength } from "../_common";
-import Uint8 from "../uint8";
-import Uint7 from "../uint7";
-import Uint32LE from "../uint32LE";
-import Uint24LE from "../uint24LE";
-import Uint16LE from "../uint16LE";
+import { Cursor, ParserWithoutKnownLength } from "../_common.js";
+import Uint8 from "../uint8.js";
+import Uint7 from "../uint7.js";
+import Uint32LE from "../uint32LE.js";
+import Uint24LE from "../uint24LE.js";
+import Uint16LE from "../uint16LE.js";
 import { WireType } from "./field";
 
 export default class Varint implements ParserWithoutKnownLength<number>

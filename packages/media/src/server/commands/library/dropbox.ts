@@ -1,6 +1,6 @@
 import { Stats } from 'fs'
 import * as fs from 'fs/promises'
-import * as process from '../processFolder'
+import * as process from '../processFolder.js'
 import * as akala from '@akala/core'
 import { Media } from '../..';
 import { Container } from '@akala/commands';

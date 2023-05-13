@@ -1,4 +1,4 @@
-import * as devices from "../../../devices";
+import * as devices from "../../../devices.js";
 import { CommandWithProcessorAffinity, Container, ICommandProcessor, Processors, SelfDefinedCommand, updateCommands } from "@akala/commands";
 import { logger } from "@akala/core";
 import { sidecar } from "@akala/pm";

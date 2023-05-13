@@ -1,5 +1,5 @@
-import CoreProperty from "../property";
-import { AnyParser } from "../_common";
+import CoreProperty from "../property.js";
+import { AnyParser } from "../_common.js";
 import { WireType } from "./field";
 
 export type ArrayItem<T> = T extends ((infer X)[]) ? X : T;

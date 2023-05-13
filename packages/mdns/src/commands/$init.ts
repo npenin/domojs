@@ -3,9 +3,9 @@ import { StringAnswer } from 'dns-packet'
 import app from '@akala/sidecar';
 import { CliContext } from '@akala/cli';
 import { Configuration } from '@akala/config'
-import { logger } from '@akala/core'
-import { State } from '../state';
-import { Service } from '../index';
+import { SerializableObject, logger } from '@akala/core'
+import { State } from '../state.js';
+import { Service } from '../index.js';
 
 export const dnsEqual = (function ()
 {
@@ -70,7 +70,7 @@ export const decodeTxt = (function ()
 
 export default async function (this: State, context: CliContext, signal: AbortSignal)
 {
-    const self = await app(context, Configuration.new('./mdns.json', {}))
+    const self = await app(context, Configuration.new<SerializableObject>('./mdns.json', {}))
 
     this.services = {};
 

@@ -1,5 +1,5 @@
-import { Sub as CoreSub } from "../sub";
-import { ParsersWithMessage } from "../_common";
+import { Sub as CoreSub } from "../sub.js";
+import { ParsersWithMessage } from "../_common.js";
 import { WireType } from "./field";
 
 

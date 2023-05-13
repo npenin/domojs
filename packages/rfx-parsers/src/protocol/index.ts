@@ -89,27 +89,27 @@ export var Protocol = parsers.sub(parsers.uint8, parsers.object<Message>(
 ));
 
 export { messages };
-import * as Lighting1 from './lighting1';
-import * as Lighting2 from './lighting2';
-import * as Lighting3 from './lighting3';
-import * as Lighting4 from './lighting4';
-import * as Lighting5 from './lighting5';
-import * as Lighting6 from './lighting6';
-import * as Chime from './chime';
-import * as Fan from './fan';
-import * as Curtain1 from './curtain1';
-import * as Blinds1 from './blinds1';
-import * as Rfy from './rfy';
-import * as Homeconfort from './homeconfort';
-import * as Edisio from './edisio';
-import * as Honeywell from './honeywell activelink';
-import * as Funkbus from './funkbus';
-import * as Security1 from './security1';
-import * as InterfaceControl from './0.interface.mode';
-import * as InterfaceMessage from './1.interface.response';
-import * as Elec1 from './elec1';
-import * as Elec2 from './elec2';
-import * as TemperatureHumidity from './temperature and humidity';
+import * as Lighting1 from './lighting1.js';
+import * as Lighting2 from './lighting2.js';
+import * as Lighting3 from './lighting3.js';
+import * as Lighting4 from './lighting4.js';
+import * as Lighting5 from './lighting5.js';
+import * as Lighting6 from './lighting6.js';
+import * as Chime from './chime.js';
+import * as Fan from './fan.js';
+import * as Curtain1 from './curtain1.js';
+import * as Blinds1 from './blinds1.js';
+import * as Rfy from './rfy.js';
+import * as Homeconfort from './homeconfort.js';
+import * as Edisio from './edisio.js';
+import * as Honeywell from './honeywell activelink.js';
+import * as Funkbus from './funkbus.js';
+import * as Security1 from './security1.js';
+import * as InterfaceControl from './0.interface.mode.js';
+import * as InterfaceMessage from './1.interface.response.js';
+import * as Elec1 from './elec1.js';
+import * as Elec2 from './elec2.js';
+import * as TemperatureHumidity from './temperature and humidity.js';
 
 
 export namespace Type

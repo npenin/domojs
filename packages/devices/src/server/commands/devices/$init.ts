@@ -1,13 +1,13 @@
 import '@akala/server'
-import { LiveStore, Store } from "../../store";
+import { LiveStore, Store } from "../../store.js";
 import "../../store";
 import * as akala from '@akala/core'
 import { Container } from "@akala/commands";
-import { deviceContainer } from "../../..";
+import { deviceContainer } from "../../../index.js";
 import { Container as pmContainer } from '@akala/pm'
 import app, { Sidecar } from '@akala/sidecar'
 import Configuration from '@akala/config'
-import { State } from '..';
+import { State } from '../index.js';
 import { CliContext } from '@akala/cli';
 
 export default async function (this: State, context: CliContext, config: Configuration, container: Container<any> & deviceContainer.container, pm: Container<any> & pmContainer)

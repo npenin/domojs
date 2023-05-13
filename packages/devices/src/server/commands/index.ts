@@ -1,7 +1,7 @@
 import * as ac from '@akala/commands'
 import { Sidecar } from '@akala/sidecar';
-import * as  types from '../../devices'
-import { Store } from '../store';
+import * as  types from '../../devices.js'
+import { Store } from '../store.js';
 
 export type State = Sidecar<Store> & { initializing: boolean };
 

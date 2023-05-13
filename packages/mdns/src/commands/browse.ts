@@ -1,6 +1,6 @@
 import mDNS from 'multicast-dns';
 import { StringAnswer } from 'dns-packet'
-import { decodeTxt, dnsEqual } from './$init';
+import { decodeTxt, dnsEqual } from './$init.js';
 
 export default function (type: string, delay: number)
 {

@@ -5,6 +5,7 @@
   "bugs": {
     "url": "https://github.com/domojs/domojs-pioneer/issues"
   },
+  "type": "module",
   "dependencies": {
     "@domojs/devices": "workspace:*"
   },
@@ -13,10 +14,10 @@
     "@akala/pm": "^3.7.12"
   },
   "devDependencies": {
-    "@akala/commands": "^4.2.4",
-    "@akala/core": "^9.6.3",
-    "@akala/server": "^9.1.4",
-    "@types/ws": "8.5.3"
+    "@akala/commands": "^5.5.5",
+    "@akala/core": "^10.5.1",
+    "@akala/server": "^9.3.51",
+    "@types/ws": "8.5.4"
   },
   "deprecated": false,
   "description": "",

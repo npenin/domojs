@@ -3,7 +3,7 @@ import * as client from '@akala/client';
 import * as fa from '@fortawesome/fontawesome-svg-core'
 import '../../assets/css/scss/main.scss';
 
-import { BlockColors, TileDef, FaIconLibraryInterface, bootstrap, tileComponent } from './public_api'
+import { BlockColors, TileDef, FaIconLibraryInterface, bootstrap, tileComponent } from './public_api.js'
 
 bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.name).activate(['$injector'], function (module: akala.Module)
 {
@@ -58,7 +58,7 @@ bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.
 
     @client.control('fa')
     // @ts-ignore
-    class FA extends client.controls.GenericControlInstance<fa.IconLookup | akala.Proxy<fa.IconLookup, akala.Binding>>
+    class FA extends client.controls.GenericControlInstance<fa.IconLookup | { [key in keyof fa.IconLookup]: akala.Binding<fa.IconLookup[key]> }>
     {
         @akala.inject('@domojs/theme-default.faIcon')
         private library: FaIconLibraryInterface;
@@ -74,7 +74,7 @@ bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.
             {
                 var parameter = this.parameter;
 
-                if (this.parameter instanceof akala.Binding || this.parameter.prefix instanceof akala.Binding || this.parameter.iconName instanceof akala.Binding)
+                if (parameter instanceof akala.Binding || parameter.prefix instanceof akala.Binding || parameter.iconName instanceof akala.Binding)
                     parameter = akala.Binding.unbindify(this.parameter) as fa.IconLookup;
 
                 if (typeof parameter != 'undefined')

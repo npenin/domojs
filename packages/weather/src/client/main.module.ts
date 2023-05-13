@@ -1,7 +1,7 @@
 import * as akala from '@akala/core'
 import * as ac from '@akala/commands'
 import * as web from '@domojs/theme-default'
-import { Weather } from '../state';
+import { Weather } from '../state.js';
 import * as fa from '@fortawesome/free-solid-svg-icons'
 
 const metaContainer: ac.Metadata.Container = require('../../commands.json')

@@ -1,7 +1,7 @@
 import { Container } from '@akala/commands';
 import Configuration from '../../configuration';
 import { LibraryState } from '../../state';
-import * as process from '../processFolder';
+import * as process from '../processFolder.js';
 
 
 export default function (this: LibraryState, container: Container<Configuration>, source: string, type: 'music' | 'video', name?: string, season?: number, episode?: number, album?: string, artist?: string)

@@ -1,15 +1,15 @@
-import PrefixedBuffer from "../buffer-prefixed";
+import PrefixedBuffer from "../buffer-prefixed.js";
 import ProtobufString from "./string";
-import FixedLengthArray from "../array-fixed";
-import Uint32 from "../uint32";
-import Uint64 from "../uint64";
-import { AnyParser, ParsersWithMessage, ParserWithMessageWithoutKnownLength } from "../_common";
+import FixedLengthArray from "../array-fixed.js";
+import Uint32 from "../uint32.js";
+import Uint64 from "../uint64.js";
+import { AnyParser, ParsersWithMessage, ParserWithMessageWithoutKnownLength } from "../_common.js";
 import Property, { ArrayItem } from "./property";
 import { WireType } from "./field";
 import Message, { UnknownMessage } from "./message";
 import { Sub } from "./sub";
 import Varint from "./varint";
-import { ZeroOrOne } from "../zero-or-one";
+import { ZeroOrOne } from "../zero-or-one.js";
 
 export const varint = new Varint();
 export const raw: PrefixedBuffer & { wireType: WireType } = Object.assign(new PrefixedBuffer(varint), { wireType: 'length-delimited' } as { wireType: 'length-delimited' });

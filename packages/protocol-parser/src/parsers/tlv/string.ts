@@ -1,5 +1,5 @@
-import PrefixedString from "../string-prefixed";
-import { AnyParser, Cursor, Parsers } from "../_common";
+import PrefixedString from "../string-prefixed.js";
+import { AnyParser, Cursor, Parsers } from "../_common.js";
 
 export class TLVString extends PrefixedString
 {
@@ -7,8 +7,6 @@ export class TLVString extends PrefixedString
     {
         super(parser, encoding)
     }
-
-    length: -1;
 
     write(value: string): Buffer[]
     {
