@@ -11,10 +11,10 @@
     },
     "dependencies": {
         "@akala/cli": "^2.9.25",
-        "@akala/commands": "^5.5.5",
-        "@akala/config": "^2.3.9",
+        "@akala/commands": "^5.5.6",
+        "@akala/config": "^2.3.10",
         "@akala/core": "^10.5.1",
-        "@akala/sidecar": "^2.2.51",
+        "@akala/sidecar": "^2.2.52",
         "multicast-dns": "^7.2.5"
     },
     "devDependencies": {
