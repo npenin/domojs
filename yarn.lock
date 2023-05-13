@@ -519,7 +519,7 @@ __metadata:
     typescript: 5.0.4
     usb: 2.9.0
   peerDependencies:
-    serialport: ^9.2.8
+    serialport: ^11.0.0
     usb: ^2.1.2
   peerDependenciesMeta:
     serialport:
@@ -546,7 +546,7 @@ __metadata:
     typescript: 5.0.4
   peerDependencies:
     "@akala/pm": ^3.7.12
-    serialport: ^9.2.8
+    serialport: ^11.0.0
     usb: ^2.1.2
   peerDependenciesMeta:
     serialport:
@@ -637,7 +637,7 @@ __metadata:
     typescript: 5.0.4
     usb: 2.9.0
   peerDependencies:
-    serialport: ^9.2.8
+    serialport: ^11.0.0
     usb: ^2.1.2
   peerDependenciesMeta:
     serialport:
@@ -662,7 +662,7 @@ __metadata:
     http-punch-hole: ^1.0.12
   peerDependencies:
     "@domojs/devices": "workspace:*"
-    serialport: ^9.2.8
+    serialport: ^11.0.0
   peerDependenciesMeta:
     serialport:
       optional: true
