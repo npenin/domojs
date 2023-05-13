@@ -12,15 +12,15 @@
 		"@akala/server": "^7.0.2"
 	},
 	"devDependencies": {
-		"@akala/json-rpc-ws": "^10.2.33",
-		"@akala/pm": "^6.0.10",
-		"@akala/server": "^9.3.51",
+		"@akala/json-rpc-ws": "^10.2.34",
+		"@akala/pm": "^6.0.11",
+		"@akala/server": "^9.3.52",
 		"@domojs/devices": "workspace:*"
 	},
 	"dependencies": {
-		"@akala/client": "^6.4.6",
-		"@akala/commands": "^5.5.5",
-		"@akala/config": "^2.3.9",
+		"@akala/client": "^6.4.7",
+		"@akala/commands": "^5.5.6",
+		"@akala/config": "^2.3.10",
 		"@akala/core": "^10.5.1",
 		"cheerio": "^1.0.0-rc.12"
 	},
