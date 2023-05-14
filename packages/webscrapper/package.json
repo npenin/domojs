@@ -4,7 +4,7 @@
 	"commands": "./commands.json",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/npenin/domojs-weather.git"
+		"url": "https://github.com/npenin/domojs.git"
 	},
 	"peerDependencies": {
 		"@akala/pm": "^3.0.2",
