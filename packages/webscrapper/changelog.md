@@ -13,6 +13,7 @@
 ### Features
 
 * add web scrapping support and tests f09ee3e
+* make webscrapper public 4c8f18b
 * various fixes and improvements ec01382
 
 
