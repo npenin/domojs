@@ -1,11 +1,11 @@
 {
   "name": "@domojs/icookin",
-  "version": "42.0.0",
+  "version": "41.0.0",
   "main": "index.js",
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "@akala/core": "^10.5.1",
+    "@akala/core": "^10.5.2",
     "mongodb": "5.5.0",
     "ws": "8.13.0"
   },

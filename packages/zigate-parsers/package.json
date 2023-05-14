@@ -12,7 +12,7 @@
   "author": "npenin",
   "license": "MIT",
   "dependencies": {
-    "@akala/core": "^10.5.1",
+    "@akala/core": "^10.5.2",
     "@domojs/devices": "workspace:*",
     "@domojs/protocol-parser": "workspace:*",
     "debug": "^4.3.4"

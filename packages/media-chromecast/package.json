@@ -7,8 +7,8 @@
   "license": "MIT",
   "main": "dist/index.js",
   "dependencies": {
-    "@akala/commands": "^5.5.6",
-    "@akala/core": "^10.5.1",
+    "@akala/commands": "^5.5.8",
+    "@akala/core": "^10.5.2",
     "@domojs/media-chromecast-parsers": "workspace:*"
   },
   "repository": {
