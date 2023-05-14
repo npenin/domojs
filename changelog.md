@@ -61,6 +61,7 @@
 * add unknown RTS message support b0ee68f
 * add web scrapping support and tests f09ee3e
 * make exec on devicetype CLI compatible f882f8b
+* make webscrapper public 4c8f18b
 * mdns implementation 5319498
 * move device management to devicetype 948145c
 * shared gateway implementation 32291ed
