@@ -19,7 +19,7 @@
   "type": "module",
   "devDependencies": {
     "@types/debug": "4.1.7",
-    "@types/node": "18.16.9",
+    "@types/node": "20.2.5",
     "@types/serialport": "8.0.2",
     "@types/usb": "2.0.5",
     "typescript": "5.0.4",
