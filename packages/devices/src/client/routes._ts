@@ -1,6 +1,6 @@
 import * as akala from '@akala/client'
 import * as commands from '@akala/commands'
-import * as devices from '../devices';
+import * as devices from '../devices.js';
 import * as jsonrpc from '@akala/json-rpc-ws/lib/browser'
 
 interface DeviceScope<T> extends akala.IScope<DeviceScope<T>>

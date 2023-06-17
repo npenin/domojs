@@ -1,5 +1,5 @@
 import mDNS from "multicast-dns";
-import { Service } from "./index";
+import { Service } from './index.js';
 
 export interface State
 {

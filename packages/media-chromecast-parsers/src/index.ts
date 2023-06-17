@@ -1,6 +1,6 @@
-export * from './cast'
-export * from './authority_keys'
-export * from './log'
+export * from './cast.js'
+export * from './authority_keys.js'
+export * from './log.js'
 
 import { Cursor } from '@domojs/protocol-parser'
 import stream from 'stream'

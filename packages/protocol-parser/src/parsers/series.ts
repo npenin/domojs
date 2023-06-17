@@ -1,4 +1,4 @@
-import { Cursor, ParsersWithMessage, ParserWithMessageWithoutKnownLength, parserWrite } from "./_common";
+import { Cursor, ParsersWithMessage, ParserWithMessageWithoutKnownLength, parserWrite } from './_common.js';
 
 export default class Series<TMessage> implements ParserWithMessageWithoutKnownLength<TMessage, Partial<TMessage>>
 {

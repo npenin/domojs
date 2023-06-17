@@ -1,8 +1,8 @@
-import { Cursor, ParserWithoutKnownLength } from "./_common";
-import Uint16 from "./uint16";
-import Uint24 from "./uint24";
-import Uint32 from "./uint32";
-import Uint8 from "./uint8";
+import { Cursor, ParserWithoutKnownLength } from './_common.js';
+import Uint16 from './uint16.js';
+import Uint24 from './uint24.js';
+import Uint32 from './uint32.js';
+import Uint8 from './uint8.js';
 
 export default class Vuint implements ParserWithoutKnownLength<number>
 {

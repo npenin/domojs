@@ -1,7 +1,7 @@
 import { Container, Metadata, SelfDefinedCommand } from "@akala/commands";
 import Configuration from "@akala/config";
-import { ScrapperConfiguration, ScrappersConfiguration } from "../../configuration";
-import { LibraryState } from "../../state";
+import { ScrapperConfiguration, ScrappersConfiguration } from '../../configuration.js';
+import { LibraryState } from '../../state.js';
 
 export default async function registerScrapper(this: LibraryState, container: Container<LibraryState>, remote: Container<void>, type: keyof ScrappersConfiguration, scrapper: ScrapperConfiguration)
 {

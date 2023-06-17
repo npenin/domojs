@@ -1,5 +1,4 @@
-import { LibraryConfiguration } from "../../configuration";
-import { LibraryState } from "../../state";
+import { LibraryState } from "../../state.js";
 
 export default async function addFolder(this: LibraryState, name: string, path: string)
 {

@@ -1,4 +1,4 @@
-import { channel, organizer, Recipe } from '../server/channel';
+import { channel, organizer, Recipe } from '../server/channel.js';
 import * as akala from '@akala/client';
 import { Tile } from '@domojs/theme-default/dist/tile'
 import './lifttt';

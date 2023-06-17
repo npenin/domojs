@@ -4,6 +4,7 @@
   "version": "0.0.20",
   "description": "command line interface for home automation needs",
   "main": "dist/cli.js",
+  "type": "module",
   "repository": "https://github.com/npenin/domojs",
   "author": "npenin",
   "license": "MIT",
@@ -12,8 +13,8 @@
     "@akala/pm": "^3.7.12"
   },
   "devDependencies": {
-    "@akala/commands": "^5.5.8",
-    "@akala/pm": "^6.0.13",
+    "@akala/commands": "^6.1.0",
+    "@akala/pm": "^7.0.2",
     "@types/yargs": "17.0.24"
   },
   "gitHead": "5c8b6cb938eb920110c9a48ec210f2a65ee04176"

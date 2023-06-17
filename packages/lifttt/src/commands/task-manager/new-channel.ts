@@ -1,4 +1,4 @@
-import { ChannelState } from "../../channel-state";
+import { ChannelState } from '../../channel-state.js';
 import { Container, SelfDefinedCommand } from "@akala/commands";
 
 export default function (this: ChannelState, name: string, remoteContainer: Container<void>, self: Container<ChannelState>)

@@ -1,4 +1,4 @@
-import * as parsers from '../';
+import * as parsers from '../index.js';
 import { TLVBuffer } from './buffer.js';
 import { TLVNumber } from './number.js';
 import TLVObject, { Map, MapByName } from './object.js';

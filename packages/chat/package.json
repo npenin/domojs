@@ -3,14 +3,15 @@
   "version": "43.0.0",
   "private": true,
   "main": "dist/test.js",
+  "type": "module",
   "license": "MIT",
   "dependencies": {
-    "@akala/json-rpc-ws": "^10.2.35",
-    "@nlpjs/basic": "4.26.1",
-    "node-nlp": "4.26.1"
+    "@akala/json-rpc-ws": "^10.2.38",
+    "@nlpjs/basic": "4.27.0",
+    "node-nlp": "4.27.0"
   },
   "devDependencies": {
     "@nlpjs/directline-connector": "4.26.1",
-    "@nlpjs/express-api-server": "4.26.1"
+    "@nlpjs/express-api-server": "4.27.0"
   }
 }

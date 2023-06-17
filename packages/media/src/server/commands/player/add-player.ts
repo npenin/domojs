@@ -1,5 +1,5 @@
 import { Container, SelfDefinedCommand } from "@akala/commands";
-import { PlayerStatus, State } from "../../player";
+import { PlayerStatus, State } from '../../player.js';
 
 export default async function addPlayer(this: State, name: string, remotePlayer: Container<PlayerStatus>)
 {

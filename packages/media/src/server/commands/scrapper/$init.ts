@@ -1,5 +1,5 @@
 
-import lib from '../../../library'
+import lib from '../../../library.js'
 import { sidecar, Container as pmContainer } from '@akala/pm'
 import { Container } from '@akala/commands';
 

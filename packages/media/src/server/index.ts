@@ -1,5 +1,5 @@
 import * as akala from '@akala/core';
-export * from '../../metadata';
+export * from '../../metadata.js';
 import levenshtein from 'levenshtein';
 
 const confidenceLog = akala.logger('domojs:media:confidence');

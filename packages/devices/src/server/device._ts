@@ -1,4 +1,4 @@
-import { domojs } from '../../device';
+import { domojs } from '../../device.js';
 
 export namespace deviceTypes
 {

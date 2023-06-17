@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import { promisify } from 'util'
 import { v4 as uuid } from 'uuid'
-import { ChannelState } from '../../fs-channel-state';
-import taskManager from '../../task-manager';
+import { ChannelState } from '../../fs-channel-state.js';
+import taskManager from '../../task-manager.js';
 import { Container } from '@akala/commands';
 
 export default async function watch(this: ChannelState, container: taskManager & Container<ChannelState>, path: string, eventName?: string)

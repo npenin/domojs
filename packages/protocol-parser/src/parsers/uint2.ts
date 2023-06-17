@@ -1,5 +1,5 @@
-import Bit from "./bit";
-import { Cursor, Parser } from "./_common";
+import Bit from './bit.js';
+import { Cursor, Parser } from './_common.js';
 
 const length = .25;
 

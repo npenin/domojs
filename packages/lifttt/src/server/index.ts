@@ -1,4 +1,4 @@
-export * from './channel';
+export * from './channel.js';
 
 // const pkgName = require('../../package.json').name;
 

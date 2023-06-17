@@ -1,5 +1,5 @@
 import * as akala from '@akala/server';
-import * as lifttt from './channel'
+import * as lifttt from './channel.js'
 import { Connection } from '@akala/json-rpc-ws';
 import { IconName } from '@fortawesome/fontawesome-common-types';
 

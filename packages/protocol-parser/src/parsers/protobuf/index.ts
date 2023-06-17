@@ -1,14 +1,14 @@
 import PrefixedBuffer from "../buffer-prefixed.js";
-import ProtobufString from "./string";
+import ProtobufString from './string.js';
 import FixedLengthArray from "../array-fixed.js";
 import Uint32 from "../uint32.js";
 import Uint64 from "../uint64.js";
 import { AnyParser, ParsersWithMessage, ParserWithMessageWithoutKnownLength } from "../_common.js";
-import Property, { ArrayItem } from "./property";
-import { WireType } from "./field";
-import Message, { UnknownMessage } from "./message";
-import { Sub } from "./sub";
-import Varint from "./varint";
+import Property, { ArrayItem } from './property.js';
+import { WireType } from './field.js';
+import Message, { UnknownMessage } from './message.js';
+import { Sub } from './sub.js';
+import Varint from './varint.js';
 import { ZeroOrOne } from "../zero-or-one.js";
 
 export const varint = new Varint();

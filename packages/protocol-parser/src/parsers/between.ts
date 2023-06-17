@@ -1,6 +1,6 @@
 import { ParserWithMessage } from "./index.js";
-import Series from "./series";
-import { Cursor, ParserWithMessageWithoutKnownLength } from "./_common";
+import Series from './series.js';
+import { Cursor, ParserWithMessageWithoutKnownLength } from './_common.js';
 
 export default class Between<TMessage> extends Series<TMessage> implements ParserWithMessageWithoutKnownLength<TMessage, Partial<TMessage>>
 {

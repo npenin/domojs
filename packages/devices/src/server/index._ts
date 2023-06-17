@@ -21,8 +21,8 @@ function requireIfExists(id: string)
 
 const chat = requireIfExists('@domojs/chat');
 import * as path from 'path';
-// import { deviceManager, deviceWatcher, deviceType } from './worker';
-import { devices } from '../../device';
+// import { deviceManager, deviceWatcher, deviceType } from './worker.js';
+import { devices } from '../../device.js';
 
 const debug = akala.logger.info;
 var savedDevices = [];

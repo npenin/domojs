@@ -1,7 +1,7 @@
 import Uint32 from "../uint32.js";
 import Uint64 from "../uint64.js";
 import { Cursor, parserWrite, ParserWithoutKnownLength, ParserWithMessageWithoutKnownLength, AnyParser } from "../_common.js";
-import { Field, WireType } from "./field";
+import { Field, WireType } from './field.js';
 
 // const varint = new Varint();
 // const prefixedBuffer = new PrefixedBuffer(varint);

@@ -1,4 +1,4 @@
-import { TVShow, Movie } from "../../index";
+import { TVShow, Movie } from '../../index.js';
 import { extensions } from "../processFolder.js";
 
 

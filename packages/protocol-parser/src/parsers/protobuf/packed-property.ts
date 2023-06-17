@@ -1,6 +1,6 @@
 import { Cursor, AnyParser, ParserWithMessage, parserWrite } from "../_common.js";
-import { WireType } from "./field";
-import { ArrayItem } from "./property";
+import { WireType } from './field.js';
+import { ArrayItem } from './property.js';
 
 export default class PackedProperty<T, TKey extends keyof T> implements ParserWithMessage<ArrayItem<T[TKey]>[] | ArrayItem<T[TKey]>, T>
 {

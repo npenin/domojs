@@ -1,11 +1,11 @@
-import Bit from "./bit";
-import { Cursor, Parser } from "./_common";
-import Uint2 from "./uint2";
-import Uint3 from "./uint3";
-import Uint4 from "./uint4";
-import Uint5 from "./uint5";
-import Uint6 from "./uint6";
-import Uint7 from "./uint7";
+import Bit from './bit.js';
+import { Cursor, Parser } from './_common.js';
+import Uint2 from './uint2.js';
+import Uint3 from './uint3.js';
+import Uint4 from './uint4.js';
+import Uint5 from './uint5.js';
+import Uint6 from './uint6.js';
+import Uint7 from './uint7.js';
 
 const length = 1;
 

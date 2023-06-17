@@ -1,8 +1,8 @@
 import * as akala from '@akala/client'
-import { player as playerApi, controller as controllerApi, Player } from './playerApi'
-import { api as mediaApi } from './mediaApi'
+import { player as playerApi, controller as controllerApi, Player } from './playerApi.js'
+import { api as mediaApi } from './mediaApi.js'
 import { Client, Connection } from '@akala/json-rpc-ws';
-import { Media } from '../../metadata';
+import { Media } from '../../metadata.js';
 
 interface IScopePlayer extends akala.IScope<IScopePlayer>
 {
