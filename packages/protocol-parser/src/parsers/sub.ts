@@ -1,4 +1,4 @@
-import { ParserWithMessageWithoutKnownLength, Cursor, parserWrite, AnyParser } from "./_common";
+import { ParserWithMessageWithoutKnownLength, Cursor, parserWrite, AnyParser } from './_common.js';
 
 
 export class Sub<TResult, TMessage> implements ParserWithMessageWithoutKnownLength<TResult, TMessage>

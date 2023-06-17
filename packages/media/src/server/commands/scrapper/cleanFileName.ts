@@ -1,4 +1,4 @@
-import { Media } from "../../index";
+import { Media } from '../../index.js';
 import { extensions } from "../processFolder.js";
 
 export default function cleanFileName<T extends Media>(media: T): T

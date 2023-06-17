@@ -1,6 +1,6 @@
 import PrefixedString from "../string-prefixed.js";
 import { Parsers } from "../_common.js";
-import { WireType } from "./field";
+import { WireType } from './field.js';
 
 export default class String extends PrefixedString
 {

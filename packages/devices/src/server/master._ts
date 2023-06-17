@@ -1,4 +1,4 @@
-import { deviceType, deviceWatcher, deviceManager } from './worker'
+import { deviceType, deviceWatcher, deviceManager } from './worker.js'
 import * as akala from '@akala/server'
 import * as ws from 'ws';
 

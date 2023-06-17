@@ -1,6 +1,6 @@
-import Bit from "./bit";
-import { Cursor, Parser } from "./_common";
-import Uint2 from "./uint2";
+import Bit from './bit.js';
+import { Cursor, Parser } from './_common.js';
+import Uint2 from './uint2.js';
 
 const length = .375;
 

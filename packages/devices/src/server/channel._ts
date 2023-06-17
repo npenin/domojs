@@ -1,8 +1,8 @@
 import * as akala from '@akala/server'
 import * as lifttt from '@domojs/lifttt';
-import { api } from './commands/get'
-import { devices } from '../devices';
-import { deviceWatcher } from './worker'
+import { api } from './commands/get.js'
+import { devices } from '../devices.js';
+import { deviceWatcher } from './worker.js'
 import { EventEmitter } from 'events';
 import { v4 as uuid } from 'uuid';
 

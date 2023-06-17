@@ -1,5 +1,5 @@
 import * as akala from '@akala/core';
-import { organizer, Recipe } from '../server/channel';
+import { organizer, Recipe } from '../server/channel.js';
 import { Client, Connection, SerializableObject, PayloadDataType } from '@akala/json-rpc-ws';
 
 const logger = { verbose: akala.log('verbose:domojs:lifttt:api'), info: akala.log('info:domojs:lifttt:api') }

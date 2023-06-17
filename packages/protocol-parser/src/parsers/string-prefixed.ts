@@ -1,4 +1,4 @@
-import { Cursor, Parsers, ParserWithoutKnownLength, parserWrite } from "./_common";
+import { Cursor, Parsers, ParserWithoutKnownLength, parserWrite } from './_common.js';
 
 export default class PrefixedString<TString extends string = string> implements ParserWithoutKnownLength<TString>
 {

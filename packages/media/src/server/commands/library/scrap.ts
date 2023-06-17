@@ -1,8 +1,8 @@
 import { Container } from "@akala/commands";
 import { eachAsync } from "@akala/core";
-import { Media } from "../../../../metadata";
-import Configuration from "../../configuration";
-import { LibraryState } from "../../state";
+import { Media } from '../../../../metadata.js';
+import Configuration from '../../configuration.js';
+import { LibraryState } from '../../state.js';
 import { extensions } from "../processFolder.js";
 
 export default async function scrap(this: LibraryState, container: Container<Configuration>, mediaPath: string, scrappers?: string[])

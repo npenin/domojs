@@ -1,4 +1,4 @@
-import { Video } from "../../metadata";
+import { Video } from '../../metadata.js';
 import cleanFileName from "../server/commands/scrapper/cleanFileName.js";
 import scrapTVShowFileName from "../server/commands/scrapper/scrapTVShowFileName.js";
 

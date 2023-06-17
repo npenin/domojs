@@ -1,4 +1,4 @@
-import { Cursor, Parser } from "./_common";
+import { Cursor, Parser } from './_common.js';
 
 export default class FixedString<TString extends string = string> implements Parser<TString>
 {

@@ -1,6 +1,6 @@
 import { ParsersWithMessage } from "./index.js";
-import Series from "./series";
-import { AnyParser, Cursor, Parser } from "./_common";
+import Series from './series.js';
+import { AnyParser, Cursor, Parser } from './_common.js';
 
 export default class ObjectParser<T extends object> extends Series<T> implements Parser<T>
 {

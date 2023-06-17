@@ -14,10 +14,10 @@ import { logger } from '@akala/core';
         else
             console.error(e['message'] || e);
     });
-    cli.program.format((r =>
+    cli.program.format(async r =>
     {
         console.log(r);
-    }));
+    });
     cli.cliContainer.state = {} as unknown as void;
     await cli.cliContainer.dispatch('$init', buildCliContext(logger('')));
 

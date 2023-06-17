@@ -1,5 +1,5 @@
-import { LibraryConfiguration } from "../../configuration";
-import { LibraryState } from "../../state";
+import { LibraryConfiguration } from '../../configuration.js';
+import { LibraryState } from '../../state.js';
 
 export default async function rmFolder(this: LibraryState, name: string, path: string)
 {

@@ -1,7 +1,7 @@
 import { CliContext } from "@akala/cli";
 import Configuration from "@akala/config";
-import Config from '../../configuration'
-import { LibraryState } from "../../state";
+import Config from '../../configuration.js'
+import { LibraryState } from "../../state.js";
 import path from 'path'
 
 export default async function (this: LibraryState, context: CliContext, configPath?: string)

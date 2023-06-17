@@ -1,4 +1,4 @@
-import { State } from "../../player";
+import { State } from '../../player.js';
 
 export default async function status(this: State, name: string, status?: { displayName: string, isMuted: false, volume: number, })
 {

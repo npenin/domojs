@@ -1,6 +1,6 @@
 import { Container } from '@akala/commands';
-import Configuration from '../../configuration';
-import { LibraryState } from '../../state';
+import Configuration from '../../configuration.js';
+import { LibraryState } from '../../state.js';
 import * as process from '../processFolder.js';
 
 

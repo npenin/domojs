@@ -2,6 +2,7 @@
 	"name": "generator-domojs",
 	"version": "41.0.0",
 	"description": "a",
+	"type": "module",
 	"scripts": {
 		"test": "echo \"Error: no test specified\""
 	},
@@ -12,10 +13,10 @@
 	"author": "npenin",
 	"license": "MIT",
 	"dependencies": {
-		"yeoman-generator": "5.8.0"
+		"yeoman-generator": "5.9.0"
 	},
 	"devDependencies": {
 		"@types/yeoman-generator": "5.2.11",
-		"typescript": "5.0.4"
+		"typescript": "5.1.3"
 	}
 }

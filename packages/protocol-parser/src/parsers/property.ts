@@ -1,4 +1,4 @@
-import { AnyParser, Cursor, ParserWithMessage, parserWrite } from "./_common";
+import { AnyParser, Cursor, ParserWithMessage, parserWrite } from './_common.js';
 
 
 export default class Property<T extends { [key in TKey]: Exclude<any, object> }, TKey extends keyof T> implements ParserWithMessage<T[TKey], T>

@@ -1,5 +1,5 @@
 import { AnyParser, ParserWithMessageWithoutKnownLength } from "./index.js";
-import { Cursor, Parsers, parserWrite } from "./_common";
+import { Cursor, Parsers, parserWrite } from './_common.js';
 
 export default class PrefixedLengthSeries<T, TMessage> implements ParserWithMessageWithoutKnownLength<T, TMessage>
 {

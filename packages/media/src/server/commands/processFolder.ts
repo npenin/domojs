@@ -1,7 +1,7 @@
 import * as akala from '@akala/core';
 import * as fs from 'fs/promises';
 import * as p from 'path';
-import { Media } from '../../../metadata';
+import { Media } from '../../../metadata.js';
 import * as redis from 'ioredis';
 import Configuration from '@akala/config';
 import { Container } from '@akala/commands'

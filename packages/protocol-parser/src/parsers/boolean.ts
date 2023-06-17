@@ -1,5 +1,5 @@
 
-import { Cursor, Parser } from "./_common";
+import { Cursor, Parser } from './_common.js';
 
 
 export default class Boolean implements Parser<boolean>

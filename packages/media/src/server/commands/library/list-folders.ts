@@ -1,4 +1,4 @@
-import { LibraryState } from "../../state";
+import { LibraryState } from '../../state.js';
 
 export default async function listFolders(this: LibraryState, name: string)
 {

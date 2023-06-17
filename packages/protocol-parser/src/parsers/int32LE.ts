@@ -1,8 +1,8 @@
-import { Cursor, Parser } from "./_common";
-import Uint16 from "./uint16";
-import Uint8 from "./uint8";
+import { Cursor, Parser } from './_common.js';
+import Uint16 from './uint16.js';
+import Uint8 from './uint8.js';
 import { int32 } from "../core.js";
-import Uint16LE from "./uint16LE";
+import Uint16LE from './uint16LE.js';
 
 const length = 4;
 

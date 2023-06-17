@@ -1,4 +1,4 @@
-import { ChannelState } from '../../channel-state'
+import { ChannelState } from '../../channel-state.js'
 
 export default function preventNextRun(this: ChannelState, triggerId: string)
 {

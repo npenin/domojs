@@ -1,5 +1,5 @@
 import * as akala from '@akala/core';
-import * as devices from '../../devices';
+import * as devices from '../../devices.js';
 import { Tile } from '@domojs/theme-default/dist/tile';
 import { EventEmitter } from 'events';
 

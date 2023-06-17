@@ -1,4 +1,4 @@
-import { Cursor, ParserWithMessageWithoutKnownLength } from "./_common";
+import { Cursor, ParserWithMessageWithoutKnownLength } from './_common.js';
 
 export default class PreparsedString<T, TKey extends keyof T, TString extends string = string> implements ParserWithMessageWithoutKnownLength<TString, T>
 {

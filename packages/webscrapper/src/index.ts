@@ -1,4 +1,4 @@
-import scrap from "./commands/scrap";
+import scrap from "./commands/scrap.js";
 
 export default scrap;
 export { scrap };

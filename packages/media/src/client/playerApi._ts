@@ -1,5 +1,5 @@
 import * as akala from '@akala/core';
-import { Media } from '../../metadata';
+import { Media } from '../../metadata.js';
 import { RestConfig } from '@akala/core/dist/api/rest';
 
 type commandType = 'stop' | 'next' | 'pause' | 'previous' | 'mute';

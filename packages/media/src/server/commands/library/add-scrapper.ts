@@ -1,6 +1,6 @@
-import { LibraryConfiguration } from "../../configuration";
-import { LibraryState } from "../../state";
-import scrap from "./scrap";
+import { LibraryConfiguration } from '../../configuration.js';
+import { LibraryState } from '../../state.js';
+import scrap from './scrap.js';
 
 export default async function addScrapper(this: LibraryState, name: string, scrapperType: string)
 {

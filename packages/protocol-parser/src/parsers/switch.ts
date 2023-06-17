@@ -1,4 +1,4 @@
-import { AnyParser, Cursor, ParserWithMessageWithoutKnownLength, parserWrite } from "./_common";
+import { AnyParser, Cursor, ParserWithMessageWithoutKnownLength, parserWrite } from './_common.js';
 
 export default class Switch<T extends { [key in TKey]: TValue }, TKey extends keyof T, TResult, TValue extends string | number> implements ParserWithMessageWithoutKnownLength<TResult, T>
 {

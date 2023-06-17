@@ -1,5 +1,5 @@
 import { AnyParser, ParserWithMessage } from "./index.js";
-import { Cursor, parserWrite } from "./_common";
+import { Cursor, parserWrite } from './_common.js';
 
 export default class FixedLengthArray<T, TMessage> implements ParserWithMessage<T[], TMessage>
 {

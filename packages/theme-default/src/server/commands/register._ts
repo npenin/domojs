@@ -1,4 +1,4 @@
-import { State, ModuleDefinition } from '../state';
+import { State, ModuleDefinition } from '../state.js';
 
 export default function registerModule(this: State, module: ModuleDefinition)
 {

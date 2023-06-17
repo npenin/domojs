@@ -1,6 +1,6 @@
 import { Container } from '@akala/commands';
 import { v4 as uuid } from 'uuid'
-import { OrganizerState } from '../../organizer-state';
+import { OrganizerState } from '../../organizer-state.js';
 
 export default async function register(this: OrganizerState, container: Container<void>, id?: string)
 {

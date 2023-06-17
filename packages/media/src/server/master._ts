@@ -1,7 +1,7 @@
 import * as akala from '@akala/core';
-import { scrapper } from './scrapper';
-import { player, controller } from '../client/playerApi';
-import { MediaTypes, MediaType, Media } from '../../metadata';
+import { scrapper } from './scrapper.js';
+import { player, controller } from '../client/playerApi.js';
+import { MediaTypes, MediaType, Media } from '../../metadata.js';
 import { Connection } from '@akala/json-rpc-ws';
 import * as ws from 'ws';
 const log = akala.log('@domojs/media')

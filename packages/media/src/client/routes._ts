@@ -1,4 +1,4 @@
-import { api } from './mediaApi';
+import { api } from './mediaApi.js';
 import * as akala from '@akala/client';
 import { Tile } from '@domojs/theme-default/dist/tile'
 import './player';

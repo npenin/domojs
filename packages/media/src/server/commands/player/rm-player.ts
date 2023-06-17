@@ -1,5 +1,5 @@
 import { Container } from "@akala/commands";
-import { State } from "../../player";
+import { State } from '../../player.js';
 
 export default async function rmPlayer(this: State, remotePlayer: Container<void>, name?: string)
 {

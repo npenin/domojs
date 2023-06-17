@@ -1,4 +1,4 @@
-import { Cursor, Parser } from "./_common";
+import { Cursor, Parser } from './_common.js';
 
 export const length = .125;
 

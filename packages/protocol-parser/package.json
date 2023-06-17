@@ -4,6 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "test": "mocha --require source-map-support/register dist/test",
     "prepublishOnly": "tsc -p .",
@@ -15,12 +16,12 @@
     "debug": "^4.3.4"
   },
   "devDependencies": {
-    "@types/debug": "4.1.7",
+    "@types/debug": "4.1.8",
     "@types/mocha": "10.0.1",
-    "@types/node": "18.16.9",
+    "@types/node": "18.16.18",
     "mocha": "^10.2.0",
     "source-map-support": "0.5.21",
-    "typescript": "5.0.4"
+    "typescript": "5.1.3"
   },
   "publishConfig": {
     "access": "public"
