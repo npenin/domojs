@@ -13,7 +13,7 @@
   "devDependencies": {
     "@types/debug": "4.1.8",
     "@types/mongodb": "4.0.7",
-    "@types/node": "18.16.18",
+    "@types/node": "20.4.9",
     "@types/ws": "8.5.5",
     "typescript": "5.1.3"
   }
