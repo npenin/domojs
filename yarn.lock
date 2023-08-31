@@ -411,7 +411,7 @@ __metadata:
     "@types/mongodb": 4.0.7
     "@types/node": 18.16.18
     "@types/ws": 8.5.5
-    mongodb: 5.6.0
+    mongodb: 5.8.0
     typescript: 5.1.3
     ws: 8.13.0
   languageName: unknown
@@ -966,6 +966,15 @@ __metadata:
   version: 1.3.0
   resolution: "@microsoft/recognizers-text@npm:1.3.0"
   checksum: 02e8f918d3dfe599cc69c4b7bad1f9df25ef9329b4fa136df38630a371870741bb20aee7eca3d0a5728bbaba829af19f6945676a38a1ed36e8f43231f95f4afb
+  languageName: node
+  linkType: hard
+
+"@mongodb-js/saslprep@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@mongodb-js/saslprep@npm:1.1.0"
+  dependencies:
+    sparse-bitfield: ^3.0.3
+  checksum: 1479a43e216734672f8eb1a2a55165b6896841bd00fb5bd645390a24374ef6c29f0f6d19a43618a19b8f1912fcbd2b2cc2210a62361103d1f28dce6852cf31d4
   languageName: node
   linkType: hard
 
@@ -3255,10 +3264,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bson@npm:^5.3.0":
-  version: 5.3.0
-  resolution: "bson@npm:5.3.0"
-  checksum: c1e57630fea6b82ad8bc0fb83fd8f16a2620a836ab69f6b9433250cd19704c0c8995681a3bfab9f967eae30512f0c8ee921d42ace4c1781726600c4a367593cf
+"bson@npm:^5.4.0":
+  version: 5.4.0
+  resolution: "bson@npm:5.4.0"
+  checksum: 1c07e3d09f139d414bd226bf7f4e9aaa7a726e0c9718c55b53bb23ffa2805cac8b66e4fa46b424c73a35c6e292ed5f7432df5c76ea5d08052642b2ac9e0399e3
   languageName: node
   linkType: hard
 
@@ -6621,29 +6630,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb@npm:5.6.0":
-  version: 5.6.0
-  resolution: "mongodb@npm:5.6.0"
+"mongodb@npm:5.8.0":
+  version: 5.8.0
+  resolution: "mongodb@npm:5.8.0"
   dependencies:
-    bson: ^5.3.0
+    "@mongodb-js/saslprep": ^1.1.0
+    bson: ^5.4.0
     mongodb-connection-string-url: ^2.6.0
-    saslprep: ^1.0.3
     socks: ^2.7.1
   peerDependencies:
-    "@aws-sdk/credential-providers": ^3.201.0
+    "@aws-sdk/credential-providers": ^3.188.0
+    "@mongodb-js/zstd": ^1.0.0
+    kerberos: ^1.0.0 || ^2.0.0
     mongodb-client-encryption: ">=2.3.0 <3"
     snappy: ^7.2.2
   dependenciesMeta:
-    saslprep:
+    "@mongodb-js/saslprep":
       optional: true
   peerDependenciesMeta:
     "@aws-sdk/credential-providers":
+      optional: true
+    "@mongodb-js/zstd":
+      optional: true
+    kerberos:
       optional: true
     mongodb-client-encryption:
       optional: true
     snappy:
       optional: true
-  checksum: 5b1594b24795b2a7824095a917ede2fc37aaef31e60320c833ee9b11cc2f3de9dd87d5afacea2e41eb5eb579ac9780f5bc4b0bb11d3b1be78e8bf0014528192a
+  checksum: 48e552a210f2666a13766a1029bde36e961573317f5972d48b5b99f0035bcdc36d7a4154be4ae68a1aefe0aac2b682395196d5a20a0da14dbd2ebbce39b4f2f8
   languageName: node
   linkType: hard
 
