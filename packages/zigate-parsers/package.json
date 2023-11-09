@@ -30,7 +30,7 @@
     }
   },
   "devDependencies": {
-    "@types/debug": "4.1.8",
+    "@types/debug": "4.1.12",
     "@types/serialport": "8.0.2",
     "@types/usb": "2.0.5",
     "@types/ws": "8.5.5",

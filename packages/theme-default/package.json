@@ -19,7 +19,7 @@
   "deprecated": false,
   "description": "",
   "devDependencies": {
-    "@types/debug": "4.1.8",
+    "@types/debug": "4.1.12",
     "@types/node": "18.16.18",
     "@types/request": "2.48.8",
     "@types/ws": "8.5.5",
