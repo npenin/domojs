@@ -1,0 +1,30 @@
+{
+    "name": "sfrtv",
+    "version": "0.0.0",
+    "main": "dist/cjs/index.js",
+    "types": "dist/cjs/index.d.ts",
+    "type": "module",
+    "dependencies": {
+        "@akala/core": "^12.0.3",
+        "cookiejar": "^2.1.4",
+        "puppeteer": "^21.6.1"
+    },
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            }
+        }
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\""
+    },
+    "devDependencies": {
+        "@types/cookiejar": "^2.1.5"
+    }
+}

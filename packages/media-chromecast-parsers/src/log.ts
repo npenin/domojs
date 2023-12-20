@@ -1,5 +1,5 @@
-import { parsers } from "@domojs/protocol-parser";
-import { ProtobufMessage } from "@domojs/protocol-parser/src/parsers/protobuf";
+import { parsers } from "@akala/protocol-parser";
+import { ProtobufMessage } from "@akala/protocol-parser/src/parsers/protobuf";
 
 const protobuf = parsers.protobuf;
 

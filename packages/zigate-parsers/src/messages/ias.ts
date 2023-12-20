@@ -1,6 +1,6 @@
 import { MessageType, messages } from './_common.js';
 import { CommandMessage } from './move.js';
-import { parsers, uint8 } from '@domojs/protocol-parser';
+import { parsers, uint8 } from '@akala/protocol-parser';
 
 messages.register(MessageType.IASZoneEnrollResponse, parsers.object<IASZoneMessage>(
     parsers.property('addressMode', parsers.uint8),

@@ -1,9 +1,9 @@
 import { Container, Metadata, CommandProcessor } from "@akala/commands";
 import { logger, MiddlewarePromise } from "@akala/core";
-import * as proto from '@domojs/protocol-parser'
+import * as proto from '@akala/protocol-parser'
 import { Duplex } from 'stream'
 import { EventEmitter } from 'events'
-import { parsers } from "@domojs/protocol-parser";
+import { parsers } from "@akala/protocol-parser";
 
 const log = logger('domojs:iscp:processor');
 

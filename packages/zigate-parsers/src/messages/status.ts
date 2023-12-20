@@ -1,4 +1,4 @@
-import { parsers, uint8 } from '@domojs/protocol-parser';
+import { parsers, uint8 } from '@akala/protocol-parser';
 import { messages, MessageType } from './_common.js';
 
 export interface StatusMessage

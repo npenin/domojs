@@ -1,6 +1,6 @@
 import { StatusMessage, Status } from './status.js';
 import { MessageType, Cluster, messages } from './_common.js';
-import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
+import { parsers, uint16, uint8 } from '@akala/protocol-parser';
 
 messages.register(MessageType.NodeDescriptor, parsers.object<ShortAddressRequest>(parsers.property('targetShortAddress', parsers.uint16)));
 messages.register(MessageType.SimpleDescriptor, parsers.object<SimpleDescriptorRequest>(

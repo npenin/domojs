@@ -1,0 +1,61 @@
+{
+    "plugins": [
+        "@akala/config/akala",
+        "@akala/commands/akala"
+    ],
+    "commands": {
+        "sdk": "node_modules/@akala/commands/commands.json",
+        "media": "packages/media/library.json"
+    },
+    "@akala/media": {
+        "libraries": {
+            "dropbox": {
+                "paths": [
+                    "https://mediacenter:uagqht@nas.dragon-angel.fr/dav/Dropbox"
+                ],
+                "scrappers": [
+                    "cleanFileName"
+                ]
+            }
+        },
+        "scrappers": {
+            "music": [],
+            "video": [
+                {
+                    "name": "cleanFileName",
+                    "config": {
+                        "fs": {
+                            "inject": [
+                                "param.0"
+                            ],
+                            "path": "dist/server/commands/scrapper/cleanFileName.js",
+                            "source": "src/server/commands/scrapper/cleanFileName.ts"
+                        },
+                        "": {
+                            "inject": [
+                                "param.0"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "scrapTVShowFileName",
+                    "config": {
+                        "fs": {
+                            "inject": [
+                                "param.0"
+                            ],
+                            "path": "dist/server/commands/scrapper/scrapTVShowFileName.js",
+                            "source": "src/server/commands/scrapper/scrapTVShowFileName.ts"
+                        },
+                        "": {
+                            "inject": [
+                                "param.0"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

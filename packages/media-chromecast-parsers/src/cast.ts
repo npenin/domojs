@@ -1,4 +1,4 @@
-import { Cursor, protobuf } from '@domojs/protocol-parser'
+import { Cursor, protobuf } from '@akala/protocol-parser'
 
 export enum ProtocolVersion
 {

@@ -1,4 +1,4 @@
-import { parsers, uint16 } from '@domojs/protocol-parser';
+import { parsers, uint16 } from '@akala/protocol-parser';
 import { ControlPacketType, Properties, propertiesFrame, Protocol, Message as CoreMessage, ReasonCodes } from './_protocol.js'
 
 

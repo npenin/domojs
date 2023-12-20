@@ -1,5 +1,5 @@
 import { MessageType, messages } from './_common.js';
-import { parsers } from '@domojs/protocol-parser';
+import { parsers } from '@akala/protocol-parser';
 
 export enum LogLevel
 {

@@ -1,7 +1,7 @@
 import { StatusMessage } from './status.js';
 import { MessageType, messages } from './_common.js';
 import { ShortAddressRequest } from './descriptors.js';
-import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
+import { parsers, uint16, uint8 } from '@akala/protocol-parser';
 
 messages.register(MessageType.MoveToLevel, parsers.object<MoveToLevel>(
     parsers.property('addressMode', parsers.uint8),

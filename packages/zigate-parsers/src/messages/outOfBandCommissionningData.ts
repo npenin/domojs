@@ -1,6 +1,6 @@
 import { StatusMessage } from './status.js';
 import { Message, MessageType, messages } from './_common.js';
-import { parsers, uint16, uint32, uint64, uint8 } from '@domojs/protocol-parser';
+import { parsers, uint16, uint32, uint64, uint8 } from '@akala/protocol-parser';
 
 messages.register(MessageType.OutOfBandCommissionningData, parsers.object<OutOfBandCommissionningDataRequest>(
     parsers.property('addressOfInterest', parsers.uint64),

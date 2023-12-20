@@ -12,7 +12,7 @@ The above copyright notice shall be included in all copies or substantial
 portions of this file.
 '----------------------------------------------------------------------------
 */
-import { parsers } from "@domojs/protocol-parser";
+import { parsers } from "@akala/protocol-parser";
 import { messages as Protocol, Type } from "./index.js";
 
 export enum SubType

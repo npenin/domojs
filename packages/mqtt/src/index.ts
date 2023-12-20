@@ -2,7 +2,7 @@ import net from 'net'
 import { Protocol, ControlPacketType, Message, Properties, Messages } from './protocol/_protocol.js'
 import connect from './protocol/connect.js';
 import connack from './protocol/connack.js';
-import { Cursor } from '@domojs/protocol-parser';
+import { Cursor } from '@akala/protocol-parser';
 import { EventEmitter } from 'events';
 
 /// PUT in this file any API you would like to expose to your package consumer
@@ -14,6 +14,8 @@ export const mappings = [
     [ControlPacketType.SUBSCRIBE, ControlPacketType.SUBACK],
     [ControlPacketType.UNSUBSCRIBE, ControlPacketType.UNSUBACK],
 ]
+
+
 
 export class Client extends EventEmitter
 {

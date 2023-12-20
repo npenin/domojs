@@ -1,4 +1,4 @@
-import { Cursor, parsers, parserWrite, uint16, uint8 } from '@domojs/protocol-parser';
+import { Cursor, parsers, parserWrite, uint16, uint8 } from '@akala/protocol-parser';
 import { logger } from '@akala/core';
 const log = logger('zigate');
 

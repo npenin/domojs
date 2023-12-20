@@ -10,7 +10,7 @@ The above copyright notice shall be included in all copies or substantial
 portions of this file.
 '----------------------------------------------------------------------------
 */
-import { uint8, uint16, uint32, int8, int16, int32, float, double, uint64, parsers } from '@domojs/protocol-parser';
+import { uint8, uint16, uint32, int8, int16, int32, float, double, uint64, parsers } from '@akala/protocol-parser';
 export { uint8, uint16, uint32, int8, int16, int32, float, double, uint64 }
 
 

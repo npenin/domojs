@@ -1,5 +1,5 @@
-import { double, int16, int32, parsers, uint16, uint32, uint64, uint8 } from '@domojs/protocol-parser'
-import { Cursor, ParserWithMessage, ParserWithMessageWithoutKnownLength } from '@domojs/protocol-parser/dist/parsers/_common';
+import { double, int16, int32, parsers, uint16, uint32, uint64, uint8 } from '@akala/protocol-parser'
+import { Cursor, ParserWithMessage, ParserWithMessageWithoutKnownLength } from '@akala/protocol-parser/dist/parsers/_common';
 
 export enum MessageType
 {

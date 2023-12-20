@@ -2,7 +2,7 @@ import { MessageType, messages } from './_common.js'
 import { DeviceType } from './network.js';
 import { StatusMessage } from './status.js';
 import { Device } from './devices.js';
-import { parsers, uint32, uint64, uint8 } from '@domojs/protocol-parser';
+import { parsers, uint32, uint64, uint8 } from '@akala/protocol-parser';
 
 messages.register(MessageType.SetExtendedPanId, parsers.object<SetExtendedPanId>(parsers.property('panId', parsers.uint64)));
 messages.register(MessageType.SetChannelMask, parsers.prepare(function (message)

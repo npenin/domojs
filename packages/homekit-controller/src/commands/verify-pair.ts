@@ -1,5 +1,5 @@
 import { Http, parser } from "@akala/core";
-import { Cursor, parserWrite } from "@domojs/protocol-parser";
+import { Cursor, parserWrite } from "@akala/protocol-parser";
 import State from "../state.js";
 import { chacha20_poly1305_decryptAndVerify, chacha20_poly1305_encryptAndSeal, PairMessage, pairMessage, PairMethod, PairState, PairTypeFlags } from "./setup-pair.js";
 import assert from 'assert/strict'
