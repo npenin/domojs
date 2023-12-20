@@ -17,6 +17,13 @@
         },
         "usage": "add scrapper <name> <type>"
     },
+    "doc": {
+        "description": "This command add a registered scrapper to a library. If you want to register a new scrapper, use the register-scrapper command",
+        "inject": [
+            "The name of the library",
+            "The type of scrapper (music or video)"
+        ]
+    },
     "": {
         "inject": [
             "param.0",

@@ -68,14 +68,14 @@ bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.
             super();
         }
 
-        public init(): any
+        public async init()
         {
             if (typeof this.parameter !== 'undefined')
             {
                 var parameter = this.parameter;
 
                 if (parameter instanceof akala.Binding || parameter.prefix instanceof akala.Binding || parameter.iconName instanceof akala.Binding)
-                    parameter = akala.Binding.unbindify(this.parameter) as fa.IconLookup;
+                    parameter = await akala.Binding.unbindify(this.parameter) as fa.IconLookup;
 
                 if (typeof parameter != 'undefined')
                     if (typeof parameter['icon'] != 'undefined')

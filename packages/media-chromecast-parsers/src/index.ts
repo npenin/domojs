@@ -2,7 +2,7 @@ export * from './cast.js'
 export * from './authority_keys.js'
 export * from './log.js'
 
-import { Cursor } from '@domojs/protocol-parser'
+import { Cursor } from '@akala/protocol-parser'
 import stream from 'stream'
 import { castMessage } from './cast.js'
 

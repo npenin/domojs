@@ -1,6 +1,6 @@
 import { StatusMessage } from './status.js';
 import { messages, MessageType } from './_common.js';
-import { parsers, uint16, uint64, uint8 } from '@domojs/protocol-parser';
+import { parsers, uint16, uint64, uint8 } from '@akala/protocol-parser';
 
 export enum AddressRequestType
 {

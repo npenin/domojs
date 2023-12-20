@@ -11,9 +11,6 @@
       "path": "cli"
     },
     {
-      "path": "protocol-parser"
-    },
-    {
       "path": "devices"
     },
     {
@@ -56,9 +53,6 @@
       "path": "zigate"
     },
     {
-      "path": "domojs-generator"
-    },
-    {
       "path": "mdns"
     },
     {
@@ -66,6 +60,12 @@
     },
     {
       "path": "homekit-server"
+    },
+    {
+      "path": "sfrtv"
+    },
+    {
+      "path": "dns-parsers"
     }
   ]
 }

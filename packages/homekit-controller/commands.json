@@ -40,7 +40,7 @@
             }
         },
         {
-            "name": "exec",
+            "name": "device-types.exec",
             "config": {
                 "fs": {
                     "inject": [
@@ -83,7 +83,7 @@
             }
         },
         {
-            "name": "save",
+            "name": "device-types.save",
             "config": {
                 "fs": {
                     "inject": [

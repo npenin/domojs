@@ -2,7 +2,7 @@ import { SRP, SrpClient } from "fast-srp-hap";
 import tweetnacl from "tweetnacl";
 import { Http } from "@akala/core";
 import hkdf from 'futoin-hkdf'
-import { Cursor, parsers, parserWrite, tlv } from '@domojs/protocol-parser'
+import { Cursor, parsers, parserWrite, tlv } from '@akala/protocol-parser'
 import assert from 'assert/strict'
 import State from "../state.js";
 

@@ -1,6 +1,6 @@
 import { ShortAddressRequest } from './descriptors.js';
 import { messages, MessageType } from './_common.js';
-import { parsers, uint64 } from '@domojs/protocol-parser';
+import { parsers, uint64 } from '@akala/protocol-parser';
 
 messages.register(MessageType.ManagementLeave, parsers.object<ManagementLeave>(
     parsers.property('targetShortAddress', parsers.uint16),

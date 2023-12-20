@@ -19,7 +19,7 @@ export default async function scrap(site: Site, http: Http)
 
     var pageIndex = 1;
     var results = await scrapPage(site.page, http, site.request);
-    var nextPage = new Interpolate('{{', '}}').buildObject(site.page.nextPage);
+    var nextPage = await new Interpolate('{{', '}}').buildObject(site.page.nextPage);
     if (site.page.nextPage)
     {
         while (true)

@@ -3,7 +3,12 @@
     "compileOnSave": true,
     "compilerOptions": {
         "rootDir": "src",
-        "outDir": "dist"
+        "outDir": "dist",
+        "customConditions": [
+            "node",
+            "module",
+            "import"
+        ]
     },
     "references": []
 }

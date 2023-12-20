@@ -15,7 +15,7 @@ import { Queue, logger, eachAsync } from '@akala/core';
 export * from './protocol/index.js'
 import * as os from 'os';
 import { Protocol, Message, PacketType, Type, InterfaceControl, InterfaceMessage, EventMap, Rfy, RFXDevice } from './protocol/index.js';
-import { Cursor, parserWrite } from '@domojs/protocol-parser';
+import { Cursor, parserWrite } from '@akala/protocol-parser';
 import { Duplex } from 'stream';
 import { readdir } from 'fs';
 import { Socket } from 'net';

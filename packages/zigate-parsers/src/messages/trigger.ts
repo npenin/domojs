@@ -1,6 +1,6 @@
 import { MessageType, messages } from './_common.js';
 import { CommandMessage } from './move.js';
-import { parsers } from '@domojs/protocol-parser';
+import { parsers } from '@akala/protocol-parser';
 
 messages.register(MessageType.IdentifyTriggerEffect, parsers.object<IdentifyTriggerEffectMessage>(
     parsers.property('addressMode', parsers.uint8),

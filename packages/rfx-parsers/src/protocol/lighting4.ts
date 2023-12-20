@@ -1,4 +1,4 @@
-import { parsers } from "@domojs/protocol-parser";
+import { parsers } from "@akala/protocol-parser";
 import { messages as Protocol, Type } from "./index.js";
 
 /*

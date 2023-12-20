@@ -1,7 +1,7 @@
 import { StatusMessage } from './status.js';
 import { messages, MessageType, } from './_common.js';
 import { ShortAddressRequest, Mask } from './descriptors.js';
-import { parsers, uint16, uint32, uint64, uint8 } from '@domojs/protocol-parser';
+import { parsers, uint16, uint32, uint64, uint8 } from '@akala/protocol-parser';
 
 messages.register(MessageType.StartNetwork, parsers.object<{}>());
 messages.register(MessageType.StartNetworkScan, parsers.object<{}>());

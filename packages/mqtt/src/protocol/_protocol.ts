@@ -1,4 +1,4 @@
-import { uint8, uint16, parsers } from '@domojs/protocol-parser';
+import { uint8, uint16, parsers } from '@akala/protocol-parser';
 
 export const Protocol = parsers.choose<Message, 'type', any>('type', {} as any);
 

@@ -7,6 +7,7 @@ import Configuration from '@akala/config';
 import { Container } from '@akala/commands'
 import { LibrariesConfiguration, ScrappersConfiguration } from '../configuration.js';
 import { eachAsync } from '@akala/core';
+import { AuthType, WebDAVClient, WebDAVClientOptions, createClient } from 'webdav';
 
 const log = akala.logger('domojs:media');
 
@@ -266,6 +267,7 @@ export async function processSource(sources: string[], container: Container<Conf
     await akala.eachAsync(result, async function (path)
     {
         var groups = Object.keys([]);
+        console.log(path, scrappers, container.resolve('scrap'));
         const item = await container.dispatch('scrap', path, scrappers);
         if (item && matcher(item))
         {
@@ -290,21 +292,62 @@ export async function processSource(sources: string[], container: Container<Conf
 
 export async function browse(folder: string, extension: RegExp, lastIndex: Date)
 {
-    const files = await fs.readdir(await translatePath(folder));
     var result: string[] = [];
-    await akala.eachAsync(files, async function (file)
+
+    if (URL.canParse(folder))
     {
-        if (file == '$RECYCLE.BIN' || file == '.recycle')
-            return;
-        file = folder + '/' + file;
-        const stat = await fs.stat(await translatePath(file));
-        if (stat.isDirectory())
-            result.concat(await browse(file, extension, lastIndex));
-        else
+        const url = new URL(folder);
+        if (url.protocol == 'https:')
         {
-            if (extension.test(file) && stat.mtime > lastIndex)
-                result.push(file);
+            let client: WebDAVClient;
+            if (url.username || url.password)
+            {
+                const options: WebDAVClientOptions = { authType: AuthType.Password, username: url.username, password: url.password };
+                url.username = '';
+                url.password = '';
+                client = createClient(url.protocol + '//' + url.host + folder.substring(url.protocol.length + 2 + url.host.length + options.username.length + options.password.length + 2), options);
+            }
+            else
+                client = createClient(folder);
+            const files = await client.getDirectoryContents("/", {});
+            if (Array.isArray(files))
+                await akala.eachAsync(files, async function (file)
+                {
+                    if (file.filename == '$RECYCLE.BIN' || file.filename == '.recycle')
+                        return;
+                    // file = folder + '/' + file;
+                    if (file.type == 'directory')
+                        result.concat(await browse(folder + file.filename, extension, lastIndex));
+                    else
+                    {
+                        if (extension.test(file.filename) && new Date(file.lastmod) > lastIndex)
+                            result.push(folder + file.filename);
+                    }
+                });
+            else
+            {
+                console.error(folder);
+                console.error(files);
+            }
         }
-    });
+    }
+    else
+    {
+        const files = await fs.readdir(await translatePath(folder), { withFileTypes: true });
+        await akala.eachAsync(files, async function (file)
+        {
+            if (file.name == '$RECYCLE.BIN' || file.name == '.recycle')
+                return;
+            const path = folder + '/' + file;
+            const stat = await fs.stat(await translatePath(path));
+            if (file.isDirectory())
+                result.concat(await browse(path, extension, lastIndex));
+            else
+            {
+                if (extension.test(file.name) && stat.mtime > lastIndex)
+                    result.push(path);
+            }
+        });
+    }
     return result;
 }

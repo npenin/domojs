@@ -1,6 +1,6 @@
 import { MessageType, messages } from './_common.js';
 import { CommandMessage } from './move.js';
-import { parsers, uint16 } from '@domojs/protocol-parser';
+import { parsers, uint16 } from '@akala/protocol-parser';
 
 messages.register(MessageType.IdentifySend, parsers.object<IdentifySendRequest>(
     parsers.property('addressMode', parsers.uint8),

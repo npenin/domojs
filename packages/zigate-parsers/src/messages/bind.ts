@@ -1,6 +1,6 @@
 import { StatusMessage } from './status.js';
 import { messages, MessageType } from './_common.js';
-import { parsers, uint64 } from '@domojs/protocol-parser';
+import { parsers, uint64 } from '@akala/protocol-parser';
 
 const bindFrame = parsers.object<BindRequest>(
     parsers.property('targetExtendedAddress', parsers.uint64),

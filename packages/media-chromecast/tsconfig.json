@@ -8,9 +8,6 @@
     "references": [
         {
             "path": "../media-chromecast-parsers"
-        },
-        {
-            "path": "../protocol-parser"
         }
     ]
 }

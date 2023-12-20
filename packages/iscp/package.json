@@ -14,10 +14,10 @@
     "@akala/pm": "^3.7.12"
   },
   "devDependencies": {
-    "@akala/commands": "^6.1.0",
-    "@akala/core": "^10.6.0",
-    "@akala/server": "^9.3.64",
-    "@types/ws": "8.5.5"
+    "@akala/commands": "^6.5.7",
+    "@akala/core": "^12.0.3",
+    "@akala/server": "^9.4.16",
+    "@types/ws": "8.5.10"
   },
   "deprecated": false,
   "description": "",

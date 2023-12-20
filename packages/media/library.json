@@ -34,6 +34,31 @@
             }
         },
         {
+            "name": "$init-akala",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "$container",
+                        "param.0"
+                    ],
+                    "path": "dist/server/commands/library/$init-akala.js",
+                    "source": "src/server/commands/library/$init-akala.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "context.state"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "$container",
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
             "name": "add-folder",
             "config": {
                 "fs": {
@@ -115,6 +140,13 @@
                         "type": {}
                     },
                     "usage": "add scrapper <name> <type>"
+                },
+                "doc": {
+                    "description": "This command add a registered scrapper to a library. If you want to register a new scrapper, use the register-scrapper command",
+                    "inject": [
+                        "The name of the library",
+                        "The type of scrapper (music or video)"
+                    ]
                 },
                 "": {
                     "inject": [
@@ -295,6 +327,21 @@
                         "param.0",
                         "param.1"
                     ]
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "options.file",
+                        "options.type",
+                        "options"
+                    ],
+                    "usage": "scrapper register <type> <name> <file>",
+                    "options": {
+                        "file": {
+                            "normalize": true,
+                            "needsValue": true
+                        }
+                    }
                 }
             }
         },
@@ -393,13 +440,13 @@
             "name": "scrap",
             "config": {
                 "fs": {
-                    "path": "dist/server/commands/library/scrap.js",
-                    "source": "src/server/commands/library/scrap.ts",
                     "inject": [
                         "$container",
                         "param.0",
                         "param.1"
-                    ]
+                    ],
+                    "path": "dist/server/commands/library/scrap.js",
+                    "source": "src/server/commands/library/scrap.ts"
                 },
                 "": {
                     "inject": [

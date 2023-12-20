@@ -1,4 +1,4 @@
-import { parsers, uint16, uint8 } from '@domojs/protocol-parser';
+import { parsers, uint16, uint8 } from '@akala/protocol-parser';
 import { ControlPacketType, Properties, propertiesFrame, Protocol, Message as CoreMessage } from './_protocol.js'
 
 export default interface Message extends CoreMessage

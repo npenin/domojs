@@ -1,6 +1,6 @@
 import { MessageType, messages } from './_common.js';
 import { ShortAddressRequest } from './descriptors.js';
-import { parsers, uint8 } from '@domojs/protocol-parser';
+import { parsers, uint8 } from '@akala/protocol-parser';
 
 messages.register(MessageType.PermitJoin, parsers.object());
 messages.register(MessageType.PermitJoin | MessageType.Response, parsers.object<PermitJoinResponse>(parsers.property('status', parsers.boolean(parsers.uint8))));

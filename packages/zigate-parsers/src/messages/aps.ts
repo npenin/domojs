@@ -1,7 +1,7 @@
 import { StatusMessage } from './status.js';
 import { MessageType, messages } from './_common.js';
 import { CommandMessage } from './move.js';
-import { parsers, uint16, uint64, uint8 } from '@domojs/protocol-parser';
+import { parsers, uint16, uint64, uint8 } from '@akala/protocol-parser';
 
 messages.register(MessageType.RawAPSData, parsers.object<APSRequest>(
     parsers.property('addressMode', parsers.uint8),

@@ -23,5 +23,20 @@
             "param.0",
             "param.1"
         ]
+    },
+    "cli": {
+        "inject": [
+            "$container",
+            "options.file",
+            "options.type",
+            "options"
+        ],
+        "usage": "scrapper register <type> <name> <file>",
+        "options": {
+            "file": {
+                "normalize": true,
+                "needsValue": true
+            }
+        }
     }
 }

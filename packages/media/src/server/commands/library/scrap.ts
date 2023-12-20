@@ -9,6 +9,7 @@ export default async function scrap(this: LibraryState, container: Container<Con
 {
     if (scrappers && !scrappers.length)
         scrappers = undefined;
+    console.log(arguments);
     var media: Media = { path: mediaPath, type: Object.entries(extensions).find(e => e[1].test(mediaPath))[0] as 'video', id: null }
     this.scrappers[media.type].sort((a, b) => a.priority - b.priority);
     debugger;
