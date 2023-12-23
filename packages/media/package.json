@@ -36,11 +36,11 @@
         "@akala/pm": "^3.7.12"
     },
     "devDependencies": {
-        "@akala/cli": "^2.12.10",
-        "@akala/json-rpc-ws": "^10.2.43",
+        "@akala/cli": "^2.12.11",
+        "@akala/json-rpc-ws": "^10.2.44",
         "@akala/pm": "^8.0.10",
         "@akala/server": "^9.4.20",
-        "@akala/storage": "^4.0.4",
+        "@akala/storage": "^4.0.5",
         "@domojs/theme-default": "workspace:*",
         "@types/debug": "4.1.12",
         "@types/ioredis": "5.0.0",

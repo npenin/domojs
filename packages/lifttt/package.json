@@ -35,7 +35,7 @@
         "@akala/client": "^6.4.16",
         "@akala/commands": "^6.5.11",
         "@akala/core": "^12.0.3",
-        "@akala/json-rpc-ws": "^10.2.43",
+        "@akala/json-rpc-ws": "^10.2.44",
         "@domojs/theme-default": "workspace:*",
         "@popperjs/core": "2.11.8",
         "@types/debug": "4.1.12",

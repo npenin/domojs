@@ -33,7 +33,7 @@
         }
     },
     "devDependencies": {
-        "@akala/cli": "^2.12.10",
+        "@akala/cli": "^2.12.11",
         "@akala/commands": "^6.5.11",
         "@akala/pubsub": "^1.2.86",
         "@domojs/devices": "workspace:*",

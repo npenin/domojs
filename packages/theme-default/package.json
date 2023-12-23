@@ -4,7 +4,7 @@
     "@akala/client": "^6.4.16",
     "@akala/commands": "^6.5.11",
     "@akala/core": "^12.0.3",
-    "@akala/json-rpc-ws": "^10.2.43",
+    "@akala/json-rpc-ws": "^10.2.44",
     "@akala/pm": "^8.0.10",
     "@akala/server": "^9.4.20",
     "@fortawesome/fontawesome-common-types": "^6.5.1",

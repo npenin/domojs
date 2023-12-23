@@ -16,7 +16,7 @@
 	"dependencies": {
 		"@akala/commands": "^6.5.11",
 		"@akala/core": "^12.0.3",
-		"@akala/protocol-parser": "^2.6.5"
+		"@akala/protocol-parser": "^2.6.6"
 	},
 	"devDependencies": {
 		"@types/debug": "4.1.12",
