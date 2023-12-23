@@ -3,7 +3,7 @@ import { SerializableObject } from "@akala/core";
 
 export interface State
 {
-	locations: ProxyConfiguration<SerializableObject[]>;
+	locations: ProxyConfiguration<Record<string, SerializableObject>>;
 }
 
 export enum Weather

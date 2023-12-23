@@ -11,7 +11,7 @@ export default async function init(this: State, container: Container<void>)
 {
     state = this;
 
-    state.locations = (await Configuration.load("./weather.json")) || Configuration.new<SerializableObject[]>("./weather.json", []);
+    state.locations = (await Configuration.load("./weather.json")) || Configuration.new<Record<string, SerializableObject>>("./weather.json", {});
 
     await registerDeviceType(container, {
         name: 'Weather',
