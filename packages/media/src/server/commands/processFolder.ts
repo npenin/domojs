@@ -267,7 +267,6 @@ export async function processSource(sources: string[], container: Container<Conf
     await akala.eachAsync(result, async function (path)
     {
         var groups = Object.keys([]);
-        console.log(path, scrappers, container.resolve('scrap'));
         const item = await container.dispatch('scrap', path, scrappers);
         if (item && matcher(item))
         {

@@ -14,10 +14,10 @@ export default function (container: Container<LibraryState>, config: ProxyConfig
             config.set('@akala/media', {});
             initConfig(config = config.get('@akala/media'))
         }
-        container.state = { config: config as LibraryState['config'], scrappers: { music: [], video: [] } };
+        container.state = config as LibraryState;
 
         const scrapperContainer = new Container<unknown>('scrapper', undefined);
-        Object.entries(container.state.config.scrappers.extract()).map(e =>
+        Object.entries(container.state.scrappers.extract()).map(e =>
         {
             e[1].forEach(s =>
             {

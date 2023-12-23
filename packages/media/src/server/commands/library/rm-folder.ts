@@ -3,7 +3,7 @@ import { LibraryState } from '../../state.js';
 
 export default async function rmFolder(this: LibraryState, name: string, path: string)
 {
-    var config = this.config.libraries[name];
+    var config = this.libraries[name];
     if (config)
     {
         const indexOfPath = config.paths.indexOf(path);

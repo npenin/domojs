@@ -1,8 +1,4 @@
 import { ProxyConfiguration } from "@akala/config";
-import Configuration, { ScrappersConfiguration } from './configuration.js';
+import Configuration from './configuration.js';
 
-export interface LibraryState
-{
-    config: ProxyConfiguration<Configuration>;
-    scrappers: ScrappersConfiguration;
-}
+export type LibraryState = ProxyConfiguration<Configuration>;

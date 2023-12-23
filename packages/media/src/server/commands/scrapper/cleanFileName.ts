@@ -3,6 +3,7 @@ import { extensions } from "../processFolder.js";
 
 export default function cleanFileName<T extends Media>(media: T): T
 {
+    debugger;
     if (media.name)
         return media;
     var fileName = media.path;
