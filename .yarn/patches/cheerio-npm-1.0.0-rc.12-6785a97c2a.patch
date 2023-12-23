@@ -1,0 +1,58 @@
+diff --git a/lib/esm/static.d.ts b/lib/esm/static.d.ts
+index 8c71d6b2b0afb83bb8c9d774f1feea5cf32aaf2e..df1c19f8313b60968e58d2c6bee09a5c362811db 100644
+--- a/lib/esm/static.d.ts
++++ b/lib/esm/static.d.ts
+@@ -1,5 +1,5 @@
+ import type { BasicAcceptedElems } from './types.js';
+-import type { CheerioAPI, Cheerio } from '.';
++import type { CheerioAPI, Cheerio } from './index.js';
+ import type { AnyNode, Document } from 'domhandler';
+ import { CheerioOptions } from './options.js';
+ /**
+@@ -75,7 +75,8 @@ export declare function root(this: CheerioAPI): Cheerio<Document>;
+  * @see {@link https://api.jquery.com/jQuery.contains/}
+  */
+ export declare function contains(container: AnyNode, contained: AnyNode): boolean;
+-interface WritableArrayLike<T> extends ArrayLike<T> {
++interface WritableArrayLike<T> extends ArrayLike<T>
++{
+     length: number;
+     [n: number]: T;
+ }
+@@ -89,5 +90,5 @@ interface WritableArrayLike<T> extends ArrayLike<T> {
+  * @see {@link https://api.jquery.com/jQuery.merge/}
+  */
+ export declare function merge<T>(arr1: WritableArrayLike<T>, arr2: ArrayLike<T>): ArrayLike<T> | undefined;
+-export {};
++export { };
+ //# sourceMappingURL=static.d.ts.map
+\ No newline at end of file
+diff --git a/lib/static.d.ts b/lib/static.d.ts
+index 8c71d6b2b0afb83bb8c9d774f1feea5cf32aaf2e..df1c19f8313b60968e58d2c6bee09a5c362811db 100644
+--- a/lib/static.d.ts
++++ b/lib/static.d.ts
+@@ -1,5 +1,5 @@
+ import type { BasicAcceptedElems } from './types.js';
+-import type { CheerioAPI, Cheerio } from '.';
++import type { CheerioAPI, Cheerio } from './index.js';
+ import type { AnyNode, Document } from 'domhandler';
+ import { CheerioOptions } from './options.js';
+ /**
+@@ -75,7 +75,8 @@ export declare function root(this: CheerioAPI): Cheerio<Document>;
+  * @see {@link https://api.jquery.com/jQuery.contains/}
+  */
+ export declare function contains(container: AnyNode, contained: AnyNode): boolean;
+-interface WritableArrayLike<T> extends ArrayLike<T> {
++interface WritableArrayLike<T> extends ArrayLike<T>
++{
+     length: number;
+     [n: number]: T;
+ }
+@@ -89,5 +90,5 @@ interface WritableArrayLike<T> extends ArrayLike<T> {
+  * @see {@link https://api.jquery.com/jQuery.merge/}
+  */
+ export declare function merge<T>(arr1: WritableArrayLike<T>, arr2: ArrayLike<T>): ArrayLike<T> | undefined;
+-export {};
++export { };
+ //# sourceMappingURL=static.d.ts.map
+\ No newline at end of file
