@@ -14,7 +14,8 @@
                     "https://mediacenter:uagqht@nas.dragon-angel.fr/dav/Dropbox"
                 ],
                 "scrappers": [
-                    "cleanFileName"
+                    "cleanFileName",
+                    "scrapTVShowFileName"
                 ]
             }
         },

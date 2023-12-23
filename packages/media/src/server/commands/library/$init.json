@@ -9,7 +9,8 @@
     "cli": {
         "inject": [
             "context",
-            "options.configPath"
+            "options.configPath",
+            "$container"
         ],
         "options": {
             "configPath": {

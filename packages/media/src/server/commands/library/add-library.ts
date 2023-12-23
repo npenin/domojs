@@ -2,11 +2,11 @@ import { LibraryState } from "../../state.js";
 
 export default async function addLibrary(this: LibraryState, name: string)
 {
-    var config = this.config.libraries[name];
+    var config = this.libraries[name];
     if (!config)
     {
-        this.config.libraries.set(name, { paths: [], scrappers: [] });
-        config = this.config.libraries[name];
+        this.libraries.set(name, { paths: [], scrappers: [] });
+        config = this.libraries[name];
     }
     await config.commit();
 }

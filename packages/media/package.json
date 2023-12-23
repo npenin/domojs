@@ -26,8 +26,8 @@
     "license": "MIT",
     "dependencies": {
         "@akala/client": "^6.4.16",
-        "@akala/commands": "^6.5.7",
-        "@akala/config": "^2.5.20",
+        "@akala/commands": "^6.5.11",
+        "@akala/config": "^3.5.23",
         "@akala/core": "^12.0.3",
         "levenshtein": "1.0.5",
         "webdav": "^5.3.1"
@@ -36,11 +36,11 @@
         "@akala/pm": "^3.7.12"
     },
     "devDependencies": {
-        "@akala/cli": "^2.12.11",
-        "@akala/json-rpc-ws": "^10.2.44",
-        "@akala/pm": "^7.1.5",
-        "@akala/server": "^9.4.16",
-        "@akala/storage": "^4.0.5",
+        "@akala/cli": "^2.12.10",
+        "@akala/json-rpc-ws": "^10.2.43",
+        "@akala/pm": "^8.0.10",
+        "@akala/server": "^9.4.20",
+        "@akala/storage": "^4.0.4",
         "@domojs/theme-default": "workspace:*",
         "@types/debug": "4.1.12",
         "@types/ioredis": "5.0.0",

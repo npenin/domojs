@@ -4,11 +4,11 @@ import scrap from './scrap.js';
 
 export default async function addScrapper(this: LibraryState, name: string, scrapperType: string)
 {
-    var config = this.config.libraries[name];
+    var config = this.libraries[name];
     if (!config)
     {
-        this.config.libraries.set(name, { paths: [], scrappers: [] });
-        config = this.config.libraries[name];
+        this.libraries.set(name, { paths: [], scrappers: [] });
+        config = this.libraries[name];
     }
     config.scrappers.push(scrapperType);
     await config.commit();

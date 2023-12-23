@@ -5,17 +5,15 @@ import { LibraryState } from "../../state.js";
 import path from 'path'
 import { Container } from "@akala/commands";
 
-export default async function (this: LibraryState, context: CliContext, configPath?: string)
+export default async function (this: LibraryState, context: CliContext, container: Container<LibraryState>, configPath?: string)
 {
     if (!configPath)
         configPath = path.join(context.currentWorkingDirectory, './media.json');
 
-    this.config = await Configuration.load<Config>(configPath, true);
+    container.state = await Configuration.load<Config>(configPath, true);
 
-    initConfig(this.config);
-    await this.config.commit();
-
-    this.scrappers = { music: [], video: [] };
+    initConfig(this);
+    await this.commit();
 }
 
 export function initConfig(config: LibraryState['config'])

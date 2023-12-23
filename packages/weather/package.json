@@ -13,15 +13,15 @@
 		"@domojs/devices": "workspace:*"
 	},
 	"devDependencies": {
-		"@akala/json-rpc-ws": "^10.2.44",
-		"@akala/pm": "^8.0.6",
-		"@akala/server": "^9.4.16",
+		"@akala/json-rpc-ws": "^10.2.43",
+		"@akala/pm": "^8.0.10",
+		"@akala/server": "^9.4.20",
 		"@domojs/devices": "workspace:*"
 	},
 	"dependencies": {
 		"@akala/client": "^6.4.16",
-		"@akala/commands": "^6.5.7",
-		"@akala/config": "^2.5.20",
+		"@akala/commands": "^6.5.11",
+		"@akala/config": "^3.5.23",
 		"@akala/core": "^12.0.3"
 	},
 	"gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
