@@ -17,7 +17,7 @@
     "dependencies": {
         "@akala/config": "^3.5.23",
         "@akala/core": "^12.0.3",
-        "@akala/protocol-parser": "^2.6.5",
+        "@akala/protocol-parser": "^2.6.6",
         "@akala/sidecar": "^3.0.28",
         "@domojs/devices": "workspace:^",
         "fast-srp-hap": "^2.0.4",
