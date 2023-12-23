@@ -21,7 +21,7 @@
     "generate": "yarn workspaces foreach --exclude @domojs/mdns -A run generate",
     "generate-metadata": "yarn workspaces foreach -A run generate-metadata"
   },
-  "packageManager": "yarn@3.6.0",
+  "packageManager": "yarn@3.7.0",
   "resolutions": {
     "cheerio@^1.0.0-rc.12": "patch:cheerio@npm%3A1.0.0-rc.12#./.yarn/patches/cheerio-npm-1.0.0-rc.12-6785a97c2a.patch"
   }
