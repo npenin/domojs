@@ -347,7 +347,7 @@ __metadata:
     "@types/ws": "npm:8.5.10"
     typescript: "npm:5.3.3"
     uuid: "npm:9.0.1"
-    ws: "npm:8.15.1"
+    ws: "npm:8.16.0"
   languageName: unknown
   linkType: soft
 
@@ -394,7 +394,7 @@ __metadata:
     "@types/ws": "npm:8.5.10"
     mongodb: "npm:6.3.0"
     typescript: "npm:5.3.3"
-    ws: "npm:8.15.1"
+    ws: "npm:8.16.0"
   languageName: unknown
   linkType: soft
 
@@ -7992,6 +7992,21 @@ __metadata:
     utf-8-validate:
       optional: true
   checksum: 746a3102d43e8df7b09f5814bec858f12d10185a7abd655537f3291b687d440bb80fc9d1e082f8dee42d4d74307f78a96810e18a2c8e13053b003c6608c1c648
+  languageName: node
+  linkType: hard
+
+"ws@npm:8.16.0":
+  version: 8.16.0
+  resolution: "ws@npm:8.16.0"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ">=5.0.2"
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 7c511c59e979bd37b63c3aea4a8e4d4163204f00bd5633c053b05ed67835481995f61a523b0ad2b603566f9a89b34cb4965cb9fab9649fbfebd8f740cea57f17
   languageName: node
   linkType: hard
 

@@ -26,7 +26,7 @@
     "@akala/storage": "^4.0.5",
     "@fortawesome/free-brands-svg-icons": "6.5.1",
     "uuid": "9.0.1",
-    "ws": "8.15.1"
+    "ws": "8.16.0"
   },
   "deprecated": false,
   "description": "",
