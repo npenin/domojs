@@ -1,12 +1,14 @@
+import { distinctStrings } from '@akala/core';
 import { Media } from '../../index.js';
 import { extensions } from "../processFolder.js";
 
 export default function cleanFileName<T extends Media>(media: T): T
 {
-    debugger;
     if (media.name)
         return media;
     var fileName = media.path;
+    if (URL.canParse(fileName))
+        fileName = new URL(fileName).pathname;
     while (fileName.startsWith('/'))
         fileName = fileName.substring(1);
     if (/%[0-9a-f]{2}/gi.test(fileName))
@@ -24,13 +26,14 @@ export default function cleanFileName<T extends Media>(media: T): T
     // //team specification at the beginning of the file name
     // fileName = fileName.replace(/^([A-Z]+-)/i, '');
     // //team specification at the end of the file name
-    // fileName = fileName.replace(/([A-Z]+-)$/i, '');
+    fileName = fileName.replace(/([A-Z0-9]+-)$/i, '');
+    fileName = fileName.replace(/-([A-Z0-9]+)$/i, '');
     //team specification in braces
     fileName = fileName.replace(/\{[A-Z]+\}/i, '');
     //normalizing separators to a dot
     fileName = fileName.replace(/[-\._ ]+/g, '.');
     //trimming codecs and format
-    fileName = fileName.replace(/(^(\[[^\]]+\]_?)(\[[^\]]{2,7}\])?)|((10|8)bit(?:s)?)|((1080|720)[pi]?)|[0-9]{3,4}x[0-9]{3,4}|([XH]\.?)26[45]|xvid|ogg|mp3|ac3|\+?aac|rv(9|10)e?([_-]EHQ)?|multi|vost(f(r)?)?|(?:true)(?:sub)?(?:st)?fr(?:ench)?|5\.1|dvd(rip(p)?(ed)?)?|bluray|directors\.cut|web-dl|\.V?[HLS][QD](?:TV)?(?=\.)|\.(?:fin(al)?)|TV|B(?:R)?(?:D)(rip(p)?(ed)?)?|\.v[1-9]/gi, '');
+    fileName = fileName.replace(/(^(\[[^\]]+\]_?)(\[[^\]]{2,7}\])?)|((10|8)bit(?:s)?)|((1080|720)[pi]?)|[0-9]{3,4}x[0-9]{3,4}|([XH]\.?)26[45]|xvid|ogg|mp3|ac3|\+?aac|rv(9|10)e?([_-]EHQ)?|multi|vost(f(r)?)?|(?:true)(?:sub)?(?:st)?fr(?:ench)?|5\.1|7\.1|atmos|dvd(rip(p)?(ed)?)?|bluray|directors\.cut|web-dl|webrip|\.V?[HLS][QD](?:TV)?(?=\.)|\.(?:fin(al)?)|TV|B(?:R)?(?:D)(rip(p)?(ed)?)?|\.v[1-9]/gi, '');
     //trimming end tags
     fileName = fileName.replace(/\[[^\]]+\]\.?$/, '');
     //removing empty tags
@@ -42,6 +45,8 @@ export default function cleanFileName<T extends Media>(media: T): T
     //removing dates
     fileName = fileName.replace(/\[[0-9]{2}\.[0-9]{2}\.[0-9]{4}\]/, '');
     fileName = fileName.replace(/[0-9]{4}/, '');
+    //remove duplicates
+    fileName = distinctStrings(fileName.split('.'), null, true).join('.')
     //trimming start for dots and spaces
     fileName = fileName.replace(/^[ \.]/g, '');
     //trimming end for dots
