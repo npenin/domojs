@@ -28,6 +28,9 @@ for (var file of [
     { original: '[TNF]_Magic_Kaito_[Kid_l\'insaisissable][SP][X264_1280x720][vostfr].mp4', expected: 'Magic Kaito' },
     { original: '[eXe]_DragonBlade_Film_[C8DD75F3].avi', expected: 'DragonBlade' },
     { original: '[KLF]_[FFS]_Prism_Ark_Trailer.avi', expected: 'Prism Ark Trailer' },
+    { original: 'https://hostname/dav/Dropbox/[Kibo] Requiem for the Phantom 01 - L\'Eveil.avi', expected: 'Requiem for the Phantom - E1' },
+    { original: 'Doctor.Strange.2016.Multi.Bluray.1080p.x265-SN2P.mkv', expected: 'Doctor Strange' },
+    { original: '[JCS]_Baccano_12v2_12v2_[A1FA061C].avi', expected: 'Baccano - E12' },
 
 ])
 {
