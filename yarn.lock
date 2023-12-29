@@ -37,15 +37,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@akala/cli@npm:2.12.10":
-  version: 2.12.10
-  resolution: "@akala/cli@npm:2.12.10"
+"@akala/cli@npm:2.12.17":
+  version: 2.12.17
+  resolution: "@akala/cli@npm:2.12.17"
   dependencies:
-    "@akala/core": "npm:^12.0.3"
-    reflect-metadata: "npm:^0.1.14"
+    "@akala/core": "npm:^12.2.5"
+    reflect-metadata: "npm:^0.2.0"
   bin:
     akala: ./dist/esm/cli.js
-  checksum: 38be844402a47987663c0d363d9fbf461e8035c38eb7688057a077a74e0980a578f7d8d00ec3ebdf8e078e0ff1a479ff368bd862fdc7bea804f95f1c2887af14
+  checksum: fff1e5b66e4890081f9c3e173bcb0b356f38e9edb9dfe7c9974f34a1bd37ac553a0edde8e0b4b3f621433a6f273c8950a23511e661f59574560d6badb5dc7715
   languageName: node
   linkType: hard
 
@@ -120,6 +120,17 @@ __metadata:
     path-to-regexp: "npm:^6.2.1"
     reflect-metadata: "npm:^0.1.14"
   checksum: b4e133e05c3c63972ad916cb32fbe1d8775eb2d6503428dfddd9627da0a622e7a2903de3582342eedceff196a8101060ac01fab7f4f14f66fce1b601f2fc8c25
+  languageName: node
+  linkType: hard
+
+"@akala/core@npm:^12.2.5":
+  version: 12.2.5
+  resolution: "@akala/core@npm:12.2.5"
+  dependencies:
+    debug: "npm:^4.3.4"
+    path-to-regexp: "npm:^6.2.1"
+    reflect-metadata: "npm:^0.2.0"
+  checksum: 6501b1b3567389974f2102c6482d0542e8ce432af72629248bf647ce796ac50efb5260beaa7a98cda5c548dd919392e2fefca79bff283abfd8025ae83f4f9975
   languageName: node
   linkType: hard
 
@@ -353,7 +364,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/devices@workspace:packages/devices"
   dependencies:
-    "@akala/cli": "npm:2.12.10"
+    "@akala/cli": "npm:2.12.17"
     "@akala/client": "npm:^6.4.16"
     "@akala/commands": "npm:^6.5.11"
     "@akala/config": "npm:^3.5.23"
@@ -460,7 +471,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/mdns@workspace:packages/mdns"
   dependencies:
-    "@akala/cli": "npm:2.12.10"
+    "@akala/cli": "npm:2.12.17"
     "@akala/commands": "npm:^6.5.11"
     "@akala/config": "npm:^3.5.23"
     "@akala/core": "npm:^12.0.3"
@@ -495,7 +506,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/media@workspace:packages/media"
   dependencies:
-    "@akala/cli": "npm:2.12.10"
+    "@akala/cli": "npm:2.12.17"
     "@akala/client": "npm:^6.4.16"
     "@akala/commands": "npm:^6.5.11"
     "@akala/config": "npm:^3.5.23"
@@ -680,7 +691,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/zigate@workspace:packages/zigate"
   dependencies:
-    "@akala/cli": "npm:2.12.10"
+    "@akala/cli": "npm:2.12.17"
     "@akala/commands": "npm:^6.5.11"
     "@akala/core": "npm:^12.0.3"
     "@akala/pubsub": "npm:^1.2.86"
@@ -6712,6 +6723,13 @@ __metadata:
   version: 0.1.14
   resolution: "reflect-metadata@npm:0.1.14"
   checksum: fcab9c17ec3b9fea0e2f748c2129aceb57c24af6d8d13842b8a77c8c79dde727d7456ce293e76e8d7b267d1dbf93eea4c5b3c9101299a789a075824f2e40f1ee
+  languageName: node
+  linkType: hard
+
+"reflect-metadata@npm:^0.2.0":
+  version: 0.2.1
+  resolution: "reflect-metadata@npm:0.2.1"
+  checksum: 394b293bd4a538b644ed0e8730c5aeb1e08e78972c915b3d2cf3b302241952cfee8f8bd8a0fdf7d8c7fa78d31d0585489061624692e2577d767abd120cad968c
   languageName: node
   linkType: hard
 
