@@ -3,18 +3,18 @@ import { ProxyConfiguration } from "@akala/config";
 import { LibraryState } from "../../state.js";
 import { initConfig } from "./$init.js";
 
-export default function (container: Container<LibraryState>, config: ProxyConfiguration<object>)
+export default function (container: Container<LibraryState>, rootConfig: ProxyConfiguration<object>)
 {
 
     if (!this)
     {
-        config = config.get('@akala/media');
+        let config: LibraryState = rootConfig.get('@akala/media');
         if (!config)
         {
-            config.set('@akala/media', {});
-            initConfig(config = config.get('@akala/media'))
+            rootConfig.set('@akala/media', {});
+            initConfig(config = rootConfig.get('@akala/media'))
         }
-        container.state = config as LibraryState;
+        container.state = config;
 
         const scrapperContainer = new Container<unknown>('scrapper', undefined);
         Object.entries(container.state.scrappers.extract()).map(e =>

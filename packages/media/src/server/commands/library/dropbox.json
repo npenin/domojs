@@ -37,7 +37,7 @@
                 "needsValue": true
             }
         },
-        "usage": "browse <library> <type>"
+        "usage": "dropbox <library> <type>"
     },
     "": {
         "inject": [
