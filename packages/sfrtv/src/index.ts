@@ -15,14 +15,14 @@ page.on('request', interceptedRequest =>
         interceptedRequest.continue();
 });
 const profile = await page.waitForSelector('gen8-profile');
-if (await profile.evaluate(el => el.getAttribute('pn')) == "Se connecter")
-    await profile.click();
+if (await profile!.evaluate(el => el.getAttribute('pn')) == "Se connecter")
+    await profile!.click();
 
 await page.waitForNavigation();
 
-await (await page.waitForSelector('#username')).type('n.penin@sfr.fr')
-await (await page.waitForSelector('#password')).type('md1RHx8MQ5un')
-await (await page.waitForSelector('#identifier')).click()
+await (await page.waitForSelector('#username'))!.type('n.penin@sfr.fr')
+await (await page.waitForSelector('#password'))!.type('md1RHx8MQ5un')
+await (await page.waitForSelector('#identifier'))!.click()
 
 await page.waitForNavigation();
 
@@ -31,32 +31,32 @@ await page.evaluate(async () =>
 {
     let recorder: MediaRecorder;
     var chunks = [];
-    var fileName = 'x.webm';
+    var fileName: string | undefined = 'x.webm';
     var blobUrl;
 
-    function saveBlob(blob)
-    {
-        chunks.push(blob);
-        if (fileName === null)
-        {
-            return;
-        }
-        blob = new Blob(chunks);
+    // function saveBlob(blob)
+    // {
+    //     chunks.push(blob);
+    //     if (fileName === null)
+    //     {
+    //         return;
+    //     }
+    //     blob = new Blob(chunks);
 
-        var a = document.createElement("a"),
-            url = URL.createObjectURL(blob);
-        a.href = url;
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();
+    //     var a = document.createElement("a"),
+    //         url = URL.createObjectURL(blob);
+    //     a.href = url;
+    //     a.download = fileName;
+    //     document.body.appendChild(a);
+    //     a.click();
 
-        chunks = []
-        setTimeout(function ()
-        {
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        }, 0);
-    }
+    //     chunks = []
+    //     setTimeout(function ()
+    //     {
+    //         document.body.removeChild(a);
+    //         window.URL.revokeObjectURL(url);
+    //     }, 0);
+    // }
 
     /*
     navigator.webkitPersistentStorage.requestQuota(500 * 1024 * 1024, function (grantedBytes) {
@@ -81,9 +81,9 @@ await page.evaluate(async () =>
     */
 
     var oldCreate = document.createElement;
-    document.createElement = function (tag)
+    document.createElement = function (tag, options?)
     {
-        var result = oldCreate.apply(this, Array.from(arguments));
+        var result = oldCreate.call(this, tag, options);
         if (tag == 'video' || tag == 'audio')
         {
             createMediaContext(result as HTMLVideoElement);
@@ -146,7 +146,7 @@ await page.evaluate(async () =>
         });
         result.addEventListener('emptied', function ()
         {
-            fileName = null;
+            // fileName = undefined;
             if (recorder.state != 'inactive')
                 recorder.stop();
             setTimeout(function ()

@@ -17,7 +17,7 @@ export default async function (this: ChannelState, container: Container<void>, t
     {
         if (this.triggers[triggerId].preventNextRun)
         {
-            this.triggers[triggerId].preventNextRun--;
+            this.triggers[triggerId].preventNextRun!--;
             return false;
         }
         await eachAsync(task.steps, async step =>

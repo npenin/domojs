@@ -309,10 +309,10 @@ class PairSetupClient
             then(m => pairMessage.read(m, new Cursor())).
             then(m =>
             {
-                if (tweetnacl.sign.detached.verify(Buffer.concat([sessionKey, Buffer.from(m.identifier), m.publicKey]), m.signature, m.publicKey))
+                if (tweetnacl.sign.detached.verify(Buffer.concat([sessionKey, Buffer.from(m.identifier!), m.publicKey!]), m.signature!, m.publicKey!))
                     return {
-                        publicKey: m.publicKey,
-                        identifier: m.identifier
+                        publicKey: m.publicKey!,
+                        identifier: m.identifier!
                     };
                 throw new Error('accessory is not what it is claiming to be');
             })

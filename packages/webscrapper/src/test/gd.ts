@@ -32,7 +32,7 @@ interface Recipe
 (async function (is_icookableArg: string)
 {
     const is_icookable = Boolean(is_icookableArg);
-    var results = [];
+    var results: Recipe[] = [];
     // for (var category of ['desserts'])
     for (var category of ['apéritifs', 'entrées', 'plats', 'desserts', 'glaces', 'boulangerie', 'accompagnements', 'boissons', 'soupes et crèmes', 'cakes et quiches salés', 'sauces', 'autres'])
     {

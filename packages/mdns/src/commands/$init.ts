@@ -83,7 +83,7 @@ export default async function (this: State, context: CliContext, signal: AbortSi
         return records
             .filter(function (rr)
             {
-                return rr.type === 'PTR' && rr.ttl > 0
+                return rr.type === 'PTR' && rr.ttl
             })
             .map(function (ptr: StringAnswer)
             {
@@ -128,7 +128,7 @@ export default async function (this: State, context: CliContext, signal: AbortSi
                     })
                     .forEach(function (rr: StringAnswer)
                     {
-                        service.addresses.push(rr.data)
+                        service.addresses!.push(rr.data)
                     })
 
                 return service
@@ -138,8 +138,8 @@ export default async function (this: State, context: CliContext, signal: AbortSi
                 return !!rr
             }).forEach(c =>
             {
-                this.services[c.fqdn] = c as Service;
-                const parts = c.fqdn.split('.').reverse();
+                this.services[c!.fqdn!] = c as Service;
+                const parts = c!.fqdn!.split('.').reverse();
                 for (let i = 0; i < parts.length; i++)
                     self.pubsub?.publish('/zeroconf/' + parts.slice(0, i).join('/'), c);
             })

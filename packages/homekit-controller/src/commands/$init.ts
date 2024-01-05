@@ -10,7 +10,7 @@ export default async function (this: State, context: CliContext, container: Cont
     this.pairedAccessories = {};
     Object.assign(this, helper(container));
     const self = await app(context, Configuration.new('./homekit.json', {}));
-    self.pubsub.subscribe(container, 'device-discovered', '/zeroconf/_hap');
+    self.pubsub?.subscribe(container, 'device-discovered', '/zeroconf/_hap');
 
     await (await self.sidecars['@domojs/devicetype']).dispatch('register', { name: 'homekit' } as devices.DeviceType);
 }

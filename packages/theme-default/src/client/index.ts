@@ -81,7 +81,7 @@ bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.
                     if (typeof parameter['icon'] != 'undefined')
                         this.element.innerHTML = fa.icon(parameter as fa.IconLookup).html.join('\n');
                     else
-                        this.element.innerHTML = fa.icon(this.library.getIconDefinition(parameter as fa.IconLookup)).html.join('\n')
+                        this.element.innerHTML = fa.icon(this.library.getIconDefinition(parameter as fa.IconLookup)!).html.join('\n')
             }
         }
     }
@@ -101,7 +101,7 @@ bootstrap.addDependency(akala.module('@domojs/theme-default', client.$$injector.
                     parameter = BlockColors[Math.floor(Math.random() * Object.keys(BlockColors).length / 2)];
                 if (parameter instanceof akala.Binding)
                 {
-                    var oldValue: string = undefined;
+                    var oldValue: string | undefined = undefined;
                     parameter.onChanged((ev) =>
                     {
                         if (typeof oldValue !== 'undefined')
