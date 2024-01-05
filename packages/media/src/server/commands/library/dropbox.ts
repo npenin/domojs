@@ -9,21 +9,26 @@ import Configuration from '../../configuration.js';
 export default async function (this: Configuration, container: Container<Configuration>, source: string, type: 'music' | 'video', name?: string, season?: number, episode?: number, album?: string, artist?: string)
 {
     var lastIndex: Date;
+    const fileName = `./dropbox-${source}-${type}.json`;
 
-    const stat: Stats = await fs.lstat('./dropbox-' + type + '.json').catch((e) => { if (e.code === 'ENOENT') return null; throw e; });
+    const stat: Stats = await fs.lstat(fileName).catch((e) => { if (e.code === 'ENOENT') return null; throw e; });
     if (stat != null)
         lastIndex = stat.mtime;
 
     var results = await process.processSource(this.libraries[source].paths, container, type, this.libraries[source].scrappers, lastIndex, name, season, episode, album, artist);
 
+    let content: Record<string, Media[]> = results;
     if (Object.keys(results).length)
     {
-        var content = JSON.parse(await fs.readFile('./dropbox-' + type + '.json', 'utf8')) as { [key in keyof typeof results]: Media[] };
-        akala.each(content, function (media, group)
+        if (stat)
         {
-            if (results[group])
-                media.push(...results[group]);
-        })
+            content = JSON.parse(await fs.readFile(fileName, 'utf8')) as { [key in keyof typeof results]: Media[] };
+            akala.each(content, function (media, group)
+            {
+                if (results[group])
+                    media.push(...results[group]);
+            })
+        }
     }
-    await fs.writeFile('./dropbox-' + type + '.json', JSON.stringify(content));
+    await fs.writeFile(fileName, JSON.stringify(content));
 }

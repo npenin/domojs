@@ -15,7 +15,8 @@
                 "cli": {
                     "inject": [
                         "context",
-                        "options.configPath"
+                        "options.configPath",
+                        "$container"
                     ],
                     "options": {
                         "configPath": {
@@ -48,6 +49,13 @@
                     "inject": [
                         "$container",
                         "context.state"
+                    ]
+                },
+                "doc": {
+                    "description": "Not meant to be invoked directly. Initializes the configuration when another command is executed via the akala CLI",
+                    "inject": [
+                        "$container",
+                        "The root akala configuration"
                     ]
                 },
                 "": {
@@ -172,7 +180,12 @@
                     "inject": [
                         "$container",
                         "options.library",
-                        "options.type"
+                        "options.type",
+                        "options.name",
+                        "options.season",
+                        "options.episode",
+                        "options.album",
+                        "options.artist"
                     ],
                     "options": {
                         "library": {},
@@ -208,29 +221,51 @@
             "name": "dropbox",
             "config": {
                 "fs": {
-                    "path": "dist/server/commands/library/dropbox.js",
-                    "source": "src/server/commands/library/dropbox.ts",
                     "inject": [
+                        "$container",
                         "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3",
-                        "param.4",
-                        "param.5",
-                        "param.6",
-                        "param.7"
-                    ]
+                        "param.1"
+                    ],
+                    "path": "dist/server/commands/library/dropbox.js",
+                    "source": "src/server/commands/library/dropbox.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "options.library",
+                        "options.type",
+                        "options.name",
+                        "options.season",
+                        "options.episode",
+                        "options.album",
+                        "options.artist"
+                    ],
+                    "options": {
+                        "library": {},
+                        "type": {},
+                        "name": {
+                            "needsValue": true
+                        },
+                        "season": {
+                            "needsValue": true
+                        },
+                        "episode": {
+                            "needsValue": true
+                        },
+                        "album": {
+                            "needsValue": true
+                        },
+                        "artist": {
+                            "needsValue": true
+                        }
+                    },
+                    "usage": "dropbox <library> <type>"
                 },
                 "": {
                     "inject": [
+                        "$container",
                         "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3",
-                        "param.4",
-                        "param.5",
-                        "param.6",
-                        "param.7"
+                        "param.1"
                     ]
                 }
             }

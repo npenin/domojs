@@ -12,6 +12,13 @@
             "context.state"
         ]
     },
+    "doc": {
+        "description": "Not meant to be invoked directly. Initializes the configuration when another command is executed via the akala CLI",
+        "inject": [
+            "$container",
+            "The root akala configuration"
+        ]
+    },
     "": {
         "inject": [
             "$container",
