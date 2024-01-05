@@ -40,7 +40,7 @@ export interface TileService
     add<T extends TileDef>(tile: T): void;
     array: akala.ObservableArray<TileDef>;
 }
-var commandContainer = new Container<void>('local', null);
+var commandContainer = new Container<void>('local', void 0);
 var commands = new ObservableArray<Metadata.Command>([]);
 commands.on('collectionChanged', function (ev)
 {

@@ -8,13 +8,14 @@ import { Container } from '@akala/commands';
 export default async function watch(this: ChannelState, container: taskManager & Container<ChannelState>, path: string, eventName?: string)
 {
     var stat = await promisify(fs.stat)(path);
+    var id: string | undefined = void 0;
     if (stat.isDirectory() || stat.isFile())
     {
-        var id = uuid();
+        id = uuid();
         var watcher = fs.watch(path, function (event, fileName)
         {
             if (!eventName || eventName == event)
-                container.dispatch(id, { path: fileName, mtime: new Date().toJSON() });
+                container.dispatch(id!, { path: fileName, mtime: new Date().toJSON() });
         });
 
         this.triggers[id] = watcher;

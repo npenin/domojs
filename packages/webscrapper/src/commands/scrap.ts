@@ -87,7 +87,7 @@ function scrapscrap(property: Cheerio<AnyNode>, scrap: Scrap)
     if (!property.length && !scrap.scrap)
         return undefined;
     if (scrap.attribute)
-        return property.attr()[scrap.attribute];
+        return property.attr()![scrap.attribute];
     if (scrap.dataset)
         return property.data(scrap.dataset);
     if (typeof scrap.textNode !== 'undefined')
@@ -100,7 +100,7 @@ function scrapscrap(property: Cheerio<AnyNode>, scrap: Scrap)
     if (scrap.scrap)
     {
         if (scrap.multiple)
-            return Array.from(property.map(function () { return scrapscraps(cheerio(this), scrap.scrap) }));
+            return Array.from(property.map(function () { return scrapscraps(cheerio(this), scrap.scrap!) }));
         return scrapscraps(cheerio(property[0]), scrap.scrap);
     }
     return property.text();

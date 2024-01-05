@@ -152,11 +152,11 @@ class PairSetupClient
 
                 const accessoryInfo = Buffer.concat([
                     accessoryPublicKey,
-                    Buffer.from(m2.identifier),
+                    Buffer.from(m2.identifier!),
                     this.keyPair.publicKey,
                 ]);
 
-                if (!tweetnacl.sign.detached.verify(accessoryInfo, accessorySignature, pairedAccessory.controllerInfo.publicKey))
+                if (!tweetnacl.sign.detached.verify(accessoryInfo, accessorySignature!, pairedAccessory.controllerInfo.publicKey))
                     throw new Error('signature could not be verified');
 
                 return {
