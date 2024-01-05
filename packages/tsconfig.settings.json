@@ -5,6 +5,7 @@
     "experimentalDecorators": true,
     "strictBindCallApply": true,
     "esModuleInterop": true,
+    // "strictFunctionTypes": true,
     "resolveJsonModule": true,
     "allowJs": true,
     "sourceMap": true,
