@@ -1,0 +1,159 @@
+{
+    "name": "@domojs/media-crunchyroll",
+    "commands": [
+        {
+            "name": "$init-akala",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "$container",
+                        "param.0"
+                    ],
+                    "path": "dist/commands/$init-akala.js",
+                    "source": "src/commands/$init-akala.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "context.state"
+                    ]
+                },
+                "doc": {
+                    "description": "Not meant to be invoked directly. Initializes the configuration when another command is executed via the akala CLI",
+                    "inject": [
+                        "$container",
+                        "The root akala configuration"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "$container",
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "add-locale",
+            "config": {
+                "fs": {
+                    "path": "dist/commands/add-locale.js",
+                    "source": "src/commands/add-locale.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.audio",
+                        "options.subtitles"
+                    ],
+                    "usage": "locales add <audio> [...subtitles]"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "get-all-animes",
+            "config": {
+                "fs": {
+                    "path": "dist/commands/get-all-animes.js",
+                    "source": "src/commands/get-all-animes.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.outFile"
+                    ],
+                    "usage": "animes [outFile]"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "rm-locale",
+            "config": {
+                "fs": {
+                    "path": "dist/commands/rm-locale.js",
+                    "source": "src/commands/rm-locale.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.audio"
+                    ],
+                    "usage": "locales rm <audio>"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "set-credentials",
+            "config": {
+                "fs": {
+                    "path": "dist/commands/set-credentials.js",
+                    "source": "src/commands/set-credentials.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.username",
+                        "options.password"
+                    ],
+                    "usage": "login <username> <password>"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "set-locale",
+            "config": {
+                "fs": {
+                    "path": "dist/commands/set-locale.js",
+                    "source": "src/commands/set-locale.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.locale"
+                    ],
+                    "usage": "locale <locale>"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
+}
