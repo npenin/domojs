@@ -66,6 +66,15 @@
     },
     {
       "path": "dns-parsers"
+    },
+    {
+      "path": "media-crunchyroll"
+    },
+    {
+      "path": "service-discovery"
+    },
+    {
+      "path": "adb"
     }
   ]
 }
