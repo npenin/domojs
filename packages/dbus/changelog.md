@@ -3,17 +3,7 @@
 
 ### Bug Fixes
 
-* improve media manager f50fd43
-
-
-### Code Refactoring
-
-* update to ESM + update dependencies 016db4b
-
-
-### BREAKING CHANGES
-
-* update to ESM
+* make dbus private 65734c4
 
 
 
