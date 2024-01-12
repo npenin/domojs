@@ -20,6 +20,7 @@
 * iscp parsing 61d30cd
 * lock file 659742d
 * made devdependencies using workspace reference d2024b5
+* make dbus private 65734c4
 * make webscrapper private 26b5752
 * patch cheerio to compile as ESM 399f0fe
 * recover from closed socket 4676ab4
