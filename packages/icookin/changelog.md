@@ -1,4 +1,4 @@
-#  (2023-05-14)
+#  (2024-01-12)
 
 
 ### Bug Fixes
@@ -19,6 +19,11 @@
 * update dependencies 956f9e3
 
 
+### Code Refactoring
+
+* update to ESM + update dependencies 016db4b
+
+
 ### Features
 
 * various fixes and improvements ec01382
@@ -26,6 +31,7 @@
 
 ### BREAKING CHANGES
 
+* update to ESM
 * move zigate to @domojs/zigate-parsers
 * move from rfxtrx to rfx-parsers
 
