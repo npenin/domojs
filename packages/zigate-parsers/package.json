@@ -1,42 +1,42 @@
 {
-  "name": "@domojs/zigate-parsers",
-  "version": "2.4.1",
-  "description": "",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
-    "prepublishOnly": "tsc -p ."
-  },
-  "author": "npenin",
-  "license": "MIT",
-  "dependencies": {
-    "@akala/core": "^12.2.5",
-    "@akala/protocol-parser": "^2.7.1",
-    "@domojs/devices": "workspace:*",
-    "debug": "^4.3.4"
-  },
-  "peerDependencies": {
-    "serialport": "^9.2.8",
-    "usb": "^2.1.2"
-  },
-  "peerDependenciesMeta": {
-    "serialport": {
-      "optional": true
+    "name": "@domojs/zigate-parsers",
+    "version": "3.0.0",
+    "description": "",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 0",
+        "prepublishOnly": "tsc -p ."
     },
-    "usb": {
-      "optional": true
-    }
-  },
-  "devDependencies": {
-    "@types/debug": "4.1.12",
-    "@types/serialport": "8.0.5",
-    "@types/usb": "2.0.5",
-    "@types/ws": "8.5.10",
-    "source-map-support": "0.5.21",
-    "typescript": "5.3.3",
-    "usb": "2.11.0"
-  },
-  "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
+    "author": "npenin",
+    "license": "MIT",
+    "dependencies": {
+        "@akala/core": "^12.2.5",
+        "@akala/protocol-parser": "^2.7.1",
+        "@domojs/devices": "workspace:*",
+        "debug": "^4.3.4"
+    },
+    "peerDependencies": {
+        "serialport": "^9.2.8",
+        "usb": "^2.1.2"
+    },
+    "peerDependenciesMeta": {
+        "serialport": {
+            "optional": true
+        },
+        "usb": {
+            "optional": true
+        }
+    },
+    "devDependencies": {
+        "@types/debug": "4.1.12",
+        "@types/serialport": "8.0.5",
+        "@types/usb": "2.0.5",
+        "@types/ws": "8.5.10",
+        "source-map-support": "0.5.21",
+        "typescript": "5.3.3",
+        "usb": "2.11.0"
+    },
+    "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }

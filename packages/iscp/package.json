@@ -1,44 +1,44 @@
 {
-  "author": {
-    "name": "npenin"
-  },
-  "bugs": {
-    "url": "https://github.com/domojs/domojs-pioneer/issues"
-  },
-  "type": "module",
-  "dependencies": {
-    "@domojs/devices": "workspace:*"
-  },
-  "peerDependencies": {
-    "@akala/commands": "^3.8.3",
-    "@akala/pm": "^3.7.12"
-  },
-  "devDependencies": {
-    "@akala/commands": "^6.5.19",
-    "@akala/core": "^12.2.5",
-    "@akala/server": "^9.4.36",
-    "@types/ws": "8.5.10"
-  },
-  "deprecated": false,
-  "description": "",
-  "homepage": "https://github.com/domojs/domojs-pioneer#readme",
-  "license": "MIT",
-  "commands": "./commands.json",
-  "name": "@domojs/iscp",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/domojs/domojs-pioneer.git"
-  },
-  "runDependencies": [],
-  "scripts": {
-    "test": "echo \"Error: no test specified\"",
-    "build:js": "tsc -p .",
-    "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
-    "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
-    "prepublishOnly": "npm run build",
-    "build": "npm run build:js"
-  },
-  "typings": "dist/index.d.ts",
-  "version": "1.6.1",
-  "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
+    "author": {
+        "name": "npenin"
+    },
+    "bugs": {
+        "url": "https://github.com/domojs/domojs-pioneer/issues"
+    },
+    "type": "module",
+    "dependencies": {
+        "@domojs/devices": "workspace:*"
+    },
+    "peerDependencies": {
+        "@akala/commands": "^3.8.3",
+        "@akala/pm": "^3.7.12"
+    },
+    "devDependencies": {
+        "@akala/commands": "^6.5.19",
+        "@akala/core": "^12.2.5",
+        "@akala/server": "^9.4.36",
+        "@types/ws": "8.5.10"
+    },
+    "deprecated": false,
+    "description": "",
+    "homepage": "https://github.com/domojs/domojs-pioneer#readme",
+    "license": "MIT",
+    "commands": "./commands.json",
+    "name": "@domojs/iscp",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/domojs/domojs-pioneer.git"
+    },
+    "runDependencies": [],
+    "scripts": {
+        "test": "echo \"Error: no test specified\"",
+        "build:js": "tsc -p .",
+        "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
+        "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
+        "prepublishOnly": "npm run build",
+        "build": "npm run build:js"
+    },
+    "typings": "dist/index.d.ts",
+    "version": "2.0.0",
+    "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }

@@ -1,59 +1,59 @@
 {
-  "author": {
-    "name": "npenin"
-  },
-  "bugs": {
-    "url": "https://github.com/npenin/domojs/issues"
-  },
-  "dependencies": {
-    "@akala/commands": "^6.5.19",
-    "@akala/core": "^12.2.5",
-    "@domojs/rfx-parsers": "workspace:*",
-    "http-punch-hole": "^1.0.12"
-  },
-  "type": "module",
-  "peerDependencies": {
-    "@akala/pm": "^3.7.12",
-    "serialport": "^9.2.8",
-    "usb": "^2.1.2"
-  },
-  "peerDependenciesMeta": {
-    "serialport": {
-      "optional": true
+    "author": {
+        "name": "npenin"
     },
-    "usb": {
-      "optional": true
-    }
-  },
-  "commands": "./commands.json",
-  "deprecated": false,
-  "description": "",
-  "devDependencies": {
-    "@akala/pm": "^8.0.26",
-    "@domojs/devices": "workspace:*",
-    "@types/debug": "4.1.12",
-    "@types/serialport": "8.0.5",
-    "@types/usb": "2.0.5",
-    "@types/ws": "8.5.10",
-    "typescript": "5.3.3"
-  },
-  "homepage": "https://github.com/domojs/domojs-rfxcom#readme",
-  "license": "MIT",
-  "main": "dist/server/index.js",
-  "name": "@domojs/rfx",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/domojs/domojs-rfxcom.git"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
-    "build:js": "tsc -p .",
-    "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
-    "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
-    "build": "yarn run build:js && ac generate dist/server/commands commands.json",
-    "generate": "ac generate dist/server/commands commands.json"
-  },
-  "typings": "dist/index.d.ts",
-  "version": "1.9.1",
-  "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
+    "bugs": {
+        "url": "https://github.com/npenin/domojs/issues"
+    },
+    "dependencies": {
+        "@akala/commands": "^6.5.19",
+        "@akala/core": "^12.2.5",
+        "@domojs/rfx-parsers": "workspace:*",
+        "http-punch-hole": "^1.0.12"
+    },
+    "type": "module",
+    "peerDependencies": {
+        "@akala/pm": "^3.7.12",
+        "serialport": "^9.2.8",
+        "usb": "^2.1.2"
+    },
+    "peerDependenciesMeta": {
+        "serialport": {
+            "optional": true
+        },
+        "usb": {
+            "optional": true
+        }
+    },
+    "commands": "./commands.json",
+    "deprecated": false,
+    "description": "",
+    "devDependencies": {
+        "@akala/pm": "^8.0.26",
+        "@domojs/devices": "workspace:*",
+        "@types/debug": "4.1.12",
+        "@types/serialport": "8.0.5",
+        "@types/usb": "2.0.5",
+        "@types/ws": "8.5.10",
+        "typescript": "5.3.3"
+    },
+    "homepage": "https://github.com/domojs/domojs-rfxcom#readme",
+    "license": "MIT",
+    "main": "dist/server/index.js",
+    "name": "@domojs/rfx",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/domojs/domojs-rfxcom.git"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 0",
+        "build:js": "tsc -p .",
+        "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
+        "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
+        "build": "yarn run build:js && ac generate dist/server/commands commands.json",
+        "generate": "ac generate dist/server/commands commands.json"
+    },
+    "typings": "dist/index.d.ts",
+    "version": "2.0.0",
+    "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }
