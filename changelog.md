@@ -1,4 +1,4 @@
-#  (2023-05-14)
+#  (2024-01-12)
 
 
 ### Bug Fixes
@@ -6,17 +6,22 @@
 * add device type 3ea897b
 * add homekit projects to compilation a19f377
 * add missing dependency 3eb49a6
+* add version field e24983b
 * buffer slicing in rfx e4ed1ae
+* build after dependency update d55b5ca
 * device init saving e728268
 * enable keepalive on tcp and http sockets 34ce209
 * enable keepalive on tcp and http sockets 6cdf866
 * fix wrong unit in keepalive b162a24
+* improve library indexing + fix akala cli support 55ddae9
 * improve mdns typings 22aa389
+* improve media manager f50fd43
 * improvements to protocol parser d83ad03
 * iscp parsing 61d30cd
 * lock file 659742d
 * made devdependencies using workspace reference d2024b5
 * make webscrapper private 26b5752
+* patch cheerio to compile as ESM 399f0fe
 * recover from closed socket 4676ab4
 * remove failing pubsub 2fad35b
 * remove resolutions a866f1e
@@ -51,15 +56,24 @@
 * update dependencies 956f9e3
 
 
+### Code Refactoring
+
+* update to ESM + update dependencies 016db4b
+
+
 ### Features
 
+* add adb implementation bce54b2
+* add crunchyroll media indexing 0e955ad
 * add homekit controller b525ff7
 * add homekit server (homebridge equivalent) 3fd9d9e
 * add list folders command 3b25858
 * add lots of commands 4a1cbf5
+* add service discovery (not ready yet) 24a2282
 * add tlv support 9e19612
 * add unknown RTS message support b0ee68f
 * add web scrapping support and tests f09ee3e
+* enable URL support 0c875fb
 * make exec on devicetype CLI compatible f882f8b
 * make webscrapper public 4c8f18b
 * mdns implementation 5319498
@@ -72,6 +86,7 @@
 
 ### BREAKING CHANGES
 
+* update to ESM
 * move device management to devicetype
 * move zigate to @domojs/zigate-parsers
 * move from rfxtrx to rfx-parsers

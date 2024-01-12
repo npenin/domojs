@@ -1,65 +1,65 @@
 {
-  "name": "@domojs/devices",
-  "version": "2.4.1",
-  "author": {
-    "name": "npenin"
-  },
-  "bugs": {
-    "url": "https://github.com/domojs/devices/issues"
-  },
-  "commands": {
-    "@domojs/devices": "./device-commands.json",
-    "@domojs/devicetype": "./devicetype-commands.json"
-  },
-  "type": "module",
-  "dependencies": {
-    "@akala/cli": "2.12.17",
-    "@akala/client": "^6.4.16",
-    "@akala/commands": "^6.5.19",
-    "@akala/config": "^4.0.2",
-    "@akala/core": "^12.2.5",
-    "@akala/json-rpc-ws": "10.2.50",
-    "@akala/pm": "^8.0.26",
-    "@akala/pubsub": "^1.2.102",
-    "@akala/server": "^9.4.36",
-    "@akala/sidecar": "^3.0.44",
-    "@akala/storage": "4.0.11",
-    "@fortawesome/free-brands-svg-icons": "6.5.1",
-    "uuid": "9.0.1",
-    "ws": "8.16.0"
-  },
-  "deprecated": false,
-  "description": "",
-  "devDependencies": {
-    "@domojs/theme-default": "workspace:*",
-    "@popperjs/core": "2.11.8",
-    "@types/debug": "4.1.12",
-    "@types/uuid": "9.0.7",
-    "@types/ws": "8.5.10",
-    "typescript": "5.3.3"
-  },
-  "homepage": "https://github.com/domojs/devices#readme",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/domojs/devices.git"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\"",
-    "build:js": "tsc -p .",
-    "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
-    "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
-    "build": "yarn build:js && yarn build:js:routes && yarn build:js:tile",
-    "generate:devices:json": "ac generate dist/server/commands/devices device-commands.json",
-    "generate:devicetypes:json": "ac generate dist/server/commands/device-types devicetype-commands.json",
-    "generate:devices:ts": "ac generate-metadata device-commands.json src/server/device-commands.ts --name deviceContainer",
-    "generate:devicetypes:ts": "ac generate-metadata devicetype-commands.json src/server/devicetype-commands.ts --name deviceTypeContainer",
-    "generate:json": "yarn generate:devices:json && yarn generate:devicetypes:json",
-    "generate:ts": "yarn generate:devices:ts && yarn generate:devicetypes:ts",
-    "generate": "yarn generate:json && yarn generate:ts"
-  },
-  "typings": "dist/index.d.ts",
-  "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
+    "name": "@domojs/devices",
+    "version": "3.0.0",
+    "author": {
+        "name": "npenin"
+    },
+    "bugs": {
+        "url": "https://github.com/domojs/devices/issues"
+    },
+    "commands": {
+        "@domojs/devices": "./device-commands.json",
+        "@domojs/devicetype": "./devicetype-commands.json"
+    },
+    "type": "module",
+    "dependencies": {
+        "@akala/cli": "2.12.17",
+        "@akala/client": "^6.4.16",
+        "@akala/commands": "^6.5.19",
+        "@akala/config": "^4.0.2",
+        "@akala/core": "^12.2.5",
+        "@akala/json-rpc-ws": "10.2.50",
+        "@akala/pm": "^8.0.26",
+        "@akala/pubsub": "^1.2.102",
+        "@akala/server": "^9.4.36",
+        "@akala/sidecar": "^3.0.44",
+        "@akala/storage": "4.0.11",
+        "@fortawesome/free-brands-svg-icons": "6.5.1",
+        "uuid": "9.0.1",
+        "ws": "8.16.0"
+    },
+    "deprecated": false,
+    "description": "",
+    "devDependencies": {
+        "@domojs/theme-default": "workspace:*",
+        "@popperjs/core": "2.11.8",
+        "@types/debug": "4.1.12",
+        "@types/uuid": "9.0.7",
+        "@types/ws": "8.5.10",
+        "typescript": "5.3.3"
+    },
+    "homepage": "https://github.com/domojs/devices#readme",
+    "license": "MIT",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/domojs/devices.git"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\"",
+        "build:js": "tsc -p .",
+        "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
+        "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
+        "build": "yarn build:js && yarn build:js:routes && yarn build:js:tile",
+        "generate:devices:json": "ac generate dist/server/commands/devices device-commands.json",
+        "generate:devicetypes:json": "ac generate dist/server/commands/device-types devicetype-commands.json",
+        "generate:devices:ts": "ac generate-metadata device-commands.json src/server/device-commands.ts --name deviceContainer",
+        "generate:devicetypes:ts": "ac generate-metadata devicetype-commands.json src/server/devicetype-commands.ts --name deviceTypeContainer",
+        "generate:json": "yarn generate:devices:json && yarn generate:devicetypes:json",
+        "generate:ts": "yarn generate:devices:ts && yarn generate:devicetypes:ts",
+        "generate": "yarn generate:json && yarn generate:ts"
+    },
+    "typings": "dist/index.d.ts",
+    "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }
