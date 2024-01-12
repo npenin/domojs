@@ -1,40 +1,40 @@
 {
-  "dependencies": {
-    "@akala/core": "^12.2.5",
-    "@akala/protocol-parser": "^2.7.1",
-    "@domojs/devices": "workspace:*"
-  },
-  "peerDependencies": {
-    "serialport": "^9.2.8",
-    "usb": "^2.1.2"
-  },
-  "peerDependenciesMeta": {
-    "serialport": {
-      "optional": true
+    "dependencies": {
+        "@akala/core": "^12.2.5",
+        "@akala/protocol-parser": "^2.7.1",
+        "@domojs/devices": "workspace:*"
     },
-    "usb": {
-      "optional": true
-    }
-  },
-  "type": "module",
-  "devDependencies": {
-    "@types/debug": "4.1.12",
-    "@types/node": "20.10.6",
-    "@types/serialport": "8.0.5",
-    "@types/usb": "2.0.5",
-    "typescript": "5.3.3",
-    "usb": "2.11.0"
-  },
-  "scripts": {
-    "build": "tsc -p .",
-    "prepublishOnly": "tsc -p .",
-    "test": "echo 1"
-  },
-  "name": "@domojs/rfx-parsers",
-  "version": "1.6.1",
-  "main": "dist/index.js",
-  "repository": "https://github.com/npenin/rfx.git",
-  "author": "Nicolas Penin <nicolas.penin@dragon-angel.fr>",
-  "license": "MIT",
-  "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
+    "peerDependencies": {
+        "serialport": "^9.2.8",
+        "usb": "^2.1.2"
+    },
+    "peerDependenciesMeta": {
+        "serialport": {
+            "optional": true
+        },
+        "usb": {
+            "optional": true
+        }
+    },
+    "type": "module",
+    "devDependencies": {
+        "@types/debug": "4.1.12",
+        "@types/node": "20.10.6",
+        "@types/serialport": "8.0.5",
+        "@types/usb": "2.0.5",
+        "typescript": "5.3.3",
+        "usb": "2.11.0"
+    },
+    "scripts": {
+        "build": "tsc -p .",
+        "prepublishOnly": "tsc -p .",
+        "test": "echo 1"
+    },
+    "name": "@domojs/rfx-parsers",
+    "version": "2.0.0",
+    "main": "dist/index.js",
+    "repository": "https://github.com/npenin/rfx.git",
+    "author": "Nicolas Penin <nicolas.penin@dragon-angel.fr>",
+    "license": "MIT",
+    "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }
