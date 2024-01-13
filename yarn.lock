@@ -49,22 +49,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@akala/client@npm:^6.4.16":
-  version: 6.4.16
-  resolution: "@akala/client@npm:6.4.16"
-  dependencies:
-    "@popperjs/core": "npm:^2.11.7"
-    reflect-metadata: "npm:^0.1.13"
-    showdown: "npm:^2.1.0"
-  dependenciesMeta:
-    "@popperjs/core":
-      optional: true
-    showdown:
-      optional: true
-  checksum: 996278c2eaacbbfe031539690a867d9cacc60ca5fb785b39b6b4af7b3aaf4731e5cb5b95e1b2af658902089cdd522830dd19183d3fa2bf7f4860ecba68ef8268
-  languageName: node
-  linkType: hard
-
 "@akala/commands@npm:^6.5.19":
   version: 6.5.19
   resolution: "@akala/commands@npm:6.5.19"
@@ -489,7 +473,6 @@ __metadata:
   resolution: "@domojs/media@workspace:packages/media"
   dependencies:
     "@akala/cli": "npm:2.12.17"
-    "@akala/client": "npm:^6.4.16"
     "@akala/commands": "npm:^6.5.19"
     "@akala/config": "npm:^4.0.2"
     "@akala/core": "npm:^12.2.5"
@@ -582,7 +565,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/theme-default@workspace:packages/theme-default"
   dependencies:
-    "@akala/client": "npm:^6.4.16"
     "@akala/commands": "npm:^6.5.19"
     "@akala/core": "npm:^12.2.5"
     "@akala/json-rpc-ws": "npm:10.2.50"
@@ -1653,13 +1635,6 @@ __metadata:
   version: 2.11.8
   resolution: "@popperjs/core@npm:2.11.8"
   checksum: ddd16090cde777aaf102940f05d0274602079a95ad9805bd20bc55dcc7c3a2ba1b99dd5c73e5cc2753c3d31250ca52a67d58059459d7d27debb983a9f552936c
-  languageName: node
-  linkType: hard
-
-"@popperjs/core@npm:^2.11.7":
-  version: 2.11.7
-  resolution: "@popperjs/core@npm:2.11.7"
-  checksum: 31b330f1551acf0eddcb13f472946a274b92b7f4391a52c0c85f448c935d5efc1c9c832a608214a5b74397ff632d4e5af5fcfa749f825afc63db97b8f72f3eeb
   languageName: node
   linkType: hard
 
@@ -3258,13 +3233,6 @@ __metadata:
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
   checksum: 90c5b6898610cd075984c58c4f88418a4fb44af08c1b1415e9854c03171bec31b336b7f3e4cefe33de994b3f12b03c5e2d638da4316df83593b9e82554e7e95b
-  languageName: node
-  linkType: hard
-
-"commander@npm:^9.0.0":
-  version: 9.4.0
-  resolution: "commander@npm:9.4.0"
-  checksum: 9b9af6b5c93287e18f00f92bb366220e72e2b9cb267c132c5e02639b2aded3db942433823ce6e786ef3f817bf35984ec83f41911ed68676068ba910aa7322e69
   languageName: node
   linkType: hard
 
@@ -6910,13 +6878,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"reflect-metadata@npm:^0.1.13":
-  version: 0.1.13
-  resolution: "reflect-metadata@npm:0.1.13"
-  checksum: 732570da35d2d96f8fdd5aac60fb263aa92f6512eaded5962b052bd9e90f22a9dec5aaf0d7ff4bfe97646c9530e8444e8435c2d80b24d0bdf938b5d47f6f5b83
-  languageName: node
-  linkType: hard
-
 "reflect-metadata@npm:^0.2.0":
   version: 0.2.1
   resolution: "reflect-metadata@npm:0.2.1"
@@ -7284,17 +7245,6 @@ __metadata:
   version: 3.0.0
   resolution: "shebang-regex@npm:3.0.0"
   checksum: 1a2bcae50de99034fcd92ad4212d8e01eedf52c7ec7830eedcf886622804fe36884278f2be8be0ea5fde3fd1c23911643a4e0f726c8685b61871c8908af01222
-  languageName: node
-  linkType: hard
-
-"showdown@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "showdown@npm:2.1.0"
-  dependencies:
-    commander: "npm:^9.0.0"
-  bin:
-    showdown: bin/showdown.js
-  checksum: 77aee9f1c879f0712c86d6c15f420874e2df53d0ad7f0c0d106d9fb56681ca6e2a67c6b661664b0883f884775235887281ab6b3df535c2c377fac7862ba800a7
   languageName: node
   linkType: hard
 
