@@ -18,7 +18,6 @@
         "@domojs/devices": "workspace:*"
     },
     "dependencies": {
-        "@akala/client": "^6.4.16",
         "@akala/commands": "^6.5.19",
         "@akala/config": "^4.0.2",
         "@akala/core": "^12.2.5",

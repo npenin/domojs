@@ -32,7 +32,6 @@
         "uuid": "9.0.1"
     },
     "devDependencies": {
-        "@akala/client": "^6.4.16",
         "@akala/commands": "^6.5.19",
         "@akala/core": "^12.2.5",
         "@akala/json-rpc-ws": "10.2.50",

@@ -337,7 +337,6 @@ __metadata:
   resolution: "@domojs/devices@workspace:packages/devices"
   dependencies:
     "@akala/cli": "npm:2.12.17"
-    "@akala/client": "npm:^6.4.16"
     "@akala/commands": "npm:^6.5.19"
     "@akala/config": "npm:^4.0.2"
     "@akala/core": "npm:^12.2.5"
@@ -425,7 +424,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/lifttt@workspace:packages/lifttt"
   dependencies:
-    "@akala/client": "npm:^6.4.16"
     "@akala/commands": "npm:^6.5.19"
     "@akala/core": "npm:^12.2.5"
     "@akala/json-rpc-ws": "npm:10.2.50"
@@ -611,7 +609,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/weather@workspace:packages/weather"
   dependencies:
-    "@akala/client": "npm:^6.4.16"
     "@akala/commands": "npm:^6.5.19"
     "@akala/config": "npm:^4.0.2"
     "@akala/core": "npm:^12.2.5"
@@ -630,7 +627,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/webscrapper@workspace:packages/webscrapper"
   dependencies:
-    "@akala/client": "npm:^6.4.16"
     "@akala/commands": "npm:^6.5.19"
     "@akala/config": "npm:^4.0.2"
     "@akala/core": "npm:^12.2.5"
