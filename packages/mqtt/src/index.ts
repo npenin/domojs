@@ -1,9 +1,10 @@
 import net from 'net'
-import { Protocol, ControlPacketType, Message, Properties, Messages } from './protocol/_protocol.js'
-import connect from './protocol/connect.js';
-import connack from './protocol/connack.js';
+import { header, Message, Messages } from './protocol/_protocol.js'
+import { Message as connect } from './protocol/connect.js';
+import { Message as connack } from './protocol/connack.js';
 import { Cursor } from '@akala/protocol-parser';
 import { EventEmitter } from 'events';
+import { ControlPacketType, Properties } from './protocol/_shared.js';
 
 /// PUT in this file any API you would like to expose to your package consumer
 
@@ -33,18 +34,18 @@ export class Client extends EventEmitter
         })
     }
 
-    private dialog(message: Message): Promise<Message>
+    private dialog(message: Message<any>): Promise<Message<any>>
     {
         const mapping = mappings.find(map => map[0] == message.type);
         if (!mapping)
             return Promise.reject(new Error('there is no such mapping for ' + JSON.stringify(message)));
         return new Promise((resolve, reject) =>
         {
-            this.once(ControlPacketType[mapping[1]], (m: Message) =>
+            this.once(ControlPacketType[mapping[1]], (m: Message<any>) =>
             {
                 resolve(m);
             });
-            this.socket.write(Buffer.concat(Protocol.write(message, message)));
+            this.socket.write(Buffer.concat(header.write(message, message)));
 
         })
     }
@@ -53,24 +54,28 @@ export class Client extends EventEmitter
     {
         if (!opts)
             opts = {};
-        const message: connect = {
-            type: ControlPacketType.CONNECT,
-            protocol: 'MQTT',
-            version: 5,
-            cleanStart: !!opts.sessionId,
-            hasPassword: !!opts.password,
-            hasUserName: !!opts.userName,
-            password: opts.password,
-            userName: opts.userName,
-            hasWill: !!opts.will,
-            properties: [],
-            clientId: this.clientId
-        };
+        // const message: Message<connect> = {
+        //     type: ControlPacketType.CONNECT,
+        //     header: {
+        //         protocol: 'MQTT',
+        //         version: 5,
+        //         cleanStart: !!opts.sessionId,
+        //         hasPassword: !!opts.password,
+        //         hasUserName: !!opts.userName,
+        //         hasWill: !!opts.will,
+        //         properties: [],
+        //     },
+        //     payload: {
+        //         password: opts.password,
+        //         userName: opts.userName,
+        //         clientId: this.clientId
+        //     }
+        // };
 
-        this.once(ControlPacketType[ControlPacketType.CONNACK], () =>
-        {
+        // this.once(ControlPacketType[ControlPacketType.CONNACK], () =>
+        // {
 
-        })
+        // })
 
     }
 }

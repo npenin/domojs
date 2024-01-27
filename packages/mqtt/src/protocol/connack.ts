@@ -1,7 +1,8 @@
 import { parsers } from '@akala/protocol-parser';
-import { ControlPacketType, Properties, propertiesFrame, Protocol, Message as CoreMessage, ReasonCodes } from './_protocol.js'
+import { header, Message as CoreMessage } from './_protocol.js'
+import { ControlPacketType, Properties, ReasonCodes, propertiesParser } from './_shared.js';
 
-export default interface Message extends CoreMessage
+export interface Header 
 {
     reservedConnectFlag1: boolean;
     reservedConnectFlag2: boolean;
@@ -15,7 +16,9 @@ export default interface Message extends CoreMessage
     reason: ReasonCodes;
 }
 
-Protocol.register(ControlPacketType.CONNACK, parsers.object<Message>(
+export type Message = { header: Header };
+
+header.register(ControlPacketType.CONNACK, parsers.object<Header>(
     parsers.property('reservedConnectFlag1', parsers.boolean()),
     parsers.property('reservedConnectFlag2', parsers.boolean()),
     parsers.property('reservedConnectFlag3', parsers.boolean()),
@@ -25,5 +28,5 @@ Protocol.register(ControlPacketType.CONNACK, parsers.object<Message>(
     parsers.property('reservedConnectFlag7', parsers.boolean()),
     parsers.property('hasSession', parsers.boolean()),
     parsers.property('reason', parsers.uint8),
-    Object.assign({}, propertiesFrame, { name: 'properties' }),
+    Object.assign({}, propertiesParser, { name: 'properties' }),
 ));

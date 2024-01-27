@@ -1,14 +1,18 @@
 import { parsers } from '@akala/protocol-parser';
-import { ControlPacketType, Properties, propertiesFrame, Protocol, Message as CoreMessage } from './_protocol.js'
+import { header, Message as CoreMessage } from './_protocol.js'
+import { ControlPacketType, Properties, propertiesParser } from './_shared.js';
 
 
-export default interface Message extends CoreMessage
+export interface Header 
 {
     packetId: number;
     properties: Properties;
 }
+export type Message = { header: Header };
 
-Protocol.register(ControlPacketType.SUBACK, parsers.object<Message>(
-    parsers.property('packetId', parsers.uint16),
-    parsers.property('properties', propertiesFrame)
+header.register(ControlPacketType.SUBACK, parsers.object<Message>(
+    parsers.complexProperty<Message, 'header'>('header', parsers.object<Header>(
+        parsers.property('packetId', parsers.uint16),
+        parsers.property('properties', propertiesParser)
+    ))
 ));
