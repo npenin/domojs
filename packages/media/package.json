@@ -25,9 +25,9 @@
     "author": "npenin",
     "license": "MIT",
     "dependencies": {
-        "@akala/commands": "^6.5.19",
-        "@akala/config": "^4.0.2",
-        "@akala/core": "^12.2.5",
+        "@akala/commands": "^6.6.0",
+        "@akala/config": "^4.0.3",
+        "@akala/core": "^12.2.6",
         "levenshtein": "1.0.5",
         "webdav": "^5.3.1"
     },
@@ -35,11 +35,11 @@
         "@akala/pm": "^3.7.12"
     },
     "devDependencies": {
-        "@akala/cli": "2.12.17",
-        "@akala/json-rpc-ws": "10.2.50",
-        "@akala/pm": "^8.0.26",
-        "@akala/server": "^9.4.36",
-        "@akala/storage": "4.0.11",
+        "@akala/cli": "2.13.0",
+        "@akala/json-rpc-ws": "10.2.51",
+        "@akala/pm": "^8.1.0",
+        "@akala/server": "^9.4.37",
+        "@akala/storage": "4.0.12",
         "@domojs/theme-default": "workspace:*",
         "@types/debug": "4.1.12",
         "@types/ioredis": "5.0.0",

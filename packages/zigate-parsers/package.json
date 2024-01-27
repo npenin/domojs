@@ -12,8 +12,8 @@
     "author": "npenin",
     "license": "MIT",
     "dependencies": {
-        "@akala/core": "^12.2.5",
-        "@akala/protocol-parser": "^2.7.1",
+        "@akala/core": "^12.2.6",
+        "@akala/protocol-parser": "^2.7.2",
         "@domojs/devices": "workspace:*",
         "debug": "^4.3.4"
     },
