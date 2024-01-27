@@ -23,6 +23,7 @@ export interface Music extends BaseMedia
     artists?: string[];
     album?: string;
     trackNo: number;
+    discNo: number;
 }
 
 export interface Video extends BaseMedia

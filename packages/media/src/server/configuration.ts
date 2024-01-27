@@ -5,7 +5,10 @@ export default interface Configuration extends CoreConfiguration
 {
     libraries: LibrariesConfiguration;
     scrappers: ScrappersConfiguration;
+    vault: Record<string, { username: string, password: string }>;
 }
+
+export type Vault = Record<string, { username: string, password: string }>;
 
 export interface LibrariesConfiguration
 {

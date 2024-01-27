@@ -3,13 +3,94 @@ import * as fs from 'fs/promises';
 import * as p from 'path';
 import { Media } from '../../../metadata.js';
 import * as redis from 'ioredis';
-import Configuration from '@akala/config';
+import Configuration, { ProxyConfiguration } from '@akala/config';
 import { Container } from '@akala/commands'
-import { LibrariesConfiguration, ScrappersConfiguration } from '../configuration.js';
+import { LibrariesConfiguration, ScrappersConfiguration, Vault } from '../configuration.js';
 import { eachAsync } from '@akala/core';
 import { AuthType, WebDAVClient, WebDAVClientOptions, createClient } from 'webdav';
 
 const log = akala.logger('domojs:media');
+
+(function ()
+{
+    const orig = globalThis.decodeURIComponent;
+
+    globalThis.decodeURIComponent = function (s: string)
+    {
+        let indexOfPercent: number;
+        while (~indexOfPercent)
+        {
+            const firstIndexOfPercent = s.indexOf('%', indexOfPercent);
+            if (!~firstIndexOfPercent)
+                break;
+            indexOfPercent = firstIndexOfPercent;
+            const values = [];
+            do
+            {
+                values.push(Number.parseInt(s.substring(indexOfPercent + 1, indexOfPercent + 3), 16));
+                if (values.length > 1 && values[0] > 0x7f && values[0] <= 0xf4 && values.length > 1 && (values[values.length - 1] < 0x80 || values[values.length - 1] >= 0xC0))
+                {
+                    //wrong encoding
+                    values.pop();
+                    indexOfPercent -= 3;
+                    break;
+                }
+                if (values.length == 1 && values[0] > 0x7f && values[0] < 0xc2)
+                {
+                    break;
+                    //possible wrong encoding
+                    if (s[indexOfPercent + 3] == '%')
+                        indexOfPercent += 3;
+                    else
+                    {
+                        break;
+                    }
+                }
+                else if (values[0] > 0x7f && values[0] <= 0xdf && values.length < 2 || values[0] > 0xdf && values[0] <= 0xef && values.length < 3 || values[0] > 0xef && values[0] < 0xf4 && values.length < 4)
+                {
+                    if (values[0] > 0x7f && values[0] <= 0xf4 && (values.length == 1 || values[values.length - 1] >= 0x80 && values[values.length - 1] < 0xC0) && s[indexOfPercent + 3] == '%')
+                        indexOfPercent += 3;
+                    else
+                    {
+                        if (values.length > 1)
+                        {
+                            values.pop();
+                            indexOfPercent -= 3;
+                        }
+                        break;
+                        //possible wrong encoding
+                    }
+                }
+                else
+                    break;
+            }
+            while (true);
+            if (values.length == 1 && values[0] > 0x7f)
+            {
+                // debugger;
+                switch (values[0])
+                {
+                    case 149:
+                        values[0] = [0x2022];
+                        break;
+                    case 0xa0:
+                        values[0] = [0x20];
+                        break;
+                }
+                s = s.substring(0, firstIndexOfPercent) + String.fromCodePoint(...values) + s.substring(firstIndexOfPercent + 3 * values.length);
+            }
+            else if (!(values[0] < 0x7f && values.length == 1 || values[0] > 0x7f && values[0] <= 0xdf && values.length == 2 || values[0] > 0xdf && values[0] <= 0xef && values.length == 3 || values[0] > 0xef && values[0] < 0xf4 && values.length == 4))
+            {
+                // debugger;
+                s = s.substring(0, firstIndexOfPercent) + Buffer.from(String.fromCharCode(...values), 'ascii').toString() + s.substring(firstIndexOfPercent + 3 * values.length);
+                //possible wrong encoding
+            }
+
+            indexOfPercent = s.indexOf('%', indexOfPercent + 1);
+        }
+        return orig(s);
+    }
+})()
 
 var folderMapping: { [key: string]: string } = {};
 
@@ -46,7 +127,7 @@ async function translatePath(path: string): Promise<string>
 
 export var extensions = {
     video: /\.(avi|mkv|flv|mp4|mpg|ts)$/i,
-    music: /\.(mp3|fla|flac|m4a)$/i
+    music: /\.(mp3|fla|flac|m4a|webm)$/i
 };
 
 export function saveMedia(db: redis.Pipeline, media: Media)
@@ -220,7 +301,7 @@ var alphabetize = (function ()
 })();
 
 var processing: string = null;
-export async function processSource(sources: string[], container: Container<Configuration>, type: string, scrappers: string[], lastIndex?: Date, name?: string, season?: number, episode?: number, album?: string, artist?: string)
+export async function processSource(sources: string[], vault: ProxyConfiguration<Vault>, container: Container<Configuration>, type: string, scrappers: string[], lastIndex?: Date, name?: string, season?: number, episode?: number, album?: string, artist?: string)
 {
     var wasProcessing: string = null;
 
@@ -256,7 +337,7 @@ export async function processSource(sources: string[], container: Container<Conf
 
     await akala.eachAsync(sources, function (source)
     {
-        return browse(source, extension, lastIndex).then(function (media)
+        return browse(source, extension, lastIndex, vault).then(function (media)
         {
             result = result.concat(media);
         });
@@ -289,7 +370,7 @@ export async function processSource(sources: string[], container: Container<Conf
     return trueResult;
 }
 
-export async function browse(folder: string, extension: RegExp, lastIndex: Date)
+export async function browse(folder: string, extension: RegExp, lastIndex: Date, vault: ProxyConfiguration<Vault>)
 {
     var result: string[] = [];
 
@@ -306,8 +387,13 @@ export async function browse(folder: string, extension: RegExp, lastIndex: Date)
                 url.password = '';
                 client = createClient(url.protocol + '//' + url.host + folder.substring(url.protocol.length + 2 + url.host.length + options.username.length + options.password.length + 2), options);
             }
+            else if (vault.has(url.host))
+            {
+                client = createClient(folder, { authType: AuthType.Password, ...vault[url.host], password: await vault[url.host].getSecret('password') });
+            }
             else
                 client = createClient(folder);
+            // console.log(folder)
             const files = await client.getDirectoryContents("/", {});
             if (Array.isArray(files))
                 await akala.eachAsync(files, async function (file)
@@ -316,7 +402,7 @@ export async function browse(folder: string, extension: RegExp, lastIndex: Date)
                         return;
                     // file = folder + '/' + file;
                     if (file.type == 'directory')
-                        result.concat(await browse(folder + file.filename, extension, lastIndex));
+                        result = result.concat(await browse(folder + '/' + encodeURIComponent(file.filename.substring(1)), extension, lastIndex, vault));
                     else
                     {
                         if (extension.test(file.filename) && new Date(file.lastmod) > lastIndex)
@@ -340,7 +426,7 @@ export async function browse(folder: string, extension: RegExp, lastIndex: Date)
             const path = folder + '/' + file;
             const stat = await fs.stat(await translatePath(path));
             if (file.isDirectory())
-                result.concat(await browse(path, extension, lastIndex));
+                result = result.concat(await browse(path, extension, lastIndex, vault));
             else
             {
                 if (extension.test(file.name) && stat.mtime > lastIndex)

@@ -67,6 +67,41 @@
             }
         },
         {
+            "name": "add-credentials",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ],
+                    "path": "dist/server/commands/library/add-credentials.js",
+                    "source": "src/server/commands/library/add-credentials.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "options.url",
+                        "options.username",
+                        "options.password"
+                    ],
+                    "options": {
+                        "name": {},
+                        "path": {
+                            "normalize": true
+                        }
+                    },
+                    "usage": "add credentials <url> <username> [password]"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                }
+            }
+        },
+        {
             "name": "add-folder",
             "config": {
                 "fs": {
@@ -377,6 +412,30 @@
                             "needsValue": true
                         }
                     }
+                }
+            }
+        },
+        {
+            "name": "rm-credentials",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/server/commands/library/rm-credentials.js",
+                    "source": "src/server/commands/library/rm-credentials.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "options.url"
+                    ],
+                    "options": {},
+                    "usage": "rm credentials <url>"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
                 }
             }
         },

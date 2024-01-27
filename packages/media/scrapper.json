@@ -38,6 +38,40 @@
             }
         },
         {
+            "name": "iTunes-like",
+            "config": {
+                "fs": {
+                    "path": "dist/server/commands/scrapper/iTunes-like.js",
+                    "source": "src/server/commands/scrapper/iTunes-like.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "mpeg-tag",
+            "config": {
+                "fs": {
+                    "path": "dist/server/commands/scrapper/mpeg-tag.js",
+                    "source": "src/server/commands/scrapper/mpeg-tag.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
             "name": "scrapTVShowFileName",
             "config": {
                 "fs": {
