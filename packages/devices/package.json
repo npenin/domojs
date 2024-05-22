@@ -22,7 +22,7 @@
         "@akala/pubsub": "^1.2.103",
         "@akala/server": "^9.4.37",
         "@akala/sidecar": "^3.0.45",
-        "@akala/storage": "4.0.12",
+        "@akala/storage": "4.0.23",
         "@fortawesome/free-brands-svg-icons": "6.5.1",
         "uuid": "9.0.1",
         "ws": "8.16.0"

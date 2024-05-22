@@ -39,7 +39,7 @@
         "@akala/json-rpc-ws": "10.2.51",
         "@akala/pm": "^8.1.0",
         "@akala/server": "^9.4.37",
-        "@akala/storage": "4.0.12",
+        "@akala/storage": "4.0.23",
         "@domojs/theme-default": "workspace:*",
         "@types/debug": "4.1.12",
         "@types/ioredis": "5.0.0",

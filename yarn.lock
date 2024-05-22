@@ -385,14 +385,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@akala/storage@npm:4.0.12":
-  version: 4.0.12
-  resolution: "@akala/storage@npm:4.0.12"
+"@akala/storage@npm:4.0.23":
+  version: 4.0.23
+  resolution: "@akala/storage@npm:4.0.23"
   dependencies:
-    "@akala/core": "npm:^12.2.6"
+    "@akala/core": "npm:^14.0.2"
     reflect-metadata: "npm:^0.2.0"
     uuid: "npm:^9.0.1"
-  checksum: a3103daafeb7cda3d76240bdce7276cc3368eb7bd84f06132715592626357f37a166aaf1b4e05db17cd96eba36c56acf15085bb5571c98c87495c3fe4063df3f
+  checksum: fdf8a0dd7e6729601304c0aefa6fc8413514e7c70a0d089dd6f62df2217a542df9fa6312ee378c00b6f9001fee7e6ebaf2f91977dedf6f974e8573a997dc50d0
   languageName: node
   linkType: hard
 
@@ -505,7 +505,7 @@ __metadata:
     "@akala/pubsub": "npm:^1.2.103"
     "@akala/server": "npm:^9.4.37"
     "@akala/sidecar": "npm:^3.0.45"
-    "@akala/storage": "npm:4.0.12"
+    "@akala/storage": "npm:4.0.23"
     "@domojs/theme-default": "workspace:*"
     "@fortawesome/free-brands-svg-icons": "npm:6.5.1"
     "@popperjs/core": "npm:2.11.8"
@@ -655,7 +655,7 @@ __metadata:
     "@akala/json-rpc-ws": "npm:10.2.51"
     "@akala/pm": "npm:^8.1.0"
     "@akala/server": "npm:^9.4.37"
-    "@akala/storage": "npm:4.0.12"
+    "@akala/storage": "npm:4.0.23"
     "@domojs/theme-default": "workspace:*"
     "@types/debug": "npm:4.1.12"
     "@types/ioredis": "npm:5.0.0"
