@@ -700,7 +700,7 @@ __metadata:
     typescript: "npm:5.3.3"
     usb: "npm:2.11.0"
   peerDependencies:
-    serialport: ^9.2.8
+    serialport: ^12.0.0
     usb: ^2.1.2
   peerDependenciesMeta:
     serialport:
@@ -727,7 +727,7 @@ __metadata:
     typescript: "npm:5.3.3"
   peerDependencies:
     "@akala/pm": ^3.7.12
-    serialport: ^9.2.8
+    serialport: ^12.0.0
     usb: ^2.1.2
   peerDependenciesMeta:
     serialport:
@@ -815,7 +815,7 @@ __metadata:
     typescript: "npm:5.3.3"
     usb: "npm:2.11.0"
   peerDependencies:
-    serialport: ^9.2.8
+    serialport: ^12.0.0
     usb: ^2.1.2
   peerDependenciesMeta:
     serialport:
@@ -840,7 +840,7 @@ __metadata:
     http-punch-hole: "npm:^1.0.12"
   peerDependencies:
     "@domojs/devices": "workspace:*"
-    serialport: ^9.2.8
+    serialport: ^12.0.0
   peerDependenciesMeta:
     serialport:
       optional: true
