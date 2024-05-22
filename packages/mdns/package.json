@@ -11,7 +11,7 @@
         "generate": "ac generate dist/commands commands.json --name @domojs/mdns"
     },
     "dependencies": {
-        "@akala/cli": "2.13.0",
+        "@akala/cli": "2.13.19",
         "@akala/commands": "^6.6.0",
         "@akala/config": "^4.0.3",
         "@akala/core": "^12.2.6",
