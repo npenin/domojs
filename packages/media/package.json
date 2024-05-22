@@ -32,7 +32,7 @@
         "webdav": "^5.3.1"
     },
     "peerDependencies": {
-        "@akala/pm": "^3.7.12"
+        "@akala/pm": "^8.0.0"
     },
     "devDependencies": {
         "@akala/cli": "2.13.19",

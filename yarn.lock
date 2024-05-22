@@ -480,7 +480,7 @@ __metadata:
     "@types/yargs": "npm:17.0.32"
   peerDependencies:
     "@akala/commands": ^3.8.3
-    "@akala/pm": ^3.7.12
+    "@akala/pm": ^8.0.0
   languageName: unknown
   linkType: soft
 
@@ -576,7 +576,7 @@ __metadata:
     "@types/ws": "npm:8.5.10"
   peerDependencies:
     "@akala/commands": ^3.8.3
-    "@akala/pm": ^3.7.12
+    "@akala/pm": ^8.0.0
   languageName: unknown
   linkType: soft
 
@@ -668,7 +668,7 @@ __metadata:
     typescript: "npm:5.3.3"
     webdav: "npm:^5.3.1"
   peerDependencies:
-    "@akala/pm": ^3.7.12
+    "@akala/pm": ^8.0.0
   languageName: unknown
   linkType: soft
 
@@ -726,7 +726,7 @@ __metadata:
     http-punch-hole: "npm:^1.0.12"
     typescript: "npm:5.3.3"
   peerDependencies:
-    "@akala/pm": ^3.7.12
+    "@akala/pm": ^8.0.0
     serialport: ^9.2.8
     usb: ^2.1.2
   peerDependenciesMeta:
@@ -775,7 +775,7 @@ __metadata:
     "@akala/server": "npm:^9.4.37"
     "@domojs/devices": "workspace:*"
   peerDependencies:
-    "@akala/pm": ^3.0.2
+    "@akala/pm": ^8.0.0
     "@akala/server": ^7.0.2
     "@domojs/devices": "workspace:*"
   languageName: unknown
@@ -794,7 +794,7 @@ __metadata:
     "@domojs/devices": "workspace:*"
     cheerio: "npm:^1.0.0-rc.12"
   peerDependencies:
-    "@akala/pm": ^3.0.2
+    "@akala/pm": ^8.0.0
     "@akala/server": ^7.0.2
   languageName: unknown
   linkType: soft
