@@ -776,7 +776,7 @@ __metadata:
     "@domojs/devices": "workspace:*"
   peerDependencies:
     "@akala/pm": ^3.0.2
-    "@akala/server": ^7.0.2
+    "@akala/server": ^9.0.0
     "@domojs/devices": "workspace:*"
   languageName: unknown
   linkType: soft
@@ -795,7 +795,7 @@ __metadata:
     cheerio: "npm:^1.0.0-rc.12"
   peerDependencies:
     "@akala/pm": ^3.0.2
-    "@akala/server": ^7.0.2
+    "@akala/server": ^9.0.0
   languageName: unknown
   linkType: soft
 
