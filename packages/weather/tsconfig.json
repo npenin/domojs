@@ -5,9 +5,12 @@
         "rootDir": "src",
         "outDir": "dist"
     },
+    "exclude": [
+        "src/client"
+    ],
     "references": [
         {
-            "path": "../devices"
+            "path": "../devices/tsconfig.json"
         }
     ]
 }

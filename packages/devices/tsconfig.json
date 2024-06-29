@@ -5,9 +5,12 @@
         "rootDir": "src",
         "outDir": "dist"
     },
+    "exclude": [
+        "src/client"
+    ],
     "references": [
-        {
-            "path": "../theme-default"
-        }
+        // {
+        //     "path": "../theme-default"
+        // }
     ]
 }

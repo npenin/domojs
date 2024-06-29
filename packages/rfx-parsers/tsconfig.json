@@ -7,7 +7,7 @@
     },
     "references": [
         {
-            "path": "../devices"
+            "path": "../devices/tsconfig.json"
         }
     ]
 }

@@ -9,12 +9,13 @@
         "packages/*"
     ],
     "devDependencies": {
-        "@akala/automate": "^4.0.47",
-        "@akala/automate-yamlloader": "^1.3.108",
-        "@akala/commands": "^6.5.19",
-        "@akala/pm": "^8.0.26",
-        "@akala/semantic-release": "^1.3.97",
-        "typescript": "^5.3.3"
+        "@akala/automate": "^4.0.78",
+        "@akala/automate-yamlloader": "^1.3.139",
+        "@akala/cli": "^2.13.20",
+        "@akala/commands": "^7.1.6",
+        "@akala/pm": "^8.1.30",
+        "@akala/semantic-release": "^1.3.127",
+        "typescript": "^5.4.5"
     },
     "scripts": {
         "publish-all": "yarn akala-automate-runner --loader @akala/automate-yamlloader/ --file @akala/semantic-release/publish.yml --verbose=silly",
@@ -22,7 +23,7 @@
         "generate": "yarn workspaces foreach --exclude @domojs/mdns -A run generate",
         "generate-metadata": "yarn workspaces foreach -A run generate-metadata"
     },
-    "packageManager": "yarn@4.0.2",
+    "packageManager": "yarn@4.1.1",
     "resolutions": {
         "cheerio@^1.0.0-rc.12": "patch:cheerio@npm%3A1.0.0-rc.12#./.yarn/patches/cheerio-npm-1.0.0-rc.12-6785a97c2a.patch"
     }

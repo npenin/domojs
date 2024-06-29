@@ -7,7 +7,10 @@
                 "fs": {
                     "path": "dist/server/commands/$init.js",
                     "source": "src/server/commands/$init.ts",
-                    "inject": []
+                    "inject": [
+                        "container",
+                        "options.path"
+                    ]
                 },
                 "cli": {
                     "inject": [
@@ -15,7 +18,10 @@
                     ]
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "container",
+                        "options.path"
+                    ]
                 }
             }
         },

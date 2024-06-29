@@ -4,7 +4,7 @@ import { Duplex } from 'stream';
 import { Queue, logger, eachAsync } from '@akala/core';
 import { Gateway } from '@domojs/devices';
 import os from 'os';
-import { readdir } from 'fs'
+import { readdir } from 'fs/promises'
 import { Socket } from 'net'
 
 import * as address from './messages/address.js';
@@ -381,33 +381,29 @@ export class Zigate extends Gateway
         const { getDeviceList } = await import('usb');
         const devices = getDeviceList().filter(d => d.deviceDescriptor.idVendor == 1027 && d.deviceDescriptor.idProduct == 24577);
         const result = [];
-        await eachAsync(devices, (d, i, next) =>
+        await eachAsync(devices, async (d, i) =>
         {
             d.open();
-            d.getStringDescriptor(d.deviceDescriptor.iManufacturer, function (error, data)
+            return new Promise(next => d.getStringDescriptor(d.deviceDescriptor.iManufacturer, function (error, data)
             {
                 if (data.toString().startsWith('Prolific'))
                     result.push(d);
                 d.close();
                 next();
-            });
+            }));
         });
         if (os.platform() == "linux" && result.length > 0)
         {
             const serials: string[] = [];
-            await eachAsync(result, (d, i, next) =>
+            await eachAsync(result, async (d, i) =>
             {
-                readdir('/sys/bus/usb/devices/' + d.busNumber + '-' + d.portNumbers.join('.') + '/' + d.busNumber + '-' + d.portNumbers.join('.') + ':1.0', function (err, files)
+                const files = await readdir('/sys/bus/usb/devices/' + d.busNumber + '-' + d.portNumbers.join('.') + '/' + d.busNumber + '-' + d.portNumbers.join('.') + ':1.0')
+                if (files)
                 {
-
-                    if (files)
-                    {
-                        var tty = files.find(f => f.startsWith('tty'));
-                        if (tty)
-                            serials.push('/dev/' + tty);
-                    }
-                    next(err);
-                });
+                    var tty = files.find(f => f.startsWith('tty'));
+                    if (tty)
+                        serials.push('/dev/' + tty);
+                }
             });
 
             return serials;

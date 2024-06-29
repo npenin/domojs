@@ -110,5 +110,5 @@ interface Recipe
                 }
             }
         }
-    }, new FetchHttp()), false, 5, true));
+    }, new FetchHttp(null)), false, 5, true));
 })()

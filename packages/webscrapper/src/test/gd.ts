@@ -129,7 +129,7 @@ interface Recipe
                     }
                 }
             }
-        }, new FetchHttp()) as Recipe[];
+        }, new FetchHttp(null)) as Recipe[];
         results.push(...categoryResults.map(e => (e.category = category, e.is_icookable = is_icookable, e)));
         console.timeEnd(category);
         console.log(categoryResults.length);

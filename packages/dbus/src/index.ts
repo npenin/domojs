@@ -1,5 +1,4 @@
-import { double, int16, int32, parsers, uint16, uint32, uint64, uint8 } from '@akala/protocol-parser'
-import { Cursor, ParserWithMessage, ParserWithMessageWithoutKnownLength } from '@akala/protocol-parser/dist/parsers/_common';
+import { Cursor, double, int16, int32, parsers, uint16, uint32, uint64, uint8 } from '@akala/protocol-parser'
 
 export enum MessageType
 {
@@ -40,7 +39,7 @@ type Signature = string
 const signature = parsers.string(parsers.uint8, 'ascii');
 // type Variant= uint8|boolean|int16|uint16|int32|uint32|uint64|double|string|ObjectPath|Signature|;
 
-class Uint32lebe implements ParserWithMessage<uint32, Message>
+class Uint32lebe implements parsers.ParserWithMessage<uint32, Message>
 {
     length: number = 4;
     read(buffer: Buffer, cursor: Cursor, message: Message): uint32
@@ -114,7 +113,7 @@ function createSignatureParsers(endianness: Message['endianness'], signature: Si
     return signatureParsers;
 }
 
-class VariantParser implements ParserWithMessageWithoutKnownLength<Variant, Message>
+class VariantParser implements parsers.ParserWithMessageWithoutKnownLength<Variant, Message>
 {
     length: -1;
     read(buffer: Buffer, cursor: Cursor, partial: Message)

@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
 
-const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'], headless: 'new' });
+const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'], headless: true, });
 const page = await browser.newPage();
 await page.goto('https://tv.sfr.fr');
 await page.setRequestInterception(true);
