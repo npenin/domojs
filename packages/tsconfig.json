@@ -1,9 +1,9 @@
 {
   "files": [],
   "references": [
-    {
-      "path": "theme-default"
-    },
+    // {
+    //   "path": "theme-default"
+    // },
     {
       "path": "chat"
     },
@@ -75,6 +75,9 @@
     },
     {
       "path": "adb"
+    },
+    {
+      "path": "media-yt-music"
     }
   ]
 }
