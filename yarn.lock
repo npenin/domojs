@@ -337,7 +337,7 @@ __metadata:
     "@types/ws": "npm:8.5.10"
     typescript: "npm:5.4.5"
     uuid: "npm:9.0.1"
-    ws: "npm:8.16.0"
+    ws: "npm:8.17.1"
   languageName: unknown
   linkType: soft
 
@@ -384,7 +384,7 @@ __metadata:
     "@types/ws": "npm:8.5.10"
     mongodb: "npm:6.5.0"
     typescript: "npm:5.4.5"
-    ws: "npm:8.16.0"
+    ws: "npm:8.17.1"
   languageName: unknown
   linkType: soft
 
@@ -464,14 +464,6 @@ __metadata:
     "@akala/config": "npm:^4.0.33"
     "@domojs/media": "workspace:^"
     crunchyroll.js: "npm:^1.1.0"
-  languageName: unknown
-  linkType: soft
-
-"@domojs/media-yt-music@workspace:packages/media-yt-music":
-  version: 0.0.0-use.local
-  resolution: "@domojs/media-yt-music@workspace:packages/media-yt-music"
-  dependencies:
-    "@domojs/media": "workspace:^"
   languageName: unknown
   linkType: soft
 
@@ -2329,18 +2321,6 @@ __metadata:
   linkType: hard
 
 "ajv@npm:^8.12.0":
-  version: 8.12.0
-  resolution: "ajv@npm:8.12.0"
-  dependencies:
-    fast-deep-equal: "npm:^3.1.1"
-    json-schema-traverse: "npm:^1.0.0"
-    require-from-string: "npm:^2.0.2"
-    uri-js: "npm:^4.2.2"
-  checksum: 10/b406f3b79b5756ac53bfe2c20852471b08e122bc1ee4cde08ae4d6a800574d9cd78d60c81c69c63ff81e4da7cd0b638fafbb2303ae580d49cf1600b9059efb85
-  languageName: node
-  linkType: hard
-
-"ajv@npm:^8.12.0":
   version: 8.13.0
   resolution: "ajv@npm:8.13.0"
   dependencies:
@@ -2348,7 +2328,7 @@ __metadata:
     json-schema-traverse: "npm:^1.0.0"
     require-from-string: "npm:^2.0.2"
     uri-js: "npm:^4.4.1"
-  checksum: 4ada268c9a6e44be87fd295df0f0a91267a7bae8dbc8a67a2d5799c3cb459232839c99d18b035597bb6e3ffe88af6979f7daece854f590a81ebbbc2dfa80002c
+  checksum: 10/4ada268c9a6e44be87fd295df0f0a91267a7bae8dbc8a67a2d5799c3cb459232839c99d18b035597bb6e3ffe88af6979f7daece854f590a81ebbbc2dfa80002c
   languageName: node
   linkType: hard
 
@@ -6720,13 +6700,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"require-from-string@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "require-from-string@npm:2.0.2"
-  checksum: 839a3a890102a658f4cb3e7b2aa13a1f80a3a976b512020c3d1efc418491c48a886b6e481ea56afc6c4cb5eef678f23b2a4e70575e7534eccadf5e30ed2e56eb
-  languageName: node
-  linkType: hard
-
 "require-optional@npm:^0.4.0":
   version: 0.4.0
   resolution: "require-optional@npm:0.4.0"
@@ -7901,6 +7874,21 @@ __metadata:
     utf-8-validate:
       optional: true
   checksum: 10/7c511c59e979bd37b63c3aea4a8e4d4163204f00bd5633c053b05ed67835481995f61a523b0ad2b603566f9a89b34cb4965cb9fab9649fbfebd8f740cea57f17
+  languageName: node
+  linkType: hard
+
+"ws@npm:8.17.1":
+  version: 8.17.1
+  resolution: "ws@npm:8.17.1"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ">=5.0.2"
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 10/4264ae92c0b3e59c7e309001e93079b26937aab181835fb7af79f906b22cd33b6196d96556dafb4e985742dd401e99139572242e9847661fdbc96556b9e6902d
   languageName: node
   linkType: hard
 
