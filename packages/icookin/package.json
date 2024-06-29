@@ -8,7 +8,7 @@
     "dependencies": {
         "@akala/core": "^14.0.2",
         "mongodb": "6.5.0",
-        "ws": "8.16.0"
+        "ws": "8.17.1"
     },
     "devDependencies": {
         "@types/debug": "4.1.12",
