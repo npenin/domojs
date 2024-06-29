@@ -2,21 +2,25 @@
     "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
     "fs": {
         "inject": [
-            "param.0"
+            "param.0",
+            "param.1"
         ]
     },
     "cli": {
         "inject": [
-            "options.name"
+            "options.library",
+            "options.organizer"
         ],
         "options": {
-            "name": {}
+            "library": {},
+            "organizer": {}
         },
-        "usage": "add library <name>"
+        "usage": "add organizer <library> <organizer>"
     },
     "": {
         "inject": [
-            "param.0"
+            "param.0",
+            "param.1"
         ]
     }
 }

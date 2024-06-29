@@ -2,6 +2,8 @@ import * as akala from '@akala/core';
 export * from '../../metadata.js';
 import levenshtein from 'levenshtein';
 
+export { fsHandler, FsProvider } from './commands/processFolder.js'
+
 const confidenceLog = akala.logger('domojs:media:confidence');
 
 export function confidence(name: string, names: string[])

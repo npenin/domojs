@@ -5,7 +5,9 @@ export type Media = Music | TVShow | Movie;
 export interface BaseMedia
 {
     id: string;
-    path: string;
+    ids?: Record<string, string>
+    path: string | URL;
+    relativePath?: string[];
     type: MediaType;
     tokens?: string[];
     name?: string;
@@ -22,8 +24,12 @@ export interface Music extends BaseMedia
     artist: string;
     artists?: string[];
     album?: string;
+    albumArtist?: string;
     trackNo: number;
     discNo: number;
+    year: number;
+    totalTracks: number;
+    totalDiscs: number;
 }
 
 export interface Video extends BaseMedia

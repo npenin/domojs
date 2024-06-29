@@ -80,7 +80,7 @@
                 },
                 "cli": {
                     "inject": [
-                        "options.url",
+                        "options.host",
                         "options.username",
                         "options.password"
                     ],
@@ -90,7 +90,7 @@
                             "normalize": true
                         }
                     },
-                    "usage": "add credentials <url> <username> [password]"
+                    "usage": "add credentials <host> <username> [password]"
                 },
                 "": {
                     "inject": [
@@ -148,16 +148,43 @@
                         "options.name"
                     ],
                     "options": {
-                        "name": {},
-                        "path": {
-                            "normalize": true
-                        }
+                        "name": {}
                     },
                     "usage": "add library <name>"
                 },
                 "": {
                     "inject": [
                         "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "add-organizer",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/server/commands/library/add-organizer.js",
+                    "source": "src/server/commands/library/add-organizer.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "options.library",
+                        "options.organizer"
+                    ],
+                    "options": {
+                        "library": {},
+                        "organizer": {}
+                    },
+                    "usage": "add organizer <library> <organizer>"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
                     ]
                 }
             }
@@ -188,7 +215,7 @@
                     "description": "This command add a registered scrapper to a library. If you want to register a new scrapper, use the register-scrapper command",
                     "inject": [
                         "The name of the library",
-                        "The type of scrapper (music or video)"
+                        "The name of the scrapper (as used when registered). You may list registered scrappers with `scrappers lists -g`"
                     ]
                 },
                 "": {
@@ -253,6 +280,43 @@
             }
         },
         {
+            "name": "dedupe",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ],
+                    "path": "dist/server/commands/library/dedupe.js",
+                    "source": "src/server/commands/library/dedupe.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "options.library",
+                        "options.type",
+                        "options.what-if"
+                    ],
+                    "options": {
+                        "library": {},
+                        "type": {},
+                        "what-if": {}
+                    },
+                    "usage": "dedupe <library> [type]"
+                },
+                "": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                }
+            }
+        },
+        {
             "name": "dropbox",
             "config": {
                 "fs": {
@@ -306,6 +370,59 @@
             }
         },
         {
+            "name": "import",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/server/commands/library/import.js",
+                    "source": "src/server/commands/library/import.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "options.library",
+                        "options.targetLibrary",
+                        "options.type"
+                    ],
+                    "options": {
+                        "library": {},
+                        "type": {}
+                    },
+                    "usage": "import <library> <targetLibrary> [type]"
+                },
+                "": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "list-credentials",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/server/commands/library/list-credentials.js",
+                    "source": "src/server/commands/library/list-credentials.ts"
+                },
+                "": {
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "options.type"
+                    ],
+                    "usage": "list scrappers [type]"
+                }
+            }
+        },
+        {
             "name": "list-folders",
             "config": {
                 "fs": {
@@ -351,6 +468,25 @@
             }
         },
         {
+            "name": "list-organizers",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/server/commands/library/list-organizers.js",
+                    "source": "src/server/commands/library/list-organizers.ts"
+                },
+                "": {
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "options.type"
+                    ],
+                    "usage": "list organizers [type]"
+                }
+            }
+        },
+        {
             "name": "list-scrappers",
             "config": {
                 "fs": {
@@ -363,9 +499,64 @@
                 },
                 "cli": {
                     "inject": [
-                        "options.type"
+                        "options.type",
+                        "options.global"
                     ],
+                    "options": {
+                        "global": {
+                            "needsValue": false,
+                            "aliases": [
+                                "g"
+                            ]
+                        }
+                    },
                     "usage": "list scrappers [type]"
+                }
+            }
+        },
+        {
+            "name": "register-organizer",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "$container",
+                        "$container",
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/server/commands/library/register-organizer.js",
+                    "source": "src/server/commands/library/register-organizer.ts"
+                },
+                "": {
+                    "inject": [
+                        "$container",
+                        "$container",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "$container",
+                        "connectionAsContainer",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "options.file",
+                        "options.type",
+                        "options"
+                    ],
+                    "usage": "organizer register <type> <name> <file>",
+                    "options": {
+                        "file": {
+                            "normalize": true,
+                            "needsValue": true
+                        }
+                    }
                 }
             }
         },
@@ -416,6 +607,39 @@
             }
         },
         {
+            "name": "reorganize",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/server/commands/library/reorganize.js",
+                    "source": "src/server/commands/library/reorganize.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "options.library",
+                        "options.type"
+                    ],
+                    "options": {
+                        "library": {},
+                        "type": {}
+                    },
+                    "usage": "reorganize <library> [type]"
+                },
+                "": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
             "name": "rm-credentials",
             "config": {
                 "fs": {
@@ -427,10 +651,10 @@
                 },
                 "cli": {
                     "inject": [
-                        "options.url"
+                        "options.host"
                     ],
                     "options": {},
-                    "usage": "rm credentials <url>"
+                    "usage": "rm credentials <host>"
                 },
                 "": {
                     "inject": [
@@ -496,6 +720,36 @@
                 "": {
                     "inject": [
                         "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "rm-organizer",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/server/commands/library/rm-organizer.js",
+                    "source": "src/server/commands/library/rm-organizer.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "options.organizer"
+                    ],
+                    "options": {
+                        "name": {},
+                        "path": {}
+                    },
+                    "usage": "rm organizer <library> <organizer>"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
                     ]
                 }
             }
@@ -569,6 +823,126 @@
                         }
                     },
                     "usage": "scrap <path> [...scrappers]"
+                }
+            }
+        },
+        {
+            "name": "set-index-folder",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/server/commands/library/set-index-folder.js",
+                    "source": "src/server/commands/library/set-index-folder.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "options.path"
+                    ],
+                    "options": {
+                        "path": {
+                            "normalize": true
+                        }
+                    },
+                    "usage": "set-index-folder <path>"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "transcode",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3"
+                    ],
+                    "path": "dist/server/commands/library/transcode.js",
+                    "source": "src/server/commands/library/transcode.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "options.library",
+                        "options.outType",
+                        "options.inType",
+                        "options.type"
+                    ],
+                    "usage": "transcode <library> <outType> [inType] [type]"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "update-index",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ],
+                    "path": "dist/server/commands/library/update-index.js",
+                    "source": "src/server/commands/library/update-index.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "options.library",
+                        "options.type",
+                        "options"
+                    ],
+                    "options": {
+                        "force": {
+                            "aliases": [
+                                "f"
+                            ],
+                            "needsValue": false
+                        },
+                        "library": {},
+                        "type": {},
+                        "rescrap": {
+                            "needsValue": false
+                        },
+                        "name": {
+                            "needsValue": true
+                        },
+                        "season": {
+                            "needsValue": true
+                        },
+                        "episode": {
+                            "needsValue": true
+                        },
+                        "album": {
+                            "needsValue": true
+                        },
+                        "artist": {
+                            "needsValue": true
+                        }
+                    },
+                    "usage": "update-index <library> <type>"
+                },
+                "": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
                 }
             }
         }

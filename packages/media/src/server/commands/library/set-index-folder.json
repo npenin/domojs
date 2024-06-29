@@ -2,30 +2,23 @@
     "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
     "fs": {
         "inject": [
-            "param.0",
-            "param.1",
-            "param.2"
+            "param.0"
         ]
     },
     "cli": {
         "inject": [
-            "options.host",
-            "options.username",
-            "options.password"
+            "options.path"
         ],
         "options": {
-            "name": {},
             "path": {
                 "normalize": true
             }
         },
-        "usage": "add credentials <host> <username> [password]"
+        "usage": "set-index-folder <path>"
     },
     "": {
         "inject": [
-            "param.0",
-            "param.1",
-            "param.2"
+            "param.0"
         ]
     }
 }

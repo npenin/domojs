@@ -1,0 +1,30 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "fs": {
+        "inject": [
+            "$container",
+            "param.0",
+            "param.1"
+        ]
+    },
+    "cli": {
+        "inject": [
+            "$container",
+            "options.library",
+            "options.targetLibrary",
+            "options.type"
+        ],
+        "options": {
+            "library": {},
+            "type": {}
+        },
+        "usage": "import <library> <targetLibrary> [type]"
+    },
+    "": {
+        "inject": [
+            "$container",
+            "param.0",
+            "param.1"
+        ]
+    }
+}

@@ -4,28 +4,25 @@
         "inject": [
             "param.0",
             "param.1",
-            "param.2"
+            "param.2",
+            "param.3"
         ]
     },
     "cli": {
         "inject": [
-            "options.host",
-            "options.username",
-            "options.password"
+            "options.library",
+            "options.outType",
+            "options.inType",
+            "options.type"
         ],
-        "options": {
-            "name": {},
-            "path": {
-                "normalize": true
-            }
-        },
-        "usage": "add credentials <host> <username> [password]"
+        "usage": "transcode <library> <outType> [inType] [type]"
     },
     "": {
         "inject": [
             "param.0",
             "param.1",
-            "param.2"
+            "param.2",
+            "param.3"
         ]
     }
 }

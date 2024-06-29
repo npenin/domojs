@@ -3,29 +3,24 @@
     "fs": {
         "inject": [
             "param.0",
-            "param.1",
-            "param.2"
+            "param.1"
         ]
     },
     "cli": {
         "inject": [
-            "options.host",
-            "options.username",
-            "options.password"
+            "options.name",
+            "options.organizer"
         ],
         "options": {
             "name": {},
-            "path": {
-                "normalize": true
-            }
+            "path": {}
         },
-        "usage": "add credentials <host> <username> [password]"
+        "usage": "rm organizer <library> <organizer>"
     },
     "": {
         "inject": [
             "param.0",
-            "param.1",
-            "param.2"
+            "param.1"
         ]
     }
 }

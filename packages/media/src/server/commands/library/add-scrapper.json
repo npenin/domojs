@@ -21,7 +21,7 @@
         "description": "This command add a registered scrapper to a library. If you want to register a new scrapper, use the register-scrapper command",
         "inject": [
             "The name of the library",
-            "The type of scrapper (music or video)"
+            "The name of the scrapper (as used when registered). You may list registered scrappers with `scrappers lists -g`"
         ]
     },
     "": {

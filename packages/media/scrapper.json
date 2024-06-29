@@ -72,6 +72,23 @@
             }
         },
         {
+            "name": "musicbrainz",
+            "config": {
+                "fs": {
+                    "path": "dist/server/commands/scrapper/musicbrainz.js",
+                    "source": "src/server/commands/scrapper/musicbrainz.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
             "name": "scrapTVShowFileName",
             "config": {
                 "fs": {

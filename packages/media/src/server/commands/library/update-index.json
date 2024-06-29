@@ -1,0 +1,56 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "fs": {
+        "inject": [
+            "$container",
+            "param.0",
+            "param.1",
+            "param.2"
+        ]
+    },
+    "cli": {
+        "inject": [
+            "$container",
+            "options.library",
+            "options.type",
+            "options"
+        ],
+        "options": {
+            "force": {
+                "aliases": [
+                    "f"
+                ],
+                "needsValue": false
+            },
+            "library": {},
+            "type": {},
+            "rescrap": {
+                "needsValue": false
+            },
+            "name": {
+                "needsValue": true
+            },
+            "season": {
+                "needsValue": true
+            },
+            "episode": {
+                "needsValue": true
+            },
+            "album": {
+                "needsValue": true
+            },
+            "artist": {
+                "needsValue": true
+            }
+        },
+        "usage": "update-index <library> <type>"
+    },
+    "": {
+        "inject": [
+            "$container",
+            "param.0",
+            "param.1",
+            "param.2"
+        ]
+    }
+}

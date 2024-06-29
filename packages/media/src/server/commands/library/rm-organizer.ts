@@ -8,8 +8,8 @@ export default async function addScrapper(this: LibraryState, name: string, scra
     if (!config)
         return;
 
-    const indexOfScrapper = config.scrappers.indexOf(scrapperType);
+    const indexOfScrapper = config.organizers.indexOf(scrapperType);
     if (!~indexOfScrapper)
-        config.scrappers.splice(indexOfScrapper, 1);
+        config.organizers.splice(indexOfScrapper, 1);
     await config.commit();
 }

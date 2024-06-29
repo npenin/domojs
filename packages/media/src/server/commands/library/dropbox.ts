@@ -4,10 +4,10 @@ import * as process from '../processFolder.js'
 import * as akala from '@akala/core'
 import { Media } from '../../index.js';
 import { Container } from '@akala/commands';
-import Configuration, { Vault } from '../../configuration.js';
+import Configuration from '../../configuration.js';
+import { LibraryState } from '../../state.js';
 
-export default async function (this: Configuration, container: Container<Configuration>, source: string, type: 'music' | 'video', name?: string, season?: number, episode?: number, album?: string, artist?: string)
-{
+export default async function (this: LibraryState, container: Container<Configuration>, source: string, type: 'music' | 'video', name?: string, season?: number, episode?: number, album?: string, artist?: string) {
     var lastIndex: Date;
     const fileName = `./dropbox-${source}-${type}.json`;
 
@@ -15,21 +15,17 @@ export default async function (this: Configuration, container: Container<Configu
     if (stat != null)
         lastIndex = stat.mtime;
 
-    const results = await process.processSource(this.libraries[source].paths, this.get<Vault>('vault'), container, type, this.libraries[source].scrappers, lastIndex, name, season, episode, album, artist);
-
+    const r1 = await Promise.all(this.libraries[source].paths.map(path => process.processSource(path, this, container, type, this.libraries[source].scrappers, lastIndex, false, { name, season, episode, album, artist })));
+    const results = r1.reduce((acc, result) => ({ ...acc, ...result }), {});
     let content: Record<string, Media[]> = results;
-    if (Object.keys(results).length)
-    {
-        if (stat)
-        {
+    if (Object.keys(results).length) {
+        if (stat) {
             content = JSON.parse(await fs.readFile(fileName, 'utf8')) as { [key in keyof typeof results]: Media[] };
-            akala.each(content, function (media, group)
-            {
+            akala.each(content, function (media, group) {
                 if (results[group])
                     media.push(...results[group]);
             });
-            akala.each(results, function (media, group)
-            {
+            akala.each(results, function (media, group) {
                 if (!(group in content))
                     content[group as string] = media;
             });
