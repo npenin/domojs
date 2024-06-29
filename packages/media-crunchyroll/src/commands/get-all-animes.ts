@@ -1,4 +1,4 @@
-import { Media } from "@domojs/media";
+import type { Media } from "@domojs/media";
 import State from "../state.js";
 import cr from 'crunchyroll.js'
 import { writeFile, stat } from 'fs/promises'
@@ -40,9 +40,6 @@ export default async function (this: State, outFile?: string): Promise<Media[] |
                 if (stopAt && anime.last_public && new Date(anime.last_public) < stopAt)
                     throw stop;
 
-                if (anime.title.toLocaleLowerCase().indexOf('fruit') > -1 && anime.title.toLocaleLowerCase().indexOf('basket') > -1)
-                    console.log(anime);
-
                 if (anime.type == 'movie_listing')
                 {
                     // console.log(episode);
@@ -62,8 +59,6 @@ export default async function (this: State, outFile?: string): Promise<Media[] |
                 {
 
                     let seasons = (await cr.getSeasons(anime.id)).items;
-                    if (anime.title.toLocaleLowerCase().indexOf('fruit') > -1 && anime.title.toLocaleLowerCase().indexOf('basket') > -1)
-                        console.log(seasons.find(s => s.season_number == 3 && s.audio_locale == 'ja-JP'));
                     seasons = seasons.filter(s => s.audio_locales.find(l => l in localesFilter));
                     if (!seasons.length)
                         return;
