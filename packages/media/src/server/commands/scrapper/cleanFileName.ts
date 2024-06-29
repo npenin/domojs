@@ -7,7 +7,9 @@ export default function cleanFileName<T extends Media>(media: T): T
     if (media.name)
         return media;
     var fileName = media.path;
-    if (URL.canParse(fileName))
+    if (fileName instanceof URL)
+        fileName = fileName.pathname;
+    else if (URL.canParse(fileName))
         fileName = new URL(fileName).pathname;
     while (fileName.startsWith('/'))
         fileName = fileName.substring(1);
