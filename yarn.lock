@@ -380,7 +380,7 @@ __metadata:
     "@akala/core": "npm:^14.0.2"
     "@types/debug": "npm:4.1.12"
     "@types/mongodb": "npm:4.0.7"
-    "@types/node": "npm:20.12.7"
+    "@types/node": "npm:20.14.9"
     "@types/ws": "npm:8.5.10"
     mongodb: "npm:6.5.0"
     typescript: "npm:5.4.5"
@@ -467,14 +467,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@domojs/media-yt-music@workspace:packages/media-yt-music":
-  version: 0.0.0-use.local
-  resolution: "@domojs/media-yt-music@workspace:packages/media-yt-music"
-  dependencies:
-    "@domojs/media": "workspace:^"
-  languageName: unknown
-  linkType: soft
-
 "@domojs/media@workspace:^, @domojs/media@workspace:packages/media":
   version: 0.0.0-use.local
   resolution: "@domojs/media@workspace:packages/media"
@@ -528,7 +520,7 @@ __metadata:
     "@akala/protocol-parser": "npm:^2.7.6"
     "@domojs/devices": "workspace:*"
     "@types/debug": "npm:4.1.12"
-    "@types/node": "npm:20.12.7"
+    "@types/node": "npm:20.14.9"
     "@types/serialport": "npm:8.0.5"
     "@types/usb": "npm:2.0.5"
     typescript: "npm:5.4.5"
@@ -587,7 +579,7 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.2"
     "@popperjs/core": "npm:^2.11.8"
     "@types/debug": "npm:4.1.12"
-    "@types/node": "npm:20.12.7"
+    "@types/node": "npm:20.14.9"
     "@types/request": "npm:2.48.12"
     "@types/ws": "npm:8.5.10"
     bootstrap: "npm:^5.3.3"
@@ -1998,12 +1990,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.12.7":
-  version: 20.12.7
-  resolution: "@types/node@npm:20.12.7"
+"@types/node@npm:20.14.9":
+  version: 20.14.9
+  resolution: "@types/node@npm:20.14.9"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10/b4a28a3b593a9bdca5650880b6a9acef46911d58cf7cfa57268f048e9a7157a7c3196421b96cea576850ddb732e3b54bc982c8eb5e1e5ef0635d4424c2fce801
+  checksum: 10/f313b06c79be92f5d3541159ef813b9fc606941f951ecf826e940658c6d4952755ca2f06277b746326cef0697ed79a04676ecde053d32e1121b3352c8168d2e9
   languageName: node
   linkType: hard
 
@@ -2329,18 +2321,6 @@ __metadata:
   linkType: hard
 
 "ajv@npm:^8.12.0":
-  version: 8.12.0
-  resolution: "ajv@npm:8.12.0"
-  dependencies:
-    fast-deep-equal: "npm:^3.1.1"
-    json-schema-traverse: "npm:^1.0.0"
-    require-from-string: "npm:^2.0.2"
-    uri-js: "npm:^4.2.2"
-  checksum: 10/b406f3b79b5756ac53bfe2c20852471b08e122bc1ee4cde08ae4d6a800574d9cd78d60c81c69c63ff81e4da7cd0b638fafbb2303ae580d49cf1600b9059efb85
-  languageName: node
-  linkType: hard
-
-"ajv@npm:^8.12.0":
   version: 8.13.0
   resolution: "ajv@npm:8.13.0"
   dependencies:
@@ -2348,7 +2328,7 @@ __metadata:
     json-schema-traverse: "npm:^1.0.0"
     require-from-string: "npm:^2.0.2"
     uri-js: "npm:^4.4.1"
-  checksum: 4ada268c9a6e44be87fd295df0f0a91267a7bae8dbc8a67a2d5799c3cb459232839c99d18b035597bb6e3ffe88af6979f7daece854f590a81ebbbc2dfa80002c
+  checksum: 10/4ada268c9a6e44be87fd295df0f0a91267a7bae8dbc8a67a2d5799c3cb459232839c99d18b035597bb6e3ffe88af6979f7daece854f590a81ebbbc2dfa80002c
   languageName: node
   linkType: hard
 
@@ -6717,13 +6697,6 @@ __metadata:
   version: 2.0.2
   resolution: "require-from-string@npm:2.0.2"
   checksum: 10/839a3a890102a658f4cb3e7b2aa13a1f80a3a976b512020c3d1efc418491c48a886b6e481ea56afc6c4cb5eef678f23b2a4e70575e7534eccadf5e30ed2e56eb
-  languageName: node
-  linkType: hard
-
-"require-from-string@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "require-from-string@npm:2.0.2"
-  checksum: 839a3a890102a658f4cb3e7b2aa13a1f80a3a976b512020c3d1efc418491c48a886b6e481ea56afc6c4cb5eef678f23b2a4e70575e7534eccadf5e30ed2e56eb
   languageName: node
   linkType: hard
 
