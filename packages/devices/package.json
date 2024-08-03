@@ -34,7 +34,7 @@
         "@popperjs/core": "2.11.8",
         "@types/debug": "4.1.12",
         "@types/uuid": "9.0.8",
-        "@types/ws": "8.5.10",
+        "@types/ws": "8.5.12",
         "typescript": "5.4.5"
     },
     "homepage": "https://github.com/domojs/devices#readme",
