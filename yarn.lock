@@ -334,7 +334,7 @@ __metadata:
     "@popperjs/core": "npm:2.11.8"
     "@types/debug": "npm:4.1.12"
     "@types/uuid": "npm:9.0.8"
-    "@types/ws": "npm:8.5.10"
+    "@types/ws": "npm:8.5.12"
     typescript: "npm:5.4.5"
     uuid: "npm:9.0.1"
     ws: "npm:8.16.0"
@@ -381,7 +381,7 @@ __metadata:
     "@types/debug": "npm:4.1.12"
     "@types/mongodb": "npm:4.0.7"
     "@types/node": "npm:20.12.7"
-    "@types/ws": "npm:8.5.10"
+    "@types/ws": "npm:8.5.12"
     mongodb: "npm:6.5.0"
     typescript: "npm:5.4.5"
     ws: "npm:8.16.0"
@@ -396,7 +396,7 @@ __metadata:
     "@akala/core": "npm:^14.0.2"
     "@akala/server": "npm:^9.4.67"
     "@domojs/devices": "workspace:*"
-    "@types/ws": "npm:8.5.10"
+    "@types/ws": "npm:8.5.12"
   peerDependencies:
     "@akala/commands": ^3.8.3
     "@akala/pm": ^3.7.12
@@ -496,7 +496,7 @@ __metadata:
     "@types/levenshtein": "npm:1.0.4"
     "@types/redis": "npm:4.0.11"
     "@types/request": "npm:2.48.12"
-    "@types/ws": "npm:8.5.10"
+    "@types/ws": "npm:8.5.12"
     levenshtein: "npm:1.0.5"
     node-id3: "npm:^0.2.6"
     typescript: "npm:5.4.5"
@@ -556,7 +556,7 @@ __metadata:
     "@types/debug": "npm:4.1.12"
     "@types/serialport": "npm:8.0.5"
     "@types/usb": "npm:2.0.5"
-    "@types/ws": "npm:8.5.10"
+    "@types/ws": "npm:8.5.12"
     http-punch-hole: "npm:^1.0.12"
     typescript: "npm:5.4.5"
   peerDependencies:
@@ -589,7 +589,7 @@ __metadata:
     "@types/debug": "npm:4.1.12"
     "@types/node": "npm:20.12.7"
     "@types/request": "npm:2.48.12"
-    "@types/ws": "npm:8.5.10"
+    "@types/ws": "npm:8.5.12"
     bootstrap: "npm:^5.3.3"
     esbuild: "npm:0.20.2"
     esbuild-sass-plugin: "npm:3.2.0"
@@ -644,7 +644,7 @@ __metadata:
     "@types/debug": "npm:4.1.12"
     "@types/serialport": "npm:8.0.5"
     "@types/usb": "npm:2.0.5"
-    "@types/ws": "npm:8.5.10"
+    "@types/ws": "npm:8.5.12"
     debug: "npm:^4.3.4"
     source-map-support: "npm:0.5.21"
     typescript: "npm:5.4.5"
@@ -2123,12 +2123,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ws@npm:8.5.10":
-  version: 8.5.10
-  resolution: "@types/ws@npm:8.5.10"
+"@types/ws@npm:8.5.12":
+  version: 8.5.12
+  resolution: "@types/ws@npm:8.5.12"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 10/9b414dc5e0b6c6f1ea4b1635b3568c58707357f68076df9e7cd33194747b7d1716d5189c0dbdd68c8d2521b148e88184cf881bac7429eb0e5c989b001539ed31
+  checksum: 10/d8a3ddfb5ff8fea992a043113579d61ac1ea21e8464415af9e2b01b205ed19d817821ad64ca1b3a90062d1df1c23b0f586d8351d25ca6728844df99a74e8f76d
   languageName: node
   linkType: hard
 
@@ -2329,18 +2329,6 @@ __metadata:
   linkType: hard
 
 "ajv@npm:^8.12.0":
-  version: 8.12.0
-  resolution: "ajv@npm:8.12.0"
-  dependencies:
-    fast-deep-equal: "npm:^3.1.1"
-    json-schema-traverse: "npm:^1.0.0"
-    require-from-string: "npm:^2.0.2"
-    uri-js: "npm:^4.2.2"
-  checksum: 10/b406f3b79b5756ac53bfe2c20852471b08e122bc1ee4cde08ae4d6a800574d9cd78d60c81c69c63ff81e4da7cd0b638fafbb2303ae580d49cf1600b9059efb85
-  languageName: node
-  linkType: hard
-
-"ajv@npm:^8.12.0":
   version: 8.13.0
   resolution: "ajv@npm:8.13.0"
   dependencies:
@@ -2348,7 +2336,7 @@ __metadata:
     json-schema-traverse: "npm:^1.0.0"
     require-from-string: "npm:^2.0.2"
     uri-js: "npm:^4.4.1"
-  checksum: 4ada268c9a6e44be87fd295df0f0a91267a7bae8dbc8a67a2d5799c3cb459232839c99d18b035597bb6e3ffe88af6979f7daece854f590a81ebbbc2dfa80002c
+  checksum: 10/4ada268c9a6e44be87fd295df0f0a91267a7bae8dbc8a67a2d5799c3cb459232839c99d18b035597bb6e3ffe88af6979f7daece854f590a81ebbbc2dfa80002c
   languageName: node
   linkType: hard
 
@@ -6717,13 +6705,6 @@ __metadata:
   version: 2.0.2
   resolution: "require-from-string@npm:2.0.2"
   checksum: 10/839a3a890102a658f4cb3e7b2aa13a1f80a3a976b512020c3d1efc418491c48a886b6e481ea56afc6c4cb5eef678f23b2a4e70575e7534eccadf5e30ed2e56eb
-  languageName: node
-  linkType: hard
-
-"require-from-string@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "require-from-string@npm:2.0.2"
-  checksum: 839a3a890102a658f4cb3e7b2aa13a1f80a3a976b512020c3d1efc418491c48a886b6e481ea56afc6c4cb5eef678f23b2a4e70575e7534eccadf5e30ed2e56eb
   languageName: node
   linkType: hard
 
