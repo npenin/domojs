@@ -9,7 +9,7 @@
                     "source": "src/server/commands/$init.ts",
                     "inject": [
                         "container",
-                        "options.path"
+                        "signal"
                     ]
                 },
                 "cli": {
@@ -20,7 +20,7 @@
                 "": {
                     "inject": [
                         "container",
-                        "options.path"
+                        "signal"
                     ]
                 }
             }

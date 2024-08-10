@@ -1,6 +1,5 @@
 import '@akala/server'
-import { LiveStore, Store } from "../../store.js";
-import "../../store";
+import "../../store.js";
 import * as akala from '@akala/core'
 import { Container } from "@akala/commands";
 import { deviceContainer } from "../../../index.js";

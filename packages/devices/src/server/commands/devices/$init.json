@@ -2,9 +2,9 @@
     "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
     "cli": {
         "options": {
-            "normalize": [
-                "path"
-            ]
+            "path": {
+                "normalize": true
+            }
         },
         "inject": [
             "$container",

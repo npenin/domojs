@@ -1,1 +1,43 @@
-{"plugins":["@akala/commands/akala","@akala/config/akala","@akala/pm/akala"]}
+{
+    "plugins": [
+        "@akala/commands/akala",
+        "@akala/config/akala",
+        "@akala/pm/akala"
+    ],
+    "pm": {
+        "containers": {
+            "pm": {
+                "commandable": true,
+                "stateless": false,
+                "path": "/home/nicolas/dev/domojs/node_modules/@akala/pm/commands.json"
+            },
+            "@domojs/rfx": {
+                "path": "/home/nicolas/dev/domojs/packages/rfx/commands.json",
+                "commandable": true
+            },
+            "@domojs/devices": {
+                "path": "/home/nicolas/dev/domojs/packages/devices/device-commands.json",
+                "commandable": true
+            },
+            "@domojs/devicetype": {
+                "path": "/home/nicolas/dev/domojs/packages/devices/devicetype-commands.json",
+                "commandable": true
+            }
+        },
+        "mapping": {
+            "pm": {
+                "cwd": "/home/nicolas/dev/domojs",
+                "container": "pm",
+                "connect": {
+                    "socket": [
+                        {
+                            "path": "/home/nicolas/dev/domojs/pm.sock"
+                        }
+                    ],
+                    "signal": {}
+                }
+            }
+        },
+        "plugins": []
+    }
+}
