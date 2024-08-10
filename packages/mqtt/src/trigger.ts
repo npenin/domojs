@@ -1,12 +1,12 @@
 import { CommandProcessor, Container, StructuredParameters, Metadata, Trigger } from '@akala/commands'
 import { MiddlewarePromise } from '@akala/core';
-import PubSubContainer from '@akala/pubsub';
+import { Container as PubSubContainer } from '@akala/pubsub';
 import { Socket, type SocketConnectOpts } from 'net'
 import { Message, Messages, header } from './protocol/_protocol.js';
 import { Cursor } from '@akala/protocol-parser';
 import { ControlPacketType } from './protocol/_shared.js';
 
-export const trigger = new Trigger('mqtt', (container: PubSubContainer, options: SocketConnectOpts) =>
+export const trigger = new Trigger('mqtt', (container: PubSubContainer & Container<void>, options: SocketConnectOpts) =>
 {
     const socket = new Socket();
     socket.connect(options);

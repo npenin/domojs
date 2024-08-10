@@ -1,16 +1,16 @@
 {
     "author": "npenin",
     "dependencies": {
-        "@akala/commands": "^7.1.6",
-        "@akala/core": "^14.0.2",
-        "@akala/json-rpc-ws": "^10.4.4",
-        "@akala/pm": "^8.1.30",
-        "@akala/server": "^9.4.67",
+        "@akala/commands": "^8.0.2",
+        "@akala/core": "^15.0.2",
+        "@akala/json-rpc-ws": "^10.5.2",
+        "@akala/pm": "^9.0.2",
+        "@akala/server": "^9.5.2",
         "@akala/web-ui": "link:../../../akala/packages/web-ui",
-        "@fortawesome/fontawesome-common-types": "^6.5.2",
-        "@fortawesome/fontawesome-svg-core": "^6.5.2",
-        "@fortawesome/free-brands-svg-icons": "^6.5.2",
-        "@fortawesome/free-solid-svg-icons": "^6.5.2",
+        "@fortawesome/fontawesome-common-types": "^6.6.0",
+        "@fortawesome/fontawesome-svg-core": "^6.6.0",
+        "@fortawesome/free-brands-svg-icons": "^6.6.0",
+        "@fortawesome/free-solid-svg-icons": "^6.6.0",
         "@popperjs/core": "^2.11.8",
         "bootstrap": "^5.3.3",
         "require-optional": "^0.4.0"
@@ -20,12 +20,12 @@
     "description": "",
     "devDependencies": {
         "@types/debug": "4.1.12",
-        "@types/node": "20.12.7",
+        "@types/node": "20.14.15",
         "@types/request": "2.48.12",
-        "@types/ws": "8.5.10",
-        "esbuild": "0.20.2",
-        "esbuild-sass-plugin": "3.2.0",
-        "typescript": "5.4.5"
+        "@types/ws": "8.5.12",
+        "esbuild": "0.23.0",
+        "esbuild-sass-plugin": "3.3.1",
+        "typescript": "5.5.4"
     },
     "license": "MIT",
     "main": "dist/client/public_api.js",

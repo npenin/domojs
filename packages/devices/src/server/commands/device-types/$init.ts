@@ -1,17 +1,16 @@
 import * as devices from "../../../devices.js";
 import { Container } from "@akala/commands";
-import deviceType from "../../devicetype-commands.js";
 import { sidecar, Container as pmContainer } from '@akala/pm';
 import app from "@akala/sidecar";
 import { DbSet } from "@akala/storage";
 import { CliContext } from "@akala/cli";
 
 
-export default async function (this: devices.DeviceTypeState, context: CliContext, container: Container<any> & deviceType.container, pm: pmContainer & Container<any>)
+export default async function (this: devices.DeviceTypeState, context: CliContext, container: Container<unknown>, pm: pmContainer & Container<any>)
 {
     try
     {
-        var webc = await sidecar({ container })['@akala/server'];
+        var webc = await sidecar({ container, pm })['@akala/server'];
 
         await webc.dispatch('remote-container', '/api/devices/types', require('../../../../devicetype-commands.json'))
     }

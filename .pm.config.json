@@ -1,0 +1,23 @@
+{
+    "containers": {
+        "pm": {
+            "commandable": true,
+            "stateless": false,
+            "path": "/home/nicolas/dev/domojs/node_modules/@akala/pm/commands.json"
+        }
+    },
+    "mapping": {
+        "pm": {
+            "cwd": "/home/nicolas/dev/domojs",
+            "container": "pm",
+            "connect": {
+                "socket": [
+                    {
+                        "path": "/home/nicolas/dev/domojs/pm.sock"
+                    }
+                ]
+            }
+        }
+    },
+    "plugins": []
+}

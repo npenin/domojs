@@ -28,17 +28,15 @@
     "description": "",
     "types": "dist/server/index.d.ts",
     "dependencies": {
-        "@fortawesome/fontawesome-common-types": "6.5.2",
-        "uuid": "9.0.1"
+        "@fortawesome/fontawesome-common-types": "6.6.0"
     },
     "devDependencies": {
-        "@akala/commands": "^7.1.6",
-        "@akala/core": "^14.0.2",
-        "@akala/json-rpc-ws": "^10.4.4",
+        "@akala/commands": "^8.0.2",
+        "@akala/core": "^15.0.2",
+        "@akala/json-rpc-ws": "^10.5.2",
         "@domojs/theme-default": "workspace:*",
         "@popperjs/core": "2.11.8",
         "@types/debug": "4.1.12",
-        "@types/uuid": "9.0.8",
-        "typescript": "5.4.5"
+        "typescript": "5.5.4"
     }
 }

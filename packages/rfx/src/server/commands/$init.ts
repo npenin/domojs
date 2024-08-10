@@ -11,7 +11,7 @@ var state: State = null;
 var setGateway: (gw: Rfxtrx) => void = null;
 const logger = akala.logger('@domojs/rfx');
 
-export default async function init(this: State, container: Container<void>)
+export default async function init(this: State, container: Container<void>, signal: AbortSignal)
 {
     state = this;
     state.devices = {};
@@ -23,17 +23,18 @@ export default async function init(this: State, container: Container<void>)
     {
         await gw.start();
         setGateway(gw);
+        signal.addEventListener('abort', () => gw.close())
         return gw;
     };
 
-    var p1 = fs.readFile(path.resolve(__dirname, '../../../views/new-RFXCOM.html'), 'utf-8').then(newDeviceTemplate =>
-        registerDeviceType(container, {
-            name: 'RFXCOM',
-            view: newDeviceTemplate,
-            commandMode: 'static'
-        }));
+    // var p1 = fs.readFile(path.resolve(__dirname, '../../../views/new-RFXCOM.html'), 'utf-8').then(newDeviceTemplate =>
+    //     registerDeviceType(container, {
+    //         name: 'RFXCOM',
+    //         view: newDeviceTemplate,
+    //         commandMode: 'static'
+    //     }));
 
-    var p2 = Promise.resolve();
+    // var p2 = Promise.resolve();
     // var p2 = fs.readFile(path.resolve(__dirname, '../../../views/new-RFY.html'), 'utf-8').then(newDeviceTemplate =>
     //     registerDeviceType({
     //         name: 'RFY',
@@ -57,7 +58,7 @@ export default async function init(this: State, container: Container<void>)
             console.error(e);
     }
 
-    return Promise.all([p1, p2]);
+    // return Promise.all([p1, p2]);
 }
 
 
@@ -90,4 +91,4 @@ async function addDeviceIfMatch(usb: typeof usbType)
         logger.warn('no RFXCOM device found');
 }
 
-init.$inject = ['container', 'options.path']
+init.$inject = ['container', 'signal']
