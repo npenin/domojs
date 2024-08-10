@@ -2,15 +2,16 @@ import { HttpOptions } from "@akala/core";
 
 export default interface State
 {
-	sites: Record<string, Site>;
+	sites: Record<string, Site<any>>;
 }
 
-export interface Site
+
+export interface Site<T>
 {
 	authentication?: BasicAuthentication | OAuth;
 	request?: RequestAuthentication
-	login?: Page;
-	page: Page;
+	login?: Page<unknown>;
+	page: Page<T>;
 }
 
 export interface BasicAuthentication
@@ -23,25 +24,24 @@ export interface OAuth
 {
 	clientId: string;
 	clientSecret: string;
-
 }
 
 export type RequestAuthentication = { headers?: Record<string, string>, query?: Record<string, string> }
 
-export interface Page
+export interface Page<T>
 {
 	method?: string;
 	url: string | URL | Scrap;
-	items: Item;
+	items: Item<T>;
 	totalCountSelector?: string;
 	nextPage?: RequestAuthentication;
 }
 
-export interface Item
+export interface Item<T>
 {
 	selector: string;
-	details?: Page;
-	scrap?: Record<string, Scrap>
+	details?: Page<T>;
+	scrap?: Record<keyof T, Scrap>
 }
 
 export interface Scrap

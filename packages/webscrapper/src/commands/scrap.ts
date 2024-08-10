@@ -1,25 +1,25 @@
-import { Http, HttpOptions, Interpolate } from "@akala/core";
-import { AnyNode, Cheerio, CheerioAPI, load as cheerio, Node } from "cheerio";
-import { ElementType } from "htmlparser2";
+import { Http, Interpolate } from "@akala/core";
+import { ElementType, parseDocument } from "htmlparser2";
 import { Page, RequestAuthentication, Scrap, Site } from "../state.js";
-
+import { selectAll } from 'css-select'
+import type { AnyNode, Element, Text } from 'domhandler'
 export class ScrapError extends Error
 {
-    constructor(public readonly page: Page, public readonly inner: Error)
+    constructor(public readonly page: Page<unknown>, public readonly options: RequestAuthentication, public readonly inner: Error)
     {
         super();
 
     }
 }
 
-export default async function scrap(site: Site, http: Http)
+export default async function scrap<T>(site: Site<T>, http: Http)
 {
     if (site.authentication)
         throw new Error('Not supported yet');
 
     var pageIndex = 1;
     var results = await scrapPage(site.page, http, site.request);
-    var nextPage = await new Interpolate('{{', '}}').buildObject(site.page.nextPage);
+    var nextPage = new Interpolate('{{', '}}').buildObject(site.page.nextPage);
     if (site.page.nextPage)
     {
         while (true)
@@ -35,19 +35,28 @@ export default async function scrap(site: Site, http: Http)
     return results;
 }
 
-export async function scrapPage(page: Page, http: Http, options?: RequestAuthentication)
+export async function scrapPage<T>(page: Page<T>, http: Http, options?: RequestAuthentication)
 {
     var url = new URL(page.url as string | URL);
     if (options?.query)
         Object.entries(options.query).forEach(e => url.searchParams.append(e[0], e[1]));
-    var response = await http.call({ url: url, method: page.method, headers: options?.headers })
-
-    let $ = cheerio(await response.text())
-    // console.time('process page ' + page.url)
-    return await Promise.all(Array.from($(page.items.selector).map(async function ()
+    try
     {
-        var result = {};
-        var item = cheerio(this);
+        var response = await http.call({ url: url, method: page.method, headers: options?.headers })
+    }
+    catch (e)
+    {
+        console.error(e);
+        throw e;
+    }
+
+    const dom = parseDocument(await response.text(), { recognizeSelfClosing: true })
+
+    // console.time('process page ' + page.url)
+    return await Promise.all(Array.from(selectAll(page.items.selector, dom).map(async function (item)
+    {
+        var result: Partial<T> = {};
+        // var item = cheerio(this);
         if (page.items.scrap)
             Object.assign(result, scrapscraps(item, page.items.scrap));
 
@@ -55,7 +64,7 @@ export async function scrapPage(page: Page, http: Http, options?: RequestAuthent
         {
             var details = page.items.details;
             if (isScrap(page.items.details.url))
-                details = Object.assign({}, page.items.details, { url: scrapscrap(item(page.items.details.url.selector), page.items.details.url) });
+                details = Object.assign({}, page.items.details, { url: scrapscrap(selectAll(page.items.details.url.selector, item), page.items.details.url) });
 
             details.url = new URL(details.url as string | URL, page.url as string | URL);
             Object.assign(result, (await scrapPage(details, http, options))[0]);
@@ -65,7 +74,7 @@ export async function scrapPage(page: Page, http: Http, options?: RequestAuthent
     {
         // console.timeEnd('process page ' + page.url);
         return result;
-    }, err => { throw new ScrapError(page, err) });
+    }, err => { throw new ScrapError(page, options, err) });
 }
 
 function isScrap(obj: string | URL | Scrap): obj is Scrap
@@ -73,35 +82,70 @@ function isScrap(obj: string | URL | Scrap): obj is Scrap
     return typeof (obj['selector']) !== 'undefined';
 }
 
-function scrapscraps(item: CheerioAPI, objectDefinition: Record<string, Scrap>)
+function scrapscraps(item: AnyNode, objectDefinition: Record<string, Scrap>)
 {
     return Object.fromEntries(Object.entries(objectDefinition).map(e =>
     {
-        var property = item(e[1].selector);
+        let property: AnyNode[];
+        if (e[1].selector)
+            property = selectAll(e[1].selector, item);
+        else
+            property = [item]
         return [e[0], scrapscrap(property, e[1])];
     }))
 }
 
-function scrapscrap(property: Cheerio<AnyNode>, scrap: Scrap)
+function scrapscrap(element: AnyNode[], scrap: Scrap)
 {
-    if (!property.length && !scrap.scrap)
+    if (!element.length && !scrap.scrap)
         return undefined;
     if (scrap.attribute)
-        return property.attr()![scrap.attribute];
+    {
+        if (scrap.multiple)
+            return Array.from(element.map(function (el) { return (el as Element).attribs[scrap.attribute] }));
+        return (element[0] as Element)?.attribs[scrap.attribute];
+    }
     if (scrap.dataset)
-        return property.data(scrap.dataset);
+        return (element[0] as Element)?.attribs['data-' + scrap.dataset];
     if (typeof scrap.textNode !== 'undefined')
     {
-        return (property.contents().filter(function ()
+        return ((element[0] as Element).children.filter(function (el)
         {
-            return this.type == ElementType.Text
-        })[scrap.textNode] as any)?.data
+            return el.type == ElementType.Text
+        })[scrap.textNode] as Text)?.data
     }
     if (scrap.scrap)
     {
         if (scrap.multiple)
-            return Array.from(property.map(function () { return scrapscraps(cheerio(this), scrap.scrap!) }));
-        return scrapscraps(cheerio(property[0]), scrap.scrap);
+            return Array.from(element.map(function (el) { return scrapscraps(el, scrap.scrap) }));
+        if (element.length)
+            return scrapscraps(element[0], scrap.scrap);
+        return null;
     }
-    return property.text();
+    return text(element).join(' ');
+}
+
+function text(nodes: AnyNode[])
+{
+    let result = [];
+    for (let i = 0; i < nodes.length; i++)
+    {
+        switch (nodes[i].type)
+        {
+            case ElementType.Comment:
+                break;
+            case ElementType.Text:
+                result.push((nodes[i] as Text).data);
+                break;
+            case ElementType.Script:
+            case ElementType.Style:
+            case ElementType.CDATA:
+            case ElementType.Tag:
+                result = result.concat(text((nodes[i] as Element).children));
+                break;
+            default:
+                console.log(nodes[i].type);
+        }
+    }
+    return result;
 }

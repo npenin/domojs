@@ -12,16 +12,18 @@
         "@akala/server": "^7.0.2"
     },
     "devDependencies": {
-        "@akala/json-rpc-ws": "^10.4.4",
-        "@akala/pm": "^8.1.30",
-        "@akala/server": "^9.4.67",
+        "@akala/json-rpc-ws": "^10.5.2",
+        "@akala/pm": "^9.0.2",
+        "@akala/server": "^9.5.2",
         "@domojs/devices": "workspace:*"
     },
     "dependencies": {
-        "@akala/commands": "^7.1.6",
-        "@akala/config": "^4.0.33",
-        "@akala/core": "^14.0.2",
-        "cheerio": "^1.0.0-rc.12"
+        "@akala/commands": "^8.0.2",
+        "@akala/config": "^4.0.36",
+        "@akala/core": "^15.0.2",
+        "css-select": "^5.1.0",
+        "domhandler": "^5.0.3",
+        "htmlparser2": "^9.1.0"
     },
     "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }
