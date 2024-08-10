@@ -1,5 +1,4 @@
 import { SelfDefinedCommand, Container } from "@akala/commands";
-import { v4 as uuid } from 'uuid'
 import { eachAsync, Interpolate, mapAsync } from "@akala/core";
 import { ChannelState, Task } from '../../channel-state.js';
 import { SerializableObject } from "@akala/core";
@@ -10,7 +9,7 @@ export default async function (this: ChannelState, container: Container<void>, t
     if (task.trigger)
         triggerId = await container.resolve<Container<void>>(task.trigger.channel).dispatch(task.trigger.command, task.trigger.parameters);
     else
-        triggerId = uuid();
+        triggerId = crypto.randomUUID();
     var results = {};
     const interpolator = new Interpolate();
     container.register(new SelfDefinedCommand(async function (this: ChannelState, ...params: SerializableObject[])
@@ -44,5 +43,5 @@ export default async function (this: ChannelState, container: Container<void>, t
     debugger;
     if (!task.trigger)
         container.dispatch(triggerId);
-    task.id = uuid();
+    task.id = crypto.randomUUID();
 }

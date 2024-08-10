@@ -1,6 +1,5 @@
 import * as fs from 'fs';
 import { promisify } from 'util'
-import { v4 as uuid } from 'uuid'
 import { ChannelState } from '../../fs-channel-state.js';
 import taskManager from '../../task-manager.js';
 import { Container } from '@akala/commands';
@@ -11,7 +10,7 @@ export default async function watch(this: ChannelState, container: taskManager &
     var id: string | undefined = void 0;
     if (stat.isDirectory() || stat.isFile())
     {
-        id = uuid();
+        id = crypto.randomUUID();
         var watcher = fs.watch(path, function (event, fileName)
         {
             if (!eventName || eventName == event)

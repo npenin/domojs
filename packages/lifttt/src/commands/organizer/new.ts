@@ -1,11 +1,10 @@
 import { Container } from '@akala/commands';
-import { v4 as uuid } from 'uuid'
 import { OrganizerState } from '../../organizer-state.js';
 
 export default async function register(this: OrganizerState, container: Container<void>, id?: string)
 {
     if (!id)
-        id = uuid();
+        id = crypto.randomUUID();
 
     this.organizers[id] = container;
     return id;
