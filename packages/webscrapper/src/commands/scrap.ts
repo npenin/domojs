@@ -5,14 +5,14 @@ import { selectAll } from 'css-select'
 import type { AnyNode, Element, Text } from 'domhandler'
 export class ScrapError extends Error
 {
-    constructor(public readonly page: Page<unknown>, public readonly options: RequestAuthentication, public readonly inner: Error)
+    constructor(public readonly page: Page<unknown, unknown>, public readonly options: RequestAuthentication, public readonly inner: Error)
     {
         super();
 
     }
 }
 
-export default async function scrap<T>(site: Site<T>, http: Http)
+export default async function scrap<TDirectScrap, T extends TDirectScrap>(site: Site<TDirectScrap, T>, http: Http)
 {
     if (site.authentication)
         throw new Error('Not supported yet');
@@ -35,7 +35,7 @@ export default async function scrap<T>(site: Site<T>, http: Http)
     return results;
 }
 
-export async function scrapPage<T>(page: Page<T>, http: Http, options?: RequestAuthentication)
+export async function scrapPage<T, TDirectScrap extends T>(page: Page<T, TDirectScrap>, http: Http, options?: RequestAuthentication)
 {
     var url = new URL(page.url as string | URL);
     if (options?.query)
@@ -55,7 +55,7 @@ export async function scrapPage<T>(page: Page<T>, http: Http, options?: RequestA
     // console.time('process page ' + page.url)
     return await Promise.all(Array.from(selectAll(page.items.selector, dom).map(async function (item)
     {
-        var result: Partial<T> = {};
+        var result: Partial<T & TDirectScrap> = {};
         // var item = cheerio(this);
         if (page.items.scrap)
             Object.assign(result, scrapscraps(item, page.items.scrap));

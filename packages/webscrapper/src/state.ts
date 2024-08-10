@@ -1,17 +1,14 @@
-import { HttpOptions } from "@akala/core";
-
 export default interface State
 {
-	sites: Record<string, Site<any>>;
+	sites: Record<string, Site<any, any>>;
 }
 
-
-export interface Site<T>
+export interface Site<TDirectScrap, T extends TDirectScrap>
 {
 	authentication?: BasicAuthentication | OAuth;
 	request?: RequestAuthentication
-	login?: Page<unknown>;
-	page: Page<T>;
+	login?: Page<unknown, unknown>;
+	page: Page<TDirectScrap, T>;
 }
 
 export interface BasicAuthentication
@@ -28,20 +25,20 @@ export interface OAuth
 
 export type RequestAuthentication = { headers?: Record<string, string>, query?: Record<string, string> }
 
-export interface Page<T>
+export interface Page<TDirectScrap, T extends TDirectScrap>
 {
 	method?: string;
 	url: string | URL | Scrap;
-	items: Item<T>;
+	items: Item<TDirectScrap, T>;
 	totalCountSelector?: string;
 	nextPage?: RequestAuthentication;
 }
 
-export interface Item<T>
+export interface Item<TDirectScrap, T extends TDirectScrap>
 {
 	selector: string;
-	details?: Page<T>;
-	scrap?: Record<keyof T, Scrap>
+	details?: Page<Partial<T>, Partial<T>>;
+	scrap?: { [key in keyof TDirectScrap]?: Scrap }
 }
 
 export interface Scrap

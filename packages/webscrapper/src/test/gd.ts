@@ -9,6 +9,9 @@ interface Recipe
     timings: { name: string, value: string }[],
     is_icookable: boolean;
     prepTime: string,
+    favorites: string,
+    mark: string,
+    thematic: string,
     preparations: {
         topings: { quantity: number, type: string }[],
         steps: {
@@ -26,7 +29,6 @@ interface Recipe
         name: string;
         pictureUrl: string;
     }[];
-
 }
 
 (async function (is_icookableArg: string)
@@ -38,7 +40,7 @@ interface Recipe
     {
         console.time(category);
         console.log(category);
-        var categoryResults = await scrap({
+        var categoryResults = await scrap<Pick<Recipe, 'name' | 'url'>, Recipe>({
             page: {
                 url: 'https://www.guydemarle.com/recettes', nextPage: { query: { page: '{{$page}}', categories: category, is_icookable: is_icookable.toString() } }, items: {
                     selector: 'div.column > div.card.custom-card',
@@ -129,8 +131,8 @@ interface Recipe
                     }
                 }
             }
-        }, new FetchHttp(null)) as Recipe[];
-        results.push(...categoryResults.map(e => (e.category = category, e.is_icookable = is_icookable, e)));
+        }, new FetchHttp(null));
+        results.push(...categoryResults.map(e => ({ category, is_icookable, ...e } as Recipe)));
         console.timeEnd(category);
         console.log(categoryResults.length);
     }
