@@ -14,7 +14,8 @@
                 },
                 "cli": {
                     "inject": [
-                        "$container"
+                        "$container",
+                        "signal"
                     ]
                 },
                 "": {
