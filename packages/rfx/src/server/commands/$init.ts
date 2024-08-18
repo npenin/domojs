@@ -21,18 +21,18 @@ export default async function init(this: State, container: Container<void>, sign
     });
     this.setGateway = async (gw: Rfxtrx) =>
     {
+        signal?.addEventListener('abort', () => gw.close())
         await gw.start();
         setGateway(gw);
-        signal.addEventListener('abort', () => gw.close())
         return gw;
     };
 
     // var p1 = fs.readFile(path.resolve(__dirname, '../../../views/new-RFXCOM.html'), 'utf-8').then(newDeviceTemplate =>
-    //     registerDeviceType(container, {
-    //         name: 'RFXCOM',
-    //         view: newDeviceTemplate,
-    //         commandMode: 'static'
-    //     }));
+    await registerDeviceType(container, signal, {
+        name: 'RFXCOM',
+        view: '',
+        commandMode: 'static'
+    });
 
     // var p2 = Promise.resolve();
     // var p2 = fs.readFile(path.resolve(__dirname, '../../../views/new-RFY.html'), 'utf-8').then(newDeviceTemplate =>
