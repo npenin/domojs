@@ -1,5 +1,4 @@
-import { EventEmitter } from 'events';
-import { SerializableObject } from '@akala/core'
+import { EventEmitter, SerializableObject } from '@akala/core'
 import { DbSet, StoreDefinition } from '@akala/storage';
 import { Sidecar } from '@akala/sidecar';
 
