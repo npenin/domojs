@@ -9,7 +9,7 @@ import app from '@akala/sidecar'
 
 var setGateway: (gw: Zigate) => void = null;
 
-export default async function (this: State, context: CliContext, container: Container<void>)
+export default async function (this: State, context: CliContext, container: Container<void>, signal: AbortSignal)
 {
     this.devicesByAddress = {};
     this.devices = {};
@@ -22,12 +22,13 @@ export default async function (this: State, context: CliContext, container: Cont
     this.setGateway = async (gw: Zigate) =>
     {
         // await gw.start();
+        signal.addEventListener('abort', () => gw.close())
         setGateway(gw);
         return gw;
     };
 
     await fs.readFile(path.resolve(__dirname, '../../views/device.html'), 'utf-8').then(newDeviceTemplate =>
-        registerDeviceType(container, {
+        registerDeviceType(container, signal, {
             name: 'zigate',
             commandMode: 'static',
             view: newDeviceTemplate
