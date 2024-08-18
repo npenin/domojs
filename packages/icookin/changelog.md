@@ -3,6 +3,7 @@
 
 ### Bug Fixes
 
+* artificial bump 32822d5
 * artificial bump a1d6219
 * artificial bump b08a001
 * remove @akala/client for now fae299f
