@@ -4,15 +4,17 @@ import { sidecar, Container as pmContainer } from '@akala/pm';
 import app from "@akala/sidecar";
 import { DbSet } from "@akala/storage";
 import { CliContext } from "@akala/cli";
+import { fileURLToPath } from 'url'
 
 
 export default async function (this: devices.DeviceTypeState, context: CliContext, container: Container<unknown>, pm: pmContainer & Container<any>)
 {
+    debugger;
     try
     {
         var webc = await sidecar({ container, pm })['@akala/server'];
 
-        await webc.dispatch('remote-container', '/api/devices/types', require('../../../../devicetype-commands.json'))
+        await webc.dispatch('remote-container', '/api/devices/types', (await import('../../devicetype-commands.js')).default.meta)
     }
     catch (e)
     {
@@ -21,5 +23,5 @@ export default async function (this: devices.DeviceTypeState, context: CliContex
     }
     this.initializing = [];
     this.types = {};
-    Object.assign(this, await app<{ DeviceInit: DbSet<{ name: string, body: any }> }>(context, require.resolve('../../../../devicetype-app.json'), pm));
+    Object.assign(this, await app<{ DeviceInit: DbSet<{ name: string, body: any }> }>(context, fileURLToPath(new URL('../../../../devicetype-app.json', import.meta.url)), pm));
 }
