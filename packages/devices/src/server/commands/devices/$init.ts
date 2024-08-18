@@ -8,6 +8,7 @@ import app, { Sidecar } from '@akala/sidecar'
 import Configuration from '@akala/config'
 import { State } from '../index.js';
 import { CliContext } from '@akala/cli';
+import { fileURLToPath } from 'url'
 
 export default async function (this: State, context: CliContext, config: Configuration, container: Container<any> & deviceContainer.container, pm: Container<any> & pmContainer)
 {
@@ -19,9 +20,9 @@ export default async function (this: State, context: CliContext, config: Configu
     try
     {
         var webc = await sidecar.sidecars['@akala/server'];
-        await webc.dispatch('remote-container', '/api/devices', require('../../../../device-commands.json'))
+        await webc.dispatch('remote-container', '/api/devices', (await import('../../device-commands.js')).default.meta)
 
-        await webc.dispatch('asset', 'main', require.resolve('../../../client'))
+        await webc.dispatch('asset', 'main', fileURLToPath(new URL('../../../client', import.meta.url)))
     }
     catch (e)
     {
