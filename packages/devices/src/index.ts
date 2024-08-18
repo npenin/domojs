@@ -9,9 +9,9 @@ export { devices, deviceContainer, deviceTypeContainer }
 import { logger } from '@akala/core';
 
 
-export async function registerDeviceType(container: Container<void>, ...deviceTypes: devices.DeviceType[])
+export async function registerDeviceType(container: Container<void>, signal: AbortSignal, ...deviceTypes: devices.DeviceType[])
 {
-    var deviceType = await sidecarSingleton({ container })['@domojs/devicetype'];
+    var deviceType = await sidecarSingleton({ container, preferRemote: false, signal })['@domojs/devicetype'];
     for (var dt of deviceTypes)
         await deviceType.dispatch('register', dt);
 }
