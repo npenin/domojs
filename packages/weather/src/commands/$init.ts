@@ -7,13 +7,13 @@ import { Container } from "@akala/commands";
 
 var state: State = null;
 
-export default async function init(this: State, container: Container<void>)
+export default async function init(this: State, container: Container<void>, signal: AbortSignal)
 {
     state = this;
 
     state.locations = (await Configuration.load("./weather.json")) || Configuration.new<Record<string, SerializableObject>>("./weather.json", {});
 
-    await registerDeviceType(container, {
+    await registerDeviceType(container, signal, {
         name: 'Weather',
         view: '@domojs/weather/new.html',
         commandMode: 'dynamic'
