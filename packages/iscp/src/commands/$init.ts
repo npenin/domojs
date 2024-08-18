@@ -5,7 +5,7 @@ import { Container } from "@akala/commands";
 
 var state: State = null;
 
-export default async function init(this: State, container: Container<void>)
+export default async function init(this: State, container: Container<void>, signal: AbortSignal)
 {
     state = this;
     state.collection = {};
@@ -21,7 +21,7 @@ export default async function init(this: State, container: Container<void>)
     };
 
     await fs.readFile(require.resolve('../../views/device.html'), 'utf-8').then(newDeviceTemplate =>
-        registerDeviceType(container, {
+        registerDeviceType(container, signal, {
             name: 'iscp',
             view: newDeviceTemplate,
             commandMode: 'dynamic'
