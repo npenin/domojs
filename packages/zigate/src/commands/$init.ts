@@ -6,6 +6,7 @@ import { Zigate } from '@domojs/zigate-parsers';
 import { CliContext } from '@akala/cli';
 import { Container } from '@akala/commands';
 import app from '@akala/sidecar'
+import { fileURLToPath } from 'url'
 
 var setGateway: (gw: Zigate) => void = null;
 
@@ -27,7 +28,7 @@ export default async function (this: State, context: CliContext, container: Cont
         return gw;
     };
 
-    await fs.readFile(path.resolve(__dirname, '../../views/device.html'), 'utf-8').then(newDeviceTemplate =>
+    await fs.readFile(fileURLToPath(new URL('../../views/device.html', import.meta.url)), 'utf-8').then(newDeviceTemplate =>
         registerDeviceType(container, signal, {
             name: 'zigate',
             commandMode: 'static',
