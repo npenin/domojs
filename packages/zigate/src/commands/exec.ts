@@ -23,8 +23,16 @@ export default function (this: State, deviceName: string, command: keyof typeof 
                                 resolve();
                         });
                     });
-                case 'PermitJoin':
+
                 case 'GetVersion':
+                    return new Promise<MessageTypes.GetVersionResponse>((resolve, reject) =>
+                    {
+                        this.devices[deviceName].gateway.send(MessageType.GetVersion);
+                        this.devices[deviceName].gateway.once<MessageTypes.GetVersionResponse>(MessageType.GetVersion, (message) =>
+                        {
+                            resolve(message);
+                        });
+                    });
                 case 'Reset':
                 case 'ErasePersistentData':
                 case 'ZLO_ZLL_FactoryNew_Reset':

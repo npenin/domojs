@@ -16,14 +16,14 @@ export async function registerDeviceType(container: Container<void>, signal: Abo
         await deviceType.dispatch('register', dt);
 }
 
-declare module '@akala/pm'
-{
-    interface SidecarMap
-    {
-        ['@domojs/devices']: deviceContainer.container;
-        ['@domojs/devicetype']: deviceTypeContainer.container;
-    }
-}
+// declare module '@akala/pm'
+// {
+//     interface SidecarMap
+//     {
+//         ['@domojs/devices']: deviceContainer.container;
+//         ['@domojs/devicetype']: deviceTypeContainer.container;
+//     }
+// }
 
 
 
