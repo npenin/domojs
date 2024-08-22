@@ -1,9 +1,15 @@
-#  (2024-08-18)
+#  (2024-08-22)
 
 
 ### Bug Fixes
 
-* artificial bump e2ba776
+* add generics on gateway 665e107
+* use value from cli f1b9d1e
+
+
+### BREAKING CHANGES
+
+* Gateway requires typed events
 
 
 
