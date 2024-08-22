@@ -11,7 +11,7 @@ portions of this file.
 '----------------------------------------------------------------------------
 */
 import { EventEmitter } from 'events';
-import { Queue, logger, eachAsync } from '@akala/core';
+import { Queue, logger, eachAsync, Event } from '@akala/core';
 export * from './protocol/index.js'
 import * as os from 'os';
 import { Protocol, Message, PacketType, Type, InterfaceControl, InterfaceMessage, EventMap, Rfy, RFXDevice } from './protocol/index.js';
@@ -25,7 +25,7 @@ import { Gateway } from '@domojs/devices'
 type Modes = Pick<InterfaceControl.ModeCommand, 'msg3' | 'msg4' | 'msg5' | 'msg6'>;
 const log = logger('rfxtrx');
 
-export class Rfxtrx extends Gateway
+export class Rfxtrx extends Gateway<{ message: Event<[Message<any>]> } & { [key in ((keyof typeof Type.INTERFACE_MESSAGE) | (keyof typeof PacketType) | PacketType)]: Event<[Message<any>['message']]> }>
 {
     protected splitBuffer(buffer: Buffer): Buffer[]
     {
@@ -100,23 +100,6 @@ export class Rfxtrx extends Gateway
             this.close()
             throw new Error(`Invalid RFXCOM device ${copyright.message.copyright}; Exiting`);
         }
-    }
-
-    public on<T>(type: keyof Type.INTERFACE_MESSAGE, handler: (message: T) => void): this
-    public on<T>(type: Type.INTERFACE_MESSAGE, handler: (message: T) => void): this
-    public on<T extends keyof EventMap>(type: T, handler: (message: EventMap[T]) => void): this
-    public on(eventName: 'message', handler: (message: Message) => void): this
-    public on(eventName: 'message' | keyof Type.INTERFACE_MESSAGE | Type.INTERFACE_MESSAGE | keyof PacketType, handler: (message: Message<any>) => void): this
-    {
-        return super.on(eventName.toString(), handler);
-    }
-
-    public once<T>(type: keyof Type.INTERFACE_MESSAGE, handler: (message: T) => void): this
-    public once<T>(type: Type.INTERFACE_MESSAGE, handler: (message: T) => void): this
-    public once(eventName: 'message', handler: (message: Message) => void): this
-    public once(eventName: 'message' | keyof Type.INTERFACE_MESSAGE | Type.INTERFACE_MESSAGE, handler: (message: Message<any>) => void): this
-    {
-        return super.once(eventName.toString(), handler);
     }
 
     public send(type: Type.INTERFACE_CONTROL, message?: Partial<InterfaceControl.ModeCommand>): Promise<Message<any>>
