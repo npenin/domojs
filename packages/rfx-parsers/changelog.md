@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* switch to generic gateway 7d2516b
+* set mode on rfx d043a17
 
 
 
