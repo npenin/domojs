@@ -45,7 +45,7 @@ export default async function (this: State, deviceName: string, command: string,
                 else
                     modes.msg6 = modes.msg6 & ~InterfaceControl.protocols_msg6[command];
             }
-            message = Object.assign({ command: InterfaceControl.Commands.setMode }, modes) as RFXDevice;
+            return (await device.gateway).setModes(modes);
             break;
     }
     if (message == null)

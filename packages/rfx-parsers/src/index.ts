@@ -21,6 +21,7 @@ import { readdir } from 'fs/promises';
 import { Socket } from 'net';
 import { ModeResponse } from './protocol/1.interface.response.js';
 import { Gateway } from '@domojs/devices'
+import { EmitPower, Frequences } from './protocol/0.interface.mode.js';
 
 type Modes = Pick<InterfaceControl.ModeCommand, 'msg3' | 'msg4' | 'msg5' | 'msg6'>;
 const log = logger('rfxtrx');
@@ -60,11 +61,23 @@ export class Rfxtrx extends Gateway<{ message: Event<[Message<any>]> } & { [key 
         super(wire, isSocketAlreadyOpen);
     }
 
+    private _frequence: Frequences;
+    private _emitPower: EmitPower;
+
+    public get frequence() { return this._frequence; }
+    public get emitPower() { return this._emitPower; }
+
     async setModes(modes: Modes)
     {
-        var m: Message<ModeResponse> = await this.send(Type.INTERFACE_CONTROL.Mode, Object.assign({
+        var m: Message<ModeResponse> = await this.send(Type.INTERFACE_CONTROL.Mode, {
             command: InterfaceControl.Commands.setMode,
-        }, modes));
+            emitPower: this._emitPower,
+            frequenceSelection: this._frequence,
+            msg3: modes.msg3,
+            msg4: modes.msg4,
+            msg5: modes.msg5,
+            msg6: modes.msg6,
+        });
 
         if (
             (m.message.msg3 & modes.msg3) != modes.msg3 ||
@@ -73,11 +86,13 @@ export class Rfxtrx extends Gateway<{ message: Event<[Message<any>]> } & { [key 
             (m.message.msg6 & modes.msg6) != modes.msg6
         )
         {
-            this.close()
+            await this.stop()
             throw new Error('Modes could not be set; Exiting');
         }
         else
             this._modes = m.message;
+
+        return m.message;
     }
 
     async start()
@@ -90,8 +105,10 @@ export class Rfxtrx extends Gateway<{ message: Event<[Message<any>]> } & { [key 
         });
         await new Promise<void>(resolve => setTimeout(() => resolve(), 1000))
 
-        log.info(m);
-        this._modes == m.message;
+        log.info(m.message);
+        this._modes = m.message;
+        this._emitPower = m.message.emitPower;
+        this._frequence = m.message.transceiverType;
 
         await new Promise<void>(resolve => setTimeout(() => resolve(), 1000))
         var copyright: Message<InterfaceMessage.CheckRFXCOMDevice> = await this.send(Type.INTERFACE_CONTROL.Mode, { command: InterfaceControl.Commands.start });
