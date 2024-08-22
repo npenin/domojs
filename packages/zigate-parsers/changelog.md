@@ -1,9 +1,9 @@
-#  (2024-08-18)
+#  (2024-08-22)
 
 
 ### Bug Fixes
 
-* artificial bump e2ba776
+* switch to generic gateway fab4c73
 
 
 
