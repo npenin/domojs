@@ -24,7 +24,7 @@ export default async function register(this: devices.DeviceTypeState, type: devi
                     "inject": [
                         "options.device",
                         "options.command",
-                        "param.0"
+                        "options.value"
                     ]
                 }
             }
