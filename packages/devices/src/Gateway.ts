@@ -1,12 +1,10 @@
-import { EventEmitter } from 'events';
-import { Queue } from '@akala/core';
+import { EventEmitter, Queue, logger } from '@akala/core';
 import { Socket } from 'net';
 import { Duplex } from 'stream';
-import { logger } from '@akala/core';
 
 export const log = logger('domojs:devices');
 
-export abstract class Gateway extends EventEmitter
+export abstract class Gateway<T extends object> extends EventEmitter<T>
 {
     private static emptyBuffer = Buffer.allocUnsafe(0);
 
