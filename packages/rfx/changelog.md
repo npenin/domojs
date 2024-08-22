@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* build after switch to generic gateway aa8f298
+* set mode on rfx d043a17
 
 
 
