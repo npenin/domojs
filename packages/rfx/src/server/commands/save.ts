@@ -1,4 +1,4 @@
-import { Rfxtrx, PacketType, Rfy, InterfaceControl } from "@domojs/rfx-parsers";
+import { Rfxtrx, PacketType, Rfy, InterfaceControl, TemperatureHumidity } from "@domojs/rfx-parsers";
 import { devices } from "@domojs/devices";
 import { State } from "../state.js";
 import * as ac from '@akala/commands'
@@ -88,7 +88,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                 { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
             ];
 
-            (await this.devices[device.name].gateway).on('TEMPERATURE_HUMIDITY', state =>
+            (await this.devices[device.name].gateway).on('TEMPERATURE_HUMIDITY', (state: TemperatureHumidity.Device) =>
             {
                 container.dispatch('pushStatus', { device: device.name + '.temperature', state: state.temperature / 10 })
                 if (state.humidity !== 0)
