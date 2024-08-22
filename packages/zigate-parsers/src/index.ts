@@ -1,7 +1,7 @@
 import { Protocol, MessageType, Message, Cluster } from './messages/_common.js';
 import { EventEmitter } from 'events';
 import { Duplex } from 'stream';
-import { Queue, logger, eachAsync } from '@akala/core';
+import { Queue, logger, eachAsync, Event, Subscription } from '@akala/core';
 import { Gateway } from '@domojs/devices';
 import os from 'os';
 import { readdir } from 'fs/promises'
@@ -276,7 +276,7 @@ export namespace MessageTypes
 
 export { Cluster };
 
-export class Zigate extends Gateway
+export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in keyof typeof MessageType | MessageType]: Message['message'] }>
 {
     protected splitBuffer(buffer: Buffer): Buffer[]
     {
@@ -330,20 +330,20 @@ export class Zigate extends Gateway
         super(wire, true);
     }
 
-    public on<T>(type: keyof MessageType, handler: (message: T) => void)
-    public on<T>(type: MessageType, handler: (message: T) => void)
-    public on(eventName: 'message', handler: (message: Message) => void)
-    public on(eventName: 'message' | keyof MessageType | MessageType, handler: (message: any) => void)
+    public on<T>(type: keyof typeof MessageType, handler: (message: T) => void): Subscription
+    public on<T>(type: MessageType, handler: (message: T) => void): Subscription
+    public on(eventName: 'message', handler: (message: Message) => void): Subscription
+    public on(eventName: 'message' | keyof typeof MessageType | MessageType, handler: (message: any) => void): Subscription
     {
-        super.on(eventName.toString(), handler);
+        return super.on(eventName, handler);
     }
 
-    public once<T>(type: keyof MessageType, handler: (message: T) => void)
-    public once<T>(type: MessageType, handler: (message: T) => void)
-    public once(eventName: 'message', handler: (message: Message) => void)
-    public once(eventName: 'message' | keyof MessageType | MessageType, handler: (message: any) => void)
+    public once<T>(type: keyof typeof MessageType, handler: (message: T) => void): Subscription
+    public once<T>(type: MessageType, handler: (message: T) => void): Subscription
+    public once(eventName: 'message', handler: (message: Message) => void): Subscription
+    public once(eventName: 'message' | keyof typeof MessageType | MessageType, handler: (message: any) => void): Subscription
     {
-        super.once(eventName.toString(), handler);
+        return super.once(eventName, handler);
     }
 
     public send<T>(type: MessageType, message?: T)
