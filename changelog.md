@@ -1,9 +1,10 @@
-#  (2024-08-18)
+#  (2024-08-23)
 
 
 ### Bug Fixes
 
 * add device type 53de407
+* add generics on gateway 665e107
 * add homekit projects to compilation ce50c3d
 * add missing dependency 60e2e49
 * add version field 884db03
@@ -16,6 +17,7 @@
 * artificial bump b08a001
 * buffer slicing in rfx 48397c4
 * build after dependency update 75cf585
+* build after switch to generic gateway aa8f298
 * device init saving 5980d33
 * enable keepalive on tcp and http sockets cd61cd8
 * enable keepalive on tcp and http sockets 27fcfd2
@@ -42,9 +44,13 @@
 * reopen on close 97206ad
 * rfx parsing 09bbea5
 * scrap stop crashing on not found elements 57355db
+* set mode on rfx d043a17
 * specify proper params for save c949c4b
 * support for gateway closure a77d715
 * support for tcp gateway 1afe68a
+* switch to esm dcb74cf
+* switch to generic gateway 7d2516b
+* switch to generic gateway fab4c73
 * transparent proxy inject parameters d51aec6
 * update dependencies a3ea3a6
 * update dependencies and checkout depth f04e50a
@@ -62,6 +68,7 @@
 * use signal to allow proper termination 0a42077
 * use signal to allow proper termination b111ef0
 * use signal to allow proper termination daab3d0
+* use value from cli f1b9d1e
 * various processing improvements 1984092
 * yarn files 3333988
 * yarn state 7b5be0a
@@ -111,6 +118,7 @@
 
 ### BREAKING CHANGES
 
+* Gateway requires typed events
 * webscrapper uses generic types
 * update to ESM
 * move device management to devicetype
