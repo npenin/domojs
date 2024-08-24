@@ -1,11 +1,11 @@
 {
     "author": "npenin",
     "dependencies": {
-        "@akala/commands": "^8.2.2",
-        "@akala/core": "^15.0.15",
-        "@akala/json-rpc-ws": "^10.5.15",
-        "@akala/pm": "^9.2.2",
-        "@akala/server": "^9.5.19",
+        "@akala/commands": "^8.2.4",
+        "@akala/core": "^15.0.17",
+        "@akala/json-rpc-ws": "^10.5.17",
+        "@akala/pm": "^9.2.4",
+        "@akala/server": "^9.5.21",
         "@akala/web-ui": "link:../../../akala/packages/web-ui",
         "@fortawesome/fontawesome-common-types": "^6.6.0",
         "@fortawesome/fontawesome-svg-core": "^6.6.0",

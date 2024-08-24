@@ -4,6 +4,18 @@
             "commandable": true,
             "stateless": false,
             "path": "/home/nicolas/dev/domojs/node_modules/@akala/pm/commands.json"
+        },
+        "@domojs/rfx": {
+            "path": "/home/nicolas/dev/domojs/packages/rfx/commands.json",
+            "commandable": true
+        },
+        "@domojs/devices": {
+            "path": "/home/nicolas/dev/domojs/packages/devices/device-commands.json",
+            "commandable": true
+        },
+        "@domojs/devicetype": {
+            "path": "/home/nicolas/dev/domojs/packages/devices/devicetype-commands.json",
+            "commandable": true
         }
     },
     "mapping": {
