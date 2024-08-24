@@ -1,5 +1,5 @@
 {
-    "name": "service-discovery",
+    "name": "@domojs/service-discovery",
     "version": "0.0.5",
     "main": "dist/cjs/index.js",
     "types": "dist/cjs/index.d.ts",
