@@ -117,6 +117,8 @@ export class Rfxtrx extends Gateway<{ message: Event<[Message<any>]> } & { [key 
             this.close()
             throw new Error(`Invalid RFXCOM device ${copyright.message.copyright}; Exiting`);
         }
+        if (m.message.msg3 & InterfaceControl.protocols_msg3.DisplayRaw)
+            this.on('message', m => console.log(m));
     }
 
     public send(type: Type.INTERFACE_CONTROL, message?: Partial<InterfaceControl.ModeCommand>): Promise<Message<any>>
