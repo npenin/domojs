@@ -1,4 +1,9 @@
-#  (2024-08-23)
+#  (2024-08-24)
+
+
+### Features
+
+* enable debug mode 684b9cd
 
 
 
