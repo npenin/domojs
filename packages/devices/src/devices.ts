@@ -1,6 +1,7 @@
 import { EventEmitter, SerializableObject } from '@akala/core'
 import { DbSet, StoreDefinition } from '@akala/storage';
 import { Sidecar } from '@akala/sidecar';
+import { Metadata } from '@akala/commands';
 
 export interface register
 {
@@ -25,9 +26,9 @@ export interface IGateway
     remove?(): void;
 }
 
-export interface IDevice
+export interface IDevice extends Metadata.Container
 {
-    name: string;
+    // name: string;
     type: string;
     room: string;
     category?: string;
@@ -35,7 +36,7 @@ export interface IDevice
     statusMethod?: string | number;
     status?(): PromiseLike<string | { state: boolean, color: string } | SerializableObject>;
     statusUnit?: string;
-    commands: { [key: string]: Command } | string[];
+    // commands: { [key: string]: Command } | string[];
     subdevices?: IDevice[];
     remove?(): void;
 }

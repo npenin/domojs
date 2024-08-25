@@ -57,7 +57,10 @@ export default async function save(this: State, body: any, device: devices.IDevi
                     return { state: result == 'PWR0', color: result == 'PWR0' ? 'green' : 'red' };
                 });
             },
-            commands: ['on', 'off']
+            commands: [
+                { name: 'on', config: { "": { inject: [] } } },
+                { name: 'off', config: { "": { inject: [] } } }
+            ]
         },
         {
             room: device.room,
@@ -75,7 +78,10 @@ export default async function save(this: State, body: any, device: devices.IDevi
                     return { state: result == 'MUT0', color: result == 'MUT0' ? 'green' : 'red' };
                 });
             },
-            commands: ['on', 'off']
+            commands: [
+                { name: 'on', config: { "": { inject: [] } } },
+                { name: 'off', config: { "": { inject: [] } } }
+            ]
         },
         {
             room: device.room,
@@ -91,7 +97,11 @@ export default async function save(this: State, body: any, device: devices.IDevi
                     return { state: Number(/\d+/.exec(result)) * 100 / 185 };
                 });
             },
-            commands: ['up', 'down', 'set']
+            commands: [
+                { name: 'up', config: { "": { inject: [] } } },
+                { name: 'down', config: { "": { inject: [] } } },
+                { name: 'set', config: { "": { inject: ["param.0"] } } }
+            ]
         },
         {
             room: device.room,
@@ -126,7 +136,15 @@ export default async function save(this: State, body: any, device: devices.IDevi
                     }
                 });
             },
-            commands: ['Game', 'Dvd', 'Sat/Cbl', 'Dvr/Bdr', 'iPod', 'Video', 'BD']
+            commands: [
+                { name: 'Game', config: { "": { inject: [] } } },
+                { name: 'Dvd', config: { "": { inject: [] } } },
+                { name: 'Sat/Cbl', config: { "": { inject: [] } } },
+                { name: 'Dvr/Bdr', config: { "": { inject: [] } } },
+                { name: 'iPod', config: { "": { inject: [] } } },
+                { name: 'Video', config: { "": { inject: [] } } },
+                { name: 'BD', config: { "": { inject: [] } } },
+            ]
         }
     ]
     return device;

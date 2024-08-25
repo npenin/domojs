@@ -53,23 +53,23 @@ export default async function save(this: State, body: any, device: devices.IDevi
         }
         await p;
 
-        device.commands = {
-            'GetVersion': { type: 'button' },
-            'Reset': { type: 'button' },
-            'ErasePersistentData': { type: 'button' },
-            'ZLO_ZLL_FactoryNew_Reset': { type: 'button' },
-            'PermitJoin': { type: 'button' },
-            'GetDevicesList': { type: 'button' },
-            'SetSecurityStateAndKey': { type: 'button' },
-            'StartNetworkScan': { type: 'button' },
-            'RemoveDevice': { type: 'button' },
-            'EnablePermissionsControlJoin': { type: 'button' },
-            'AuthenticateDevice': { type: 'button' },
-            'Bind': { type: 'button' },
-            'Unbind': { type: 'button' },
-            'ManagementLeave': { type: 'button' },
-            'PermitJoining': { type: 'button' },
-        };
+        device.commands = [
+            { name: 'GetVersion', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
+            { name: 'Reset', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
+            { name: 'ErasePersistentData', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
+            { name: 'ZLO_ZLL_FactoryNew_Reset', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
+            { name: 'PermitJoin', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
+            { name: 'GetDevicesList', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
+            { name: 'SetSecurityStateAndKey', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
+            { name: 'StartNetworkScan', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
+            { name: 'RemoveDevice', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
+            { name: 'EnablePermissionsControlJoin', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
+            { name: 'AuthenticateDevice', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
+            { name: 'Bind', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
+            { name: 'Unbind', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
+            { name: 'ManagementLeave', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
+            { name: 'PermitJoining', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
+        ];
 
         this.devices[device.name] = {
             type: 'gateway',

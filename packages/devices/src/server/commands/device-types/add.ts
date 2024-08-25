@@ -1,5 +1,5 @@
 import * as devices from "../../../devices.js";
-import { Container } from "@akala/commands";
+import { Container, Metadata } from "@akala/commands";
 import { logger } from "@akala/core";
 
 const log = logger('domojs:devices:types:add')
@@ -17,11 +17,11 @@ export default async function persist(this: devices.DeviceTypeState,
     log.info(arguments);
     log.debug(body);
 
-    var device = {
+    var device: Metadata.Container & { type: string, category: string, room: string } = {
         name: body.name,
         type: type,
         category: body.category,
-        root: body.room,
+        room: body.room,
         commands: null
     };
 

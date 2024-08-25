@@ -1,22 +1,20 @@
 import { Rfxtrx, PacketType, Rfy, InterfaceControl, TemperatureHumidity } from "@domojs/rfx-parsers";
 import { devices } from "@domojs/devices";
 import { State } from "../state.js";
-import * as ac from '@akala/commands'
-import * as pm from '@akala/pm'
-import * as http from 'http'
-import * as https from 'https'
 import * as net from 'net'
 import { punch } from "http-punch-hole";
 import { logger } from '@akala/core'
+import { Container, Metadata } from "@akala/commands";
+import { InteractError } from "@akala/cli";
 
 const log = logger('domojs:rfx')
 
-export default async function save(this: State, body: any, device: devices.IDevice, container: ac.Container<any>)
+export default async function save(this: State, body: any, device: devices.IDevice, container: Container<any>)
 {
     if (!body)
         return device;
     if (typeof body.rfxType == 'undefined')
-        throw new pm.InteractError('please provide an rfxType', 'body.rfxType');
+        throw new InteractError('please provide an rfxType', 'body.rfxType');
     var type: PacketType = (body.rfxType & 0xff00) >> 8;
     switch (type)
     {
@@ -68,16 +66,16 @@ export default async function save(this: State, body: any, device: devices.IDevi
                     break;
             }
             this.devices[device.name] = { type: PacketType.INTERFACE_CONTROL, gateway: p };
-            device.commands = Object.fromEntries([
-                ...Object.keys(InterfaceControl.protocols_msg3).filter(k => typeof (k) == 'string').map<[string, devices.Command]>((k: keyof InterfaceControl.protocols_msg3) => [k, { type: "toggle" }]),
-                ...Object.keys(InterfaceControl.protocols_msg4).filter(k => typeof (k) == 'string').map<[string, devices.Command]>((k: keyof InterfaceControl.protocols_msg4) => [k, { type: "toggle" }]),
-                ...Object.keys(InterfaceControl.protocols_msg5).filter(k => typeof (k) == 'string').map<[string, devices.Command]>((k: keyof InterfaceControl.protocols_msg5) => [k, { type: "toggle" }]),
-                ...Object.keys(InterfaceControl.protocols_msg6).filter(k => typeof (k) == 'string').map<[string, devices.Command]>((k: keyof InterfaceControl.protocols_msg6) => [k, { type: "toggle" }]),
-            ]);
+            device.commands = [
+                ...Object.keys(InterfaceControl.protocols_msg3).filter(k => typeof (k) == 'string').map<Metadata.Command>((k: keyof typeof InterfaceControl.protocols_msg3) => ({ name: k, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" } } })),
+                ...Object.keys(InterfaceControl.protocols_msg4).filter(k => typeof (k) == 'string').map<Metadata.Command>((k: keyof typeof InterfaceControl.protocols_msg4) => ({ name: k, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" } } })),
+                ...Object.keys(InterfaceControl.protocols_msg5).filter(k => typeof (k) == 'string').map<Metadata.Command>((k: keyof typeof InterfaceControl.protocols_msg5) => ({ name: k, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" } } })),
+                ...Object.keys(InterfaceControl.protocols_msg6).filter(k => typeof (k) == 'string').map<Metadata.Command>((k: keyof typeof InterfaceControl.protocols_msg6) => ({ name: k, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" } } })),
+            ];
             break;
         case PacketType.RFY:
             this.devices[device.name] = { type: body.rfxType, id1: body.id1, id2: body.id2, id3: body.id3, unitCode: body.unitCode, gateway: this.devices[body.gateway] && this.devices[body.gateway].gateway || this.gateway };
-            device.commands = Object.keys(Rfy.Commands).filter(v => isNaN(Number(v)));
+            device.commands = Object.keys(Rfy.Commands).filter(v => isNaN(Number(v))).map(cmd => ({ name: cmd, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" } } }));
             break;
         case PacketType.TEMPERATURE_HUMIDITY:
             this.devices[device.name] = { type: body.rfxType, id: body.rfxType, gateway: this.devices[body.gateway] && this.devices[body.gateway].gateway || this.gateway };

@@ -35,70 +35,70 @@ export default async function register(db: LiveStore, deviceTypeContainer: Conta
             setInterval(() => deviceTypeContainer.dispatch('status', device), device.statusMethod);
     }
 
-    if (device.commands)
-    {
-        var commands: { [key: string]: devices.RunnableCommandDescription } = {};
-        if (Array.isArray(device.commands))
-        {
-            akala.each(device.commands, function (command)
-            {
-                commands[command] = {
-                    type: 'button',
-                    run: function (value)
-                    {
-                        return deviceTypeContainer.dispatch(device.type + '.exec', device.name, command, value);
-                    }
-                };
-                deviceContainer.register(new SelfDefinedCommand(commands[command].run, device.name + '-' + command));
-            })
-            device.commands = commands;
-        }
-        else
-        {
-            akala.each(device.commands, function (command: devices.Command, name)
-            {
-                if (typeof (command) == 'function')
-                {
-                    commands[name] = {
-                        type: 'button',
-                        run: command
-                    };
-                }
-                else if (typeof (command) == 'string')
-                    commands[name] = {
-                        type: 'button',
-                        run: function (value)
-                        {
-                            return deviceTypeContainer.dispatch(device.type + '.exec', device.name, name, value);
-                        }
-                    };
-                else
-                {
-                    commands[name] = Object.assign(command, {
-                        run: function (value)
-                        {
-                            switch (command.type)
-                            {
-                                case 'range':
-                                    if (value < command.min || value > command.max)
-                                        throw new Error('Value (' + value + ') is out of bounds (' + command.min + ', ' + command.max + ')');
-                                    break;
-                                case 'input':
-                                    if (typeof (value) == 'number' || command.values.indexOf(value) == -1)
-                                        throw new Error('Value (' + value + ') is not accepted (' + command.values.join(', ') + ')');
-                                    break;
-                            }
-                            return deviceTypeContainer.dispatch(device.type + '.exec', device.name, name, value);
-                        }
-                    });
-                }
+    // if (device.commands)
+    // {
+    //     var commands: { [key: string]: devices.RunnableCommandDescription } = {};
+    //     if (Array.isArray(device.commands))
+    //     {
+    //         akala.each(device.commands, function (command)
+    //         {
+    //             commands[command] = {
+    //                 type: 'button',
+    //                 run: function (value)
+    //                 {
+    //                     return deviceTypeContainer.dispatch(device.type + '.exec', device.name, command, value);
+    //                 }
+    //             };
+    //             deviceContainer.register(new SelfDefinedCommand(commands[command].run, device.name + '-' + command));
+    //         })
+    //         device.commands = commands;
+    //     }
+    //     else
+    //     {
+    //         akala.each(device.commands, function (command: devices.Command, name)
+    //         {
+    //             if (typeof (command) == 'function')
+    //             {
+    //                 commands[name] = {
+    //                     type: 'button',
+    //                     run: command
+    //                 };
+    //             }
+    //             else if (typeof (command) == 'string')
+    //                 commands[name] = {
+    //                     type: 'button',
+    //                     run: function (value)
+    //                     {
+    //                         return deviceTypeContainer.dispatch(device.type + '.exec', device.name, name, value);
+    //                     }
+    //                 };
+    //             else
+    //             {
+    //                 commands[name] = Object.assign(command, {
+    //                     run: function (value)
+    //                     {
+    //                         switch (command.type)
+    //                         {
+    //                             case 'range':
+    //                                 if (value < command.min || value > command.max)
+    //                                     throw new Error('Value (' + value + ') is out of bounds (' + command.min + ', ' + command.max + ')');
+    //                                 break;
+    //                             case 'input':
+    //                                 if (typeof (value) == 'number' || command.values.indexOf(value) == -1)
+    //                                     throw new Error('Value (' + value + ') is not accepted (' + command.values.join(', ') + ')');
+    //                                 break;
+    //                         }
+    //                         return deviceTypeContainer.dispatch(device.type + '.exec', device.name, name, value);
+    //                     }
+    //                 });
+    //             }
 
-                deviceContainer.register(new SelfDefinedCommand(commands[name].run, device.name + '-' + name));
+    //             deviceContainer.register(new SelfDefinedCommand(commands[name].run, device.name + '-' + name));
 
-            })
-            device.commands = commands;
-        }
-    }
+    //         })
+    //         device.commands = commands;
+    //     }
+    // }
     if (device.subdevices)
     {
         await akala.eachAsync(device.subdevices, (item: devices.Device) =>
