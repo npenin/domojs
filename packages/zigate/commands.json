@@ -9,19 +9,22 @@
                     "source": "src/commands/$init.ts",
                     "inject": [
                         "param.0",
-                        "param.1"
+                        "param.1",
+                        "param.2"
                     ]
                 },
                 "cli": {
                     "inject": [
                         "context",
-                        "$container"
+                        "$container",
+                        "signal"
                     ]
                 },
                 "": {
                     "inject": [
                         "param.0",
-                        "param.1"
+                        "param.1",
+                        "param.2"
                     ]
                 }
             }

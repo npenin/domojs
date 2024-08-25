@@ -18,8 +18,8 @@
     "author": "npenin",
     "license": "MIT",
     "dependencies": {
-        "@akala/core": "^15.0.17",
-        "@akala/sidecar": "^3.0.98",
+        "@akala/core": "^15.0.18",
+        "@akala/sidecar": "^3.0.99",
         "@domojs/zigate-parsers": "workspace:*",
         "http-punch-hole": "^1.0.12"
     },
@@ -33,9 +33,9 @@
         }
     },
     "devDependencies": {
-        "@akala/cli": "^2.14.14",
-        "@akala/commands": "^8.2.4",
-        "@akala/pubsub": "^2.0.22",
+        "@akala/cli": "^2.14.15",
+        "@akala/commands": "^8.2.5",
+        "@akala/pubsub": "^2.0.23",
         "@domojs/devices": "workspace:*",
         "@types/debug": "4.1.12"
     },
