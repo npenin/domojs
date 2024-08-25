@@ -7,7 +7,7 @@ export type ZDevices = ZGateway | ZDevice;
 export interface ZGateway
 {
     type: 'gateway';
-    gateway: Zigate;
+    gateway: Promise<Zigate>;
     room: string;
 }
 
@@ -17,7 +17,7 @@ export interface ZDevice
     address: number;
     category?: string;
     room: string;
-    gateway: Zigate;
+    gateway: Promise<Zigate>;
     name?: string;
     internalName?: string;
     clusters: Cluster[];
@@ -28,7 +28,7 @@ export interface ZDevice
 export interface State extends Sidecar
 {
     devicesByAddress: { [address: number]: ZDevice };
-    devices: { [key: string]: ZDevices & { gateway: Promise<Zigate> } };
+    devices: { [key: string]: ZDevices };
     gateway: Promise<Zigate>;
     setGateway(gw: Zigate): Promise<Zigate>;
     logger: Logger;

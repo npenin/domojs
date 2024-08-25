@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url'
 
 var setGateway: (gw: Zigate) => void = null;
 
-export default async function (this: State, context: CliContext, container: Container<void>, signal: AbortSignal)
+export default async function (this: State, context: CliContext<{ debug: boolean }>, container: Container<void>, signal: AbortSignal)
 {
     this.devicesByAddress = {};
     this.devices = {};
@@ -22,8 +22,8 @@ export default async function (this: State, context: CliContext, container: Cont
     });
     this.setGateway = async (gw: Zigate) =>
     {
-        // await gw.start();
-        signal.addEventListener('abort', () => gw.close())
+        signal?.addEventListener('abort', () => gw.close())
+        await gw.start(context.options.debug);
         setGateway(gw);
         return gw;
     };
@@ -48,7 +48,7 @@ export default async function (this: State, context: CliContext, container: Cont
     {
         console.error(e);
     }
-    Object.assign(this, await app(context, require.resolve('../../devicetype-app.json')));
+    // Object.assign(this, await app(context, fileURLToPath(new URL('../../devicetype-app.json', import.meta.url))));
 
     // this.deviceServer = await sidecar()['@domojs/devices'];
 }

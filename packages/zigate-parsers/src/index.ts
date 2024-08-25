@@ -1,7 +1,7 @@
 import { Protocol, MessageType, Message, Cluster } from './messages/_common.js';
 import { EventEmitter } from 'events';
 import { Duplex } from 'stream';
-import { Queue, logger, eachAsync, Event, Subscription } from '@akala/core';
+import { Queue, logger, eachAsync, Event, Subscription, EventOptions } from '@akala/core';
 import { Gateway } from '@domojs/devices';
 import os from 'os';
 import { readdir } from 'fs/promises'
@@ -278,6 +278,28 @@ export { Cluster };
 
 export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in keyof typeof MessageType | MessageType]: Message['message'] }>
 {
+    public start(debug?: boolean)
+    {
+        if (debug)
+            this.on('message', m => console.debug(m));
+        return new Promise<void>(resolve =>
+        {
+            this.send<MessageTypes.SetChannelMaskRequest>(MessageType.SetChannelMask, { mask: 11 })
+            this.once(MessageType.Status, (response: MessageTypes.SetChannelMaskResponse) =>
+            {
+                this.send<MessageTypes.SetDeviceTypeRequest>(MessageType.SetDeviceType, { type: network.DeviceType.Coordinator });
+                this.once(MessageType.Status, (response: MessageTypes.SetDeviceTypeResponse) =>
+                {
+                    this.send<MessageTypes.StartNetworkRequest>(MessageType.StartNetwork);
+                    this.once(MessageType.StartNetwork, (response: MessageTypes.StartNetworkResponse) =>
+                    {
+                        resolve();
+                    })
+                })
+            });
+        });
+    }
+
     protected splitBuffer(buffer: Buffer): Buffer[]
     {
         const buffers = [];
@@ -285,17 +307,20 @@ export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in ke
         let remaining: Buffer;
         for (let index = 1; index < buffer.length; index++)
         {
+            if (buffer[index] == 0x01)
+                offset = index;
             if (buffer[index] == 0x03)
             {
-                remaining = buffer.slice(index + 1);
-                buffers.push(buffer.slice(offset, index + 1));
+                remaining = buffer.subarray(index + 1);
+                if (offset < index + 1)
+                    buffers.push(buffer.subarray(offset, index + 1));
 
                 offset = index + 1;
                 log.debug('frame complete');
             }
         }
 
-        if (remaining)
+        if (remaining?.length)
             buffers.push(remaining);
 
         return buffers;
@@ -306,19 +331,12 @@ export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in ke
     }
     protected processFrame(buffer: Buffer): void | Promise<void>
     {
-        for (let index = 1; index < buffer.length; index++)
+        if (buffer?.length)
         {
-            if (buffer[index] == 0x02)
-            {
-                let newBuffer = Buffer.alloc(buffer.length - 1);
-                buffer.copy(newBuffer, 0, 0, index);
-                newBuffer[index] = buffer[index + 1] ^ 0x10;
-                buffer.copy(newBuffer, index + 1, index + 2);
-                buffer = newBuffer;
-            }
+            const message = Protocol.read(buffer)
+            this.emit('message', message);
+            this.emit(message.type, message);
         }
-
-        this.emit('message', Protocol.read(buffer));
     }
 
     public constructor(wire: Socket | (Duplex & {
@@ -330,20 +348,20 @@ export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in ke
         super(wire, true);
     }
 
-    public on<T>(type: keyof typeof MessageType, handler: (message: T) => void): Subscription
-    public on<T>(type: MessageType, handler: (message: T) => void): Subscription
-    public on(eventName: 'message', handler: (message: Message) => void): Subscription
-    public on(eventName: 'message' | keyof typeof MessageType | MessageType, handler: (message: any) => void): Subscription
+    public on<T>(type: keyof typeof MessageType, handler: (message: T) => void, options?: EventOptions<Event>): Subscription
+    public on<T>(type: MessageType, handler: (message: T) => void, options?: EventOptions<Event>): Subscription
+    public on(eventName: 'message', handler: (message: Message) => void, options?: EventOptions<Event>): Subscription
+    public on(eventName: 'message' | keyof typeof MessageType | MessageType, handler: (message: any) => void, options?: EventOptions<Event>): Subscription
     {
-        return super.on(eventName, handler);
+        return super.on(eventName, handler, options);
     }
 
-    public once<T>(type: keyof typeof MessageType, handler: (message: T) => void): Subscription
-    public once<T>(type: MessageType, handler: (message: T) => void): Subscription
-    public once(eventName: 'message', handler: (message: Message) => void): Subscription
-    public once(eventName: 'message' | keyof typeof MessageType | MessageType, handler: (message: any) => void): Subscription
+    public once<T>(type: keyof typeof MessageType, handler: (message: T) => void, options?: Omit<EventOptions<Event>, 'once'>): Subscription
+    public once<T>(type: MessageType, handler: (message: T) => void, options?: Omit<EventOptions<Event>, 'once'>): Subscription
+    public once(eventName: 'message', handler: (message: Message) => void, options?: Omit<EventOptions<Event>, 'once'>): Subscription
+    public once(eventName: 'message' | keyof typeof MessageType | MessageType, handler: (message: any) => void, options?: Omit<EventOptions<Event>, 'once'>): Subscription
     {
-        return super.once(eventName, handler);
+        return super.once(eventName, handler, options);
     }
 
     public send<T>(type: MessageType, message?: T)
@@ -416,7 +434,7 @@ export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in ke
         }
         catch (e)
         {
-            if (e.code !== 'MODULE_NOT_FOUND')
+            if (e.code !== 'MODULE_NOT_FOUND' && e.code !== 'ERR_MODULE_NOT_FOUND')
                 throw e;
         }
     }

@@ -3,10 +3,15 @@ import { State } from "../state.js";
 import * as akala from '@akala/core';
 const log = akala.logger('domojs:zigate');
 
-export default function (this: State, deviceName: string, command: keyof typeof MessageType, value: any)
+export default async function (this: State, deviceName: string, command: keyof typeof MessageType, value: any)
 {
     log.debug(arguments);
-    switch (this.devices[deviceName].type)
+    if (!this.devices[deviceName])
+        throw new akala.ErrorWithStatus(404, 'There is no such device named ' + deviceName);
+
+    const zigate = await this.devices[deviceName].gateway;
+
+    switch (this.devices[deviceName]?.type)
     {
         case 'gateway':
             switch (command)
@@ -14,8 +19,8 @@ export default function (this: State, deviceName: string, command: keyof typeof 
                 case 'PermitJoining':
                     return new Promise<void>((resolve, reject) =>
                     {
-                        this.devices[deviceName].gateway.send(MessageType.PermitJoining, { interval: 0xFE, TCSignificance: permitjoin.TCSignificance.NoChangeInAuthentication, targetShortAddress: 0xFFFC });
-                        this.devices[deviceName].gateway.once<MessageTypes.PermitJoiningResponse>(MessageType.Status, (message) =>
+                        zigate.send(MessageType.PermitJoining, { interval: 0xFE, TCSignificance: permitjoin.TCSignificance.NoChangeInAuthentication, targetShortAddress: 0xFFFC });
+                        zigate.once(MessageType.Status, (message: MessageTypes.PermitJoiningResponse) =>
                         {
                             if (message.status != status.Status.Success)
                                 reject(message.message);
@@ -27,8 +32,8 @@ export default function (this: State, deviceName: string, command: keyof typeof 
                 case 'GetVersion':
                     return new Promise<MessageTypes.GetVersionResponse>((resolve, reject) =>
                     {
-                        this.devices[deviceName].gateway.send(MessageType.GetVersion);
-                        this.devices[deviceName].gateway.once<MessageTypes.GetVersionResponse>(MessageType.GetVersion, (message) =>
+                        zigate.send(MessageType.GetVersion);
+                        zigate.once(MessageType.GetVersion, (message: MessageTypes.GetVersionResponse) =>
                         {
                             resolve(message);
                         });
@@ -48,13 +53,13 @@ export default function (this: State, deviceName: string, command: keyof typeof 
                 case 'ManagementLeave':
                     return new Promise<void>((resolve, reject) =>
                     {
-                        this.devices[deviceName].gateway.send<MessageTypes.GetVersionRequest>(MessageType[command]);
-                        this.devices[deviceName].gateway.once<MessageTypes.Status>(MessageType.Status, (message) =>
+                        zigate.send<MessageTypes.GetVersionRequest>(MessageType[command]);
+                        zigate.once(MessageType.Status, (message: MessageTypes.Status) =>
                         {
                             if (message.status != status.Status.Success)
                                 reject(message.message);
                         });
-                        this.devices[deviceName].gateway.once<MessageTypes.GetVersionResponse>(MessageType.GetVersion | MessageType.Response, (message) =>
+                        zigate.once(MessageType.GetVersion, () =>
                         {
                             resolve();
                         });

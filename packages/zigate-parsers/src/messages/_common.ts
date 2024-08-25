@@ -142,6 +142,19 @@ export const Message = parsers.series<Message>(
 export const Protocol = {
     read(buffer: Buffer)
     {
+        log.debug('decoding buffer', buffer);
+        let newLength = buffer.length;
+        for (let index = 1; index < buffer.length - 1; index++)
+        {
+            if (buffer[index] == 0x02)
+            {
+                buffer[index] = buffer[index + 1] & 0x0F;
+                buffer.copy(buffer, index + 1, index + 2);
+                newLength--;
+            }
+        }
+        buffer = buffer.subarray(0, newLength);
+        log.debug('decoded buffer', buffer);
         return Message.read(buffer, new Cursor(), {});
     },
     send(type: MessageType, message: any)

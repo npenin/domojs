@@ -40,7 +40,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             case 'tcp':
                 p = new Promise<Zigate>((resolve, reject) =>
                 {
-                    const socket = net.connect(body, async () =>
+                    const socket = net.connect(body, () =>
                     {
                         this.setGateway(new Zigate(socket)).then(resolve, reject);
                     });
@@ -52,7 +52,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                 break;
         }
         await p;
-        var zigate = await this.gateway;
+
         device.commands = {
             'GetVersion': { type: 'button' },
             'Reset': { type: 'button' },
@@ -71,21 +71,13 @@ export default async function save(this: State, body: any, device: devices.IDevi
             'PermitJoining': { type: 'button' },
         };
 
-        zigate.send<MessageTypes.SetChannelMaskRequest>(MessageType.SetChannelMask, { mask: 11 })
-        zigate.once(MessageType.Status, (response: MessageTypes.SetChannelMaskResponse) =>
-        {
-            zigate.send<MessageTypes.SetDeviceTypeRequest>(MessageType.SetDeviceType, { type: network.DeviceType.Coordinator });
-            zigate.once(MessageType.Status, (response: MessageTypes.SetDeviceTypeResponse) =>
-            {
-                zigate.send<MessageTypes.StartNetworkRequest>(MessageType.StartNetwork);
-                zigate.once(MessageType.StartNetwork, (response: MessageTypes.StartNetworkResponse) =>
-                {
+        this.devices[device.name] = {
+            type: 'gateway',
+            gateway: this.gateway,
+            room: 'house'
+        };
 
-                })
-            })
-        });
-
-        zigate.on<MessageTypes.ReportIndividualAttribute>(MessageType.ReportIndividualAttribute, async (attribute) =>
+        this.gateway.then(zigate => zigate.on(MessageType.ReportIndividualAttribute, async (attribute: MessageTypes.ReportIndividualAttribute) =>
         {
 
             if (attribute.clusterId == Cluster.Basic && attribute.attributeEnum == 0x05)
@@ -102,7 +94,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             {
                 this.devicesByAddress[attribute.sourceAddress] = {
                     type: 'device',
-                    gateway: zigate,
+                    gateway: this.gateway,
                     room: undefined,
                     address: attribute.sourceAddress,
                     category: null,
@@ -211,12 +203,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             {
                 log.error(e);
             }
-        })
-
-        devices[device.name] = {
-            type: 'gateway',
-            gateway: zigate
-        };
+        }));
 
         return device;
     }
@@ -227,7 +214,6 @@ export default async function save(this: State, body: any, device: devices.IDevi
         device.subdevices = [];
         if (!(body.zdevice.address in this.devicesByAddress))
         {
-            var zigate = await this.gateway;
             if (body.zdevice.address in this.devicesByAddress && this.devicesByAddress[body.zdevice.address].registered)
                 return device;
 
@@ -239,7 +225,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                 room: device.room,
                 attributes: {},
                 clusters: [],
-                gateway: zigate,
+                gateway: this.gateway,
                 registered: true
             };
             for (let cluster of this.devicesByAddress[body.zdevice.address].clusters)

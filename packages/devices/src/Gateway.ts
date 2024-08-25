@@ -43,6 +43,7 @@ export abstract class Gateway<T extends object> extends EventEmitter<T>
         if (buffer == Gateway.emptyBuffer)
         {
             buffer = this.chunk;
+            this.chunk = undefined;
 
             log.debug('splitting buffer', buffer);
 
@@ -61,7 +62,6 @@ export abstract class Gateway<T extends object> extends EventEmitter<T>
                 next(true);
                 return;
             }
-            this.chunk = undefined;
         }
 
         log.debug(buffer);
@@ -69,7 +69,8 @@ export abstract class Gateway<T extends object> extends EventEmitter<T>
         {
             try
             {
-                await this.processFrame(buffer);
+                if (buffer.length >= 0)
+                    await this.processFrame(buffer);
                 next(true);
             }
             catch (e)
