@@ -16,7 +16,7 @@
         "@akala/cli": "^2.14.15",
         "@akala/commands": "^8.2.5",
         "@akala/config": "^4.0.53",
-        "@akala/core": "^15.0.18",
+        "@akala/core": "^18.0.0",
         "@akala/json-rpc-ws": "^10.5.18",
         "@akala/pm": "^9.2.5",
         "@akala/pubsub": "^2.0.23",
