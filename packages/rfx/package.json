@@ -7,7 +7,7 @@
     },
     "dependencies": {
         "@akala/commands": "^8.2.5",
-        "@akala/core": "^15.0.18",
+        "@akala/core": "^18.0.0",
         "@domojs/rfx-parsers": "workspace:*",
         "http-punch-hole": "^1.0.12"
     },
