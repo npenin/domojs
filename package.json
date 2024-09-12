@@ -9,8 +9,8 @@
         "packages/*"
     ],
     "devDependencies": {
-        "@akala/automate": "^5.0.23",
-        "@akala/automate-yamlloader": "^2.0.23",
+        "@akala/automate": "^5.0.38",
+        "@akala/automate-yamlloader": "^2.0.38",
         "@akala/cli": "^2.14.15",
         "@akala/commands": "^8.2.5",
         "@akala/pm": "^9.2.5",
