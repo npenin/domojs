@@ -23,7 +23,7 @@
         "@types/serialport": "8.0.5",
         "@types/usb": "2.0.5",
         "typescript": "5.5.4",
-        "usb": "2.13.0"
+        "usb": "2.14.0"
     },
     "scripts": {
         "build": "tsc -p .",
