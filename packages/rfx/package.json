@@ -35,7 +35,7 @@
         "@types/serialport": "8.0.5",
         "@types/usb": "2.0.5",
         "@types/ws": "8.5.12",
-        "typescript": "5.5.4"
+        "typescript": "5.6.3"
     },
     "homepage": "https://github.com/domojs/domojs-rfxcom#readme",
     "license": "MIT",
