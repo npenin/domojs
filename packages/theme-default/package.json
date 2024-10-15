@@ -1,12 +1,12 @@
 {
     "author": "npenin",
     "dependencies": {
-        "@akala/commands": "^8.2.5",
-        "@akala/core": "^15.0.18",
-        "@akala/json-rpc-ws": "^10.5.18",
-        "@akala/pm": "^9.2.5",
-        "@akala/server": "^9.5.22",
-        "@akala/web-ui": "link:../../../akala/packages/web-ui",
+        "@akala/commands": "^9.0.4",
+        "@akala/core": "^19.0.4",
+        "@akala/json-rpc-ws": "^11.0.4",
+        "@akala/pm": "^10.0.5",
+        "@akala/server": "^10.0.5",
+        "@akala/web-ui": "^1.0.4",
         "@fortawesome/fontawesome-common-types": "^6.6.0",
         "@fortawesome/fontawesome-svg-core": "^6.6.0",
         "@fortawesome/free-brands-svg-icons": "^6.6.0",
@@ -23,9 +23,9 @@
         "@types/node": "22.2.0",
         "@types/request": "2.48.12",
         "@types/ws": "8.5.12",
-        "esbuild": "0.23.1",
+        "esbuild": "0.24.0",
         "esbuild-sass-plugin": "3.3.1",
-        "typescript": "5.5.4"
+        "typescript": "5.6.3"
     },
     "license": "MIT",
     "main": "dist/client/public_api.js",

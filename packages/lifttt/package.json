@@ -31,12 +31,12 @@
         "@fortawesome/fontawesome-common-types": "6.6.0"
     },
     "devDependencies": {
-        "@akala/commands": "^8.2.5",
-        "@akala/core": "^15.0.18",
-        "@akala/json-rpc-ws": "^10.5.18",
+        "@akala/commands": "^9.0.4",
+        "@akala/core": "^19.0.4",
+        "@akala/json-rpc-ws": "^11.0.4",
         "@domojs/theme-default": "workspace:*",
         "@popperjs/core": "2.11.8",
         "@types/debug": "4.1.12",
-        "typescript": "5.5.4"
+        "typescript": "5.6.3"
     }
 }

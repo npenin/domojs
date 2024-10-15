@@ -22,6 +22,14 @@
             "@domojs/devicetype": {
                 "path": "/home/nicolas/dev/domojs/packages/devices/devicetype-commands.json",
                 "commandable": true
+            },
+            "weather": {
+                "path": "/home/nicolas/dev/domojs/packages/weather/commands.json",
+                "commandable": true
+            },
+            "zigate": {
+                "path": "/home/nicolas/dev/domojs/packages/zigate/commands.json",
+                "commandable": true
             }
         },
         "mapping": {
@@ -35,17 +43,11 @@
                         }
                     ]
                 }
-            },
-            "@domojs/devicetype": {
-                "connect": {
-                    "socket": [
-                        {
-                            "path": "/home/nicolas/dev/domojs/domojs-devicetype.sock"
-                        }
-                    ]
-                }
             }
         },
         "plugins": []
+    },
+    "commands": {
+        "sdk": "./node_modules/@akala/commands/commands.json"
     }
 }

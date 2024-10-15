@@ -6,8 +6,8 @@
         "url": "https://github.com/npenin/domojs/issues"
     },
     "dependencies": {
-        "@akala/commands": "^8.2.5",
-        "@akala/core": "^15.0.18",
+        "@akala/commands": "^9.0.4",
+        "@akala/core": "^19.0.4",
         "@domojs/rfx-parsers": "workspace:*",
         "http-punch-hole": "^1.0.12"
     },
@@ -29,13 +29,13 @@
     "deprecated": false,
     "description": "",
     "devDependencies": {
-        "@akala/pm": "^9.2.5",
+        "@akala/pm": "^10.0.5",
         "@domojs/devices": "workspace:*",
         "@types/debug": "4.1.12",
         "@types/serialport": "8.0.5",
         "@types/usb": "2.0.5",
         "@types/ws": "8.5.12",
-        "typescript": "5.5.4"
+        "typescript": "5.6.3"
     },
     "homepage": "https://github.com/domojs/domojs-rfxcom#readme",
     "license": "MIT",
