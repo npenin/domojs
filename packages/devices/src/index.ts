@@ -4,7 +4,7 @@ import deviceContainer from './server/device-commands.js'
 
 import * as devices from './devices.js';
 import { sidecarSingleton } from '@akala/pm';
-import { Container } from '@akala/commands';
+import { Container, Metadata } from '@akala/commands';
 export { devices, deviceContainer, deviceTypeContainer }
 
 
@@ -15,14 +15,31 @@ export async function registerDeviceType(container: Container<void>, signal: Abo
         await deviceType.dispatch('register', dt);
 }
 
-// declare module '@akala/pm'
-// {
-//     interface SidecarMap
-//     {
-//         ['@domojs/devices']: deviceContainer.container;
-//         ['@domojs/devicetype']: deviceTypeContainer.container;
-//     }
-// }
+export function command(name: string, cmd: devices.CommandDescription): Metadata.Command[]
+{
+    switch (cmd.type)
+    {
+        case 'button':
+            return [{ name, config: { "": { inject: [] }, "cli": { inject: [] }, '@domojs/devicetype': cmd } }];
+        case 'range':
+        case 'input':
+            return [{ name, config: { "": { inject: ["param.0"] }, "cli": { inject: ["param.0"] }, '@domojs/devicetype': cmd } }];
+        case 'toggle':
+            return [
+                { name, config: { "": { inject: [] }, "cli": { inject: [] }, '@domojs/devicetype': cmd } }
+            ];
+
+    }
+}
+
+declare module '@akala/pm'
+{
+    interface SidecarMap
+    {
+        ['@domojs/devices']: deviceContainer.container;
+        ['@domojs/devicetype']: deviceTypeContainer.container;
+    }
+}
 
 declare module '@akala/commands'
 {

@@ -1,5 +1,5 @@
 import * as devices from "../../../devices.js";
-import { Container, Metadata } from "@akala/commands";
+import { Container, Metadata, registerCommands } from "@akala/commands";
 import { logger } from "@akala/core";
 
 const log = logger('domojs:devices:types:add')
@@ -31,6 +31,11 @@ export default async function persist(this: devices.DeviceTypeState,
     {
         await this.store.DeviceInit.createSingle({ body, type, name: body.name });
     }
+
+    const deviceContainer = new Container(device.name, null);
+    const remoteDeviceType = self.resolve<Container<void>>(type);
+    remoteDeviceType.register(deviceContainer);
+    registerCommands(device.commands, remoteDeviceType.processor, deviceContainer);
 
 
     await this.pubsub?.publish('/device/new', device);
