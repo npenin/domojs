@@ -1,0 +1,35 @@
+{
+    "name": "@domojs/web",
+    "version": "0.0.0",
+    "main": "dist/cjs/index.js",
+    "types": "dist/cjs/index.d.ts",
+    "type": "module",
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            }
+        }
+    },
+    "dependencies": {
+        "@akala/client": "^36.1.2",
+        "@akala/commands": "^9.0.4",
+        "@akala/core": "^19.0.4"
+    },
+    "devDependencies": {
+        "@akala/vite": "^0.0.1",
+        "esbuild-sass-plugin": "^3.3.1",
+        "postcss": "^8.4.47",
+        "postcss-modules": "^6.0.0",
+        "sass": "^1.79.5",
+        "vite": "^5.4.8"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\""
+    }
+}

@@ -1,0 +1,50 @@
+<header>
+    <nav>
+        <h1 class="logo">Domojs</h1>
+    </nav>
+</header>
+<main>
+    <h1>Welcome <span data-bind data-bind-inner-text="context.name || ''"></span> !</h1>
+
+    <div class="card-container controllable" on="{'controllable.selected':controller.cardSelected.bind(controller)}">
+        <kl-each each="controller.commands#async" data-bind item-property-name="command">
+            <template>
+                <div class="tile" data-bind data-bind-inner-text="command.name">
+                </div>
+            </template>
+        </kl-each>
+        <div class="tile" command="['@domojs/devicetype.RFXCOM.exec' ,'Tous', 'up']">
+            <div>
+                Ouvrir les volets
+            </div>
+        </div>
+        <div class="tile">
+            <div></div>
+        </div>
+        <div class="tile" tabindex="-1">
+            <div></div>
+        </div>
+        <div class="tile" command="['@domojs/devicetype.RFXCOM.exec' ,'Tous', 'stop']">
+            <div>
+                Arrêter les volets
+            </div>
+        </div>
+        <div class="tile" tabindex="-1">
+            <div></div>
+        </div>
+        <div class="tile">
+            <div></div>
+        </div>
+        <div class="tile" command="['@domojs/devicetype.RFXCOM.exec' ,'Tous', 'down']">
+            <div>
+                Baisser les volets
+            </div>
+        </div>
+        <div class="tile">
+            <div></div>
+        </div>
+    </div>
+</main>
+<footer>
+
+</footer>
