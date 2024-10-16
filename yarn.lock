@@ -653,7 +653,7 @@ __metadata:
     "@domojs/devices": "workspace:*"
   peerDependencies:
     "@akala/pm": ^3.0.2
-    "@akala/server": ^7.0.2
+    "@akala/server": ^10.0.0
     "@domojs/devices": "workspace:*"
   languageName: unknown
   linkType: soft
@@ -690,7 +690,7 @@ __metadata:
     htmlparser2: "npm:^9.1.0"
   peerDependencies:
     "@akala/pm": ^3.0.2
-    "@akala/server": ^7.0.2
+    "@akala/server": ^10.0.0
   languageName: unknown
   linkType: soft
 
