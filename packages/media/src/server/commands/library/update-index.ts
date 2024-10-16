@@ -8,9 +8,9 @@ import { LibraryState } from '../../state.js';
 import { join } from 'path'
 import { pathToFileURL } from 'url'
 
-export function getIndexFileName(config: LibraryState, library: string, type: string)
+export function getIndexFileName(config: LibraryState, library: string, type: string): URL
 {
-    return pathToFileURL(join(config.indexFolder || '', `./index-${library}-${type}.json`));
+    return new URL(pathToFileURL(join(config.indexFolder || '', `./index-${library}-${type}.json`)).toString());
 }
 
 export default async function updateIndex(this: LibraryState, container: Container<Configuration>, source: string, type: 'music' | 'video', options?: { force?: boolean, rescrap?: boolean, name?: string, season?: number, episode?: number, album?: string, artist?: string })
@@ -31,7 +31,7 @@ export default async function updateIndex(this: LibraryState, container: Contain
         const r: { provider: process.FsProvider, config: LibraryState } = { provider: null, config: this };
         await process.fsHandler.process(url, r);
 
-        return await process.browse(r.provider, [i.toString()+'/'], process.extensions[type]);
+        return await process.browse(r.provider, [i.toString() + '/'], process.extensions[type]);
     }))).flat(1);
 
     let content: Media[];

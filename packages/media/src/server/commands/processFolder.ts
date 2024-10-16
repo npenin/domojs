@@ -14,41 +14,51 @@ import { LibraryState } from '../state.js';
 
 const log = akala.logger('domojs:media');
 
-(function () {
+(function ()
+{
     const orig = globalThis.decodeURIComponent;
     const decodedCache: Record<string, string> = {};
 
-    globalThis.decodeURIComponent = function (s: string) {
+    globalThis.decodeURIComponent = function (s: string)
+    {
         const originalS = s;
         let indexOfPercent: number;
-        while (~indexOfPercent) {
+        while (~indexOfPercent)
+        {
             const firstIndexOfPercent = s.indexOf('%', indexOfPercent);
             if (!~firstIndexOfPercent)
                 break;
             indexOfPercent = firstIndexOfPercent;
             const values = [];
-            do {
+            do
+            {
                 values.push(Number.parseInt(s.substring(indexOfPercent + 1, indexOfPercent + 3), 16));
-                if (values.length > 1 && values[0] > 0x7f && values[0] <= 0xf4 && values.length > 1 && (values[values.length - 1] < 0x80 || values[values.length - 1] >= 0xC0)) {
+                if (values.length > 1 && values[0] > 0x7f && values[0] <= 0xf4 && values.length > 1 && (values[values.length - 1] < 0x80 || values[values.length - 1] >= 0xC0))
+                {
                     //wrong encoding
                     values.pop();
                     indexOfPercent -= 3;
                     break;
                 }
-                if (values.length == 1 && values[0] > 0x7f && values[0] < 0xc2) {
+                if (values.length == 1 && values[0] > 0x7f && values[0] < 0xc2)
+                {
                     break;
                     //possible wrong encoding
                     if (s[indexOfPercent + 3] == '%')
                         indexOfPercent += 3;
-                    else {
+                    else
+                    {
                         break;
                     }
                 }
-                else if (values[0] > 0x7f && values[0] <= 0xdf && values.length < 2 || values[0] > 0xdf && values[0] <= 0xef && values.length < 3 || values[0] > 0xef && values[0] < 0xf4 && values.length < 4) {
+                else if (values[0] > 0x7f && values[0] <= 0xdf && values.length < 2 || values[0] > 0xdf && values[0] <= 0xef && values.length < 3 || values[0] > 0xef && values[0] < 0xf4 && values.length < 4)
+                {
                     if (values[0] > 0x7f && values[0] <= 0xf4 && (values.length == 1 || values[values.length - 1] >= 0x80 && values[values.length - 1] < 0xC0) && s[indexOfPercent + 3] == '%')
                         indexOfPercent += 3;
-                    else {
-                        if (values.length > 1) {
+                    else
+                    {
+                        if (values.length > 1)
+                        {
                             values.pop();
                             indexOfPercent -= 3;
                         }
@@ -60,9 +70,11 @@ const log = akala.logger('domojs:media');
                     break;
             }
             while (true);
-            if (values.length == 1 && values[0] > 0x7f) {
+            if (values.length == 1 && values[0] > 0x7f)
+            {
                 // debugger;
-                switch (values[0]) {
+                switch (values[0])
+                {
                     case 149:
                         values[0] = [0x2022];
                         break;
@@ -73,7 +85,8 @@ const log = akala.logger('domojs:media');
                 s = s.substring(0, firstIndexOfPercent) + String.fromCodePoint(...values) + s.substring(firstIndexOfPercent + 3 * values.length);
                 decodedCache[originalS] = s;
             }
-            else if (!(values[0] < 0x7f && values.length == 1 || values[0] > 0x7f && values[0] <= 0xdf && values.length == 2 || values[0] > 0xdf && values[0] <= 0xef && values.length == 3 || values[0] > 0xef && values[0] < 0xf4 && values.length == 4)) {
+            else if (!(values[0] < 0x7f && values.length == 1 || values[0] > 0x7f && values[0] <= 0xdf && values.length == 2 || values[0] > 0xdf && values[0] <= 0xef && values.length == 3 || values[0] > 0xef && values[0] < 0xf4 && values.length == 4))
+            {
                 // debugger;
                 s = s.substring(0, firstIndexOfPercent) + Buffer.from(String.fromCharCode(...values), 'ascii').toString() + s.substring(firstIndexOfPercent + 3 * values.length);
                 decodedCache[originalS] = s;
@@ -88,7 +101,8 @@ const log = akala.logger('domojs:media');
 
     const origEncode = globalThis.encodeURIComponent;
 
-    globalThis.encodeURIComponent = function (s: string) {
+    globalThis.encodeURIComponent = function (s: string)
+    {
         const r = Object.entries(decodedCache).find(x => x[1] == s);
         if (typeof r !== 'undefined')
             s = r[0];
@@ -97,9 +111,12 @@ const log = akala.logger('domojs:media');
     }
 })()
 
-export function encodeURIComponentLite(s: string) {
-    return s.replace(/#\?\//g, m => {
-        switch (m[0]) {
+export function encodeURIComponentLite(s: string)
+{
+    return s.replace(/#\?\//g, m =>
+    {
+        switch (m[0])
+        {
             case '#':
             case '?':
             case '/':
@@ -110,24 +127,30 @@ export function encodeURIComponentLite(s: string) {
 
 var folderMapping: { [key: string]: string } = {};
 
-async function translatePath(path: string): Promise<string> {
-    if (path[0] == '/' && path[1] == '/' && process.platform != 'win32') {
+async function translatePath(path: string): Promise<string>
+{
+    if (path[0] == '/' && path[1] == '/' && process.platform != 'win32')
+    {
         path = path.substring(2).replace(/\//g, p.sep);
         var indexOfSlash = path.indexOf(p.sep);
         path = path.substring(0, indexOfSlash) + ':' + path.substring(indexOfSlash);
-        if (!folderMapping) {
+        if (!folderMapping)
+        {
             folderMapping = {};
             var fstab = await fs.readFile('/etc/fstab', 'ascii');
             var declarations = fstab.split(/\n/g);
-            akala.each(declarations, function (line) {
+            akala.each(declarations, function (line)
+            {
                 var declaration = line.split(/[ \t]/g);
-                if (typeof (line) != 'undefined' && declaration.length > 1) {
+                if (typeof (line) != 'undefined' && declaration.length > 1)
+                {
                     folderMapping[declaration[0]] = declaration[1]
                 }
             });
             log.debug(folderMapping);
         }
-        akala.each(folderMapping, function (remotePath, localPath) {
+        akala.each(folderMapping, function (remotePath, localPath)
+        {
             if (path.startsWith(remotePath))
                 path = path.replace(remotePath, localPath as string);
         });
@@ -140,14 +163,17 @@ export var extensions = {
     music: /\.(mp3|fla|flac|m4a|webm)$/i
 };
 
-export function saveMedia(db: redis.Pipeline, media: Media) {
+export function saveMedia(db: redis.Pipeline, media: Media)
+{
     var multi = db
         .hmset(media.id, media)
         .set(media.path.toString(), media.id);
 
 
-    if (media.type == 'video') {
-        if (media.collection) {
+    if (media.type == 'video')
+    {
+        if (media.collection)
+        {
             multi = multi.sadd(media.collection + ':items', media.id);
             if (media.cover)
                 multi = multi.hset(media.collection, 'cover', media.cover);
@@ -159,7 +185,8 @@ export function saveMedia(db: redis.Pipeline, media: Media) {
         multi = multi.hset(media.id, 'subType', media.subType);
 
 
-        switch (media.subType) {
+        switch (media.subType)
+        {
             case 'tvshow':
                 if (media.episode)
                     multi = multi.hset(media.id, 'episode', media.episode);
@@ -175,15 +202,18 @@ export function saveMedia(db: redis.Pipeline, media: Media) {
                 break;
         }
     }
-    else {
+    else
+    {
         multi = multi.sadd(media.collection + ':items', media.id, 'album', media.album, 'artist', media.artist);
     }
 
     if (media.collections)
-        akala.each(media.collections, function (collection) {
+        akala.each(media.collections, function (collection)
+        {
             multi = multi.sadd(collection, media.id);
         })
-    akala.each(media.tokens, function (token) {
+    akala.each(media.tokens, function (token)
+    {
         if (token != '-')
             multi = multi.sadd('keywords:' + media.type + ':' + alphabetize(token.replace(/ /g, '_').toLowerCase()), media.id, media.collection);
     });
@@ -192,7 +222,8 @@ export function saveMedia(db: redis.Pipeline, media: Media) {
 }
 
 
-var alphabetize = (function () {
+var alphabetize = (function ()
+{
     var defaultDiacriticsRemovalMap = [
         { 'base': 'A', 'letters': '\u0041\u24B6\uFF21\u00C0\u00C1\u00C2\u1EA6\u1EA4\u1EAA\u1EA8\u00C3\u0100\u0102\u1EB0\u1EAE\u1EB4\u1EB2\u0226\u01E0\u00C4\u01DE\u1EA2\u00C5\u01FA\u01CD\u0200\u0202\u1EA0\u1EAC\u1EB6\u1E00\u0104\u023A\u2C6F' },
         { 'base': 'AA', 'letters': '\uA732' },
@@ -283,26 +314,32 @@ var alphabetize = (function () {
     ];
 
     var diacriticsMap = {};
-    for (var i = 0; i < defaultDiacriticsRemovalMap.length; i++) {
+    for (var i = 0; i < defaultDiacriticsRemovalMap.length; i++)
+    {
         var letters = defaultDiacriticsRemovalMap[i].letters;
-        for (var j = 0; j < letters.length; j++) {
+        for (var j = 0; j < letters.length; j++)
+        {
             diacriticsMap[letters[j]] = defaultDiacriticsRemovalMap[i].base;
         }
     }
 
     // "what?" version ... http://jsperf.com/diacritics/12
-    return function removeDiacritics(str) {
-        return str.replace(/[^\u0000-\u007E]/g, function (a) {
+    return function removeDiacritics(str)
+    {
+        return str.replace(/[^\u0000-\u007E]/g, function (a)
+        {
             return diacriticsMap[a] || a;
         });
     }
 })();
 
-export interface WriteOptions {
+export interface WriteOptions
+{
     overwrite: boolean
 }
 
-export interface FsProvider {
+export interface FsProvider
+{
     get root(): URL;
     readdir(url: URL | string): Promise<FileSystemEntry[]>;
     readFile(url: URL | string): Promise<Buffer>
@@ -317,28 +354,33 @@ export interface FsProvider {
     move(source: URL | string, target: URL | string): Promise<void>
 }
 
-export interface FileSystemEntry {
+export interface FileSystemEntry
+{
     isDirectory(): boolean;
     isFile(): boolean;
     name: string;
     mtime: Promise<Date>;
 }
 
-class RootedFs implements FsProvider {
+class RootedFs implements FsProvider
+{
     constructor(public readonly root: URL, public readonly writable: boolean = true) { }
-    resolve(url: string | URL): URL {
+    resolve(url: string | URL): URL
+    {
         if (typeof url == 'string' && url[0] == '/')
             url = url.substring(1);
         return new URL(url, this.root);
     }
 
-    move(source: string | URL, target: string | URL): Promise<void> {
+    move(source: string | URL, target: string | URL): Promise<void>
+    {
         const sourcePath = fileURLToPath(new URL(source, this.root));
         const targetPath = fileURLToPath(new URL(target, this.root));
         return fs.rename(sourcePath, targetPath);
     }
 
-    getEntry(url: string | URL): Promise<FileSystemEntry> {
+    getEntry(url: string | URL): Promise<FileSystemEntry>
+    {
         if (typeof url == 'string' && url[0] == '/')
             url = url.substring(1);
         url = new URL(url, this.root);
@@ -351,35 +393,40 @@ class RootedFs implements FsProvider {
         }));
     }
 
-    writeFile(url: string | URL, content: string | Buffer, options: WriteOptions): Promise<void> {
+    writeFile(url: string | URL, content: string | Buffer, options: WriteOptions): Promise<void>
+    {
         if (typeof url == 'string' && url[0] == '/')
             url = url.substring(1);
         url = new URL(url, this.root);
         return fs.writeFile(fileURLToPath(url), content, { flag: options?.overwrite ? 'w' : 'wx' });
     }
 
-    deleteFile(url: string | URL): Promise<void> {
+    deleteFile(url: string | URL): Promise<void>
+    {
         if (typeof url == 'string' && url[0] == '/')
             url = url.substring(1);
         url = new URL(url, this.root);
         return fs.rm(fileURLToPath(url));
     }
 
-    createWriteStream(url: string | URL, options: WriteOptions): Writable {
+    createWriteStream(url: string | URL, options: WriteOptions): Writable
+    {
         if (typeof url == 'string' && url[0] == '/')
             url = url.substring(1);
         url = new URL(url, this.root);
         return createWriteStream(fileURLToPath(url), { flags: options?.overwrite ? 'w' : 'wx' });
     }
 
-    createReadStream(url: string | URL): Readable {
+    createReadStream(url: string | URL): Readable
+    {
         if (typeof url == 'string' && url[0] == '/')
             url = url.substring(1);
         url = new URL(url, this.root);
         return createReadStream(fileURLToPath(url));
     }
 
-    async readdir(url: URL | string) {
+    async readdir(url: URL | string)
+    {
         url = new URL(url, this.root);
         return (await fs.readdir(fileURLToPath(url), { withFileTypes: true })).map(e => ({
             name: e.name,
@@ -391,25 +438,30 @@ class RootedFs implements FsProvider {
     async readFile(url: URL | string): Promise<Buffer>
     async readFile(url: URL | string, encoding: BufferEncoding): Promise<string>
     async readFile(url: URL | string, encoding?: BufferEncoding): Promise<Buffer | string>
-    async readFile(url: URL | string, encoding?: BufferEncoding): Promise<Buffer | string> {
+    async readFile(url: URL | string, encoding?: BufferEncoding): Promise<Buffer | string>
+    {
         url = new URL(url, this.root);
         return fs.readFile(fileURLToPath(url), encoding);
     }
 }
-class WebDavFs implements FsProvider {
+class WebDavFs implements FsProvider
+{
     client: WebDAVClient;
 
-    constructor(public readonly root: URL, options?: WebDAVClientOptions, public readonly writable: boolean = true) {
+    constructor(public readonly root: URL, options?: WebDAVClientOptions, public readonly writable: boolean = true)
+    {
         this.client = createClient(root.toString().replace(/^dav/i, 'http'), options);
     }
 
-    public resolve(path: string | URL): URL {
+    public resolve(path: string | URL): URL
+    {
         if (typeof path == 'string' && path[0] == '/')
             path = path.substring(1);
         return new URL(path, this.root);
     }
 
-    move(source: string | URL, target: string | URL): Promise<void> {
+    move(source: string | URL, target: string | URL): Promise<void>
+    {
         if (source instanceof URL)
             source = source.pathname;
 
@@ -418,32 +470,39 @@ class WebDavFs implements FsProvider {
         return this.client.moveFile(decodeURIComponent(source), decodeURIComponent(target));
     }
 
-    getEntry(url: string | URL): Promise<FileSystemEntry> {
+    getEntry(url: string | URL): Promise<FileSystemEntry>
+    {
         if (url instanceof URL)
             url = url.pathname;
         return this.readdir(p.dirname(url)).then(ff => ff.find(f => f.name == p.basename(url as string)));
     }
-    createWriteStream(url: string | URL, options: WriteOptions) {
+    createWriteStream(url: string | URL, options: WriteOptions)
+    {
         return this.client.createWriteStream(decodeURIComponent(url.toString()), options)
     }
-    createReadStream(url: string | URL) {
+    createReadStream(url: string | URL)
+    {
         return this.client.createReadStream(decodeURIComponent(url.toString()))
     }
 
-    writeFile(url: string | URL, content: string | Buffer, options: WriteOptions): Promise<void> {
+    writeFile(url: string | URL, content: string | Buffer, options: WriteOptions): Promise<void>
+    {
         const stream = this.createWriteStream(url, options);
-        return new Promise<void>((resolve, reject) => stream.write(content, (err) => {
+        return new Promise<void>((resolve, reject) => stream.write(content, (err) =>
+        {
             if (err)
                 reject(err);
             stream.end(resolve);
         }))
     }
 
-    deleteFile(url: string | URL): Promise<void> {
+    deleteFile(url: string | URL): Promise<void>
+    {
         return this.client.deleteFile(decodeURIComponent(url.toString()));
     }
 
-    async readdir(url: URL | string) {
+    async readdir(url: URL | string)
+    {
         return (await this.client.getDirectoryContents(url.toString()) as FileStat[]).map(x => ({
             isDirectory() { return x.type == 'directory' },
             isFile() { return x.type == 'file' },
@@ -454,16 +513,20 @@ class WebDavFs implements FsProvider {
     async readFile(url: URL | string): Promise<Buffer>
     async readFile(url: URL | string, encoding: BufferEncoding): Promise<string>
     async readFile(url: URL | string, encoding?: BufferEncoding): Promise<Buffer | string>
-    async readFile(url: URL | string, encoding?: BufferEncoding): Promise<Buffer | string> {
+    async readFile(url: URL | string, encoding?: BufferEncoding): Promise<Buffer | string>
+    {
         const chunks: Buffer[] = [];
         let readLength = 0;
         const readable = this.createReadStream(url);
-        return new Promise((resolve, reject) => readable.on('data', function (chunk: Uint8Array) {
+        return new Promise((resolve, reject) => readable.on('data', function (chunk: Uint8Array)
+        {
             chunks.push(Buffer.from(chunk));
             readLength += chunk.length;
-        }).on('error', (err) => {
+        }).on('error', (err) =>
+        {
             if ('response' in err && typeof err.response == 'object' && 'status' in err.response)
-                switch (err.response.status) {
+                switch (err.response.status)
+                {
                     case 404:
                         reject(Object.assign(new Error(err.message, { cause: err }), { code: 'ENOENT' }));
                         break;
@@ -473,7 +536,8 @@ class WebDavFs implements FsProvider {
                 }
             else
                 reject(err);
-        }).on('end', function () {
+        }).on('end', function ()
+        {
             const buffer = Buffer.concat(chunks);
             if (encoding)
                 return buffer.toString(encoding);
@@ -482,11 +546,14 @@ class WebDavFs implements FsProvider {
         )
     }
 }
-class DomojsFsProvider implements FsProvider {
-    constructor(public readonly root: URL, private innerProvider: FsProvider) {
+class DomojsFsProvider implements FsProvider
+{
+    constructor(public readonly root: URL, private innerProvider: FsProvider)
+    {
     }
 
-    move(source: URL | string, target: URL | string) {
+    move(source: URL | string, target: URL | string)
+    {
         if (URL.canParse(source))
             source = new URL(source);
         if (source instanceof URL)
@@ -502,7 +569,8 @@ class DomojsFsProvider implements FsProvider {
         return this.innerProvider.move(source.substring(this.root.pathname.length + 1), target.substring(this.root.pathname.length + 1))
     }
 
-    resolve(url: string | URL): URL {
+    resolve(url: string | URL): URL
+    {
         if (URL.canParse(url))
             url = new URL(url);
         if (url instanceof URL)
@@ -512,7 +580,8 @@ class DomojsFsProvider implements FsProvider {
         return this.innerProvider.resolve(url.substring(this.root.pathname.length));
     }
 
-    getEntry(url: string | URL): Promise<FileSystemEntry> {
+    getEntry(url: string | URL): Promise<FileSystemEntry>
+    {
         if (URL.canParse(url))
             url = new URL(url);
         if (url instanceof URL)
@@ -522,7 +591,8 @@ class DomojsFsProvider implements FsProvider {
         return this.innerProvider.getEntry(url.substring(this.root.pathname.length));
     }
 
-    deleteFile(url: string | URL): Promise<void> {
+    deleteFile(url: string | URL): Promise<void>
+    {
         if (URL.canParse(url))
             url = new URL(url);
         if (url instanceof URL)
@@ -534,7 +604,8 @@ class DomojsFsProvider implements FsProvider {
 
     get writable() { return this.innerProvider.writable; }
 
-    createWriteStream(url: string | URL, options: WriteOptions) {
+    createWriteStream(url: string | URL, options: WriteOptions)
+    {
         if (URL.canParse(url))
             url = new URL(url);
         if (url instanceof URL)
@@ -543,7 +614,8 @@ class DomojsFsProvider implements FsProvider {
             throw new Error(`Fs provider is chrooted to ${this.root.pathname}, but ${url} was used`);
         return this.innerProvider.createWriteStream(url.substring(this.root.pathname.length), options);
     }
-    createReadStream(url: string | URL) {
+    createReadStream(url: string | URL)
+    {
         if (URL.canParse(url))
             url = new URL(url);
         if (url instanceof URL)
@@ -553,7 +625,8 @@ class DomojsFsProvider implements FsProvider {
         return this.innerProvider.createReadStream(url.substring(this.root.pathname.length));
     }
 
-    writeFile(url: string | URL, content: string | Buffer, options: WriteOptions): Promise<void> {
+    writeFile(url: string | URL, content: string | Buffer, options: WriteOptions): Promise<void>
+    {
         if (URL.canParse(url))
             url = new URL(url);
         if (url instanceof URL)
@@ -563,7 +636,8 @@ class DomojsFsProvider implements FsProvider {
         return this.innerProvider.writeFile(url.substring(this.root.pathname.length), content, options);
     }
 
-    async readdir(url: URL | string) {
+    async readdir(url: URL | string)
+    {
         if (URL.canParse(url))
             url = new URL(url);
         if (url instanceof URL)
@@ -575,7 +649,8 @@ class DomojsFsProvider implements FsProvider {
     async readFile(url: URL | string): Promise<Buffer>
     async readFile(url: URL | string, encoding: BufferEncoding): Promise<string>
     async readFile(url: URL | string, encoding?: BufferEncoding): Promise<Buffer | string>
-    async readFile(url: URL | string, encoding?: BufferEncoding): Promise<Buffer | string> {
+    async readFile(url: URL | string, encoding?: BufferEncoding): Promise<Buffer | string>
+    {
         if (URL.canParse(url))
             url = new URL(url);
         if (url instanceof URL)
@@ -588,11 +663,13 @@ class DomojsFsProvider implements FsProvider {
 
 export const fsHandler = new akala.UrlHandler<[URL, { provider?: FsProvider, config: LibraryState }], { provider: FsProvider, config: LibraryState }>();
 
-fsHandler.useProtocol('file', async (root, result) => {
+fsHandler.useProtocol('file', async (root, result) =>
+{
     return { provider: new RootedFs(root), config: result.config }
 })
 
-fsHandler.useProtocol('davs', async (root, result) => {
+fsHandler.useProtocol('davs', async (root, result) =>
+{
     var credentials = result.config.vault[root.hostname];
     if (root.pathname[root.pathname.length - 1] !== '/')
         root = new URL(root.pathname + '/' + root.search + root.hash, root)
@@ -601,7 +678,8 @@ fsHandler.useProtocol('davs', async (root, result) => {
     else
         return { provider: new WebDavFs(root), config: result.config };
 });
-fsHandler.useProtocol('domojs', async (root, result) => {
+fsHandler.useProtocol('domojs', async (root, result) =>
+{
 
     const lib = result.config.libraries[root.hostname];
 
@@ -614,19 +692,23 @@ fsHandler.useProtocol('domojs', async (root, result) => {
 
 
 var processing: string = null;
-export async function processSource(library: string, config: LibraryState, container: Container<Configuration>, type: string, scrappers: string[], lastIndex?: Date, onlyWritable: boolean = false, options?: { name?: string, season?: number, episode?: number, album?: string, artist?: string }) {
+export async function processSource(library: string, config: LibraryState, container: Container<Configuration>, type: string, scrappers: string[], lastIndex?: Date, onlyWritable: boolean = false, options?: { name?: string, season?: number, episode?: number, album?: string, artist?: string })
+{
     const sources = config.libraries[library].paths.map((_x, i) => `domojs://${library}/${i}`);
     var wasProcessing: string = null;
 
     var result: Media[] = [];
     if (processing)
         return Promise.reject('Server is already processing (' + processing + ')');
-    var interval = setInterval(function () {
-        if (processing) {
+    var interval = setInterval(function ()
+    {
+        if (processing)
+        {
             log.info(processing);
             wasProcessing = processing;
         }
-        else if (wasProcessing) {
+        else if (wasProcessing)
+        {
             log.info('process finished');
             wasProcessing = null;
             clearInterval(interval);
@@ -636,7 +718,8 @@ export async function processSource(library: string, config: LibraryState, conta
     var extension = extensions[type];
     if (!lastIndex)
         lastIndex = new Date(0);
-    var matcher = function (item: Media) {
+    var matcher = function (item: Media)
+    {
         return (!options?.name || item.name == options?.name) &&
             (!options?.season || item.type == 'video' && item.subType == 'tvshow' && item.season == options?.season) &&
             (!options?.episode || item.type == 'video' && item.episode == options?.episode) &&
@@ -644,12 +727,13 @@ export async function processSource(library: string, config: LibraryState, conta
             (!options?.artist || item.type == 'music' && item.artists && options?.artist in item.artists);
     }
 
-    await akala.eachAsync(sources, async function (source) {
+    await akala.eachAsync(sources, async function (source)
+    {
         let url: URL;
         if (URL.canParse(source))
             url = new URL(source);
         else
-            url = pathToFileURL(source);
+            url = new URL(pathToFileURL(source).toString());
         const r: { provider: FsProvider, config: LibraryState } = { provider: null, config };
         await fsHandler.process(url, r);
         if (onlyWritable && !r.provider.writable)
@@ -660,16 +744,20 @@ export async function processSource(library: string, config: LibraryState, conta
     log.info('found ' + result.length + ' new ' + type + '(s)');
     processing = 'processing indexation';
     var trueResult: { [key: string]: Media[] } = {};
-    await akala.eachAsync(result, async function (path) {
+    await akala.eachAsync(result, async function (path)
+    {
         var groups = Object.keys([]);
         const item = await container.dispatch('scrap', path, scrappers);
-        if (item && matcher(item)) {
+        if (item && matcher(item))
+        {
             var name = item.type == 'music' && item.album || item.name;
             var group = trueResult[name];
-            if (!group) {
+            if (!group)
+            {
                 var groupName = groups.find(g => g.toLowerCase() == name.toLowerCase());
                 group = trueResult[groupName];
-                if (!group) {
+                if (!group)
+                {
                     groups.push(name);
                     trueResult[name] = group = [];
                 }
@@ -683,21 +771,25 @@ export async function processSource(library: string, config: LibraryState, conta
 
 export type BrowsedMedia = Pick<BaseMedia, 'type' | 'relativePath'> & { fs: FsProvider, path: URL, mtime: Date };
 
-export async function browse(fs: FsProvider, tree: string[], extension: RegExp) {
+export async function browse(fs: FsProvider, tree: string[], extension: RegExp)
+{
     var result: BrowsedMedia[] = [];
 
     const files = await fs.readdir(tree.join(''));
-    await akala.eachAsync(files, async function (file) {
+    await akala.eachAsync(files, async function (file)
+    {
         if (file.name == '$RECYCLE.BIN' || file.name == '.recycle')
             return;
         // const stat = await fs.stat(await translatePath(path));
-        if (file.isDirectory()) {
+        if (file.isDirectory())
+        {
             if (!file.name.endsWith('/'))
                 result = result.concat(await browse(fs, tree.concat([file.name + '/']), extension));
             else
                 result = result.concat(await browse(fs, tree.concat([file.name]), extension));
         }
-        else {
+        else
+        {
             if (extension.test(file.name))
                 result.push({
                     fs: fs,
