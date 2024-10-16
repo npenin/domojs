@@ -85,13 +85,13 @@ jobs:
       - name: Docker Buildx (no push)
         run: |
           docker buildx build \
-            --platform ${{ steps.prepare.outputs.docker_platforms }} \
-            --output "type=image,push=false" \
-            --build-arg "VERSION=${{ steps.prepare.outputs.version }}" \
-            --build-arg "BUILD_DATE=${{ steps.prepare.outputs.build_date }}" \
-            --build-arg "VCS_REF=${GITHUB_SHA::8}" \
-            --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}" \
-            --file docker/Dockerfile docker
+          --platform ${{ steps.prepare.outputs.docker_platforms }} \
+          --output "type=image,push=false" \
+          --build-arg "VERSION=${{ steps.prepare.outputs.version }}" \
+          --build-arg "BUILD_DATE=${{ steps.prepare.outputs.build_date }}" \
+          --build-arg "VCS_REF=${GITHUB_SHA::8}" \
+          --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}" \
+          --file docker/Dockerfile docker
 
       - name: Docker Login
         if: success()
@@ -104,13 +104,13 @@ jobs:
         if: success()
         run: |
           docker buildx build \
-            --platform ${{ steps.prepare.outputs.docker_platforms }} \
-            --output "type=image,push=true" \
-            --build-arg "VERSION=${{ steps.prepare.outputs.version }}" \
-            --build-arg "BUILD_DATE=${{ steps.prepare.outputs.build_date }}" \
-            --build-arg "VCS_REF=${GITHUB_SHA::8}" \
-            --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}" \
-            --file docker/Dockerfile docker
+          --platform ${{ steps.prepare.outputs.docker_platforms }} \
+          --output "type=image,push=true" \
+          --build-arg "VERSION=${{ steps.prepare.outputs.version }}" \
+          --build-arg "BUILD_DATE=${{ steps.prepare.outputs.build_date }}" \
+          --build-arg "VCS_REF=${GITHUB_SHA::8}" \
+          --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}" \
+          --file docker/Dockerfile docker
 
       - name: Clear
         if: always()
