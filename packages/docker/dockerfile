@@ -2,5 +2,5 @@ FROM npenin/akala
 RUN apk add --no-cache alpine-sdk python3 linux-headers eudev-dev libusb git
 RUN yarn add serialport usb
 RUN yarn add @akala/pm @akala/server @domojs/devices
-VOLUME [".akala.json", "package.json"]
+VOLUME [".akala.json", "package.json", "db"]
 COPY .akala.json .akala.json
