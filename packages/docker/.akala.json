@@ -6,9 +6,34 @@
     ],
     "pm": {
         "containers": {
-            "pm": [
-                "/usr/src/akala"
-            ]
+            "containers": {
+                "pm": {
+                    "commandable": true,
+                    "stateless": false,
+                    "path": "/usr/src/akala/node_modules/@akala/pm/commands.json",
+                    "cwd": "/usr/src/akala"
+                },
+                "@domojs/rfx": {
+                    "path": "/usr/src/akala/node_modules/rfx/commands.json",
+                    "commandable": true
+                },
+                "@domojs/devices": {
+                    "path": "/usr/src/akala/node_modules/devices/device-commands.json",
+                    "commandable": true
+                },
+                "@domojs/devicetype": {
+                    "path": "/usr/src/akala/node_modules/devices/devicetype-commands.json",
+                    "commandable": true
+                },
+                "weather": {
+                    "path": "/usr/src/akala/node_modules/weather/commands.json",
+                    "commandable": true
+                },
+                "zigate": {
+                    "path": "/usr/src/akala/node_modules/zigate/commands.json",
+                    "commandable": true
+                }
+            }
         },
         "mapping": {
             "pm": {
@@ -23,20 +48,6 @@
                             "port": 31416
                         }
                     ]
-                }
-            },
-            "@akala/server": {
-                "path": "/usr/src/akala/node_modules/@akala/server/commands.json",
-                "commandable": true,
-                "connect": {
-                    "socket": [
-                        {
-                            "path": "/usr/src/akala/akala-server.sock"
-                        }
-                    ],
-                    "http": {
-                        "port": 80
-                    }
                 }
             },
             "@domojs/devices": {
@@ -54,16 +65,6 @@
                         }
                     ]
                 }
-            },
-            "@domojs/rfx": {
-                "path": "/usr/src/akala/node_modules/@domojs/rfx/commands.json",
-                "commandable": true,
-                "connect": {}
-            },
-            "@domojs/zigate": {
-                "path": "/usr/src/akala/node_modules/@domojs/zigate/commands.json",
-                "commandable": true,
-                "connect": {}
             }
         },
         "externals": []
