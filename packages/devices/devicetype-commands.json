@@ -58,9 +58,10 @@
                 "cli": {
                     "inject": [
                         "$container",
-                        "param.0",
+                        "options.type",
                         "stdin"
-                    ]
+                    ],
+                    "usage": "add <type>"
                 },
                 "http": {
                     "inject": [
