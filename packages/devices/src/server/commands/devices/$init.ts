@@ -14,7 +14,6 @@ export default async function (this: State, context: CliContext, config: Configu
 {
     const sidecar = await app(context, config, pm);
     container.register('pm', pm);
-    var state = this;
     var mdule = akala.module('@domojs/devices');
 
     try

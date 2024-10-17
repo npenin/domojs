@@ -35,6 +35,6 @@
             "$modules.@domojs/devices.deviceType"
         ],
         "method": "get",
-        "route": "/device/:name/:cmd"
+        "route": "/device/{name}/{cmd}"
     }
 }

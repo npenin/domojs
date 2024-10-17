@@ -23,6 +23,6 @@
             "route.name"
         ],
         "method": "get",
-        "route": "/device/:name"
+        "route": "/device/{name}"
     }
 }

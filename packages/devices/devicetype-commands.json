@@ -70,7 +70,19 @@
                     ],
                     "type": "json",
                     "method": "post",
-                    "route": "/new/:type"
+                    "route": "/new/{type}"
+                },
+                "doc": {
+                    "description": "registers a device with type `type` with the content provided in `content`",
+                    "inject": [
+                        "$container",
+                        "type",
+                        "content"
+                    ],
+                    "options": {
+                        "type": "the device type (you can list device types using the list command)",
+                        "content": "a json object that has at least a name: name, category and, optionally a room."
+                    }
                 }
             }
         },
@@ -144,5 +156,5 @@
             }
         }
     ],
-    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"
 }

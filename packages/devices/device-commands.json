@@ -79,7 +79,7 @@
                         "$modules.@domojs/devices.deviceType"
                     ],
                     "method": "get",
-                    "route": "/device/:name/:cmd"
+                    "route": "/device/{name}/{cmd}"
                 }
             }
         },
@@ -112,7 +112,7 @@
                         "route.category"
                     ],
                     "method": "get",
-                    "route": "/category/:category?"
+                    "route": "/category/{category?}"
                 }
             }
         },
@@ -145,7 +145,7 @@
                         "route.name"
                     ],
                     "method": "get",
-                    "route": "/device/:name"
+                    "route": "/device/{name}"
                 }
             }
         },
@@ -178,7 +178,7 @@
                         "route.category"
                     ],
                     "method": "get",
-                    "route": "/category/:category?"
+                    "route": "/category/{category?}"
                 }
             }
         },
@@ -214,5 +214,5 @@
             }
         }
     ],
-    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"
 }

@@ -23,6 +23,6 @@
             "route.category"
         ],
         "method": "get",
-        "route": "/category/:category?"
+        "route": "/category/{category?}"
     }
 }

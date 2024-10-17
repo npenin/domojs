@@ -123,5 +123,8 @@
             }
         }
     ],
-    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
+    "dependencies": [
+        "@domojs/devicetype"
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"
 }
