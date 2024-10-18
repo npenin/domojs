@@ -29,7 +29,7 @@ export default async function registerScrapper(this: LibraryState, container: Co
     else
     {
         const commands = await Processors.FileSystem.discoverMetaCommands(remote);
-        this.scrappers[type].push({ ...container.register(commands.find(c => c.name == scrapper.name)), priority: scrapper.priority });
+        this.scrappers[type].push({ ...container.register(commands.commands.find(c => c.name == scrapper.name)), priority: scrapper.priority });
         await this.commit();
     }
 }

@@ -31,7 +31,7 @@ export default async function registerOrganizer(this: LibraryState, container: C
         const commands = await Processors.FileSystem.discoverMetaCommands(remote);
         if (!this.has('organizers'))
             this.set('organizers', { music: [], video: [] });
-        this.organizers[type].push({ ...container.register(commands.find(c => c.name == organizer.name)), priority: organizer.priority });
+        this.organizers[type].push({ ...container.register(commands.commands.find(c => c.name == organizer.name)), priority: organizer.priority });
         await this.commit();
     }
 }
