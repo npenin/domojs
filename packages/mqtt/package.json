@@ -14,9 +14,9 @@
         "@akala/pubsub": "^0.2.13"
     },
     "dependencies": {
-        "@akala/commands": "^9.1.0",
-        "@akala/core": "^19.0.4",
-        "@akala/protocol-parser": "^2.8.4"
+        "@akala/commands": "^9.1.1",
+        "@akala/core": "^19.0.5",
+        "@akala/protocol-parser": "^2.8.5"
     },
     "devDependencies": {
         "@types/debug": "4.1.12",
