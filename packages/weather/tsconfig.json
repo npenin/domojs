@@ -6,7 +6,8 @@
         "outDir": "dist"
     },
     "exclude": [
-        "src/client"
+        "src/client",
+        "dist/"
     ],
     "references": [
         {
