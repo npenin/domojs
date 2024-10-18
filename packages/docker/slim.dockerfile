@@ -7,7 +7,8 @@ FROM alpine
 VOLUME ["db"]
 COPY .akala.json .akala.json
 COPY --from=build /usr/local/bin/node /usr/local/bin
+COPY --from=build /usr/local/bin/yarn /usr/local/bin
 COPY --from=build /usr/src/akala /usr/src/akala
-ENTRYPOINT ["yarn" ,"pm-fork", "pm"]
+ENTRYPOINT ["akala" ,"pm", "start", "pm", "--keepAttached"]
 CMD ["local", "tcp", "--tcpPort=31416"]
 EXPOSE 31416
