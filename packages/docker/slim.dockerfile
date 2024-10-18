@@ -10,6 +10,7 @@ COPY --from=build /usr/local/bin/node /usr/local/bin
 COPY --from=build /usr/local/bin/yarn /usr/local/bin
 COPY --from=build /usr/src/akala /usr/src/akala
 ENV PATH=./node_modules/.bin:${PATH}
+WORKDIR /usr/src/akala
 ENTRYPOINT ["akala" ,"pm", "start", "pm", "--keepAttached"]
 CMD ["local", "tcp", "--tcpPort=31416"]
 EXPOSE 31416
