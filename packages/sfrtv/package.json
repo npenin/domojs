@@ -7,7 +7,7 @@
     "dependencies": {
         "@akala/core": "^19.0.5",
         "cookiejar": "^2.1.4",
-        "puppeteer": "^23.5.3"
+        "puppeteer": "^23.6.0"
     },
     "exports": {
         ".": {
