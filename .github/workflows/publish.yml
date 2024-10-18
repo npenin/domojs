@@ -112,6 +112,18 @@ jobs:
             --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}" \
             --file packages/docker/dockerfile packages/docker
 
+      - name: Docker slim Buildx (push)
+        if: success()
+        run: |
+          docker buildx build \
+            --platform ${{ steps.prepare.outputs.docker_platforms }} \
+            --output "type=image,push=true" \
+            --build-arg "VERSION=${{ steps.prepare.outputs.version }}" \
+            --build-arg "BUILD_DATE=${{ steps.prepare.outputs.build_date }}" \
+            --build-arg "VCS_REF=${GITHUB_SHA::8}" \
+            --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}-slim" \
+            --file packages/docker/slim.dockerfile packages/docker
+
       - name: Clear
         if: always()
         run: |
