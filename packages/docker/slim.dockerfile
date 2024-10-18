@@ -9,7 +9,7 @@ COPY .akala.json .akala.json
 COPY --from=build /usr/local/bin/node /usr/local/bin
 COPY --from=build /usr/local/bin/yarn /usr/local/bin
 COPY --from=build /usr/src/akala /usr/src/akala
-ENV PATH=./node_modules/.bin:${PATH}
+ENV PATH=${PATH}:./node_modules/.bin
 WORKDIR /usr/src/akala
 ENTRYPOINT ["yarn", "akala" ,"pm", "start", "pm", "--keepAttached"]
 CMD ["local", "tcp", "--tcpPort=31416"]
