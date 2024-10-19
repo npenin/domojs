@@ -6,8 +6,7 @@ RUN yarn add @akala/pm @domojs/devices
 FROM alpine
 VOLUME ["db"]
 COPY .akala.json .akala.json
-RUN ["apk" "update"] 
-RUN ["apk" "add", "yarn"] 
+RUN ["apk", "--update", "add", "yarn"] 
 COPY --from=build /usr/src/akala /usr/src/akala
 ENV PATH=${PATH}:./node_modules/.bin
 WORKDIR /usr/src/akala
