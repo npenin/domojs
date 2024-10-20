@@ -1,4 +1,4 @@
-FROM npenin/akala as build
+FROM npenin/akala AS build
 RUN apk add --no-cache alpine-sdk python3 linux-headers eudev-dev libusb git
 RUN yarn add serialport usb
 RUN yarn add @akala/pm @domojs/devices
