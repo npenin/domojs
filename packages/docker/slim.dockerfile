@@ -7,9 +7,10 @@ FROM alpine
 RUN ["apk", "--no-cache", "--update", "add", "yarn"] 
 VOLUME ["db"]
 COPY .akala.json .akala.json
+COPY --from=build /usr/bin/-S /usr/bin/-S
 COPY --from=build /usr/src/akala /usr/src/akala
 ENV PATH=${PATH}:./node_modules/.bin
 WORKDIR /usr/src/akala
-ENTRYPOINT ["node", "--enable-source-map", "node_modules/.bin/akala" ,"pm", "start", "pm", "--keepAttached"]
+ENTRYPOINT ["akala" ,"pm", "start", "pm", "--keepAttached"]
 CMD ["local", "tcp", "--tcpPort=31416"]
 EXPOSE 31416
