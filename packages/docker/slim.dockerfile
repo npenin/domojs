@@ -10,6 +10,6 @@ COPY .akala.json .akala.json
 COPY --from=build /usr/src/akala /usr/src/akala
 ENV PATH=${PATH}:./node_modules/.bin
 WORKDIR /usr/src/akala
-ENTRYPOINT ["akala" ,"pm", "start", "pm", "--keepAttached"]
+ENTRYPOINT [ "node_modules/.bin/akala" ,"pm", "start", "pm", "--keepAttached"]
 CMD ["local", "tcp", "--tcpPort=31416"]
 EXPOSE 31416
