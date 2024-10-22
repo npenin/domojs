@@ -7,7 +7,6 @@ FROM alpine
 RUN ["apk", "--no-cache", "--update", "add", "yarn", "coreutils"] 
 VOLUME ["db"]
 COPY .akala.json .akala.json
-COPY --from=build /usr/bin/-S /usr/bin/-S
 COPY --from=build /usr/src/akala /usr/src/akala
 ENV PATH=${PATH}:./node_modules/.bin
 WORKDIR /usr/src/akala
