@@ -4,7 +4,7 @@ RUN yarn add serialport usb
 RUN yarn add @akala/pm @domojs/devices
 
 FROM alpine
-RUN ["apk", "--no-cache", "--update", "add", "yarn", "coreutils"] 
+RUN ["apk", "--no-cache", "--update", "add", "yarn", "coreutils", "eudev" ] 
 VOLUME ["db"]
 COPY .akala.json .akala.json
 COPY --from=build /usr/src/akala /usr/src/akala
