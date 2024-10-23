@@ -379,7 +379,7 @@ export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in ke
     {
         return new Promise<Zigate>(async (resolve, reject) =>
         {
-            const serialport = (await import('serialport')).default
+            const { SerialPort } = (await import('serialport'))
             if (!path)
                 Zigate.listEligibleSerials().then(ports =>
                 {
@@ -387,10 +387,10 @@ export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in ke
                         return reject('no matching port could be found');
                     if (ports.length > 1)
                         return reject('multiple Prolific adapters found');
-                    resolve(new Zigate(new serialport(ports[0], { baudRate: 115200, dataBits: 8 })));
+                    resolve(new Zigate(new SerialPort(ports[0], { baudRate: 115200, dataBits: 8 })));
                 });
             else
-                resolve(new Zigate(new serialport(path, { baudRate: 115200, dataBits: 8 })));
+                resolve(new Zigate(new SerialPort(path, { baudRate: 115200, dataBits: 8 })));
         })
     }
 
@@ -428,7 +428,7 @@ export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in ke
         }
         try
         {
-            const { default: SerialPort } = await import('serialport');
+            const { SerialPort } = await import('serialport');
 
             return (await SerialPort.list()).filter(port => port.manufacturer && port.manufacturer == 'RFXCOM').map(sp => sp.path);
         }

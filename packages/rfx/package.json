@@ -32,7 +32,6 @@
         "@akala/pm": "^10.0.10",
         "@domojs/devices": "workspace:*",
         "@types/debug": "^4.1.12",
-        "@types/serialport": "^8.0.5",
         "@types/usb": "^2.0.5",
         "@types/ws": "^8.5.12",
         "typescript": "5.6.3"

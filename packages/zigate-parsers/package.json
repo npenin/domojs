@@ -31,7 +31,6 @@
     },
     "devDependencies": {
         "@types/debug": "4.1.12",
-        "@types/serialport": "8.0.5",
         "@types/usb": "2.0.5",
         "@types/ws": "8.5.12",
         "source-map-support": "0.5.21",

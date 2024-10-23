@@ -153,7 +153,7 @@ export class Rfxtrx extends Gateway<{ message: Event<[Message<any>]> } & { [key 
 
     public static async getSerial(path?: string)
     {
-        const { default: SerialPort } = await import('serialport');
+        const { SerialPort } = await import('serialport');
 
         return await new Promise<Rfxtrx>((resolve, reject) =>
         {
@@ -206,7 +206,7 @@ export class Rfxtrx extends Gateway<{ message: Event<[Message<any>]> } & { [key 
         }
         try
         {
-            const { default: SerialPort } = await import('serialport');
+            const { SerialPort } = await import('serialport');
 
             return (await SerialPort.list()).filter(port => port.manufacturer && port.manufacturer == 'RFXCOM').map(sp => sp.path);
         }
