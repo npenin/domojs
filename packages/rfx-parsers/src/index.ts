@@ -164,10 +164,10 @@ export class Rfxtrx extends Gateway<{ message: Event<[Message<any>]> } & { [key 
                         return reject('no matching port could be found');
                     if (devices.length > 1)
                         return reject('multiple RFXCOM adapters found');
-                    resolve(new Rfxtrx(new SerialPort(devices[0], { baudRate: 38400, })));
+                    resolve(new Rfxtrx(new SerialPort({ path: devices[0], baudRate: 38400, })));
                 });
             else
-                resolve(new Rfxtrx(new SerialPort(path, { baudRate: 38400, })));
+                resolve(new Rfxtrx(new SerialPort({ path, baudRate: 38400, })));
         });
     }
 

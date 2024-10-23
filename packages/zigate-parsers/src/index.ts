@@ -387,10 +387,10 @@ export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in ke
                         return reject('no matching port could be found');
                     if (ports.length > 1)
                         return reject('multiple Prolific adapters found');
-                    resolve(new Zigate(new SerialPort(ports[0], { baudRate: 115200, dataBits: 8 })));
+                    resolve(new Zigate(new SerialPort({ path: ports[0], baudRate: 115200, dataBits: 8 })));
                 });
             else
-                resolve(new Zigate(new SerialPort(path, { baudRate: 115200, dataBits: 8 })));
+                resolve(new Zigate(new SerialPort({ path, baudRate: 115200, dataBits: 8 })));
         })
     }
 
