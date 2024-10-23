@@ -24,5 +24,5 @@
         "generate-metadata": "yarn workspaces foreach -A run generate-metadata",
         "start": "yarn workspace @domojs/web vite src"
     },
-    "packageManager": "yarn@4.5.0"
+    "packageManager": "yarn@4.5.1"
 }
