@@ -17,9 +17,9 @@
         }
     },
     "dependencies": {
-        "@akala/client": "^36.1.5",
-        "@akala/commands": "^9.1.2",
-        "@akala/core": "^19.0.5"
+        "@akala/client": "^36.1.6",
+        "@akala/commands": "^9.1.3",
+        "@akala/core": "^19.0.6"
     },
     "devDependencies": {
         "@akala/vite": "^0.0.1",
