@@ -19,13 +19,14 @@ export default async function save(this: State, body: any, device: devices.IDevi
     switch (type)
     {
         case PacketType.INTERFACE_CONTROL: //hack to add a gateway
-            let p: Promise<Rfxtrx>;
+            let gateway: Rfxtrx;
+            let gatewayUri: string;
             switch (body.mode)
             {
                 case 'http':
                     const socket: net.Socket = await punch(body.path, 'raw')
                     socket.setKeepAlive(true, 60000);
-                    const gateway = new Rfxtrx(socket, socket.readyState == "open");
+                    gateway = new Rfxtrx(socket, socket.readyState == "open");
                     async function reopen()
                     {
                         if (gateway.isOpen)
@@ -47,36 +48,53 @@ export default async function save(this: State, body: any, device: devices.IDevi
                         if (e && e['code'] == 'EPIPE')
                             socket.end();
                     })
-                    p = Promise.resolve(this.gateways['http://' + body.path] = gateway);
+                    gatewayUri = 'http://' + body.path;
                     break;
                 case 'tcp':
-                    p = new Promise<Rfxtrx>((resolve, reject) =>
-                    {
-                        const socket = net.connect(body, async () =>
-                        {
-                            socket.on('error', e => log.error(e));
-                            if (body.path)
-                                resolve(this.gateways['tcp://' + body.path] = new Rfxtrx(socket, true));
-                            else if (body.host && body.port)
-                                resolve(this.gateways['tcp://' + body.host + ':' + body.port] = new Rfxtrx(socket, true));
-                            else if (body.host)
-                                resolve(this.gateways['tcp://' + body.host] = new Rfxtrx(socket, true));
-                            else if (body.port)
-                                resolve(this.gateways['tcp://0.0.0.0:' + body.port] = new Rfxtrx(socket, true));
-                            else
-                                reject(new Error('Invalid socket config'))
+                    if (body.path)
+                        gatewayUri = 'tcp://' + body.path;
+                    else if (body.host && body.port)
+                        gatewayUri = 'tcp://' + body.host + ':' + body.port;
+                    // resolve(this.gateways['tcp://' + body.host + ':' + body.port] = new Rfxtrx(socket, true));
+                    else if (body.host)
+                        gatewayUri = 'tcp://' + body.host;
+                    // resolve(this.gateways['tcp://' + body.host] = new Rfxtrx(socket, true));
+                    else if (body.port)
+                        gatewayUri = 'tcp://0.0.0.0' + body.port;
+                    // resolve(this.gateways['tcp://0.0.0.0:' + body.port] = new Rfxtrx(socket, true));
+                    else
+                        throw new Error('Invalid socket config');
 
-                            // this.setGateway(new Rfxtrx(socket, true)).then(resolve, reject);
-                        });
-                        socket.setKeepAlive(true, 60000);
+                    gateway = new Rfxtrx(net.connect(body).setKeepAlive(true, 60000), true)
+                    // p = new Promise<Rfxtrx>((resolve, reject) =>
+                    // {
+                    //     const socket = net.connect(body, async () =>
+                    //     {
+                    //         socket.on('error', e => log.error(e));
+                    //         if (body.path)
+                    //             resolve(this.gateways['tcp://' + body.path] = new Rfxtrx(socket, true));
+                    //         else if (body.host && body.port)
+                    //             resolve(this.gateways['tcp://' + body.host + ':' + body.port] = new Rfxtrx(socket, true));
+                    //         else if (body.host)
+                    //             resolve(this.gateways['tcp://' + body.host] = new Rfxtrx(socket, true));
+                    //         else if (body.port)
+                    //             resolve(this.gateways['tcp://0.0.0.0:' + body.port] = new Rfxtrx(socket, true));
+                    //         else
+                    //             reject(new Error('Invalid socket config'))
 
-                    });
+                    //         // this.setGateway(new Rfxtrx(socket, true)).then(resolve, reject);
+                    //     });
+                    //     socket.setKeepAlive(true, 60000);
+
+                    // });
                     break;
                 case 'usb':
-                    this.gateways['usb://' + body.path] = gateway;
+                    gatewayUri = 'usb://' + body.path;
+                    gateway = await Rfxtrx.getSerial(body.path);
                     break;
             }
-            this.devices[device.name] = { type: PacketType.INTERFACE_CONTROL, gateway: p };
+            this.gateways[gatewayUri] = gateway;
+            this.devices[device.name] = { type: PacketType.INTERFACE_CONTROL, gateway: gatewayUri };
             device.commands = [
                 ...Object.keys(InterfaceControl.protocols_msg3).filter(k => typeof (k) == 'string').map<Metadata.Command>((k: keyof typeof InterfaceControl.protocols_msg3) => ({ name: k, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" } } })),
                 ...Object.keys(InterfaceControl.protocols_msg4).filter(k => typeof (k) == 'string').map<Metadata.Command>((k: keyof typeof InterfaceControl.protocols_msg4) => ({ name: k, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" } } })),
@@ -85,11 +103,11 @@ export default async function save(this: State, body: any, device: devices.IDevi
             ];
             break;
         case PacketType.RFY:
-            this.devices[device.name] = { type: body.rfxType, id1: body.id1, id2: body.id2, id3: body.id3, unitCode: body.unitCode, gateway: this.gateways[body.gateway] && this.devices[body.gateway].gateway };
+            this.devices[device.name] = { type: body.rfxType, id1: body.id1, id2: body.id2, id3: body.id3, unitCode: body.unitCode, gateway: body.gateway };
             device.commands = Object.keys(Rfy.Commands).filter(v => isNaN(Number(v))).map(cmd => ({ name: cmd, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" } } }));
             break;
         case PacketType.TEMPERATURE_HUMIDITY:
-            this.devices[device.name] = { type: body.rfxType, id: body.rfxType, gateway: this.devices[body.gateway] && this.devices[body.gateway].gateway };
+            this.devices[device.name] = { type: body.rfxType, id: body.rfxType, gateway: body.gateway };
             device.subdevices = [
                 { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'temperature', commands: [], statusMethod: 'push', statusUnit: '°C' },
                 { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'humidity', commands: [], statusMethod: 'push', statusUnit: '%' },
@@ -97,7 +115,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                 { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
             ];
 
-            (await this.devices[device.name].gateway).on('TEMPERATURE_HUMIDITY', (state: TemperatureHumidity.Device) =>
+            this.gateways[this.devices[device.name].gateway].on('TEMPERATURE_HUMIDITY', (state: TemperatureHumidity.Device) =>
             {
                 container.dispatch('pushStatus', { device: device.name + '.temperature', state: state.temperature / 10 })
                 if (state.humidity !== 0)
@@ -107,14 +125,14 @@ export default async function save(this: State, body: any, device: devices.IDevi
             })
             break;
         case PacketType.ENERGY:
-            this.devices[device.name] = { type: body.rfxType, sensorId: body.sensorId, gateway: this.devices[body.gateway] && this.devices[body.gateway].gateway };
+            this.devices[device.name] = { type: body.rfxType, sensorId: body.sensorId, gateway: body.gateway };
             device.subdevices = [
                 { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'instant', commands: [], statusMethod: 'push', statusUnit: 'W' },
                 { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'total', commands: [], statusMethod: 'push', statusUnit: 'Wh' },
                 { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
                 { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
             ];
-            (await this.devices[device.name].gateway).on('ENERGY', state =>
+            this.gateways[this.devices[device.name].gateway].on('ENERGY', state =>
             {
                 container.dispatch('pushStatus', { device: device.name + '.instant', state: state.instant })
                 if (!state.count)
@@ -132,7 +150,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                 { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
                 { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
             ];
-            (await this.devices[device.name].gateway).on('CURRENT_ENERGY', state =>
+            this.gateways[this.devices[device.name].gateway].on('CURRENT_ENERGY', state =>
             {
                 container.dispatch('pushStatus', { device: device.name + '.channel1', state: state.channel1 })
                 container.dispatch('pushStatus', { device: device.name + '.channel2', state: state.channel2 })

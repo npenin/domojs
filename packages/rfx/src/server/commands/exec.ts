@@ -15,7 +15,7 @@ export default async function (this: State, deviceName: string, command: string,
             message = Object.assign({ command: Rfy.Commands[command] }, device) as RFXDevice;
             break;
         case PacketType.INTERFACE_CONTROL:
-            var gw = await device.gateway;
+            var gw = this.gateways[device.gateway];
             switch (command)
             {
                 case InterfaceControl.Commands[InterfaceControl.Commands.reset]:
@@ -57,12 +57,12 @@ export default async function (this: State, deviceName: string, command: string,
                         else if (value[0] == '-')
                             modes.msg6 = modes.msg6 & ~InterfaceControl.protocols_msg6[protocol];
                     }
-                    return (await device.gateway).setModes(modes);
+                    return this.gateways[device.gateway].setModes(modes);
             }
             break;
     }
     if (message == null)
         throw new Error(`${JSON.stringify({ deviceName, command })} is not supported on ${JSON.stringify(device.type)}`)
 
-    return (await device.gateway).send<RFXDevice>(device.type, message);
+    return this.gateways[device.gateway].send<RFXDevice>(device.type, message);
 }
