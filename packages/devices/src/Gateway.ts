@@ -122,9 +122,14 @@ export abstract class Gateway<T extends object> extends EventEmitter<T>
             this._isOpen = true;
     }
 
+    public get started() { return this._started; }
+
     async start()
     {
+        this._started = true;
     }
+
+    private _started = false;
 
     protected sqnce: number = 0;
 

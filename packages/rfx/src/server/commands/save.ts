@@ -47,7 +47,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                         if (e && e['code'] == 'EPIPE')
                             socket.end();
                     })
-                    p = this.gateways.emit('add', 'http://' + body.path, gateway) as Promise<Rfxtrx>;
+                    p = Promise.resolve(this.gateways['http://' + body.path] = gateway);
                     break;
                 case 'tcp':
                     p = new Promise<Rfxtrx>((resolve, reject) =>
@@ -56,13 +56,13 @@ export default async function save(this: State, body: any, device: devices.IDevi
                         {
                             socket.on('error', e => log.error(e));
                             if (body.path)
-                                resolve(await this.gateways.emit('add', 'tcp://' + body.path, new Rfxtrx(socket, true)) as Rfxtrx);
+                                resolve(this.gateways['tcp://' + body.path] = new Rfxtrx(socket, true));
                             else if (body.host && body.port)
-                                resolve(await this.gateways.emit('add', 'tcp://' + body.host + ':' + body.port, new Rfxtrx(socket, true)) as Rfxtrx);
+                                resolve(this.gateways['tcp://' + body.host + ':' + body.port] = new Rfxtrx(socket, true));
                             else if (body.host)
-                                resolve(await this.gateways.emit('add', 'tcp://' + body.host, new Rfxtrx(socket, true)) as Rfxtrx);
+                                resolve(this.gateways['tcp://' + body.host] = new Rfxtrx(socket, true));
                             else if (body.port)
-                                resolve(await this.gateways.emit('add', 'tcp://0.0.0.0:' + body.port, new Rfxtrx(socket, true)) as Rfxtrx);
+                                resolve(this.gateways['tcp://0.0.0.0:' + body.port] = new Rfxtrx(socket, true));
                             else
                                 reject(new Error('Invalid socket config'))
 
@@ -73,7 +73,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                     });
                     break;
                 case 'usb':
-                    (p = this.gateways.emit('add', 'usb://' + body.path, gateway) as Promise<Rfxtrx>);
+                    this.gateways['usb://' + body.path] = gateway;
                     break;
             }
             this.devices[device.name] = { type: PacketType.INTERFACE_CONTROL, gateway: p };

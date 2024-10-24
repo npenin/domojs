@@ -294,6 +294,7 @@ export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in ke
                     this.once(MessageType.StartNetwork, (response: MessageTypes.StartNetworkResponse) =>
                     {
                         resolve();
+                        super.start();
                     })
                 })
             });

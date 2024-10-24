@@ -119,6 +119,8 @@ export class Rfxtrx extends Gateway<{ message: Event<[Message<any>]> } & { [key 
         }
         if (m.message.msg3 & InterfaceControl.protocols_msg3.DisplayRaw)
             this.on('message', m => console.log(m));
+
+        await super.start();
     }
 
     public send(type: Type.INTERFACE_CONTROL, message?: Partial<InterfaceControl.ModeCommand>): Promise<Message<any>>

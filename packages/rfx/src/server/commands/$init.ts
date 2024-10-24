@@ -15,22 +15,29 @@ export default async function init(this: State, container: Container<void>, sign
 {
     state = this;
     state.devices = {};
-    this.gateways = new EventEmitter();
-    const gateways = {};
-    this.gateways.on('add', async (path, gateway) =>
-    {
-        if (gateways[path])
-            return gateways[path];
-        gateways[path] = gateway;
-        await gateway.start();
-        signal?.addEventListener('abort', () => this.gateways.emit('del', path, gateway));
-        return gateway;
+    this.gateways = new Proxy<Record<string, Rfxtrx>>({}, {
+        set(target, path, gateway)
+        {
+            if (path in target || !(gateway instanceof Rfxtrx) || typeof path !== 'string')
+                return false;
+
+            target[path] = gateway;
+            gateway.start();
+            signal?.addEventListener('abort', () => delete this.gateways[path]);
+            return true;
+        },
+        deleteProperty(target, path)
+        {
+            if (!(path in target) || typeof path !== 'string')
+                return false;
+
+            target[path].close();
+            delete target[path]
+            return true;
+
+        },
     });
-    this.gateways.on('del', async (path, gateway) =>
-    {
-        delete gateways[path];
-        await gateway.close();;
-    })
+
     // this.setGateway = async (gw: Rfxtrx) =>
     // {
     //     signal?.addEventListener('abort', () => gw.close())
@@ -81,8 +88,7 @@ export default async function init(this: State, container: Container<void>, sign
         {
             var device = serials[0]
             logger.info('idenfified a RFXCOM potential serial device');
-            const gateway = await Rfxtrx.getSerial(device)
-            state.gateways.emit('add', 'usb://' + device, gateway);
+            state.gateways['usb://' + device] = await Rfxtrx.getSerial(device);
             // setGateway(await Rfxtrx.getSerial(device))
             try
             {
@@ -90,7 +96,7 @@ export default async function init(this: State, container: Container<void>, sign
                 {
                     var newSerials = await Rfxtrx.listEligibleSerials();
                     if ((newSerials.length == 0 || newSerials.indexOf(device) === -1) && ('usb://' + device) in state.gateways)
-                        state.gateways.emit('del', 'usb://' + device, gateway);
+                        delete state.gateways['usb://' + device];
                 });
             }
             catch (e)
