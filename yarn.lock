@@ -418,7 +418,7 @@ __metadata:
     "@types/mongodb": "npm:4.0.7"
     "@types/node": "npm:22.7.6"
     "@types/ws": "npm:8.5.12"
-    mongodb: "npm:6.9.0"
+    mongodb: "npm:6.10.0"
     typescript: "npm:5.6.3"
     ws: "npm:8.18.0"
   languageName: unknown
@@ -6629,9 +6629,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb@npm:6.9.0":
-  version: 6.9.0
-  resolution: "mongodb@npm:6.9.0"
+"mongodb@npm:6.10.0":
+  version: 6.10.0
+  resolution: "mongodb@npm:6.10.0"
   dependencies:
     "@mongodb-js/saslprep": "npm:^1.1.5"
     bson: "npm:^6.7.0"
@@ -6659,7 +6659,7 @@ __metadata:
       optional: true
     socks:
       optional: true
-  checksum: 10/c2b1af2affc27d67ffd966e1821585d88970bfefae21a3f7232d2f32345df3ea1ff329118844904527f6d74cc4fcab7fcafae1f6a4d6b12a58c3f24a9a5e4e9b
+  checksum: 10/cab3b9171de69078a69a969d9c17b78b14fd346ad7579e8e88369d0494cd9bfb3a58e78d312d8480b94c601907aa57b5fa89fe44531de94839a04b79ea856ae0
   languageName: node
   linkType: hard
 
