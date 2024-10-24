@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* gateway start 97998b5
+* gateway resolution 5877dde
 
 
 
