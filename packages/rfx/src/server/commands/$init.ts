@@ -1,31 +1,43 @@
 import { State } from "../state.js";
-import * as akala from '@akala/core';
 import { Rfxtrx } from "@domojs/rfx-parsers";
 import * as path from 'path'
 import * as fs from 'fs/promises';
 import { registerDeviceType } from '@domojs/devices';
 import { usb as usbType } from 'usb'
 import { Container } from "@akala/commands";
+import { EventEmitter, logger as Logger } from "@akala/core";
 
 var state: State = null;
-var setGateway: (gw: Rfxtrx) => void = null;
-const logger = akala.logger('@domojs/rfx');
+// var setGateway: (gw: Rfxtrx) => void = null;
+const logger = Logger('@domojs/rfx');
 
 export default async function init(this: State, container: Container<void>, signal: AbortSignal)
 {
     state = this;
     state.devices = {};
-    this.gateway = new Promise((resolve) =>
+    this.gateways = new EventEmitter();
+    const gateways = {};
+    this.gateways.on('add', async (path, gateway) =>
     {
-        setGateway = resolve;
+        if (gateways[path])
+            return gateways[path];
+        gateways[path] = gateway;
+        await gateway.start();
+        signal?.addEventListener('abort', () => this.gateways.emit('del', path, gateway));
+        return gateway;
     });
-    this.setGateway = async (gw: Rfxtrx) =>
+    this.gateways.on('del', async (path, gateway) =>
     {
-        signal?.addEventListener('abort', () => gw.close())
-        await gw.start();
-        setGateway(gw);
-        return gw;
-    };
+        delete gateways[path];
+        await gateway.close();;
+    })
+    // this.setGateway = async (gw: Rfxtrx) =>
+    // {
+    //     signal?.addEventListener('abort', () => gw.close())
+    //     await gw.start();
+    //     setGateway(gw);
+    //     return gw;
+    // };
 
     // var p1 = fs.readFile(path.resolve(__dirname, '../../../views/new-RFXCOM.html'), 'utf-8').then(newDeviceTemplate =>
     await registerDeviceType(container, signal, {
@@ -45,11 +57,11 @@ export default async function init(this: State, container: Container<void>, sign
     try
     {
         const { usb } = await import('usb')
-        await addDeviceIfMatch(usb);
+        await addDeviceIfMatch(usb, this);
         usb.on('attach', function ()
         {
             logger.info('detected new usb device');
-            addDeviceIfMatch(usb);
+            addDeviceIfMatch(usb, this);
         });
     }
     catch (e)
@@ -59,36 +71,38 @@ export default async function init(this: State, container: Container<void>, sign
     }
 
     // return Promise.all([p1, p2]);
-}
 
 
-async function addDeviceIfMatch(usb: typeof usbType)
-{
-    var serials = await Rfxtrx.listEligibleSerials();
-    if (serials && serials.length > 0)
+
+    async function addDeviceIfMatch(usb: typeof usbType, state: State)
     {
-        var device = serials[0]
-        logger.info('idenfified a RFXCOM potential serial device');
-        setGateway(await Rfxtrx.getSerial(device))
-        try
+        var serials = await Rfxtrx.listEligibleSerials();
+        if (serials && serials.length > 0)
         {
-            usb.on('detach', async function ()
+            var device = serials[0]
+            logger.info('idenfified a RFXCOM potential serial device');
+            const gateway = await Rfxtrx.getSerial(device)
+            state.gateways.emit('add', 'usb://' + device, gateway);
+            // setGateway(await Rfxtrx.getSerial(device))
+            try
             {
-                var newSerials = await Rfxtrx.listEligibleSerials();
-                if (newSerials.length == 0 || newSerials.indexOf(device) === -1)
-                    state.gateway = new Promise((resolve) =>
-                    {
-                        setGateway = resolve;
-                    });
-            });
+                usb.on('detach', async function ()
+                {
+                    var newSerials = await Rfxtrx.listEligibleSerials();
+                    if ((newSerials.length == 0 || newSerials.indexOf(device) === -1) && ('usb://' + device) in state.gateways)
+                        state.gateways.emit('del', 'usb://' + device, gateway);
+                });
+            }
+            catch (e)
+            {
+                console.error('detaching is not supported on this platform');
+            }
+            return device;
+
         }
-        catch (e)
-        {
-            console.error('detaching is not supported on this platform');
-        }
+        else
+            logger.warn('no RFXCOM device found');
     }
-    else
-        logger.warn('no RFXCOM device found');
 }
 
 init.$inject = ['container', 'signal']
