@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* handle multiple gateways or merge gateways 1f19ef8
+* gateway start 97998b5
 
 
 
