@@ -12,6 +12,6 @@ COPY entrypoint.sh entrypoint.sh
 COPY --from=build /usr/src/akala /usr/src/akala
 ENV PATH=${PATH}:./node_modules/.bin
 WORKDIR /usr/src/akala
-ENTRYPOINT [ "./entrypoint.sh"]
+ENTRYPOINT [ "node_modules/.bin/akala" ,"pm", "start", "pm", "--keepAttached"]
 CMD ["local", "tcp", "--tcpPort=31416"]
 EXPOSE 31416
