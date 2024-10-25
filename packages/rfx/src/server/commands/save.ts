@@ -1,18 +1,18 @@
 import { Rfxtrx, PacketType, Rfy, InterfaceControl, TemperatureHumidity } from "@domojs/rfx-parsers";
-import { devices } from "@domojs/devices";
 import { State } from "../state.js";
 import * as net from 'net'
 import { punch } from "http-punch-hole";
 import { logger } from '@akala/core'
 import { Container, Metadata } from "@akala/commands";
 import { InteractError } from "@akala/cli";
+import { DeviceClass, IDevice, ISaveDevice } from '@domojs/devices'
 
 const log = logger('domojs:rfx')
 
-export default async function save(this: State, body: any, device: devices.IDevice, container: Container<any>): Promise<Metadata.Container>
+export default async function save(this: State, body: any, device: ISaveDevice & Partial<IDevice>, container: Container<any>): Promise<IDevice>
 {
     if (!body)
-        return device;
+        return device as IDevice;
     if (typeof body.rfxType == 'undefined')
         throw new InteractError('please provide an rfxType', 'body.rfxType');
     var type: PacketType = (body.rfxType & 0xff00) >> 8;
@@ -95,6 +95,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             }
             this.gateways[gatewayUri] = gateway;
             this.devices[device.name] = { type: PacketType.INTERFACE_CONTROL, gateway: gatewayUri };
+            device.class = DeviceClass.Gateway;
             device.commands = [
                 ...Object.keys(InterfaceControl.protocols_msg3).filter(k => typeof (k) == 'string').map<Metadata.Command>((k: keyof typeof InterfaceControl.protocols_msg3) => ({ name: k, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" } } })),
                 ...Object.keys(InterfaceControl.protocols_msg4).filter(k => typeof (k) == 'string').map<Metadata.Command>((k: keyof typeof InterfaceControl.protocols_msg4) => ({ name: k, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" } } })),
@@ -105,14 +106,16 @@ export default async function save(this: State, body: any, device: devices.IDevi
         case PacketType.RFY:
             this.devices[device.name] = { type: body.rfxType, id1: body.id1, id2: body.id2, id3: body.id3, unitCode: body.unitCode, gateway: body.gateway };
             device.commands = Object.keys(Rfy.Commands).filter(v => isNaN(Number(v))).map(cmd => ({ name: cmd, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" } } }));
+            device.class = DeviceClass.Shutter;
             break;
         case PacketType.TEMPERATURE_HUMIDITY:
             this.devices[device.name] = { type: body.rfxType, id: body.rfxType, gateway: body.gateway };
+            device.class = DeviceClass.Multi;
             device.subdevices = [
-                { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'temperature', commands: [], statusMethod: 'push', statusUnit: '°C' },
-                { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'humidity', commands: [], statusMethod: 'push', statusUnit: '%' },
-                { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
-                { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
+                { room: body.room, class: DeviceClass.SingleValueSensor, type: body.rfxType, category: device.category, name: 'temperature', commands: [], statusMethod: 'push', statusUnit: '°C' },
+                { room: body.room, class: DeviceClass.SingleValueSensor, type: body.rfxType, category: device.category, name: 'humidity', commands: [], statusMethod: 'push', statusUnit: '%' },
+                { room: body.room, class: DeviceClass.SingleValueSensor, type: body.rfxType, category: device.category, name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
+                { room: body.room, class: DeviceClass.SingleValueSensor, type: body.rfxType, category: device.category, name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
             ];
 
             this.gateways[this.devices[device.name].gateway].on('TEMPERATURE_HUMIDITY', (state: TemperatureHumidity.Device) =>
@@ -126,11 +129,12 @@ export default async function save(this: State, body: any, device: devices.IDevi
             break;
         case PacketType.ENERGY:
             this.devices[device.name] = { type: body.rfxType, sensorId: body.sensorId, gateway: body.gateway };
+            device.class = DeviceClass.Multi;
             device.subdevices = [
-                { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'instant', commands: [], statusMethod: 'push', statusUnit: 'W' },
-                { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'total', commands: [], statusMethod: 'push', statusUnit: 'Wh' },
-                { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
-                { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
+                { room: body.room, class: DeviceClass.SingleValueSensor, category: device.category, type: body.rfxType, name: 'instant', commands: [], statusMethod: 'push', statusUnit: 'W' },
+                { room: body.room, class: DeviceClass.SingleValueSensor, category: device.category, type: body.rfxType, name: 'total', commands: [], statusMethod: 'push', statusUnit: 'Wh' },
+                { room: body.room, class: DeviceClass.SingleValueSensor, category: device.category, type: body.rfxType, name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
+                { room: body.room, class: DeviceClass.SingleValueSensor, category: device.category, type: body.rfxType, name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
             ];
             this.gateways[this.devices[device.name].gateway].on('ENERGY', state =>
             {
@@ -143,12 +147,13 @@ export default async function save(this: State, body: any, device: devices.IDevi
             break;
         case PacketType.CURRENT_ENERGY:
             this.devices[device.name] = { type: body.rfxType, sensorId: body.sensorId, gateway: this.devices[body.gateway] && this.devices[body.gateway].gateway };
+            device.class = DeviceClass.Multi;
             device.subdevices = [
-                { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'channel1', commands: [], statusMethod: 'push', statusUnit: 'A' },
-                { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'channel2', commands: [], statusMethod: 'push', statusUnit: 'A' },
-                { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'channel3', commands: [], statusMethod: 'push', statusUnit: 'A' },
-                { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
-                { room: body.room, class: devices.DeviceClass.SingleValueSensor, type: body.rfxType, name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
+                { room: body.room, class: DeviceClass.SingleValueSensor, category: device.category, type: body.rfxType, name: 'channel1', commands: [], statusMethod: 'push', statusUnit: 'A' },
+                { room: body.room, class: DeviceClass.SingleValueSensor, category: device.category, type: body.rfxType, name: 'channel2', commands: [], statusMethod: 'push', statusUnit: 'A' },
+                { room: body.room, class: DeviceClass.SingleValueSensor, category: device.category, type: body.rfxType, name: 'channel3', commands: [], statusMethod: 'push', statusUnit: 'A' },
+                { room: body.room, class: DeviceClass.SingleValueSensor, category: device.category, type: body.rfxType, name: 'battery', commands: [], statusMethod: 'push', statusUnit: '%' },
+                { room: body.room, class: DeviceClass.SingleValueSensor, category: device.category, type: body.rfxType, name: 'signal', commands: [], statusMethod: 'push', statusUnit: '%' },
             ];
             this.gateways[this.devices[device.name].gateway].on('CURRENT_ENERGY', state =>
             {
@@ -163,5 +168,5 @@ export default async function save(this: State, body: any, device: devices.IDevi
             console.error(`rfx: ${type} (${body.rfxType}) is not supported`);
             throw new Error(`${type} (${body.rfxType}) is not supported`);
     }
-    return device;
+    return device as IDevice;
 }

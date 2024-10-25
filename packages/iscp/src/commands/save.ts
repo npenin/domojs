@@ -1,12 +1,12 @@
-import { devices } from '@domojs/devices';
 import { State } from "../state.js";
 import * as api from '../api.js'
 import { Socket } from 'net'
 import { Container } from "@akala/commands";
 import { ISCPProcessor } from "../iscp-processor.js";
+import { DeviceClass, IDevice, ISaveDevice } from "@domojs/devices";
 
 
-const deviceCollection: { [name: string]: devices.IDevice } = {};
+const deviceCollection: { [name: string]: IDevice } = {};
 
 export function getMainDevice(name)
 {
@@ -19,7 +19,7 @@ export function getMainDevice(name)
     return deviceCollection[mainDevice];
 }
 
-export default async function save(this: State, body: any, device: devices.IDevice)
+export default async function save(this: State, body: any, device: ISaveDevice & Partial<IDevice>)
 {
     if (device.name.indexOf('.') > -1)
         return device;
@@ -39,13 +39,14 @@ export default async function save(this: State, body: any, device: devices.IDevi
 
     socket.connect({ host: body.IP || device.name, port: body.port || 60128 });
     device.statusMethod = 'push';
+    device.class = DeviceClass.Multi;
     device.subdevices = [
         {
             room: device.room,
             name: "power",
             type: 'iscp',
             category: 'switch',
-            class: devices.DeviceClass.Switch,
+            class: DeviceClass.Switch,
             statusMethod: 'pull',
             status: function ()
             {
@@ -66,7 +67,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             room: device.room,
             name: "mute",
             type: 'iscp',
-            class: devices.DeviceClass.Switch,
+            class: DeviceClass.Switch,
             category: 'switch',
             statusMethod: 'pull',
             status: function ()
@@ -87,7 +88,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             room: device.room,
             name: "volume",
             type: 'iscp',
-            class: devices.DeviceClass.Range,
+            class: DeviceClass.Range,
             category: 'input',
             statusMethod: 'pull',
             status: function ()
@@ -107,7 +108,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             room: device.room,
             name: "input",
             type: 'iscp',
-            class: devices.DeviceClass.Discrete,
+            class: DeviceClass.Discrete,
             category: 'values',
             statusMethod: 'pull',
             status: function ()

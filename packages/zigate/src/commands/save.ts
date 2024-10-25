@@ -1,17 +1,17 @@
-import { devices } from "@domojs/devices";
 import { State } from "../state.js";
 import { Cluster, MessageType, MessageTypes, Zigate, network, attributes } from "@domojs/zigate-parsers";
 import net from 'net';
 import * as akala from '@akala/core';
 import { punch } from "http-punch-hole";
+import { DeviceClass, IDevice, ISaveDevice } from "@domojs/devices";
 const log = akala.logger('domojs:zigate');
 
-export default async function save(this: State, body: any, device: devices.IDevice)
+export default async function save(this: State, body: any, device: ISaveDevice & Partial<IDevice>): Promise<IDevice>
 {
     if (!body)
-        return device;
+        return device as IDevice;
 
-    if (Object.keys(devices).length == 0 && !body.IP && !body.port)
+    if (Object.keys(this.devices).length == 0 && !body.IP && !body.port)
         throw new Error('A gateway first need to be registered');
 
     if (body.mode) //gateway
@@ -53,6 +53,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
         }
         await p;
 
+        device.class = DeviceClass.Gateway;
         device.commands = [
             { name: 'GetVersion', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
             { name: 'Reset', config: { "": { inject: [] }, "@domojs/devicetype": { type: 'button' } } },
@@ -127,7 +128,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                     await this.pubsub?.publish('/device/discovered',
                         {
                             type: 'zigate',
-                            class: devices.DeviceClass.SingleValueSensor,
+                            class: DeviceClass.SingleValueSensor,
                             category: this.devicesByAddress[attribute.sourceAddress].category,
                             room: this.devicesByAddress[attribute.sourceAddress].room,
                             name: this.devicesByAddress[attribute.sourceAddress].name + '.' + Cluster[attribute.clusterId],
@@ -205,19 +206,19 @@ export default async function save(this: State, body: any, device: devices.IDevi
             }
         }));
 
-        return device;
+        return device as IDevice;
     }
     else //ZDevice
     {
         if (device.name.indexOf('.') > 0)
-            return device;
+            return device as IDevice;
         device.subdevices = [];
         if (!(body.zdevice.address in this.devicesByAddress))
         {
             if (body.zdevice.address in this.devicesByAddress && this.devicesByAddress[body.zdevice.address].registered)
-                return device;
+                return device as IDevice;
 
-            devices[device.name] = this.devicesByAddress[body.zdevice.address] = {
+            this.devices[device.name] = this.devicesByAddress[body.zdevice.address] = {
                 type: 'device',
                 address: body.zdevice.address,
                 category: device.category,
@@ -247,7 +248,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
                 device.subdevices.push({
                     name: Cluster[cluster],
                     commands: [],
-                    class: devices.DeviceClass.SingleValueSensor,
+                    class: DeviceClass.SingleValueSensor,
                     room: device.room,
                     statusUnit: statusUnit,
                     category: device.category,
@@ -260,10 +261,11 @@ export default async function save(this: State, body: any, device: devices.IDevi
                 });
             }
 
-            return device;
+            device.class = DeviceClass.SingleValueSensor;
+            return device as IDevice;
         }
         this.devicesByAddress[body.zdevice.address].name = device.name;
-        devices[device.name] = this.devicesByAddress[body.zdevice.address];
+        this.devices[device.name] = this.devicesByAddress[body.zdevice.address];
         for (let cluster of this.devicesByAddress[body.zdevice.address].clusters)
         {
             let statusUnit: string;
@@ -282,7 +284,7 @@ export default async function save(this: State, body: any, device: devices.IDevi
             device.subdevices.push({
                 name: Cluster[cluster],
                 commands: [],
-                class: devices.DeviceClass.SingleValueSensor,
+                class: DeviceClass.SingleValueSensor,
                 room: device.room,
                 statusUnit: statusUnit,
                 category: device.category,
@@ -296,6 +298,6 @@ export default async function save(this: State, body: any, device: devices.IDevi
         }
     }
 
-    return device;
+    return device as IDevice;
 
 }
