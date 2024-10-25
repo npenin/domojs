@@ -1,9 +1,14 @@
-#  (2024-10-24)
+#  (2024-10-25)
 
 
-### Bug Fixes
+### Features
 
-* gateway start 97998b5
+* add class to IDevice 716d8d8
+
+
+### BREAKING CHANGES
+
+* devices types are exported without the devices namespace
 
 
 
