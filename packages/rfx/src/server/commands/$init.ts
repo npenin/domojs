@@ -18,12 +18,15 @@ export default async function init(this: State, container: Container<void>, sign
     this.gateways = new Proxy<Record<string, Rfxtrx>>({}, {
         set(target, path, gateway)
         {
-            if (path in target || !(gateway instanceof Rfxtrx) || typeof path !== 'string')
+            if (!(gateway instanceof Rfxtrx) || typeof path !== 'string')
                 return false;
 
-            target[path] = gateway;
-            gateway.start();
-            signal?.addEventListener('abort', () => delete this.gateways[path]);
+            if (!(path in target))
+            {
+                target[path] = gateway;
+                gateway.start();
+                signal?.addEventListener('abort', () => delete this.gateways[path]);
+            }
             return true;
         },
         deleteProperty(target, path)
@@ -88,7 +91,8 @@ export default async function init(this: State, container: Container<void>, sign
         {
             var device = serials[0]
             logger.info('idenfified a RFXCOM potential serial device');
-            state.gateways['usb://' + device] = await Rfxtrx.getSerial(device);
+            if (!state.gateways['usb://' + device])
+                state.gateways['usb://' + device] = await Rfxtrx.getSerial(device);
             // setGateway(await Rfxtrx.getSerial(device))
             try
             {

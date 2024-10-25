@@ -90,10 +90,15 @@ export default async function save(this: State, body: any, device: ISaveDevice &
                     break;
                 case 'usb':
                     gatewayUri = 'usb://' + body.path;
-                    gateway = await Rfxtrx.getSerial(body.path);
+                    if (!this.gateways[gatewayUri])
+                        gateway = await Rfxtrx.getSerial(body.path);
                     break;
             }
-            this.gateways[gatewayUri] = gateway;
+            if (!gateway)
+                gateway = this.gateways[gatewayUri]
+            else
+                this.gateways[gatewayUri] = gateway;
+
             this.devices[device.name] = { type: PacketType.INTERFACE_CONTROL, gateway: gatewayUri };
             device.class = DeviceClass.Gateway;
             device.commands = [
