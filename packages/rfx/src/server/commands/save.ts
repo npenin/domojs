@@ -1,26 +1,43 @@
-import { Rfxtrx, PacketType, Rfy, InterfaceControl, TemperatureHumidity } from "@domojs/rfx-parsers";
+import { Rfxtrx, PacketType, Rfy, InterfaceControl, TemperatureHumidity, Type } from "@domojs/rfx-parsers";
 import { State } from "../state.js";
 import * as net from 'net'
 import { punch } from "http-punch-hole";
-import { logger } from '@akala/core'
-import { Container, Metadata } from "@akala/commands";
+import { convertToMiddleware, logger } from '@akala/core'
+import { Container, ICommandProcessor, Metadata } from "@akala/commands";
 import { InteractError } from "@akala/cli";
-import { DeviceClass, IDevice, ISaveDevice } from '@domojs/devices'
+import { CommandDescription, DeviceClass, IDevice, ISaveDevice } from '@domojs/devices'
 
 const log = logger('domojs:rfx')
 
-export default async function save(this: State, body: any, device: ISaveDevice & Partial<IDevice>, container: Container<any>): Promise<IDevice>
+declare module '@akala/commands'
+{
+    interface ConfigurationMap
+    {
+        '@domojs/rfx': { cmd: number };
+        '@domojs/devicetype': CommandDescription
+    }
+}
+
+export default async function save(this: State, body: any, device: ISaveDevice & Partial<IDevice>, remote: Container<any>, self: Container<any>): Promise<IDevice>
 {
     if (!body)
         return device as IDevice;
     if (typeof body.rfxType == 'undefined')
         throw new InteractError('please provide an rfxType', 'body.rfxType');
     var type: PacketType = (body.rfxType & 0xff00) >> 8;
+    let gatewayUri: string;
+    if (type !== PacketType.INTERFACE_CONTROL)
+    {
+        if (typeof body.gateway == 'undefined')
+            throw new InteractError('please provide a gateway to use for this device', 'body.gateway');
+        gatewayUri = new URL(body.gateway).toString();
+    }
+    let processor: ICommandProcessor;
+
     switch (type)
     {
         case PacketType.INTERFACE_CONTROL: //hack to add a gateway
             let gateway: Rfxtrx;
-            let gatewayUri: string;
             switch (body.mode)
             {
                 case 'http':
@@ -65,28 +82,7 @@ export default async function save(this: State, body: any, device: ISaveDevice &
                     else
                         throw new Error('Invalid socket config');
 
-                    gateway = new Rfxtrx(net.connect(body).setKeepAlive(true, 60000), true)
-                    // p = new Promise<Rfxtrx>((resolve, reject) =>
-                    // {
-                    //     const socket = net.connect(body, async () =>
-                    //     {
-                    //         socket.on('error', e => log.error(e));
-                    //         if (body.path)
-                    //             resolve(this.gateways['tcp://' + body.path] = new Rfxtrx(socket, true));
-                    //         else if (body.host && body.port)
-                    //             resolve(this.gateways['tcp://' + body.host + ':' + body.port] = new Rfxtrx(socket, true));
-                    //         else if (body.host)
-                    //             resolve(this.gateways['tcp://' + body.host] = new Rfxtrx(socket, true));
-                    //         else if (body.port)
-                    //             resolve(this.gateways['tcp://0.0.0.0:' + body.port] = new Rfxtrx(socket, true));
-                    //         else
-                    //             reject(new Error('Invalid socket config'))
-
-                    //         // this.setGateway(new Rfxtrx(socket, true)).then(resolve, reject);
-                    //     });
-                    //     socket.setKeepAlive(true, 60000);
-
-                    // });
+                    gateway = new Rfxtrx(net.connect(body as net.TcpNetConnectOpts).setKeepAlive(true, 60000), true)
                     break;
                 case 'usb':
                     gatewayUri = 'usb://' + body.path;
@@ -102,16 +98,79 @@ export default async function save(this: State, body: any, device: ISaveDevice &
             this.devices[device.name] = { type: PacketType.INTERFACE_CONTROL, gateway: gatewayUri };
             device.class = DeviceClass.Gateway;
             device.commands = [
-                ...Object.keys(InterfaceControl.protocols_msg3).filter(k => typeof (k) == 'string').map<Metadata.Command>((k: keyof typeof InterfaceControl.protocols_msg3) => ({ name: k, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" } } })),
-                ...Object.keys(InterfaceControl.protocols_msg4).filter(k => typeof (k) == 'string').map<Metadata.Command>((k: keyof typeof InterfaceControl.protocols_msg4) => ({ name: k, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" } } })),
-                ...Object.keys(InterfaceControl.protocols_msg5).filter(k => typeof (k) == 'string').map<Metadata.Command>((k: keyof typeof InterfaceControl.protocols_msg5) => ({ name: k, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" } } })),
-                ...Object.keys(InterfaceControl.protocols_msg6).filter(k => typeof (k) == 'string').map<Metadata.Command>((k: keyof typeof InterfaceControl.protocols_msg6) => ({ name: k, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" } } })),
+                { name: 'status', config: { "": { inject: [] }, "@domojs/devicetype": { type: "button" }, "@domojs/rfx": { cmd: InterfaceControl.Commands.status } } },
+                { name: 'save', config: { "": { inject: [] }, "@domojs/devicetype": { type: "button" }, "@domojs/rfx": { cmd: InterfaceControl.Commands.save } } },
+                {
+                    name: 'setMode', config: {
+                        "": { inject: ["param.0"] },
+                        "@domojs/devicetype": {
+                            type: 'input', values: [].concat(
+                                Object.keys(InterfaceControl.protocols_msg3).filter(k => typeof (k) == 'string').map(v => '+' + v),
+                                Object.keys(InterfaceControl.protocols_msg3).filter(k => typeof (k) == 'string').map(v => '-' + v),
+                                Object.keys(InterfaceControl.protocols_msg4).filter(k => typeof (k) == 'string').map(v => '+' + v),
+                                Object.keys(InterfaceControl.protocols_msg4).filter(k => typeof (k) == 'string').map(v => '-' + v),
+                                Object.keys(InterfaceControl.protocols_msg5).filter(k => typeof (k) == 'string').map(v => '+' + v),
+                                Object.keys(InterfaceControl.protocols_msg5).filter(k => typeof (k) == 'string').map(v => '-' + v),
+                                Object.keys(InterfaceControl.protocols_msg6).filter(k => typeof (k) == 'string').map(v => '+' + v),
+                                Object.keys(InterfaceControl.protocols_msg6).filter(k => typeof (k) == 'string').map(v => '-' + v),
+                            )
+                        },
+                        "@domojs/rfx": { cmd: InterfaceControl.Commands.setMode }
+                    }
+                }
             ];
+            processor = convertToMiddleware((origin, cmd, param) =>
+            {
+                if (cmd.name == 'setMode')
+                {
+                    const value = param.param[0];
+                    const modes = gateway.modes;
+                    if (typeof value !== 'string')
+                        throw new Error('Invalid value');
+                    const protocol = value.substring(1);
+                    if (protocol in InterfaceControl.protocols_msg3)
+                    {
+                        if (value[0] == '+')
+                            modes.msg3 = modes.msg3 | InterfaceControl.protocols_msg3[protocol];
+                        else if (value[0] == '-')
+                            modes.msg3 = modes.msg3 & ~InterfaceControl.protocols_msg3[protocol];
+                    }
+                    if (protocol in InterfaceControl.protocols_msg4)
+                    {
+                        if (value[0] == '+')
+                            modes.msg4 = modes.msg4 | InterfaceControl.protocols_msg4[protocol];
+                        else if (value[0] == '-')
+                            modes.msg4 = modes.msg4 & ~InterfaceControl.protocols_msg4[protocol];
+                    }
+                    if (protocol in InterfaceControl.protocols_msg5)
+                    {
+                        if (value[0] == '+')
+                            modes.msg5 = modes.msg5 | InterfaceControl.protocols_msg5[protocol];
+                        else if (value[0] == '-')
+                            modes.msg5 = modes.msg5 & ~InterfaceControl.protocols_msg5[protocol];
+                    }
+                    if (protocol in InterfaceControl.protocols_msg6)
+                    {
+                        if (value[0] == '+')
+                            modes.msg6 = modes.msg6 | InterfaceControl.protocols_msg6[protocol];
+                        else if (value[0] == '-')
+                            modes.msg6 = modes.msg6 & ~InterfaceControl.protocols_msg6[protocol];
+                    }
+                    return gateway.setModes(modes);
+                }
+                else
+                    return gateway.send(PacketType.INTERFACE_CONTROL, { command: cmd.config['@domojs/rfx'].cmd })
+            });
+
             break;
         case PacketType.RFY:
             this.devices[device.name] = { type: body.rfxType, id1: body.id1, id2: body.id2, id3: body.id3, unitCode: body.unitCode, gateway: body.gateway };
-            device.commands = Object.keys(Rfy.Commands).filter(v => isNaN(Number(v))).map(cmd => ({ name: cmd, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" } } }));
+            device.commands = Object.keys(Rfy.Commands).filter(v => isNaN(Number(v))).map(cmd => ({ name: cmd, config: { "": { inject: [] }, "@domojs/devicetype": { type: "toggle" }, "@domojs/rfx": { cmd: Rfy.Commands[cmd] } } }));
             device.class = DeviceClass.Shutter;
+            processor = convertToMiddleware((origin, cmd, param) =>
+            {
+                return this.gateways[body.gateway].send(body.rfxType as Type.RFY, { command: cmd.config["@domojs/rfx"].cmd, id1: body.id1, id2: body.id2, id3: body.id3, unitCode: body.unitCode });
+            })
             break;
         case PacketType.TEMPERATURE_HUMIDITY:
             this.devices[device.name] = { type: body.rfxType, id: body.rfxType, gateway: body.gateway };
@@ -125,11 +184,11 @@ export default async function save(this: State, body: any, device: ISaveDevice &
 
             this.gateways[this.devices[device.name].gateway].on('TEMPERATURE_HUMIDITY', (state: TemperatureHumidity.Device) =>
             {
-                container.dispatch('pushStatus', { device: device.name + '.temperature', state: state.temperature / 10 })
+                remote.dispatch('pushStatus', { device: device.name + '.temperature', state: state.temperature / 10 })
                 if (state.humidity !== 0)
-                    container.dispatch('pushStatus', { device: device.name + '.humidity', state: state.humidity })
-                container.dispatch('pushStatus', { device: device.name + '.battery', state: state.batteryLevel * 6.25 })
-                container.dispatch('pushStatus', { device: device.name + '.signal', state: state.rssi * 6.25 })
+                    remote.dispatch('pushStatus', { device: device.name + '.humidity', state: state.humidity })
+                remote.dispatch('pushStatus', { device: device.name + '.battery', state: state.batteryLevel * 6.25 })
+                remote.dispatch('pushStatus', { device: device.name + '.signal', state: state.rssi * 6.25 })
             })
             break;
         case PacketType.ENERGY:
@@ -143,11 +202,11 @@ export default async function save(this: State, body: any, device: ISaveDevice &
             ];
             this.gateways[this.devices[device.name].gateway].on('ENERGY', state =>
             {
-                container.dispatch('pushStatus', { device: device.name + '.instant', state: state.instant })
+                remote.dispatch('pushStatus', { device: device.name + '.instant', state: state.instant })
                 if (!state.count)
-                    container.dispatch('pushStatus', { device: device.name + '.total', state: state.total / 223.666 })
-                container.dispatch('pushStatus', { device: device.name + '.battery', state: state.batteryLevel * 6.25 })
-                container.dispatch('pushStatus', { device: device.name + '.signal', state: state.rssi * 6.25 })
+                    remote.dispatch('pushStatus', { device: device.name + '.total', state: state.total / 223.666 })
+                remote.dispatch('pushStatus', { device: device.name + '.battery', state: state.batteryLevel * 6.25 })
+                remote.dispatch('pushStatus', { device: device.name + '.signal', state: state.rssi * 6.25 })
             })
             break;
         case PacketType.CURRENT_ENERGY:
@@ -162,16 +221,19 @@ export default async function save(this: State, body: any, device: ISaveDevice &
             ];
             this.gateways[this.devices[device.name].gateway].on('CURRENT_ENERGY', state =>
             {
-                container.dispatch('pushStatus', { device: device.name + '.channel1', state: state.channel1 })
-                container.dispatch('pushStatus', { device: device.name + '.channel2', state: state.channel2 })
-                container.dispatch('pushStatus', { device: device.name + '.channel3', state: state.channel3 })
-                container.dispatch('pushStatus', { device: device.name + '.battery', state: state.batteryLevel * 6.25 })
-                container.dispatch('pushStatus', { device: device.name + '.signal', state: state.rssi * 6.25 })
+                remote.dispatch('pushStatus', { device: device.name + '.channel1', state: state.channel1 })
+                remote.dispatch('pushStatus', { device: device.name + '.channel2', state: state.channel2 })
+                remote.dispatch('pushStatus', { device: device.name + '.channel3', state: state.channel3 })
+                remote.dispatch('pushStatus', { device: device.name + '.battery', state: state.batteryLevel * 6.25 })
+                remote.dispatch('pushStatus', { device: device.name + '.signal', state: state.rssi * 6.25 })
             })
             break;
         default:
             console.error(`rfx: ${type} (${body.rfxType}) is not supported`);
             throw new Error(`${type} (${body.rfxType}) is not supported`);
     }
+    const deviceContainer = new Container(device.name, null, processor);
+    self.register(deviceContainer);
+
     return device as IDevice;
 }
