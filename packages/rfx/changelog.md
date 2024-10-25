@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* build 97ab07a
+* handle gateways detection 0c682a0
 
 
 
