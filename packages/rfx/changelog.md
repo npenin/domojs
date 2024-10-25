@@ -1,9 +1,9 @@
-#  (2024-10-24)
+#  (2024-10-25)
 
 
 ### Bug Fixes
 
-* gateway resolution 5877dde
+* build 97ab07a
 
 
 
