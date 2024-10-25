@@ -47,7 +47,7 @@ export default async function register(this: devices.DeviceTypeState, type: devi
         {
             this.initializing.push(type.name);
             const devices = await this.store.DeviceInit.where('body.type', BinaryOperator.Equal, type.name).toArray();
-            devices.sort((a, b) => a.body.class - b.body.class);
+            devices.sort((a, b) => a.class - b.class);
             for await (var device of devices)
             {
                 await self.dispatch('add', type.name, Promise.resolve(device.body));

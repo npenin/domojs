@@ -26,12 +26,17 @@ export interface IGateway
     remove?(): void;
 }
 
-export interface IDevice extends Metadata.Container
+export interface ISaveDevice
+{
+    name: string,
+    type: string,
+    category: string,
+    room: string
+}
+
+export interface IDevice extends Metadata.Container, ISaveDevice
 {
     // name: string;
-    type: string;
-    room: string;
-    category?: string;
     class: DeviceClass;
     statusMethod?: string | number;
     status?(): PromiseLike<string | { state: boolean, color: string } | SerializableObject>;
@@ -110,7 +115,7 @@ export interface DeviceTypeCollection
 
 export interface DeviceTypeStoreDefinition extends StoreDefinition
 {
-    DeviceInit: DbSet<{ name: string, type: string, body: any }>
+    DeviceInit: DbSet<{ name: string, type: string, body: any, class: DeviceClass }>
 }
 
 
