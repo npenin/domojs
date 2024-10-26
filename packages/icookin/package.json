@@ -6,7 +6,7 @@
     "type": "module",
     "license": "MIT",
     "dependencies": {
-        "@akala/core": "^19.0.6",
+        "@akala/core": "^19.0.10",
         "mongodb": "6.9.0",
         "ws": "8.18.0"
     },

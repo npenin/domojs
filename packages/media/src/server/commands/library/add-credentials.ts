@@ -1,4 +1,4 @@
-import { InteractError } from "@akala/pm";
+import { InteractError } from "@akala/cli";
 import { LibraryState } from "../../state.js";
 
 export default async function addFolder(this: LibraryState, host: string, username: string, password: string)
