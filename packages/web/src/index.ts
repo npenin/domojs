@@ -1,8 +1,8 @@
 /// <reference types="vite/client" />
 import './index.scss'
 import { Container } from '@akala/commands'
-import { Event, EventEmitter, isPromiseLike, Module } from '@akala/core';
-import { Scope as IScope, LocationService, Template, serviceModule, templateCache, templateFunction, bootstrapModule, DataContext, DataBind, OutletService, EventComposer, webComponent, EachAsTemplate } from '@akala/client'
+import { Event, EventEmitter } from '@akala/core';
+import { Scope as IScope, LocationService, Template, serviceModule, bootstrapModule, DataContext, DataBind, OutletService, EventComposer, webComponent, EachAsTemplate } from '@akala/client'
 import { Processors } from '@akala/commands';
 import { Popover } from '@akala/web-ui';
 import Home from './pages/home/home.js';
