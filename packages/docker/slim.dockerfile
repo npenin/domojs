@@ -7,11 +7,11 @@ FROM alpine
 RUN ["apk", "--no-cache", "--update", "add", "yarn", "coreutils", "eudev" ] 
 VOLUME ["db"]
 ENV NODE_ENV=production
+WORKDIR /usr/src/akfala
 COPY .akala.json db/.akala.json
 COPY entrypoint.sh entrypoint.sh
 COPY --from=build /usr/src/akala /usr/src/akala
 ENV PATH=${PATH}:./node_modules/.bin
-WORKDIR /usr/src/akala
 ENTRYPOINT [ "node_modules/.bin/akala" ,"pm", "start", "pm", "--keepAttached", "--configFile", "./db/.akala.json"]
 CMD ["local", "tcp", "--tcpPort=31416"]
 EXPOSE 31416
