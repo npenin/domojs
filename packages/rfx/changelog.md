@@ -1,9 +1,9 @@
-#  (2024-10-25)
+#  (2024-11-15)
 
 
 ### Bug Fixes
 
-* handle gateways detection 0c682a0
+* allow device containers to run commands a9e7831
 
 
 
