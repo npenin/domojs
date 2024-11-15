@@ -1,20 +1,15 @@
 import { plugin as akala } from '@akala/vite';
-import { Container, Metadata, Processors } from '@akala/commands';
-import { ObservableObject, Parser, each, logger } from '@akala/core';
-import { meta, start } from '@akala/pm'
-import { buildCliContext } from '@akala/cli';
+import { Metadata, Processors } from '@akala/commands';
+import { ObservableObject, Parser } from '@akala/core';
 
 const connectionMap: Record<string, { sessionId: string, sessionSignature: string }> = {}
 
-const context = buildCliContext(logger('vite'), 'local');
-context.options.keepAttached = true;
-// context.options.verbose = true;
-context.options.name = 'pm';
-context.options.program = import.meta.resolve('@akala/pm/commands.json')
-context.options.configFile = '../../.akala.json#pm'
-const pm = new Container<{}>('pm', {});
-start.call({}, pm, 'pm', context)
-console.log('pwet')
+// const context = buildCliContext(logger('vite'), 'local');
+// context.options.keepAttached = true;
+// // context.options.verbose = true;
+// context.options.name = 'pm';
+// context.options.program = import.meta.resolve('@akala/pm/commands.json')
+// context.options.configFile = '../../.akala.json#pm'
 
 export default {
     build: {
@@ -24,14 +19,11 @@ export default {
     plugins: [
         akala({
             // auth: {
-            //     path: '@akala/authentication/commands.json',
+            //     path: 'npm:///@akala/authentication/commands.json',
             //     init: ['file', null, 'my-very-secret-key']
-            // }
+            // },
             pm: {
-                path: '@akala/pm/commands.json'
-            },
-            "@domojs/devicetype": {
-                path: '@domojs/devices/devicetype-commands.json'
+                path: 'tcp://home.dragon-angel.fr:31416'
             }
         }, [{
             priority: 0, processor: new Processors.AuthHandler(async (container, command, params) =>
