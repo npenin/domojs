@@ -40,14 +40,8 @@
                 "path": "/usr/src/akala/node_modules/@akala/pm/commands.json",
                 "commandable": false,
                 "connect": {
-                    "socket": [
-                        {
-                            "path": "/usr/src/akala/pm.sock"
-                        },
-                        {
-                            "port": 31416
-                        }
-                    ]
+                    "jsonrpc+unix:///usr/src/akala/pm.sock": {},
+                    "jsonrpc+tcp://0.0.0.0:31416": {}
                 }
             },
             "@domojs/devices": {
@@ -59,11 +53,7 @@
                 "path": "/usr/src/akala/node_modules/@domojs/devices/devicetype-commands.json",
                 "commandable": true,
                 "connect": {
-                    "socket": [
-                        {
-                            "path": "/usr/src/akala/domojs-devicetype.sock"
-                        }
-                    ]
+                    "jsonrpc+unix:///usr/src/akala/device-type.sock": {}
                 }
             }
         },
