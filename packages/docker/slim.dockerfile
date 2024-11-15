@@ -7,7 +7,7 @@ FROM alpine
 RUN ["apk", "--no-cache", "--update", "add", "yarn", "coreutils", "eudev" ] 
 VOLUME ["db"]
 ENV NODE_ENV=production
-WORKDIR /usr/src/akfala
+WORKDIR /usr/src/akala
 COPY .akala.json db/.akala.json
 COPY entrypoint.sh entrypoint.sh
 COPY --from=build /usr/src/akala /usr/src/akala
