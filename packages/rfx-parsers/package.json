@@ -1,6 +1,6 @@
 {
     "dependencies": {
-        "@akala/core": "^19.0.12",
+        "@akala/core": "^19.0.13",
         "@akala/protocol-parser": "^2.8.5",
         "@domojs/devices": "workspace:*"
     },
