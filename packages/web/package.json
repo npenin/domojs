@@ -17,8 +17,8 @@
         }
     },
     "dependencies": {
-        "@akala/client": "^36.2.10",
-        "@akala/commands": "^10.0.4",
+        "@akala/client": "^36.2.11",
+        "@akala/commands": "^10.0.5",
         "@akala/core": "^19.0.13"
     },
     "devDependencies": {
