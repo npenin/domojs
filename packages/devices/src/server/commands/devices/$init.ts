@@ -4,15 +4,18 @@ import * as akala from '@akala/core'
 import { Container } from "@akala/commands";
 import { deviceContainer } from "../../../index.js";
 import { Container as pmContainer } from '@akala/pm'
-import app, { Sidecar } from '@akala/sidecar'
-import Configuration from '@akala/config'
+import app, { Sidecar, SidecarConfiguration } from '@akala/sidecar'
+import Configuration, { ProxyConfiguration } from '@akala/config'
 import { State } from '../index.js';
-import { CliContext } from '@akala/cli';
+import { CliContext, OptionType } from '@akala/cli';
 import { fileURLToPath } from 'url'
 
-export default async function (this: State, context: CliContext, config: Configuration, container: Container<any> & deviceContainer.container, pm: Container<any> & pmContainer)
+export default async function (this: State, context: CliContext<Record<string, OptionType>, Configuration>, container: Container<any> & deviceContainer.container, pm: Container<any> & pmContainer)
 {
-    const sidecar = await app(context, config, pm);
+    if (!context.state.has('devices'))
+        context.state.set('devices', {});
+    const sidecar = await app(context, context.state.get<SidecarConfiguration>('devices'), pm);
+
     container.register('pm', pm);
     var mdule = akala.module('@domojs/devices');
 
