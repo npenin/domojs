@@ -11,7 +11,7 @@ export { deviceContainer, deviceTypeContainer }
 
 export async function registerDeviceType(container: Container<void>, signal: AbortSignal, ...deviceTypes: DeviceType[])
 {
-    var deviceType = await sidecarSingleton({ container, preferRemote: false, signal })['@domojs/devicetype'];
+    var deviceType = await sidecarSingleton({ preferRemote: false, signal })['@domojs/devicetype'];
     for (var dt of deviceTypes)
         await deviceType.dispatch('register', dt);
 }
