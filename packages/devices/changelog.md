@@ -3,9 +3,8 @@
 
 ### Bug Fixes
 
-* build after upgrade bf028cc
-* build after upgrade 3064e60
-* move config in existing config file from context a9b205a
+* handle start from fork 98c8153
+* update after commands upgrade e41e30a
 
 
 
