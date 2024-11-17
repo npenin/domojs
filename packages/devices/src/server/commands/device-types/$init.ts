@@ -24,7 +24,14 @@ export default async function (this: devices.DeviceTypeState, context: CliContex
     }
     this.initializing = [];
     this.types = {};
-    if (!context.state.has('devicetype'))
-        context.state.set('devicetype', {});
-    Object.assign(this, await app<{ DeviceInit: DbSet<{ name: string, body: any }> }>(context, context.state.get('devicetype'), pm));
+    let config: ProxyConfiguration<SidecarConfiguration>;
+    if (!context.state)
+        config = Configuration.new('./devicetype.json', {});
+    else
+    {
+        if (!context.state.has('devicetype'))
+            context.state.set('devicetype', {});
+        config = context.state.get('devicetype')
+    }
+    Object.assign(this, await app<{ DeviceInit: DbSet<{ name: string, body: any }> }>(context, config, pm));
 }
