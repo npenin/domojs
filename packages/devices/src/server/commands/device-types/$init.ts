@@ -5,10 +5,10 @@ import app, { SidecarConfiguration } from "@akala/sidecar";
 import { DbSet } from "@akala/storage";
 import { CliContext, OptionType } from "@akala/cli";
 import { fileURLToPath } from 'url'
-import { ProxyConfiguration } from "@akala/config";
+import Configuration, { ProxyConfiguration } from "@akala/config";
 
 
-export default async function (this: devices.DeviceTypeState, context: CliContext<Record<string, OptionType>, ProxyConfiguration<{ devicetype: {} }>>, container: Container<unknown>, pm: pmContainer & Container<any>)
+export default async function (this: devices.DeviceTypeState, context: CliContext<Record<string, OptionType>, Configuration>, container: Container<unknown>, pm: pmContainer & Container<any>)
 {
     debugger;
     try
@@ -26,5 +26,5 @@ export default async function (this: devices.DeviceTypeState, context: CliContex
     this.types = {};
     if (!context.state.has('devicetype'))
         context.state.set('devicetype', {});
-    Object.assign(this, await app<{ DeviceInit: DbSet<{ name: string, body: any }> }>(context, context.state.devicetype, pm));
+    Object.assign(this, await app<{ DeviceInit: DbSet<{ name: string, body: any }> }>(context, context.state.get('devicetype'), pm));
 }
