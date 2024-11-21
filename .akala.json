@@ -37,11 +37,7 @@
                 "cwd": "/home/nicolas/dev/domojs",
                 "container": "pm",
                 "connect": {
-                    "socket": [
-                        {
-                            "path": "/home/nicolas/dev/domojs/pm.sock"
-                        }
-                    ]
+                    "jsonrpc+unix:///home/nicolas/dev/domojs/pm.sock": {}
                 }
             }
         },

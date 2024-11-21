@@ -29,7 +29,7 @@
     "deprecated": false,
     "description": "",
     "devDependencies": {
-        "@akala/pm": "^12.1.13",
+        "@akala/pm": "^12.1.14",
         "@domojs/devices": "workspace:*",
         "@types/debug": "^4.1.12",
         "@types/usb": "^2.0.5",
