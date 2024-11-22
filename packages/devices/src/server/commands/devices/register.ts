@@ -14,7 +14,7 @@ export default async function register(db: LiveStore, deviceTypeContainer: Conta
     var indexOfDot = device.name.indexOf('.');
     if (indexOfDot >= 0)
     {
-        var mainName = device.name.substr(0, indexOfDot);
+        var mainName = device.name.substring(0, indexOfDot);
         var mainDevice = await db.Devices.where('name', BinaryOperator.Equal, mainName).firstOrDefault();
         if (mainDevice && mainDevice.subdevices)
         {
