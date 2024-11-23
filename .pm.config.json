@@ -23,11 +23,7 @@
             "cwd": "/home/nicolas/dev/domojs",
             "container": "pm",
             "connect": {
-                "socket": [
-                    {
-                        "path": "/home/nicolas/dev/domojs/pm.sock"
-                    }
-                ]
+                "jsonrpc+tcp://home.dragon-angel.fr:31416": {}
             }
         }
     },
