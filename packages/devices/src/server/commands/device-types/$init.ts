@@ -13,7 +13,7 @@ export default async function (this: devices.DeviceTypeState, context: CliContex
     debugger;
     try
     {
-        var webc = await sidecar({ pm })['@akala/server'];
+        var webc = await sidecar({ pm, container })['@akala/server'];
 
         await webc.dispatch('remote-container', '/api/devices/types', (await import('../../devicetype-commands.js')).default.meta)
     }
