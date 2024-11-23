@@ -17,7 +17,7 @@
         "@akala/commands": "^11.0.6",
         "@akala/core": "^19.0.14",
         "@akala/server": "^10.0.40",
-        "@types/ws": "8.5.12"
+        "@types/ws": "8.5.13"
     },
     "deprecated": false,
     "description": "",

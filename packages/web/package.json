@@ -24,10 +24,10 @@
     "devDependencies": {
         "@akala/vite": "^1.0.0",
         "esbuild-sass-plugin": "^3.3.1",
-        "postcss": "^8.4.47",
-        "postcss-modules": "^6.0.0",
-        "sass": "^1.80.2",
-        "vite": "^5.4.9"
+        "postcss": "^8.4.49",
+        "postcss-modules": "^6.0.1",
+        "sass": "^1.81.0",
+        "vite": "^5.4.11"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\""

@@ -33,8 +33,8 @@
         "@domojs/devices": "workspace:*",
         "@types/debug": "^4.1.12",
         "@types/usb": "^2.0.5",
-        "@types/ws": "^8.5.12",
-        "typescript": "5.6.3"
+        "@types/ws": "^8.5.13",
+        "typescript": "5.7.2"
     },
     "homepage": "https://github.com/domojs/domojs-rfxcom#readme",
     "license": "MIT",

@@ -15,7 +15,7 @@
         "@akala/commands": "^11.0.6",
         "@akala/pm": "^12.1.18",
         "@akala/semantic-release": "^3.0.31",
-        "typescript": "^5.6.3"
+        "typescript": "^5.7.2"
     },
     "scripts": {
         "publish-all": "yarn akala-automate-runner --loader @akala/automate-yamlloader/ --file @akala/semantic-release/publish.yml --verbose=silly",

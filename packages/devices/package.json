@@ -23,7 +23,7 @@
         "@akala/server": "^10.0.40",
         "@akala/sidecar": "^5.0.10",
         "@akala/storage": "^6.0.14",
-        "@fortawesome/free-brands-svg-icons": "6.6.0",
+        "@fortawesome/free-brands-svg-icons": "6.7.1",
         "ws": "8.18.0"
     },
     "deprecated": false,
@@ -32,8 +32,8 @@
         "@domojs/theme-default": "workspace:*",
         "@popperjs/core": "2.11.8",
         "@types/debug": "4.1.12",
-        "@types/ws": "8.5.12",
-        "typescript": "5.6.3"
+        "@types/ws": "8.5.13",
+        "typescript": "5.7.2"
     },
     "homepage": "https://github.com/domojs/devices#readme",
     "license": "MIT",
