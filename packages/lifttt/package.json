@@ -31,9 +31,9 @@
         "@fortawesome/fontawesome-common-types": "6.6.0"
     },
     "devDependencies": {
-        "@akala/commands": "^11.0.5",
-        "@akala/core": "^19.0.13",
-        "@akala/json-rpc-ws": "^11.0.13",
+        "@akala/commands": "^11.0.6",
+        "@akala/core": "^19.0.14",
+        "@akala/json-rpc-ws": "^11.0.14",
         "@domojs/theme-default": "workspace:*",
         "@popperjs/core": "2.11.8",
         "@types/debug": "4.1.12",
