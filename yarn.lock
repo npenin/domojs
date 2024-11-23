@@ -371,7 +371,7 @@ __metadata:
     "@fortawesome/free-brands-svg-icons": "npm:6.6.0"
     "@popperjs/core": "npm:2.11.8"
     "@types/debug": "npm:4.1.12"
-    "@types/ws": "npm:8.5.12"
+    "@types/ws": "npm:8.5.13"
     typescript: "npm:5.6.3"
     ws: "npm:8.18.0"
   languageName: unknown
@@ -417,7 +417,7 @@ __metadata:
     "@types/debug": "npm:4.1.12"
     "@types/mongodb": "npm:4.0.7"
     "@types/node": "npm:22.7.6"
-    "@types/ws": "npm:8.5.12"
+    "@types/ws": "npm:8.5.13"
     mongodb: "npm:6.9.0"
     typescript: "npm:5.6.3"
     ws: "npm:8.18.0"
@@ -432,7 +432,7 @@ __metadata:
     "@akala/core": "npm:^19.0.14"
     "@akala/server": "npm:^10.0.40"
     "@domojs/devices": "workspace:*"
-    "@types/ws": "npm:8.5.12"
+    "@types/ws": "npm:8.5.13"
   peerDependencies:
     "@akala/commands": ^3.8.3
     "@akala/pm": ^3.7.12
@@ -530,7 +530,7 @@ __metadata:
     "@types/levenshtein": "npm:1.0.4"
     "@types/redis": "npm:4.0.11"
     "@types/request": "npm:2.48.12"
-    "@types/ws": "npm:8.5.12"
+    "@types/ws": "npm:8.5.13"
     levenshtein: "npm:1.0.5"
     node-id3: "npm:^0.2.6"
     typescript: "npm:5.6.3"
@@ -630,7 +630,7 @@ __metadata:
     "@types/debug": "npm:4.1.12"
     "@types/node": "npm:22.7.6"
     "@types/request": "npm:2.48.12"
-    "@types/ws": "npm:8.5.12"
+    "@types/ws": "npm:8.5.13"
     bootstrap: "npm:^5.3.3"
     esbuild: "npm:0.24.0"
     esbuild-sass-plugin: "npm:3.3.1"
@@ -702,7 +702,7 @@ __metadata:
     "@domojs/devices": "workspace:*"
     "@types/debug": "npm:4.1.12"
     "@types/usb": "npm:2.0.5"
-    "@types/ws": "npm:8.5.12"
+    "@types/ws": "npm:8.5.13"
     debug: "npm:^4.3.7"
     serialport: "npm:^12.0.0"
     source-map-support: "npm:0.5.21"
@@ -2763,7 +2763,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ws@npm:8.5.12, @types/ws@npm:^8.5.12":
+"@types/ws@npm:8.5.13":
+  version: 8.5.13
+  resolution: "@types/ws@npm:8.5.13"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 10/21369beafa75c91ae3b00d3a2671c7408fceae1d492ca2abd5ac7c8c8bf4596d513c1599ebbddeae82c27c4a2d248976d0d714c4b3d34362b2ae35b964e2e637
+  languageName: node
+  linkType: hard
+
+"@types/ws@npm:^8.5.12":
   version: 8.5.12
   resolution: "@types/ws@npm:8.5.12"
   dependencies:

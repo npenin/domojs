@@ -32,7 +32,7 @@
         "@domojs/theme-default": "workspace:*",
         "@popperjs/core": "2.11.8",
         "@types/debug": "4.1.12",
-        "@types/ws": "8.5.12",
+        "@types/ws": "8.5.13",
         "typescript": "5.6.3"
     },
     "homepage": "https://github.com/domojs/devices#readme",
