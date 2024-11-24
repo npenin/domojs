@@ -39,6 +39,10 @@
                 "connect": {
                     "jsonrpc+unix:///home/nicolas/dev/domojs/pm.sock": {}
                 }
+            },
+            "@domojs/devicetype": {
+                "container": "@domojs/devicetype",
+                "autostart": true
             }
         },
         "plugins": []
