@@ -1,8 +1,8 @@
 import mDNS from 'multicast-dns';
 import { StringAnswer } from 'dns-packet'
-import app from '@akala/sidecar';
+import app, { SidecarConfiguration } from '@akala/sidecar';
 import { CliContext, OptionType } from '@akala/cli';
-import { Configuration } from '@akala/config'
+import { Configuration, ProxyConfiguration } from '@akala/config'
 import { SerializableObject, logger } from '@akala/core'
 import { State } from '../state.js';
 import { Service } from '../index.js';
@@ -68,13 +68,13 @@ export const decodeTxt = (function ()
     }
 })();
 
-export default async function (this: State, context: CliContext<Record<string, OptionType>, Configuration>, signal: AbortSignal)
+export default async function (this: State, context: CliContext<Record<string, OptionType>, ProxyConfiguration<SidecarConfiguration>>, signal: AbortSignal)
 {
 
-    if (!context.state.has('mdns'))
-        context.state.set('mdns', {});
+    // if (!context.state.has('mdns'))
+    //     context.state.set('mdns', {});
 
-    const self = await app(context, context.state.get('mdns'))
+    const self = await app(context)
 
     this.services = {};
 

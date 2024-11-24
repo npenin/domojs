@@ -45,5 +45,33 @@
     },
     "commands": {
         "sdk": "./node_modules/@akala/commands/commands.json"
+    },
+    "@domojs/devicetype": {
+        "store": {
+            "provider": "file",
+            "providerOptions": {
+                "rootDbName": "./db/devices"
+            },
+            "models": {
+                "DeviceInit": {
+                    "members": {
+                        "name": {
+                            "isKey": true,
+                            "type": {
+                                "type": "string",
+                                "length": 250
+                            },
+                            "generator": "business"
+                        },
+                        "body": {
+                            "isKey": false,
+                            "type": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

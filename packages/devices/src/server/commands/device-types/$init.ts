@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url'
 import Configuration, { ProxyConfiguration } from "@akala/config";
 
 
-export default async function (this: devices.DeviceTypeState, context: CliContext<Record<string, OptionType>, Configuration>, container: Container<unknown>, pm: pmContainer & Container<any>)
+export default async function (this: devices.DeviceTypeState, context: CliContext<Record<string, OptionType>, ProxyConfiguration<SidecarConfiguration>>, container: Container<unknown>, pm: pmContainer & Container<any>)
 {
     debugger;
     try
@@ -24,14 +24,40 @@ export default async function (this: devices.DeviceTypeState, context: CliContex
     }
     this.initializing = [];
     this.types = {};
-    let config: ProxyConfiguration<SidecarConfiguration>;
     if (!context.state)
-        config = Configuration.new('./devicetype.json', {});
+        context.state = Configuration.new('./devicetype-app.json', {});
     else
     {
-        if (!context.state.has('devicetype'))
-            context.state.set('devicetype', {});
-        config = context.state.get('devicetype')
+        if (!context.state.has('store'))
+        {
+            context.state.set('store', {
+                "provider": "file",
+                "providerOptions": {
+                    "rootDbName": "./db/devices"
+                },
+                "models": {
+                    "DeviceInit": {
+                        "members": {
+                            "name": {
+                                "isKey": true,
+                                "type": {
+                                    "type": "string",
+                                    "length": 250
+                                },
+                                "generator": "business"
+                            },
+                            "body": {
+                                "isKey": false,
+                                "type": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            await context.state.commit();
+        }
     }
-    Object.assign(this, await app<{ DeviceInit: DbSet<{ name: string, body: any }> }>(context, config, pm));
+    Object.assign(this, await app<{ DeviceInit: DbSet<{ name: string, body: any }> }>(context, pm));
 }

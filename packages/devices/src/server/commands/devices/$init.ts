@@ -10,11 +10,11 @@ import { State } from '../index.js';
 import { CliContext, OptionType } from '@akala/cli';
 import { fileURLToPath } from 'url'
 
-export default async function (this: State, context: CliContext<Record<string, OptionType>, Configuration>, container: Container<any> & deviceContainer.container, pm: Container<any> & pmContainer)
+export default async function (this: State, context: CliContext<Record<string, OptionType>, ProxyConfiguration<SidecarConfiguration>>, container: Container<any> & deviceContainer.container, pm: Container<any> & pmContainer)
 {
-    if (!context.state.has('devices'))
-        context.state.set('devices', {});
-    const sidecar = await app(context, context.state.get<SidecarConfiguration>('devices'), pm);
+    // if (!context.state.has('devices'))
+    //     context.state.set('devices', {});
+    const sidecar = await app(context, pm);
 
     container.register('pm', pm);
     var mdule = akala.module('@domojs/devices');

@@ -19,7 +19,7 @@
     "license": "MIT",
     "dependencies": {
         "@akala/core": "^19.0.14",
-        "@akala/sidecar": "^5.0.12",
+        "@akala/sidecar": "^7.0.0",
         "@domojs/zigate-parsers": "workspace:*",
         "http-punch-hole": "^1.0.12"
     },
@@ -35,7 +35,7 @@
     "devDependencies": {
         "@akala/cli": "^3.0.14",
         "@akala/commands": "^11.0.8",
-        "@akala/pubsub": "^3.0.42",
+        "@akala/pubsub": "^3.0.43",
         "@domojs/devices": "workspace:*",
         "@types/debug": "4.1.12"
     },
