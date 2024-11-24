@@ -8,7 +8,7 @@
     "main": "dist/index.js",
     "type": "module",
     "dependencies": {
-        "@akala/commands": "^11.0.7",
+        "@akala/commands": "^11.0.8",
         "@akala/core": "^19.0.14",
         "@domojs/media-chromecast-parsers": "workspace:*"
     },
