@@ -37,13 +37,13 @@
         "webdav": "^5.7.1"
     },
     "peerDependencies": {
-        "@akala/pm": "^3.7.12"
+        "@akala/pm": "^12.1.22"
     },
     "devDependencies": {
         "@akala/cli": "^3.0.14",
         "@akala/json-rpc-ws": "^11.0.14",
-        "@akala/pm": "^12.1.21",
-        "@akala/server": "^10.0.43",
+        "@akala/pm": "^12.1.22",
+        "@akala/server": "^10.0.44",
         "@akala/storage": "^6.0.14",
         "@domojs/theme-default": "workspace:*",
         "@types/debug": "4.1.12",

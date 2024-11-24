@@ -11,7 +11,7 @@
     "author": "npenin",
     "license": "MIT",
     "peerDependencies": {
-        "@akala/pubsub": "^0.2.13"
+        "@akala/pubsub": "^3.0.44"
     },
     "dependencies": {
         "@akala/commands": "^11.0.8",

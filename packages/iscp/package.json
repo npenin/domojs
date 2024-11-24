@@ -10,13 +10,13 @@
         "@domojs/devices": "workspace:*"
     },
     "peerDependencies": {
-        "@akala/commands": "^3.8.3",
-        "@akala/pm": "^3.7.12"
+        "@akala/commands": "^11.0.8",
+        "@akala/pm": "^12.1.22"
     },
     "devDependencies": {
         "@akala/commands": "^11.0.8",
         "@akala/core": "^19.0.14",
-        "@akala/server": "^10.0.43",
+        "@akala/server": "^10.0.44",
         "@types/ws": "8.5.13"
     },
     "deprecated": false,
