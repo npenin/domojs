@@ -340,8 +340,8 @@ __metadata:
     "@akala/pm": "npm:^12.1.22"
     "@types/yargs": "npm:17.0.33"
   peerDependencies:
-    "@akala/commands": ^3.8.3
-    "@akala/pm": ^3.7.12
+    "@akala/commands": ^11.0.8
+    "@akala/pm": ^12.1.22
   languageName: unknown
   linkType: soft
 
@@ -416,7 +416,7 @@ __metadata:
     "@akala/core": "npm:^19.0.14"
     "@types/debug": "npm:4.1.12"
     "@types/mongodb": "npm:4.0.7"
-    "@types/node": "npm:22.9.3"
+    "@types/node": "npm:22.10.1"
     "@types/ws": "npm:8.5.13"
     mongodb: "npm:6.11.0"
     typescript: "npm:5.7.2"
@@ -434,8 +434,8 @@ __metadata:
     "@domojs/devices": "workspace:*"
     "@types/ws": "npm:8.5.13"
   peerDependencies:
-    "@akala/commands": ^3.8.3
-    "@akala/pm": ^3.7.12
+    "@akala/commands": ^11.0.8
+    "@akala/pm": ^12.1.22
   languageName: unknown
   linkType: soft
 
@@ -536,7 +536,7 @@ __metadata:
     typescript: "npm:5.7.2"
     webdav: "npm:^5.7.1"
   peerDependencies:
-    "@akala/pm": ^3.7.12
+    "@akala/pm": ^12.1.22
   languageName: unknown
   linkType: soft
 
@@ -550,7 +550,7 @@ __metadata:
     "@types/debug": "npm:4.1.12"
     "@types/request": "npm:2.48.12"
   peerDependencies:
-    "@akala/pubsub": ^0.2.13
+    "@akala/pubsub": ^3.0.44
   languageName: unknown
   linkType: soft
 
@@ -562,7 +562,7 @@ __metadata:
     "@akala/protocol-parser": "npm:^2.8.6"
     "@domojs/devices": "workspace:*"
     "@types/debug": "npm:4.1.12"
-    "@types/node": "npm:22.9.3"
+    "@types/node": "npm:22.10.1"
     "@types/usb": "npm:^2.0.5"
     serialport: "npm:^12.0.0"
     typescript: "npm:5.7.2"
@@ -593,7 +593,7 @@ __metadata:
     http-punch-hole: "npm:^1.0.12"
     typescript: "npm:5.7.2"
   peerDependencies:
-    "@akala/pm": ^12.1.20
+    "@akala/pm": ^12.1.22
     serialport: ^12.0.0
     usb: ^2.14.0
   peerDependenciesMeta:
@@ -628,7 +628,7 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": "npm:^6.7.1"
     "@popperjs/core": "npm:^2.11.8"
     "@types/debug": "npm:4.1.12"
-    "@types/node": "npm:22.9.3"
+    "@types/node": "npm:22.10.1"
     "@types/request": "npm:2.48.12"
     "@types/ws": "npm:8.5.13"
     bootstrap: "npm:^5.3.3"
@@ -651,8 +651,8 @@ __metadata:
     "@akala/server": "npm:^10.0.44"
     "@domojs/devices": "workspace:*"
   peerDependencies:
-    "@akala/pm": ^3.0.2
-    "@akala/server": ^7.0.2
+    "@akala/pm": ^12.1.22
+    "@akala/server": ^10.0.44
     "@domojs/devices": "workspace:*"
   languageName: unknown
   linkType: soft
@@ -688,8 +688,8 @@ __metadata:
     domhandler: "npm:^5.0.3"
     htmlparser2: "npm:^9.1.0"
   peerDependencies:
-    "@akala/pm": ^3.0.2
-    "@akala/server": ^7.0.2
+    "@akala/pm": ^12.1.22
+    "@akala/server": ^10.0.44
   languageName: unknown
   linkType: soft
 
@@ -2647,12 +2647,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:22.9.3":
-  version: 22.9.3
-  resolution: "@types/node@npm:22.9.3"
+"@types/node@npm:22.10.1":
+  version: 22.10.1
+  resolution: "@types/node@npm:22.10.1"
   dependencies:
-    undici-types: "npm:~6.19.8"
-  checksum: 10/c32a03ff998b8c6cf7d653216508a92b1e6569dd5031ea6cfc2aaa8c75ebbf4172bf1602f0e1f673086e210787dc96667b99ba4d919bc151f9a1f88aeac42822
+    undici-types: "npm:~6.20.0"
+  checksum: 10/c802a526da2f3fa3ccefd00a71244e7cb825329951719e79e8fec62b1dbc2855388c830489770611584665ce10be23c05ed585982038b24924e1ba2c2cce03fd
   languageName: node
   linkType: hard
 
@@ -8780,10 +8780,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~6.19.8":
-  version: 6.19.8
-  resolution: "undici-types@npm:6.19.8"
-  checksum: 10/cf0b48ed4fc99baf56584afa91aaffa5010c268b8842f62e02f752df209e3dea138b372a60a963b3b2576ed932f32329ce7ddb9cb5f27a6c83040d8cd74b7a70
+"undici-types@npm:~6.20.0":
+  version: 6.20.0
+  resolution: "undici-types@npm:6.20.0"
+  checksum: 10/583ac7bbf4ff69931d3985f4762cde2690bb607844c16a5e2fbb92ed312fe4fa1b365e953032d469fa28ba8b224e88a595f0b10a449332f83fa77c695e567dbe
   languageName: node
   linkType: hard
 
