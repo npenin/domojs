@@ -65,6 +65,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@akala/client@npm:^36.2.23":
+  version: 36.2.23
+  resolution: "@akala/client@npm:36.2.23"
+  dependencies:
+    "@popperjs/core": "npm:^2.11.8"
+    reflect-metadata: "npm:^0.2.2"
+    showdown: "npm:^2.1.0"
+  dependenciesMeta:
+    "@popperjs/core":
+      optional: true
+    showdown:
+      optional: true
+  checksum: 10/f60833f02c6228b491ef07433338f32896b42ae95ed89f451b3a5834d305f013e254ea2f463bc2f8b08e689e760dc7f22f7041fde452fb9ae2463519bb3df022
+  languageName: node
+  linkType: hard
+
 "@akala/commands@npm:^11.0.8":
   version: 11.0.8
   resolution: "@akala/commands@npm:11.0.8"
@@ -235,14 +251,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@akala/web-ui@npm:^1.0.36":
-  version: 1.0.36
-  resolution: "@akala/web-ui@npm:1.0.36"
+"@akala/web-ui@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@akala/web-ui@npm:2.0.0"
   dependencies:
-    "@akala/client": "npm:^36.2.22"
+    "@akala/client": "npm:^36.2.23"
     "@akala/core": "npm:^19.0.14"
     "@floating-ui/dom": "npm:^1.6.12"
-  checksum: 10/ec3d6b543e0a2d7f8001be6aeaed1575e2e63944b6b690f3e88e4222dbb3d69d675c149c1cec3d74cf8c5bcaee7a37bab910b422d3fe321a26167d16814769fe
+  checksum: 10/de89f198b376e958e04d0ead4424ac093979dbe2388a026df2f7f90057b8dc412f675853b2e4ef692fe41cc254b26e4ff6dc547dc5985e0a31c8d36dd050c617
   languageName: node
   linkType: hard
 
@@ -340,8 +356,8 @@ __metadata:
     "@akala/pm": "npm:^12.1.22"
     "@types/yargs": "npm:17.0.33"
   peerDependencies:
-    "@akala/commands": ^3.8.3
-    "@akala/pm": ^3.7.12
+    "@akala/commands": ^11.0.8
+    "@akala/pm": ^12.1.22
   languageName: unknown
   linkType: soft
 
@@ -434,8 +450,8 @@ __metadata:
     "@domojs/devices": "workspace:*"
     "@types/ws": "npm:8.5.13"
   peerDependencies:
-    "@akala/commands": ^3.8.3
-    "@akala/pm": ^3.7.12
+    "@akala/commands": ^11.0.8
+    "@akala/pm": ^12.1.22
   languageName: unknown
   linkType: soft
 
@@ -536,7 +552,7 @@ __metadata:
     typescript: "npm:5.7.2"
     webdav: "npm:^5.7.1"
   peerDependencies:
-    "@akala/pm": ^3.7.12
+    "@akala/pm": ^12.1.22
   languageName: unknown
   linkType: soft
 
@@ -550,7 +566,7 @@ __metadata:
     "@types/debug": "npm:4.1.12"
     "@types/request": "npm:2.48.12"
   peerDependencies:
-    "@akala/pubsub": ^0.2.13
+    "@akala/pubsub": ^3.0.44
   languageName: unknown
   linkType: soft
 
@@ -593,7 +609,7 @@ __metadata:
     http-punch-hole: "npm:^1.0.12"
     typescript: "npm:5.7.2"
   peerDependencies:
-    "@akala/pm": ^12.1.20
+    "@akala/pm": ^12.1.22
     serialport: ^12.0.0
     usb: ^2.14.0
   peerDependenciesMeta:
@@ -621,7 +637,7 @@ __metadata:
     "@akala/json-rpc-ws": "npm:^11.0.14"
     "@akala/pm": "npm:^12.1.22"
     "@akala/server": "npm:^10.0.44"
-    "@akala/web-ui": "npm:^1.0.36"
+    "@akala/web-ui": "npm:^2.0.0"
     "@fortawesome/fontawesome-common-types": "npm:^6.7.1"
     "@fortawesome/fontawesome-svg-core": "npm:^6.7.1"
     "@fortawesome/free-brands-svg-icons": "npm:^6.7.1"
@@ -651,8 +667,8 @@ __metadata:
     "@akala/server": "npm:^10.0.44"
     "@domojs/devices": "workspace:*"
   peerDependencies:
-    "@akala/pm": ^3.0.2
-    "@akala/server": ^7.0.2
+    "@akala/pm": ^12.1.22
+    "@akala/server": ^10.0.44
     "@domojs/devices": "workspace:*"
   languageName: unknown
   linkType: soft
@@ -688,8 +704,8 @@ __metadata:
     domhandler: "npm:^5.0.3"
     htmlparser2: "npm:^9.1.0"
   peerDependencies:
-    "@akala/pm": ^3.0.2
-    "@akala/server": ^7.0.2
+    "@akala/pm": ^12.1.22
+    "@akala/server": ^10.0.44
   languageName: unknown
   linkType: soft
 

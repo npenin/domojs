@@ -6,7 +6,7 @@
         "@akala/json-rpc-ws": "^11.0.14",
         "@akala/pm": "^12.1.22",
         "@akala/server": "^10.0.44",
-        "@akala/web-ui": "^1.0.36",
+        "@akala/web-ui": "^2.0.0",
         "@fortawesome/fontawesome-common-types": "^6.7.1",
         "@fortawesome/fontawesome-svg-core": "^6.7.1",
         "@fortawesome/free-brands-svg-icons": "^6.7.1",
