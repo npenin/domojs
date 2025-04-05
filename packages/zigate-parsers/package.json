@@ -35,7 +35,7 @@
         "@types/ws": "8.5.13",
         "serialport": "^12.0.0",
         "source-map-support": "0.5.21",
-        "typescript": "5.7.2",
+        "typescript": "5.8.3",
         "usb": "2.14.0"
     },
     "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
