@@ -340,8 +340,8 @@ __metadata:
     "@akala/pm": "npm:^12.1.22"
     "@types/yargs": "npm:17.0.33"
   peerDependencies:
-    "@akala/commands": ^3.8.3
-    "@akala/pm": ^3.7.12
+    "@akala/commands": ^11.0.8
+    "@akala/pm": ^12.1.22
   languageName: unknown
   linkType: soft
 
@@ -418,7 +418,7 @@ __metadata:
     "@types/mongodb": "npm:4.0.7"
     "@types/node": "npm:22.9.3"
     "@types/ws": "npm:8.5.13"
-    mongodb: "npm:6.11.0"
+    mongodb: "npm:6.16.0"
     typescript: "npm:5.7.2"
     ws: "npm:8.18.0"
   languageName: unknown
@@ -434,8 +434,8 @@ __metadata:
     "@domojs/devices": "workspace:*"
     "@types/ws": "npm:8.5.13"
   peerDependencies:
-    "@akala/commands": ^3.8.3
-    "@akala/pm": ^3.7.12
+    "@akala/commands": ^11.0.8
+    "@akala/pm": ^12.1.22
   languageName: unknown
   linkType: soft
 
@@ -536,7 +536,7 @@ __metadata:
     typescript: "npm:5.7.2"
     webdav: "npm:^5.7.1"
   peerDependencies:
-    "@akala/pm": ^3.7.12
+    "@akala/pm": ^12.1.22
   languageName: unknown
   linkType: soft
 
@@ -550,7 +550,7 @@ __metadata:
     "@types/debug": "npm:4.1.12"
     "@types/request": "npm:2.48.12"
   peerDependencies:
-    "@akala/pubsub": ^0.2.13
+    "@akala/pubsub": ^3.0.44
   languageName: unknown
   linkType: soft
 
@@ -593,7 +593,7 @@ __metadata:
     http-punch-hole: "npm:^1.0.12"
     typescript: "npm:5.7.2"
   peerDependencies:
-    "@akala/pm": ^12.1.20
+    "@akala/pm": ^12.1.22
     serialport: ^12.0.0
     usb: ^2.14.0
   peerDependenciesMeta:
@@ -651,8 +651,8 @@ __metadata:
     "@akala/server": "npm:^10.0.44"
     "@domojs/devices": "workspace:*"
   peerDependencies:
-    "@akala/pm": ^3.0.2
-    "@akala/server": ^7.0.2
+    "@akala/pm": ^12.1.22
+    "@akala/server": ^10.0.44
     "@domojs/devices": "workspace:*"
   languageName: unknown
   linkType: soft
@@ -688,8 +688,8 @@ __metadata:
     domhandler: "npm:^5.0.3"
     htmlparser2: "npm:^9.1.0"
   peerDependencies:
-    "@akala/pm": ^3.0.2
-    "@akala/server": ^7.0.2
+    "@akala/pm": ^12.1.22
+    "@akala/server": ^10.0.44
   languageName: unknown
   linkType: soft
 
@@ -3353,10 +3353,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bson@npm:^6.10.0":
-  version: 6.10.0
-  resolution: "bson@npm:6.10.0"
-  checksum: 10/b2fe00192d830749df0b4a5afc675ccb1d48d4eaf518e607319332288652a5168e429f0d77697929d1e0359caee422a7df7f66f85e6821e2905bef4e49998dc7
+"bson@npm:^6.10.3":
+  version: 6.10.3
+  resolution: "bson@npm:6.10.3"
+  checksum: 10/53693ad7636fa1a128f32d5c30a9584b4a09a2b2aa2040ea8bf8dca35a283eb1394138770bc6c2dae91b0c6df96b3caef3b14532644736f4d7a1d3177969537b
   languageName: node
   linkType: hard
 
@@ -6645,16 +6645,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb@npm:6.11.0":
-  version: 6.11.0
-  resolution: "mongodb@npm:6.11.0"
+"mongodb@npm:6.16.0":
+  version: 6.16.0
+  resolution: "mongodb@npm:6.16.0"
   dependencies:
     "@mongodb-js/saslprep": "npm:^1.1.9"
-    bson: "npm:^6.10.0"
+    bson: "npm:^6.10.3"
     mongodb-connection-string-url: "npm:^3.0.0"
   peerDependencies:
     "@aws-sdk/credential-providers": ^3.188.0
-    "@mongodb-js/zstd": ^1.1.0
+    "@mongodb-js/zstd": ^1.1.0 || ^2.0.0
     gcp-metadata: ^5.2.0
     kerberos: ^2.0.1
     mongodb-client-encryption: ">=6.0.0 <7"
@@ -6675,7 +6675,7 @@ __metadata:
       optional: true
     socks:
       optional: true
-  checksum: 10/e7836e5843e9f6790973d7c81faec8e93441299f7b3d26861ea982b89094af7903806cd11a66b449c07b693a0656692f327b4a0e6becdd5d287b1e84011b07f8
+  checksum: 10/eb47da9ef00331aca1804426424a8630f9e42c48bf6021786ebb1766b1d53bda62c64498b41627b5fe5c01260ec5ca2e8cbc2468e394df5d5b874cee646e9c06
   languageName: node
   linkType: hard
 
