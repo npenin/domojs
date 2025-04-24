@@ -340,8 +340,8 @@ __metadata:
     "@akala/pm": "npm:^12.1.22"
     "@types/yargs": "npm:17.0.33"
   peerDependencies:
-    "@akala/commands": ^3.8.3
-    "@akala/pm": ^3.7.12
+    "@akala/commands": ^11.0.8
+    "@akala/pm": ^12.1.22
   languageName: unknown
   linkType: soft
 
@@ -434,8 +434,8 @@ __metadata:
     "@domojs/devices": "workspace:*"
     "@types/ws": "npm:8.5.13"
   peerDependencies:
-    "@akala/commands": ^3.8.3
-    "@akala/pm": ^3.7.12
+    "@akala/commands": ^11.0.8
+    "@akala/pm": ^12.1.22
   languageName: unknown
   linkType: soft
 
@@ -536,7 +536,7 @@ __metadata:
     typescript: "npm:5.7.2"
     webdav: "npm:^5.7.1"
   peerDependencies:
-    "@akala/pm": ^3.7.12
+    "@akala/pm": ^12.1.22
   languageName: unknown
   linkType: soft
 
@@ -550,7 +550,7 @@ __metadata:
     "@types/debug": "npm:4.1.12"
     "@types/request": "npm:2.48.12"
   peerDependencies:
-    "@akala/pubsub": ^0.2.13
+    "@akala/pubsub": ^3.0.44
   languageName: unknown
   linkType: soft
 
@@ -593,7 +593,7 @@ __metadata:
     http-punch-hole: "npm:^1.0.12"
     typescript: "npm:5.7.2"
   peerDependencies:
-    "@akala/pm": ^12.1.20
+    "@akala/pm": ^12.1.22
     serialport: ^12.0.0
     usb: ^2.14.0
   peerDependenciesMeta:
@@ -651,8 +651,8 @@ __metadata:
     "@akala/server": "npm:^10.0.44"
     "@domojs/devices": "workspace:*"
   peerDependencies:
-    "@akala/pm": ^3.0.2
-    "@akala/server": ^7.0.2
+    "@akala/pm": ^12.1.22
+    "@akala/server": ^10.0.44
     "@domojs/devices": "workspace:*"
   languageName: unknown
   linkType: soft
@@ -688,8 +688,8 @@ __metadata:
     domhandler: "npm:^5.0.3"
     htmlparser2: "npm:^9.1.0"
   peerDependencies:
-    "@akala/pm": ^3.0.2
-    "@akala/server": ^7.0.2
+    "@akala/pm": ^12.1.22
+    "@akala/server": ^10.0.44
   languageName: unknown
   linkType: soft
 
@@ -8918,8 +8918,8 @@ __metadata:
   linkType: hard
 
 "vite@npm:^5.4.11":
-  version: 5.4.11
-  resolution: "vite@npm:5.4.11"
+  version: 5.4.18
+  resolution: "vite@npm:5.4.18"
   dependencies:
     esbuild: "npm:^0.21.3"
     fsevents: "npm:~2.3.3"
@@ -8956,7 +8956,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/719c4dea896e9547958643354003c8c9ea98e5367196d98f5f46cffb3ec963fead3ea5853f5af941c79bbfb73583dec19bbb0d28d2f644b95d7f59c55e22919d
+  checksum: 10/491f0d047695a4bb3aafdb30822a3638ac41c23b022c1599bf51beab26a7cffe3ef1617bdf014592da48864079f217da5bf144a6c3238d2d74dea688ba3a549a
   languageName: node
   linkType: hard
 
