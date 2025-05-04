@@ -10,7 +10,7 @@
   "license": "MIT",
   "peerDependencies": {
     "@akala/commands": "^11.0.8",
-    "@akala/pm": "^12.1.22"
+    "@akala/pm": "^14.0.0"
   },
   "devDependencies": {
     "@akala/commands": "^12.0.2",
