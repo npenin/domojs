@@ -5,6 +5,7 @@ import { Message as connack } from './protocol/connack.js';
 import { Cursor } from '@akala/protocol-parser';
 import { EventEmitter } from 'events';
 import { ControlPacketType, Properties } from './protocol/_shared.js';
+import { IsomorphicBuffer } from '@akala/core';
 
 /// PUT in this file any API you would like to expose to your package consumer
 
@@ -28,7 +29,7 @@ export class Client extends EventEmitter
             const c = new Cursor();
             while (c.offset < data.length)
             {
-                var msg = Messages.read(data, c, {});
+                var msg = Messages.read(IsomorphicBuffer.fromBuffer(data), c, {});
                 this.emit(ControlPacketType[msg.type], msg);
             }
         })
@@ -45,7 +46,7 @@ export class Client extends EventEmitter
             {
                 resolve(m);
             });
-            this.socket.write(Buffer.concat(header.write(message, message)));
+            this.socket.write(IsomorphicBuffer.concat(header.write(message, message)).toArray());
 
         })
     }

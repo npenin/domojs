@@ -2,6 +2,7 @@ import { StatusMessage } from './status.js';
 import { MessageType, Cluster, messages } from './_common.js';
 import { CommandMessage } from './move.js';
 import { parsers, uint16, uint8 } from '@akala/protocol-parser';
+import { IsomorphicBuffer } from '@akala/core';
 
 export enum Direction 
 {
@@ -201,5 +202,5 @@ export interface AttributeResponse extends StatusMessage
     status: uint8;
     dataType: uint8;
     attributes: uint16[];
-    value: Buffer;
+    value: IsomorphicBuffer;
 }

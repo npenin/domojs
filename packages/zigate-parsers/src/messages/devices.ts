@@ -2,6 +2,7 @@ import { StatusMessage } from './status.js';
 import { Message, MessageType, messages } from './_common.js';
 import { ShortAddressRequest } from './descriptors.js';
 import { parsers, uint16, uint64, uint8 } from '@akala/protocol-parser';
+import { IsomorphicBuffer } from '@akala/core';
 
 messages.register(MessageType.RemoveDevice, parsers.object<RemoveDevice>(
     parsers.property('targetShortAddress', parsers.uint16),
@@ -43,7 +44,7 @@ messages.register(MessageType.AuthenticateDevice, parsers.object<AuthenticateDev
 export interface AuthenticateDevice extends Message
 {
     IEEEAddress: uint64;
-    key: Buffer;
+    key: IsomorphicBuffer;
 }
 
 messages.register(MessageType.AuthenticateDevice | MessageType.Response, parsers.object<AuthenticateResponse>(
@@ -64,7 +65,7 @@ export interface AuthenticateResponse extends StatusMessage
     shortPanId: number;
     extendedPanId: uint64;
     initiatingNodeIEEEAddress: uint64;
-    mic: Buffer;
+    mic: IsomorphicBuffer;
     IEEEAddress: uint64;
-    encryptedKey: Buffer;
+    encryptedKey: IsomorphicBuffer;
 }

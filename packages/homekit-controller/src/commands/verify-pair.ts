@@ -1,4 +1,4 @@
-import { Http, parser } from "@akala/core";
+import { Http, IsomorphicBuffer, parser } from "@akala/core";
 import { Cursor, parserWrite } from "@akala/protocol-parser";
 import State from "../state.js";
 import { chacha20_poly1305_decryptAndVerify, chacha20_poly1305_encryptAndSeal, PairMessage, pairMessage, PairMethod, PairState, PairTypeFlags } from "./setup-pair.js";
@@ -85,9 +85,9 @@ class PairSetupClient
 
         // verify that encryption works!
         const encryption = new HAPEncryption(
-            m2.pairedAccessory.accessory.publicKey,
-            m2.pairedAccessory.controllerInfo.privateKey,
-            m2.pairedAccessory.controllerInfo.publicKey,
+            Buffer.from(m2.pairedAccessory.accessory.publicKey.toArray()),
+            Buffer.from(m2.pairedAccessory.controllerInfo.privateKey.toArray()),
+            Buffer.from(m2.pairedAccessory.controllerInfo.publicKey.toArray()),
             m2.sharedSecret,
             m2.sessionKey,
         );
@@ -103,23 +103,22 @@ class PairSetupClient
     async sendM1()
     {
         return await this.http.call({
-            url: `http://${this.accessoryAddress}/pair-verify`, body: Buffer.concat(parserWrite(pairMessage,
+            url: `http://${this.accessoryAddress}/pair-verify`, body: IsomorphicBuffer.concat(parserWrite(pairMessage,
                 {
                     state: PairState.M1,
-                    publicKey: Buffer.from(this.keyPair.publicKey),
-
-                })).buffer,
+                    publicKey: new IsomorphicBuffer(this.keyPair.publicKey),
+                })).toArray(),
             method: 'post',
             type: 'raw'
         }).
-            then(async r => pairMessage.read(Buffer.from(await r.arrayBuffer()), new Cursor()) as PairVerifyM2).
+            then(async r => pairMessage.read(IsomorphicBuffer.fromArrayBuffer(await r.arrayBuffer()), new Cursor()) as PairVerifyM2).
             then(m =>
             {
                 assert.equal(m.state, PairState.M2, 'an M2 response was expected');
                 const accessoryPublicKey = m.publicKey;
                 const sharedSecret = Buffer.from(tweetnacl.scalarMult(
                     this.keyPair.secretKey,
-                    accessoryPublicKey,
+                    accessoryPublicKey.toArray(),
                 ));
 
                 const sessionKey = hkdf(
@@ -134,13 +133,13 @@ class PairSetupClient
                 const cipherTextM2 = m.encryptedData.subarray(0, -16);
                 const authTagM2 = m.encryptedData.subarray(-16);
 
-                const plaintextM2 = Buffer.alloc(0);
+                const plaintextM2 = new IsomorphicBuffer(0);
                 chacha20_poly1305_decryptAndVerify(
                     sessionKey,
                     Buffer.from("PV-Msg02"),
                     null,
-                    cipherTextM2,
-                    authTagM2,
+                    Buffer.from(cipherTextM2.toArray()),
+                    Buffer.from(authTagM2.toArray()),
                 );
 
                 const m2 = pairMessage.read(plaintextM2, new Cursor());
@@ -151,12 +150,12 @@ class PairSetupClient
                 const accessorySignature = m2.signature;
 
                 const accessoryInfo = Buffer.concat([
-                    accessoryPublicKey,
+                    accessoryPublicKey.toArray(),
                     Buffer.from(m2.identifier!),
                     this.keyPair.publicKey,
                 ]);
 
-                if (!tweetnacl.sign.detached.verify(accessoryInfo, accessorySignature!, pairedAccessory.controllerInfo.publicKey))
+                if (!tweetnacl.sign.detached.verify(accessoryInfo, accessorySignature.toArray(), pairedAccessory.controllerInfo.publicKey.toArray()))
                     throw new Error('signature could not be verified');
 
                 return {
@@ -173,16 +172,16 @@ class PairSetupClient
         const controllerInfo = Buffer.concat([
             this.keyPair.publicKey,
             Buffer.from(m2.pairedAccessory.controllerInfo.username),
-            m2.serverEphemeralPublicKey,
+            m2.serverEphemeralPublicKey.toArray(),
         ]);
 
         // step 8
-        const controllerSignature = Buffer.from(
-            tweetnacl.sign.detached(controllerInfo, m2.pairedAccessory.controllerInfo.privateKey),
+        const controllerSignature = new IsomorphicBuffer(
+            tweetnacl.sign.detached(controllerInfo, m2.pairedAccessory.controllerInfo.privateKey.toArray()),
         );
 
         // step 9
-        const plainTextTLV_M3 = Buffer.concat(parserWrite(pairMessage, {
+        const plainTextTLV_M3 = IsomorphicBuffer.concat(parserWrite(pairMessage, {
             identifier: m2.pairedAccessory.accessory.identifier,
             signature: controllerSignature,
         }));
@@ -192,21 +191,21 @@ class PairSetupClient
             m2.sessionKey,
             Buffer.from("PV-Msg03"),
             null,
-            plainTextTLV_M3,
+            Buffer.from(plainTextTLV_M3.toArray()),
         );
 
 
         return this.http.call({
             url: `http://${this.accessoryAddress}/pair-verify`,
-            body: Buffer.concat(parserWrite(pairMessage, {
+            body: IsomorphicBuffer.concat(parserWrite(pairMessage, {
 
                 state: PairState.M3,
-                encryptedData: Buffer.concat([encrypted_M3.ciphertext, encrypted_M3.authTag]),
-            })).buffer,
+                encryptedData: IsomorphicBuffer.concat([encrypted_M3.ciphertext, encrypted_M3.authTag]),
+            })).toArray(),
             type: "raw"
         }).
             then(r => r.arrayBuffer()).
-            then(b => pairMessage.read(Buffer.from(b), new Cursor()) as PairVerifyM4).
+            then(b => pairMessage.read(IsomorphicBuffer.fromArrayBuffer(b), new Cursor()) as PairVerifyM4).
             then(m4 =>
             {
                 assert.equal(m4.state, PairState.M4);

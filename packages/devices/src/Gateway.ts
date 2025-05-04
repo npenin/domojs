@@ -1,4 +1,4 @@
-import { EventEmitter, Queue, logger } from '@akala/core';
+import { EventEmitter, Queue, logger, IsomorphicBuffer } from '@akala/core';
 import { Socket } from 'net';
 import { Duplex } from 'stream';
 
@@ -6,23 +6,23 @@ export const log = logger('domojs:devices');
 
 export abstract class Gateway<T extends object> extends EventEmitter<T>
 {
-    private static emptyBuffer = Buffer.allocUnsafe(0);
+    private static readonly emptyBuffer = new IsomorphicBuffer(0);
 
-    private chunk: Buffer;
+    private chunk: IsomorphicBuffer;
     private _isOpen = false;
     public get isOpen() { return this._isOpen; };
-    protected readonly sendQueue: Queue<{ buffer: Buffer; callback: (err) => void; }> = new Queue((message, next) =>
+    protected readonly sendQueue: Queue<{ buffer: IsomorphicBuffer; callback: (err) => void; }> = new Queue((message, next) =>
     {
         if (this._isOpen)
         {
             if ('drain' in this.wire)
             {
-                this.wire.write(message.buffer);
+                this.wire.write(message.buffer.toArray());
                 this.wire.drain(message.callback);
             }
 
             else
-                this.wire.write(message.buffer, message.callback);
+                this.wire.write(message.buffer.toArray(), message.callback);
         }
         next(this._isOpen);
     });
@@ -33,11 +33,11 @@ export abstract class Gateway<T extends object> extends EventEmitter<T>
         return new Promise<void>((resolve) => { this.wire.end(resolve); });
     }
 
-    protected abstract splitBuffer(buffer: Buffer): Buffer[];
-    protected abstract isCompleteFrame(buffer: Buffer): boolean;
-    protected abstract processFrame(buffer: Buffer): void | Promise<void>;
+    protected abstract splitBuffer(buffer: IsomorphicBuffer): IsomorphicBuffer[];
+    protected abstract isCompleteFrame(buffer: IsomorphicBuffer): boolean;
+    protected abstract processFrame(buffer: IsomorphicBuffer): void | Promise<void>;
 
-    private readonly queue: Queue<Buffer> = new Queue((buffer, next) =>
+    private readonly queue: Queue<IsomorphicBuffer> = new Queue((buffer, next) =>
     {
         log.debug('processing queue');
         if (buffer == Gateway.emptyBuffer)
@@ -111,10 +111,10 @@ export abstract class Gateway<T extends object> extends EventEmitter<T>
         this.wire.on('data', (buffer: Buffer) =>
         {
             if (typeof (this.chunk) != 'undefined')
-                this.chunk = Buffer.concat([this.chunk, buffer]);
+                this.chunk = IsomorphicBuffer.concat([this.chunk, IsomorphicBuffer.fromBuffer(buffer)]);
 
             else
-                this.chunk = buffer;
+                this.chunk = IsomorphicBuffer.fromBuffer(buffer);
 
             this.queue.enqueue(Gateway.emptyBuffer);
         });

@@ -5,7 +5,7 @@ export class MqttProcessor extends CommandProcessor
 {
     handle(origin: Container<unknown>, cmd: Metadata.Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
     {
-        return Promise.resolve();
+        return Promise.resolve(undefined);
     }
 
 }

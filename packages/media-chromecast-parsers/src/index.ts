@@ -5,6 +5,7 @@ export * from './log.js'
 import { Cursor } from '@akala/protocol-parser'
 import stream from 'stream'
 import { castMessage } from './cast.js'
+import { IsomorphicBuffer } from '@akala/core'
 
 export class CastStream extends stream.Transform
 {
@@ -14,19 +15,20 @@ export class CastStream extends stream.Transform
 
     }
 
-    private previousBuffer: Buffer;
+    private previousBuffer: IsomorphicBuffer;
 
     _transform(chunk: Buffer, encoding, callback)
     {
+        let isoChunk: IsomorphicBuffer = IsomorphicBuffer.fromBuffer(chunk);
         if (this.previousBuffer != null)
-            chunk = Buffer.concat([this.previousBuffer, chunk]);
+            isoChunk = IsomorphicBuffer.concat([this.previousBuffer, isoChunk]);
         var cursor = new Cursor();
-        while (cursor.offset < chunk.length)
+        while (cursor.offset < isoChunk.length)
         {
-            var msg = castMessage.read(chunk, cursor, {});
+            var msg = castMessage.read(isoChunk, cursor, {});
             if (msg == null)
             {
-                this.previousBuffer = chunk.slice(cursor.offset);
+                this.previousBuffer = isoChunk.subarray(cursor.offset);
                 break;
             }
             callback(null, msg);

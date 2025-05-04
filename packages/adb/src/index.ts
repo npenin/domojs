@@ -1,7 +1,7 @@
 import { Cursor, parserWrite, parsers, uint32 } from "@akala/protocol-parser";
 import { crc32_compute_buffer, crc32_compute_string } from "./crc.js";
 import { Socket } from 'net'
-import { Queue } from '@akala/core'
+import { base64, IsomorphicBuffer, Queue } from '@akala/core'
 import { Duplex } from 'stream'
 import crypto from 'crypto'
 import { EventEmitter } from 'events'
@@ -14,7 +14,7 @@ export interface Message
     dataLength: uint32;
     dataChecksum?: uint32;
     checksum?: uint32;
-    payload?: Buffer;
+    payload?: IsomorphicBuffer;
 }
 
 export type ConvenientMessage = Omit<Message, 'dataLength'> & Pick<Partial<Message>, 'dataLength'>
@@ -38,7 +38,7 @@ export const message = parsers.prepare((m: ConvenientMessage) =>
 {
     m.dataLength = m.payload?.length || 0;
     m.checksum = ~m.command;
-    m.dataChecksum = crc32_compute_buffer(0xEDB88320, m.payload || Buffer.from([]))
+    m.dataChecksum = crc32_compute_buffer(0xEDB88320, Buffer.from(m.payload?.toArray() || []))
     console.log(m);
 }, parsers.object<Message>(
     parsers.property('command', parsers.uint32LE),
@@ -56,9 +56,9 @@ export function connect(identity: { systemtype: 'bootloader' | 'host' | 'device'
         command: Command.A_CNXN,
         arg0: version,
         arg1: maxData,
-        payload: Buffer.from(`${identity.systemtype}:${identity.serialno}:${identity.banner}`),
+        payload: IsomorphicBuffer.from(`${identity.systemtype}:${identity.serialno}:${identity.banner}`),
     }
-    return Buffer.concat(parserWrite(message, msg, msg))
+    return IsomorphicBuffer.concat(parserWrite(message, msg, msg))
 }
 
 export function startTls(type: uint32, version: uint32)
@@ -68,7 +68,7 @@ export function startTls(type: uint32, version: uint32)
         arg0: type,
         arg1: version,
     }
-    return Buffer.concat(parserWrite(message, msg, msg))
+    return IsomorphicBuffer.concat(parserWrite(message, msg, msg))
 }
 
 export enum AuthType
@@ -78,7 +78,7 @@ export enum AuthType
     RsaPublicKey = 3
 }
 
-export function auth(type: AuthType, data: Buffer)
+export function auth(type: AuthType, data: IsomorphicBuffer)
 {
     const msg: ConvenientMessage = {
         command: Command.A_AUTH,
@@ -87,7 +87,7 @@ export function auth(type: AuthType, data: Buffer)
         payload: data,
     }
     // console.log(msg)
-    return Buffer.concat(parserWrite(message, msg, msg))
+    return IsomorphicBuffer.concat(parserWrite(message, msg, msg))
 }
 
 export const algorithm = 'RSASSA-PKCS1-v1_5';
@@ -107,7 +107,7 @@ export const hashAlgorithm = 'SHA-1'
  * @param localId 
  * @param destination 
  */
-export function open(localId: number, destination: Buffer)
+export function open(localId: number, destination: IsomorphicBuffer)
 {
     const msg: ConvenientMessage = {
         command: Command.A_OPEN,
@@ -115,7 +115,7 @@ export function open(localId: number, destination: Buffer)
         arg1: 0,
         payload: destination,
     }
-    return Buffer.concat(parserWrite(message, msg, msg))
+    return IsomorphicBuffer.concat(parserWrite(message, msg, msg))
 }
 
 export function ready(localId: number, remoteId: number)
@@ -124,12 +124,12 @@ export function ready(localId: number, remoteId: number)
         command: Command.A_OKAY,
         arg0: localId,
         arg1: remoteId,
-        payload: Buffer.alloc(0)
+        payload: new IsomorphicBuffer(0)
     }
-    return Buffer.concat(parserWrite(message, msg, msg))
+    return IsomorphicBuffer.concat(parserWrite(message, msg, msg))
 }
 
-export function write(localId: number, remoteId: number, data: Buffer)
+export function write(localId: number, remoteId: number, data: IsomorphicBuffer)
 {
     const msg: ConvenientMessage = {
         command: Command.A_WRTE,
@@ -137,7 +137,7 @@ export function write(localId: number, remoteId: number, data: Buffer)
         arg1: remoteId,
         payload: data,
     }
-    return Buffer.concat(parserWrite(message, msg, msg))
+    return IsomorphicBuffer.concat(parserWrite(message, msg, msg))
 }
 
 export function close(localId: number, remoteId: number)
@@ -146,18 +146,18 @@ export function close(localId: number, remoteId: number)
         command: Command.A_CLSE,
         arg0: localId,
         arg1: remoteId,
-        payload: Buffer.alloc(0)
+        payload: new IsomorphicBuffer(0)
     }
-    return Buffer.concat(parserWrite(message, msg, msg))
+    return IsomorphicBuffer.concat(parserWrite(message, msg, msg))
 }
 
 export class ADB
 {
-    private readonly queue: Queue<{ data: Buffer, callback?: () => void }>
+    private readonly queue: Queue<{ data: IsomorphicBuffer, callback?: () => void }>
     private remoteReady?: () => void;
     private incomingMessage?: ConvenientMessage;
     public readonly streams: (Duplex & { remoteId?: number })[] = [];
-    private challenge?: Buffer;
+    private challenge?: IsomorphicBuffer;
     public remotePublicKey?: CryptoKey;
     private alreadySigned: boolean = false;
     private events: EventEmitter = new EventEmitter();
@@ -168,15 +168,15 @@ export class ADB
         socket.on('data', async data =>
         {
             if (this.incomingMessage)
-                this.incomingMessage.payload = data;
+                this.incomingMessage.payload = new IsomorphicBuffer(data);
             else
             {
-                const msg = message.read(data, new Cursor(), {});
+                const msg = message.read(new IsomorphicBuffer(data), new Cursor(), {});
                 if (msg.checksum !== ~msg.command)
                     socket.end();
 
                 this.incomingMessage = msg;
-                if (msg.dataLength && (!msg.payload || msg.payload.byteLength == 0))
+                if (msg.dataLength && (!msg.payload || msg.payload.length == 0))
                 {
                     return;
                 }
@@ -205,10 +205,10 @@ export class ADB
                             {
                                 this.alreadySigned = true;
                                 this.queue.enqueue({
-                                    data: auth(AuthType.Signature, Buffer.from(Buffer.from(await crypto.subtle.sign({
+                                    data: auth(AuthType.Signature, new IsomorphicBuffer(base64.strToUTF8Arr(base64.base64EncArrBuff(await crypto.subtle.sign({
                                         name: algorithm,
                                         hash: hashAlgorithm,
-                                    }, this.key.privateKey, msg.payload!)).toString('base64'))),
+                                    }, this.key.privateKey, msg.payload.toArray()))))),
                                 })
                             }
                             else
@@ -219,7 +219,7 @@ export class ADB
                                 // console.log(Buffer.from(key.toString('ascii')).toString('base64'));
 
                                 this.queue.enqueue({
-                                    data: auth(AuthType.RsaPublicKey, Buffer.from(key.toString("base64") + ' domojs')),
+                                    data: auth(AuthType.RsaPublicKey, IsomorphicBuffer.from(key.toString("base64") + ' domojs')),
                                 })
                             }
                             break;
@@ -227,7 +227,7 @@ export class ADB
                             {
                                 if (this.remotePublicKey)
                                 {
-                                    if (await crypto.subtle.verify(algorithm, this.remotePublicKey, msg!.payload!, this.challenge!))
+                                    if (await crypto.subtle.verify(algorithm, this.remotePublicKey, msg!.payload.toArray(), this.challenge.toArray()))
                                     {
                                         console.log('authenticated');
                                     }
@@ -239,7 +239,7 @@ export class ADB
                                     console.log(key.toString('base64'))
                                     console.log(Buffer.from(key.toString('base64')).toString());
                                     this.queue.enqueue({
-                                        data: auth(AuthType.RsaPublicKey, key),
+                                        data: auth(AuthType.RsaPublicKey, new IsomorphicBuffer(key)),
                                     })
                                 }
                             }
@@ -280,13 +280,13 @@ export class ADB
         });
     }
 
-    private send(msg: { data: Buffer, callback?: () => void }, next: (processed: boolean) => void)
+    private send(msg: { data: IsomorphicBuffer, callback?: () => void }, next: (processed: boolean) => void)
     {
         if (!this.remoteReady)
         {
             console.log('sending data');
             // console.debug(msg.data);
-            this.socket.write(msg.data, err =>
+            this.socket.write(msg.data.toArray(), err =>
             {
                 if (err)
                 {
@@ -318,7 +318,7 @@ export class ADB
         this.queue.enqueue({ data: startTls(type, version) });
     }
 
-    public async auth(type: AuthType, data: Buffer)
+    public async auth(type: AuthType, data: IsomorphicBuffer)
     {
         this.queue.enqueue({ data: auth(type, data) });
     }
@@ -352,7 +352,7 @@ export class ADB
         this.streams.push(stream)
         const localId = this.streams.length;
 
-        this.queue.enqueue({ data: open(localId, Buffer.from(destination)) });
+        this.queue.enqueue({ data: open(localId, IsomorphicBuffer.from(destination)) });
 
         return stream;
     }
@@ -361,7 +361,7 @@ export class ADB
         this.queue.enqueue({ data: ready(localId, remoteId) });
     }
 
-    public write(localId: number, remoteId: number, data: Buffer)
+    public write(localId: number, remoteId: number, data: IsomorphicBuffer)
     {
         this.queue.enqueue({ data: write(localId, remoteId, data) });
     }

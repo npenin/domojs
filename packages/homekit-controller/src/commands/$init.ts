@@ -13,7 +13,7 @@ export default async function (this: State, context: CliContext<Record<string, O
     // if (!context.state.has('homekit'))
     //     context.state.set('homekit', {});
     const self = await app(context);
-    self.pubsub?.subscribe(container, 'device-discovered', '/zeroconf/_hap');
+    // self.pubsub?.emit(container, 'device-discovered', '/zeroconf/_hap');
 
     await (await self.sidecars['@domojs/devicetype']).dispatch('register', { name: 'homekit' } as DeviceType);
 }

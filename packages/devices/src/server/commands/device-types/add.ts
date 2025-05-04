@@ -35,7 +35,7 @@ export default async function persist(this: devices.DeviceTypeState,
     registerCommands(device.commands, remoteDeviceType.processor, deviceContainer);
 
 
-    await this.pubsub?.publish('/device/new', device);
-    await this.pubsub?.publish('/device/' + type, device);
+    await this.pubsub?.emit('/device/new', device);
+    await this.pubsub?.emit('/device/' + type, device);
 
 };

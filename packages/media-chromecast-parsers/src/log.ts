@@ -1,7 +1,4 @@
-import { parsers } from "@akala/protocol-parser";
-import { ProtobufMessage } from "@akala/protocol-parser/src/parsers/protobuf";
-
-const protobuf = parsers.protobuf;
+import { protobuf } from "@akala/protocol-parser";
 
 enum EventType
 {
@@ -201,7 +198,7 @@ export const aggregateSocketEvent = protobuf.object<AggregatedSocketEvent>(
     protobuf.property('bytes_written', '64-bit', protobuf.int64),
 );
 
-export const log = protobuf.object<ProtobufMessage<Log>>(
+export const log = protobuf.object<protobuf.ProtobufMessage<Log>>(
     protobuf.property('aggregated_socket_event', protobuf.sub(aggregateSocketEvent)),
     protobuf.property('num_evicted_aggregated_socket_events', protobuf.int32),
     protobuf.property('num_evicted_socket_events', protobuf.varint),

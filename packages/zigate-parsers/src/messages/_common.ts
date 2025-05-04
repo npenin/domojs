@@ -1,5 +1,5 @@
 import { Cursor, parsers, parserWrite, uint16, uint8 } from '@akala/protocol-parser';
-import { logger } from '@akala/core';
+import { IsomorphicBuffer, logger } from '@akala/core';
 const log = logger('zigate');
 
 export enum MessageType
@@ -140,7 +140,7 @@ export const Message = parsers.series<Message>(
 );
 
 export const Protocol = {
-    read(buffer: Buffer)
+    read(buffer: IsomorphicBuffer)
     {
         log.debug('decoding buffer', buffer);
         let newLength = buffer.length;
@@ -159,7 +159,7 @@ export const Protocol = {
     },
     send(type: MessageType, message: any)
     {
-        var buffer = Buffer.concat(parserWrite(Message, { start: 0x01, type: type, message: message, end: 0x03, length: 2, checksum: 1 }));
+        var buffer = IsomorphicBuffer.concat(parserWrite(Message, { start: 0x01, type: type, message: message, end: 0x03, length: 2, checksum: 1 }));
         buffer.writeInt16BE(buffer.length - 8, 3);
         log.debug('encoding buffer', buffer);
 
@@ -177,7 +177,7 @@ export const Protocol = {
         {
             if (buffer[index] < 0x10)
             {
-                let newBuffer = Buffer.alloc(buffer.length + 1);
+                let newBuffer = new IsomorphicBuffer(buffer.length + 1);
                 buffer.copy(newBuffer, 0, 0, index);
                 newBuffer[index] = 0x02;
                 newBuffer[index + 1] = buffer[index] ^ 0x10;

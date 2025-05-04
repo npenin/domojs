@@ -1,6 +1,6 @@
 import { SRP, SrpClient } from "fast-srp-hap";
 import tweetnacl from "tweetnacl";
-import { Http } from "@akala/core";
+import { Http, IsomorphicBuffer } from "@akala/core";
 import hkdf from 'futoin-hkdf'
 import { Cursor, parsers, parserWrite, tlv } from '@akala/protocol-parser'
 import assert from 'assert/strict'
@@ -11,18 +11,18 @@ const tlv8 = tlv(parsers.uint8, 0xFF, 'utf8');
 export type PairMessage = {
     method: PairMethod;
     identifier: string;
-    salt: Buffer;
-    publicKey: Buffer;
-    proof: Buffer;
-    encryptedData: Buffer;
+    salt: IsomorphicBuffer;
+    publicKey: IsomorphicBuffer;
+    proof: IsomorphicBuffer;
+    encryptedData: IsomorphicBuffer;
     state: PairState;
     error: PairErrorCode;
     retryDelay: number;
-    certificate: Buffer;
-    signature: Buffer;
+    certificate: IsomorphicBuffer;
+    signature: IsomorphicBuffer;
     permissions: number;
-    fragmentData: Buffer;
-    fragmentLast: Buffer;
+    fragmentData: IsomorphicBuffer;
+    fragmentLast: IsomorphicBuffer;
     flags: number;
 }
 
@@ -65,8 +65,8 @@ export default async function pair(this: State, accessoryAddress: string, access
 {
     const clientKeyPair = tweetnacl.sign.keyPair();
     const clientInfo: PairSetupClientInfo = {
-        privateKey: Buffer.from(clientKeyPair.secretKey),
-        publicKey: Buffer.from(clientKeyPair.publicKey),
+        privateKey: new IsomorphicBuffer(clientKeyPair.secretKey),
+        publicKey: new IsomorphicBuffer(clientKeyPair.publicKey),
         username: crypto.getRandomValues(Buffer.alloc(16)).toString('base64')
     };
     const accessory = await new PairSetupClient(accessoryAddress, http).sendPairSetup(pinCode, clientInfo);
@@ -101,19 +101,19 @@ export type SubPairSetupM6 = Pick<PairMessage, 'identifier' | 'signature' | 'pub
 export interface PairSetupClientInfo
 {
     username: string;
-    publicKey: Buffer;
-    privateKey: Buffer
+    publicKey: IsomorphicBuffer;
+    privateKey: IsomorphicBuffer
 }
 
 interface EncryptedData
 {
-    ciphertext: Buffer;
-    authTag: Buffer;
+    ciphertext: IsomorphicBuffer;
+    authTag: IsomorphicBuffer;
 }
 
 export interface PairedAccessory
 {
-    publicKey: Buffer;
+    publicKey: IsomorphicBuffer;
     identifier: string;
 }
 
@@ -194,17 +194,17 @@ class PairSetupClient
     sendM1(): PromiseLike<PairSetupM2>
     {
         return this.http.call({
-            url: `http://${this.accessoryAddress}/pair-setup`, body: Buffer.concat(parserWrite(pairMessage,
+            url: `http://${this.accessoryAddress}/pair-setup`, body: IsomorphicBuffer.concat(parserWrite(pairMessage,
                 {
                     state: PairState.M1,
                     method: PairMethod.Setup,
                     flags: PairTypeFlags.Split & PairTypeFlags.Transient
-                })).buffer,
+                })).toArray(),
             method: 'post',
             type: 'raw'
         }).
             then(r => r.arrayBuffer()).
-            then(b => pairMessage.read(Buffer.from(b), new Cursor()) as PairSetupM2).
+            then(b => pairMessage.read(IsomorphicBuffer.fromArrayBuffer(b), new Cursor()) as PairSetupM2).
             then(m =>
             {
                 assert.equal(m.state, PairState.M2, 'an M2 response was expected');
@@ -216,8 +216,8 @@ class PairSetupClient
     async prepareM3(m2: PairSetupM2, pincode: string): Promise<SrpClient>
     {
         const srpKey = await SRP.genKey(32);
-        const srpClient = new SrpClient(SRP.params.hap, m2.salt, Buffer.from("Pair-Setup"), Buffer.from(pincode), srpKey);
-        srpClient.setB(m2.publicKey);
+        const srpClient = new SrpClient(SRP.params.hap, Buffer.from(m2.salt.toArray()), Buffer.from("Pair-Setup"), Buffer.from(pincode), srpKey);
+        srpClient.setB(Buffer.from(m2.publicKey.toArray()));
 
         return srpClient;
     }
@@ -226,16 +226,16 @@ class PairSetupClient
     {
         return this.http.call({
             url: `http://${this.accessoryAddress}/pair-setup`,
-            body: Buffer.concat(pairMessage.write({
+            body: IsomorphicBuffer.concat(pairMessage.write({
                 state: PairState.M3,
-                publicKey: m3.computeA(),
-                proof: m3.computeM1()
-            })),
+                publicKey: IsomorphicBuffer.fromBuffer(m3.computeA()),
+                proof: IsomorphicBuffer.fromBuffer(m3.computeM1())
+            })).toArray(),
             type: 'raw'
         }).
             then(r => r.arrayBuffer()).
-            then(b => pairMessage.read(Buffer.from(b), new Cursor()) as PairSetupM4).
-            then(b => { m3.checkM2(b.proof); return b }).
+            then(b => pairMessage.read(IsomorphicBuffer.fromArrayBuffer(b), new Cursor()) as PairSetupM4).
+            then(b => { m3.checkM2(Buffer.from(b.proof.toArray())); return b }).
             then(b => m3.computeK()) //sharedSecret
             ;
     }
@@ -251,18 +251,18 @@ class PairSetupClient
                 info: Buffer.from("Pair-Setup-Controller-Sign-Info"),
             });
 
-        const iOSDeviceInfo = Buffer.concat([
-            iOSDeviceX,
-            Buffer.from(clientInfo.username),
+        const iOSDeviceInfo = IsomorphicBuffer.concat([
+            IsomorphicBuffer.fromBuffer(iOSDeviceX),
+            IsomorphicBuffer.from(clientInfo.username),
             clientInfo.publicKey,
         ]);
 
-        const iOSDeviceSignature = tweetnacl.sign.detached(iOSDeviceInfo, clientInfo.privateKey);
+        const iOSDeviceSignature = tweetnacl.sign.detached(iOSDeviceInfo.toArray(), clientInfo.privateKey.toArray());
 
-        const subTLV_M5 = Buffer.concat(pairMessage.write({
+        const subTLV_M5 = IsomorphicBuffer.concat(pairMessage.write({
             identifier: clientInfo.username,
             publicKey: clientInfo.publicKey,
-            signature: Buffer.from(iOSDeviceSignature)
+            signature: new IsomorphicBuffer(iOSDeviceSignature)
         }));
 
         const sessionKey = hkdf(
@@ -275,7 +275,7 @@ class PairSetupClient
             }
         );
 
-        const encrypted = chacha20_poly1305_encryptAndSeal(sessionKey, Buffer.from("PS-Msg05"), null, subTLV_M5);
+        const encrypted = chacha20_poly1305_encryptAndSeal(sessionKey, Buffer.from("PS-Msg05"), null, Buffer.from(subTLV_M5.toArray()));
 
         return {
             sessionKey,
@@ -288,14 +288,14 @@ class PairSetupClient
         return this.http.call(
             {
                 url: `http://${this.accessoryAddress}/pair-setup`,
-                body: Buffer.concat(pairMessage.write({
+                body: IsomorphicBuffer.concat(pairMessage.write({
                     state: PairState.M6,
-                    encryptedData: Buffer.concat([m5.ciphertext, m5.authTag])
-                })),
+                    encryptedData: IsomorphicBuffer.concat([m5.ciphertext, m5.authTag])
+                })).toArray(),
                 type: 'raw'
             }).
             then(r => r.arrayBuffer()).
-            then(r => pairMessage.read(Buffer.from(r), new Cursor()) as PairSetupM6).
+            then(r => pairMessage.read(IsomorphicBuffer.fromArrayBuffer(r), new Cursor()) as PairSetupM6).
             then(m => m.encryptedData).
             then(m => ({ encryptedData: m.subarray(0, -16), authTag: m.subarray(-16) })).
             then(m =>
@@ -303,13 +303,13 @@ class PairSetupClient
                     sessionKey,
                     Buffer.from("PS-Msg06"),
                     null,
-                    m.encryptedData,
-                    m.authTag,
+                    Buffer.from(m.encryptedData.toArray()),
+                    Buffer.from(m.authTag.toArray()),
                 )).
-            then(m => pairMessage.read(m, new Cursor())).
+            then(m => pairMessage.read(new IsomorphicBuffer(m), new Cursor())).
             then(m =>
             {
-                if (tweetnacl.sign.detached.verify(Buffer.concat([sessionKey, Buffer.from(m.identifier!), m.publicKey!]), m.signature!, m.publicKey!))
+                if (tweetnacl.sign.detached.verify(Buffer.concat([sessionKey, Buffer.from(m.identifier!), m.publicKey.toArray()]), m.signature.toArray(), m.publicKey.toArray()))
                     return {
                         publicKey: m.publicKey!,
                         identifier: m.identifier!

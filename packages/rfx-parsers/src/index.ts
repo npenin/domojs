@@ -11,7 +11,7 @@ portions of this file.
 '----------------------------------------------------------------------------
 */
 import { EventEmitter } from 'events';
-import { Queue, logger, eachAsync, Event } from '@akala/core';
+import { Queue, logger, eachAsync, Event, IsomorphicBuffer } from '@akala/core';
 export * from './protocol/index.js'
 import * as os from 'os';
 import { Protocol, Message, PacketType, Type, InterfaceControl, InterfaceMessage, EventMap, Rfy, RFXDevice } from './protocol/index.js';
@@ -28,7 +28,7 @@ const log = logger('rfxtrx');
 
 export class Rfxtrx extends Gateway<{ message: Event<[Message<any>]> } & { [key in ((keyof typeof Type.INTERFACE_MESSAGE) | (keyof typeof PacketType) | PacketType)]: Event<[Message<any>['message']]> }>
 {
-    protected splitBuffer(buffer: Buffer): Buffer[]
+    protected splitBuffer(buffer: IsomorphicBuffer): IsomorphicBuffer[]
     {
         const buffers = [];
         let offset = 0
@@ -41,11 +41,11 @@ export class Rfxtrx extends Gateway<{ message: Event<[Message<any>]> } & { [key 
             buffers.push(buffer.subarray(offset));
         return buffers;
     }
-    protected isCompleteFrame(buffer: Buffer): boolean
+    protected isCompleteFrame(buffer: IsomorphicBuffer): boolean
     {
         return buffer.length == buffer[0] + 1
     }
-    protected processFrame(buffer: Buffer): void | Promise<void>
+    protected processFrame(buffer: IsomorphicBuffer): void | Promise<void>
     {
         var message = Protocol.read(buffer, new Cursor(), {});
         // this.sqnce = message.sequenceNumber;
@@ -130,7 +130,7 @@ export class Rfxtrx extends Gateway<{ message: Event<[Message<any>]> } & { [key 
     {
         var msg: Message<Partial<T>> = { type: type, message: message, sequenceNumber: this.sqnce++ };
         log.info(msg);
-        var buffer = Buffer.concat(parserWrite(Protocol, msg));
+        var buffer = IsomorphicBuffer.concat(parserWrite(Protocol, msg));
         return new Promise<Message<any>>((resolve, reject) =>
         {
             log.debug(buffer);

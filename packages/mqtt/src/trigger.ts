@@ -1,5 +1,5 @@
 import { CommandProcessor, Container, StructuredParameters, Metadata, Trigger } from '@akala/commands'
-import { MiddlewarePromise } from '@akala/core';
+import { IsomorphicBuffer, MiddlewarePromise } from '@akala/core';
 import { Container as PubSubContainer } from '@akala/pubsub';
 import { Socket, type SocketConnectOpts } from 'net'
 import { Message, Messages, header } from './protocol/_protocol.js';
@@ -12,7 +12,7 @@ export const trigger = new Trigger('mqtt', (container: PubSubContainer & Contain
     socket.connect(options);
     socket.on('data', async (data) =>
     {
-        const message = Messages.read(data, new Cursor(), undefined);
+        const message = Messages.read(IsomorphicBuffer.fromBuffer(data), new Cursor(), undefined);
         const cmd = container.resolve('mqtt-' + ControlPacketType[message.type].toLocaleLowerCase());
         if (cmd)
             await container.dispatch(cmd, message);
@@ -42,6 +42,6 @@ export const trigger = new Trigger('mqtt', (container: PubSubContainer & Contain
             case ControlPacketType.DISCONNECT:
             case ControlPacketType.AUTH:
         }
-        socket.write(Buffer.concat(Messages.write(reply, reply)))
+        socket.write(IsomorphicBuffer.concat(Messages.write(reply, reply)).toArray())
     })
 })

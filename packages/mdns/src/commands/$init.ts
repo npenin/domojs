@@ -83,7 +83,7 @@ export default async function (this: State, context: CliContext<Record<string, O
     mdns.on('response', packet =>
     {
         const records = packet.answers.concat(packet.additionals);
-        records.filter(rr => rr.type === 'PTR' && rr.ttl == 0).forEach((p: StringAnswer) => self.pubsub?.publish('/zeroconf/' + p.name.split('.').reverse().join('/'), null))
+        records.filter(rr => rr.type === 'PTR' && rr.ttl == 0).forEach((p: StringAnswer) => self.pubsub?.emit('/zeroconf/' + p.name.split('.').reverse().join('/'), null))
         return records
             .filter(function (rr)
             {
@@ -145,7 +145,7 @@ export default async function (this: State, context: CliContext<Record<string, O
                 this.services[c!.fqdn!] = c as Service;
                 const parts = c!.fqdn!.split('.').reverse();
                 for (let i = 0; i < parts.length; i++)
-                    self.pubsub?.publish('/zeroconf/' + parts.slice(0, i).join('/'), c);
+                    self.pubsub?.emit('/zeroconf/' + parts.slice(0, i).join('/'), c);
             })
     });
     mdns.query('_services._dns-sd._udp.local', 'PTR');

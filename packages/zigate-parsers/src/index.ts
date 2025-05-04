@@ -1,7 +1,7 @@
 import { Protocol, MessageType, Message, Cluster } from './messages/_common.js';
 import { EventEmitter } from 'events';
 import { Duplex } from 'stream';
-import { Queue, logger, eachAsync, Event, Subscription, EventOptions } from '@akala/core';
+import { Queue, logger, eachAsync, Event, Subscription, EventOptions, IsomorphicBuffer } from '@akala/core';
 import { Gateway } from '@domojs/devices';
 import os from 'os';
 import { readdir } from 'fs/promises'
@@ -301,11 +301,11 @@ export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in ke
         });
     }
 
-    protected splitBuffer(buffer: Buffer): Buffer[]
+    protected splitBuffer(buffer: IsomorphicBuffer): IsomorphicBuffer[]
     {
         const buffers = [];
         let offset = 0;
-        let remaining: Buffer;
+        let remaining: IsomorphicBuffer;
         for (let index = 1; index < buffer.length; index++)
         {
             if (buffer[index] == 0x01)
@@ -326,11 +326,11 @@ export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in ke
 
         return buffers;
     }
-    protected isCompleteFrame(buffer: Buffer): boolean
+    protected isCompleteFrame(buffer: IsomorphicBuffer): boolean
     {
         return buffer[buffer.length - 1] == 0x03;
     }
-    protected processFrame(buffer: Buffer): void | Promise<void>
+    protected processFrame(buffer: IsomorphicBuffer): void | Promise<void>
     {
         if (buffer?.length)
         {

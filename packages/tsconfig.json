@@ -78,6 +78,9 @@
     },
     {
       "path": "media-yt-music"
+    },
+    {
+      "path": "homescreen"
     }
   ]
 }

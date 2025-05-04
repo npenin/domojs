@@ -25,16 +25,10 @@ akala.module('@domojs/devices').activate(['$config.@domojs/devices.storage'], as
     devices.defineMember('category', false, Types.string(50));
     devices.defineMember('type', false, Types.string(50));
     devices.defineMember('room', false, Types.string(50));
-    var engines: { [key: string]: PersistenceEngine<any> } = {};
-    this.waitUntil(db.providers.injectWithName([storage?.provider || 'file', 'vanilla'], async function (persistent: PersistenceEngine<any>, volatile: PersistenceEngine<any>)
-    {
-        await volatile.init(null);
-        engines.volatile = volatile;
-
-        await persistent.init(storage?.init);
-        engines.persistent = persistent;
-
-    })());
+    var engines: { [key: string]: PersistenceEngine<any> } = {
+        volatile: await db.providers.process(new URL('memory://')),
+        persistent: await db.providers.process(new URL('file+json://./')),
+    };
 
     MultiStore.create({ 'DevicesInit': engines.persistent, 'Devices': engines.volatile });
     akala.module('@domojs/devices').registerFactory('db', () =>

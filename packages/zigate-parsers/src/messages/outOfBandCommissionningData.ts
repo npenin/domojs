@@ -1,6 +1,7 @@
 import { StatusMessage } from './status.js';
 import { Message, MessageType, messages } from './_common.js';
 import { parsers, uint16, uint32, uint64, uint8 } from '@akala/protocol-parser';
+import { IsomorphicBuffer } from '@akala/core';
 
 messages.register(MessageType.OutOfBandCommissionningData, parsers.object<OutOfBandCommissionningDataRequest>(
     parsers.property('addressOfInterest', parsers.uint64),
@@ -10,7 +11,7 @@ messages.register(MessageType.OutOfBandCommissionningData, parsers.object<OutOfB
 export interface OutOfBandCommissionningDataRequest extends Message
 {
     addressOfInterest: uint64;
-    key: Buffer[];
+    key: IsomorphicBuffer[];
 }
 
 messages.register(MessageType.OutOfBandCommissionningData | MessageType.Response, parsers.object<OutOfBandCommissionningDataResponse>(
@@ -30,7 +31,7 @@ messages.register(MessageType.OutOfBandCommissionningData | MessageType.Response
 export interface OutOfBandCommissionningDataResponse extends StatusMessage
 {
     deviceExtendedAddress: uint64;
-    key: Buffer;
+    key: IsomorphicBuffer;
     mic: uint32;
     hostExtendedAddress: uint64;
     activeKeySequenceNumber: uint8;

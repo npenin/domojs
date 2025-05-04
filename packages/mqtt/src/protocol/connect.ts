@@ -1,6 +1,7 @@
 import { parsers, uint16, uint8 } from '@akala/protocol-parser';
 import { header, Message as CoreMessage, payload } from './_protocol.js'
 import { ControlPacketType, Properties, propertiesParser } from './_shared.js';
+import { IsomorphicBuffer } from '@akala/core';
 
 export interface Header
 {
@@ -22,9 +23,9 @@ export interface Payload
     clientId: string,
     willProperties?: Properties,
     willTopic?: string,
-    willPayload?: Buffer,
+    willPayload?: IsomorphicBuffer,
     userName: string,
-    password: Buffer,
+    password: IsomorphicBuffer,
 }
 
 export type Message = { header: Header, payload: Payload };

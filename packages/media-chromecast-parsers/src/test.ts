@@ -1,5 +1,6 @@
 import net from 'net'
 import { Cursor, protobuf } from '@akala/protocol-parser';
+import { IsomorphicBuffer } from '@akala/core'
 
 describe('cast', function ()
 {
@@ -15,7 +16,7 @@ describe('cast', function ()
         });
         socket.on('data', function (buffer)
         {
-            var cast = protobuf.debug.read(buffer, new Cursor());
+            var cast = protobuf.debug.read(IsomorphicBuffer.fromBuffer(buffer), new Cursor());
             console.log(cast);
         });
     });

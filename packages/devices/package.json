@@ -21,8 +21,8 @@
         "@akala/pm": "^14.4.24",
         "@akala/pubsub": "^3.0.119",
         "@akala/server": "^26.0.10",
-        "@akala/sidecar": "^8.0.46",
-        "@akala/storage": "^20.1.0",
+        "@akala/sidecar": "^8.0.47",
+        "@akala/storage": "^20.1.1",
         "@fortawesome/free-brands-svg-icons": "6.7.2",
         "ws": "8.18.2"
     },

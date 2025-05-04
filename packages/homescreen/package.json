@@ -1,9 +1,11 @@
 {
-    "name": "@domojs/web",
+    "name": "homescreen",
     "version": "0.0.0",
     "main": "dist/cjs/index.js",
     "types": "dist/cjs/index.d.ts",
-    "type": "module",
+    "dependencies": {
+        "electron": "^36.1.0"
+    },
     "exports": {
         ".": {
             "import": {
@@ -15,19 +17,6 @@
                 "default": "./dist/cjs/index.js"
             }
         }
-    },
-    "dependencies": {
-        "@akala/client": "^39.14.3",
-        "@akala/commands": "^12.0.2",
-        "@akala/core": "^37.0.1"
-    },
-    "devDependencies": {
-        "@akala/vite": "^2.1.4",
-        "esbuild-sass-plugin": "^3.3.1",
-        "postcss": "^8.5.3",
-        "postcss-modules": "^6.0.1",
-        "sass": "^1.87.0",
-        "vite": "^6.3.4"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\""

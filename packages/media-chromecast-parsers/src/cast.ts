@@ -1,4 +1,5 @@
 import { Cursor, protobuf } from '@akala/protocol-parser'
+import { IsomorphicBuffer } from '@akala/core'
 
 export enum ProtocolVersion
 {
@@ -46,7 +47,7 @@ export class CastMessage
     // Depending on payload_type, exactly one of the following optional fields
     // will always be set.
     payload_utf8?: string;
-    payload_binary?: Buffer;
+    payload_binary?: IsomorphicBuffer;
 }
 
 export enum SignatureAlgorithm
@@ -66,19 +67,19 @@ export enum HashAlgorithm
 export class AuthChallenge
 {
     signature_algorithm?: SignatureAlgorithm = SignatureAlgorithm.RSASSA_PKCS1v15
-    sender_nonce?: Buffer;
+    sender_nonce?: IsomorphicBuffer;
     hash_algorithm?: HashAlgorithm = HashAlgorithm.SHA1;
 }
 
 export class AuthResponse
 {
-    signature: Buffer;
-    client_auth_certificate: Buffer;
-    intermediate_certificate: Buffer[];
+    signature: IsomorphicBuffer;
+    client_auth_certificate: IsomorphicBuffer;
+    intermediate_certificate: IsomorphicBuffer[];
     signature_algorithm: SignatureAlgorithm = SignatureAlgorithm.RSASSA_PKCS1v15;
-    sender_nonce?: Buffer;
+    sender_nonce?: IsomorphicBuffer;
     hash_algorithm?: HashAlgorithm = HashAlgorithm.SHA1;
-    crl?: Buffer;
+    crl?: IsomorphicBuffer;
 }
 
 export enum ErrorType
@@ -164,9 +165,9 @@ if (require.main == module)
                 })
             };
             console.log(msg);
-            var buffer = Buffer.concat(castMessage.write(msg));
+            var buffer = IsomorphicBuffer.concat(castMessage.write(msg));
             console.log(buffer.toJSON());
-            if (!socket.write(buffer
+            if (!socket.write(buffer.toArray()
                 , err => { if (err) reject(err); resolve() }))
                 throw new Error('not written')
 
@@ -181,9 +182,9 @@ if (require.main == module)
                 })
             };
             console.log(msg);
-            var buffer = Buffer.concat(castMessage.write(msg));
+            var buffer = IsomorphicBuffer.concat(castMessage.write(msg));
             console.log(buffer.toJSON());
-            if (!socket.write(buffer
+            if (!socket.write(buffer.toArray()
                 , err => { if (err) reject(err); resolve() }))
                 throw new Error('not written')
 

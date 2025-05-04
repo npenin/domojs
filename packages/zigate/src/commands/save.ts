@@ -83,7 +83,7 @@ export default async function save(this: State, body: any, device: ISaveDevice &
 
             if (attribute.clusterId == Cluster.Basic && attribute.attributeEnum == 0x05)
             {
-                this.devicesByAddress[attribute.sourceAddress].internalName = attribute.value.toString();
+                this.devicesByAddress[attribute.sourceAddress].internalName = attribute.value.toString('utf8');
             }
 
             if (attribute.clusterId == 0 && attribute.attributeEnum != 0)
@@ -125,7 +125,7 @@ export default async function save(this: State, body: any, device: ISaveDevice &
                             break;
                     }
 
-                    await this.pubsub?.publish('/device/discovered',
+                    await this.pubsub?.emit('/device/discovered',
                         {
                             type: 'zigate',
                             class: DeviceClass.SingleValueSensor,
@@ -169,7 +169,7 @@ export default async function save(this: State, body: any, device: ISaveDevice &
                         this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = null;
                         break;
                     case attributes.AttributeType.string:
-                        this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = attribute.value.toString();
+                        this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = attribute.value.toString('utf8');
                         break;
                     case attributes.AttributeType.uint16:
                         this.devicesByAddress[attribute.sourceAddress].attributes[attribute.clusterId] = attribute.value.readUInt16BE(0);

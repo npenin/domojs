@@ -1,6 +1,7 @@
 import { StatusMessage, Status } from './status.js';
 import { MessageType, Cluster, messages } from './_common.js';
 import { parsers, uint16, uint8 } from '@akala/protocol-parser';
+import { IsomorphicBuffer } from '@akala/core';
 
 messages.register(MessageType.NodeDescriptor, parsers.object<ShortAddressRequest>(parsers.property('targetShortAddress', parsers.uint16)));
 messages.register(MessageType.SimpleDescriptor, parsers.object<SimpleDescriptorRequest>(
@@ -255,7 +256,7 @@ export interface UserDescriptorNotifyMessage extends StatusMessage
 
 export interface UserDescriptorResponse extends UserDescriptorNotifyMessage
 {
-    stream: Buffer;
+    stream: IsomorphicBuffer;
 }
 
 export interface ShortAddressRequest

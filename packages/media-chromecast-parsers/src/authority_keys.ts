@@ -1,12 +1,11 @@
-import { parsers } from "@akala/protocol-parser";
-import { ProtobufMessage } from "@akala/protocol-parser/src/parsers/protobuf";
+import { protobuf } from "@akala/protocol-parser";
+import { IsomorphicBuffer } from '@akala/core'
 
-const protobuf = parsers.protobuf;
 
 class Key
 {
-    fingerprint: Buffer;
-    public_key: Buffer;
+    fingerprint: IsomorphicBuffer;
+    public_key: IsomorphicBuffer;
 }
 
 class AuthorityKeys
@@ -14,7 +13,7 @@ class AuthorityKeys
     keys: Key[];
 }
 
-export const authorityKeys = protobuf.object<ProtobufMessage<AuthorityKeys>>(
+export const authorityKeys = protobuf.object<protobuf.ProtobufMessage<AuthorityKeys>>(
     protobuf.property('keys', protobuf.sub(protobuf.object<Key>(
         protobuf.property('fingerprint', protobuf.raw),
         protobuf.property('public_key', protobuf.raw),
