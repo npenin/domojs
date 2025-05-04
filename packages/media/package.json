@@ -27,24 +27,24 @@
     "author": "npenin",
     "license": "MIT",
     "dependencies": {
-        "@akala/commands": "^11.0.8",
-        "@akala/config": "^5.0.33",
-        "@akala/core": "^19.0.14",
+        "@akala/commands": "^12.0.2",
+        "@akala/config": "^6.0.38",
+        "@akala/core": "^37.0.1",
         "@ffmpeg.wasm/core-st": "^0.13.2",
         "@ffmpeg.wasm/main": "^0.13.1",
         "levenshtein": "1.0.5",
-        "node-id3": "^0.2.6",
-        "webdav": "^5.7.1"
+        "node-id3": "^0.2.9",
+        "webdav": "^5.8.0"
     },
     "peerDependencies": {
         "@akala/pm": "^12.1.22"
     },
     "devDependencies": {
-        "@akala/cli": "^3.0.14",
-        "@akala/json-rpc-ws": "^11.0.14",
-        "@akala/pm": "^12.1.22",
-        "@akala/server": "^10.0.44",
-        "@akala/storage": "^6.0.14",
+        "@akala/cli": "^5.5.20",
+        "@akala/json-rpc-ws": "^11.0.63",
+        "@akala/pm": "^14.4.24",
+        "@akala/server": "^26.0.10",
+        "@akala/storage": "^20.1.0",
         "@domojs/theme-default": "workspace:*",
         "@types/debug": "4.1.12",
         "@types/ioredis": "5.0.0",
@@ -52,7 +52,7 @@
         "@types/levenshtein": "1.0.4",
         "@types/redis": "4.0.11",
         "@types/request": "2.48.12",
-        "@types/ws": "8.5.13",
-        "typescript": "5.7.2"
+        "@types/ws": "8.18.1",
+        "typescript": "5.8.3"
     }
 }

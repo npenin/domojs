@@ -6,12 +6,12 @@
     "type": "module",
     "license": "MIT",
     "dependencies": {
-        "@akala/json-rpc-ws": "^11.0.14",
-        "@nlpjs/basic": "4.27.0",
-        "node-nlp": "4.27.0"
+        "@akala/json-rpc-ws": "^11.0.63",
+        "@nlpjs/basic": "5.0.0-alpha.5",
+        "node-nlp": "5.0.0-alpha.5"
     },
     "devDependencies": {
-        "@nlpjs/directline-connector": "4.26.1",
-        "@nlpjs/express-api-server": "4.27.0"
+        "@nlpjs/directline-connector": "5.0.0-alpha.5",
+        "@nlpjs/express-api-server": "5.0.0-alpha.5"
     }
 }
