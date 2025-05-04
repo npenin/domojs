@@ -8,7 +8,7 @@
         "url": "https://github.com/npenin/domojs.git"
     },
     "peerDependencies": {
-        "@akala/pm": "^12.1.22",
+        "@akala/pm": "^14.0.0",
         "@akala/server": "^10.0.44",
         "@domojs/devices": "workspace:*"
     },
