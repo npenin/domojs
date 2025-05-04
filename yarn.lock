@@ -371,7 +371,7 @@ __metadata:
     "@akala/pm": "npm:^14.4.24"
     "@types/yargs": "npm:17.0.33"
   peerDependencies:
-    "@akala/commands": ^11.0.8
+    "@akala/commands": ^12.0.0
     "@akala/pm": ^12.1.22
   languageName: unknown
   linkType: soft
@@ -465,7 +465,7 @@ __metadata:
     "@domojs/devices": "workspace:*"
     "@types/ws": "npm:8.18.1"
   peerDependencies:
-    "@akala/commands": ^11.0.8
+    "@akala/commands": ^12.0.0
     "@akala/pm": ^12.1.22
   languageName: unknown
   linkType: soft
