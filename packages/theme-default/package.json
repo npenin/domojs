@@ -23,7 +23,7 @@
         "@types/node": "22.15.3",
         "@types/request": "2.48.12",
         "@types/ws": "8.18.1",
-        "esbuild": "0.25.3",
+        "esbuild": "0.25.4",
         "esbuild-sass-plugin": "3.3.1",
         "typescript": "5.8.3"
     },
