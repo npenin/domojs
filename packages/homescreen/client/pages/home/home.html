@@ -1,0 +1,72 @@
+<div class="horizontal">
+    <div class="vertical col-6">
+        <div class="card" data-context="controller.carrefour # async" klass
+            klass-success="context.currentOpeningHours.openNow" klass-warning="!context.currentOpeningHours.openNow">
+            <header>Horaires<span data-bind="{innerText:context.displayName.text}"></span></header>
+            <main id="carrefour">
+                <ul is="ul-each"
+                    each="context.currentOpeningHours.periods#sort:[{path:'open.date.year'#parse, direction:'asc'},{path:'open.date.month'#parse, direction:'asc'},{path:'open.date.day'#parse, direction:'asc'}]">
+                    <template>
+                        <li>
+                            <span class="day"
+                                data-bind="{innerText: (item.open.date.year+'-'+item.open.date.month+'-'+item.open.date.day) #toDate:'yyyy-MM-dd' # date:{format:'ddddd', locale:'fr'} }"></span>
+                            <span class="open">
+                                <span class="hour" data-bind="{innerText: item.open.hour}"></span>:<span class="minute"
+                                    data-bind="{innerText: item.open.minute}"></span>
+                            </span>
+                            -
+                            <span class="close">
+                                <span class="hour" data-bind="{innerText: item.close.hour}"></span>:<span class="minute"
+                                    data-bind="{innerText: item.close.minute}"></span>
+                            </span>
+                        </li>
+                    </template>
+                </ul>
+            </main>
+        </div>
+        <div class="card" data-context="controller.lidl # async" klass
+            klass-success="context.currentOpeningHours.openNow" klass-warning="!context.currentOpeningHours.openNow">
+            <header>Horaires<span data-bind="{innerText:context.displayName.text}"></span></header>
+            <main id="carrefour">
+                <ul is="ul-each"
+                    each="context.currentOpeningHours.periods#sort:[{path:'open.date.year'#parse, direction:'asc'},{path:'open.date.month'#parse, direction:'asc'},{path:'open.date.day'#parse, direction:'asc'}]">
+                    <template>
+                        <li>
+                            <span class="day"
+                                data-bind="{innerText: (item.open.date.year+'-'+item.open.date.month+'-'+item.open.date.day) #toDate:'yyyy-MM-dd' # date:{format:'ddddd', locale:'fr'} }"></span>
+                            <span class="open">
+                                <span class="hour" data-bind="{innerText: item.open.hour}"></span>:<span class="minute"
+                                    data-bind="{innerText: item.open.minute}"></span>
+                            </span>
+                            -
+                            <span class="close">
+                                <span class="hour" data-bind="{innerText: item.close.hour}"></span>:<span class="minute"
+                                    data-bind="{innerText: item.close.minute}"></span>
+                            </span>
+                        </li>
+                    </template>
+                </ul>
+            </main>
+        </div>
+        <div class="vertical numpad">
+            <div class="horizontal col-12">
+                <div class="card col-4">7</div>
+                <div class="card col-4">8</div>
+                <div class="card col-4">9</div>
+            </div>
+            <div class="horizontal col-12">
+                <div class="card col-4">4</div>
+                <div class="card col-4">5</div>
+                <div class="card col-4">6</div>
+            </div>
+            <div class="horizontal col-12">
+                <div class="card col-4">1</div>
+                <div class="card col-4">2</div>
+                <div class="card col-4">3</div>
+            </div>
+        </div>
+    </div>
+    <div class="vertical col-6 card vertical" id="debug">
+
+    </div>
+</div>
