@@ -2,7 +2,8 @@
     "plugins": [
         "@akala/commands/akala",
         "@akala/config/akala",
-        "@akala/pm/akala"
+        "@akala/pm/akala",
+        "@akala/client/akala"
     ],
     "pm": {
         "containers": {
