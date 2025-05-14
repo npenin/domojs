@@ -1,9 +1,9 @@
-#  (2024-11-24)
+#  (2025-05-14)
 
 
 ### Bug Fixes
 
-* devicetype start up + upgrade to latest sidecar 17378d1
+* update after breaking changes in akala 28983f9
 
 
 
