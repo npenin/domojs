@@ -9,7 +9,7 @@
   "author": "npenin",
   "license": "MIT",
   "peerDependencies": {
-    "@akala/commands": "^11.0.8",
+    "@akala/commands": "^13.0.0",
     "@akala/pm": "^12.1.22"
   },
   "devDependencies": {
