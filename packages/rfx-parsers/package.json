@@ -5,8 +5,8 @@
         "@domojs/devices": "workspace:*"
     },
     "peerDependencies": {
-        "serialport": "^12.0.0",
-        "usb": "^2.14.0"
+        "serialport": "^13.0.0",
+        "usb": "^2.15.0"
     },
     "peerDependenciesMeta": {
         "serialport": {

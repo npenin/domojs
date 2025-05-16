@@ -19,13 +19,13 @@
     "license": "MIT",
     "dependencies": {
         "@akala/core": "^39.0.0",
-        "@akala/sidecar": "^8.0.66",
+        "@akala/sidecar": "^8.0.68",
         "@domojs/zigate-parsers": "workspace:*",
         "http-punch-hole": "^1.0.12"
     },
     "peerDependencies": {
         "@domojs/devices": "workspace:*",
-        "serialport": "^9.2.8"
+        "serialport": "^13.0.0"
     },
     "peerDependenciesMeta": {
         "serialport": {
@@ -33,9 +33,9 @@
         }
     },
     "devDependencies": {
-        "@akala/cli": "^5.5.32",
-        "@akala/commands": "^13.0.3",
-        "@akala/pubsub": "^3.0.138",
+        "@akala/cli": "^5.6.1",
+        "@akala/commands": "^13.0.5",
+        "@akala/pubsub": "^3.0.140",
         "@domojs/devices": "workspace:*",
         "@types/debug": "4.1.12"
     },
