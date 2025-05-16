@@ -40,7 +40,7 @@
         "prepublishOnly": "npm run build:js"
     },
     "types": "dist/client/public_api.d.ts",
-    "version": "3.0.42",
+    "version": "3.0.43",
     "commands": "./commands.json",
     "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }
