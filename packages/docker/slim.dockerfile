@@ -12,6 +12,7 @@ ENV NODE_ENV=production
 WORKDIR /usr/src/akala
 COPY .akala.json db/.akala.json
 COPY entrypoint.sh entrypoint.sh
+COPY --from=build /root /root
 COPY --from=build /usr/src/akala /usr/src/akala
 RUN rm .akala.json && ln -s db/.akala.json .akala.json
 ENV PATH=${PATH}:./node_modules/.bin
