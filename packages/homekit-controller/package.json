@@ -15,16 +15,16 @@
         "Domojs"
     ],
     "dependencies": {
-        "@akala/config": "^6.0.64",
-        "@akala/core": "^39.0.0",
-        "@akala/protocol-parser": "^9.0.18",
-        "@akala/sidecar": "^8.0.73",
+        "@akala/config": "^6.0.65",
+        "@akala/core": "^39.0.1",
+        "@akala/protocol-parser": "^9.0.19",
+        "@akala/sidecar": "^8.0.74",
         "@domojs/devices": "workspace:^",
         "fast-srp-hap": "^2.0.4",
         "hap-nodejs": "^1.1.1"
     },
     "devDependencies": {
-        "@akala/commands": "^14.0.4",
+        "@akala/commands": "^14.0.5",
         "@domojs/mdns": "workspace:^"
     }
 }

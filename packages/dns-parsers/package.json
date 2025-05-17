@@ -20,6 +20,6 @@
         "test": "echo \"Error: no test specified\""
     },
     "dependencies": {
-        "@akala/protocol-parser": "^9.0.18"
+        "@akala/protocol-parser": "^9.0.19"
     }
 }
