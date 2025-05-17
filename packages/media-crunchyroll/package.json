@@ -5,8 +5,8 @@
     "types": "dist/esm/index.d.ts",
     "type": "module",
     "dependencies": {
-        "@akala/commands": "^14.0.0",
-        "@akala/config": "^6.0.60",
+        "@akala/commands": "^14.0.2",
+        "@akala/config": "^6.0.62",
         "@domojs/media": "workspace:^",
         "crunchyroll.js": "^1.1.0"
     },
