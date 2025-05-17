@@ -8,7 +8,6 @@
     "dependencies": {
         "@akala/vite": "^2.2.42",
         "@akala/web-ui": "^4.6.13",
-        "electron": "^36.2.0",
         "vite": "^6.3.5"
     },
     "exports": {
@@ -18,7 +17,6 @@
         }
     },
     "scripts": {
-        "test": "echo \"Error: no test specified\"",
-        "start": "electron dist"
+        "test": "echo \"Error: no test specified\""
     }
 }
