@@ -11,10 +11,10 @@
     "author": "npenin",
     "license": "MIT",
     "peerDependencies": {
-        "@akala/pubsub": "^3.0.144"
+        "@akala/pubsub": "^3.0.145"
     },
     "dependencies": {
-        "@akala/commands": "^14.0.3",
+        "@akala/commands": "^14.0.4",
         "@akala/core": "^39.0.0",
         "@akala/protocol-parser": "^9.0.18"
     },

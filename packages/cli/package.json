@@ -9,12 +9,12 @@
   "author": "npenin",
   "license": "MIT",
   "peerDependencies": {
-    "@akala/commands": "^14.0.3",
-    "@akala/pm": "^14.5.6"
+    "@akala/commands": "^14.0.4",
+    "@akala/pm": "^14.5.7"
   },
   "devDependencies": {
-    "@akala/commands": "^14.0.3",
-    "@akala/pm": "^14.5.6",
+    "@akala/commands": "^14.0.4",
+    "@akala/pm": "^14.5.7",
     "@types/yargs": "17.0.33"
   },
   "gitHead": "5c8b6cb938eb920110c9a48ec210f2a65ee04176"
