@@ -5,21 +5,21 @@ __metadata:
   version: 8
   cacheKey: 10
 
-"@akala/automate-yamlloader@npm:^3.0.148":
-  version: 3.0.148
-  resolution: "@akala/automate-yamlloader@npm:3.0.148"
+"@akala/automate-yamlloader@npm:^3.0.149":
+  version: 3.0.149
+  resolution: "@akala/automate-yamlloader@npm:3.0.149"
   dependencies:
-    "@akala/automate": "npm:^6.7.52"
+    "@akala/automate": "npm:^6.7.53"
     "@akala/config": "npm:^6.0.65"
     "@akala/pm": "npm:^14.5.8"
     yaml: "npm:^2.8.0"
-  checksum: 10/757c27b864b49b16aa36d6024ec4341c1b40e39f4d77c7fe2c0af8e97b0969ff4c1779f63261d40351644f36da187459b56b809016e7fbb5f23267ee4c786b09
+  checksum: 10/56aa0c7ab3676ce7714deca5ab8fecd0e98e5089052a4dfd57e40aa78c1a716d981986ba04b4f01706c7ab519d7c57d901edefa2d68a850aa264416a3dd515bb
   languageName: node
   linkType: hard
 
-"@akala/automate@npm:^6.7.52":
-  version: 6.7.52
-  resolution: "@akala/automate@npm:6.7.52"
+"@akala/automate@npm:^6.7.53":
+  version: 6.7.53
+  resolution: "@akala/automate@npm:6.7.53"
   dependencies:
     "@akala/cli": "npm:^5.6.2"
     "@akala/commands": "npm:^14.0.5"
@@ -33,7 +33,7 @@ __metadata:
     orchestrator: "npm:^0.3.8"
   bin:
     akala-automate-runner: dist/esm/cli.js
-  checksum: 10/ccf62c5683636d8f26b99138f03594376c781e793aed90bb6288c04deee305cf8497a5d9d36ad1dd32e9e7ef5ccf4cebcb4ded0681a45dc99c931ff46c0d259d
+  checksum: 10/6397288c5ec7386ae8bf082e17d6c387794c85b18173978c1553f482f8ae2f61e45d6507aad48ee5bd868b5553d776822799aa1d8823fae32a6e4ecf131cf39d
   languageName: node
   linkType: hard
 
@@ -4346,8 +4346,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "domojs@workspace:."
   dependencies:
-    "@akala/automate": "npm:^6.7.52"
-    "@akala/automate-yamlloader": "npm:^3.0.148"
+    "@akala/automate": "npm:^6.7.53"
+    "@akala/automate-yamlloader": "npm:^3.0.149"
     "@akala/cli": "npm:^5.6.2"
     "@akala/commands": "npm:^14.0.5"
     "@akala/pm": "npm:^14.5.8"
