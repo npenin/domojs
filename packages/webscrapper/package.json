@@ -1,6 +1,6 @@
 {
     "name": "@domojs/webscrapper",
-    "version": "2.0.52",
+    "version": "2.0.53",
     "commands": "./commands.json",
     "type": "module",
     "repository": {
