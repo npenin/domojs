@@ -27,9 +27,9 @@
     "author": "npenin",
     "license": "MIT",
     "dependencies": {
-        "@akala/commands": "^14.0.5",
-        "@akala/config": "^6.0.65",
-        "@akala/core": "^39.0.1",
+        "@akala/commands": "^14.1.0",
+        "@akala/config": "^6.0.66",
+        "@akala/core": "^39.1.0",
         "@ffmpeg.wasm/core-st": "^0.13.2",
         "@ffmpeg.wasm/main": "^0.13.1",
         "levenshtein": "1.0.5",
@@ -37,14 +37,14 @@
         "webdav": "^5.8.0"
     },
     "peerDependencies": {
-        "@akala/pm": "^14.5.8"
+        "@akala/pm": "^14.6.0"
     },
     "devDependencies": {
-        "@akala/cli": "^5.6.2",
-        "@akala/json-rpc-ws": "^11.0.76",
-        "@akala/pm": "^14.5.8",
-        "@akala/server": "^26.0.37",
-        "@akala/storage": "^20.1.14",
+        "@akala/cli": "^5.7.0",
+        "@akala/json-rpc-ws": "^11.0.77",
+        "@akala/pm": "^14.6.0",
+        "@akala/server": "^26.0.38",
+        "@akala/storage": "^20.1.15",
         "@domojs/theme-default": "workspace:*",
         "@types/debug": "4.1.12",
         "@types/ioredis": "5.0.0",
