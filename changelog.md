@@ -139,6 +139,7 @@
 * use signal to allow proper termination b111ef0
 * use signal to allow proper termination daab3d0
 * use value from cli f1b9d1e
+* user and volumes 5c04a92
 * various processing improvements 1984092
 * web implementation f2b5bcb
 * wrong work dir 617ce09
