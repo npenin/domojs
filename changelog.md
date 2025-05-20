@@ -104,6 +104,7 @@
 * scrap stop crashing on not found elements 57355db
 * service discovery package name 4aec8df
 * set mode on rfx d043a17
+* slim docker file building a1dd3e8
 * slim dockerfile 6d167ec
 * specify proper params for save c949c4b
 * support for gateway closure a77d715
