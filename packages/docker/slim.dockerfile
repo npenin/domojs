@@ -7,7 +7,7 @@ RUN yarn add @akala/pm @domojs/devices
 
 FROM alpine
 RUN ["apk", "--no-cache", "--update", "add", "yarn", "coreutils", "eudev" ] 
-VOLUME ["db"]
+VOLUME ["/usr/src/akala/db"]
 ENV NODE_ENV=production
 WORKDIR /usr/src/akala
 COPY .akala.json db/.akala.json
