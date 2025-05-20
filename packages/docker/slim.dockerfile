@@ -14,8 +14,8 @@ COPY .akala.json db/.akala.json
 COPY entrypoint.sh entrypoint.sh
 COPY --from=build /root /root
 COPY --from=build /usr/src/akala /usr/src/akala
-RUN rm .akala.json && ln -s db/.akala.json .akala.json
+RUN ln -s db/.akala.json .akala.json
 ENV PATH=${PATH}:./node_modules/.bin
-ENTRYPOINT [ "node_modules/.bin/akala" ,"pm", "start", "pm", "--keepAttached", "--configFile", "./db/.akala.json"]
+# ENTRYPOINT [ "node_modules/.bin/akala" ,"pm", "start", "pm", "--keepAttached", "--configFile", "./db/.akala.json"]
 CMD ["local", "tcp", "--tcpPort=31416"]
 EXPOSE 31416
