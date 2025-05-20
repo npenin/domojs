@@ -13,8 +13,8 @@
     "@akala/pm": "^14.6.0"
   },
   "devDependencies": {
-    "@akala/commands": "^14.1.0",
-    "@akala/pm": "^14.6.0",
+    "@akala/commands": "^14.1.1",
+    "@akala/pm": "^14.6.1",
     "@types/yargs": "17.0.33"
   },
   "gitHead": "5c8b6cb938eb920110c9a48ec210f2a65ee04176"
