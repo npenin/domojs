@@ -12,15 +12,15 @@
         "@akala/server": "^26.0.37"
     },
     "devDependencies": {
-        "@akala/json-rpc-ws": "^11.0.77",
-        "@akala/pm": "^14.6.1",
-        "@akala/server": "^26.0.39",
+        "@akala/json-rpc-ws": "^11.0.78",
+        "@akala/pm": "^14.6.2",
+        "@akala/server": "^26.0.40",
         "@domojs/devices": "workspace:*"
     },
     "dependencies": {
-        "@akala/commands": "^14.1.1",
-        "@akala/config": "^6.0.67",
-        "@akala/core": "^39.1.0",
+        "@akala/commands": "^15.0.0",
+        "@akala/config": "^6.0.68",
+        "@akala/core": "^39.1.1",
         "css-select": "^5.1.0",
         "domhandler": "^5.0.3",
         "htmlparser2": "^10.0.0"
