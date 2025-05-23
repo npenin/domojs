@@ -38,11 +38,7 @@
         "mapping": {
             "pm": {
                 "path": "/usr/src/akala/node_modules/@akala/pm/commands.json",
-                "commandable": false,
-                "connect": {
-                    "jsonrpc+unix:///usr/src/akala/pm.sock": {},
-                    "jsonrpc+tcp://0.0.0.0:31416": {}
-                }
+                "commandable": false
             },
             "@domojs/devices": {
                 "path": "/usr/src/akala/node_modules/@domojs/devices/device-commands.json",
