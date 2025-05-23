@@ -13,7 +13,7 @@
     },
     "type": "module",
     "peerDependencies": {
-        "@akala/pm": "^14.6.2",
+        "@akala/pm": "^14.6.3",
         "serialport": "^13.0.0",
         "usb": "^2.15.0"
     },
@@ -29,7 +29,7 @@
     "deprecated": false,
     "description": "",
     "devDependencies": {
-        "@akala/pm": "^14.6.2",
+        "@akala/pm": "^14.6.3",
         "@domojs/devices": "workspace:*",
         "@types/debug": "^4.1.12",
         "@types/usb": "^2.0.5",

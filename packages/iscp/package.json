@@ -11,12 +11,12 @@
     },
     "peerDependencies": {
         "@akala/commands": "^15.0.0",
-        "@akala/pm": "^14.6.2"
+        "@akala/pm": "^14.6.3"
     },
     "devDependencies": {
         "@akala/commands": "^15.0.0",
         "@akala/core": "^39.1.1",
-        "@akala/server": "^26.0.40",
+        "@akala/server": "^26.0.41",
         "@types/ws": "8.18.1"
     },
     "deprecated": false,
