@@ -110,6 +110,7 @@
 * slim building 79e69e3
 * slim docker file building a1dd3e8
 * slim dockerfile 6d167ec
+* slim entry point 2cb59b9
 * specify proper params for save c949c4b
 * support for gateway closure a77d715
 * support for tcp gateway 1afe68a
