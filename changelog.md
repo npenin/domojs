@@ -1,4 +1,4 @@
-#  (2025-05-21)
+#  (2025-05-23)
 
 
 ### Bug Fixes
@@ -91,6 +91,7 @@
 * recover from closed socket 0b733dd
 * remove @akala/client for now 570f6fd
 * remove @akala/client for now fae299f
+* remove connect settings in docker e057800
 * remove electron startup file cdcbfce
 * remove extra logging 629ad7e
 * remove failing pubsub 1f0ec9e
