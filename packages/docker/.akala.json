@@ -12,27 +12,33 @@
                     "commandable": true,
                     "stateless": false,
                     "path": "npm:///@akala/pm/commands.json",
-                    "cwd": "/usr/src/akala"
+                    "cwd": "/usr/src/akala",
+                    "type": "nodejs"
                 },
                 "@domojs/rfx": {
                     "path": "npm:///@domojs/rfx/commands.json",
-                    "commandable": true
+                    "commandable": true,
+                    "type": "nodejs"
                 },
                 "@domojs/devices": {
                     "path": "npm:///@domojs/devices/device-commands.json",
-                    "commandable": true
+                    "commandable": true,
+                    "type": "nodejs"
                 },
                 "@domojs/devicetype": {
                     "path": "npm:///@domojs/devices/devicetype-commands.json",
-                    "commandable": true
+                    "commandable": true,
+                    "type": "nodejs"
                 },
                 "weather": {
                     "path": "npm:///@domojs/weather/commands.json",
-                    "commandable": true
+                    "commandable": true,
+                    "type": "nodejs"
                 },
                 "zigate": {
                     "path": "npm:///@domojs/zigate/commands.json",
-                    "commandable": true
+                    "commandable": true,
+                    "type": "nodejs"
                 }
             }
         },
