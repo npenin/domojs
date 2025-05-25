@@ -41,6 +41,7 @@
 * build after upgrade 3064e60
 * busybox -S workaround dbf5433
 * config file after upgrade 9b6bdfc
+* configs 500a265
 * default configuration b8963eb
 * dependencies 8e1577c
 * device init saving 5980d33
