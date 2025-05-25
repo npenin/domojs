@@ -12,6 +12,7 @@ RUN apk --no-cache --update add yarn coreutils eudev && \
 VOLUME ["/usr/src/akala/db"]
 ENV NODE_ENV=production
 WORKDIR /usr/src/akala
+RUN chown -R node .
 USER node
 COPY .akala.json db/.akala.json
 COPY entrypoint.sh entrypoint.sh
