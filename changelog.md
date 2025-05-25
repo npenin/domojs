@@ -87,6 +87,7 @@
 * packages/theme-default/package.json & packages/theme-default/yarn.lock to reduce vulnerabilities 868f5f3
 * patch cheerio to compile as ESM b62f558
 * PATH env 2d0af89
+* permissions a99884c
 * permissions on install 4ff3fb2
 * permissions on install 5deccb7
 * publish workflow after semantic-release upgrade 3d373e1
