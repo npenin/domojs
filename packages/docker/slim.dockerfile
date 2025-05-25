@@ -6,10 +6,13 @@ RUN yarn add serialport usb
 RUN yarn add @akala/pm @domojs/devices
 
 FROM alpine
-RUN ["apk", "--no-cache", "--update", "add", "yarn", "coreutils", "eudev" ] 
+RUN apk --no-cache --update add yarn coreutils eudev && \
+    addgroup -g 1000 node && \
+    adduser -u 1000 -G node -s /bin/sh -D node
 VOLUME ["/usr/src/akala/db"]
 ENV NODE_ENV=production
 WORKDIR /usr/src/akala
+USER node
 COPY .akala.json db/.akala.json
 COPY entrypoint.sh entrypoint.sh
 COPY --from=build /root /root
