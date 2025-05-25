@@ -3,6 +3,7 @@
         "@akala/commands/akala",
         "@akala/config/akala",
         "@akala/pm/akala",
+        "@akala/server/akala",
         "@akala/client/akala"
     ],
     "pm": {
@@ -10,35 +11,40 @@
             "pm": {
                 "commandable": true,
                 "stateless": false,
-                "path": "/home/nicolas/dev/domojs/node_modules/@akala/pm/commands.json"
+                "path": "npm:///@akala/pm/commands.json",
+                "type": "nodejs"
             },
             "@domojs/rfx": {
-                "path": "/home/nicolas/dev/domojs/packages/rfx/commands.json",
-                "commandable": true
+                "path": "npm:///@domojs/rfx/commands.json",
+                "commandable": true,
+                "type": "nodejs"
             },
             "@domojs/devices": {
-                "path": "/home/nicolas/dev/domojs/packages/devices/device-commands.json",
-                "commandable": true
+                "path": "npm:///@domojs/devices/device-commands.json",
+                "commandable": true,
+                "type": "nodejs"
             },
             "@domojs/devicetype": {
-                "path": "/home/nicolas/dev/domojs/packages/devices/devicetype-commands.json",
-                "commandable": true
+                "path": "npm:///@domojs/devices/devicetype-commands.json",
+                "commandable": true,
+                "type": "nodejs"
             },
             "weather": {
-                "path": "/home/nicolas/dev/domojs/packages/weather/commands.json",
-                "commandable": true
+                "path": "npm:///@domojs/weather/commands.json",
+                "commandable": true,
+                "type": "nodejs"
             },
             "zigate": {
-                "path": "/home/nicolas/dev/domojs/packages/zigate/commands.json",
-                "commandable": true
+                "path": "npm:///@domojs/zigate/commands.json",
+                "commandable": true,
+                "type": "nodejs"
             }
         },
         "mapping": {
             "pm": {
-                "cwd": "/home/nicolas/dev/domojs",
                 "container": "pm",
                 "connect": {
-                    "jsonrpc+unix:///home/nicolas/dev/domojs/pm.sock": {}
+                    "jsonrpc+unix:///Users/nicolas/dev/domojs/pm.sock": {}
                 }
             },
             "@domojs/devicetype": {
