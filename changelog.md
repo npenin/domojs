@@ -1,4 +1,4 @@
-#  (2025-05-25)
+#  (2025-05-26)
 
 
 ### Bug Fixes
@@ -11,6 +11,7 @@
 * add entrypoint to trigger initial setup 5838e82
 * add generics on gateway 665e107
 * add homekit projects to compilation ce50c3d
+* add missing DB config 94437db
 * add missing dependency 60e2e49
 * add missing library 28717e2
 * add missing plugin a0be2f9
