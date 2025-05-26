@@ -123,6 +123,7 @@
 * specify proper params for save c949c4b
 * support for gateway closure a77d715
 * support for tcp gateway 1afe68a
+* switch from yarn to npm a85dbd1
 * switch to esm dcb74cf
 * switch to generic gateway 7d2516b
 * switch to generic gateway fab4c73
