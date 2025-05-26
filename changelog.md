@@ -62,6 +62,7 @@
 * entry point startup d5a0a61
 * entrypoint 51411b4
 * entrypoint db3d912
+* file copy ordering 2ece2ca
 * fix wrong unit in keepalive 58ddd94
 * fix zigate start 349c0bd
 * gateway resolution 5877dde
