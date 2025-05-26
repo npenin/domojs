@@ -1,6 +1,6 @@
 {
     "name": "@domojs/dbus",
-    "version": "34.0.0",
+    "version": "35.0.0",
     "main": "dist/index.js",
     "private": true,
     "types": "dist/index.d.ts",
