@@ -4,4 +4,4 @@
 chown -R node:node .
 
 # Run the application as node
-exec su-exec node "$@"
+exec su node -s /bin/sh -c "$*"
