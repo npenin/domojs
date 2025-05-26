@@ -1,5 +1,7 @@
-akala pm start pm --keepAttached &
-akala pm discover @domojs/devices node_modules
-akala pm start @domojs/devicetype
-akala pm install @domojs/rfx
-fg
+#!/bin/sh
+
+# Set correct ownership (if not already)
+chown -R node:node .
+
+# Run the application as node
+exec su-exec node "$@"

@@ -12,14 +12,12 @@ RUN apk --no-cache --update add yarn coreutils eudev && \
 VOLUME ["/usr/src/akala/db"]
 ENV NODE_ENV=production
 WORKDIR /usr/src/akala
-USER node
 COPY entrypoint.sh entrypoint.sh
 COPY --from=build /root /root
 COPY --from=build /usr/src/akala /usr/src/akala
 COPY .akala.json db/.akala.json
 RUN ln -s db/.akala.json .akala.json
-RUN chown -R node .
 ENV PATH=${PATH}:./node_modules/.bin
-ENTRYPOINT [ "node_modules/.bin/akala" ,"pm", "start", "pm", "--keepAttached", "--configFile", "./db/.akala.json"]
+ENTRYPOINT [ "/usr/src/akala/entrypoint.sh", "node_modules/.bin/akala" ,"pm", "start", "pm", "--keepAttached", "--configFile", "./db/.akala.json"]
 CMD ["local", "tcp", "--tcpPort=31416"]
 EXPOSE 31416
