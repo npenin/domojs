@@ -7,7 +7,7 @@ RUN yarn add serialport usb
 RUN yarn add @akala/pm @domojs/devices
 
 FROM alpine
-RUN apk --no-cache --update add npm coreutils eudev && \
+RUN apk --no-cache --update add npm coreutils eudev-libs && \
     addgroup -g 1000 node && \
     adduser -u 1000 -G node -G dialout -s /bin/sh -D node
 VOLUME ["/usr/src/akala/db"]
