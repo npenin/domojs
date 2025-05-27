@@ -9,7 +9,7 @@ RUN yarn add @akala/pm @domojs/devices
 FROM alpine
 RUN apk --no-cache --update add npm coreutils eudev && \
     addgroup -g 1000 node && \
-    adduser -u 1000 -G node -s /bin/sh -D node
+    adduser -u 1000 -G node,dialout -s /bin/sh -D node
 VOLUME ["/usr/src/akala/db"]
 ENV NODE_ENV=production
 WORKDIR /usr/src/akala
