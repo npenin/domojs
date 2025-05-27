@@ -8,6 +8,7 @@
 * add coreutils e49b07b
 * add db volume b4243ef
 * add device type 53de407
+* add dialout group to node 1063529
 * add dialout group to node 29fe3a2
 * add entrypoint to trigger initial setup 5838e82
 * add generics on gateway 665e107
