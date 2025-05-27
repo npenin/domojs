@@ -16,6 +16,7 @@
 * add missing DB config 94437db
 * add missing dependency 60e2e49
 * add missing library 28717e2
+* add missing libs 8c9d344
 * add missing plugin a0be2f9
 * add more commands on gateway 81ac0b8
 * add required eudev package 76f5a13
