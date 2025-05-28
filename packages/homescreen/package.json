@@ -6,8 +6,8 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "dependencies": {
-        "@akala/vite": "^2.2.47",
-        "@akala/web-ui": "^4.6.18",
+        "@akala/vite": "^2.2.48",
+        "@akala/web-ui": "^4.6.19",
         "vite": "^6.3.5"
     },
     "exports": {
