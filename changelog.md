@@ -1,4 +1,4 @@
-#  (2025-05-28)
+#  (2025-05-29)
 
 
 ### Bug Fixes
@@ -50,6 +50,7 @@
 * default configuration b8963eb
 * dependencies 8e1577c
 * device init saving 5980d33
+* devicetype init dd87a23
 * devicetype start up + upgrade to latest sidecar 17378d1
 * devicetype startup 401db92
 * docker path 21d31e1
@@ -112,6 +113,7 @@
 * remove files from volumes 29f400f
 * remove resolutions 648105b
 * remove temporary resolutions 175c6c8
+* remove useless config c2bf264
 * remove wwwroot from git tracking 4a77d5f
 * reopen on close 97206ad
 * rfx parsing 09bbea5
