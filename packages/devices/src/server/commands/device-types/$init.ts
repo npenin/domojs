@@ -28,6 +28,8 @@ export default async function (this: devices.DeviceTypeState, context: CliContex
         context.state = Configuration.new('./devicetype-app.json', {});
     else
     {
+        if (!context.state.has('pubsub'))
+            context.state.set('pubsub', { transport: "" })
         if (!context.state.has('store'))
         {
             context.state.set('store', {

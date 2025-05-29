@@ -227,9 +227,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@akala/sidecar@npm:^8.0.83":
-  version: 8.0.83
-  resolution: "@akala/sidecar@npm:8.0.83"
+"@akala/sidecar@npm:^8.0.84":
+  version: 8.0.84
+  resolution: "@akala/sidecar@npm:8.0.84"
   dependencies:
     "@akala/cli": "npm:^5.9.0"
     "@akala/commands": "npm:^15.1.1"
@@ -237,7 +237,7 @@ __metadata:
     "@akala/core": "npm:^39.2.0"
     "@akala/pm": "npm:^15.2.1"
     "@akala/storage": "npm:^20.1.17"
-  checksum: 10/0e976a038787b0199f9652bfb67a8a7169cc3016fdaec4c55de553e6c02b40620837e3046da09a13ff92dcd89b2fbba7a6e351571a31de519ac53dd82cc4238a
+  checksum: 10/b61355370134588c30074150bc25d9f859f26e8dd336d79e1381d0b3376767503a503bf6f7aac8fb21d93f278ee5bab741f4c7454825af7e9edc01117a907352
   languageName: node
   linkType: hard
 
@@ -402,7 +402,7 @@ __metadata:
     "@akala/pm": "npm:^15.2.1"
     "@akala/pubsub": "npm:^3.0.155"
     "@akala/server": "npm:^27.0.4"
-    "@akala/sidecar": "npm:^8.0.83"
+    "@akala/sidecar": "npm:^8.0.84"
     "@akala/storage": "npm:^20.1.17"
     "@domojs/theme-default": "workspace:*"
     "@fortawesome/free-brands-svg-icons": "npm:6.7.2"
@@ -430,7 +430,7 @@ __metadata:
     "@akala/config": "npm:^6.0.70"
     "@akala/core": "npm:^39.2.0"
     "@akala/protocol-parser": "npm:^9.0.22"
-    "@akala/sidecar": "npm:^8.0.83"
+    "@akala/sidecar": "npm:^8.0.84"
     "@domojs/devices": "workspace:^"
     "@domojs/mdns": "workspace:^"
     fast-srp-hap: "npm:^2.0.4"
@@ -509,7 +509,7 @@ __metadata:
     "@akala/commands": "npm:^15.1.1"
     "@akala/config": "npm:^6.0.70"
     "@akala/core": "npm:^39.2.0"
-    "@akala/sidecar": "npm:^8.0.83"
+    "@akala/sidecar": "npm:^8.0.84"
     "@types/multicast-dns": "npm:^7.2.4"
     multicast-dns: "npm:^7.2.5"
   bin:
@@ -774,7 +774,7 @@ __metadata:
     "@akala/commands": "npm:^15.1.1"
     "@akala/core": "npm:^39.2.0"
     "@akala/pubsub": "npm:^3.0.155"
-    "@akala/sidecar": "npm:^8.0.83"
+    "@akala/sidecar": "npm:^8.0.84"
     "@domojs/devices": "workspace:*"
     "@domojs/zigate-parsers": "workspace:*"
     "@types/debug": "npm:4.1.12"

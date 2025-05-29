@@ -58,6 +58,9 @@
     },
     "commands": {},
     "@domojs/devicetype": {
+        "pubsub": {
+            "transport": ""
+        },
         "store": {
             "provider": "file",
             "providerOptions": {
