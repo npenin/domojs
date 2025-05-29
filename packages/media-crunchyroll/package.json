@@ -6,7 +6,7 @@
     "type": "module",
     "dependencies": {
         "@akala/commands": "^15.1.1",
-        "@akala/config": "^6.0.70",
+        "@akala/config": "^6.0.71",
         "@domojs/media": "workspace:^",
         "crunchyroll.js": "^1.1.0"
     },
