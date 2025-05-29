@@ -29,19 +29,10 @@ export default async function (this: devices.DeviceTypeState, context: CliContex
     else
     {
         let dirty = false;
-        if (!context.state.has('pubsub'))
-        {
-            dirty = true;
-            context.state.set('pubsub', { transport: "" })
-        }
         if (!context.state.has('store'))
         {
             dirty = true;
             context.state.set('store', {
-                "provider": "file",
-                "providerOptions": {
-                    "rootDbName": "./db/devices"
-                },
                 "models": {
                     "DeviceInit": {
                         "members": {
