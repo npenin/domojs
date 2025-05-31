@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* remove debugger and fix store provider d495c98
+* update to errorwithstatus cfa1344
 
 
 
