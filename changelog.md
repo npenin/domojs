@@ -1,4 +1,4 @@
-#  (2025-05-29)
+#  (2025-05-31)
 
 
 ### Bug Fixes
@@ -106,6 +106,7 @@
 * remove @akala/client for now 570f6fd
 * remove @akala/client for now fae299f
 * remove connect settings in docker e057800
+* remove debugger and fix store provider d495c98
 * remove electron startup file cdcbfce
 * remove extra logging 629ad7e
 * remove failing pubsub 1f0ec9e
