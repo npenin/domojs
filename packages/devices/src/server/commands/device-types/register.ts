@@ -1,6 +1,6 @@
 import * as devices from "../../../devices.js";
 import { CommandWithProcessorAffinity, Container, ICommandProcessor, Processors, SelfDefinedCommand, updateCommands } from "@akala/commands";
-import { logger } from "@akala/core";
+import { ErrorWithStatus, HttpStatusCode, logger } from "@akala/core";
 import { sidecar } from "@akala/pm";
 import { BinaryOperator } from "@akala/core/expressions";
 
@@ -9,9 +9,9 @@ const log = logger('domojs:devices');
 export default async function register(this: devices.DeviceTypeState, type: devices.DeviceType, self: Container<any>, container: Container<void>, processor: Processors.JsonRpc)
 {
     if (typeof this[type.name] != 'undefined')
-        throw new Error(`a device type with name ${type.name} already exists`);
+        throw new ErrorWithStatus(HttpStatusCode.Conflict, `a device type with name ${type.name} already exists`);
     if (typeof container === 'undefined')
-        throw new Error(`no container to be registered`);
+        throw new ErrorWithStatus(HttpStatusCode.NotFound, `no container to be registered`);
     this.types[type.name] = type;
 
     container.name = type.name;
