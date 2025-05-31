@@ -4,7 +4,6 @@ import { sidecar, Container as pmContainer } from '@akala/pm';
 import app, { SidecarConfiguration } from "@akala/sidecar";
 import { DbSet } from "@akala/storage";
 import { CliContext, OptionType } from "@akala/cli";
-import { fileURLToPath } from 'url'
 import Configuration, { ProxyConfiguration } from "@akala/config";
 
 
