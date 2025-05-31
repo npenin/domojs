@@ -147,6 +147,7 @@
 * update generated metadata 675a3a7
 * update home screen tailored impl 9898cb4
 * update lock file 17fbd2a
+* update to errorwithstatus cfa1344
 * update to event emitter from akala 2bdfe95
 * update to latest serial port types 77515fc
 * update to proper logging 7de83c6
