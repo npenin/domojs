@@ -10,7 +10,6 @@ import Configuration, { ProxyConfiguration } from "@akala/config";
 
 export default async function (this: devices.DeviceTypeState, context: CliContext<Record<string, OptionType>, ProxyConfiguration<SidecarConfiguration>>, container: Container<unknown>, pm: pmContainer & Container<any>)
 {
-    debugger;
     try
     {
         var webc = await sidecar({ pm, container })['@akala/server'];
@@ -33,6 +32,7 @@ export default async function (this: devices.DeviceTypeState, context: CliContex
         {
             dirty = true;
             context.state.set('store', {
+                "provider": "file+json://./",
                 "models": {
                     "DeviceInit": {
                         "members": {
