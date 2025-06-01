@@ -89,6 +89,7 @@
 * migrate to akala 19 and commands 9 c04f43e
 * move akala config in db 8645030
 * move config in existing config file from context a9b205a
+* node permissions 263b2fc
 * nodejs install 3ef884f
 * npm registry 0d68737
 * package metadata 5578d05
