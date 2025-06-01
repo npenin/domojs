@@ -101,6 +101,7 @@
 * permissions a99884c
 * permissions on install 4ff3fb2
 * permissions on install 5deccb7
+* proper gateway closure e7eb9cd
 * publish workflow after semantic-release upgrade 3d373e1
 * recover from closed socket 0b733dd
 * remove @akala/client for now 570f6fd
