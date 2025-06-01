@@ -25,7 +25,11 @@ export default async function init(this: State, container: Container<void>, sign
             {
                 target[path] = gateway;
                 gateway.start();
-                signal?.addEventListener('abort', () => delete this.gateways[path]);
+                signal?.addEventListener('abort', async () =>
+                {
+                    await this.gateways[path].close();
+                    delete this.gateways[path]
+                });
             }
             return true;
         },
@@ -93,6 +97,7 @@ export default async function init(this: State, container: Container<void>, sign
             logger.info('idenfified a RFXCOM potential serial device');
             if (!state.gateways['usb://' + device])
                 state.gateways['usb://' + device] = await Rfxtrx.getSerial(device);
+
             // setGateway(await Rfxtrx.getSerial(device))
             try
             {
@@ -107,6 +112,7 @@ export default async function init(this: State, container: Container<void>, sign
             {
                 console.error('detaching is not supported on this platform');
             }
+
             return device;
 
         }
