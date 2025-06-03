@@ -1,4 +1,4 @@
-#  (2025-06-02)
+#  (2025-06-03)
 
 
 ### Bug Fixes
@@ -157,6 +157,7 @@
 * update vite config c771226
 * upgrade @akala/core from 6.0.0 to 6.0.1 4336f5a
 * upgrade dependency 04c1122
+* usb permissions 0c1ef0c
 * use signal to allow proper termination 7020b6c
 * use signal to allow proper termination 48f4a4f
 * use signal to allow proper termination 0a42077
