@@ -1,4 +1,4 @@
-#  (2025-06-03)
+#  (2025-06-07)
 
 
 ### Bug Fixes
@@ -20,6 +20,7 @@
 * add missing plugin a0be2f9
 * add more commands on gateway 81ac0b8
 * add required eudev package 76f5a13
+* add start tls command support efeba58
 * add version field 884db03
 * akala startup 54aad40
 * allow device containers to run commands a9e7831
@@ -44,6 +45,7 @@
 * build after upgrade bf028cc
 * build after upgrade 3064e60
 * busybox -S workaround dbf5433
+* cast processor 07a479e
 * config file after upgrade 9b6bdfc
 * configs 845de88
 * configs 500a265
@@ -81,6 +83,7 @@
 * improve mqtt implementation (not ready yet) a26db7d
 * improvements to protocol parser 1398b5f
 * iscp parsing 7eda917
+* ISCP processor 89e99b3
 * lock file 5ac40a4
 * made devdependencies using workspace reference 3737032
 * make dbus private cc7ded1
@@ -89,6 +92,7 @@
 * migrate to akala 19 and commands 9 c04f43e
 * move akala config in db 8645030
 * move config in existing config file from context a9b205a
+* move from require to import.meta f2e52f4
 * node permissions 263b2fc
 * nodejs install 3ef884f
 * npm registry 0d68737
@@ -149,6 +153,7 @@
 * update generated metadata 675a3a7
 * update home screen tailored impl 9898cb4
 * update lock file 17fbd2a
+* update parameter references from "param" to "params" in command JSON files 7634f8f
 * update to errorwithstatus cfa1344
 * update to event emitter from akala 2bdfe95
 * update to latest serial port types 77515fc
