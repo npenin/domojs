@@ -32,22 +32,22 @@
         {
             "name": "exec",
             "inject": [
-                "param.0",
-                "param.1"
+                "params.0",
+                "params.1"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/exec.js",
                     "source": "src/commands/exec.ts",
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -55,15 +55,15 @@
         {
             "name": "save",
             "inject": [
-                "param.0",
-                "param.1",
+                "params.0",
+                "params.1",
                 "connectionAsContainer"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1",
+                        "params.0",
+                        "params.1",
                         "connectionAsContainer"
                     ]
                 },
@@ -71,15 +71,15 @@
                     "path": "dist/commands/save.js",
                     "source": "src/commands/save.ts",
                     "inject": [
-                        "param.0",
-                        "param.1",
+                        "params.0",
+                        "params.1",
                         "connectionAsContainer"
                     ]
                 },
                 "jsonrpc": {
                     "inject": [
-                        "param.0",
-                        "param.1",
+                        "params.0",
+                        "params.1",
                         "connectionAsContainer"
                     ]
                 }
@@ -89,15 +89,15 @@
             "name": "temperature",
             "inject": [
                 "$http",
-                "param.0",
-                "param.1"
+                "params.0",
+                "params.1"
             ],
             "config": {
                 "": {
                     "inject": [
                         "$http",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "fs": {
@@ -105,15 +105,15 @@
                     "source": "src/commands/temperature.ts",
                     "inject": [
                         "$http",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "jsonrpc": {
                     "inject": [
                         "$http",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "http": {
@@ -138,15 +138,15 @@
             "name": "today",
             "inject": [
                 "$http",
-                "param.0",
-                "param.1"
+                "params.0",
+                "params.1"
             ],
             "config": {
                 "": {
                     "inject": [
                         "$http",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "fs": {
@@ -154,15 +154,15 @@
                     "source": "src/commands/today.ts",
                     "inject": [
                         "$http",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "jsonrpc": {
                     "inject": [
                         "$http",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "http": {

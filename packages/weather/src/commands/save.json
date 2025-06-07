@@ -1,15 +1,15 @@
 {
     "jsonrpc": {
         "inject": [
-            "param.0",
-            "param.1",
+            "params.0",
+            "params.1",
             "connectionAsContainer"
         ]
     },
     "fs": {
         "inject": [
-            "param.0",
-            "param.1",
+            "params.0",
+            "params.1",
             "connectionAsContainer"
         ]
     }

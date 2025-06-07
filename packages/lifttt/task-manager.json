@@ -38,15 +38,15 @@
         {
             "name": "new-channel",
             "inject": [
-                "param.0",
-                "param.1",
+                "params.0",
+                "params.1",
                 "$container"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1",
+                        "params.0",
+                        "params.1",
                         "$container"
                     ]
                 },
@@ -54,14 +54,14 @@
                     "path": "dist/commands/task-manager/new-channel.js",
                     "source": "src/commands/task-manager/new-channel.ts",
                     "inject": [
-                        "param.0",
-                        "param.1",
+                        "params.0",
+                        "params.1",
                         "ignore"
                     ]
                 },
                 "jsonrpc": {
                     "inject": [
-                        "param.0",
+                        "params.0",
                         "connectionAsContainer",
                         "$container"
                     ]
@@ -72,13 +72,13 @@
             "name": "new",
             "inject": [
                 "$container",
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
                         "$container",
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "fs": {
@@ -86,7 +86,7 @@
                     "source": "src/commands/task-manager/new.ts",
                     "inject": [
                         "ignore",
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -94,19 +94,19 @@
         {
             "name": "pause-trigger",
             "inject": [
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/task-manager/pause-trigger.js",
                     "source": "src/commands/task-manager/pause-trigger.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -114,19 +114,19 @@
         {
             "name": "prevent-next-trigger",
             "inject": [
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/task-manager/prevent-next-trigger.js",
                     "source": "src/commands/task-manager/prevent-next-trigger.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -134,19 +134,19 @@
         {
             "name": "resume-trigger",
             "inject": [
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/task-manager/resume-trigger.js",
                     "source": "src/commands/task-manager/resume-trigger.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }

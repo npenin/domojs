@@ -8,9 +8,9 @@
                     "path": "dist/commands/$init.js",
                     "source": "src/commands/$init.ts",
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ]
                 },
                 "cli": {
@@ -22,9 +22,9 @@
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ]
                 }
             }
@@ -36,16 +36,16 @@
                     "path": "dist/commands/exec.js",
                     "source": "src/commands/exec.ts",
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ]
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ]
                 },
                 "cli": {
@@ -53,7 +53,7 @@
                     "inject": [
                         "options.device",
                         "options.command",
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -65,12 +65,12 @@
                     "path": "dist/commands/getStatus.js",
                     "source": "src/commands/getStatus.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -93,8 +93,8 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0",
-                        "param.1",
+                        "params.0",
+                        "params.1",
                         "connectionAsContainer"
                     ],
                     "path": "dist/commands/save.js",
@@ -102,8 +102,8 @@
                 },
                 "jsonrpc": {
                     "inject": [
-                        "param.0",
-                        "param.1",
+                        "params.0",
+                        "params.1",
                         "connectionAsContainer"
                     ]
                 },

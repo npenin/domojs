@@ -18,19 +18,19 @@
         {
             "name": "addCorpus",
             "inject": [
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/addCorpus.js",
                     "source": "src/commands/addCorpus.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -38,22 +38,22 @@
         {
             "name": "addEntities",
             "inject": [
-                "param.0",
-                "param.1"
+                "params.0",
+                "params.1"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/addEntities.js",
                     "source": "src/commands/addEntities.ts",
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -61,28 +61,28 @@
         {
             "name": "addEntityAfter",
             "inject": [
-                "param.0",
-                "param.1",
-                "param.2",
-                "param.3"
+                "params.0",
+                "params.1",
+                "params.2",
+                "params.3"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/addEntityAfter.js",
                     "source": "src/commands/addEntityAfter.ts",
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
                     ]
                 }
             }
@@ -90,28 +90,28 @@
         {
             "name": "addEntityAfterFirst",
             "inject": [
-                "param.0",
-                "param.1",
-                "param.2",
-                "param.3"
+                "params.0",
+                "params.1",
+                "params.2",
+                "params.3"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/addEntityAfterFirst.js",
                     "source": "src/commands/addEntityAfterFirst.ts",
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
                     ]
                 }
             }
@@ -119,28 +119,28 @@
         {
             "name": "addEntityAfterLast",
             "inject": [
-                "param.0",
-                "param.1",
-                "param.2",
-                "param.3"
+                "params.0",
+                "params.1",
+                "params.2",
+                "params.3"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/addEntityAfterLast.js",
                     "source": "src/commands/addEntityAfterLast.ts",
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
                     ]
                 }
             }
@@ -148,28 +148,28 @@
         {
             "name": "addEntityBefore",
             "inject": [
-                "param.0",
-                "param.1",
-                "param.2",
-                "param.3"
+                "params.0",
+                "params.1",
+                "params.2",
+                "params.3"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/addEntityBefore.js",
                     "source": "src/commands/addEntityBefore.ts",
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
                     ]
                 }
             }
@@ -177,28 +177,28 @@
         {
             "name": "addEntityBeforeFirst",
             "inject": [
-                "param.0",
-                "param.1",
-                "param.2",
-                "param.3"
+                "params.0",
+                "params.1",
+                "params.2",
+                "params.3"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/addEntityBeforeFirst.js",
                     "source": "src/commands/addEntityBeforeFirst.ts",
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
                     ]
                 }
             }
@@ -206,28 +206,28 @@
         {
             "name": "addEntityBeforeLast",
             "inject": [
-                "param.0",
-                "param.1",
-                "param.2",
-                "param.3"
+                "params.0",
+                "params.1",
+                "params.2",
+                "params.3"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/addEntityBeforeLast.js",
                     "source": "src/commands/addEntityBeforeLast.ts",
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
                     ]
                 }
             }
@@ -235,28 +235,28 @@
         {
             "name": "addEntityBetween",
             "inject": [
-                "param.0",
-                "param.1",
-                "param.2",
-                "param.3"
+                "params.0",
+                "params.1",
+                "params.2",
+                "params.3"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/addEntityBetween.js",
                     "source": "src/commands/addEntityBetween.ts",
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
                     ]
                 }
             }

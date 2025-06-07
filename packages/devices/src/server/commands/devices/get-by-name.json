@@ -2,19 +2,19 @@
     "jsonrpc": {
         "inject": [
             "livedb",
-            "param.0"
+            "params.0"
         ]
     },
     "fs": {
         "inject": [
             "livedb",
-            "param.0"
+            "params.0"
         ]
     },
     "": {
         "inject": [
             "livedb",
-            "param.0"
+            "params.0"
         ]
     },
     "http": {

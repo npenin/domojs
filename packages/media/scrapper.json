@@ -25,14 +25,14 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ],
                     "path": "dist/server/commands/scrapper/cleanFileName.js",
                     "source": "src/server/commands/scrapper/cleanFileName.ts"
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -44,12 +44,12 @@
                     "path": "dist/server/commands/scrapper/iTunes-like.js",
                     "source": "src/server/commands/scrapper/iTunes-like.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -61,12 +61,12 @@
                     "path": "dist/server/commands/scrapper/mpeg-tag.js",
                     "source": "src/server/commands/scrapper/mpeg-tag.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -78,12 +78,12 @@
                     "path": "dist/server/commands/scrapper/musicbrainz.js",
                     "source": "src/server/commands/scrapper/musicbrainz.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -93,14 +93,14 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ],
                     "path": "dist/server/commands/scrapper/scrapTVShowFileName.js",
                     "source": "src/server/commands/scrapper/scrapTVShowFileName.ts"
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }

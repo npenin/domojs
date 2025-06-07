@@ -6,8 +6,8 @@
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\"",
-        "generate": "ac generate dist/commands commands.json --name @domojs/homekit-controller",
-        "generate-metadata": "ac generate-metadata commands.json src/container.ts"
+        "generate": "akala sdk generate dist/commands commands.json --name @domojs/homekit-controller",
+        "generate-metadata": "akala sdk generate-metadata commands.json src/container.ts"
     },
     "keywords": [
         "HomeKit",

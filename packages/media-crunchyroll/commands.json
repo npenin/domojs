@@ -7,7 +7,7 @@
                 "fs": {
                     "inject": [
                         "$container",
-                        "param.0"
+                        "params.0"
                     ],
                     "path": "dist/commands/$init-akala.js",
                     "source": "src/commands/$init-akala.ts"
@@ -28,7 +28,7 @@
                 "": {
                     "inject": [
                         "$container",
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -40,8 +40,8 @@
                     "path": "dist/commands/add-locale.js",
                     "source": "src/commands/add-locale.ts",
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "cli": {
@@ -53,8 +53,8 @@
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -66,7 +66,7 @@
                     "path": "dist/commands/get-all-animes.js",
                     "source": "src/commands/get-all-animes.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "cli": {
@@ -77,7 +77,7 @@
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -89,7 +89,7 @@
                     "path": "dist/commands/rm-locale.js",
                     "source": "src/commands/rm-locale.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "cli": {
@@ -100,7 +100,7 @@
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -112,8 +112,8 @@
                     "path": "dist/commands/set-credentials.js",
                     "source": "src/commands/set-credentials.ts",
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "cli": {
@@ -125,8 +125,8 @@
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -138,7 +138,7 @@
                     "path": "dist/commands/set-locale.js",
                     "source": "src/commands/set-locale.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "cli": {
@@ -149,7 +149,7 @@
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }

@@ -4,7 +4,7 @@
             "livedb",
             "$modules.@domojs/devices.deviceType",
             "$container",
-            "param.0"
+            "params.0"
         ]
     },
     "jsonrpc": {
@@ -12,7 +12,7 @@
             "livedb",
             "$modules.@domojs/devices.deviceType",
             "$container",
-            "param.0"
+            "params.0"
         ]
     }
 }

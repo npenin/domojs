@@ -12,7 +12,7 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\"",
-        "generate": "ac generate dist/commands commands.json --name @domojs/media-crunchyroll"
+        "generate": "akala sdk generate dist/commands commands.json --name @domojs/media-crunchyroll"
     },
     "devDependencies": {
         "@akala/cli": "^5.9.3"

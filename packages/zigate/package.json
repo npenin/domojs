@@ -12,8 +12,8 @@
         "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
         "prepublishOnly": "npm run build",
         "build": "npm run build:js",
-        "generate": "ac generate dist/commands commands.json --name @domojs/zigate",
-        "generate-metadata": "ac generate-metadata commands.json src/container.ts"
+        "generate": "akala sdk generate dist/commands commands.json --name @domojs/zigate",
+        "generate-metadata": "akala sdk generate-metadata commands.json src/container.ts"
     },
     "author": "npenin",
     "license": "MIT",

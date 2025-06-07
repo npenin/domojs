@@ -49,8 +49,8 @@
         "build:js": "tsc -p .",
         "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
         "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
-        "build": "yarn run build:js && ac generate dist/server/commands commands.json",
-        "generate": "ac generate dist/server/commands commands.json"
+        "build": "yarn run build:js && akala sdk generate dist/server/commands commands.json",
+        "generate": "akala sdk generate dist/server/commands commands.json"
     },
     "typings": "dist/index.d.ts",
     "version": "4.0.59",

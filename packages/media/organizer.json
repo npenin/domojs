@@ -8,12 +8,12 @@
                     "path": "dist/server/commands/organizer/music-iTunes-like.js",
                     "source": "src/server/commands/organizer/music-iTunes-like.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -25,12 +25,12 @@
                     "path": "dist/server/commands/organizer/video-movies.js",
                     "source": "src/server/commands/organizer/video-movies.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -42,12 +42,12 @@
                     "path": "dist/server/commands/organizer/video-series.js",
                     "source": "src/server/commands/organizer/video-series.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }

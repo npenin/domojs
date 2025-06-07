@@ -2,27 +2,27 @@
     "jsonrpc": {
         "inject": [
             "livedb",
-            "param.0",
-            "param.1",
-            "param.2",
+            "params.0",
+            "params.1",
+            "params.2",
             "$modules.@domojs/devices.deviceType"
         ]
     },
     "fs": {
         "inject": [
             "livedb",
-            "param.0",
-            "param.1",
-            "param.2",
+            "params.0",
+            "params.1",
+            "params.2",
             "$modules.@domojs/devices.deviceType"
         ]
     },
     "": {
         "inject": [
             "livedb",
-            "param.0",
-            "param.1",
-            "param.2",
+            "params.0",
+            "params.1",
+            "params.2",
             "$modules.@domojs/devices.deviceType"
         ]
     },

@@ -8,7 +8,7 @@
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\"",
-        "generate": "ac generate dist/commands commands.json --name @domojs/mdns"
+        "generate": "akala sdk generate dist/commands commands.json --name @domojs/mdns"
     },
     "dependencies": {
         "@akala/cli": "^5.9.3",

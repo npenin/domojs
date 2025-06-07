@@ -4,19 +4,19 @@
         {
             "name": "call",
             "inject": [
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/http/call.js",
                     "source": "src/commands/http/call.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }

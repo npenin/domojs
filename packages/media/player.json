@@ -49,14 +49,14 @@
             "config": {
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/server/commands/player/play.js",
                     "source": "src/server/commands/player/play.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }

@@ -23,13 +23,13 @@
             "name": "new",
             "inject": [
                 "$container",
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
                         "$container",
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "fs": {
@@ -37,7 +37,7 @@
                     "source": "src/commands/organizer/new.ts",
                     "inject": [
                         "ignore",
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }

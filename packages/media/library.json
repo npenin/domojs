@@ -6,8 +6,8 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ],
                     "path": "dist/server/commands/library/$init.js",
                     "source": "src/server/commands/library/$init.ts"
@@ -28,8 +28,8 @@
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -40,7 +40,7 @@
                 "fs": {
                     "inject": [
                         "$container",
-                        "param.0"
+                        "params.0"
                     ],
                     "path": "dist/server/commands/library/$init-akala.js",
                     "source": "src/server/commands/library/$init-akala.ts"
@@ -61,7 +61,7 @@
                 "": {
                     "inject": [
                         "$container",
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -71,9 +71,9 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ],
                     "path": "dist/server/commands/library/add-credentials.js",
                     "source": "src/server/commands/library/add-credentials.ts"
@@ -94,9 +94,9 @@
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ]
                 }
             }
@@ -106,8 +106,8 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ],
                     "path": "dist/server/commands/library/add-folder.js",
                     "source": "src/server/commands/library/add-folder.ts"
@@ -127,8 +127,8 @@
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -138,7 +138,7 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ],
                     "path": "dist/server/commands/library/add-library.js",
                     "source": "src/server/commands/library/add-library.ts"
@@ -154,7 +154,7 @@
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -164,8 +164,8 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ],
                     "path": "dist/server/commands/library/add-organizer.js",
                     "source": "src/server/commands/library/add-organizer.ts"
@@ -183,8 +183,8 @@
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -194,8 +194,8 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ],
                     "path": "dist/server/commands/library/add-scrapper.js",
                     "source": "src/server/commands/library/add-scrapper.ts"
@@ -220,8 +220,8 @@
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -232,8 +232,8 @@
                 "fs": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ],
                     "path": "dist/server/commands/library/browse.js",
                     "source": "src/server/commands/library/browse.ts"
@@ -273,8 +273,8 @@
                 "": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -285,9 +285,9 @@
                 "fs": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ],
                     "path": "dist/server/commands/library/dedupe.js",
                     "source": "src/server/commands/library/dedupe.ts"
@@ -309,9 +309,9 @@
                 "": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ]
                 }
             }
@@ -322,8 +322,8 @@
                 "fs": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ],
                     "path": "dist/server/commands/library/dropbox.js",
                     "source": "src/server/commands/library/dropbox.ts"
@@ -363,8 +363,8 @@
                 "": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -375,8 +375,8 @@
                 "fs": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ],
                     "path": "dist/server/commands/library/import.js",
                     "source": "src/server/commands/library/import.ts"
@@ -397,8 +397,8 @@
                 "": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -427,14 +427,14 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ],
                     "path": "dist/server/commands/library/list-folders.js",
                     "source": "src/server/commands/library/list-folders.ts"
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "cli": {
@@ -521,8 +521,8 @@
                     "inject": [
                         "$container",
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ],
                     "path": "dist/server/commands/library/register-organizer.js",
                     "source": "src/server/commands/library/register-organizer.ts"
@@ -531,16 +531,16 @@
                     "inject": [
                         "$container",
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "jsonrpc": {
                     "inject": [
                         "$container",
                         "connectionAsContainer",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "cli": {
@@ -567,8 +567,8 @@
                     "inject": [
                         "$container",
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ],
                     "path": "dist/server/commands/library/register-scrapper.js",
                     "source": "src/server/commands/library/register-scrapper.ts"
@@ -577,16 +577,16 @@
                     "inject": [
                         "$container",
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "jsonrpc": {
                     "inject": [
                         "$container",
                         "connectionAsContainer",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "cli": {
@@ -612,8 +612,8 @@
                 "fs": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ],
                     "path": "dist/server/commands/library/reorganize.js",
                     "source": "src/server/commands/library/reorganize.ts"
@@ -633,8 +633,8 @@
                 "": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -644,7 +644,7 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ],
                     "path": "dist/server/commands/library/rm-credentials.js",
                     "source": "src/server/commands/library/rm-credentials.ts"
@@ -658,7 +658,7 @@
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -668,8 +668,8 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ],
                     "path": "dist/server/commands/library/rm-folder.js",
                     "source": "src/server/commands/library/rm-folder.ts"
@@ -689,8 +689,8 @@
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -700,7 +700,7 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ],
                     "path": "dist/server/commands/library/rm-library.js",
                     "source": "src/server/commands/library/rm-library.ts"
@@ -719,7 +719,7 @@
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -729,8 +729,8 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ],
                     "path": "dist/server/commands/library/rm-organizer.js",
                     "source": "src/server/commands/library/rm-organizer.ts"
@@ -748,8 +748,8 @@
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -759,8 +759,8 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ],
                     "path": "dist/server/commands/library/rm-scrapper.js",
                     "source": "src/server/commands/library/rm-scrapper.ts"
@@ -778,8 +778,8 @@
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -790,8 +790,8 @@
                 "fs": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ],
                     "path": "dist/server/commands/library/scrap.js",
                     "source": "src/server/commands/library/scrap.ts"
@@ -799,15 +799,15 @@
                 "": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "jsonrpc": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "cli": {
@@ -831,7 +831,7 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ],
                     "path": "dist/server/commands/library/set-index-folder.js",
                     "source": "src/server/commands/library/set-index-folder.ts"
@@ -849,7 +849,7 @@
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -859,10 +859,10 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
                     ],
                     "path": "dist/server/commands/library/transcode.js",
                     "source": "src/server/commands/library/transcode.ts"
@@ -878,10 +878,10 @@
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
                     ]
                 }
             }
@@ -892,9 +892,9 @@
                 "fs": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ],
                     "path": "dist/server/commands/library/update-index.js",
                     "source": "src/server/commands/library/update-index.ts"
@@ -939,9 +939,9 @@
                 "": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ]
                 }
             }

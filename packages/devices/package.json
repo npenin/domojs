@@ -49,13 +49,12 @@
         "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
         "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
         "build": "yarn build:js && yarn build:js:routes && yarn build:js:tile",
-        "generate:devices:json": "ac generate dist/server/commands/devices device-commands.json",
-        "generate:devicetypes:json": "ac generate dist/server/commands/device-types devicetype-commands.json",
-        "generate:devices:ts": "ac generate-metadata device-commands.json src/server/device-commands.ts --name deviceContainer",
-        "generate:devicetypes:ts": "ac generate-metadata devicetype-commands.json src/server/devicetype-commands.ts --name deviceTypeContainer",
-        "generate:json": "yarn generate:devices:json && yarn generate:devicetypes:json",
-        "generate:ts": "yarn generate:devices:ts && yarn generate:devicetypes:ts",
-        "generate": "yarn generate:json && yarn generate:ts"
+        "generate:devices:json": "akala sdk generate dist/server/commands/devices device-commands.json",
+        "generate:devicetypes:json": "akala sdk generate dist/server/commands/device-types devicetype-commands.json",
+        "generate:devices:ts": "akala sdk generate-metadata device-commands.json src/server/device-commands.ts --name deviceContainer",
+        "generate:devicetypes:ts": "akala sdk generate-metadata devicetype-commands.json src/server/devicetype-commands.ts --name deviceTypeContainer",
+        "generate": "yarn generate:devices:json && yarn generate:devicetypes:json",
+        "generate-metadata": "yarn generate:devices:ts && yarn generate:devicetypes:ts"
     },
     "typings": "dist/index.d.ts",
     "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"

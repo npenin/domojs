@@ -17,12 +17,12 @@
         "build": "npm run build:js && npm run build:js:routes && npm run build:js:tile",
         "generate": "yarn run generate-library && yarn run generate-scrapper && yarn run generate-organizer",
         "generate-metadata": "yarn generate-metadata-library && yarn generate-metadata-scrapper",
-        "generate-library": "ac generate dist/server/commands/library library.json --name library",
-        "generate-metadata-library": "ac generate-metadata library.json src/library.ts --name library",
-        "generate-scrapper": "ac generate dist/server/commands/scrapper/ scrapper.json --name scrapper",
-        "generate-metadata-scrapper": "ac generate-metadata scrapper.json src/scrapper.ts --name scrapper",
-        "generate-organizer": "ac generate dist/server/commands/organizer/ organizer.json --name organizer",
-        "generate-metadata-organizer": "ac generate-metadata organizer.json src/organizer.ts --name organizer"
+        "generate-library": "akala sdk generate dist/server/commands/library library.json --name library",
+        "generate-metadata-library": "akala sdk generate-metadata library.json src/library.ts --name library",
+        "generate-scrapper": "akala sdk generate dist/server/commands/scrapper/ scrapper.json --name scrapper",
+        "generate-metadata-scrapper": "akala sdk generate-metadata scrapper.json src/scrapper.ts --name scrapper",
+        "generate-organizer": "akala sdk generate dist/server/commands/organizer/ organizer.json --name organizer",
+        "generate-metadata-organizer": "akala sdk generate-metadata organizer.json src/organizer.ts --name organizer"
     },
     "author": "npenin",
     "license": "MIT",

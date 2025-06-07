@@ -4,22 +4,22 @@
         {
             "name": "add-player",
             "inject": [
-                "param.0",
-                "param.1"
+                "params.0",
+                "params.1"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "fs": {
                     "path": "dist/server/commands/player/add-player.js",
                     "source": "src/server/commands/player/add-player.ts",
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -41,19 +41,19 @@
         {
             "name": "mute",
             "inject": [
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/server/commands/player/mute.js",
                     "source": "src/server/commands/player/mute.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -61,19 +61,19 @@
         {
             "name": "next",
             "inject": [
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/server/commands/player/next.js",
                     "source": "src/server/commands/player/next.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -81,19 +81,19 @@
         {
             "name": "pause",
             "inject": [
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/server/commands/player/pause.js",
                     "source": "src/server/commands/player/pause.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -101,19 +101,19 @@
         {
             "name": "play",
             "inject": [
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/server/commands/player/play.js",
                     "source": "src/server/commands/player/play.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -121,19 +121,19 @@
         {
             "name": "playlist",
             "inject": [
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/server/commands/player/playlist.js",
                     "source": "src/server/commands/player/playlist.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -141,19 +141,19 @@
         {
             "name": "previous",
             "inject": [
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/server/commands/player/previous.js",
                     "source": "src/server/commands/player/previous.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -161,22 +161,22 @@
         {
             "name": "rm-player",
             "inject": [
-                "param.0",
-                "param.1"
+                "params.0",
+                "params.1"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "fs": {
                     "path": "dist/server/commands/player/rm-player.js",
                     "source": "src/server/commands/player/rm-player.ts",
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -184,19 +184,19 @@
         {
             "name": "stop",
             "inject": [
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/server/commands/player/stop.js",
                     "source": "src/server/commands/player/stop.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
