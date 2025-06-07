@@ -20,7 +20,7 @@ export default async function init(this: State, container: Container<void>, sign
         return this.collection[mainDevice];
     };
 
-    await fs.readFile(require.resolve('../../views/device.html'), 'utf-8').then(newDeviceTemplate =>
+    await fs.readFile(import.meta.resolve('../../views/device.html'), 'utf-8').then(newDeviceTemplate =>
         registerDeviceType(container, signal, {
             name: 'iscp',
             view: newDeviceTemplate,
