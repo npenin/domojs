@@ -266,6 +266,10 @@ export class ADB
                     stream.push(msg.payload);
 
                 case Command.A_STLS:
+                    console.log('Received STLS response:', msg);
+                    if (this.remoteReady)
+                        this.remoteReady();
+                    await this.startTls(msg.arg0, msg.arg1)
                     break;
                 case Command.A_OKAY:
                     if (msg.arg1)
