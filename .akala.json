@@ -44,11 +44,14 @@
             "pm": {
                 "container": "pm",
                 "connect": {
-                    "jsonrpc+unix:///Users/nicolas/dev/domojs/pm.sock": {}
+                    "jsonrpc+unix://./pm.sock": {}
                 }
             },
             "@domojs/devicetype": {
                 "container": "@domojs/devicetype",
+                "connect": {
+                    "jsonrpc+unix://./devicetype.sock": {}
+                },
                 "autostart": true
             }
         },
@@ -59,6 +62,7 @@
     },
     "@domojs/devicetype": {
         "store": {
+            "provider": "file+json://./",
             "models": {
                 "DeviceInit": {
                     "members": {
