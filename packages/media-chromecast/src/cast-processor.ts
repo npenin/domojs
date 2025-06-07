@@ -1,4 +1,4 @@
-import { CommandProcessor, Container, Metadata } from '@akala/commands';
+import { CommandProcessor, Container, Metadata, StructuredParameters } from '@akala/commands';
 import { MiddlewarePromise } from '@akala/core';
 import CastStream, { castMessage } from '@domojs/media-chromecast-parsers'
 import net from 'net';
@@ -11,7 +11,7 @@ export default class CastProcessor extends CommandProcessor
 
     // private requestHandlers: { [key: number]: (response: CastMessage) => void } = {};
 
-    async handle(container: Container<unknown>, cmd: Metadata.Command, param: { [key: string]: unknown; param: unknown[]; }): MiddlewarePromise
+    async handle(container: Container<unknown>, cmd: Metadata.Command, param: StructuredParameters): MiddlewarePromise
     {
         if (!this.stream || this.stream['readyState'] !== 'open')
             return new Error('there is no socket or the socket is not writable');
