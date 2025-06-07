@@ -1,4 +1,4 @@
-#  (2025-06-03)
+#  (2025-06-07)
 
 
 ### Bug Fixes
@@ -12,6 +12,7 @@
 * update dependencies a3ea3a6
 * update dependencies and fix devices communications b34af9c
 * update dependencies to major 1292a69
+* update parameter references from "param" to "params" in command JSON files 7634f8f
 * update to working akala b297101
 
 
