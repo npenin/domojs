@@ -1,4 +1,4 @@
-import { Container, Metadata, CommandProcessor } from "@akala/commands";
+import { Container, Metadata, CommandProcessor, StructuredParameters } from "@akala/commands";
 import { logger, MiddlewarePromise } from "@akala/core";
 import * as proto from '@akala/protocol-parser'
 import { Duplex } from 'stream'
@@ -79,7 +79,7 @@ export class ISCPProcessor extends CommandProcessor
             this.messages.on('message', handler);
     }
 
-    handle(container: Container<object>, cmd: Metadata.Command, param: { [key: string]: any; param: string[]; }): MiddlewarePromise
+    handle(container: Container<object>, cmd: Metadata.Command, param: StructuredParameters): MiddlewarePromise
     {
         return new Promise((resolve, reject) =>
         {
@@ -94,7 +94,7 @@ export class ISCPProcessor extends CommandProcessor
                 if (response.command !== cmd.name)
                     return;
                 this.messages.off('message', handler);
-                if (response.command == cmd.name && (param.param[0] == 'QSTN' || param.param[0] == response.arg))
+                if (response.command == cmd.name && (param.params[0] == 'QSTN' || param.params[0] == response.arg))
                     reject(response);
                 else
                     reject(response);
