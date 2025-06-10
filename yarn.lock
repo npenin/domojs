@@ -461,7 +461,7 @@ __metadata:
     "@akala/core": "npm:^39.4.0"
     "@types/debug": "npm:4.1.12"
     "@types/mongodb": "npm:4.0.7"
-    "@types/node": "npm:22.15.18"
+    "@types/node": "npm:22.15.31"
     "@types/ws": "npm:8.18.1"
     mongodb: "npm:6.16.0"
     typescript: "npm:5.8.3"
@@ -607,7 +607,7 @@ __metadata:
     "@akala/protocol-parser": "npm:^9.0.25"
     "@domojs/devices": "workspace:*"
     "@types/debug": "npm:4.1.12"
-    "@types/node": "npm:22.15.18"
+    "@types/node": "npm:22.15.31"
     "@types/usb": "npm:^2.0.5"
     serialport: "npm:^13.0.0"
     typescript: "npm:5.8.3"
@@ -673,7 +673,7 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": "npm:^6.7.2"
     "@popperjs/core": "npm:^2.11.8"
     "@types/debug": "npm:4.1.12"
-    "@types/node": "npm:22.15.18"
+    "@types/node": "npm:22.15.31"
     "@types/request": "npm:2.48.12"
     "@types/ws": "npm:8.18.1"
     bootstrap: "npm:^5.3.6"
@@ -2728,12 +2728,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:22.15.18":
-  version: 22.15.18
-  resolution: "@types/node@npm:22.15.18"
+"@types/node@npm:22.15.31":
+  version: 22.15.31
+  resolution: "@types/node@npm:22.15.31"
   dependencies:
     undici-types: "npm:~6.21.0"
-  checksum: 10/89c8c638beade806753b6fb2f25ed45b0e06f9f7375422137da5752be5c29fa9c75932b942fd55ae7de2b4288e8496912af3e029df45cc93735ac5eb49ece01e
+  checksum: 10/999da153fae4687c416421850ebd3c94be75e0dae27ccad192d9a073c7e74baade987d68fc9f082a825c4672bd8a26867636663baad0b9e851baf7b36fb9fdd9
   languageName: node
   linkType: hard
 
