@@ -7,12 +7,12 @@ RUN yarn add serialport usb
 RUN yarn add @akala/pm @domojs/devices
 
 FROM alpine
-RUN apk --no-cache --update add npm coreutils eudev-libs && \
+RUN apk --no-cache --update add yarn npm coreutils eudev-libs && \
     addgroup -g 1000 node && \
     adduser -u 1000 -G node -G dialout -s /bin/sh -D node && \
     mkdir -p /etc/udev/rules.d && \
     echo 'KERNEL=="ttyUSB[0-9]*",MODE="0660",GROUP="dialout"' > /etc/udev/rules.d/99-usb-serial.rules && \
-    echo 'SUBSYSTEM=="usb",MODE="0660",GROUP="dialout"' > /etc/udev/rules.d/99-usb.rules
+    echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="*", ATTRS{idProduct}=="*", MODE="0660",GROUP="dialout"' > /etc/udev/rules.d/99-usb.rules
 
 VOLUME ["/usr/src/akala/db"]
 ENV NODE_ENV=production
