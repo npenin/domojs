@@ -1,4 +1,4 @@
-#  (2025-06-07)
+#  (2025-06-13)
 
 
 ### Bug Fixes
@@ -142,6 +142,7 @@
 * transparent proxy inject parameters d51aec6
 * trying apk at first 16d00df
 * trying to fix config file issue 4ccf7ac
+* trying to fix docker permissions 756874a
 * typo b448cdb
 * update after breaking changes in akala 28983f9
 * update after commands upgrade e41e30a
