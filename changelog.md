@@ -1,4 +1,4 @@
-#  (2025-06-13)
+#  (2025-06-14)
 
 
 ### Bug Fixes
@@ -144,6 +144,7 @@
 * trying to fix config file issue 4ccf7ac
 * trying to fix docker permissions 756874a
 * typo b448cdb
+* udev permissions 8552c0a
 * update after breaking changes in akala 28983f9
 * update after commands upgrade e41e30a
 * update dependencies a3ea3a6
