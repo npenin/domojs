@@ -33,7 +33,7 @@
     "devDependencies": {
         "@akala/commands": "^16.0.0",
         "@akala/core": "^39.4.0",
-        "@akala/json-rpc-ws": "^11.0.82",
+        "@akala/json-rpc-ws": "^12.0.0",
         "@domojs/theme-default": "workspace:*",
         "@popperjs/core": "2.11.8",
         "@types/debug": "4.1.12",

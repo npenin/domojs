@@ -110,6 +110,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@akala/core@npm:^39.5.0":
+  version: 39.5.0
+  resolution: "@akala/core@npm:39.5.0"
+  dependencies:
+    debug: "npm:^4.4.1"
+    reflect-metadata: "npm:^0.2.2"
+    yoctocolors: "npm:^2.1.1"
+  checksum: 10/3192e93e26598b15d3eb369422c5c53c1d2b81d6e78c15114d4bc37a5e3d117dab4a898850900b112908668e3886b58fbc9ddc1d6f0c2475f1e836aa9d82d4a5
+  languageName: node
+  linkType: hard
+
 "@akala/cron@npm:^5.0.163":
   version: 5.0.163
   resolution: "@akala/cron@npm:5.0.163"
@@ -141,6 +152,18 @@ __metadata:
     reflect-metadata: "npm:^0.2.2"
     ws: "npm:^8.18.2"
   checksum: 10/1bfb85fbb78a42e24c13562ced97ea4efbb12fca3b94843e48b57c5de939bd2ea80229e4beb59cd3de11ffb263e298d6d6bf08a8cade482534a28f50304b5105
+  languageName: node
+  linkType: hard
+
+"@akala/json-rpc-ws@npm:^12.0.0":
+  version: 12.0.0
+  resolution: "@akala/json-rpc-ws@npm:12.0.0"
+  dependencies:
+    "@akala/core": "npm:^39.5.0"
+    debug: "npm:^4.4.1"
+    reflect-metadata: "npm:^0.2.2"
+    ws: "npm:^8.18.2"
+  checksum: 10/e07e99fbfbdd72ef8cc48781427e963c74e3d38edb9137b538c5b57525a29e22c6f256fdaa8ab64d71c9eb49da853c600b3df437513b22dde5f7af8af8e2a95f
   languageName: node
   linkType: hard
 
@@ -359,7 +382,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/chat@workspace:packages/chat"
   dependencies:
-    "@akala/json-rpc-ws": "npm:^11.0.82"
+    "@akala/json-rpc-ws": "npm:^12.0.0"
     "@nlpjs/basic": "npm:5.0.0-alpha.5"
     "@nlpjs/directline-connector": "npm:5.0.0-alpha.5"
     "@nlpjs/express-api-server": "npm:5.0.0-alpha.5"
@@ -396,7 +419,7 @@ __metadata:
     "@akala/commands": "npm:^16.0.0"
     "@akala/config": "npm:^6.0.74"
     "@akala/core": "npm:^39.4.0"
-    "@akala/json-rpc-ws": "npm:^11.0.82"
+    "@akala/json-rpc-ws": "npm:^12.0.0"
     "@akala/pm": "npm:^15.2.9"
     "@akala/pubsub": "npm:^3.0.163"
     "@akala/server": "npm:^27.0.12"
@@ -490,7 +513,7 @@ __metadata:
   dependencies:
     "@akala/commands": "npm:^16.0.0"
     "@akala/core": "npm:^39.4.0"
-    "@akala/json-rpc-ws": "npm:^11.0.82"
+    "@akala/json-rpc-ws": "npm:^12.0.0"
     "@domojs/theme-default": "workspace:*"
     "@fortawesome/fontawesome-common-types": "npm:6.7.2"
     "@popperjs/core": "npm:2.11.8"
@@ -562,7 +585,7 @@ __metadata:
     "@akala/commands": "npm:^16.0.0"
     "@akala/config": "npm:^6.0.74"
     "@akala/core": "npm:^39.4.0"
-    "@akala/json-rpc-ws": "npm:^11.0.82"
+    "@akala/json-rpc-ws": "npm:^12.0.0"
     "@akala/pm": "npm:^15.2.9"
     "@akala/server": "npm:^27.0.12"
     "@akala/storage": "npm:^20.2.3"
@@ -663,7 +686,7 @@ __metadata:
   dependencies:
     "@akala/commands": "npm:^16.0.0"
     "@akala/core": "npm:^39.4.0"
-    "@akala/json-rpc-ws": "npm:^11.0.82"
+    "@akala/json-rpc-ws": "npm:^12.0.0"
     "@akala/pm": "npm:^15.2.9"
     "@akala/server": "npm:^27.0.12"
     "@akala/web-ui": "npm:^4.6.22"
@@ -691,7 +714,7 @@ __metadata:
     "@akala/commands": "npm:^16.0.0"
     "@akala/config": "npm:^6.0.74"
     "@akala/core": "npm:^39.4.0"
-    "@akala/json-rpc-ws": "npm:^11.0.82"
+    "@akala/json-rpc-ws": "npm:^12.0.0"
     "@akala/pm": "npm:^15.2.9"
     "@akala/server": "npm:^27.0.12"
     "@domojs/devices": "workspace:*"
@@ -725,7 +748,7 @@ __metadata:
     "@akala/commands": "npm:^16.0.0"
     "@akala/config": "npm:^6.0.74"
     "@akala/core": "npm:^39.4.0"
-    "@akala/json-rpc-ws": "npm:^11.0.82"
+    "@akala/json-rpc-ws": "npm:^12.0.0"
     "@akala/pm": "npm:^15.2.9"
     "@akala/server": "npm:^27.0.12"
     "@domojs/devices": "workspace:*"
@@ -9479,6 +9502,13 @@ __metadata:
     buffer-crc32: "npm:~0.2.3"
     fd-slicer: "npm:~1.1.0"
   checksum: 10/1e4c311050dc0cf2ee3dbe8854fe0a6cde50e420b3e561a8d97042526b4cf7a0718d6c8d89e9e526a152f4a9cec55bcea9c3617264115f48bd6704cf12a04445
+  languageName: node
+  linkType: hard
+
+"yoctocolors@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "yoctocolors@npm:2.1.1"
+  checksum: 10/563fbec88bce9716d1044bc98c96c329e1d7a7c503e6f1af68f1ff914adc3ba55ce953c871395e2efecad329f85f1632f51a99c362032940321ff80c42a6f74d
   languageName: node
   linkType: hard
 
