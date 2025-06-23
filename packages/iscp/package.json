@@ -10,7 +10,7 @@
         "@domojs/devices": "workspace:*"
     },
     "peerDependencies": {
-        "@akala/commands": "^15.1.0",
+        "@akala/commands": "^17.0.0",
         "@akala/pm": "^15.0.0"
     },
     "devDependencies": {
