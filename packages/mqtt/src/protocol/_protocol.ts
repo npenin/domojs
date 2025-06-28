@@ -33,9 +33,8 @@ export type MessageTypes = Connect
     ;
 
 // );
-export const header = parsers.chooseProperty<Message<any>, 'type', 'header', object>('type', 'header', {} as any);
+export const header = parsers.choose<Message, Message['type'], Message>('type', {} as any);
 
-export const payload = parsers.chooseProperty<Message<any>, 'type', 'payload'>('type', 'payload', {} as any);
 
 // export interface ConnectAck
 // {
@@ -56,21 +55,22 @@ export const payload = parsers.chooseProperty<Message<any>, 'type', 'payload'>('
 //     payload: null
 // }
 
-export interface Message<T extends { header?: object, payload?: object }>
+export interface Message
 {
     type: shared.ControlPacketType;
     dup?: boolean;
     qos?: number;
     retain?: boolean;
-    header?: T['header'];
-    payload?: T['payload']
 }
 
-export const Messages = parsers.object<Message<any>>(
-    parsers.property('type', parsers.uint4),
-    parsers.property('dup', parsers.boolean()),
-    parsers.property('qos', parsers.uint2),
+export const MessageParser = parsers.series<Message>(
     parsers.property('retain', parsers.boolean()),
-    parsers.series<Message<any>>(header) as any,
+    parsers.property('qos', parsers.uint2),
+    parsers.property('dup', parsers.boolean()),
+    parsers.property('type', parsers.uint4),
 );
 
+export const StandardMessages = parsers.object<Message>(
+    MessageParser,
+    parsers.sub(parsers.vuint, header)
+);

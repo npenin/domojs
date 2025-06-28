@@ -1,21 +1,25 @@
-import { parsers, uint16 } from '@akala/protocol-parser';
+import { parsers, uint16, uint8 } from '@akala/protocol-parser';
 import { header, Message as CoreMessage } from './_protocol.js'
-import { ControlPacketType, Properties, propertiesParser } from './_shared.js';
+import { ControlPacketType, Properties, propertiesParser, Property, PropertyKeys } from './_shared.js';
+import { IsomorphicBuffer } from '@akala/core';
 
-export interface Header 
+export interface Message extends CoreMessage 
 {
     topic: string;
     packetId: uint16;
     properties: Properties;
+    binaryPayload?: IsomorphicBuffer;
+    stringPayload?: string;
 }
-export type Message = CoreMessage<{ header: Header }>;
 
-header.register(ControlPacketType.PUBLISH, parsers.object<Message>(
-    parsers.complexProperty<Message, 'header'>('header', parsers.object<Header>(
-        parsers.property('topic', parsers.string(parsers.uint16)))),
-    parsers.condition(m => m.qos > 0,
-        parsers.complexProperty<Message, 'header'>('header', parsers.object<Header>(
-            parsers.property('packetId', parsers.uint16)))),
-    parsers.complexProperty<Message, 'header'>('header', parsers.object<Header>(
-        parsers.property('properties', propertiesParser))),
-));
+header.register(ControlPacketType.PUBLISH,
+    parsers.series<Message>(
+        parsers.property('topic', parsers.string(parsers.uint16)),
+        parsers.condition<Message['packetId'], Message>(m => m.qos > 0, parsers.property('packetId', parsers.uint16)),
+        parsers.property('properties', propertiesParser),
+        parsers.choose<Message, number, IsomorphicBuffer | string>((m: Message) => m.properties?.find(p => p.property == PropertyKeys.payloadFormat)?.value as uint8 ?? 0, {
+            0: parsers.property<Message, 'binaryPayload', parsers.AnyParser<Message['binaryPayload'], Message>>('binaryPayload', parsers.buffer(-1, false)),
+            1: parsers.property<Message, 'stringPayload', parsers.AnyParser<Message['stringPayload'], Message>>('stringPayload', parsers.string(-1, 'utf-8'))
+        })
+    )
+);

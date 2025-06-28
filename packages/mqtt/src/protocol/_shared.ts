@@ -1,3 +1,4 @@
+import { IsomorphicBuffer } from '@akala/core';
 import { uint8, uint16, parsers } from '@akala/protocol-parser';
 
 export enum ControlPacketType
@@ -33,7 +34,7 @@ export enum ReasonCodes
     ContinueAuthentication = 0x18,
     ReAuthenticate = 0x19,
     UnspecifiedError = 0x80,
-    MalformedPacker = 0x81,
+    MalformedPacket = 0x81,
     ProtocolError = 0x82,
     ImplementationSpecificError = 0x83,
     UnsupportedProtocolVersion = 0x84,
@@ -103,85 +104,88 @@ export enum PropertyKeys
 
 export interface PropertiesMap
 {
-    payloadFormat: uint8;
-    messageExpiryInterval: number;
-    contentType: string;
-    responseTopic: string;
-    correlationData: Buffer;
-    subscriptionIdentifier: number;
-    sessionExpiryInterval: number;
-    assignedClientIdentifier: string;
-    serverKeepAlive: uint16;
-    authenticationMethod: string;
-    authenticationData: Buffer;
-    requestProblemInformation: uint8;
-    willDelayInterval: number;
-    requestResponseInformation: uint8;
-    responseInformation: string;
-    serverReference: string;
-    reasonString: string;
-    receiveMaximum: uint16;
-    topicAliasMaximum: uint16;
-    topicAlias: uint16;
-    maximumQoS: uint8;
-    retainAvailable: uint8;
-    userProperty: string;
-    maximumPacketSize: number;
-    wildcardSubscriptionAvailable: uint8;
-    subscriptionIdentifierAvailable: uint8;
-    sharedSubscriptionAvailable: uint8;
+    [PropertyKeys.payloadFormat]: uint8;
+    [PropertyKeys.messageExpiryInterval]: number;
+    [PropertyKeys.contentType]: string;
+    [PropertyKeys.responseTopic]: string;
+    [PropertyKeys.correlationData]: IsomorphicBuffer;
+    [PropertyKeys.subscriptionIdentifier]: number;
+    [PropertyKeys.sessionExpiryInterval]: number;
+    [PropertyKeys.assignedClientIdentifier]: string;
+    [PropertyKeys.serverKeepAlive]: uint16;
+    [PropertyKeys.authenticationMethod]: string;
+    [PropertyKeys.authenticationData]: IsomorphicBuffer;
+    [PropertyKeys.requestProblemInformation]: uint8;
+    [PropertyKeys.willDelayInterval]: number;
+    [PropertyKeys.requestResponseInformation]: uint8;
+    [PropertyKeys.responseInformation]: string;
+    [PropertyKeys.serverReference]: string;
+    [PropertyKeys.reasonString]: string;
+    [PropertyKeys.receiveMaximum]: uint16;
+    [PropertyKeys.topicAliasMaximum]: uint16;
+    [PropertyKeys.topicAlias]: uint16;
+    [PropertyKeys.maximumQoS]: uint8;
+    [PropertyKeys.retainAvailable]: uint8;
+    [PropertyKeys.userProperty]: string;
+    [PropertyKeys.maximumPacketSize]: number;
+    [PropertyKeys.wildcardSubscriptionAvailable]: uint8;
+    [PropertyKeys.subscriptionIdentifierAvailable]: uint8;
+    [PropertyKeys.sharedSubscriptionAvailable]: uint8;
 }
 
-export type Properties = { property: PropertyKeys, value: unknown }[];
+export type Property<TKey extends keyof PropertiesMap = keyof PropertiesMap> = { property: PropertiesMap[TKey], value: PropertiesMap[TKey] };
 
-export interface Message<T extends { header?: object, payload?: object }>
+export type Properties = Property[];
+
+export interface Message
 {
     type: ControlPacketType;
     dup?: boolean;
     qos?: number;
     retain?: boolean;
-    header: T['header'];
     properties: Properties;
-    payload: T['payload']
 }
 
 export const propertiesParser =
     // parsers.property<{ properties: { property: PropertyKeys, value: unknown }[] }, 'properties'>('properties',
-    parsers.array(parsers.vuint, parsers.object<{ property: PropertyKeys, value: unknown }>(
-        parsers.property('property', parsers.uint8),
-        parsers.chooseProperty<{ value: unknown, property: PropertyKeys }>('value', 'property',
-            {
-                [PropertyKeys.payloadFormat]: parsers.uint8,
-                [PropertyKeys.messageExpiryInterval]: parsers.uint32,
-                [PropertyKeys.contentType]: parsers.string(parsers.uint16),
-                [PropertyKeys.responseTopic]: parsers.string(parsers.uint16),
-                [PropertyKeys.correlationData]: parsers.buffer(parsers.uint16),
-                [PropertyKeys.subscriptionIdentifier]: parsers.vuint,
-                [PropertyKeys.sessionExpiryInterval]: parsers.uint32,
-                [PropertyKeys.assignedClientIdentifier]: parsers.string(parsers.uint16),
-                [PropertyKeys.serverKeepAlive]: parsers.uint16,
-                [PropertyKeys.authenticationMethod]: parsers.string(parsers.uint16),
-                [PropertyKeys.authenticationData]: parsers.buffer(parsers.uint16),
-                [PropertyKeys.requestProblemInformation]: parsers.uint8,
-                [PropertyKeys.willDelayInterval]: parsers.uint32,
-                [PropertyKeys.requestResponseInformation]: parsers.uint8,
-                [PropertyKeys.responseInformation]: parsers.string(parsers.uint16),
-                [PropertyKeys.serverReference]: parsers.string(parsers.uint16),
-                [PropertyKeys.reasonString]: parsers.string(parsers.uint16),
-                [PropertyKeys.receiveMaximum]: parsers.uint16,
-                [PropertyKeys.topicAliasMaximum]: parsers.uint16,
-                [PropertyKeys.topicAlias]: parsers.uint16,
-                [PropertyKeys.maximumQoS]: parsers.uint8,
-                [PropertyKeys.retainAvailable]: parsers.uint8,
-                [PropertyKeys.userProperty]: parsers.object<{ name: string, value: string }>(
-                    parsers.property('name', parsers.string(parsers.uint16)),
-                    parsers.property('value', parsers.string(parsers.uint16))
-                ),
-                [PropertyKeys.maximumPacketSize]: parsers.uint32,
-                [PropertyKeys.wildcardSubscriptionAvailable]: parsers.uint8,
-                [PropertyKeys.subscriptionIdentifierAvailable]: parsers.uint8,
-                [PropertyKeys.sharedSubscriptionAvailable]: parsers.uint8,
-            }
+    parsers.sub(parsers.vuint,
+        parsers.emancipate(
+            parsers.array(-1, parsers.object<Property>(
+                parsers.property('property', parsers.uint8),
+                parsers.chooseProperty<Property>('property', 'value',
+                    {
+                        [PropertyKeys.payloadFormat]: parsers.uint8,
+                        [PropertyKeys.messageExpiryInterval]: parsers.uint32,
+                        [PropertyKeys.contentType]: parsers.string(parsers.uint16),
+                        [PropertyKeys.responseTopic]: parsers.string(parsers.uint16),
+                        [PropertyKeys.correlationData]: parsers.buffer(parsers.uint16),
+                        [PropertyKeys.subscriptionIdentifier]: parsers.vuint,
+                        [PropertyKeys.sessionExpiryInterval]: parsers.uint32,
+                        [PropertyKeys.assignedClientIdentifier]: parsers.string(parsers.uint16),
+                        [PropertyKeys.serverKeepAlive]: parsers.uint16,
+                        [PropertyKeys.authenticationMethod]: parsers.string(parsers.uint16),
+                        [PropertyKeys.authenticationData]: parsers.buffer(parsers.uint16),
+                        [PropertyKeys.requestProblemInformation]: parsers.uint8,
+                        [PropertyKeys.willDelayInterval]: parsers.uint32,
+                        [PropertyKeys.requestResponseInformation]: parsers.uint8,
+                        [PropertyKeys.responseInformation]: parsers.string(parsers.uint16),
+                        [PropertyKeys.serverReference]: parsers.string(parsers.uint16),
+                        [PropertyKeys.reasonString]: parsers.string(parsers.uint16),
+                        [PropertyKeys.receiveMaximum]: parsers.uint16,
+                        [PropertyKeys.topicAliasMaximum]: parsers.uint16,
+                        [PropertyKeys.topicAlias]: parsers.uint16,
+                        [PropertyKeys.maximumQoS]: parsers.uint8,
+                        [PropertyKeys.retainAvailable]: parsers.uint8,
+                        [PropertyKeys.userProperty]: parsers.object<{ name: string, value: string }>(
+                            parsers.property('name', parsers.string(parsers.uint16)),
+                            parsers.property('value', parsers.string(parsers.uint16))
+                        ),
+                        [PropertyKeys.maximumPacketSize]: parsers.uint32,
+                        [PropertyKeys.wildcardSubscriptionAvailable]: parsers.uint8,
+                        [PropertyKeys.subscriptionIdentifierAvailable]: parsers.uint8,
+                        [PropertyKeys.sharedSubscriptionAvailable]: parsers.uint8,
+                    }
+                )
+            ))
         )
-    )
     )

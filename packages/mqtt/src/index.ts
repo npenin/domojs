@@ -1,82 +1,56 @@
 import net from 'net'
-import { header, Message, Messages } from './protocol/_protocol.js'
-import { Message as connect } from './protocol/connect.js';
+import { Message, StandardMessages } from './protocol/_protocol.js'
 import { Message as connack } from './protocol/connack.js';
 import { Cursor } from '@akala/protocol-parser';
-import { EventEmitter } from 'events';
 import { ControlPacketType, Properties } from './protocol/_shared.js';
-import { IsomorphicBuffer } from '@akala/core';
+import { IsomorphicBuffer, EventBus, EventEmitter, Event, IEvent, SpecialEvents, Subscription, TeardownManager, fromEvent, EventKeys, StatefulSubscription } from '@akala/core';
+import { Socket } from 'net';
+import { TopicSubscription } from './protocol/subscribe.js';
 
 /// PUT in this file any API you would like to expose to your package consumer
 
-export const mappings = [
-    [ControlPacketType.CONNECT, ControlPacketType.CONNACK],
-    [ControlPacketType.PINGREQ, ControlPacketType.PINGRESP],
-    [ControlPacketType.PUBLISH, ControlPacketType.PUBACK],
-    [ControlPacketType.SUBSCRIBE, ControlPacketType.SUBACK],
-    [ControlPacketType.UNSUBSCRIBE, ControlPacketType.UNSUBACK],
-]
+export const mappings = {
+    [ControlPacketType.CONNECT]: ControlPacketType.CONNACK,
+    [ControlPacketType.PINGREQ]: ControlPacketType.PINGRESP,
+    [ControlPacketType.PUBLISH]: ControlPacketType.PUBACK,
+    [ControlPacketType.SUBSCRIBE]: ControlPacketType.SUBACK,
+    [ControlPacketType.UNSUBSCRIBE]: ControlPacketType.UNSUBACK,
+}
 
+export type ProtocolEventsMap =
+    {
+        [key in keyof typeof mappings]: IEvent<[Message], void>
+    }
 
-
-export class Client extends EventEmitter
+export class ProtocolEvents extends EventEmitter<{
+    [key in typeof mappings[keyof typeof mappings]]: IEvent<[Message], void, {
+        qos?: number;
+        retain?: boolean;
+        properties?: Properties;
+        once?: boolean
+    }>
+}>
 {
-    constructor(private clientId: string, private socket: net.Socket)
+    constructor(public readonly socket: Socket)
     {
         super();
-        this.socket.on('data', (data) =>
+        socket.on('data', (data) =>
         {
             const c = new Cursor();
             while (c.offset < data.length)
             {
-                var msg = Messages.read(IsomorphicBuffer.fromBuffer(data), c, {});
-                this.emit(ControlPacketType[msg.type], msg);
+                var msg = StandardMessages.read(IsomorphicBuffer.fromBuffer(data), c, {});
+                this.emit(msg.type as EventKeys<ProtocolEventsMap>, msg);
             }
-        })
-    }
-
-    private dialog(message: Message<any>): Promise<Message<any>>
-    {
-        const mapping = mappings.find(map => map[0] == message.type);
-        if (!mapping)
-            return Promise.reject(new Error('there is no such mapping for ' + JSON.stringify(message)));
-        return new Promise((resolve, reject) =>
-        {
-            this.once(ControlPacketType[mapping[1]], (m: Message<any>) =>
-            {
-                resolve(m);
-            });
-            this.socket.write(IsomorphicBuffer.concat(header.write(message, message)).toArray());
-
-        })
-    }
-
-    public connect(opts?: { sessionId?: number, password?: Buffer, userName?: string, will?: { QoS?: number, retain?: boolean, properties: Properties, topic: string, } })
-    {
-        if (!opts)
-            opts = {};
-        // const message: Message<connect> = {
-        //     type: ControlPacketType.CONNECT,
-        //     header: {
-        //         protocol: 'MQTT',
-        //         version: 5,
-        //         cleanStart: !!opts.sessionId,
-        //         hasPassword: !!opts.password,
-        //         hasUserName: !!opts.userName,
-        //         hasWill: !!opts.will,
-        //         properties: [],
-        //     },
-        //     payload: {
-        //         password: opts.password,
-        //         userName: opts.userName,
-        //         clientId: this.clientId
-        //     }
-        // };
-
-        // this.once(ControlPacketType[ControlPacketType.CONNACK], () =>
-        // {
-
-        // })
-
+        });
     }
 }
+
+export type MqttEvent = IEvent<[data: IsomorphicBuffer | string,
+    mqttOptions?: { qos?: number, retain?: boolean, properties?: Properties }],
+    void | Promise<void>,
+    Partial<TopicSubscription> & { once?: boolean, properties?: Properties }>;
+
+export type MqttEvents = Record<string,
+    MqttEvent>;
+
