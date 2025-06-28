@@ -17,12 +17,12 @@
         }
     },
     "dependencies": {
-        "@akala/client": "^41.0.33",
-        "@akala/commands": "^17.0.0",
-        "@akala/core": "^39.5.1"
+        "@akala/client": "^41.0.38",
+        "@akala/commands": "^17.0.5",
+        "@akala/core": "^39.6.4"
     },
     "devDependencies": {
-        "@akala/vite": "^2.3.4",
+        "@akala/vite": "^2.3.10",
         "esbuild-sass-plugin": "^3.3.1",
         "postcss": "^8.5.3",
         "postcss-modules": "^6.0.1",

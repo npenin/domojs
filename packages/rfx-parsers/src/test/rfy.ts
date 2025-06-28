@@ -1,5 +1,6 @@
 import { IsomorphicBuffer } from "@akala/core";
 import { Protocol, Rfy, Type } from "../protocol/index.js"
+import { describe, it } from 'node:test'
 
 describe('rfy', function ()
 {

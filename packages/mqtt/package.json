@@ -5,7 +5,7 @@
     "main": "dist/index.js",
     "type": "module",
     "scripts": {
-        "test": "echo \"Error: no test specified\"",
+        "test": "node --enable-source-maps --test dist/test/**/*.js",
         "build": "tsc -p ."
     },
     "author": "npenin",
@@ -14,13 +14,14 @@
         "@akala/pubsub": "^3.0.151"
     },
     "dependencies": {
-        "@akala/commands": "^17.0.0",
-        "@akala/core": "^39.5.1",
-        "@akala/protocol-parser": "^9.1.1"
+        "@akala/commands": "^17.0.5",
+        "@akala/core": "^39.6.4",
+        "@akala/protocol-parser": "^10.0.4"
     },
     "devDependencies": {
         "@types/debug": "4.1.12",
-        "@types/request": "2.48.12"
+        "@types/request": "2.48.12",
+        "mqtt": "^5.13.1"
     },
     "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }

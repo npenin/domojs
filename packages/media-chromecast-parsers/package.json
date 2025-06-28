@@ -8,20 +8,17 @@
     "main": "dist/index.js",
     "type": "module",
     "dependencies": {
-        "@akala/protocol-parser": "^9.1.1"
+        "@akala/protocol-parser": "^10.0.4"
     },
     "repository": {
         "type": "git",
         "url": "https://github.com/npenin/domojs.git"
     },
     "scripts": {
-        "test": "mocha --require source-map-support/register dist/test"
+        "test": "node --test dist/test"
     },
     "bugs": {
         "url": "https://github.com/npenin/domojs/issues"
     },
-    "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8",
-    "devDependencies": {
-        "@types/mocha": "^10.0.10"
-    }
+    "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }

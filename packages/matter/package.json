@@ -1,0 +1,23 @@
+{
+    "name": "matter",
+    "version": "0.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "type": "module",
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
+            }
+        }
+    },
+    "dependencies": {
+        "@akala/commands": "^17.0.5",
+        "@domojs/devices": "workspace:^",
+        "@matter/main": "^0.14.0"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\""
+    }
+}

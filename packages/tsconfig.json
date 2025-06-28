@@ -81,6 +81,9 @@
     },
     {
       "path": "homescreen"
+    },
+    {
+      "path": "matter"
     }
   ]
 }

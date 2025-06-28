@@ -12,8 +12,8 @@
     "author": "npenin",
     "license": "MIT",
     "dependencies": {
-        "@akala/core": "^39.5.1",
-        "@akala/protocol-parser": "^9.1.1",
+        "@akala/core": "^39.6.4",
+        "@akala/protocol-parser": "^10.0.4",
         "@domojs/devices": "workspace:*",
         "debug": "^4.4.1"
     },
@@ -34,7 +34,6 @@
         "@types/usb": "2.0.5",
         "@types/ws": "8.18.1",
         "serialport": "^13.0.0",
-        "source-map-support": "0.5.21",
         "typescript": "5.8.3",
         "usb": "2.15.0"
     },

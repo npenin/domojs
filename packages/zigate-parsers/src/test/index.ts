@@ -1,4 +1,3 @@
-import 'source-map-support/register'
 import * as debug from 'debug';
 debug.enable('zigate,domojs:protocol-parser');
 import { Protocol } from '../index.js';

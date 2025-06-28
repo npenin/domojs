@@ -1,6 +1,6 @@
 import { EventEmitter, Queue, logger, IsomorphicBuffer } from '@akala/core';
-import { Socket } from 'net';
-import { Duplex } from 'stream';
+import type { Socket } from 'net';
+import type { Duplex } from 'stream';
 
 export const log = logger('domojs:devices');
 

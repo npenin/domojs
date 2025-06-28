@@ -1,6 +1,7 @@
 import net from 'net'
 import { Cursor, protobuf } from '@akala/protocol-parser';
 import { IsomorphicBuffer } from '@akala/core'
+import { describe, it } from 'node:test'
 
 describe('cast', function ()
 {
