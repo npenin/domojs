@@ -6,11 +6,12 @@ import { RetainHandling } from '../protocol/subscribe.js'
 
 describe('mosquitto tests', () =>
 {
-    it.only('should subscribe', { timeout: 60000 }, async (x) =>
+    it('should subscribe', { timeout: 60000 }, async (x) =>
     {
+        if (x.signal.aborted)
+            return;
         const mqtt = await asyncEventBuses.process(new URL('mqtt://test.mosquitto.org'), { clientId: 'akala_v0', abort: x.signal } as any) as MqttClient;
 
-        x.signal.addEventListener('abort', () => console.log(x.signal.reason));
         await mqtt.on('presence',
             (data, options) =>
             {
@@ -23,7 +24,31 @@ describe('mosquitto tests', () =>
 
         await mqtt.emit('presence', 'Hello akala !');
 
-        await delay(20000);
+        await mqtt.disconnect();
+
+        await mqtt[Symbol.asyncDispose]();
+    });
+
+    it('should subscribe on mqtts', { timeout: 60000 }, async (x) =>
+    {
+        if (x.signal.aborted)
+            return;
+
+        const mqtt = await asyncEventBuses.process(new URL('mqtts://test.mosquitto.org'), { clientId: 'akala_v0', abort: x.signal, ca: await (await fetch('https://test.mosquitto.org/ssl/mosquitto.org.crt')).text() } as any) as MqttClient;
+
+        await mqtt.on('presence',
+            (data, options) =>
+            {
+                console.log(data);
+                console.log(options);
+            }
+            , { maxQoS: 0, retainHandling: RetainHandling.SendAtSubscribe });
+
+
+
+        await mqtt.emit('presence', 'Hello akala !');
+
+        await mqtt.disconnect();
 
         await mqtt[Symbol.asyncDispose]();
     });

@@ -3,6 +3,7 @@ import { MqttEvents, MqttEvent, ProtocolEvents, mappings } from './index.js';
 import { Message, StandardMessages } from './protocol/_protocol.js';
 import { ControlPacketType, Properties, PropertyKeys, ReasonCodes } from './protocol/_shared.js';
 import { Message as ConnectMessage } from './protocol/connect.js';
+import { Message as DisconnectMessage } from './protocol/disconnect.js';
 import { Message as publish } from './protocol/publish.js';
 import { Message as puback } from './protocol/puback.js';
 import { Message as subscribe, SubscribeParser, TopicSubscription } from './protocol/subscribe.js';
@@ -165,6 +166,18 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
         return this.dialog(message);
     }
 
+    public async disconnect(): Promise<void>
+    {
+        const message: DisconnectMessage = {
+            type: ControlPacketType.DISCONNECT,
+            properties: []
+        };
+        await new Promise<void>((resolve, reject) =>
+            this.protocolEvents.socket.write(IsomorphicBuffer.concat(parserWrite(StandardMessages, message, message)).toArray(), err => err ? reject(err) : resolve()));
+
+        await new Promise<void>(resolve => this.protocolEvents.socket.end(resolve));
+    }
+
     public publish(topic: string, payload: IsomorphicBuffer | string, options?: { qos?: number; retain?: boolean; properties?: Properties; }): Promise<void | Message>
     {
         const qos = options?.qos || 0;
@@ -243,70 +256,10 @@ asyncEventBuses.useProtocol('mqtt', async (url, config) =>
 
     const protocolEvents = new ProtocolEvents(socket);
 
-    protocolEvents.on(ControlPacketType.AUTH, (msg) =>
-    {
-        console.log('%s: %o', ControlPacketType[msg.type], msg)
-    })
-    protocolEvents.on(ControlPacketType.CONNACK, (msg) =>
-    {
-        console.log('%s: %o', ControlPacketType[msg.type], msg)
-    })
-    protocolEvents.on(ControlPacketType.CONNECT, (msg) =>
-    {
-        console.log('%s: %o', ControlPacketType[msg.type], msg)
-    })
-    protocolEvents.on(ControlPacketType.DISCONNECT, (msg) =>
-    {
-        console.log('%s: %o', ControlPacketType[msg.type], msg)
-    })
-    protocolEvents.on(ControlPacketType.PINGREQ, (msg) =>
-    {
-        console.log('%s: %o', ControlPacketType[msg.type], msg)
-    })
-    protocolEvents.on(ControlPacketType.PINGRESP, (msg) =>
-    {
-        console.log('%s: %o', ControlPacketType[msg.type], msg)
-    })
-    protocolEvents.on(ControlPacketType.PUBACK, (msg) =>
-    {
-        console.log('%s: %o', ControlPacketType[msg.type], msg)
-    })
-    protocolEvents.on(ControlPacketType.PUBCOMP, (msg) =>
-    {
-        console.log('%s: %o', ControlPacketType[msg.type], msg)
-    })
-    protocolEvents.on(ControlPacketType.PUBLISH, (msg) =>
-    {
-        console.log('%s: %o', ControlPacketType[msg.type], msg)
-    })
-    protocolEvents.on(ControlPacketType.PUBREC, (msg) =>
-    {
-        console.log('%s: %o', ControlPacketType[msg.type], msg)
-    })
-    protocolEvents.on(ControlPacketType.PUBREL, (msg) =>
-    {
-        console.log('%s: %o', ControlPacketType[msg.type], msg)
-    })
-    protocolEvents.on(ControlPacketType.SUBACK, (msg) =>
-    {
-        console.log('%s: %o', ControlPacketType[msg.type], msg)
-    })
-    protocolEvents.on(ControlPacketType.SUBSCRIBE, (msg) =>
-    {
-        console.log('%s: %o', ControlPacketType[msg.type], msg)
-    })
-    protocolEvents.on(ControlPacketType.UNSUBACK, (msg) =>
-    {
-        console.log('%s: %o', ControlPacketType[msg.type], msg)
-    })
-    protocolEvents.on(ControlPacketType.UNSUBSCRIBE, (msg) =>
-    {
-        console.log('%s: %o', ControlPacketType[msg.type], msg)
-    })
-
     socket.on('error', err =>
     {
-        console.error(err);
+        if (err.cause !== config.abort.reason)
+            console.error(err);
     })
 
     const client = new MqttClient(config?.['clientId'] as string ?? crypto.randomUUID(), protocolEvents);
@@ -321,16 +274,40 @@ asyncEventBuses.useProtocol('mqtt', async (url, config) =>
 
 asyncEventBuses.useProtocol('mqtts', async (url, config) =>
 {
-    const socket = new TLSSocket(new Socket(config as SocketConstructorOpts), config as TLSSocketOptions);
+    const socket = new Socket({ ...config, signal: config.abort });
+    const tlsSocket = new TLSSocket(socket, config as any);
 
     const defer = new Deferred<void>();
     const port = Number(url.port);
-    socket.connect(!isNaN(port) && port ? port : 1883, url.hostname, defer.resolve.bind(defer));
-    socket.on('error', defer.reject.bind(defer));
+    socket.connect(!isNaN(port) && port ? port : 8883, url.hostname, defer.resolve.bind(defer));
+
+    socket.on('error', err =>
+    {
+        if (err.cause !== config.abort.reason)
+            console.error(err);
+    })
+    tlsSocket.on('error', err =>
+    {
+        if (err.cause !== config.abort.reason)
+            console.error(err);
+    })
+    tlsSocket.on('error',
+        (x) => defer.reject(x));
+    socket.on('error',
+        (x) => defer.reject(x));
 
     await defer;
 
-    return new MqttClient(config?.clientId as string ?? crypto.randomUUID(), new ProtocolEvents(socket));
+    const protocolEvents = new ProtocolEvents(tlsSocket);
+
+    const client = new MqttClient(config?.['clientId'] as string ?? crypto.randomUUID(), protocolEvents);
+
+    if (url.username || url.password)
+        await client.connect({ userName: url.username, password: IsomorphicBuffer.from(url.password) });
+    else
+        await client.connect({});
+
+    return client;
 })
 
 asyncEventBuses.useProtocol('mqtt+tls', async (url, config) =>
