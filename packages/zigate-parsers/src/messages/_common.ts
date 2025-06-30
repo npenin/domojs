@@ -159,7 +159,7 @@ export const Protocol = {
     },
     send(type: MessageType, message: any)
     {
-        var buffer = IsomorphicBuffer.concat(parserWrite(Message, { start: 0x01, type: type, message: message, end: 0x03, length: 2, checksum: 1 }));
+        var buffer = parserWrite(Message, { start: 0x01, type: type, message: message, end: 0x03, length: 2, checksum: 1 });
         buffer.writeInt16BE(buffer.length - 8, 3);
         log.debug('encoding buffer', buffer);
 

@@ -14,6 +14,7 @@ import { Message as SubAck } from './suback.js'
 import { Message as Subscribe } from './subscribe.js'
 import { Message as UnsubAck } from './unsuback.js'
 import { Message as Unsubscribe } from './unsubscribe.js'
+import { IsomorphicBuffer } from '@akala/core';
 
 
 export type MessageTypes = Connect
@@ -69,6 +70,15 @@ export const MessageParser = parsers.series<Message>(
     parsers.property('dup', parsers.boolean()),
     parsers.property('type', parsers.uint4),
 );
+
+if (MessageParser instanceof parsers.Cache)
+{
+    for (const retain of [true, false])
+        for (const qos of [0, 1, 2])
+            for (const dup of [true, false])
+                for (const type of Object.values(shared.ControlPacketType).filter(v => typeof v == 'number'))
+                    MessageParser.cache.set([retain || '', qos || '', dup || '', type || ''].join('#'), new IsomorphicBuffer([type << 4 | (dup ? 0b1000 : 0b0000) | (qos << 1) | (retain ? 0b1 : 0b0)]))
+}
 
 export const StandardMessages = parsers.object<Message>(
     MessageParser,

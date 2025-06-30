@@ -1,5 +1,6 @@
 import { CommandProcessor, Container, Metadata, StructuredParameters } from '@akala/commands';
 import { MiddlewarePromise } from '@akala/core';
+import { parserWrite } from '@akala/protocol-parser';
 import CastStream, { castMessage } from '@domojs/media-chromecast-parsers'
 import net from 'net';
 import trigger from './cast-trigger.js';
@@ -17,14 +18,14 @@ export default class CastProcessor extends CommandProcessor
             return new Error('there is no socket or the socket is not writable');
 
         const requestId = this.requestId++;
-        await new Promise<Error>((resolve, reject) => this.socket.write(IsomorphicBuffer.concat(castMessage.write({
+        await new Promise<Error>((resolve, reject) => this.socket.write(parserWrite(castMessage, {
             source_id: param.sender as string || 'sender-0',
             destination_id: param.receiver as string || 'receiver-0',
             namespace: param.namespace as string,
             payload_type: 0,
             protocol_version: 0,
             payload_utf8: JSON.stringify(Object.assign({ type: cmd, requestId }, param))
-        })).toArray(), err =>
+        }).toArray(), err =>
         {
             if (err)
                 resolve(err);

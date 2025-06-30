@@ -58,7 +58,7 @@ export function connect(identity: { systemtype: 'bootloader' | 'host' | 'device'
         arg1: maxData,
         payload: IsomorphicBuffer.from(`${identity.systemtype}:${identity.serialno}:${identity.banner}`),
     }
-    return IsomorphicBuffer.concat(parserWrite(message, msg, msg))
+    return parserWrite(message, msg, msg)
 }
 
 export function startTls(type: uint32, version: uint32)
@@ -68,7 +68,7 @@ export function startTls(type: uint32, version: uint32)
         arg0: type,
         arg1: version,
     }
-    return IsomorphicBuffer.concat(parserWrite(message, msg, msg))
+    return parserWrite(message, msg, msg)
 }
 
 export enum AuthType
@@ -87,7 +87,7 @@ export function auth(type: AuthType, data: IsomorphicBuffer)
         payload: data,
     }
     // console.log(msg)
-    return IsomorphicBuffer.concat(parserWrite(message, msg, msg))
+    return parserWrite(message, msg, msg);
 }
 
 export const algorithm = 'RSASSA-PKCS1-v1_5';
@@ -115,7 +115,7 @@ export function open(localId: number, destination: IsomorphicBuffer)
         arg1: 0,
         payload: destination,
     }
-    return IsomorphicBuffer.concat(parserWrite(message, msg, msg))
+    return parserWrite(message, msg, msg);
 }
 
 export function ready(localId: number, remoteId: number)
@@ -126,7 +126,7 @@ export function ready(localId: number, remoteId: number)
         arg1: remoteId,
         payload: new IsomorphicBuffer(0)
     }
-    return IsomorphicBuffer.concat(parserWrite(message, msg, msg))
+    return parserWrite(message, msg, msg);
 }
 
 export function write(localId: number, remoteId: number, data: IsomorphicBuffer)
@@ -137,7 +137,7 @@ export function write(localId: number, remoteId: number, data: IsomorphicBuffer)
         arg1: remoteId,
         payload: data,
     }
-    return IsomorphicBuffer.concat(parserWrite(message, msg, msg))
+    return parserWrite(message, msg, msg);
 }
 
 export function close(localId: number, remoteId: number)
@@ -148,7 +148,7 @@ export function close(localId: number, remoteId: number)
         arg1: remoteId,
         payload: new IsomorphicBuffer(0)
     }
-    return IsomorphicBuffer.concat(parserWrite(message, msg, msg))
+    return parserWrite(message, msg, msg);
 }
 
 export class ADB

@@ -194,12 +194,12 @@ class PairSetupClient
     sendM1(): PromiseLike<PairSetupM2>
     {
         return this.http.call({
-            url: `http://${this.accessoryAddress}/pair-setup`, body: IsomorphicBuffer.concat(parserWrite(pairMessage,
+            url: `http://${this.accessoryAddress}/pair-setup`, body: parserWrite(pairMessage,
                 {
                     state: PairState.M1,
                     method: PairMethod.Setup,
                     flags: PairTypeFlags.Split & PairTypeFlags.Transient
-                })).toArray(),
+                }).toArray(),
             method: 'post',
             type: 'raw'
         }).
@@ -226,11 +226,11 @@ class PairSetupClient
     {
         return this.http.call({
             url: `http://${this.accessoryAddress}/pair-setup`,
-            body: IsomorphicBuffer.concat(pairMessage.write({
+            body: parserWrite(pairMessage, {
                 state: PairState.M3,
                 publicKey: IsomorphicBuffer.fromBuffer(m3.computeA()),
                 proof: IsomorphicBuffer.fromBuffer(m3.computeM1())
-            })).toArray(),
+            }).toArray(),
             type: 'raw'
         }).
             then(r => r.arrayBuffer()).
@@ -259,11 +259,11 @@ class PairSetupClient
 
         const iOSDeviceSignature = tweetnacl.sign.detached(iOSDeviceInfo.toArray(), clientInfo.privateKey.toArray());
 
-        const subTLV_M5 = IsomorphicBuffer.concat(pairMessage.write({
+        const subTLV_M5 = parserWrite(pairMessage, {
             identifier: clientInfo.username,
             publicKey: clientInfo.publicKey,
             signature: new IsomorphicBuffer(iOSDeviceSignature)
-        }));
+        });
 
         const sessionKey = hkdf(
             sharedSecret,
@@ -288,10 +288,10 @@ class PairSetupClient
         return this.http.call(
             {
                 url: `http://${this.accessoryAddress}/pair-setup`,
-                body: IsomorphicBuffer.concat(pairMessage.write({
+                body: parserWrite(pairMessage, {
                     state: PairState.M6,
                     encryptedData: IsomorphicBuffer.concat([m5.ciphertext, m5.authTag])
-                })).toArray(),
+                }).toArray(),
                 type: 'raw'
             }).
             then(r => r.arrayBuffer()).

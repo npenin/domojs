@@ -39,7 +39,9 @@ export class ProtocolEvents extends EventEmitter<{
             const c = new Cursor();
             while (c.offset < data.length)
             {
+                console.time('mqtt-read')
                 var msg = StandardMessages.read(IsomorphicBuffer.fromBuffer(data), c, {});
+                console.timeEnd('mqtt-read')
                 this.emit(msg.type as EventKeys<ProtocolEventsMap>, msg);
             }
         });

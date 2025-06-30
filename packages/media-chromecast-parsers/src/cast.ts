@@ -1,4 +1,4 @@
-import { Cursor, protobuf } from '@akala/protocol-parser'
+import { Cursor, parserWrite, protobuf } from '@akala/protocol-parser'
 import { IsomorphicBuffer } from '@akala/core'
 
 export enum ProtocolVersion
@@ -165,7 +165,7 @@ if (require.main == module)
                 })
             };
             console.log(msg);
-            var buffer = IsomorphicBuffer.concat(castMessage.write(msg));
+            var buffer = parserWrite(castMessage, msg);
             console.log(buffer.toJSON());
             if (!socket.write(buffer.toArray()
                 , err => { if (err) reject(err); resolve() }))
@@ -182,7 +182,7 @@ if (require.main == module)
                 })
             };
             console.log(msg);
-            var buffer = IsomorphicBuffer.concat(castMessage.write(msg));
+            var buffer = parserWrite(castMessage, msg);
             console.log(buffer.toJSON());
             if (!socket.write(buffer.toArray()
                 , err => { if (err) reject(err); resolve() }))

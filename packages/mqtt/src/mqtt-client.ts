@@ -1,4 +1,4 @@
-import { AsyncTeardownManager, AsyncEventBus, StatefulAsyncSubscription, EventOptions, EventListener, AllEventKeys, AllEvents, AsyncSubscription, IsomorphicBuffer, asyncEventBuses, Deferred, delay } from '@akala/core';
+import { AsyncTeardownManager, AsyncEventBus, StatefulAsyncSubscription, EventOptions, EventListener, AllEventKeys, AllEvents, AsyncSubscription, IsomorphicBuffer, asyncEventBuses, Deferred, delay, HttpStatusCode, ErrorWithStatus } from '@akala/core';
 import { MqttEvents, MqttEvent, ProtocolEvents, mappings } from './index.js';
 import { Message, StandardMessages } from './protocol/_protocol.js';
 import { ControlPacketType, Properties, PropertyKeys, ReasonCodes } from './protocol/_shared.js';
@@ -12,6 +12,94 @@ import { Socket, SocketConnectOpts, SocketConstructorOpts } from 'net';
 import { TLSSocket, TLSSocketOptions } from 'tls';
 import './protocol/index.js'
 import { parserWrite } from '@akala/protocol-parser';
+
+class DisconnectError extends ErrorWithStatus
+{
+    public static ReasonToHttpStatus(reason: ReasonCodes): HttpStatusCode
+    {
+        switch (reason)
+        {
+            case ReasonCodes.Success:
+                return HttpStatusCode.OK;
+            case ReasonCodes.GrantedQoS1:
+            case ReasonCodes.GrantedQoS2:
+                return HttpStatusCode.Accepted
+            case ReasonCodes.DisconnectWithWillMessage:
+                return HttpStatusCode.Gone;
+            case ReasonCodes.NoMatchingSubscriber:
+            case ReasonCodes.NoSubscriptionExisted:
+                return HttpStatusCode.NotFound;
+            case ReasonCodes.ContinueAuthentication:
+                return HttpStatusCode.Continue;
+            case ReasonCodes.ReAuthenticate:
+                return HttpStatusCode.Unauthorized;
+            case ReasonCodes.UnspecifiedError:
+                return HttpStatusCode.InternalServerError;
+            case ReasonCodes.MalformedPacket:
+            case ReasonCodes.ProtocolError:
+            case ReasonCodes.ImplementationSpecificError:
+            case ReasonCodes.UnsupportedProtocolVersion:
+            case ReasonCodes.ClientIdentifierNotValid:
+                return HttpStatusCode.BadRequest;
+            case ReasonCodes.BadUserNameOrPassword:
+            case ReasonCodes.NotAuthorized:
+                return HttpStatusCode.Unauthorized;
+            case ReasonCodes.ServerUnavailable:
+                return HttpStatusCode.ServiceUnavailable;
+            case ReasonCodes.ServerBusy:
+                return HttpStatusCode.ServiceUnavailable;
+            case ReasonCodes.Banned:
+                return HttpStatusCode.Forbidden;
+            case ReasonCodes.ServerShuttingDown:
+                return HttpStatusCode.ServiceUnavailable;
+            case ReasonCodes.BadAuthenticationMethod:
+                return HttpStatusCode.Unauthorized;
+            case ReasonCodes.KeepAliveTimeout:
+                return HttpStatusCode.RequestTimeout;
+            case ReasonCodes.SessionTakenOver:
+                return HttpStatusCode.Conflict;
+            case ReasonCodes.TopicFilterInvali:
+            case ReasonCodes.TopicNameInvalid:
+                return HttpStatusCode.BadRequest;
+            case ReasonCodes.PacketIdentifierInUse:
+                return HttpStatusCode.Conflict;
+            case ReasonCodes.PacketIdentifierNotFound:
+                return HttpStatusCode.NotFound;
+            case ReasonCodes.ReceiveMaximumExceeded:
+            case ReasonCodes.PacketTooLarge:
+            case ReasonCodes.MessageRateTooHigh:
+            case ReasonCodes.QuotaExceeded:
+                return HttpStatusCode.PayloadTooLarge;
+            case ReasonCodes.TopicAliasInvalid:
+                return HttpStatusCode.BadRequest;
+            case ReasonCodes.AdministrativeAction:
+                return HttpStatusCode.Forbidden;
+            case ReasonCodes.PayloadFormatInvalid:
+                return HttpStatusCode.UnsupportedMediaType;
+            case ReasonCodes.RetainNotSupported:
+            case ReasonCodes.QoSNotSupported:
+            case ReasonCodes.sharedSubscriptionNotSupported:
+            case ReasonCodes.SubscriptionIdentifierNotSupported:
+            case ReasonCodes.wildcardSubscriptionNotSupported:
+                return HttpStatusCode.NotImplemented;
+            case ReasonCodes.UseAnotherServer:
+            case ReasonCodes.ServerMoved:
+                return HttpStatusCode.TemporaryRedirect;
+            case ReasonCodes.ConnectionRateExceeded:
+            case ReasonCodes.MaximumConnectTime:
+                return HttpStatusCode.TooManyRequests;
+            default:
+                return HttpStatusCode.InternalServerError;
+        }
+    }
+
+    public readonly disconnect: DisconnectMessage;
+    constructor(message: DisconnectMessage)
+    {
+        super(DisconnectError.ReasonToHttpStatus(message.reason), 'Disconnected: ' + (ReasonCodes[message.reason] ?? 'Unknown reason'));
+        this.disconnect = message;
+    }
+}
 
 export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<MqttEvents>
 {
@@ -71,7 +159,9 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
                             type: ControlPacketType.PUBACK,
                             properties: [],
                         };
-                        this.protocolEvents.socket.write(IsomorphicBuffer.concat(parserWrite(StandardMessages, message, message)).toArray())
+                        console.time('mqtt-write')
+                        this.protocolEvents.socket.write(parserWrite(StandardMessages, message, message, 0).toArray())
+                        console.timeEnd('mqtt-write')
                     }
                 }
                 catch (e)
@@ -85,7 +175,9 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
                             type: ControlPacketType.PUBACK,
                             properties: [],
                         };
-                        this.protocolEvents.socket.write(IsomorphicBuffer.concat(parserWrite(StandardMessages, message, message)).toArray())
+                        console.time('mqtt-write')
+                        this.protocolEvents.socket.write(parserWrite(StandardMessages, message, message, 0).toArray())
+                        console.timeEnd('mqtt-write')
                     }
                 }
             });
@@ -125,21 +217,42 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
                 {
                     if (message.packetId == m['packetId'])
                     {
+                        disconnectSub();
                         sub();
                         resolve(m);
                     }
                 }
                 else
                 {
+                    disconnectSub();
                     sub();
                     resolve(m);
                 }
             });
+            const disconnectSub = this.protocolEvents.once(ControlPacketType.DISCONNECT, (m: DisconnectMessage) =>
+            {
+                if (m.reason !== ReasonCodes.Success)
+                {
+                    sub();
+                    reject(new DisconnectError(m));
+                }
+            })
 
+            console.time('mqtt-write')
             if (message.type === ControlPacketType.SUBSCRIBE)
-                this.protocolEvents.socket.write(IsomorphicBuffer.concat(parserWrite(SubscribeParser, message, message)).toArray());
+                this.protocolEvents.socket.write(parserWrite(SubscribeParser, message, message, 0).toArray(), err =>
+                {
+                    if (err)
+                        reject(err)
+                });
             else
-                this.protocolEvents.socket.write(IsomorphicBuffer.concat(parserWrite(StandardMessages, message, message)).toArray());
+                this.protocolEvents.socket.write(parserWrite(StandardMessages, message, message, 0).toArray(), err =>
+                {
+                    if (err)
+                        reject(err);
+                });
+            console.timeEnd('mqtt-write')
+
         });
     }
 
@@ -173,7 +286,7 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
             properties: []
         };
         await new Promise<void>((resolve, reject) =>
-            this.protocolEvents.socket.write(IsomorphicBuffer.concat(parserWrite(StandardMessages, message, message)).toArray(), err => err ? reject(err) : resolve()));
+            this.protocolEvents.socket.write(parserWrite(StandardMessages, message, message, 0).toArray(), err => err ? reject(err) : resolve()));
 
         await new Promise<void>(resolve => this.protocolEvents.socket.end(resolve));
     }
@@ -192,7 +305,7 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
             binaryPayload: typeof payload !== 'string' ? payload : undefined,
         };
         if (qos === 0)
-            return new Promise<void>((resolve, reject) => this.protocolEvents.socket.write(IsomorphicBuffer.concat(StandardMessages.write(message, message)).toArray(), err => err ? reject(err) : resolve()));
+            return new Promise<void>((resolve, reject) => this.protocolEvents.socket.write(parserWrite(StandardMessages, message, message, 0).toArray(), err => err ? reject(err) : resolve()));
 
         return this.dialog(message);
     }

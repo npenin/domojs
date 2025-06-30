@@ -3,7 +3,7 @@ import { logger, MiddlewarePromise } from "@akala/core";
 import * as proto from '@akala/protocol-parser'
 import { Duplex } from 'stream'
 import { EventEmitter } from 'events'
-import { parsers } from "@akala/protocol-parser";
+import { parsers, parserWrite } from "@akala/protocol-parser";
 
 const log = logger('domojs:iscp:processor');
 
@@ -83,7 +83,7 @@ export class ISCPProcessor extends CommandProcessor
     {
         return new Promise((resolve, reject) =>
         {
-            var buffer = prot.write(new IscpMessage(
+            var buffer = parserWrite(prot, new IscpMessage(
                 cmd.name,
                 param.param[0] || ''
             ), undefined);

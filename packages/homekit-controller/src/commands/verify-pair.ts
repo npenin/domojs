@@ -103,11 +103,11 @@ class PairSetupClient
     async sendM1()
     {
         return await this.http.call({
-            url: `http://${this.accessoryAddress}/pair-verify`, body: IsomorphicBuffer.concat(parserWrite(pairMessage,
+            url: `http://${this.accessoryAddress}/pair-verify`, body: parserWrite(pairMessage,
                 {
                     state: PairState.M1,
                     publicKey: new IsomorphicBuffer(this.keyPair.publicKey),
-                })).toArray(),
+                }).toArray(),
             method: 'post',
             type: 'raw'
         }).
@@ -181,10 +181,10 @@ class PairSetupClient
         );
 
         // step 9
-        const plainTextTLV_M3 = IsomorphicBuffer.concat(parserWrite(pairMessage, {
+        const plainTextTLV_M3 = parserWrite(pairMessage, {
             identifier: m2.pairedAccessory.accessory.identifier,
             signature: controllerSignature,
-        }));
+        });
 
         // step 10
         const encrypted_M3 = chacha20_poly1305_encryptAndSeal(
@@ -197,11 +197,11 @@ class PairSetupClient
 
         return this.http.call({
             url: `http://${this.accessoryAddress}/pair-verify`,
-            body: IsomorphicBuffer.concat(parserWrite(pairMessage, {
+            body: parserWrite(pairMessage, {
 
                 state: PairState.M3,
                 encryptedData: IsomorphicBuffer.concat([encrypted_M3.ciphertext, encrypted_M3.authTag]),
-            })).toArray(),
+            }).toArray(),
             type: "raw"
         }).
             then(r => r.arrayBuffer()).

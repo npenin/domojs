@@ -130,7 +130,7 @@ export class Rfxtrx extends Gateway<{ message: Event<[Message<any>]> } & { [key 
     {
         var msg: Message<Partial<T>> = { type: type, message: message, sequenceNumber: this.sqnce++ };
         log.info(msg);
-        var buffer = IsomorphicBuffer.concat(parserWrite(Protocol, msg));
+        var buffer = parserWrite(Protocol, msg);
         return new Promise<Message<any>>((resolve, reject) =>
         {
             log.debug(buffer);

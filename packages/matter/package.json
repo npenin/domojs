@@ -13,7 +13,7 @@
         }
     },
     "dependencies": {
-        "@akala/commands": "^17.0.6",
+        "@akala/commands": "^17.1.0",
         "@domojs/devices": "workspace:^",
         "@matter/main": "^0.14.0"
     },
