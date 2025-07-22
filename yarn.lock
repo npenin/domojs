@@ -465,7 +465,7 @@ __metadata:
     "@types/mongodb": "npm:4.0.7"
     "@types/node": "npm:22.15.18"
     "@types/ws": "npm:8.18.1"
-    mongodb: "npm:6.16.0"
+    mongodb: "npm:6.18.0"
     typescript: "npm:5.8.3"
     ws: "npm:8.18.2"
   languageName: unknown
@@ -3471,10 +3471,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bson@npm:^6.10.3":
-  version: 6.10.3
-  resolution: "bson@npm:6.10.3"
-  checksum: 10/53693ad7636fa1a128f32d5c30a9584b4a09a2b2aa2040ea8bf8dca35a283eb1394138770bc6c2dae91b0c6df96b3caef3b14532644736f4d7a1d3177969537b
+"bson@npm:^6.10.4":
+  version: 6.10.4
+  resolution: "bson@npm:6.10.4"
+  checksum: 10/8a79a452219a13898358a5abc93e32bc3805236334f962661da121ce15bd5cade27718ba3310ee2a143ff508489b08467eed172ecb2a658cb8d2e94fdb76b215
   languageName: node
   linkType: hard
 
@@ -6786,12 +6786,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongodb@npm:6.16.0":
-  version: 6.16.0
-  resolution: "mongodb@npm:6.16.0"
+"mongodb@npm:6.18.0":
+  version: 6.18.0
+  resolution: "mongodb@npm:6.18.0"
   dependencies:
     "@mongodb-js/saslprep": "npm:^1.1.9"
-    bson: "npm:^6.10.3"
+    bson: "npm:^6.10.4"
     mongodb-connection-string-url: "npm:^3.0.0"
   peerDependencies:
     "@aws-sdk/credential-providers": ^3.188.0
@@ -6816,7 +6816,7 @@ __metadata:
       optional: true
     socks:
       optional: true
-  checksum: 10/eb47da9ef00331aca1804426424a8630f9e42c48bf6021786ebb1766b1d53bda62c64498b41627b5fe5c01260ec5ca2e8cbc2468e394df5d5b874cee646e9c06
+  checksum: 10/559bfe87bb9a4945d81380c31cc89730c4a4c806a2e6ed06086dcacabd1caee32f711427abf93627b649f189e9464b67318ba65baccc07670bb30bac74dab933
   languageName: node
   linkType: hard
 
