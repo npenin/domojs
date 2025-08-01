@@ -4,7 +4,8 @@
         "@akala/config/akala",
         "@akala/pm/akala",
         "@akala/server/akala",
-        "@akala/client/akala"
+        "@akala/client/akala",
+        "@domojs/mqtt/akala"
     ],
     "pm": {
         "containers": {
@@ -24,15 +25,21 @@
                 "commandable": true,
                 "type": "nodejs"
             },
-            "@domojs/devicetype": {
-                "path": "npm:///@domojs/devices/devicetype-commands.json",
+            "@domojs/mdns": {
+                "path": "npm:///@domojs/mdns/commands.json",
                 "commandable": true,
-                "type": "nodejs"
+                "type": "nodejs",
+                "dependencies": [
+                    "@domojs/devices"
+                ]
             },
             "weather": {
                 "path": "npm:///@domojs/weather/commands.json",
                 "commandable": true,
-                "type": "nodejs"
+                "type": "nodejs",
+                "dependencies": [
+                    "@domojs/devices"
+                ]
             },
             "zigate": {
                 "path": "npm:///@domojs/zigate/commands.json",
@@ -47,20 +54,40 @@
                     "jsonrpc+unix://./pm.sock": {}
                 }
             },
-            "@domojs/devicetype": {
-                "container": "@domojs/devicetype",
+            "@domojs/devices": {
+                "container": "@domojs/devices",
                 "connect": {
-                    "jsonrpc+unix://./devicetype.sock": {}
+                    "jsonrpc+unix://./devices.sock": {}
                 },
+                "autostart": true
+            },
+            "@domojs/weather": {
+                "container": "weather",
+                "autostart": false
+            },
+            "@domojs/mdns": {
+                "container": "@domojs/mdns",
                 "autostart": true
             }
         },
         "plugins": []
     },
     "commands": {
-        "sdk": "./node_modules/@akala/commands/commands.json"
+        "sdk": "./node_modules/@akala/commands/commands.json",
+        "mdns": "./node_modules/@domojs/mdns/commands.json",
+        "matter": "npm:///@domojs/matter/commands.json"
     },
-    "@domojs/devicetype": {
+    "@domojs/devices": {
+        "pubsub": {
+            "transport": "mqtt://localhost",
+            "transportOptions": {
+                "username": "devices",
+                "password": {
+                    "iv": "d7Lp1D2Lq0X7tdRHZwAZFw==",
+                    "value": "vjpEPq9EB37rMLEg5hjLc4ooy8JHxcYGq/48JxR969gfJGp4dq2zpjsBOb9zORE8"
+                }
+            }
+        },
         "store": {
             "provider": "file+json://./",
             "models": {
@@ -83,6 +110,68 @@
                     }
                 }
             }
+        },
+        "endpointsMapping": {}
+    },
+    "@domojs/weather": {
+        "pubsub": {
+            "transport": "mqtt://localhost"
+        }
+    },
+    "@domojs/mdns": {
+        "pubsub": {
+            "transport": "mqtt://localhost",
+            "transportOptions": {
+                "username": "mdns",
+                "password": {
+                    "iv": "9F3V51Hpkux3mamD3+QsiQ==",
+                    "value": "0ZSIFo7wSC33SN1f2xlp7iCl67G6rt0TtBxCQB/63TgmU5l7A/sKla+thpz2ioRp"
+                }
+            }
+        },
+        "endpointsMapping": {
+            "b9aecf5c618e2c877de9ad2f788f55dfc572363ca9499af38c9d75e1ace2fb6": 1,
+            "628f12108c1b82833f81ceddf47fc1fec6ec72455bc2e0f8c83d3320c1c3dd": 2,
+            "a95b3b13f2d628a33831d125e7d476aa98242d3d80a9f8ecb897f73c3ef17c": 3,
+            "42bf6045887d9ce4afa355ae14bc88ce2c78b1992f1fe5158bbe4d8b25e75ab": 4,
+            "4bf614c4a519bf554a95b1da25171e0afb9ba6f2c80fb9ceadea5d54d56c8a": 5,
+            "e61f91871e59aa68a91b66effca289e81d4a8e7955f151ea5cc4e850adb265": 6,
+            "fa38670444bce1e83e38bd6bd3fa8fb673325ee678d27a276eab14b85a7c5a": 7,
+            "75639d23f34e9b2c7d5993a7a08bfdd5213a9df91bb1f57124cadd88ac1549d6": 8,
+            "e2145947a2dd5fa582c0ccf4b3306167609d50b445d6adcfa7be357d1a5e4": 9,
+            "4d368edc52e26327fde871ccee94bee8f45dfa6241ed0eedac34ffc9bd4b8": 10,
+            "33fdb7d21d9ba0ba9c9e91cce09745e78137afaa35b9d80d7162057ad7d21a": 11,
+            "e6957a657d23fa72de75b9df57263765b221a05ff0b024d328b6ae2a412c98a": 12,
+            "feec4d33577fbd10ac29d16d6b927b128fe3d1972499efeb438c8a95e4c5abb": 13,
+            "5d3292575e29c01037c08b1dca88dac8421c6d8f95891ff277a1ca89fc5": 14,
+            "a3103c6116fa2432ca9a1707427e3e54d2817e6775d634331ad8bbb9a0e121": 15,
+            "e5df10941e3492608c9be919915a6d4d878763378875ed797a8f3343a9d7a6": 16,
+            "a1d8e3491ca2d23c9ca0d1e83b73c72d097ef22df888b9c7ce1d24835f": 17,
+            "4daf21266d9d39ddc8194a88e6476ce2d628422943c1c11ed8ea800f86de1": 18,
+            "efa317d6d7cdca87eaa6267338beb59a3fd57814d4e464d7c4fa62c453949d": 19,
+            "9272697c5ac6bd8ccc694dcb8238efc96138fd5372d3aa8ae6da08029ded2c6": 20,
+            "b030e2499ba2d0da26e074eb94235b152fa2866b65da88398ff93247c1de5c": 21,
+            "44f34f4e85be3d8d2de2b329f075d27836c1a0ec95f3c95c5e4fe3d53e3dd": 22,
+            "fbb61f444c61bbac644f7af4cf63d7baef122b984f1b0bb8bd861dc1943a": 23,
+            "a4f9b38ca790b6978bb1389bb26339673ac7d65186fa0de1753173e382557": 24,
+            "598aa01b6f2a76b739323de5b0a5117324c7f186381124a5dd2a5f41858c": 25,
+            "5ca7655c73a8d672b1c07bedbf72747bd5414152d6abaabe927f9c68d9b239": 26,
+            "cfb138bafcbcc6a41c15e224786b394c970bd80988f1bf114b9dfea63e09d": 27,
+            "43b8168ec21460f994bec9d3ecd116e984333e8a7112aaa82b0b24bb4c6b": 28,
+            "8928e6d024787439d7edef16b43dbf33b6c918c85b2a490434fc1a1256a6ef4": 29,
+            "e6105fbbc26b951d4b6d9ee0654a4fc5da71271fa880c07a22bcd78b1b4e4ab": 30,
+            "19c54222442dea72e0957048acce65accd1c8f39445674e5c28843d35f24fc": 31,
+            "d24b06e907e4665aa3a9560c9baf777427835f628d5f25424611b5f17667f": 32,
+            "787d4fff06252c9ac74ba8b74ce5f6de02b42bf76e577489ff1309430fdde4e": 33,
+            "e06dd6fee5b4930b1a17fd8ce1809d56efda9cf6a6c52d99f990c995875260": 34,
+            "9fbb4a48cb3f7896a1cdc22bb3f13a4bbacc5f3a26b77f9d42dc1aa1e26": 35,
+            "4527935d1f69f4924a27c74181add9aa7465ef9f4c9b35afc218743f9fb661": 36,
+            "ce764fadc1e738420a1d47b51c8c7eb185644636b59d62abd2a17b3dce33628": 37,
+            "fe72b1b9a77ff9dea72e21730929c712fe33c742b240cd637a581dfb1be60": 38,
+            "e644c832ca61b53921def503d90c3bc3d2399427351f159d4fd498e7b67bc1": 39,
+            "122fde76e789736413b42ecb817a546bfbccc0b611904d2966a1e442ac8fc6": 40,
+            "bb7f6ae5c96c7634343ceb5080714fe6161421f7473344c8bd3dc20384d26": 41,
+            "3959ab27453e24ee20f2e8fe5360a7a19845c52521129da9c4da1763e6165b": 42
         }
     }
 }
