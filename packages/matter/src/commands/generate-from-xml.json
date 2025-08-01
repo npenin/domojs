@@ -1,0 +1,25 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/command-schema.json",
+    "fs": {
+        "inject": [
+            "$http",
+            "signal",
+            "params.0"
+        ]
+    },
+    "": {
+        "inject": [
+            "$http",
+            "signal",
+            "params.0"
+        ]
+    },
+    "cli": {
+        "inject": [
+            "$http",
+            "context.abort.signal",
+            "options.destination"
+        ],
+        "usage": "codegen-devicetypes [destination]"
+    }
+}

@@ -1,23 +1,28 @@
 {
-    "name": "matter",
+    "name": "@domojs/matter",
     "version": "0.0.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "type": "module",
+    "dependencies": {
+        "@akala/commands": "^17.2.14",
+        "@akala/core": "^41.0.0",
+        "fast-xml-parser": "^5.2.5"
+    },
+    "devDependencies": {
+        "@akala/cli": "^5.11.13"
+    },
     "exports": {
         ".": {
             "import": {
                 "types": "./dist/index.d.ts",
                 "default": "./dist/index.js"
             }
-        }
-    },
-    "dependencies": {
-        "@akala/commands": "^17.1.0",
-        "@domojs/devices": "workspace:^",
-        "@matter/main": "^0.14.0"
+        },
+        "./commands.json": "./commands.json"
     },
     "scripts": {
-        "test": "echo \"Error: no test specified\""
+        "test": "echo \"Error: no test specified\"",
+        "generate": "akala sdk generate ./dist/commands commands.json --name @domojs/matter"
     }
 }

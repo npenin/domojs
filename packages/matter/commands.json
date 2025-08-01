@@ -1,0 +1,64 @@
+{
+    "name": "@domojs/matter",
+    "commands": [
+        {
+            "name": "generate-from-xml",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "$http",
+                        "signal",
+                        "params.0"
+                    ],
+                    "path": "dist/commands/generate-from-xml.js",
+                    "source": "src/commands/generate-from-xml.ts"
+                },
+                "": {
+                    "inject": [
+                        "$http",
+                        "signal",
+                        "params.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "$http",
+                        "context.abort.signal",
+                        "options.destination"
+                    ],
+                    "usage": "codegen-devicetypes [destination]"
+                }
+            }
+        },
+        {
+            "name": "generate-from-zap",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "$http",
+                        "signal",
+                        "params.0"
+                    ],
+                    "path": "dist/commands/generate-from-zap.js",
+                    "source": "src/commands/generate-from-zap.ts"
+                },
+                "": {
+                    "inject": [
+                        "$http",
+                        "signal",
+                        "params.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "$http",
+                        "context.abort.signal",
+                        "options.destination"
+                    ],
+                    "usage": "codegen-clusters [destination]"
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"
+}
