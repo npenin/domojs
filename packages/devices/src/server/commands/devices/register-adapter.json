@@ -1,0 +1,21 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/command-schema.json",
+    "fs": {
+        "inject": [
+            "params.0"
+        ]
+    },
+    "": {
+        "inject": [
+            "params.0"
+        ]
+    },
+    "mqtt": {
+        "topics": [
+            "domojs/devices"
+        ],
+        "inject": [
+            "json"
+        ]
+    }
+}

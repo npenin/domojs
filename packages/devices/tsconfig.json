@@ -10,8 +10,8 @@
         "dist"
     ],
     "references": [
-        // {
-        //     "path": "../theme-default"
-        // }
+        {
+            "path": "../mqtt"
+        }
     ]
 }

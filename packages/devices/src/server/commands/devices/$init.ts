@@ -1,55 +1,83 @@
-import '@akala/server'
-import "../../store.js";
-import * as akala from '@akala/core'
+import { CliContext } from "@akala/cli";
 import { Container } from "@akala/commands";
-import { deviceContainer } from "../../../index.js";
+import Configuration, { ProxyConfiguration } from "@akala/config";
+import app, { Sidecar, SidecarConfiguration } from "@akala/sidecar";
 import { Container as pmContainer } from '@akala/pm'
-import app, { Sidecar, SidecarConfiguration } from '@akala/sidecar'
-import Configuration, { ProxyConfiguration } from '@akala/config'
-import { State } from '../index.js';
-import { CliContext, OptionType } from '@akala/cli';
-import { fileURLToPath } from 'url'
+// import { Commissionner, FabricServer, FabricClient } from "../../clients/index.js";
+import { MqttEvents } from "@domojs/mqtt";
+import devices from '../../device-commands.js'
+import { Endpoint, EndpointProxy } from "../../clients/Endpoint.js";
+import Commissionnee from "../../clusters/Commissionnee.js";
+import { ClusterIds, ClusterMap } from "../../clusters/index.js";
+import { RootNode } from "../../clients/RootNode.js";
 
-export default async function (this: State, context: CliContext<Record<string, OptionType>, ProxyConfiguration<SidecarConfiguration>>, container: Container<any> & deviceContainer.container, pm: Container<any> & pmContainer)
+export interface State extends Sidecar<{}, MqttEvents>
 {
-    // if (!context.state.has('devices'))
-    //     context.state.set('devices', {});
-    const sidecar = await app(context, pm);
+    self: RootNode<'commissionning'>;
+    adapters: Record<string, EndpointProxy<ClusterMap>>;
+    config: ProxyConfiguration<SelfConfiguration>
+}
 
-    container.register('pm', pm);
-    var mdule = akala.module('@domojs/devices');
+export interface SelfConfiguration extends SidecarConfiguration
+{
+    endpointsMapping: Record<string, number>
+}
 
-    try
+export default async function (this: State, context: CliContext<{ configFile: string }, State['config']>, pm: pmContainer & Container<any>, container: devices.container & Container<void>)
+{
+    if (!context.state)
+        this.config = await Configuration.newAsync(context.options.configFile);
+    else
+        this.config = context.state;
+
+
+    if (!context.state.has('endpointsMapping'))
+        context.state.set('endpointsMapping', {});
+
+    if (!this.config.has('store'))
     {
-        var webc = await sidecar.sidecars['@akala/server'];
-        await webc.dispatch('remote-container', '/api/devices', (await import('../../device-commands.js')).default.meta)
+        context.state.set('store', {
+            "provider": "file+json://./",
+            "models": {
+                "DeviceInit": {
+                    "members": {
+                        "name": {
+                            "isKey": true,
+                            "type": {
+                                "type": "string",
+                                "length": 250
+                            },
+                            "generator": "business"
+                        },
+                        "body": {
+                            "isKey": false,
+                            "type": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        });
 
-        await webc.dispatch('asset', 'main', fileURLToPath(new URL('../../../client', import.meta.url)))
     }
-    catch (e)
-    {
-        console.warn('no web available');
-    }
-    const deviceTypeContainer = await sidecar.sidecars['@domojs/devicetype'];
 
-    mdule.register('deviceType', deviceTypeContainer);
+    const sidecar = Object.assign(this, await app(context, pm));
+    sidecar.sidecars['@domojs/devices'] = Promise.resolve(container);
 
-    // mdule.readyAsync(['db', 'livedb'], async function (db: Store, livedb: LiveStore)
-    // {
-    //     this.waitUntil((async () =>
-    //     {
-    //         var devices = await db.DevicesInit.toArray();
-    //         container.register('db', db);
-    //         container.register('livedb', livedb);
+    await context.state.commit();
 
-    //         state.initializing = true;
+    this.self = new RootNode('devices', {
+        commissionning: Commissionnee(this),
+    }, context.state);
 
-    //         await akala.eachAsync(devices, async (device) =>
-    //         {
-    //             await container.dispatch('add', device.type, Promise.resolve(device));
-    //         });
-    //         state.initializing = false;
-    //     })());
-    // })
-    // mdule.start();
+    await this.self.attach(sidecar.pubsub);
+
+
+    const [pubsubConfig] = await this.self.clusters.commissionning.target.registerCommand('devices');
+    if (pubsubConfig)
+        context.state.set('pubsub', pubsubConfig);
+
+    // await FabricServer.register('devices', this, new Commissionner(this, 'devices'));
+
 }

@@ -1,44 +1,80 @@
 
-import deviceTypeContainer from './server/devicetype-commands.js'
-import deviceContainer from './server/device-commands.js'
 
-export * from './devices.js';
-import { sidecarSingleton } from '@akala/pm';
-import { Container, Metadata } from '@akala/commands';
-import { CommandDescription, DeviceType } from './devices.js';
-export { deviceContainer, deviceTypeContainer }
+// export * from './devices.js';
+import { Metadata } from '@akala/commands';
+import { CommandDescription } from './devices.js';
+export * from './server/clients/index.js';
+import { pubsub, Sidecar, SidecarConfiguration } from '@akala/sidecar';
+import devices from './server/device-commands.js'
+import { ClusterMap, CommissionningCluster, EndpointProxy, RootNode } from './server/clients/index.js';
+import { MqttClient, MqttEvents } from '@domojs/mqtt';
+import { ReasonCodes } from '../../mqtt/dist/protocol/_shared.js';
+import { ProxyConfiguration } from '@akala/config';
+import { BridgeConfiguration } from './server/clients/RootNode.js';
 
-
-export async function registerDeviceType(container: Container<void>, signal: AbortSignal, ...deviceTypes: DeviceType[])
+declare module '@akala/pm'
 {
-    var deviceType = await sidecarSingleton({ container, preferRemote: false, signal })['@domojs/devicetype'];
-    for (var dt of deviceTypes)
-        await deviceType.dispatch('register', dt);
+    export interface SidecarMap
+    {
+        '@domojs/devices': devices.container;
+    }
 }
+
+export { BridgeConfiguration }
+
+export async function registerNode(name: string, self: Sidecar<any, MqttEvents>, config: ProxyConfiguration<BridgeConfiguration>): Promise<RootNode<never>>
+{
+    if (!self.pubsub && self.config.pubsub.transport || self.pubsub && !self.config.pubsub.transportOptions)
+    {
+        if (self.pubsub)
+        {
+            await (self.pubsub as MqttClient).disconnect();
+            delete self.pubsub
+        }
+        await pubsub(self, { transport: self.config.pubsub.transport, transportOptions: { username: 'domojs-guest', password: 'domojs' } });
+    }
+    const remote = new EndpointProxy<ClusterMap>(0, 'root', { name: 'domojs/devices' }, self.pubsub, { commissionning: CommissionningCluster });
+    try
+    {
+        const [pubsubConfig] = await remote.clusters.commissionning.target.registerCommand(name);
+        if (pubsubConfig)
+        {
+            await (self.pubsub as MqttClient).disconnect();
+            delete self.pubsub;
+            delete self.config.pubsub;
+            await pubsub(self, pubsubConfig);
+        }
+    }
+    catch (e)
+    {
+        if (e.reason !== ReasonCodes.NotAuthorized)
+        {
+            delete self.config.pubsub.transportOptions;
+            await self.config.commit();
+            throw e;
+        }
+    }
+    return new RootNode<never>(name, {}, config)
+}
+
+export type PubSubConfiguration = SidecarConfiguration['pubsub'];
 
 export function command(name: string, cmd: CommandDescription): Metadata.Command[]
 {
     switch (cmd.type)
     {
+        case 'onoff':
+            return [{ name, config: { "": { inject: ["params.0"] }, "cli": { inject: ["params.0"] }, '@domojs/devicetype': cmd } }];
         case 'button':
             return [{ name, config: { "": { inject: [] }, "cli": { inject: [] }, '@domojs/devicetype': cmd } }];
         case 'range':
         case 'input':
-            return [{ name, config: { "": { inject: ["param.0"] }, "cli": { inject: ["param.0"] }, '@domojs/devicetype': cmd } }];
+            return [{ name, config: { "": { inject: ["params.0"] }, "cli": { inject: ["params.0"] }, '@domojs/devicetype': cmd } }];
         case 'toggle':
             return [
                 { name, config: { "": { inject: [] }, "cli": { inject: [] }, '@domojs/devicetype': cmd } }
             ];
 
-    }
-}
-
-declare module '@akala/pm'
-{
-    interface SidecarMap
-    {
-        ['@domojs/devices']: deviceContainer.container;
-        ['@domojs/devicetype']: deviceTypeContainer.container;
     }
 }
 
@@ -49,6 +85,3 @@ declare module '@akala/commands'
         '@domojs/devicetype': CommandDescription
     }
 }
-
-
-export { Gateway } from './Gateway.js'

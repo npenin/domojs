@@ -1,17 +1,10 @@
 {
     "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/command-schema.json",
     "cli": {
-        "options": {
-            "path": {
-                "normalize": true
-            }
-        },
         "inject": [
-            "$container",
+            "context",
             "pm",
-            "options.path",
-            "options.deviceType",
-            "options"
+            "$container"
         ]
     }
 }
