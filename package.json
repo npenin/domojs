@@ -9,18 +9,18 @@
         "packages/*"
     ],
     "devDependencies": {
-        "@akala/automate": "^6.7.82",
-        "@akala/automate-yamlloader": "^3.0.178",
-        "@akala/cli": "^5.10.7",
-        "@akala/commands": "^17.0.6",
-        "@akala/pm": "^15.3.10",
-        "@akala/semantic-release": "^3.1.97",
+        "@akala/automate": "^6.7.112",
+        "@akala/automate-yamlloader": "^3.0.208",
+        "@akala/cli": "^5.11.13",
+        "@akala/commands": "^17.2.14",
+        "@akala/pm": "^15.3.40",
+        "@akala/semantic-release": "^3.1.113",
         "typescript": "^5.8.3"
     },
     "scripts": {
         "publish-all": "yarn akala-automate-runner --loader @akala/automate-yamlloader/ --file @akala/semantic-release/publish.yml --verbose=silly",
         "ci-deps": "git commit -m 'chore(deps): update dependencies'",
-        "generate": "yarn workspaces foreach --exclude @domojs/mdns -A run generate",
+        "generate": "yarn workspaces foreach -A run generate",
         "generate-metadata": "yarn workspaces foreach -A run generate-metadata",
         "start": "yarn workspace @domojs/web vite src"
     },

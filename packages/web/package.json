@@ -17,17 +17,17 @@
         }
     },
     "dependencies": {
-        "@akala/client": "^41.0.40",
-        "@akala/commands": "^17.1.0",
-        "@akala/core": "^39.7.0"
+        "@akala/client": "^41.0.55",
+        "@akala/commands": "^17.2.14",
+        "@akala/core": "^41.0.0"
     },
     "devDependencies": {
-        "@akala/vite": "^2.3.12",
+        "@akala/vite": "^2.3.27",
         "esbuild-sass-plugin": "^3.3.1",
-        "postcss": "^8.5.3",
+        "postcss": "^8.5.6",
         "postcss-modules": "^6.0.1",
-        "sass": "^1.89.0",
-        "vite": "^6.3.5"
+        "sass": "^1.89.2",
+        "vite": "^7.0.2"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\""

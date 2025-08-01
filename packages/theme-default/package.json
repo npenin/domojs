@@ -1,18 +1,18 @@
 {
     "author": "npenin",
     "dependencies": {
-        "@akala/commands": "^17.1.0",
-        "@akala/core": "^39.7.0",
-        "@akala/json-rpc-ws": "^12.0.8",
-        "@akala/pm": "^15.3.11",
-        "@akala/server": "^27.0.25",
-        "@akala/web-ui": "^4.6.34",
+        "@akala/commands": "^17.2.14",
+        "@akala/core": "^41.0.0",
+        "@akala/json-rpc-ws": "^12.0.22",
+        "@akala/pm": "^15.3.40",
+        "@akala/server": "^27.0.54",
+        "@akala/web-ui": "^4.6.49",
         "@fortawesome/fontawesome-common-types": "^6.7.2",
         "@fortawesome/fontawesome-svg-core": "^6.7.2",
         "@fortawesome/free-brands-svg-icons": "^6.7.2",
         "@fortawesome/free-solid-svg-icons": "^6.7.2",
         "@popperjs/core": "^2.11.8",
-        "bootstrap": "^5.3.6",
+        "bootstrap": "^5.3.7",
         "require-optional": "^0.4.0"
     },
     "type": "module",
@@ -20,10 +20,10 @@
     "description": "",
     "devDependencies": {
         "@types/debug": "4.1.12",
-        "@types/node": "22.15.18",
+        "@types/node": "22.16.0",
         "@types/request": "2.48.12",
         "@types/ws": "8.18.1",
-        "esbuild": "0.25.4",
+        "esbuild": "0.25.6",
         "esbuild-sass-plugin": "3.3.1",
         "typescript": "5.8.3"
     },

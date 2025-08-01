@@ -12,16 +12,16 @@
         "@akala/server": "^27.0.0"
     },
     "devDependencies": {
-        "@akala/json-rpc-ws": "^12.0.8",
-        "@akala/pm": "^15.3.11",
-        "@akala/server": "^27.0.25",
+        "@akala/json-rpc-ws": "^12.0.22",
+        "@akala/pm": "^15.3.40",
+        "@akala/server": "^27.0.54",
         "@domojs/devices": "workspace:*"
     },
     "dependencies": {
-        "@akala/commands": "^17.1.0",
-        "@akala/config": "^6.0.86",
-        "@akala/core": "^39.7.0",
-        "css-select": "^5.1.0",
+        "@akala/commands": "^17.2.14",
+        "@akala/config": "^6.0.106",
+        "@akala/core": "^41.0.0",
+        "css-select": "^6.0.0",
         "domhandler": "^5.0.3",
         "htmlparser2": "^10.0.0"
     },
