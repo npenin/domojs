@@ -1,16 +1,17 @@
-import { registerDeviceType } from '@domojs/devices';
+import { administratorCommissioningCluster, Binding, BridgeConfiguration, clusterFactory, ClusterIds, generalCommissioningCluster, globalEnums, identifyCluster, MatterClusterIds, registerNode, RootNode, timeFormatLocalizationCluster, timeSynchronizationCluster, unitLocalizationCluster } from '@domojs/devices';
 import { State } from '../state.js'
-import fs from 'fs/promises'
-import path from 'path';
 import { Zigate } from '@domojs/zigate-parsers';
 import { CliContext } from '@akala/cli';
 import { Container } from '@akala/commands';
-import app from '@akala/sidecar'
-import { fileURLToPath } from 'url'
+import app, { SidecarConfiguration } from '@akala/sidecar'
+import { ProxyConfiguration } from '@akala/config';
+import os from 'os';
+import { IsomorphicBuffer } from '@akala/core';
+import { AdministratorCommissioning } from '@domojs/devices/src/server/behaviors/admin-commissionning.js';
 
 var setGateway: (gw: Zigate) => void = null;
 
-export default async function (this: State, context: CliContext<{ debug: boolean }>, container: Container<void>, signal: AbortSignal)
+export default async function (this: State, context: CliContext<{ debug: boolean }, ProxyConfiguration<SidecarConfiguration & BridgeConfiguration>>, container: Container<void>, signal: AbortSignal)
 {
     this.devicesByAddress = {};
     this.devices = {};
@@ -28,20 +29,56 @@ export default async function (this: State, context: CliContext<{ debug: boolean
         return gw;
     };
 
-    await fs.readFile(fileURLToPath(new URL('../../views/device.html', import.meta.url)), 'utf-8').then(newDeviceTemplate =>
-        registerDeviceType(container, signal, {
-            name: 'zigate',
-            commandMode: 'static',
-            view: newDeviceTemplate
-        })
-    );
+    // await fs.readFile(fileURLToPath(new URL('../../views/device.html', import.meta.url)), 'utf-8').then(newDeviceTemplate =>
+    // );
+
+    const self = await app(context);
+    const fabric = await registerNode('zigate', self, context.state);
 
     try
     {
         Zigate.listEligibleSerials().then(async serials =>
         {
             if (serials && serials.length)
-                setGateway(await Zigate.getSerial(serials[0]));
+            {
+                for (const serial of serials)
+                {
+
+                    const nodeName = serial.replace(/^\/dev\//, '') + '@' + os.hostname();
+
+                    const discriminator = crypto.randomUUID().replace(/-/g, '').substring(0, 16);
+
+                    fabric.endpoints.push(await fabric.newEndpoint(serial,
+                        {
+                            basicInformation: clusterFactory({
+                                id: MatterClusterIds.BasicInformation,
+                                VendorName: 'Zigate',
+                                VendorID: 1027,
+                                NodeLabel: 'Zigate',
+                                ProductName: serial,
+                                ProductLabel: serial,
+                                ProductID: 20577,
+                                CapabilityMinima: {
+                                    CaseSessionsPerFabric: 1,
+                                    SubscriptionsPerFabric: 1
+                                },
+                                ConfigurationVersion: 1,
+                                DataModelRevision: 1,
+                                HardwareVersion: 1,
+                                HardwareVersionString: '',
+                                Location: '',
+                                MaxPathsPerInvoke: 1,
+                                SoftwareVersion: 1,
+                                SoftwareVersionString: '',
+                                SpecificationVersion: 142,
+                                UniqueID: discriminator
+                            }),
+                        }
+                    ));
+                }
+            }
+
+            setGateway(await Zigate.getSerial(serials[0]));
         });
     }
     catch (e)
