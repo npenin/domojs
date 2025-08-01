@@ -16,7 +16,7 @@ export class TimeoutError extends Error
     }
 }
 
-var prot = parsers.prepare(message =>
+export const protocol = parsers.prepare(message =>
 {
     message.ether = 'ISCP';
     message.hSize = 0x10;
@@ -31,15 +31,21 @@ var prot = parsers.prepare(message =>
     parsers.property('value', parsers.string<IscpMessage>('dSize')),
 ));
 
-class IscpMessage
+export class IscpMessage
 {
     value: string;
     constructor(message: IscpMessage)
-    constructor(command: string, arg: string)
+    constructor(command: string, arg?: string)
     constructor(command: string | IscpMessage, arg?: string)
     {
         if (typeof command == 'string')
-            this.value = "!1" + command + arg + '\n';
+        {
+            if (typeof arg == 'undefined')
+                this.value = command + '\n';
+            else
+                this.value = "!1" + command + arg + '\n';
+            this.dSize = this.value.length;
+        }
         else
         {
             this.ether = command.ether;
@@ -52,14 +58,14 @@ class IscpMessage
 
     public get command()
     {
-        return this.value.substr(2, 3);
+        return this.value.substring(2, 5);
     }
     public get arg()
     {
-        return this.value.substr(5, this.value.length - 6);
+        return this.value.substring(5, this.value.length);
     }
     ether = 'ISCP';
-    hSize: number;
+    hSize: number = 16;
     dSize: number;
     version: number;
 }
@@ -72,7 +78,7 @@ export class ISCPProcessor extends CommandProcessor
         super('iscp');
         socket.on('data', data =>
         {
-            var response = prot.read(data, new proto.Cursor(), {});
+            var response = protocol.read(data, new proto.Cursor(), {});
             this.messages.emit('message', new IscpMessage(response));
         });
         if (handler)
@@ -83,7 +89,7 @@ export class ISCPProcessor extends CommandProcessor
     {
         return new Promise((resolve, reject) =>
         {
-            var buffer = parserWrite(prot, new IscpMessage(
+            var buffer = parserWrite(protocol, new IscpMessage(
                 cmd.name,
                 param.param[0] || ''
             ), undefined);

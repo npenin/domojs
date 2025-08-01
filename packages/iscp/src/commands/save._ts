@@ -3,7 +3,6 @@ import * as api from '../api.js'
 import { Socket } from 'net'
 import { Container } from "@akala/commands";
 import { ISCPProcessor } from "../iscp-processor.js";
-import { DeviceClass, IDevice, ISaveDevice } from "@domojs/devices";
 
 
 const deviceCollection: { [name: string]: IDevice } = {};
@@ -39,14 +38,14 @@ export default async function save(this: State, body: any, device: ISaveDevice &
 
     socket.connect({ host: body.IP || device.name, port: body.port || 60128 });
     device.statusMethod = 'push';
-    device.class = DeviceClass.Multi;
+    device.type = DeviceClass.Multi;
     device.subdevices = [
         {
             room: device.room,
             name: "power",
-            type: 'iscp',
+            bridge: 'iscp',
             category: 'switch',
-            class: DeviceClass.Switch,
+            type: DeviceClass.Switch,
             statusMethod: 'pull',
             status: function ()
             {
@@ -66,8 +65,8 @@ export default async function save(this: State, body: any, device: ISaveDevice &
         {
             room: device.room,
             name: "mute",
-            type: 'iscp',
-            class: DeviceClass.Switch,
+            bridge: 'iscp',
+            type: DeviceClass.Switch,
             category: 'switch',
             statusMethod: 'pull',
             status: function ()
@@ -87,8 +86,8 @@ export default async function save(this: State, body: any, device: ISaveDevice &
         {
             room: device.room,
             name: "volume",
-            type: 'iscp',
-            class: DeviceClass.Range,
+            bridge: 'iscp',
+            type: DeviceClass.Range,
             category: 'input',
             statusMethod: 'pull',
             status: function ()
@@ -101,14 +100,14 @@ export default async function save(this: State, body: any, device: ISaveDevice &
             commands: [
                 { name: 'up', config: { "": { inject: [] } } },
                 { name: 'down', config: { "": { inject: [] } } },
-                { name: 'set', config: { "": { inject: ["param.0"] } } }
+                { name: 'set', config: { "": { inject: ["params.0"] } } }
             ]
         },
         {
             room: device.room,
             name: "input",
-            type: 'iscp',
-            class: DeviceClass.Discrete,
+            bridge: 'iscp',
+            type: DeviceClass.Discrete,
             category: 'values',
             statusMethod: 'pull',
             status: function ()
