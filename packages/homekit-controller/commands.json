@@ -83,35 +83,6 @@
             }
         },
         {
-            "name": "device-types.save",
-            "config": {
-                "fs": {
-                    "inject": [
-                        "params.0",
-                        "params.1"
-                    ],
-                    "path": "dist/commands/device-types/save.js",
-                    "source": "src/commands/device-types/save.ts"
-                },
-                "": {
-                    "inject": [
-                        "params.0",
-                        "params.1"
-                    ]
-                },
-                "types": {
-                    "inject": [
-                        "body",
-                        "device"
-                    ],
-                    "types": [
-                        "unknown",
-                        "import('@domojs/devices').devices.Device"
-                    ]
-                }
-            }
-        },
-        {
             "name": "setup-pair",
             "config": {
                 "fs": {

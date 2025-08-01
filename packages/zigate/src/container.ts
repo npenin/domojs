@@ -8,21 +8,19 @@ namespace commands
 {
 	export interface container 
 	{
-		dispatch (cmd:'$init', ...args: [Argument0<typeof import('./commands/$init.js').default>, Argument1<typeof import('./commands/$init.js').default>, Argument2<typeof import('./commands/$init.js').default>]): ReturnType<typeof import('./commands/$init.js').default>
-		dispatch (cmd:'exec', ...args: [Argument0<typeof import('./commands/exec.js').default>, Argument1<typeof import('./commands/exec.js').default>, Argument2<typeof import('./commands/exec.js').default>]): ReturnType<typeof import('./commands/exec.js').default>
-		dispatch (cmd:'getStatus', ...args: [Argument0<typeof import('./commands/getStatus.js').default>]): ReturnType<typeof import('./commands/getStatus.js').default>
-		dispatch (cmd:'pendingDevices', ...args: []): ReturnType<typeof import('./commands/pendingDevices.js').default>
-		dispatch (cmd:'save', ...args: [Argument0<typeof import('./commands/save.js').default>, Argument1<typeof import('./commands/save.js').default>]): ReturnType<typeof import('./commands/save.js').default>
+		dispatch (cmd:'$init', ...args: [Argument0<typeof import('./commands/$init.ts').default>, Argument1<typeof import('./commands/$init.ts').default>, Argument2<typeof import('./commands/$init.ts').default>]): ReturnType<typeof import('./commands/$init.ts').default>
+		dispatch (cmd:'exec', ...args: [Argument0<typeof import('./commands/exec.ts').default>, Argument1<typeof import('./commands/exec.ts').default>, Argument2<typeof import('./commands/exec.ts').default>]): ReturnType<typeof import('./commands/exec.ts').default>
+		dispatch (cmd:'getStatus', ...args: [Argument0<typeof import('./commands/getStatus.ts').default>]): ReturnType<typeof import('./commands/getStatus.ts').default>
+		dispatch (cmd:'pendingDevices', ...args: []): ReturnType<typeof import('./commands/pendingDevices.ts').default>
 	}
 	export interface proxy 
 	{
-		'$init'(...args: [Argument0<typeof import('./commands/$init.js').default>, Argument1<typeof import('./commands/$init.js').default>, Argument2<typeof import('./commands/$init.js').default>]): ReturnType<typeof import('./commands/$init.js').default>
-		'exec'(...args: [Argument0<typeof import('./commands/exec.js').default>, Argument1<typeof import('./commands/exec.js').default>, Argument2<typeof import('./commands/exec.js').default>]): ReturnType<typeof import('./commands/exec.js').default>
-		'getStatus'(...args: [Argument0<typeof import('./commands/getStatus.js').default>]): ReturnType<typeof import('./commands/getStatus.js').default>
-		'pendingDevices'(...args: []): ReturnType<typeof import('./commands/pendingDevices.js').default>
-		'save'(...args: [Argument0<typeof import('./commands/save.js').default>, Argument1<typeof import('./commands/save.js').default>]): ReturnType<typeof import('./commands/save.js').default>
+		'$init'(...args: [Argument0<typeof import('./commands/$init.ts').default>, Argument1<typeof import('./commands/$init.ts').default>, Argument2<typeof import('./commands/$init.ts').default>]): ReturnType<typeof import('./commands/$init.ts').default>
+		'exec'(...args: [Argument0<typeof import('./commands/exec.ts').default>, Argument1<typeof import('./commands/exec.ts').default>, Argument2<typeof import('./commands/exec.ts').default>]): ReturnType<typeof import('./commands/exec.ts').default>
+		'getStatus'(...args: [Argument0<typeof import('./commands/getStatus.ts').default>]): ReturnType<typeof import('./commands/getStatus.ts').default>
+		'pendingDevices'(...args: []): ReturnType<typeof import('./commands/pendingDevices.ts').default>
 	}
-   export const meta={"name":"@domojs/zigate","commands":[{"name":"$init","config":{"fs":{"path":"dist/commands/$init.js","source":"src/commands/$init.ts","inject":["params.0","params.1","params.2"]},"cli":{"inject":["context","$container","signal"]},"":{"inject":["params.0","params.1","params.2"]}}},{"name":"exec","config":{"fs":{"path":"dist/commands/exec.js","source":"src/commands/exec.ts","inject":["params.0","params.1","params.2"]},"":{"inject":["params.0","params.1","params.2"]},"cli":{"usage":"exec <device> <command> [value]","inject":["options.device","options.command","params.0"]}}},{"name":"getStatus","config":{"fs":{"path":"dist/commands/getStatus.js","source":"src/commands/getStatus.ts","inject":["params.0"]},"":{"inject":["params.0"]}}},{"name":"pendingDevices","config":{"fs":{"path":"dist/commands/pendingDevices.js","source":"src/commands/pendingDevices.ts","inject":[]},"":{"inject":[]}}},{"name":"save","config":{"fs":{"inject":["params.0","params.1","connectionAsContainer"],"path":"dist/commands/save.js","source":"src/commands/save.ts"},"jsonrpc":{"inject":["params.0","params.1","connectionAsContainer"]},"":{"inject":[]}}}],"$schema":"https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"} as Metadata.Container;
+   export const meta={"name":"@domojs/zigate","commands":[{"name":"$init","config":{"fs":{"path":"dist/commands/$init.js","source":"src/commands/$init.ts","inject":["params.0","params.1","params.2"]},"cli":{"inject":["context","$container","signal"]},"":{"inject":["params.0","params.1","params.2"]}}},{"name":"exec","config":{"fs":{"path":"dist/commands/exec.js","source":"src/commands/exec.ts","inject":["params.0","params.1","params.2"]},"":{"inject":["params.0","params.1","params.2"]},"cli":{"usage":"exec <device> <command> [value]","inject":["options.device","options.command","params.0"]}}},{"name":"getStatus","config":{"fs":{"path":"dist/commands/getStatus.js","source":"src/commands/getStatus.ts","inject":["params.0"]},"":{"inject":["params.0"]}}},{"name":"pendingDevices","config":{"fs":{"path":"dist/commands/pendingDevices.js","source":"src/commands/pendingDevices.ts","inject":[]},"":{"inject":[]}}}],"$schema":"https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"} as Metadata.Container;
 
    export function connect(processor?:ICommandProcessor) {
             const container = new Container<void>("commands", void 0);
