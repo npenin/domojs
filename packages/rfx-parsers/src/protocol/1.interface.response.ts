@@ -58,7 +58,7 @@ export interface ListRFYRemote
     id1: number;
     id2: number;
     id3: number;
-    unitNumber: number;
+    unitCode: number;
     randomCode: number;
     rollingCodeHigh: number;
     rollingCodeLow: number;
@@ -117,7 +117,7 @@ export function init()
         parsers.property('id1', parsers.uint8),
         parsers.property('id2', parsers.uint8),
         parsers.property('id3', parsers.uint8),
-        parsers.property('unitNumber', parsers.uint8),
+        parsers.property('unitCode', parsers.uint8),
         parsers.property('randomCode', parsers.uint8),
         parsers.property('rollingCodeHigh', parsers.uint8),
         parsers.property('rollingCodeLow', parsers.uint8),

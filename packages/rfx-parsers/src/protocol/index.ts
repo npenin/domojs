@@ -80,12 +80,12 @@ export enum PacketType
 
 }
 
-var messages;
+const messages = parsers.chooseProperty<Message, 'type', 'message'>('type', 'message', {});
 
 export var Protocol = parsers.sub(parsers.uint8, parsers.object<Message>(
     parsers.property('type', parsers.uint16),
     parsers.property('sequenceNumber', parsers.uint8),
-    messages = parsers.chooseProperty<Message, 'type', 'message'>('type', 'message', {})
+    messages
 ));
 
 export { messages };

@@ -11,7 +11,7 @@ portions of this file.
 '----------------------------------------------------------------------------
 */
 import { EventEmitter } from 'events';
-import { Queue, logger, eachAsync, Event, IsomorphicBuffer } from '@akala/core';
+import { Queue, logger, eachAsync, Event, IsomorphicBuffer, IEvent } from '@akala/core';
 export * from './protocol/index.js'
 import * as os from 'os';
 import { Protocol, Message, PacketType, Type, InterfaceControl, InterfaceMessage, EventMap, Rfy, RFXDevice } from './protocol/index.js';
@@ -26,7 +26,7 @@ import { EmitPower, Frequences } from './protocol/0.interface.mode.js';
 type Modes = Pick<InterfaceControl.ModeCommand, 'msg3' | 'msg4' | 'msg5' | 'msg6'>;
 const log = logger('rfxtrx');
 
-export class Rfxtrx extends Gateway<{ message: Event<[Message<any>]> } & { [key in ((keyof typeof Type.INTERFACE_MESSAGE) | (keyof typeof PacketType) | PacketType)]: Event<[Message<any>['message']]> }>
+export class Rfxtrx extends Gateway<{ message: IEvent<[Message<any>], void> } & { [key in ((keyof typeof Type.INTERFACE_MESSAGE) | (keyof typeof PacketType) | PacketType)]: IEvent<[Message<any>['message']], void> }>
 {
     protected splitBuffer(buffer: IsomorphicBuffer): IsomorphicBuffer[]
     {
@@ -47,7 +47,7 @@ export class Rfxtrx extends Gateway<{ message: Event<[Message<any>]> } & { [key 
     }
     protected processFrame(buffer: IsomorphicBuffer): void | Promise<void>
     {
-        var message = Protocol.read(buffer, new Cursor(), {});
+        const message = Protocol.read(buffer, new Cursor(), {});
         // this.sqnce = message.sequenceNumber;
         log.info(message);
         this.emit('message', message);
@@ -128,27 +128,36 @@ export class Rfxtrx extends Gateway<{ message: Event<[Message<any>]> } & { [key 
     public send<T extends RFXDevice>(type: number, message?: Partial<T>): Promise<Message<any>>
     public send<T extends RFXDevice>(type: number, message?: Partial<T>): Promise<Message<any>>
     {
-        var msg: Message<Partial<T>> = { type: type, message: message, sequenceNumber: this.sqnce++ };
+        const msg: Message<Partial<T>> = { type: type, message: message, sequenceNumber: this.sqnce++ };
         log.info(msg);
-        var buffer = parserWrite(Protocol, msg);
+        const buffer = parserWrite(Protocol, msg);
         return new Promise<Message<any>>((resolve, reject) =>
         {
             log.debug(buffer);
             if (type != Type.INTERFACE_CONTROL.Mode || (message as Partial<InterfaceControl.ModeCommand>).command != InterfaceControl.Commands.reset)
                 this.once('message', resolve);
-            var cb = (err) =>
-            {
-                if (err)
-                    reject(err);
-                else
+            if (type == Type.RFY.Standard || type == Type.RFY.Extended || type == Type.RFY.ASA && (message as Partial<Rfy.Device>).command == Rfy.Internal.Commands.List)
+                var cb = (err) =>
                 {
-                    if (type == Type.INTERFACE_CONTROL.Mode && (message as Partial<InterfaceControl.ModeCommand>).command == InterfaceControl.Commands.reset)
-                        setTimeout(() =>
-                        {
-                            this.flush().then(() => resolve(null), reject)
-                        }, 1000)
+                    if (err)
+                        reject(err);
+                    else
+                        resolve(null);
                 }
-            };
+            else
+                var cb = (err) =>
+                {
+                    if (err)
+                        reject(err);
+                    else
+                    {
+                        if (type == Type.INTERFACE_CONTROL.Mode && (message as Partial<InterfaceControl.ModeCommand>).command == InterfaceControl.Commands.reset)
+                            setTimeout(() =>
+                            {
+                                this.flush().then(() => resolve(null), reject)
+                            }, 1000)
+                    }
+                };
             this.sendQueue.enqueue({ buffer: buffer, callback: cb });
         })
     }

@@ -9,13 +9,13 @@ describe('rfy', function ()
     {
         console.log(parserWrite(Protocol, {
             type: Type.RFY.Standard, sequenceNumber: 5, message: {
-                command: Rfy.Commands.down, id1: 0, id2: 0, id3: 3,
+                command: Rfy.Commands.downOrClose, id1: 0, id2: 0, id3: 3,
                 unitCode: 3,
                 rssi: 0
             } as Rfy.Device
         }, {
             type: Type.RFY.Standard, sequenceNumber: 5, message: {
-                command: Rfy.Commands.down, id1: 0, id2: 0, id3: 3,
+                command: Rfy.Commands.downOrClose, id1: 0, id2: 0, id3: 3,
                 unitCode: 3,
                 rssi: 0
             } as Rfy.Device
