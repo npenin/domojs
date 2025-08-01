@@ -1,8 +1,8 @@
 import { parsers } from '@akala/protocol-parser';
-import { header, Message as CoreMessage } from './_protocol.js'
-import { ControlPacketType, Properties, ReasonCodes, propertiesParser } from './_shared.js';
+import { header } from './_protocol.js'
+import { ControlPacketType, Properties, ReasonCodes, propertiesParser, Message as CoreMessage } from './_shared.js';
 
-export interface Message extends CoreMessage 
+export interface Message extends CoreMessage<ControlPacketType.CONNACK>
 {
     reservedConnectFlag1: boolean;
     reservedConnectFlag2: boolean;
@@ -29,4 +29,4 @@ export const ConnAckParser = parsers.series<Message>(
     parsers.property('properties', propertiesParser),
 )
 
-header.register(ControlPacketType.CONNACK, ConnAckParser);
+header.register(ControlPacketType.CONNACK, ConnAckParser as parsers.ParserWithMessage<CoreMessage, CoreMessage>);

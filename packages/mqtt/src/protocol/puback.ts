@@ -3,7 +3,7 @@ import { header } from './_protocol.js'
 import { ControlPacketType, Properties, ReasonCodes, propertiesParser, Message as CoreMessage } from './_shared.js';
 
 
-export interface Message extends CoreMessage 
+export interface Message extends CoreMessage<ControlPacketType.PUBACK>
 {
     packetId: uint16;
     reason: ReasonCodes;
@@ -12,6 +12,6 @@ export interface Message extends CoreMessage
 
 header.register(ControlPacketType.PUBACK, parsers.series<Message>(
     parsers.property('packetId', parsers.uint16),
-    parsers.property('reason', parsers.uint8),
-    parsers.property('properties', propertiesParser),
-));
+    parsers.property('reason', parsers.optional(parsers.uint8)),
+    parsers.property('properties', parsers.optional(propertiesParser)),
+) as parsers.ParserWithMessage<CoreMessage, CoreMessage>);

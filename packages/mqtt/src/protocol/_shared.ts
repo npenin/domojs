@@ -137,18 +137,18 @@ export type Property<TKey extends keyof PropertiesMap = keyof PropertiesMap> = {
 
 export type Properties = Property[];
 
-export interface Message
+export interface Message<TControlPacketType extends ControlPacketType = ControlPacketType>
 {
-    type: ControlPacketType;
+    type: TControlPacketType;
     dup?: boolean;
     qos?: number;
     retain?: boolean;
-    properties: Properties;
+    properties?: Properties;
 }
 
 export const propertiesParser =
     // parsers.property<{ properties: { property: PropertyKeys, value: unknown }[] }, 'properties'>('properties',
-    parsers.sub(parsers.vuint,
+    parsers.sub(parsers.unsignedLEB128,
         parsers.emancipate(
             parsers.array(-1, parsers.object<Property>(
                 parsers.property('property', parsers.uint8),
@@ -159,7 +159,7 @@ export const propertiesParser =
                         [PropertyKeys.contentType]: parsers.string(parsers.uint16),
                         [PropertyKeys.responseTopic]: parsers.string(parsers.uint16),
                         [PropertyKeys.correlationData]: parsers.buffer(parsers.uint16),
-                        [PropertyKeys.subscriptionIdentifier]: parsers.vuint,
+                        [PropertyKeys.subscriptionIdentifier]: parsers.unsignedLEB128,
                         [PropertyKeys.sessionExpiryInterval]: parsers.uint32,
                         [PropertyKeys.assignedClientIdentifier]: parsers.string(parsers.uint16),
                         [PropertyKeys.serverKeepAlive]: parsers.uint16,

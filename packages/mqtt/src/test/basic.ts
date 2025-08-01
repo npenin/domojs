@@ -23,10 +23,12 @@ describe('mosquitto tests', () =>
 
         const mqtt = new MqttClient('akala_v0', protocolEvents);
 
+        console.profile();
         console.time('mqtt')
         await mqtt.connect({});
         console.timeLog('mqtt', 'connected')
 
+        console.profile('subscribe');
         await mqtt.on('presence',
             (data, options) =>
             {
@@ -34,7 +36,9 @@ describe('mosquitto tests', () =>
                 console.log(options);
             }
             , { maxQoS: 0, retainHandling: RetainHandling.SendAtSubscribe });
+        console.profileEnd('subscribe')
         console.timeLog('mqtt', 'subscribed')
+
 
         await mqtt.emit('presence', 'Hello akala !');
         console.timeLog('mqtt', 'published')
@@ -44,6 +48,7 @@ describe('mosquitto tests', () =>
         console.timeEnd('mqtt');
 
         await mqtt[Symbol.asyncDispose]();
+        console.profileEnd();
     });
 
     it('should subscribe', { timeout: 60000 }, async (x) =>

@@ -1,9 +1,9 @@
 import { parsers, uint16, uint8 } from '@akala/protocol-parser';
-import { header, Message as CoreMessage } from './_protocol.js'
-import { ControlPacketType, Properties, propertiesParser, Property, PropertyKeys } from './_shared.js';
+import { header } from './_protocol.js'
+import { ControlPacketType, Properties, propertiesParser, Message as CoreMessage, PropertyKeys } from './_shared.js';
 import { IsomorphicBuffer } from '@akala/core';
 
-export interface Message extends CoreMessage 
+export interface Message extends CoreMessage<ControlPacketType.PUBLISH>
 {
     topic: string;
     packetId: uint16;
@@ -21,5 +21,5 @@ header.register(ControlPacketType.PUBLISH,
             0: parsers.property<Message, 'binaryPayload', parsers.AnyParser<Message['binaryPayload'], Message>>('binaryPayload', parsers.buffer(-1, false)),
             1: parsers.property<Message, 'stringPayload', parsers.AnyParser<Message['stringPayload'], Message>>('stringPayload', parsers.string(-1, 'utf-8'))
         })
-    )
+    ) as parsers.ParserWithMessage<CoreMessage, CoreMessage>
 );

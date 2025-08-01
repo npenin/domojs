@@ -1,110 +1,16 @@
-import { AsyncTeardownManager, AsyncEventBus, StatefulAsyncSubscription, EventOptions, EventListener, AllEventKeys, AllEvents, AsyncSubscription, IsomorphicBuffer, asyncEventBuses, Deferred, delay, HttpStatusCode, ErrorWithStatus } from '@akala/core';
-import { MqttEvents, MqttEvent, ProtocolEvents, mappings } from './index.js';
-import { Message, StandardMessages } from './protocol/_protocol.js';
-import { ControlPacketType, Properties, PropertyKeys, ReasonCodes } from './protocol/_shared.js';
-import { Message as ConnectMessage } from './protocol/connect.js';
-import { Message as DisconnectMessage } from './protocol/disconnect.js';
-import { Message as publish } from './protocol/publish.js';
-import { Message as puback } from './protocol/puback.js';
-import { Message as subscribe, SubscribeParser, TopicSubscription } from './protocol/subscribe.js';
-import { Message as unsubscribe } from './protocol/unsubscribe.js';
-import { Socket, SocketConnectOpts, SocketConstructorOpts } from 'net';
-import { TLSSocket, TLSSocketOptions } from 'tls';
+import { AsyncTeardownManager, AsyncEventBus, StatefulAsyncSubscription, EventOptions, EventListener, AllEvents, AsyncSubscription, IsomorphicBuffer, asyncEventBuses, Deferred, delay, HttpStatusCode, ErrorWithStatus, EventKeys, EventBus, eachAsync, UrlTemplate } from '@akala/core';
+import { MqttEvents, MqttEvent, ProtocolEvents, mappings, DisconnectError, MessageMap } from './shared.js';
+import { StandardMessages, ControlPacketType, Properties, PropertyKeys, ReasonCodes, Message, connect, disconnect, publish, puback, subscribe, unsubscribe, pingresp, pingreq, MessageTypes } from './protocol/index.js';
+import { Socket } from 'net';
+import { TLSSocket } from 'tls';
 import './protocol/index.js'
 import { parserWrite } from '@akala/protocol-parser';
-
-class DisconnectError extends ErrorWithStatus
-{
-    public static ReasonToHttpStatus(reason: ReasonCodes): HttpStatusCode
-    {
-        switch (reason)
-        {
-            case ReasonCodes.Success:
-                return HttpStatusCode.OK;
-            case ReasonCodes.GrantedQoS1:
-            case ReasonCodes.GrantedQoS2:
-                return HttpStatusCode.Accepted
-            case ReasonCodes.DisconnectWithWillMessage:
-                return HttpStatusCode.Gone;
-            case ReasonCodes.NoMatchingSubscriber:
-            case ReasonCodes.NoSubscriptionExisted:
-                return HttpStatusCode.NotFound;
-            case ReasonCodes.ContinueAuthentication:
-                return HttpStatusCode.Continue;
-            case ReasonCodes.ReAuthenticate:
-                return HttpStatusCode.Unauthorized;
-            case ReasonCodes.UnspecifiedError:
-                return HttpStatusCode.InternalServerError;
-            case ReasonCodes.MalformedPacket:
-            case ReasonCodes.ProtocolError:
-            case ReasonCodes.ImplementationSpecificError:
-            case ReasonCodes.UnsupportedProtocolVersion:
-            case ReasonCodes.ClientIdentifierNotValid:
-                return HttpStatusCode.BadRequest;
-            case ReasonCodes.BadUserNameOrPassword:
-            case ReasonCodes.NotAuthorized:
-                return HttpStatusCode.Unauthorized;
-            case ReasonCodes.ServerUnavailable:
-                return HttpStatusCode.ServiceUnavailable;
-            case ReasonCodes.ServerBusy:
-                return HttpStatusCode.ServiceUnavailable;
-            case ReasonCodes.Banned:
-                return HttpStatusCode.Forbidden;
-            case ReasonCodes.ServerShuttingDown:
-                return HttpStatusCode.ServiceUnavailable;
-            case ReasonCodes.BadAuthenticationMethod:
-                return HttpStatusCode.Unauthorized;
-            case ReasonCodes.KeepAliveTimeout:
-                return HttpStatusCode.RequestTimeout;
-            case ReasonCodes.SessionTakenOver:
-                return HttpStatusCode.Conflict;
-            case ReasonCodes.TopicFilterInvali:
-            case ReasonCodes.TopicNameInvalid:
-                return HttpStatusCode.BadRequest;
-            case ReasonCodes.PacketIdentifierInUse:
-                return HttpStatusCode.Conflict;
-            case ReasonCodes.PacketIdentifierNotFound:
-                return HttpStatusCode.NotFound;
-            case ReasonCodes.ReceiveMaximumExceeded:
-            case ReasonCodes.PacketTooLarge:
-            case ReasonCodes.MessageRateTooHigh:
-            case ReasonCodes.QuotaExceeded:
-                return HttpStatusCode.PayloadTooLarge;
-            case ReasonCodes.TopicAliasInvalid:
-                return HttpStatusCode.BadRequest;
-            case ReasonCodes.AdministrativeAction:
-                return HttpStatusCode.Forbidden;
-            case ReasonCodes.PayloadFormatInvalid:
-                return HttpStatusCode.UnsupportedMediaType;
-            case ReasonCodes.RetainNotSupported:
-            case ReasonCodes.QoSNotSupported:
-            case ReasonCodes.sharedSubscriptionNotSupported:
-            case ReasonCodes.SubscriptionIdentifierNotSupported:
-            case ReasonCodes.wildcardSubscriptionNotSupported:
-                return HttpStatusCode.NotImplemented;
-            case ReasonCodes.UseAnotherServer:
-            case ReasonCodes.ServerMoved:
-                return HttpStatusCode.TemporaryRedirect;
-            case ReasonCodes.ConnectionRateExceeded:
-            case ReasonCodes.MaximumConnectTime:
-                return HttpStatusCode.TooManyRequests;
-            default:
-                return HttpStatusCode.InternalServerError;
-        }
-    }
-
-    public readonly disconnect: DisconnectMessage;
-    constructor(message: DisconnectMessage)
-    {
-        super(DisconnectError.ReasonToHttpStatus(message.reason), 'Disconnected: ' + (ReasonCodes[message.reason] ?? 'Unknown reason'));
-        this.disconnect = message;
-    }
-}
 
 export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<MqttEvents>
 {
     private packetId = 1;
     private _connected = false;
+    private pingInterval: NodeJS.Timeout;
 
     public get connected()
     {
@@ -113,22 +19,42 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
 
     private mqttSubscriptions: Record<string, { subscription: StatefulAsyncSubscription; options: EventOptions<MqttEvent>; listener: EventListener<MqttEvent>; }[]> = {};
 
-    constructor(private clientId: string, private readonly protocolEvents: ProtocolEvents)
+    constructor(private clientId: string, private readonly protocolEvents: ProtocolEvents, private readonly keepAlive: number = 60000)
     {
         super();
         protocolEvents.on(ControlPacketType.CONNACK, () => this._connected = true);
-        protocolEvents.on(ControlPacketType.DISCONNECT, () => protocolEvents.socket.end());
+        protocolEvents.on(ControlPacketType.DISCONNECT, () => { clearInterval(this.pingInterval); protocolEvents.socket.end() });
         protocolEvents.socket.on('close', () => this._connected = false);
+        protocolEvents.on(ControlPacketType.PINGREQ, () =>
+        {
+            const pong: pingresp.Message = {
+                type: ControlPacketType.PINGRESP
+            }
+            this.write(parserWrite(StandardMessages, pong, pong).toArray());
+        })
+        protocolEvents.socket.on('close', () => clearTimeout(this.pingInterval));
     }
-    hasListener<const TKey extends AllEventKeys<MqttEvents>>(name: TKey)
+    async write(msg: Uint8Array<ArrayBufferLike>)
+    {
+        clearTimeout(this.pingInterval);
+        await new Promise<void>((resolve, reject) => this.protocolEvents.socket.write(msg, err => err ? reject(err) : resolve()));
+        this.pingInterval = setTimeout(() =>
+        {
+            const ping: pingreq.Message = {
+                type: ControlPacketType.PINGREQ
+            }
+            this.write(parserWrite(StandardMessages, ping, ping).toArray());
+        }, this.keepAlive);
+    }
+    hasListener<const TKey extends EventKeys<MqttEvents>>(name: TKey)
     {
         return Promise.resolve(true);
     }
-    get definedEvents(): Promise<AllEventKeys<MqttEvents>[]>
+    get definedEvents(): Promise<EventKeys<MqttEvents>[]>
     {
         return Promise.resolve([]);
     }
-    async on<const TEvent extends AllEventKeys<MqttEvents>>(event: TEvent, handler: EventListener<AllEvents<MqttEvents>[TEvent]>, options?: EventOptions<MqttEvent>): Promise<AsyncSubscription>
+    async on<const TEvent extends EventKeys<MqttEvents>>(event: TEvent, handler: EventListener<AllEvents<MqttEvents>[TEvent]>, options?: EventOptions<MqttEvent>): Promise<AsyncSubscription>
     {
         if (typeof event === 'string')
         {
@@ -146,21 +72,23 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
             if (!this.mqttSubscriptions[event])
                 this.mqttSubscriptions[event] = [];
             this.mqttSubscriptions[event].push({ subscription: subscription, options, listener: handler as EventListener<MqttEvent> });
-            const publishSub = this.protocolEvents.on(ControlPacketType.PUBLISH, async (m: publish) =>
+            const publishSub = this.protocolEvents.on(ControlPacketType.PUBLISH, async m =>
             {
                 try
                 {
-                    await handler(m.properties.find(p => p.property === PropertyKeys.payloadFormat)?.value ? m.stringPayload : m.binaryPayload, { qos: m.qos, retain: m.retain, properties: m.properties });
+                    const matches = Object.entries(this.mqttSubscriptions).filter(([topic, sub]) => { return topic == m.topic || UrlTemplate.match(m.topic, topicTemplate(topic)) }).flatMap(([_, subs]) => subs);
+                    if (matches.length > 0)
+                        await eachAsync(matches, async handler => await handler.listener(m.properties.find(p => p.property === PropertyKeys.payloadFormat)?.value ? m.stringPayload : m.binaryPayload, { publishedTopic: m.topic, qos: m.qos, retain: m.retain, properties: m.properties }));
                     if (m.qos > 0)
                     {
-                        const message: puback = {
+                        const message: puback.Message = {
                             packetId: m.packetId,
                             reason: ReasonCodes.Success,
                             type: ControlPacketType.PUBACK,
                             properties: [],
                         };
                         console.time('mqtt-write')
-                        this.protocolEvents.socket.write(parserWrite(StandardMessages, message, message, 0).toArray())
+                        this.write(parserWrite(StandardMessages, message, message, 0).toArray())
                         console.timeEnd('mqtt-write')
                     }
                 }
@@ -169,14 +97,14 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
                     console.error(e);
                     if (m.qos > 0)
                     {
-                        const message: puback = {
+                        const message: puback.Message = {
                             packetId: m.packetId,
                             reason: ReasonCodes.UnspecifiedError,
                             type: ControlPacketType.PUBACK,
                             properties: [],
                         };
                         console.time('mqtt-write')
-                        this.protocolEvents.socket.write(parserWrite(StandardMessages, message, message, 0).toArray())
+                        this.write(parserWrite(StandardMessages, message, message, 0).toArray())
                         console.timeEnd('mqtt-write')
                     }
                 }
@@ -184,11 +112,11 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
             return subscription.unsubscribe;
         }
     }
-    once<const TEvent extends AllEventKeys<MqttEvents>>(event: TEvent, handler: EventListener<AllEvents<MqttEvents>[TEvent]>, options?: Omit<EventOptions<MqttEvent>, 'once'>): Promise<AsyncSubscription>
+    once<const TEvent extends EventKeys<MqttEvents>>(event: TEvent, handler: EventListener<AllEvents<MqttEvents>[TEvent]>, options?: Omit<EventOptions<MqttEvent>, 'once'>): Promise<AsyncSubscription>
     {
         return this.on(event, handler, { ...options, once: true });
     }
-    off<const TEvent extends AllEventKeys<MqttEvents>>(event: TEvent, handler?: EventListener<AllEvents<MqttEvents>[TEvent]>): Promise<boolean>
+    off<const TEvent extends EventKeys<MqttEvents>>(event: TEvent, handler?: EventListener<AllEvents<MqttEvents>[TEvent]>): Promise<boolean>
     {
         if (typeof event === 'string')
             if (handler)
@@ -204,53 +132,126 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
         return this.packetId++;
     }
 
-    private dialog(message: Message): Promise<Message>
+    private dialog<const Type extends keyof typeof mappings>(message: Message<Type> & MessageTypes): Promise<MessageMap[typeof mappings[Type]]>
     {
         const mapping = mappings[message.type];
         if (!mapping)
             return Promise.reject(new Error('there is no such mapping for ' + JSON.stringify(message)));
-        return new Promise((resolve, reject) =>
+        return new Promise(async (resolve, reject) =>
         {
-            const sub = this.protocolEvents.on(mapping, (m: Message) =>
+            let resolved = false;
+            let stack = new Error().stack;
+            const sub = this.protocolEvents.on(mapping as ControlPacketType, m =>
             {
+                const response = m as MessageMap[typeof mappings[Type]]
                 if ('packetId' in message)
                 {
-                    if (message.packetId == m['packetId'])
+                    if (message.packetId == response['packetId'])
                     {
                         disconnectSub();
                         sub();
-                        resolve(m);
+                        if ('reason' in response)
+                        {
+                            switch (response.reason)
+                            {
+                                case undefined:
+                                case ReasonCodes.Success:
+                                case ReasonCodes.GrantedQoS1:
+                                case ReasonCodes.GrantedQoS2:
+                                case ReasonCodes.DisconnectWithWillMessage:
+                                case ReasonCodes.NoMatchingSubscriber:
+                                case ReasonCodes.NoSubscriptionExisted:
+                                case ReasonCodes.ContinueAuthentication:
+                                case ReasonCodes.ReAuthenticate:
+                                    if (!resolved)
+                                    {
+                                        resolved = true;
+                                        resolve(m);
+                                    }
+                                    break;
+                                case ReasonCodes.UnspecifiedError:
+                                case ReasonCodes.MalformedPacket:
+                                case ReasonCodes.ProtocolError:
+                                case ReasonCodes.ImplementationSpecificError:
+                                case ReasonCodes.UnsupportedProtocolVersion:
+                                case ReasonCodes.ClientIdentifierNotValid:
+                                case ReasonCodes.BadUserNameOrPassword:
+                                case ReasonCodes.NotAuthorized:
+                                case ReasonCodes.ServerUnavailable:
+                                case ReasonCodes.ServerBusy:
+                                case ReasonCodes.Banned:
+                                case ReasonCodes.ServerShuttingDown:
+                                case ReasonCodes.BadAuthenticationMethod:
+                                case ReasonCodes.KeepAliveTimeout:
+                                case ReasonCodes.SessionTakenOver:
+                                case ReasonCodes.TopicFilterInvali:
+                                case ReasonCodes.TopicNameInvalid:
+                                case ReasonCodes.PacketIdentifierInUse:
+                                case ReasonCodes.PacketIdentifierNotFound:
+                                case ReasonCodes.ReceiveMaximumExceeded:
+                                case ReasonCodes.TopicAliasInvalid:
+                                case ReasonCodes.PacketTooLarge:
+                                case ReasonCodes.MessageRateTooHigh:
+                                case ReasonCodes.QuotaExceeded:
+                                case ReasonCodes.PayloadFormatInvalid:
+                                case ReasonCodes.RetainNotSupported:
+                                case ReasonCodes.QoSNotSupported:
+                                case ReasonCodes.UseAnotherServer:
+                                case ReasonCodes.ServerMoved:
+                                case ReasonCodes.sharedSubscriptionNotSupported:
+                                case ReasonCodes.ConnectionRateExceeded:
+                                case ReasonCodes.MaximumConnectTime:
+                                case ReasonCodes.SubscriptionIdentifierNotSupported:
+                                case ReasonCodes.wildcardSubscriptionNotSupported:
+                                case ReasonCodes.AdministrativeAction:
+                                    if (!resolved)
+                                    {
+                                        resolved = true;
+                                        reject(m);
+                                    }
+                                    break;
+                            }
+                        }
+                        else if (!resolved)
+                        {
+                            resolved = true;
+                            resolve(m);
+                        }
                     }
                 }
-                else
+                else if (!resolved)
                 {
+                    resolved = true;
                     disconnectSub();
                     sub();
                     resolve(m);
                 }
             });
-            const disconnectSub = this.protocolEvents.once(ControlPacketType.DISCONNECT, (m: DisconnectMessage) =>
+            const disconnectSub = this.protocolEvents.once(ControlPacketType.DISCONNECT, (m: disconnect.Message) =>
             {
-                if (m.reason !== ReasonCodes.Success)
+                console.error(stack);
+                if (!resolved && m.reason !== ReasonCodes.Success)
                 {
+                    resolved = true;
                     sub();
                     reject(new DisconnectError(m));
                 }
             })
 
             console.time('mqtt-write')
-            if (message.type === ControlPacketType.SUBSCRIBE)
-                this.protocolEvents.socket.write(parserWrite(SubscribeParser, message, message, 0).toArray(), err =>
-                {
-                    if (err)
-                        reject(err)
-                });
-            else
-                this.protocolEvents.socket.write(parserWrite(StandardMessages, message, message, 0).toArray(), err =>
-                {
-                    if (err)
-                        reject(err);
-                });
+            switch (message.type)
+            {
+                case ControlPacketType.SUBSCRIBE:
+                    await this.write(parserWrite(subscribe.SubscribeParser, message as subscribe.Message, message, 0).toArray());
+                    break;
+                case ControlPacketType.UNSUBSCRIBE:
+                    await this.write(parserWrite(unsubscribe.UnsubscribeParser, message as unsubscribe.Message, message, 0).toArray());
+                    break;
+                default:
+
+                    await this.write(parserWrite(StandardMessages, message, message, 0).toArray());
+                    break;
+            }
             console.timeEnd('mqtt-write')
 
         });
@@ -260,7 +261,7 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
     {
         if (!opts)
             opts = {};
-        const message: ConnectMessage = {
+        const message: connect.Message = {
             type: ControlPacketType.CONNECT,
             protocol: 'MQTT',
             version: 5,
@@ -281,20 +282,21 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
 
     public async disconnect(): Promise<void>
     {
-        const message: DisconnectMessage = {
+        const message: disconnect.Message = {
             type: ControlPacketType.DISCONNECT,
             properties: []
         };
-        await new Promise<void>((resolve, reject) =>
-            this.protocolEvents.socket.write(parserWrite(StandardMessages, message, message, 0).toArray(), err => err ? reject(err) : resolve()));
+        clearInterval(this.pingInterval);
+        await this.write(parserWrite(StandardMessages, message, message, 0).toArray())
 
         await new Promise<void>(resolve => this.protocolEvents.socket.end(resolve));
     }
 
-    public publish(topic: string, payload: IsomorphicBuffer | string, options?: { qos?: number; retain?: boolean; properties?: Properties; }): Promise<void | Message>
+    public async publish(topic: string, payload: IsomorphicBuffer | string, options?: { qos?: number; retain?: boolean; properties?: Properties; }): Promise<void | Message>
     {
         const qos = options?.qos || 0;
-        const message: publish = {
+        console.log(`publishing to ${topic}`)
+        const message: publish.Message = {
             type: ControlPacketType.PUBLISH,
             qos,
             retain: options?.retain,
@@ -305,27 +307,60 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
             binaryPayload: typeof payload !== 'string' ? payload : undefined,
         };
         if (qos === 0)
-            return new Promise<void>((resolve, reject) => this.protocolEvents.socket.write(parserWrite(StandardMessages, message, message, 0).toArray(), err => err ? reject(err) : resolve()));
+            return this.write(parserWrite(StandardMessages, message, message, 0).toArray());
 
-        return this.dialog(message);
+        const ack = await this.dialog(message);
+        if (ack.type == ControlPacketType.PUBACK)
+        {
+            switch (ack.reason)
+            {
+                case undefined:
+                case ReasonCodes.Success:
+                case ReasonCodes.NoMatchingSubscriber:
+                    break;
+                default:
+                    throw new ErrorWithStatus(DisconnectError.ReasonToHttpStatus(ack.reason), `Publish failed with reason code: ${ReasonCodes[ack.reason]} (${ack.reason})`);
+            }
+        }
+        return ack;
     }
 
-    public async emit(topic: string, payload: IsomorphicBuffer | string, options?: { qos?: number; retain?: boolean; properties?: Properties; }): Promise<void>
+    public async emit(topic: string, payload: IsomorphicBuffer | string, options?: { publishedTopic?: string, qos?: number; retain?: boolean; properties?: Properties; }): Promise<void>
     {
+        if (!(payload instanceof IsomorphicBuffer))
+        {
+            switch (typeof payload)
+            {
+                case 'string':
+                case 'undefined':
+                    break;
+                case 'number':
+                case 'bigint':
+                case 'boolean':
+                    payload = String(payload);
+                    break;
+                case 'object':
+                    payload = JSON.stringify(payload);
+                    break;
+                case 'symbol':
+                case 'function':
+                    throw new Error(`payload may not be of type ${typeof payload}`);
+            }
+        }
         await this.publish(topic, payload, options);
     }
 
-    public subscribe(topics: string[], options?: Partial<TopicSubscription> & { qos?: number, properties?: Properties }): Promise<void | Message>
+    public subscribe(topics: string[], options?: Partial<subscribe.TopicSubscription> & { qos?: number, properties?: Properties }): Promise<void | Message>
     {
         const packetId = this.getNextPacketId();
-        const message: subscribe = {
+        const message: subscribe.Message = {
             type: ControlPacketType.SUBSCRIBE,
             packetId,
             qos: options?.qos,
             properties: options?.properties ?? [],
             topics: topics.map(topic => ({
                 topic,
-                maxQoS: options?.maxQoS ?? 2,
+                maxQoS: options?.maxQoS ?? 0,
                 noLocal: options?.noLocal,
                 retainAsPublished: options?.retainAsPublished,
                 retainHandling: options?.retainHandling
@@ -338,7 +373,7 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
     public unsubscribe(topics: string[], options?: { properties?: Properties; }): Promise<void | Message>
     {
         const packetId = this.getNextPacketId();
-        const message: unsubscribe = {
+        const message: unsubscribe.Message = {
             type: ControlPacketType.UNSUBSCRIBE,
             packetId,
             properties: options?.properties || [],
@@ -347,9 +382,9 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
         return this.dialog(message);
     }
 
-    public ping(): Promise<Message>
+    public ping(): Promise<MessageTypes>
     {
-        const message: Message = {
+        const message: MessageTypes = {
             type: ControlPacketType.PINGREQ
         };
         return this.dialog(message);
@@ -377,12 +412,12 @@ asyncEventBuses.useProtocol('mqtt', async (url, config) =>
 
     const client = new MqttClient(config?.['clientId'] as string ?? crypto.randomUUID(), protocolEvents);
 
-    if (url.username || url.password)
-        await client.connect({ userName: url.username, password: IsomorphicBuffer.from(url.password) });
+    if (url.username || url.password || config.username || config.password)
+        await client.connect({ userName: url.username || config.username as string, password: IsomorphicBuffer.from(url.password || config.password as string) });
     else
         await client.connect({});
 
-    return client;
+    return client as AsyncEventBus;
 });
 
 asyncEventBuses.useProtocol('mqtts', async (url, config) =>
@@ -420,10 +455,46 @@ asyncEventBuses.useProtocol('mqtts', async (url, config) =>
     else
         await client.connect({});
 
-    return client;
+    return client as AsyncEventBus;
 })
 
 asyncEventBuses.useProtocol('mqtt+tls', async (url, config) =>
 {
     return asyncEventBuses.process(new URL('mqtts:' + url.host + url.pathname + url.search + url.hash), config);
 })
+
+const templateCache: Record<string, UrlTemplate.UriTemplate> = {};
+
+function topicTemplate(topic: string): UrlTemplate.UriTemplate
+{
+    if (topic in templateCache)
+        return templateCache[topic];
+
+    const urlTemplate: UrlTemplate.UriTemplate = UrlTemplate.parse(mqttTopicToURITemplate(topic));
+
+    return templateCache[topic] = urlTemplate;
+}
+
+function mqttTopicToURITemplate(topic: string): string
+{
+    const segments = topic.split('/');
+    let varCount = 0;
+
+    const templateSegments = segments.map((segment) =>
+    {
+        if (segment === '+')
+        {
+            varCount++;
+            return `{/var${varCount}}`;
+        } else if (segment === '#')
+        {
+            varCount++;
+            return `{/var${varCount}*}`;
+        } else
+        {
+            return segment;
+        }
+    });
+
+    return templateSegments.join('/');
+}

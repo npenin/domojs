@@ -1,13 +1,11 @@
 import { parsers, uint16 } from '@akala/protocol-parser';
-import { header, Message as CoreMessage, MessageParser } from './_protocol.js'
-import { ControlPacketType, Properties, propertiesParser, stringParser } from './_shared.js';
-import { vuint } from '@akala/protocol-parser/dist/parsers/index.js';
+import { header, MessageParser } from './_protocol.js'
+import { ControlPacketType, Properties, propertiesParser, stringParser, Message as CoreMessage } from './_shared.js';
 
 
-export interface Message extends CoreMessage
+export interface Message extends CoreMessage<ControlPacketType.SUBSCRIBE>
 {
     packetId: uint16;
-    properties?: Properties;
     topics: TopicSubscription[];
 }
 
@@ -41,7 +39,7 @@ header.register(ControlPacketType.SUBSCRIBE,
                 parsers.skip(.25)
             )))
         )
-    )
+    ) as parsers.ParserWithMessage<CoreMessage, CoreMessage>
 );
 
 export const SubscribeParser =
@@ -53,7 +51,7 @@ export const SubscribeParser =
         },
             parsers.series<Message>(
                 MessageParser as any,
-                parsers.sub(vuint, header) as any
+                parsers.sub(parsers.unsignedLEB128, header) as any
             )
         )
     );

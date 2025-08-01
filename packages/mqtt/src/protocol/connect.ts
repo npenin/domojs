@@ -14,7 +14,7 @@ export interface Header
     cleanStart?: boolean;
     reservedConnectFlag?: boolean;
     keepAlive?: uint16;
-    properties: Properties,
+    properties?: Properties,
     payload: Payload
 }
 
@@ -28,7 +28,7 @@ export interface Payload
     password: IsomorphicBuffer,
 }
 
-export interface Message extends CoreMessage, Header
+export interface Message extends CoreMessage<ControlPacketType.CONNECT>, Header
 {
     protocol: string;
 
@@ -67,5 +67,5 @@ header.register(ControlPacketType.CONNECT,
             parsers.condition(m => m.hasWill, parsers.complexProperty<Message, 'payload'>('payload', parsers.object<Payload>(parsers.property('willPayload', parsers.buffer(parsers.uint16))))),
             parsers.condition(m => m.hasUserName, parsers.complexProperty<Message, 'payload'>('payload', parsers.object<Payload>(parsers.property('userName', stringParser)))),
             parsers.condition(m => m.hasPassword, parsers.complexProperty<Message, 'payload'>('payload', parsers.object<Payload>(parsers.property('password', parsers.buffer(parsers.uint16)))))
-        ))
+        )) as parsers.ParserWithMessage<CoreMessage, CoreMessage>
 )

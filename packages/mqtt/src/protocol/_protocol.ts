@@ -1,40 +1,13 @@
-import { uint8, uint16, parsers } from '@akala/protocol-parser';
+import { parsers } from '@akala/protocol-parser';
 import * as shared from './_shared.js'
-import { Message as Connect } from './connect.js'
-import { Message as ConnectAck } from './connack.js'
-// import {Message as Disconnect} from './disconnect.js'
-// import {Message as PingReq} from './pingreq.js'
-// import {Message as PingResp} from './pingresp.js'
-import { Message as PubAck } from './puback.js'
-import { Message as PubComp } from './pubcomp.js'
-import { Message as Publish } from './publish.js'
-import { Message as PubRec } from './pubrec.js'
-import { Message as PubRel } from './pubrel.js'
-import { Message as SubAck } from './suback.js'
-import { Message as Subscribe } from './subscribe.js'
-import { Message as UnsubAck } from './unsuback.js'
-import { Message as Unsubscribe } from './unsubscribe.js'
 import { IsomorphicBuffer } from '@akala/core';
+import { MessageMap } from '../shared.js';
 
 
-export type MessageTypes = Connect
-    | ConnectAck
-    // | Disconnect
-    // | PingReq
-    // | PingResp
-    | PubAck
-    | PubComp
-    | Publish
-    | PubRec
-    | PubRel
-    | SubAck
-    | Subscribe
-    | UnsubAck
-    | Unsubscribe
-    ;
+export type MessageTypes = MessageMap[keyof MessageMap];
 
 // );
-export const header = parsers.choose<Message, Message['type'], Message>('type', {} as any);
+export const header = parsers.choose<shared.Message, shared.Message['type'], shared.Message>('type', {} as any);
 
 
 // export interface ConnectAck
@@ -56,15 +29,7 @@ export const header = parsers.choose<Message, Message['type'], Message>('type', 
 //     payload: null
 // }
 
-export interface Message
-{
-    type: shared.ControlPacketType;
-    dup?: boolean;
-    qos?: number;
-    retain?: boolean;
-}
-
-export const MessageParser = parsers.series<Message>(
+export const MessageParser = parsers.series<shared.Message>(
     parsers.property('retain', parsers.boolean()),
     parsers.property('qos', parsers.uint2),
     parsers.property('dup', parsers.boolean()),
@@ -80,7 +45,7 @@ if (MessageParser instanceof parsers.Cache)
                     MessageParser.cache.set([retain || '', qos || '', dup || '', type || ''].join('#'), new IsomorphicBuffer([type << 4 | (dup ? 0b1000 : 0b0000) | (qos << 1) | (retain ? 0b1 : 0b0)]))
 }
 
-export const StandardMessages = parsers.object<Message>(
+export const StandardMessages = parsers.object<shared.Message>(
     MessageParser,
-    parsers.sub(parsers.vuint, header)
+    parsers.sub(parsers.unsignedLEB128, header)
 );
