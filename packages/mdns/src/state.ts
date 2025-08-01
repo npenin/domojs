@@ -1,8 +1,8 @@
 import mDNS from "multicast-dns";
-import { Service } from './index.js';
+import { RootNode } from "@domojs/devices";
 
 export interface State
 {
+    fabric: RootNode<never>;
     browser: mDNS.MulticastDNS;
-    services: Record<string, Service>;
 }

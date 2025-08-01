@@ -1,11 +1,12 @@
 import mDNS from 'multicast-dns';
 import { StringAnswer } from 'dns-packet'
-import app, { SidecarConfiguration } from '@akala/sidecar';
+import app, { pubsub, SidecarConfiguration } from '@akala/sidecar';
 import { CliContext, OptionType } from '@akala/cli';
-import { Configuration, ProxyConfiguration } from '@akala/config'
-import { SerializableObject, logger } from '@akala/core'
+import { ProxyConfiguration } from '@akala/config'
 import { State } from '../state.js';
 import { Service } from '../index.js';
+import { AggregatorEndpoint, BridgeConfiguration, clusterFactory, ClusterIds, ClusterMap, CommissionningCluster, DeviceTypes, Endpoint, EndpointProxy, MatterClusterIds, registerNode, RootNode } from '@domojs/devices';
+import { Context, ObservableArray } from '@akala/core';
 
 export const dnsEqual = (function ()
 {
@@ -68,22 +69,47 @@ export const decodeTxt = (function ()
     }
 })();
 
-export default async function (this: State, context: CliContext<Record<string, OptionType>, ProxyConfiguration<SidecarConfiguration>>, signal: AbortSignal)
+export default async function (this: State, context: Context<ProxyConfiguration<SidecarConfiguration & BridgeConfiguration>>)
 {
 
+    if (!context.state.has('endpointsMapping'))
+        context.state.set('endpointsMapping', {});
     // if (!context.state.has('mdns'))
     //     context.state.set('mdns', {});
 
+    // context.state = config;
+
     const self = await app(context)
 
-    this.services = {};
-
     const mdns = this.browser = mDNS();
+
+    const fabric = await registerNode('mdns', self, context.state);
+
+    this.fabric = fabric;
+
+    await fabric.attach(self.pubsub);
+
+    context.abort.signal.addEventListener('abort', () => mdns.destroy());
 
     mdns.on('response', packet =>
     {
         const records = packet.answers.concat(packet.additionals);
-        records.filter(rr => rr.type === 'PTR' && rr.ttl == 0).forEach((p: StringAnswer) => self.pubsub?.emit('/zeroconf/' + p.name.split('.').reverse().join('/'), null))
+        records.filter(rr => rr.type === 'PTR' && rr.ttl == 0).forEach((p: StringAnswer) => this.fabric.endpoints.splice(this.fabric.endpoints.findIndex(e => e.clusters.fixedLabel?.getValue('LabelList').reduce((previous, current) =>
+        {
+            if (!previous)
+                return false;
+            switch (current.Label)
+            {
+                case 'FQDN':
+                    return current.Value == p.data;
+                // case 'Host':
+                //     return p.data.startsWith(current.Value.substring(0, current.Value.length - '.local'.length) + '.');
+                case 'Type':
+                    return current.Value == p.name;
+                default:
+                    return true;
+            }
+        }, true)), 1))
         return records
             .filter(function (rr)
             {
@@ -123,7 +149,8 @@ export default async function (this: State, context: CliContext<Record<string, O
                         }
                     })
 
-                if (!service.name) return undefined
+                if (!service.name)
+                    return undefined
 
                 records
                     .filter(function (rr)
@@ -140,13 +167,56 @@ export default async function (this: State, context: CliContext<Record<string, O
             .filter(function (rr)
             {
                 return !!rr
-            }).forEach(c =>
+            }).forEach(async c =>
             {
-                this.services[c!.fqdn!] = c as Service;
-                const parts = c!.fqdn!.split('.').reverse();
-                for (let i = 0; i < parts.length; i++)
-                    self.pubsub?.emit('/zeroconf/' + parts.slice(0, i).join('/'), c);
+                let typeEndpoint: AggregatorEndpoint<never>;
+
+                const typeId = await fabric.getEndpointId(c.type);
+                const hostId = await fabric.getEndpointId(c.host);
+                const fqdnId = await fabric.getEndpointId(c.fqdn);
+
+                let fqdnEndpoint: Endpoint<ClusterMap, 'fixedLabel'>;
+                if (!(fqdnEndpoint = fabric.endpoints.find(ep => ep.id == fqdnId) as Endpoint<ClusterMap, 'fixedLabel'>))
+                {
+                    const ep = fqdnEndpoint = new Endpoint<ClusterMap, 'fixedLabel'>(fqdnId, {
+                        fixedLabel: clusterFactory({
+                            id: MatterClusterIds.UserLabel,
+                            LabelList: [{ Label: 'Type', Value: c.type }, { Label: 'Host', Value: c.host }, { Label: 'FQDN', Value: c.fqdn }].
+                                concat(c.txt ? Object.entries(c.txt).map(e => ({ Label: e[0], Value: e[1] })) : [])
+                        })
+                    });
+                    fabric.endpoints.push(ep);
+                    const sub = fabric.endpoints.addListener(ev =>
+                    {
+                        if ('oldItems' in ev && ev.oldItems.find(it => it == ep))
+                        {
+                            sub();
+                            hostEndpoint.endpoints.splice(hostEndpoint.endpoints.findIndex(fqdn => fqdn.id == ep.id), 1);
+                            typeEndpoint.endpoints.splice(typeEndpoint.endpoints.findIndex(type => type.id == ep.id), 1);
+                        }
+                    })
+                }
+
+                if (!(typeEndpoint = fabric.endpoints.find(ep => ep.id == typeId) as AggregatorEndpoint<never>))
+                {
+                    fabric.endpoints.push(typeEndpoint = new AggregatorEndpoint(typeId, {}));
+                    fqdnEndpoint.teardown(await Endpoint.attach<ClusterMap, never>(self.pubsub, `domojs/${fabric.name}`, typeEndpoint, c.type));
+                }
+
+                let hostEndpoint: AggregatorEndpoint<never>;
+                if (!(hostEndpoint = fabric.endpoints.find(e => e.id === hostId) as AggregatorEndpoint<never>))
+                {
+                    fabric.endpoints.push(hostEndpoint = new AggregatorEndpoint(hostId, {
+                    }));
+                    fqdnEndpoint.teardown(await Endpoint.attach<ClusterMap, never>(self.pubsub, `domojs/${fabric.name}`, hostEndpoint, c.host));
+                }
+
+                if (!hostEndpoint.endpoints.find(ep => ep.id == fqdnId))
+                    hostEndpoint.endpoints.push(fqdnEndpoint);
+                if (!typeEndpoint.endpoints.find(ep => ep.id == fqdnId))
+                    typeEndpoint.endpoints.push(fqdnEndpoint);
             })
     });
-    mdns.query('_services._dns-sd._udp.local', 'PTR');
+    await new Promise((resolve, reject) => mdns.query('_services._dns-sd._udp.local', 'PTR', err => err ? reject(err) : resolve));
+    await new Promise((resolve, reject) => mdns.query('_services._dns-sd._tcp.local', 'PTR', err => err ? reject(err) : resolve));
 }
