@@ -22,8 +22,6 @@ export namespace description
 	export interface commands 
 	{
 		dispatch(cmd: '$init', ...args: []): ReturnType<typeof import('./commands/$init.js').default>
-		dispatch(cmd: 'exec', ...args: [Argument0<typeof import('./commands/exec.js').default>, Argument1<typeof import('./commands/exec.js').default>]): ReturnType<typeof import('./commands/exec.js').default>
-		dispatch(cmd: 'save', ...args: [Argument0<typeof import('./commands/save.js').default>, Argument1<typeof import('./commands/save.js').default>]): ReturnType<typeof import('./commands/save.js').default>
 		dispatch(cmd: 'temperature', ...args: [Argument1<typeof import('./commands/temperature.js').default>, Argument2<typeof import('./commands/temperature.js').default>]): ReturnType<typeof import('./commands/temperature.js').default>
 		dispatch(cmd: 'today', ...args: [Argument1<typeof import('./commands/today.js').default>, Argument2<typeof import('./commands/today.js').default>]): ReturnType<typeof import('./commands/today.js').default>
 	}

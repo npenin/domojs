@@ -1,9 +1,9 @@
-import Configuration, { ProxyConfiguration } from "@akala/config";
-import { SerializableObject } from "@akala/core";
+import { ProxyConfiguration } from "@akala/config";
+import { SidecarConfiguration } from '@akala/sidecar';
 
 export interface State
 {
-	locations: ProxyConfiguration<Record<string, SerializableObject>>;
+	config: ProxyConfiguration<SidecarConfiguration>;
 }
 
 export enum Weather
