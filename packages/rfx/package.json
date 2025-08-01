@@ -6,9 +6,11 @@
         "url": "https://github.com/npenin/domojs/issues"
     },
     "dependencies": {
-        "@akala/commands": "^17.1.0",
-        "@akala/core": "^39.7.0",
+        "@akala/cli": "^5.11.13",
+        "@akala/commands": "^17.2.14",
+        "@akala/core": "^41.0.0",
         "@domojs/rfx-parsers": "workspace:*",
+        "@matter/main": "^0.15.1",
         "http-punch-hole": "^1.0.12"
     },
     "type": "module",
@@ -29,20 +31,20 @@
     "deprecated": false,
     "description": "",
     "devDependencies": {
-        "@akala/pm": "^15.3.11",
+        "@akala/pm": "^15.3.40",
         "@domojs/devices": "workspace:*",
         "@types/debug": "^4.1.12",
         "@types/usb": "^2.0.5",
         "@types/ws": "^8.18.1",
         "typescript": "5.8.3"
     },
-    "homepage": "https://github.com/domojs/domojs-rfxcom#readme",
+    "homepage": "https://github.com/npenin/domojs#readme",
     "license": "MIT",
     "main": "dist/server/index.js",
     "name": "@domojs/rfx",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/domojs/domojs-rfxcom.git"
+        "url": "git+https://github.com/npenin/domojs.git"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 0",

@@ -2,6 +2,7 @@
     "extends": "../tsconfig.settings.json",
     "compileOnSave": true,
     "compilerOptions": {
+        "moduleResolution": "nodenext",
         "rootDir": "src",
         "outDir": "dist"
     },

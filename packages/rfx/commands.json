@@ -25,65 +25,7 @@
                     ]
                 }
             }
-        },
-        {
-            "name": "exec",
-            "config": {
-                "fs": {
-                    "path": "dist/server/commands/exec.js",
-                    "source": "src/server/commands/exec.ts",
-                    "inject": [
-                        "params.0",
-                        "params.1",
-                        "params.2"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "params.0",
-                        "params.1",
-                        "params.2"
-                    ]
-                },
-                "cli": {
-                    "usage": "exec <device> <command> [value]",
-                    "inject": [
-                        "options.device",
-                        "options.command",
-                        "params.0"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "save",
-            "config": {
-                "fs": {
-                    "inject": [
-                        "params.0",
-                        "params.1",
-                        "connectionAsContainer",
-                        "$container"
-                    ],
-                    "path": "dist/server/commands/save.js",
-                    "source": "src/server/commands/save.ts"
-                },
-                "jsonrpc": {
-                    "inject": [
-                        "params.0",
-                        "params.1",
-                        "connectionAsContainer",
-                        "$container"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
         }
-    ],
-    "dependencies": [
-        "@domojs/devicetype"
     ],
     "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"
 }
