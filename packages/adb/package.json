@@ -1,6 +1,6 @@
 {
     "name": "@domojs/adb",
-    "version": "0.0.18",
+    "version": "0.0.19",
     "main": "dist/esm/index.js",
     "types": "dist/esm/index.d.ts",
     "type": "module",
