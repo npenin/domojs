@@ -23,11 +23,6 @@
                 "commandable": true,
                 "type": "nodejs"
             },
-            "@domojs/devicetype": {
-                "path": "npm:///@domojs/devices/devicetype-commands.json",
-                "commandable": true,
-                "type": "nodejs"
-            },
             "weather": {
                 "path": "npm:///@domojs/weather/commands.json",
                 "commandable": true,
@@ -46,10 +41,10 @@
                     "jsonrpc+unix:///Users/nicolas/dev/domojs/pm.sock": {}
                 }
             },
-            "@domojs/devicetype": {
-                "container": "@domojs/devicetype",
+            "@domojs/devices": {
+                "container": "@domojs/devices",
                 "connect": {
-                    "jsonrpc+unix://./device-type.sock": {}
+                    "jsonrpc+unix://./devices.sock": {}
                 },
                 "autostart": true
             }
@@ -57,9 +52,9 @@
         "plugins": []
     },
     "commands": {},
-    "@domojs/devicetype": {
+    "@domojs/devices": {
         "pubsub": {
-            "transport": ""
+            "transport": "mqtt://localhost"
         },
         "store": {
             "provider": "file",
