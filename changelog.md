@@ -1,4 +1,4 @@
-#  (2025-06-23)
+#  (2025-08-02)
 
 
 ### Bug Fixes
@@ -35,6 +35,7 @@
 * artificial bump b08a001
 * artificial patch b7ce7a7
 * artificial patch f117e0b
+* broken parsing eb3e495
 * buffer slicing in rfx 48397c4
 * build 97ab07a
 * build b20c10c
@@ -89,6 +90,7 @@
 * make dbus private cc7ded1
 * make homescreen private for now b5a6c9b
 * make webscrapper private f2a547f
+* **mdns:** build and behavior 5934661
 * migrate to akala 19 and commands 9 c04f43e
 * move akala config in db 8645030
 * move config in existing config file from context a9b205a
@@ -147,6 +149,7 @@
 * udev permissions 8552c0a
 * update after breaking changes in akala 28983f9
 * update after commands upgrade e41e30a
+* update config 26a8d19
 * update dependencies a3ea3a6
 * update dependencies and checkout depth f04e50a
 * update dependencies and fix devices communications b34af9c
@@ -156,6 +159,7 @@
 * update home screen tailored impl 9898cb4
 * update lock file 17fbd2a
 * update parameter references from "param" to "params" in command JSON files 7634f8f
+* update terminology for rfy devices to match matter terminology 24cb712
 * update to errorwithstatus cfa1344
 * update to event emitter from akala 2bdfe95
 * update to latest serial port types 77515fc
@@ -202,7 +206,9 @@
 * add adb implementation 48b9904
 * add changelog f7b7d51
 * add class to IDevice 716d8d8
+* add codegen from zap clusters and devices types f68bdea
 * add crunchyroll media indexing 317eacc
+* add disconnect support to MqttClient and update tests for mqtt and mqtts ef451ea
 * add homekit controller 12c620a
 * add homekit server (homebridge equivalent) 4e86aa4
 * add list folders command 7ac6d78
@@ -216,15 +222,23 @@
 * create new web site from scratch using vite and akala 1492bfe
 * enable debug mode 684b9cd
 * enable URL support 1f5dc23
+* implement basic mqtt v5 protocol 01e31e0
 * make devices as containers c1e5c93
 * make exec on devicetype CLI compatible f92bf92
 * make webscrapper public 68ba711
 * many new media features 7b15160
 * mdns implementation 3fdc367
+* migrate to new device model and started device discovery implementation 7644990
+* migrate to new device model and started device discovery implementation fe43443
+* migrate to new device model and started device discovery implementation c2e4f36
+* migrate to new device model and started device discovery implementation 1da2c5a
+* migrate to new device model and started device discovery implementation 732c679
+* migrate to new device model and started device discovery implementation 066177a
 * move device management to devicetype 07e06d7
 * shared gateway implementation d7a42a9
 * start a dbus implementation 44b24d6
 * start to upgrade media to container 419e5a4
+* switch to matter like and mqtt implementation 7153114
 * update scrapper as generic 1286958
 * upgrade devices as command container 7dcd4df
 * various fixes and improvements 5f6c5f1
@@ -232,6 +246,12 @@
 
 ### BREAKING CHANGES
 
+* no more commands for now
+* no more commands for now
+* no more commands for now
+* no more commands for now
+* no more commands for now
+* Everything has changed. Implementers need to rewrite their library from scratch
 * devices types are exported without the devices namespace
 * devices have to declare commands always in the same format: the @akala/commands format
 * Gateway requires typed events
