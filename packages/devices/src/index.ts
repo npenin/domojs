@@ -24,7 +24,7 @@ export { BridgeConfiguration }
 
 export async function registerNode(name: string, self: Sidecar<any, MqttEvents>, config: ProxyConfiguration<BridgeConfiguration>): Promise<RootNode<never>>
 {
-    if (!self.pubsub && self.config.pubsub.transport || self.pubsub && !self.config.pubsub.transportOptions)
+    if (!self.pubsub && self.config.pubsub?.transport || self.pubsub && !self.config.pubsub.transportOptions)
     {
         if (self.pubsub)
         {
