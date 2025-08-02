@@ -77,6 +77,7 @@
 * handle gateways detection 0c682a0
 * handle multiple gateways or merge gateways 1f19ef8
 * handle start from fork 98c8153
+* handle undefined pubsub config 233fa6d
 * improve devicetype.add documentation 0f61da2
 * improve library indexing + fix akala cli support f235b43
 * improve mdns typings 3a5d0f1
@@ -151,6 +152,7 @@
 * update after breaking changes in akala 28983f9
 * update after commands upgrade e41e30a
 * update config 26a8d19
+* update default config ed6451b
 * update dependencies a3ea3a6
 * update dependencies and checkout depth f04e50a
 * update dependencies and fix devices communications b34af9c
