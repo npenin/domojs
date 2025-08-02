@@ -1,14 +1,9 @@
 #  (2025-08-02)
 
 
-### Features
+### Bug Fixes
 
-* switch to matter like and mqtt implementation 7153114
-
-
-### BREAKING CHANGES
-
-* Everything has changed. Implementers need to rewrite their library from scratch
+* handle undefined pubsub config 233fa6d
 
 
 
