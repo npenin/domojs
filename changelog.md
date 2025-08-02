@@ -126,6 +126,7 @@
 * remove wwwroot from git tracking 4a77d5f
 * reopen on close 97206ad
 * rfx parsing 09bbea5
+* **rfx:** init 7045c7f
 * scrap stop crashing on not found elements 57355db
 * service discovery package name 4aec8df
 * set mode on rfx d043a17
