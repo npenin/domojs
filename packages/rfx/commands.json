@@ -8,20 +8,20 @@
                     "path": "dist/server/commands/$init.js",
                     "source": "src/server/commands/$init.ts",
                     "inject": [
-                        "container",
-                        "signal"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "cli": {
                     "inject": [
-                        "$container",
+                        "context",
                         "signal"
                     ]
                 },
                 "": {
                     "inject": [
-                        "container",
-                        "signal"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
