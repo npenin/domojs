@@ -159,7 +159,7 @@ rfxGatewayHandler.useProtocol('tcp', async url =>
     return new Rfxtrx(net.connect({ host: url.hostname, port: Number(url.port) } as net.TcpNetConnectOpts).setKeepAlive(true, 60000), true)
 });
 
-export default async function init(this: State, context: CliContext<{ configFile: string }, ProxyConfiguration<SidecarConfiguration & BridgeConfiguration>>, container: Container<void>, signal: AbortSignal)
+export default async function init(this: State, context: CliContext<{ configFile: string }, ProxyConfiguration<SidecarConfiguration & BridgeConfiguration>>, signal: AbortSignal)
 {
     state = this;
     state.endpoints = {};
@@ -263,5 +263,3 @@ export default async function init(this: State, context: CliContext<{ configFile
             logger.warn('no RFXCOM device found');
     }
 }
-
-init.$inject = ['container', 'signal']
