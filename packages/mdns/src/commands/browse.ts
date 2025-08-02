@@ -6,13 +6,11 @@ export default async function (this: State, typeOrFqdn: string, waitTime: number
 {
     await delay(waitTime * 1000);
 
-    const result = this.fabric.endpoints.filter((e) => !typeOrFqdn || e[0] == typeOrFqdn);
+    const result = this.fabric.endpoints.filter(e => !typeOrFqdn || e?.clusters.fixedLabel.target.LabelList.find(l => l.Label == 'FQDN')?.Value.includes(typeOrFqdn));
 
     if (trigger = 'cli')
         this.browser.destroy();
 
-    return typeOrFqdn ?
-        result.find(e => e.clusters.aggregator)?.clusters.aggregator.getValue('endpoints') :
-        result.filter(e => !e.clusters.aggregator).map(e => e.clusters.fixedLabel?.target.LabelList.find(l => (l.Label == 'Type' || l.Label == 'Host') && l.Value == typeOrFqdn))
-        ;
+    return result.map(e => Object.fromEntries(([['id', e.id]] as [PropertyKey, unknown][]).concat(e.clusters.fixedLabel.target.LabelList.map(l => [l.Label, l.Value] as const))));
+    ;
 }

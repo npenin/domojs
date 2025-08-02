@@ -74,10 +74,6 @@ export default async function (this: State, context: Context<ProxyConfiguration<
 
     if (!context.state.has('endpointsMapping'))
         context.state.set('endpointsMapping', {});
-    // if (!context.state.has('mdns'))
-    //     context.state.set('mdns', {});
-
-    // context.state = config;
 
     const self = await app(context)
 
