@@ -9,11 +9,11 @@
         "packages/*"
     ],
     "devDependencies": {
-        "@akala/automate": "^6.7.112",
-        "@akala/automate-yamlloader": "^3.0.208",
+        "@akala/automate": "^6.7.113",
+        "@akala/automate-yamlloader": "^3.0.209",
         "@akala/cli": "^5.11.13",
         "@akala/commands": "^17.2.14",
-        "@akala/pm": "^15.3.40",
+        "@akala/pm": "^15.3.41",
         "@akala/semantic-release": "^3.1.113",
         "typescript": "^5.8.3"
     },
