@@ -76,7 +76,11 @@ export default async function (this: State, context: CliContext<{ configFile: st
 
     const [pubsubConfig] = await this.self.clusters.commissionning.target.registerCommand('devices');
     if (pubsubConfig)
+    {
         context.state.set('pubsub', pubsubConfig);
+        await context.state.pubsub.transportOptions.setSecret('password', context.state.pubsub.transportOptions.get('passport'));
+        await context.state.commit();
+    }
 
     // await FabricServer.register('devices', this, new Commissionner(this, 'devices'));
 
