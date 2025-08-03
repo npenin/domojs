@@ -69,6 +69,7 @@
 * entry point startup d5a0a61
 * entrypoint 51411b4
 * entrypoint db3d912
+* export topic wildcard to urltemplate conversion b3a68bb
 * file copy ordering 2ece2ca
 * fix wrong unit in keepalive 58ddd94
 * fix zigate start 349c0bd
@@ -128,6 +129,7 @@
 * reopen on close 97206ad
 * rfx parsing 09bbea5
 * **rfx:** init 7045c7f
+* save config after first init b461378
 * scrap stop crashing on not found elements 57355db
 * service discovery package name 4aec8df
 * set mode on rfx d043a17
