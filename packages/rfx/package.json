@@ -31,7 +31,7 @@
     "deprecated": false,
     "description": "",
     "devDependencies": {
-        "@akala/pm": "^15.3.41",
+        "@akala/pm": "^15.3.42",
         "@domojs/devices": "workspace:*",
         "@types/debug": "^4.1.12",
         "@types/usb": "^2.0.5",
