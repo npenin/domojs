@@ -1,15 +1,9 @@
-#  (2025-08-02)
+#  (2025-08-03)
 
 
 ### Bug Fixes
 
-* broken parsing eb3e495
-
-
-### Features
-
-* add disconnect support to MqttClient and update tests for mqtt and mqtts ef451ea
-* implement basic mqtt v5 protocol 01e31e0
+* export topic wildcard to urltemplate conversion b3a68bb
 
 
 
