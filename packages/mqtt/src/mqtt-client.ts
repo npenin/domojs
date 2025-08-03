@@ -465,36 +465,33 @@ asyncEventBuses.useProtocol('mqtt+tls', async (url, config) =>
 
 const templateCache: Record<string, UrlTemplate.UriTemplate> = {};
 
-function topicTemplate(topic: string): UrlTemplate.UriTemplate
+export function topicTemplate(topic: string): UrlTemplate.UriTemplate
 {
     if (topic in templateCache)
         return templateCache[topic];
 
-    const urlTemplate: UrlTemplate.UriTemplate = UrlTemplate.parse(mqttTopicToURITemplate(topic));
+    const urlTemplate: UrlTemplate.UriTemplate = mqttTopicToURITemplate(topic);
 
     return templateCache[topic] = urlTemplate;
 }
 
-function mqttTopicToURITemplate(topic: string): string
+export function mqttTopicToURITemplate(topic: string): UrlTemplate.UriTemplate
 {
     const segments = topic.split('/');
     let varCount = 0;
 
     const templateSegments = segments.map((segment) =>
     {
-        if (segment === '+')
+        switch (segment)
         {
-            varCount++;
-            return `{/var${varCount}}`;
-        } else if (segment === '#')
-        {
-            varCount++;
-            return `{/var${varCount}*}`;
-        } else
-        {
-            return segment;
+            case '+':
+            case '#':
+                varCount++;
+                return { ref: 'var' + varCount, operator: '/' as const, explode: segment == '#' };
+            default:
+                return segment;
         }
     });
 
-    return templateSegments.join('/');
+    return templateSegments;
 }
