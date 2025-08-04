@@ -80,6 +80,7 @@
 * fix zigate start 349c0bd
 * gateway resolution 5877dde
 * gateway start 97998b5
+* gateway startup 32c2fe9
 * handle gateways detection 0c682a0
 * handle multiple gateways or merge gateways 1f19ef8
 * handle start from fork 98c8153
