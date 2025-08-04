@@ -117,6 +117,8 @@
 * permissions on install 4ff3fb2
 * permissions on install 5deccb7
 * proper gateway closure e7eb9cd
+* provide signal to pubsub 3e0a570
+* provide signal to pubsub 538c505
 * publish workflow after semantic-release upgrade 3d373e1
 * recover from closed socket 0b733dd
 * remove @akala/client for now 570f6fd
