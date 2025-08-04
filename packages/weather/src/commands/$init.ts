@@ -16,7 +16,7 @@ export default async function init(this: State, context: Context<ProxyConfigurat
 
     const sidecar = await app<unknown, MqttEvents>(context);
 
-    const fabric = await registerNode('weather', sidecar, context.state);
+    const fabric = await registerNode('weather', sidecar, context.state, context.abort.signal);
 
     await fabric.attach(sidecar.pubsub);
 

@@ -22,7 +22,7 @@ declare module '@akala/pm'
 
 export { BridgeConfiguration }
 
-export async function registerNode(name: string, self: Sidecar<any, MqttEvents>, config: ProxyConfiguration<BridgeConfiguration>): Promise<RootNode<never>>
+export async function registerNode(name: string, self: Sidecar<any, MqttEvents>, config: ProxyConfiguration<BridgeConfiguration>, abort: AbortSignal): Promise<RootNode<never>>
 {
     if (!self.pubsub && self.config.pubsub?.transport || self.pubsub && !self.config.pubsub.transportOptions)
     {
@@ -31,7 +31,7 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
             await (self.pubsub as MqttClient).disconnect();
             delete self.pubsub
         }
-        await pubsub(self, { transport: self.config.pubsub.transport, transportOptions: { username: 'domojs-guest', password: 'domojs' } });
+        await pubsub(self, { transport: self.config.pubsub.transport, transportOptions: { username: 'domojs-guest', password: 'domojs' } }, abort);
     }
     const remote = new EndpointProxy<ClusterMap>(0, 'root', { name: 'domojs/devices' }, self.pubsub, { commissionning: CommissionningCluster });
     try
@@ -42,7 +42,7 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
             await (self.pubsub as MqttClient).disconnect();
             delete self.pubsub;
             delete self.config.pubsub;
-            await pubsub(self, pubsubConfig);
+            await pubsub(self, pubsubConfig, abort);
         }
     }
     catch (e)

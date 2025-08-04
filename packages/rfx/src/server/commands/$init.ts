@@ -195,7 +195,7 @@ export default async function init(this: State, context: CliContext<{ configFile
 
     const sidecar = await app<unknown, MqttEvents>(context);
 
-    const fabric = await registerNode('RFXCOM', sidecar, context.state)
+    const fabric = await registerNode('RFXCOM', sidecar, context.state, context.abort.signal)
 
     await fabric.attach(sidecar.pubsub);
 

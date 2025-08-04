@@ -15,5 +15,5 @@ export default async function (this: State, context: CliContext<Record<string, O
     const self = await app(context);
     // self.pubsub?.emit(container, 'device-discovered', '/zeroconf/_hap');
 
-    const fabric = await registerNode('homekit', self, context.state);
+    const fabric = await registerNode('homekit', self, context.state, context.abort.signal);
 }

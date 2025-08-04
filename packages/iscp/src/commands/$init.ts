@@ -32,7 +32,7 @@ export default async function init(this: State, container: Container<void>, cont
 
     const sidecar = await app(context);
 
-    state.fabric = await registerNode('iscp', sidecar, context.state);
+    state.fabric = await registerNode('iscp', sidecar, context.state, context.abort.signal);
 
     const onkyo_magic = parserWrite(protocol, new IscpMessage('!xECNQSTN'));
     const pioneer_magic = parserWrite(protocol, new IscpMessage('!pECNQSTN'));

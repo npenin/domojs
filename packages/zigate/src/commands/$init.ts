@@ -33,7 +33,7 @@ export default async function (this: State, context: CliContext<{ debug: boolean
     // );
 
     const self = await app(context);
-    const fabric = await registerNode('zigate', self, context.state);
+    const fabric = await registerNode('zigate', self, context.state, context.abort.signal);
 
     try
     {

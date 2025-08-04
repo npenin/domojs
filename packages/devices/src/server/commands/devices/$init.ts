@@ -75,7 +75,7 @@ export default async function (this: State, context: CliContext<{ configFile: st
         await (sidecar.pubsub as MqttClient).disconnect();
         delete sidecar.pubsub;
         delete sidecar.config.pubsub;
-        await pubsub(sidecar, pubsubConfig);
+        await pubsub(sidecar, pubsubConfig, context.abort.signal);
     }
 
 
