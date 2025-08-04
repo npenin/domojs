@@ -145,7 +145,7 @@ export class EndpointProxy<TClusterMap extends Record<string, Cluster<any, any, 
     {
         super();
 
-        this.clusters = Object.fromEntries(Object.entries(clusters).map(e => [e[0], clusterProxyFactory(e[1] as TClusterMap[keyof TClusterMap], `${parent.name}/${name}/${e[0]}`, pubsub)])) as MixedClusterMap<TClusterMapKeys, TClusterMap>;
+        this.clusters = Object.fromEntries(Object.entries<TClusterMap[keyof TClusterMap]>(clusters).map(e => [e[0], clusterProxyFactory(e[1], `${parent.name}/${id}/${e[0]}`, pubsub)])) as MixedClusterMap<TClusterMapKeys, TClusterMap>;
     }
 
     public patch(patch: {
