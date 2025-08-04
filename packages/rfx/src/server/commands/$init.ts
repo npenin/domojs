@@ -122,7 +122,7 @@ rfxGatewayHandler.useProtocol('usb', url =>
     return Rfxtrx.getSerial(url.pathname);
 });
 
-rfxGatewayHandler.useProtocol('http', async url =>
+rfxGatewayHandler.useProtocol('http', async (url,) =>
 {
     const socket: net.Socket = await punch(url.toString(), 'raw')
     socket.setKeepAlive(true, 60000);
@@ -228,7 +228,7 @@ export default async function init(this: State, context: CliContext<{ configFile
 
             // const discriminator = crypto.randomUUID().replace(/-/g, '').substring(0, 16);
             const gateway = await Rfxtrx.getSerial(serial);
-            await gateway.start();
+            await gateway.start(context.abort.signal);
             const gatewayNode = new GatewayEndpoint(await fabric.getEndpointId(nodeName), nodeName, gateway, fabric);
             fabric.endpoints.push(gatewayNode);
             // (new GatewayEndpoint(nodeName, discriminator, await Rfxtrx.getSerial(serial)));

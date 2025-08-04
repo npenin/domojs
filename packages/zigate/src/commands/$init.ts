@@ -23,8 +23,7 @@ export default async function (this: State, context: CliContext<{ debug: boolean
     });
     this.setGateway = async (gw: Zigate) =>
     {
-        signal?.addEventListener('abort', () => gw.close())
-        await gw.start(context.options.debug);
+        await gw.start(signal, context.options.debug);
         setGateway(gw);
         return gw;
     };

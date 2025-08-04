@@ -151,9 +151,18 @@ export abstract class Gateway<T extends EventMap<T>> extends EventEmitter<T>
 
     public get started() { return this._started; }
 
-    async start()
+    async start(abort?: AbortSignal)
     {
         this._started = true;
+
+        abort?.addEventListener('abort', async () =>
+        {
+            if (this._isOpen)
+            {
+                await this.stop();
+                await this.close();
+            }
+        })
     }
 
     private _started = false;

@@ -278,7 +278,7 @@ export { Cluster };
 
 export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in keyof typeof MessageType | MessageType]: Message['message'] }>
 {
-    public start(debug?: boolean)
+    public start(abort?: AbortSignal, debug?: boolean)
     {
         if (debug)
             this.on('message', m => console.debug(m));
@@ -294,7 +294,7 @@ export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in ke
                     this.once(MessageType.StartNetwork, (response: MessageTypes.StartNetworkResponse) =>
                     {
                         resolve();
-                        super.start();
+                        super.start(abort);
                     })
                 })
             });

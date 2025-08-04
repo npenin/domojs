@@ -10,11 +10,10 @@ The above copyright notice shall be included in all copies or substantial
 portions of this file.
 '----------------------------------------------------------------------------
 */
-import { EventEmitter } from 'events';
-import { Queue, logger, eachAsync, Event, IsomorphicBuffer, IEvent } from '@akala/core';
+import { logger, eachAsync, IsomorphicBuffer, IEvent } from '@akala/core';
 export * from './protocol/index.js'
 import * as os from 'os';
-import { Protocol, Message, PacketType, Type, InterfaceControl, InterfaceMessage, EventMap, Rfy, RFXDevice } from './protocol/index.js';
+import { Protocol, Message, PacketType, Type, InterfaceControl, InterfaceMessage, Rfy, RFXDevice } from './protocol/index.js';
 import { Cursor, parserWrite } from '@akala/protocol-parser';
 import { Duplex } from 'stream';
 import { readdir } from 'fs/promises';
@@ -95,7 +94,7 @@ export class Rfxtrx extends Gateway<{ message: IEvent<[Message<any>], void> } & 
         return m.message;
     }
 
-    async start()
+    async start(abort?: AbortSignal)
     {
         await this.send(Type.INTERFACE_CONTROL.Mode, {
             command: InterfaceControl.Commands.reset
@@ -120,7 +119,7 @@ export class Rfxtrx extends Gateway<{ message: IEvent<[Message<any>], void> } & 
         if (m.message.msg3 & InterfaceControl.protocols_msg3.DisplayRaw)
             this.on('message', m => console.log(m));
 
-        await super.start();
+        await super.start(abort);
     }
 
     public send(type: Type.INTERFACE_CONTROL, message?: Partial<InterfaceControl.ModeCommand>): Promise<Message<any>>
