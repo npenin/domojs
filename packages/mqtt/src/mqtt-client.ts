@@ -22,17 +22,54 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
     constructor(private clientId: string, private readonly protocolEvents: ProtocolEvents, private readonly keepAlive: number = 60000)
     {
         super();
-        protocolEvents.on(ControlPacketType.CONNACK, () => this._connected = true);
-        protocolEvents.on(ControlPacketType.DISCONNECT, () => { clearInterval(this.pingInterval); protocolEvents.socket.end() });
+        this.teardown(protocolEvents.on(ControlPacketType.CONNACK, () => this._connected = true));
+        this.teardown(protocolEvents.on(ControlPacketType.DISCONNECT, () => { clearInterval(this.pingInterval); protocolEvents.socket.end() }));
         protocolEvents.socket.on('close', () => this._connected = false);
-        protocolEvents.on(ControlPacketType.PINGREQ, () =>
+        this.teardown(protocolEvents.on(ControlPacketType.PINGREQ, () =>
         {
             const pong: pingresp.Message = {
                 type: ControlPacketType.PINGRESP
             }
             this.write(parserWrite(StandardMessages, pong, pong).toArray());
-        })
+        }));
         protocolEvents.socket.on('close', () => clearTimeout(this.pingInterval));
+        this.teardown(this.protocolEvents.on(ControlPacketType.PUBLISH, async m =>
+        {
+            try
+            {
+                const matches = Object.entries(this.mqttSubscriptions).filter(([topic, sub]) => { return topic == m.topic || UrlTemplate.match(m.topic, topicTemplate(topic)) }).flatMap(([_, subs]) => subs);
+                if (matches.length > 0)
+                    await eachAsync(matches, async handler => await handler.listener(m.properties.find(p => p.property === PropertyKeys.payloadFormat)?.value ? m.stringPayload : m.binaryPayload, { publishedTopic: m.topic, qos: m.qos, retain: m.retain, properties: m.properties }));
+                if (m.qos > 0)
+                {
+                    const message: puback.Message = {
+                        packetId: m.packetId,
+                        reason: ReasonCodes.Success,
+                        type: ControlPacketType.PUBACK,
+                        properties: [],
+                    };
+                    console.time('mqtt-write')
+                    this.write(parserWrite(StandardMessages, message, message, 0).toArray())
+                    console.timeEnd('mqtt-write')
+                }
+            }
+            catch (e)
+            {
+                console.error(e);
+                if (m.qos > 0)
+                {
+                    const message: puback.Message = {
+                        packetId: m.packetId,
+                        reason: ReasonCodes.UnspecifiedError,
+                        type: ControlPacketType.PUBACK,
+                        properties: [],
+                    };
+                    console.time('mqtt-write')
+                    this.write(parserWrite(StandardMessages, message, message, 0).toArray())
+                    console.timeEnd('mqtt-write')
+                }
+            }
+        }));
     }
     async write(msg: Uint8Array<ArrayBufferLike>)
     {
@@ -66,49 +103,12 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
                     return false;
 
                 this.mqttSubscriptions[event].splice(indexOfSubscription, 1);
-                return publishSub?.();
             });
             await this.subscribe([event], options);
             if (!this.mqttSubscriptions[event])
                 this.mqttSubscriptions[event] = [];
             this.mqttSubscriptions[event].push({ subscription: subscription, options, listener: handler as EventListener<MqttEvent> });
-            const publishSub = this.protocolEvents.on(ControlPacketType.PUBLISH, async m =>
-            {
-                try
-                {
-                    const matches = Object.entries(this.mqttSubscriptions).filter(([topic, sub]) => { return topic == m.topic || UrlTemplate.match(m.topic, topicTemplate(topic)) }).flatMap(([_, subs]) => subs);
-                    if (matches.length > 0)
-                        await eachAsync(matches, async handler => await handler.listener(m.properties.find(p => p.property === PropertyKeys.payloadFormat)?.value ? m.stringPayload : m.binaryPayload, { publishedTopic: m.topic, qos: m.qos, retain: m.retain, properties: m.properties }));
-                    if (m.qos > 0)
-                    {
-                        const message: puback.Message = {
-                            packetId: m.packetId,
-                            reason: ReasonCodes.Success,
-                            type: ControlPacketType.PUBACK,
-                            properties: [],
-                        };
-                        console.time('mqtt-write')
-                        this.write(parserWrite(StandardMessages, message, message, 0).toArray())
-                        console.timeEnd('mqtt-write')
-                    }
-                }
-                catch (e)
-                {
-                    console.error(e);
-                    if (m.qos > 0)
-                    {
-                        const message: puback.Message = {
-                            packetId: m.packetId,
-                            reason: ReasonCodes.UnspecifiedError,
-                            type: ControlPacketType.PUBACK,
-                            properties: [],
-                        };
-                        console.time('mqtt-write')
-                        this.write(parserWrite(StandardMessages, message, message, 0).toArray())
-                        console.timeEnd('mqtt-write')
-                    }
-                }
-            });
+
             return subscription.unsubscribe;
         }
     }
@@ -286,10 +286,10 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
             type: ControlPacketType.DISCONNECT,
             properties: []
         };
-        clearInterval(this.pingInterval);
         await this.write(parserWrite(StandardMessages, message, message, 0).toArray())
-
+        clearTimeout(this.pingInterval);
         await new Promise<void>(resolve => this.protocolEvents.socket.end(resolve));
+
     }
 
     public async publish(topic: string, payload: IsomorphicBuffer | string, options?: { qos?: number; retain?: boolean; properties?: Properties; }): Promise<void | Message>
@@ -480,7 +480,7 @@ export function mqttTopicToURITemplate(topic: string): UrlTemplate.UriTemplate
     const segments = topic.split('/');
     let varCount = 0;
 
-    const templateSegments = segments.map((segment) =>
+    const templateSegments = segments.map((segment, i) =>
     {
         switch (segment)
         {
@@ -489,7 +489,7 @@ export function mqttTopicToURITemplate(topic: string): UrlTemplate.UriTemplate
                 varCount++;
                 return { ref: 'var' + varCount, operator: '/' as const, explode: segment == '#' };
             default:
-                return segment;
+                return i == 0 ? segment : '/' + segment;
         }
     });
 
