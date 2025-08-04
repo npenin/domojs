@@ -18,7 +18,7 @@
         "@akala/config": "^6.0.109",
         "@akala/core": "^41.0.1",
         "@akala/protocol-parser": "^11.1.22",
-        "@akala/sidecar": "^8.2.30",
+        "@akala/sidecar": "^8.2.31",
         "@domojs/devices": "workspace:^",
         "fast-srp-hap": "^2.0.4",
         "hap-nodejs": "^1.2.0"

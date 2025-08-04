@@ -223,9 +223,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@akala/sidecar@npm:^8.2.30":
-  version: 8.2.30
-  resolution: "@akala/sidecar@npm:8.2.30"
+"@akala/sidecar@npm:^8.2.31":
+  version: 8.2.31
+  resolution: "@akala/sidecar@npm:8.2.31"
   dependencies:
     "@akala/cli": "npm:^5.11.14"
     "@akala/commands": "npm:^17.2.15"
@@ -233,7 +233,7 @@ __metadata:
     "@akala/core": "npm:^41.0.1"
     "@akala/pm": "npm:^15.3.44"
     "@akala/storage": "npm:^20.2.27"
-  checksum: 10/0b11ef379e6f035f01019525d03e1558cca0511bd2e311b5de2760917d3aa54ce493f9c8146b1f3d2a043b62a1fbc4660f57c29b9344c85cd7a8226deeb7c71f
+  checksum: 10/a291809a1cd984b4b0070bf98377412b5ba92bc7c9765c5d74d22cf68a497a6183a24354aba52e942940b792bef76151b9982282ba74e131d99764c4b7b52629
   languageName: node
   linkType: hard
 
@@ -405,7 +405,7 @@ __metadata:
     "@akala/pm": "npm:^15.3.44"
     "@akala/pubsub": "npm:^3.0.208"
     "@akala/server": "npm:^27.0.58"
-    "@akala/sidecar": "npm:^8.2.30"
+    "@akala/sidecar": "npm:^8.2.31"
     "@akala/storage": "npm:^20.2.27"
     "@domojs/mqtt": "npm:^2.0.55"
     "@domojs/theme-default": "workspace:*"
@@ -434,7 +434,7 @@ __metadata:
     "@akala/config": "npm:^6.0.109"
     "@akala/core": "npm:^41.0.1"
     "@akala/protocol-parser": "npm:^11.1.22"
-    "@akala/sidecar": "npm:^8.2.30"
+    "@akala/sidecar": "npm:^8.2.31"
     "@domojs/devices": "workspace:^"
     "@domojs/mdns": "workspace:^"
     fast-srp-hap: "npm:^2.0.4"
@@ -524,7 +524,7 @@ __metadata:
     "@akala/commands": "npm:^17.2.15"
     "@akala/config": "npm:^6.0.109"
     "@akala/core": "npm:^41.0.1"
-    "@akala/sidecar": "npm:^8.2.30"
+    "@akala/sidecar": "npm:^8.2.31"
     "@types/multicast-dns": "npm:^7.2.4"
     multicast-dns: "npm:^7.2.5"
   bin:
@@ -714,7 +714,7 @@ __metadata:
     "@akala/json-rpc-ws": "npm:^12.0.23"
     "@akala/pm": "npm:^15.3.44"
     "@akala/server": "npm:^27.0.58"
-    "@akala/sidecar": "npm:^8.2.30"
+    "@akala/sidecar": "npm:^8.2.31"
     "@domojs/devices": "workspace:^"
   peerDependencies:
     "@akala/pm": ^15.0.0
@@ -792,7 +792,7 @@ __metadata:
     "@akala/commands": "npm:^17.2.15"
     "@akala/core": "npm:^41.0.1"
     "@akala/pubsub": "npm:^3.0.208"
-    "@akala/sidecar": "npm:^8.2.30"
+    "@akala/sidecar": "npm:^8.2.31"
     "@domojs/devices": "workspace:*"
     "@domojs/zigate-parsers": "workspace:*"
     "@types/debug": "npm:4.1.12"
