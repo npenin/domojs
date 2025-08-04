@@ -79,7 +79,7 @@ export default async function (this: State, context: Context<ProxyConfiguration<
 
     const mdns = this.browser = mDNS();
 
-    const fabric = await registerNode('mdns', self, context.state);
+    const fabric = await registerNode('mdns', self, context.state, context.abort.signal);
 
     this.fabric = fabric;
 
