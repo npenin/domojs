@@ -71,7 +71,6 @@ export const decodeTxt = (function ()
 
 export default async function (this: State, context: Context<ProxyConfiguration<SidecarConfiguration & BridgeConfiguration>>)
 {
-
     if (!context.state.has('endpointsMapping'))
         context.state.set('endpointsMapping', {});
 
