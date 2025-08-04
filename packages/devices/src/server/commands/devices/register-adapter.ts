@@ -12,7 +12,7 @@ const queue = new Queue<{ pubsub: AsyncEventBus<MqttEvents>, message: DynSecRequ
         typeof s === 'string' ?
             e.defer.resolve(JSON.parse(s)) : e.defer.resolve(JSON.parse(s.toString('utf-8'))), { noLocal: true });
 
-    await e.pubsub.emit('$CONTROL/dynamic-security/v1', JSON.stringify(e.message));
+    await e.pubsub.emit('$CONTROL/dynamic-security/v1', JSON.stringify(e.message), { qos: 1 });
 
 
     await e.defer;
@@ -57,7 +57,7 @@ export default async function (this: State, node: string): Promise<SidecarConfig
                         "command": "addRoleACL",
                         "rolename": "domojs-guest",
                         "acltype": "subscribeLiteral",
-                        "topic": `domojs/devices/root/commissionning/registerCommand`,
+                        "topic": `domojs/devices/0/commissionning/registerCommand`,
                         "priority": 0,
                         allow: true
                     },
@@ -65,7 +65,7 @@ export default async function (this: State, node: string): Promise<SidecarConfig
                         "command": "addRoleACL",
                         "rolename": "domojs-guest",
                         "acltype": "publishClientSend",
-                        "topic": `domojs/devices/root/commissionning/registerCommand/execute`,
+                        "topic": `domojs/devices/0/commissionning/registerCommand/execute`,
                         "priority": 0,
                         allow: true
                     },
@@ -158,8 +158,11 @@ export default async function (this: State, node: string): Promise<SidecarConfig
 
     const clientResponse = result.responses.find(c => c.command === 'createClient');
 
-    const client = new EndpointProxy(this.self.endpoints.length, node, this.self, this.pubsub, {});
-    this.self.endpoints.push(client);
+    if (this.self)
+    {
+        const client = new EndpointProxy(this.self.endpoints.length, node, this.self, this.pubsub, {});
+        this.self.endpoints.push(client);
+    }
 
     if (clientResponse.error === 'Client already exists')
         return null;
