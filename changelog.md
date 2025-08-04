@@ -1,4 +1,4 @@
-#  (2025-08-03)
+#  (2025-08-04)
 
 
 ### Bug Fixes
@@ -47,12 +47,15 @@
 * build after upgrade 3064e60
 * busybox -S workaround dbf5433
 * cast processor 07a479e
+* client subscriptions 53ac6eb
+* cluster proxy mqtt topic 91c3d7e
 * config file after upgrade 9b6bdfc
 * configs 845de88
 * configs 500a265
 * default configuration b8963eb
 * dependencies 8e1577c
 * device init saving 5980d33
+* devices first setup 987ca3c
 * devicetype init dd87a23
 * devicetype start up + upgrade to latest sidecar 17378d1
 * devicetype startup 401db92
@@ -66,6 +69,7 @@
 * enable keepalive on tcp and http sockets 27fcfd2
 * enable production mode 4e66bf1
 * enable yarn cec2353
+* ensure proper permissions 80f00b8
 * entry point startup d5a0a61
 * entrypoint 51411b4
 * entrypoint db3d912
