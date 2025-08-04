@@ -1,9 +1,4 @@
 #  (2025-08-04)
 
 
-### Bug Fixes
-
-* provide signal to pubsub 538c505
-
-
 
