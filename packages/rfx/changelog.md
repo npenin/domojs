@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* gateway startup 64f6af0
+* start gateway before creating endpoint 62bb79a
 
 
 
