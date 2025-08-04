@@ -1,9 +1,9 @@
 #  (2025-08-04)
 
 
-### Bug Fixes
+### Features
 
-* add abortsignal to start on gateways 16e9dfa
+* add user label on gateway endpoint 87d8b51
 
 
 
