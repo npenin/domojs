@@ -227,8 +227,9 @@ export default async function init(this: State, context: CliContext<{ configFile
             const nodeName = encodeURIComponent(serial.replace(/^\/dev\//, '')) + '@' + os.hostname();
 
             // const discriminator = crypto.randomUUID().replace(/-/g, '').substring(0, 16);
-
-            const gatewayNode = new GatewayEndpoint(await fabric.getEndpointId(nodeName), nodeName, await Rfxtrx.getSerial(serial), fabric);
+            const gateway = await Rfxtrx.getSerial(serial);
+            await gateway.start();
+            const gatewayNode = new GatewayEndpoint(await fabric.getEndpointId(nodeName), nodeName, gateway, fabric);
             fabric.endpoints.push(gatewayNode);
             // (new GatewayEndpoint(nodeName, discriminator, await Rfxtrx.getSerial(serial)));
 
@@ -237,8 +238,11 @@ export default async function init(this: State, context: CliContext<{ configFile
                 usb.on('detach', async function ()
                 {
                     var newSerials = await Rfxtrx.listEligibleSerials();
-                    if ((newSerials.length == 0 || newSerials.indexOf(device) === -1))
-                        gatewayNode.offline();
+                    if ((newSerials.length == 0 || newSerials.indexOf(serial) === -1))
+                    {
+                        await gateway.stop();
+                        await gateway.close();
+                    }
                 });
             }
             catch (e)

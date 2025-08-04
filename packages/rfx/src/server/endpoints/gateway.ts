@@ -391,7 +391,7 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                     break;
             }
         })
-        gateway.send(Type.RFY.Standard, { command: Rfy.Internal.Commands.List })
+        gateway.send(Type.RFY.Standard, { command: Rfy.Internal.Commands.List });
         ModeEndpoint.getEndpoints(gateway, deviceName, fabric).then(endpoints => this.endpoints.push(...endpoints));
 
         // TODO: bind on other events to update endpoints
