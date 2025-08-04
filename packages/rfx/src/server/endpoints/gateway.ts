@@ -9,7 +9,15 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
     constructor(id: number, public readonly deviceName: string, public readonly gateway: Rfxtrx, fabric: RootNode<never>)
     {
         super(id, {
-            binding: Binding()
+            userLabel: clusterFactory({
+                id: MatterClusterIds.UserLabel,
+                LabelList: [
+                    {
+                        Label: 'Name',
+                        Value: deviceName
+                    }
+                ]
+            })
         });
 
         const sensors: { [key in PacketType]?: Record<number, Endpoint<ClusterMap>[]> } = {};
