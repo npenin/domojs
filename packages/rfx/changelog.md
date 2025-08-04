@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* provide signal to pubsub 538c505
+* gateway startup 64f6af0
 
 
 
