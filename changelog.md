@@ -149,6 +149,7 @@
 * slim entry point 2cb59b9
 * slim user f605b15
 * specify proper params for save c949c4b
+* split buffer 4715286
 * start gateway before creating endpoint 62bb79a
 * support for gateway closure a77d715
 * support for tcp gateway 1afe68a
@@ -233,6 +234,7 @@
 * add slim docker alternative a06e7c6
 * add tlv support be185cf
 * add unknown RTS message support 9cca173
+* add user label on gateway endpoint 87d8b51
 * add web scrapping support and tests 62a3c61
 * add yt-music 5c09d55
 * create new web site from scratch using vite and akala 1492bfe
