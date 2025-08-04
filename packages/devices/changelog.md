@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* ensure config is initialized 31238d4
+* provide signal to pubsub 538c505
 
 
 
