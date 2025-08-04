@@ -41,6 +41,8 @@ export class RootNode<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descrip
     {
         const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(name));
         const hashedName = IsomorphicBuffer.fromArrayBuffer(hash).toString('hex')
+        if (!this.config.endpointsMapping)
+            this.config.set('endpointsMapping', {});
         const id = this.config.endpointsMapping.get<number>(hashedName);
         if (id)
             return id;
