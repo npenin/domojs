@@ -31,9 +31,9 @@ export class Rfxtrx extends Gateway<{ message: IEvent<[Message<any>], void> } & 
     {
         const buffers = [];
         let offset = 0
-        for (; buffer.length >= offset + buffer[offset] + 1; offset += buffer[offset] + 1)
+        for (; buffer.length >= offset + buffer.readUInt8(offset) + 1; offset += buffer.readUInt8(offset) + 1)
         {
-            buffers.push(buffer.subarray(offset, offset + buffer[offset] + 1));
+            buffers.push(buffer.subarray(offset, offset + buffer.readUInt8(offset) + 1));
             log.debug('frame complete');
         }
         if (offset != buffer.length)
@@ -42,7 +42,7 @@ export class Rfxtrx extends Gateway<{ message: IEvent<[Message<any>], void> } & 
     }
     protected isCompleteFrame(buffer: IsomorphicBuffer): boolean
     {
-        return buffer.length == buffer[0] + 1
+        return buffer.length == buffer.readUInt8(0) + 1
     }
     protected processFrame(buffer: IsomorphicBuffer): void | Promise<void>
     {
