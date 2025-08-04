@@ -1,9 +1,9 @@
-#  (2025-08-03)
+#  (2025-08-04)
 
 
 ### Bug Fixes
 
-* export topic wildcard to urltemplate conversion b3a68bb
+* client subscriptions 53ac6eb
 
 
 
