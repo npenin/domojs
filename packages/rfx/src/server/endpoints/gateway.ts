@@ -1,5 +1,5 @@
 import { Endpoint, powerSourceCluster, wifiNetworkDiagnosticsCluster, globalEnums, identifyCluster, Aggregator, commissionerControlCluster, electricalPowerMeasurementCluster, ClusterMap, Binding, temperatureMeasurementCluster, ClusterInstanceLight, clusterFactory, AggregatorEndpoint, RootNode, MatterClusterIds } from "@domojs/devices";
-import { Elec1, Elec2, InterfaceMessage, Message, PacketType, Rfxtrx, Rfy, TemperatureHumidity } from "@domojs/rfx-parsers";
+import { Elec1, Elec2, InterfaceMessage, Message, PacketType, Rfxtrx, Rfy, TemperatureHumidity, Type } from "@domojs/rfx-parsers";
 import { ModeEndpoint } from "./mode.js";
 import { IsomorphicBuffer, ObservableArray, ObservableObject } from "@akala/core";
 import { RfyWindowCovering } from "./rfy.js";
@@ -391,8 +391,8 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                     break;
             }
         })
-        gateway.send(Rfy.Internal.Commands.List)
-        this.endpoints.push(...ModeEndpoint.getEndpoints(gateway, id + 1));
+        gateway.send(Type.INTERFACE_MESSAGE.listRFYRemotes)
+        ModeEndpoint.getEndpoints(gateway, deviceName, fabric).then(endpoints => this.endpoints.push(...endpoints));
 
         // TODO: bind on other events to update endpoints
     }

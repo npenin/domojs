@@ -1,12 +1,13 @@
-import { clusterFactory, ClusterIds, ClusterMap, Endpoint, MatterClusterIds } from "@domojs/devices";
+import { clusterFactory, ClusterIds, ClusterMap, Endpoint, MatterClusterIds, RootNode } from "@domojs/devices";
 import { InterfaceControl, Rfxtrx } from "@domojs/rfx-parsers";
+import { GatewayEndpoint } from "./gateway.js";
 
 export class ModeEndpoint<TName extends Extract<keyof TEnum, string>, TEnum extends { [key in TName]: number }> extends Endpoint<ClusterMap>
 {
-    static getEndpoints(gateway: Rfxtrx, idStart: number): Endpoint<ClusterMap>[]
+    static async getEndpoints(gateway: Rfxtrx, gatewayName: string, root: RootNode<never>): Promise<Endpoint<ClusterMap>[]>
     {
-        return ([3, 4, 5, 6] as const).flatMap(n => Object.entries(InterfaceControl[`protocols_msg${n}`]).map((e: [keyof typeof InterfaceControl[`protocols_msg${typeof n}`], number | string]) => typeof e[1] == 'number' ?
-            new ModeEndpoint(idStart + n - 3, n, InterfaceControl[`protocols_msg${n}`], e[0], gateway) : null).filter(e => e))
+        return Promise.all(([3, 4, 5, 6] as const).flatMap(n => Object.entries(InterfaceControl[`protocols_msg${n}`]).map(async (e: [keyof typeof InterfaceControl[`protocols_msg${typeof n}`], number | string]) => typeof e[1] == 'number' ?
+            new ModeEndpoint(await root.getEndpointId(`${gatewayName}-mode-${n}`), n, InterfaceControl[`protocols_msg${n}`], e[0], gateway) : null).filter(e => e)))
     }
     constructor(id: number, n: 3 | 4 | 5 | 6, msg: TEnum, name: TName, gateway: Rfxtrx)
     {
