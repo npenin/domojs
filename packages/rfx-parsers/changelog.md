@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* split buffer 4715286
+* handle buffer read over limits 3bc14bb
 
 
 
