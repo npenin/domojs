@@ -148,6 +148,7 @@
 * slim entry point 2cb59b9
 * slim user f605b15
 * specify proper params for save c949c4b
+* start gateway before creating endpoint 62bb79a
 * support for gateway closure a77d715
 * support for tcp gateway 1afe68a
 * switch from yarn to npm a85dbd1
