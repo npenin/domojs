@@ -6,7 +6,7 @@
     "type": "module",
     "license": "MIT",
     "dependencies": {
-        "@akala/json-rpc-ws": "^12.0.22",
+        "@akala/json-rpc-ws": "^12.0.23",
         "@nlpjs/basic": "5.0.0-alpha.5",
         "node-nlp": "5.0.0-alpha.5"
     },
