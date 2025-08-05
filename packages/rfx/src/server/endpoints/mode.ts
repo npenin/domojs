@@ -7,7 +7,7 @@ export class ModeEndpoint<TName extends Extract<keyof TEnum, string>, TEnum exte
     static async getEndpoints(gateway: Rfxtrx, gatewayName: string, root: RootNode<never>): Promise<Endpoint<ClusterMap>[]>
     {
         return Promise.all(([3, 4, 5, 6] as const).flatMap(n => Object.entries(InterfaceControl[`protocols_msg${n}`]).map(async (e: [keyof typeof InterfaceControl[`protocols_msg${typeof n}`], number | string]) => typeof e[1] == 'number' ?
-            new ModeEndpoint(await root.getEndpointId(`${gatewayName}-mode-${n}`), n, InterfaceControl[`protocols_msg${n}`], e[0], gateway) : null).filter(e => e)))
+            new ModeEndpoint(await root.getEndpointId(`${gatewayName}-mode-${n}`), n, InterfaceControl[`protocols_msg${n}`], e[0], gateway) : null))).then(v => v.filter(e => e));
     }
     constructor(id: number, n: 3 | 4 | 5 | 6, msg: TEnum, name: TName, gateway: Rfxtrx)
     {
