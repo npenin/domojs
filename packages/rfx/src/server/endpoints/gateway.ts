@@ -30,7 +30,9 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                     if (message.type === Type.INTERFACE_MESSAGE.listRFYRemotes || message.type === Type.INTERFACE_MESSAGE.listASARemotes)
                     {
                         const remote = (message as Message<InterfaceMessage.ListRFYRemote>).message;
-                        this.endpoints.push(await fabric.newEndpoint(`rfy-${remote.id1}-${remote.id2}-${remote.id3}-${remote.unitCode}`, { windowCovering: RfyWindowCovering(gateway, remote) }));
+                        const endpointId = await fabric.getEndpointId(`rfy-${remote.id1}-${remote.id2}-${remote.id3}-${remote.unitCode}`);
+                        if (!this.endpoints.find(ep => ep.id == endpointId))
+                            this.endpoints.push(new Endpoint(endpointId, { windowCovering: RfyWindowCovering(gateway, remote) }));
                     }
                     break;
                 case PacketType.TEMPERATURE_HUMIDITY:
