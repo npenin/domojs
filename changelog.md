@@ -144,6 +144,7 @@
 * remove useless config c2bf264
 * remove wwwroot from git tracking 4a77d5f
 * reopen on close 97206ad
+* rfx modeendpoint naming 5e42bb3
 * rfx parsing 09bbea5
 * **rfx:** init 7045c7f
 * save config after first init b461378
