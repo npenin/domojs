@@ -1,9 +1,10 @@
-#  (2025-08-04)
+#  (2025-08-05)
 
 
 ### Bug Fixes
 
-* add abortsignal to start on gateways 16e9dfa
+* add more logs 5fcccef
+* prevent infinite loop on attribute get 96011cd
 
 
 
