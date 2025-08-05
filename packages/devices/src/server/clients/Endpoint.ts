@@ -115,11 +115,11 @@ export class Endpoint<
                     case 'set':
                         cluster.setValue(match.attributeOrCommand, JSON.parse(data));
                     default:
-                        await bus.emit(ev.publishedTopic, JSON.stringify(cluster.getValue(match.attributeOrCommand)), { qos: 1 });
+                        await bus.emit(`${prefix}/${endpointName || endpoint.id}/${match.cluster}/${match.attributeOrCommand}`, JSON.stringify(cluster.getValue(match.attributeOrCommand)), { qos: 1 });
                         break;
                 }
             }
-        }, { noLocal: false }), 'descriptor' in endpoint ? endpoint.descriptor?.on(allProperties, async ev =>
+        }, { noLocal: true }), 'descriptor' in endpoint ? endpoint.descriptor?.on(allProperties, async ev =>
         {
             await bus.emit(`${prefix}/${endpointName || endpoint.id}/descriptor/${ev.property}`, JSON.stringify(ev.value), { qos: 1 });
         }) : null);
