@@ -12,6 +12,7 @@
 * add dialout group to node 1063529
 * add dialout group to node 29fe3a2
 * add entrypoint to trigger initial setup 5838e82
+* add gateway endpoints to fabric d878f75
 * add generics on gateway 665e107
 * add homekit projects to compilation ce50c3d
 * add missing DB config 94437db
