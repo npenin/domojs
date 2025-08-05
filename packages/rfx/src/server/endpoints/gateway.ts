@@ -27,7 +27,7 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
             switch (message.type >> 8)
             {
                 case PacketType.INTERFACE_MESSAGE:
-                    if (message.message.type === InterfaceMessage.SubType.listRFYRemotes || message.message.type === InterfaceMessage.SubType.listASARemotes)
+                    if (message.type === Type.INTERFACE_MESSAGE.listRFYRemotes || message.type === Type.INTERFACE_MESSAGE.listASARemotes)
                     {
                         const remote = (message as Message<InterfaceMessage.ListRFYRemote>).message;
                         this.endpoints.push(await fabric.newEndpoint(`rfy-${remote.id1}-${remote.id2}-${remote.id3}-${remote.unitCode}`, { windowCovering: RfyWindowCovering(gateway, remote) }));
