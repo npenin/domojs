@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* rfx modeendpoint naming 5e42bb3
+* add gateway endpoints to fabric d878f75
 
 
 
