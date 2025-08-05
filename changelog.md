@@ -20,6 +20,7 @@
 * add missing libs 8c9d344
 * add missing plugin a0be2f9
 * add more commands on gateway 81ac0b8
+* add more logs 5fcccef
 * add required eudev package 76f5a13
 * add start tls command support efeba58
 * add version field 884db03
@@ -121,6 +122,7 @@
 * permissions a99884c
 * permissions on install 4ff3fb2
 * permissions on install 5deccb7
+* prevent infinite loop on attribute get 96011cd
 * proper gateway closure e7eb9cd
 * proper gateway remote list support c15e201
 * provide signal to pubsub 3e0a570
