@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* filter gateway mode endpoints 416ac45
+* proper gateway remote list support c15e201
 
 
 
