@@ -1,8 +1,9 @@
-import { allProperties, AsyncEventBus, AsyncSubscription, combineAsyncSubscriptions, ObservableArray, Subscription, UrlTemplate } from "@akala/core";
-import { ClusterIds, ClusterMap } from "../clusters/index.js";
+import { AsyncEventBus, AsyncSubscription, logger, ObservableArray } from "@akala/core";
+import { ClusterMap } from "../clusters/index.js";
 import { Endpoint, EndpointProxy, MixedClusterMap } from "./Endpoint.js";
-import { ClusterIdNames, ClusterInstance, Node } from "./index.js";
 import { MqttEvents } from "@domojs/mqtt";
+
+const log = logger('domojs:devices:aggregator')
 
 export class AggregatorEndpoint<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor'>> extends Endpoint<ClusterMap, TClusterMapKeys> 
 {
@@ -12,8 +13,9 @@ export class AggregatorEndpoint<TClusterMapKeys extends Exclude<keyof ClusterMap
 
         this.endpoints = new ObservableArray<Endpoint<ClusterMap, never>>([]);
         this.endpoints.maxListeners = Number.MAX_SAFE_INTEGER;
-        this.teardown(this.endpoints.addListener(async () =>
+        this.teardown(this.endpoints.addListener(async (ev) =>
         {
+            log.data(ev);
             this.descriptor.setValue('PartsList', this.endpoints.map(ev => ev.id));
         }));
         this.teardown(() =>
