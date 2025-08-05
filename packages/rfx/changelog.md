@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* prevent duplicate rfy endpoints 3d20a3b
+* rfx modeendpoint naming 5e42bb3
 
 
 
