@@ -122,6 +122,7 @@
 * permissions on install 4ff3fb2
 * permissions on install 5deccb7
 * proper gateway closure e7eb9cd
+* proper gateway remote list support c15e201
 * provide signal to pubsub 3e0a570
 * provide signal to pubsub 538c505
 * publish workflow after semantic-release upgrade 3d373e1
