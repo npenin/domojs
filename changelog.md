@@ -1,4 +1,4 @@
-#  (2025-08-04)
+#  (2025-08-05)
 
 
 ### Bug Fixes
@@ -37,6 +37,7 @@
 * artificial patch b7ce7a7
 * artificial patch f117e0b
 * broken parsing eb3e495
+* buffer reading safeguard 7a95a15
 * buffer slicing in rfx 48397c4
 * build 97ab07a
 * build b20c10c
@@ -77,6 +78,7 @@
 * entrypoint db3d912
 * export topic wildcard to urltemplate conversion b3a68bb
 * file copy ordering 2ece2ca
+* filter gateway mode endpoints 416ac45
 * fix wrong unit in keepalive 58ddd94
 * fix zigate start 349c0bd
 * gateway resolution 5877dde
