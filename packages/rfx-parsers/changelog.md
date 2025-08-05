@@ -1,9 +1,9 @@
-#  (2025-08-04)
+#  (2025-08-05)
 
 
 ### Bug Fixes
 
-* handle buffer read over limits 3bc14bb
+* buffer reading safeguard 7a95a15
 
 
 
