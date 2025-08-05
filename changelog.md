@@ -122,6 +122,7 @@
 * permissions a99884c
 * permissions on install 4ff3fb2
 * permissions on install 5deccb7
+* prevent duplicate rfy endpoints 3d20a3b
 * prevent infinite loop on attribute get 96011cd
 * proper gateway closure e7eb9cd
 * proper gateway remote list support c15e201
