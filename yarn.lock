@@ -163,13 +163,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@akala/protocol-parser@npm:^11.1.22":
-  version: 11.1.22
-  resolution: "@akala/protocol-parser@npm:11.1.22"
+"@akala/protocol-parser@npm:^11.1.23":
+  version: 11.1.23
+  resolution: "@akala/protocol-parser@npm:11.1.23"
   dependencies:
     "@akala/core": "npm:^41.0.1"
     debug: "npm:^4.4.1"
-  checksum: 10/19af8419733dab344093ba3885412c57aa26b63e6a5a31db03ef9aeff6f0e81035e0d292f056c3e4700acf9ceb0c1663b502251f12870e3759f167c0de6d985d
+  checksum: 10/a6d4246b2311699f39705658991ee852495da5104b2d59fad713f89c33eaded8330b8ad9277f7bb2839f743360086a92c16e2f73b2423b96bbf9abeea19ef25f
   languageName: node
   linkType: hard
 
@@ -356,7 +356,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/adb@workspace:packages/adb"
   dependencies:
-    "@akala/protocol-parser": "npm:^11.1.22"
+    "@akala/protocol-parser": "npm:^11.1.23"
   languageName: unknown
   linkType: soft
 
@@ -389,7 +389,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/dbus@workspace:packages/dbus"
   dependencies:
-    "@akala/protocol-parser": "npm:^11.1.22"
+    "@akala/protocol-parser": "npm:^11.1.23"
   languageName: unknown
   linkType: soft
 
@@ -422,7 +422,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/dns-parsers@workspace:packages/dns-parsers"
   dependencies:
-    "@akala/protocol-parser": "npm:^11.1.22"
+    "@akala/protocol-parser": "npm:^11.1.23"
   languageName: unknown
   linkType: soft
 
@@ -433,7 +433,7 @@ __metadata:
     "@akala/commands": "npm:^17.2.15"
     "@akala/config": "npm:^6.0.109"
     "@akala/core": "npm:^41.0.1"
-    "@akala/protocol-parser": "npm:^11.1.22"
+    "@akala/protocol-parser": "npm:^11.1.23"
     "@akala/sidecar": "npm:^8.2.31"
     "@domojs/devices": "workspace:^"
     "@domojs/mdns": "workspace:^"
@@ -536,7 +536,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/media-chromecast-parsers@workspace:packages/media-chromecast-parsers"
   dependencies:
-    "@akala/protocol-parser": "npm:^11.1.22"
+    "@akala/protocol-parser": "npm:^11.1.23"
   languageName: unknown
   linkType: soft
 
@@ -607,7 +607,7 @@ __metadata:
   dependencies:
     "@akala/commands": "npm:^17.2.15"
     "@akala/core": "npm:^41.0.1"
-    "@akala/protocol-parser": "npm:^11.1.22"
+    "@akala/protocol-parser": "npm:^11.1.23"
     "@types/debug": "npm:4.1.12"
     "@types/request": "npm:2.48.12"
     mqtt: "npm:^5.13.2"
@@ -621,7 +621,7 @@ __metadata:
   resolution: "@domojs/rfx-parsers@workspace:packages/rfx-parsers"
   dependencies:
     "@akala/core": "npm:^41.0.1"
-    "@akala/protocol-parser": "npm:^11.1.22"
+    "@akala/protocol-parser": "npm:^11.1.23"
     "@domojs/devices": "workspace:*"
     "@types/debug": "npm:4.1.12"
     "@types/node": "npm:22.16.0"
@@ -764,7 +764,7 @@ __metadata:
   resolution: "@domojs/zigate-parsers@workspace:packages/zigate-parsers"
   dependencies:
     "@akala/core": "npm:^41.0.1"
-    "@akala/protocol-parser": "npm:^11.1.22"
+    "@akala/protocol-parser": "npm:^11.1.23"
     "@domojs/devices": "workspace:*"
     "@types/debug": "npm:4.1.12"
     "@types/usb": "npm:2.0.5"
