@@ -73,6 +73,7 @@
 * enable keepalive on tcp and http sockets 27fcfd2
 * enable production mode 4e66bf1
 * enable yarn cec2353
+* endpoint command result adf4756
 * ensure config is initialized 31238d4
 * ensure proper permissions 80f00b8
 * entry point startup d5a0a61
