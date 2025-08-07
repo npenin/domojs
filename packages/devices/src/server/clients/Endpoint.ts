@@ -110,7 +110,7 @@ export class Endpoint<
                 {
                     case 'execute':
                         const result = await cluster.target[match.attributeOrCommand](...JSON.parse(data));
-                        await bus.emit(`${prefix}/${endpointName || endpoint.id}/${match.cluster}/${match.attributeOrCommand}`, JSON.stringify([result]), { qos: 1 });
+                        await bus.emit(`${prefix}/${endpointName || endpoint.id}/${match.cluster}/${match.attributeOrCommand}`, JSON.stringify(Array.isArray(result) ? result : typeof result == 'undefined' ? [] : [result]), { qos: 1 });
                         break;
                     case 'set':
                         cluster.setValue(match.attributeOrCommand, JSON.parse(data));
