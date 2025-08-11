@@ -413,7 +413,7 @@ __metadata:
     "@popperjs/core": "npm:2.11.8"
     "@types/debug": "npm:4.1.12"
     "@types/ws": "npm:8.18.1"
-    typescript: "npm:5.8.3"
+    typescript: "npm:5.9.2"
     ws: "npm:8.18.3"
   languageName: unknown
   linkType: soft
@@ -470,7 +470,7 @@ __metadata:
     "@types/node": "npm:22.16.0"
     "@types/ws": "npm:8.18.1"
     mongodb: "npm:6.17.0"
-    typescript: "npm:5.8.3"
+    typescript: "npm:5.9.2"
     ws: "npm:8.18.3"
   languageName: unknown
   linkType: soft
@@ -501,7 +501,7 @@ __metadata:
     "@fortawesome/fontawesome-common-types": "npm:6.7.2"
     "@popperjs/core": "npm:2.11.8"
     "@types/debug": "npm:4.1.12"
-    typescript: "npm:5.8.3"
+    typescript: "npm:5.9.2"
   languageName: unknown
   linkType: soft
 
@@ -594,7 +594,7 @@ __metadata:
     "@types/ws": "npm:8.18.1"
     levenshtein: "npm:1.0.5"
     node-id3: "npm:^0.2.9"
-    typescript: "npm:5.8.3"
+    typescript: "npm:5.9.2"
     webdav: "npm:^5.8.0"
   peerDependencies:
     "@akala/pm": ^15.0.0
@@ -627,7 +627,7 @@ __metadata:
     "@types/node": "npm:22.16.0"
     "@types/usb": "npm:^2.0.5"
     serialport: "npm:^13.0.0"
-    typescript: "npm:5.8.3"
+    typescript: "npm:5.9.2"
     usb: "npm:^2.15.0"
   peerDependencies:
     serialport: ^13.0.0
@@ -655,7 +655,7 @@ __metadata:
     "@types/usb": "npm:^2.0.5"
     "@types/ws": "npm:^8.18.1"
     http-punch-hole: "npm:^1.0.12"
-    typescript: "npm:5.8.3"
+    typescript: "npm:5.9.2"
   peerDependencies:
     "@akala/pm": ^15.0.0
     serialport: ^13.0.0
@@ -699,7 +699,7 @@ __metadata:
     esbuild: "npm:0.25.6"
     esbuild-sass-plugin: "npm:3.3.1"
     require-optional: "npm:^0.4.0"
-    typescript: "npm:5.8.3"
+    typescript: "npm:5.9.2"
   languageName: unknown
   linkType: soft
 
@@ -771,7 +771,7 @@ __metadata:
     "@types/ws": "npm:8.18.1"
     debug: "npm:^4.4.1"
     serialport: "npm:^13.0.0"
-    typescript: "npm:5.8.3"
+    typescript: "npm:5.9.2"
     usb: "npm:2.15.0"
   peerDependencies:
     serialport: ^13.0.0
@@ -9263,7 +9263,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.8.3, typescript@npm:^5.8.3":
+"typescript@npm:5.9.2":
+  version: 5.9.2
+  resolution: "typescript@npm:5.9.2"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10/cc2fe6c822819de5d453fa25aa9f32096bf70dde215d481faa1ad84a283dfb264e33988ed8f6d36bc803dd0b16dbe943efa311a798ef76d5b3892a05dfbfd628
+  languageName: node
+  linkType: hard
+
+"typescript@npm:^5.8.3":
   version: 5.8.3
   resolution: "typescript@npm:5.8.3"
   bin:
@@ -9273,7 +9283,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.8.3#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A5.9.2#optional!builtin<compat/typescript>":
+  version: 5.9.2
+  resolution: "typescript@patch:typescript@npm%3A5.9.2#optional!builtin<compat/typescript>::version=5.9.2&hash=5786d5"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10/bd810ab13e8e557225a8b5122370385440b933e4e077d5c7641a8afd207fdc8be9c346e3c678adba934b64e0e70b0acf5eef9493ea05170a48ce22bef845fdc7
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A^5.8.3#optional!builtin<compat/typescript>":
   version: 5.8.3
   resolution: "typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"
   bin:
