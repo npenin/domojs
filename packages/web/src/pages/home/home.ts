@@ -7,9 +7,9 @@ import { MqttEvents } from '@domojs/mqtt';
 @page({ template, 'inject': [RootElement] })
 export default class Home extends Page
 {
-    public readonly rooms = asyncEventBuses.process<MqttEvents>(new URL(`mqtt+ws://${location.host}/mqtt`), { username: 'domojs-guest', password: 'domojs' }).then(mqtt => [
-        { name: 'AllHouse', devices: [EndpointProxy.fromBus(mqtt, 'domojs/RFXCOM', '6')] },
-        { name: 'Cuisine', devices: [EndpointProxy.fromBus(mqtt, 'domojs/devices', '0')] },
+    public readonly rooms = asyncEventBuses.process<MqttEvents>(new URL(`mqtt+ws://${location.host}/mqtt`), { username: 'domojs-guest', password: 'domojs' }).then(async mqtt => [
+        { name: 'AllHouse', devices: [await EndpointProxy.fromBus(mqtt, 'domojs/RFXCOM', '6')] },
+        { name: 'Cuisine', devices: [await EndpointProxy.fromBus(mqtt, 'domojs/devices', '0')] },
         { name: 'Salon', devices: [] }
     ]);
 
