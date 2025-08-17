@@ -1,9 +1,9 @@
 #  (2025-08-17)
 
 
-### Features
+### Bug Fixes
 
-* add browser usage capability 980a93a
+* ensure mqtt-client.net.js is imported in index.ts dea90e5
 
 
 
