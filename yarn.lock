@@ -5,71 +5,71 @@ __metadata:
   version: 8
   cacheKey: 10
 
-"@akala/automate-yamlloader@npm:^3.1.15":
-  version: 3.1.15
-  resolution: "@akala/automate-yamlloader@npm:3.1.15"
+"@akala/automate-yamlloader@npm:^3.1.16":
+  version: 3.1.16
+  resolution: "@akala/automate-yamlloader@npm:3.1.16"
   dependencies:
-    "@akala/automate": "npm:^6.8.15"
-    "@akala/config": "npm:^6.1.13"
-    "@akala/pm": "npm:^15.8.1"
+    "@akala/automate": "npm:^6.8.16"
+    "@akala/config": "npm:^6.1.14"
+    "@akala/pm": "npm:^15.8.2"
     yaml: "npm:^2.8.0"
-  checksum: 10/8c0c157408661187da62ded39d2798b07a58bfe49548527b9bd4fbb186a04427e1dd38f04a90f63ab62bd2df4467c9ac48226987b8134fe3b6bc52c04c4f357f
+  checksum: 10/5fc70a2a2d49d20d2198c4077ba02e602afdb2467175ee9983b214ccdda7e62c4eaf5f914671ccc3e6251cb8c3f91b9a9a9c6d25e70217ed2988a86eb7205dd3
   languageName: node
   linkType: hard
 
-"@akala/automate@npm:^6.8.15":
-  version: 6.8.15
-  resolution: "@akala/automate@npm:6.8.15"
+"@akala/automate@npm:^6.8.16":
+  version: 6.8.16
+  resolution: "@akala/automate@npm:6.8.16"
   dependencies:
-    "@akala/cli": "npm:^5.12.13"
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/config": "npm:^6.1.13"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/cron": "npm:^5.1.15"
-    "@akala/json-rpc-ws": "npm:^14.3.2"
-    "@akala/pm": "npm:^15.8.1"
-    "@akala/pubsub": "npm:^3.1.15"
-    "@akala/server": "npm:^27.1.15"
+    "@akala/cli": "npm:^5.12.14"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/config": "npm:^6.1.14"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/cron": "npm:^5.1.16"
+    "@akala/json-rpc-ws": "npm:^14.3.3"
+    "@akala/pm": "npm:^15.8.2"
+    "@akala/pubsub": "npm:^3.1.16"
+    "@akala/server": "npm:^27.1.16"
     orchestrator: "npm:^0.3.8"
   bin:
     akala-automate-runner: dist/esm/cli.js
-  checksum: 10/1bbede679a51fd2da06dbe2456e9ee7ae19758be1b90f0befd5a9a0ccefbfc56cb0b38813fb1596a5beb40248d7c8ac9ec65c4b07659dad7569ea9021e9c19cc
+  checksum: 10/fecb690158849a0929ba6c2f811725d75e274b74511895d6951884d066b00b6ad76c6c13fa38827ed239478821e045d7ac47d8c8a19d5f6db83089d0acd0217d
   languageName: node
   linkType: hard
 
-"@akala/cli@npm:^5.12.13":
-  version: 5.12.13
-  resolution: "@akala/cli@npm:5.12.13"
+"@akala/cli@npm:^5.12.14":
+  version: 5.12.14
+  resolution: "@akala/cli@npm:5.12.14"
   dependencies:
-    "@akala/core": "npm:^41.9.2"
+    "@akala/core": "npm:^41.10.0"
     ansi-escapes: "npm:^7.0.0"
     fast-glob: "npm:^3.3.3"
     reflect-metadata: "npm:^0.2.2"
   bin:
     akala: ./dist/esm/akala.mjs
-  checksum: 10/9907a6e1d40c995686ce251f7c1c4ea57caf28ff1ebbec7f447086b82c2e9529960335c0ce85b270fb3bcd6d2b4234a1922ccef8f17f45169b1ae4a4ddf2c530
+  checksum: 10/67ea9659d1df6ff94549e28052363071225b091b55a027d8b4bfcb4d47033a68c547e22d2fb92a4dbe85877a93ba559a05249b5a1204a6c1a08cbfdeb7d8611a
   languageName: node
   linkType: hard
 
-"@akala/client@npm:^42.0.9":
-  version: 42.0.9
-  resolution: "@akala/client@npm:42.0.9"
+"@akala/client@npm:^42.0.10":
+  version: 42.0.10
+  resolution: "@akala/client@npm:42.0.10"
   dependencies:
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/core": "npm:^41.9.2"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/core": "npm:^41.10.0"
     reflect-metadata: "npm:^0.2.2"
-  checksum: 10/22c4edfa0e734b9410e9945e39150cdb5868dc9215a381145aacfa9c3e183cfb8348fbcc59ece44e2277ac05d97aabc70730d89167ae0f044eaaa9105b580c29
+  checksum: 10/0c92510bf63c83db4e5102438ddfce9eba7d28d70960562d019d7c3df535c209298cf045fb323bd46b0292c3054d3b8d0d0fd4c7471bbb3a9205589b17f3cd33
   languageName: node
   linkType: hard
 
-"@akala/commands@npm:^17.6.4":
-  version: 17.6.4
-  resolution: "@akala/commands@npm:17.6.4"
+"@akala/commands@npm:^17.6.5":
+  version: 17.6.5
+  resolution: "@akala/commands@npm:17.6.5"
   dependencies:
-    "@akala/cli": "npm:^5.12.13"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/fs": "npm:^2.1.13"
-    "@akala/json-rpc-ws": "npm:^14.3.2"
+    "@akala/cli": "npm:^5.12.14"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/fs": "npm:^2.1.14"
+    "@akala/json-rpc-ws": "npm:^14.3.3"
     ajv: "npm:^8.17.1"
     debug: "npm:^4.4.1"
     fast-glob: "npm:^3.3.3"
@@ -80,116 +80,116 @@ __metadata:
       optional: true
     fast-glob:
       optional: true
-  checksum: 10/9ba3b2d56967a1a446a82ff4cb2d2b5a34bfd8e636e292a846814740757e3ea538e6fdcbbdd6b854763831e3ed7724f12f281f62df4365e2e4948fa9e9184ce4
+  checksum: 10/42572e6130aa68fb64af48a32702207212d7719d92fd4b0b892ad4ccf815f94a51f3c8913f4bf22713343f8e1a882acd7b99a5064725c26475effee5e5b889bb
   languageName: node
   linkType: hard
 
-"@akala/config@npm:^6.1.13":
-  version: 6.1.13
-  resolution: "@akala/config@npm:6.1.13"
+"@akala/config@npm:^6.1.14":
+  version: 6.1.14
+  resolution: "@akala/config@npm:6.1.14"
   dependencies:
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/core": "npm:^41.9.2"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/core": "npm:^41.10.0"
   peerDependencies:
-    "@akala/pm": ^15.8.1
+    "@akala/pm": ^15.8.2
   peerDependenciesMeta:
     "@akala/pm":
       optional: true
   bin:
     uci2: ./dist/esm/cli.js
-  checksum: 10/634d737feb273d82bcd49b919cc91963c2390d29b85deb4a37585fd46756e781d78dd07cb06697f97d06a2df2d1359f94dc3e2594590f87ade307e8f63ba7400
+  checksum: 10/c8c7530921f5c80569350cbcd2677a8fa5ee82fe36455dfee797a088693fec2187a30c30b15afcaf72b6242067cd9fcc9cdc4271013491e7ba0fbc3e6a55df88
   languageName: node
   linkType: hard
 
-"@akala/core@npm:^41.9.2":
-  version: 41.9.2
-  resolution: "@akala/core@npm:41.9.2"
+"@akala/core@npm:^41.10.0":
+  version: 41.10.0
+  resolution: "@akala/core@npm:41.10.0"
   dependencies:
     debug: "npm:^4.4.1"
     reflect-metadata: "npm:^0.2.2"
     yoctocolors: "npm:^2.1.1"
-  checksum: 10/a8c7541fffecc7b522f58d4d86b0412454c193562eee724056fe8375e74839cf43cf510c5de2a1eec915ebf75e860d4c42832312ca56eda449d73baa614ad9a2
+  checksum: 10/fb612af09a7ae0b9c0453fbb1d25b6caf2efe72a48e9819e6dabbd7bdc297678f2bce14275cea58e1e1d2d5536a73ee4a85685170e14554adf576d33520bd75c
   languageName: node
   linkType: hard
 
-"@akala/cron@npm:^5.1.15":
-  version: 5.1.15
-  resolution: "@akala/cron@npm:5.1.15"
+"@akala/cron@npm:^5.1.16":
+  version: 5.1.16
+  resolution: "@akala/cron@npm:5.1.16"
   dependencies:
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/pubsub": "npm:^3.1.15"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/pubsub": "npm:^3.1.16"
     debug: "npm:^4.4.1"
     suncalc: "npm:^1.9.0"
-  checksum: 10/f5529b91adcfad1616d8916fba25c78e7efca8cb8ac907c176633d8d9a5579beca2aba89dec8dfe531edf12b908d85f248ce6088297ba940e4097b920f6532f8
+  checksum: 10/16f975f24ae871bf9a9ee82a40de9193cfa7f888504e19cf52cd60dc4a6d688ec6f7d1ea48ac1bda6519b21f59c462d8295a0a3b1691d6f8b2102d60a4660564
   languageName: node
   linkType: hard
 
-"@akala/fs@npm:^2.1.13":
-  version: 2.1.13
-  resolution: "@akala/fs@npm:2.1.13"
+"@akala/fs@npm:^2.1.14":
+  version: 2.1.14
+  resolution: "@akala/fs@npm:2.1.14"
   dependencies:
-    "@akala/core": "npm:^41.9.2"
-  checksum: 10/d1c17d09b3597e2f679f427166f6d35dc43bb16316852f00266979e90a25370751b71cfa86069c032f7e138eb2154610ac090e2035e44b38aa0ce3c4bccc8fed
+    "@akala/core": "npm:^41.10.0"
+  checksum: 10/9426a90edbfa589198337b0bac05be0b63cc681ea558c467c657efc6e71d9a8cf325ba0db35556955b36060559fd97300e5a284f417e753afa692e1b07b0375b
   languageName: node
   linkType: hard
 
-"@akala/json-rpc-ws@npm:^14.3.2":
-  version: 14.3.2
-  resolution: "@akala/json-rpc-ws@npm:14.3.2"
+"@akala/json-rpc-ws@npm:^14.3.3":
+  version: 14.3.3
+  resolution: "@akala/json-rpc-ws@npm:14.3.3"
   dependencies:
-    "@akala/core": "npm:^41.9.2"
+    "@akala/core": "npm:^41.10.0"
     debug: "npm:^4.4.1"
     reflect-metadata: "npm:^0.2.2"
     ws: "npm:^8.18.3"
-  checksum: 10/e1c07c5971fcccd0a654f1f43d49301fe538bd61853e7d47ce21a18afbf3ff5f4e8447044d91554f9608c1c22a5efb297b85c9070824fc4732f9e39d54da280e
+  checksum: 10/f84356f1fb816f6f0433478f493b364f1b1471a3e8a21cbd2101cfbfe96611215921308b10e6330754858febf0ee29bf61d48d634a85c8460c88ca664e41ee07
   languageName: node
   linkType: hard
 
-"@akala/pm@npm:^15.8.1":
-  version: 15.8.1
-  resolution: "@akala/pm@npm:15.8.1"
+"@akala/pm@npm:^15.8.2":
+  version: 15.8.2
+  resolution: "@akala/pm@npm:15.8.2"
   dependencies:
-    "@akala/cli": "npm:^5.12.13"
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/config": "npm:^6.1.13"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/json-rpc-ws": "npm:^14.3.2"
+    "@akala/cli": "npm:^5.12.14"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/config": "npm:^6.1.14"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/json-rpc-ws": "npm:^14.3.3"
     reflect-metadata: "npm:^0.2.2"
   bin:
     pm: dist/esm/cli.js
     pm-fork: dist/esm/fork.js
-  checksum: 10/7ada7265b9872c83894dba55fd5eb615c39df88e487ef06541cd0a9fee32829bb203755e70b01d97d95e1e96867602598ae86b498a0546f978cd4f8ab1fbfa71
+  checksum: 10/8365e59a42c68e0eeec53240b136d8114e3682a7f835fd1f538314a414208c24c9e2edec23433fae52413f9e2a84cb133fe54c1836bd583171f169b274301a70
   languageName: node
   linkType: hard
 
-"@akala/protocol-parser@npm:^11.3.13":
-  version: 11.3.13
-  resolution: "@akala/protocol-parser@npm:11.3.13"
+"@akala/protocol-parser@npm:^11.3.14":
+  version: 11.3.14
+  resolution: "@akala/protocol-parser@npm:11.3.14"
   dependencies:
-    "@akala/core": "npm:^41.9.2"
+    "@akala/core": "npm:^41.10.0"
     debug: "npm:^4.4.1"
-  checksum: 10/c555a359ebc3c86a5a8ebacfab0a15626ed502e60707ca629377ae6df680e7a6a00829781addee88390a2bef2c3c3a315c5f80a5f7f26699a09b6aab45424432
+  checksum: 10/9b88d1c845ad422f4031acde1dd9cee4a87aa560e68a5ca33df1a822588ff7acbbe6a0b403ba0b354d543be5414777f56dfbe9d040743d3223dc993383b7f677
   languageName: node
   linkType: hard
 
-"@akala/pubsub@npm:^3.1.15":
-  version: 3.1.15
-  resolution: "@akala/pubsub@npm:3.1.15"
+"@akala/pubsub@npm:^3.1.16":
+  version: 3.1.16
+  resolution: "@akala/pubsub@npm:3.1.16"
   dependencies:
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/pm": "npm:^15.8.1"
-  checksum: 10/718f941d6f50d0a9bf74709fa4fa465b97b1c1c6e1441d42d9510d90be2213dbe25d26a9736de02e549534b9eaa2d567d303c12fb43476242d764db4aa470518
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/pm": "npm:^15.8.2"
+  checksum: 10/f8187e161bdafd6e63192eb4eca7b5654af94cb8fb91158f0e7c17935a01b855292b3e25dc58b1c3c33eb7da96086c0dc45bc78a4bb1ac0cde41c0e2bd2bb526
   languageName: node
   linkType: hard
 
-"@akala/semantic-release@npm:^3.2.13":
-  version: 3.2.13
-  resolution: "@akala/semantic-release@npm:3.2.13"
+"@akala/semantic-release@npm:^3.2.14":
+  version: 3.2.14
+  resolution: "@akala/semantic-release@npm:3.2.14"
   dependencies:
-    "@akala/cli": "npm:^5.12.13"
-    "@akala/commands": "npm:^17.6.4"
+    "@akala/cli": "npm:^5.12.14"
+    "@akala/commands": "npm:^17.6.5"
     "@yarnpkg/core": "npm:^4.4.2"
     conventional-changelog-angular: "npm:^8.0.0"
     conventional-changelog-writer: "npm:^8.1.0"
@@ -198,19 +198,19 @@ __metadata:
     git-semver-tags: "npm:^8.0.0"
     semver: "npm:^7.7.2"
     yarn: "npm:^1.22.22"
-  checksum: 10/206c54976ada817716b7eb6117bc5b7e1ab60a3089e9ad72665a25be591e02e2ad7f7c157c49a73817b4a1ebbabd48693c2a7b71219b7a49c85185a95bf92a38
+  checksum: 10/0f50a101e038d25c18e6d0798f5c59304201508938d6d20d9e5de9de6de2ce141b32a40ab11b2c306a2c7d9388111d1909a984aefeba59135220a8f37c19b991
   languageName: node
   linkType: hard
 
-"@akala/server@npm:^27.1.15":
-  version: 27.1.15
-  resolution: "@akala/server@npm:27.1.15"
+"@akala/server@npm:^27.1.16":
+  version: 27.1.16
+  resolution: "@akala/server@npm:27.1.16"
   dependencies:
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/fs": "npm:^2.1.13"
-    "@akala/json-rpc-ws": "npm:^14.3.2"
-    "@akala/pm": "npm:^15.8.1"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/fs": "npm:^2.1.14"
+    "@akala/json-rpc-ws": "npm:^14.3.3"
+    "@akala/pm": "npm:^15.8.2"
     accepts: "npm:^1.3.8"
     co-body: "npm:^6.2.0"
     cookie: "npm:^1.0.2"
@@ -219,63 +219,63 @@ __metadata:
     mime: "npm:^4.0.7"
     mime-types: "npm:^3.0.1"
     ws: "npm:^8.18.3"
-  checksum: 10/4d5767d3e6e34d933a32c84b5669621fbc9a80537b6149c0a703c0196f6a19037fedada9ddbb752bf4be100f19173ddfb514297c5610ba88e00560123352eff1
+  checksum: 10/110323598c0cbdfcf35fc5dbfddddaf251b3e85cb504035daaefcc9dbafb7fb3fd8db1c37eea0ad8574161f4848a07b906accf1198780fd34053f1c01c0aa380
   languageName: node
   linkType: hard
 
-"@akala/sidecar@npm:^8.3.16":
-  version: 8.3.16
-  resolution: "@akala/sidecar@npm:8.3.16"
+"@akala/sidecar@npm:^8.3.17":
+  version: 8.3.17
+  resolution: "@akala/sidecar@npm:8.3.17"
   dependencies:
-    "@akala/cli": "npm:^5.12.13"
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/config": "npm:^6.1.13"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/pm": "npm:^15.8.1"
-    "@akala/storage": "npm:^20.3.13"
-  checksum: 10/29319da6a7f342d715aaaaecaaf447b3d4048f7510ddf90553784625ca3886cc8657c086b5755fabd647ec409c84f3fabae0e98bca0e08bc0930746d0de08a35
+    "@akala/cli": "npm:^5.12.14"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/config": "npm:^6.1.14"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/pm": "npm:^15.8.2"
+    "@akala/storage": "npm:^20.3.14"
+  checksum: 10/c1037745f7e9fb9f8d4a8d491f381e9751ad69c97c85597a03d370bed2565544845c69ed5aba7750fcadfcdec75cc6b432cb0949c8b5f29caf333f8a4795fa19
   languageName: node
   linkType: hard
 
-"@akala/storage@npm:^20.3.13":
-  version: 20.3.13
-  resolution: "@akala/storage@npm:20.3.13"
+"@akala/storage@npm:^20.3.14":
+  version: 20.3.14
+  resolution: "@akala/storage@npm:20.3.14"
   dependencies:
-    "@akala/core": "npm:^41.9.2"
+    "@akala/core": "npm:^41.10.0"
     reflect-metadata: "npm:^0.2.2"
-  checksum: 10/a5f5a6c27519ddd6bcbe70d4a0c97f572f2ccbf271c91a86b8f000bdb3b85ea6f8564725f5b93fc95e3b30250c8f6d554db1b64937ae76855178cecc17960634
+  checksum: 10/e55dd83da6df89ddd0de4c282aca689aa990b08a852571742aede1fd5c2534d0f46c5c83472b63177b02be72ac0af19ba82773fce1c8c4f422b7d9c0142fcc18
   languageName: node
   linkType: hard
 
-"@akala/vite@npm:^2.7.4":
-  version: 2.7.4
-  resolution: "@akala/vite@npm:2.7.4"
+"@akala/vite@npm:^2.7.5":
+  version: 2.7.5
+  resolution: "@akala/vite@npm:2.7.5"
   dependencies:
-    "@akala/client": "npm:^42.0.9"
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/json-rpc-ws": "npm:^14.3.2"
-  checksum: 10/03166c9b1584b50b44a0721ba769b1eafdcd5d7ad84aa6334fb24e1dd514e72889d96eadde77a852e7c62739e6d177c086882e366da9e8971900ee0e3c595d78
+    "@akala/client": "npm:^42.0.10"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/json-rpc-ws": "npm:^14.3.3"
+  checksum: 10/2d312345e0733498259994761ab764764f93fa620cf1e63f07cf518a41b072fccdd31a3347b295ac99b9d900df13ef177dead3861dfe8dfd7813dae7cac9dd1a
   languageName: node
   linkType: hard
 
-"@akala/web-ui@npm:^5.0.21":
-  version: 5.0.21
-  resolution: "@akala/web-ui@npm:5.0.21"
+"@akala/web-ui@npm:^5.0.22":
+  version: 5.0.22
+  resolution: "@akala/web-ui@npm:5.0.22"
   dependencies:
-    "@akala/client": "npm:^42.0.9"
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/core": "npm:^41.9.2"
+    "@akala/client": "npm:^42.0.10"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/core": "npm:^41.10.0"
     "@floating-ui/dom": "npm:^1.7.2"
     postcss-import: "npm:^16.1.1"
     postcss-selector-parser: "npm:^7.1.0"
     postcss-value-parser: "npm:^4.2.0"
   peerDependencies:
-    "@akala/storage": ^20.3.13
+    "@akala/storage": ^20.3.14
   peerDependenciesMeta:
     "@akala/storage":
       optional: true
-  checksum: 10/a285b3d17a9b689df0cb7c95871a6fb2a0dae5283dc77a9db6dfee9f69d4f1448d0cde2906ba93067e48b83c827040e438973b05818d8007cb8217b7ebbac63a
+  checksum: 10/0a28fc55e4c96016661768a70b5e90675c00223cdff9cf24833ca354fa3b40b2d5194d2f23b9400654432df47ef2caa2222c8b9d43abbf512ba1fb36690bcd23
   languageName: node
   linkType: hard
 
@@ -374,7 +374,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/adb@workspace:packages/adb"
   dependencies:
-    "@akala/protocol-parser": "npm:^11.3.13"
+    "@akala/protocol-parser": "npm:^11.3.14"
   languageName: unknown
   linkType: soft
 
@@ -382,7 +382,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/chat@workspace:packages/chat"
   dependencies:
-    "@akala/json-rpc-ws": "npm:^14.3.2"
+    "@akala/json-rpc-ws": "npm:^14.3.3"
     "@nlpjs/basic": "npm:5.0.0-alpha.5"
     "@nlpjs/directline-connector": "npm:5.0.0-alpha.5"
     "@nlpjs/express-api-server": "npm:5.0.0-alpha.5"
@@ -394,8 +394,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/cli@workspace:packages/cli"
   dependencies:
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/pm": "npm:^15.8.1"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/pm": "npm:^15.8.2"
     "@types/yargs": "npm:17.0.33"
   peerDependencies:
     "@akala/commands": ^15.1.0
@@ -407,7 +407,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/dbus@workspace:packages/dbus"
   dependencies:
-    "@akala/protocol-parser": "npm:^11.3.13"
+    "@akala/protocol-parser": "npm:^11.3.14"
   languageName: unknown
   linkType: soft
 
@@ -415,16 +415,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/devices@workspace:packages/devices"
   dependencies:
-    "@akala/cli": "npm:^5.12.13"
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/config": "npm:^6.1.13"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/json-rpc-ws": "npm:^14.3.2"
-    "@akala/pm": "npm:^15.8.1"
-    "@akala/pubsub": "npm:^3.1.15"
-    "@akala/server": "npm:^27.1.15"
-    "@akala/sidecar": "npm:^8.3.16"
-    "@akala/storage": "npm:^20.3.13"
+    "@akala/cli": "npm:^5.12.14"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/config": "npm:^6.1.14"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/json-rpc-ws": "npm:^14.3.3"
+    "@akala/pm": "npm:^15.8.2"
+    "@akala/pubsub": "npm:^3.1.16"
+    "@akala/server": "npm:^27.1.16"
+    "@akala/sidecar": "npm:^8.3.17"
+    "@akala/storage": "npm:^20.3.14"
     "@domojs/mqtt": "npm:^2.0.55"
     "@domojs/theme-default": "workspace:*"
     "@fortawesome/free-brands-svg-icons": "npm:7.0.0"
@@ -440,7 +440,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/dns-parsers@workspace:packages/dns-parsers"
   dependencies:
-    "@akala/protocol-parser": "npm:^11.3.13"
+    "@akala/protocol-parser": "npm:^11.3.14"
   languageName: unknown
   linkType: soft
 
@@ -448,11 +448,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/homekit-controller@workspace:packages/homekit-controller"
   dependencies:
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/config": "npm:^6.1.13"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/protocol-parser": "npm:^11.3.13"
-    "@akala/sidecar": "npm:^8.3.16"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/config": "npm:^6.1.14"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/protocol-parser": "npm:^11.3.14"
+    "@akala/sidecar": "npm:^8.3.17"
     "@domojs/devices": "workspace:^"
     "@domojs/mdns": "workspace:^"
     fast-srp-hap: "npm:^2.0.4"
@@ -472,8 +472,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/homescreen@workspace:packages/homescreen"
   dependencies:
-    "@akala/vite": "npm:^2.7.4"
-    "@akala/web-ui": "npm:^5.0.21"
+    "@akala/vite": "npm:^2.7.5"
+    "@akala/web-ui": "npm:^5.0.22"
     vite: "npm:^7.1.1"
   languageName: unknown
   linkType: soft
@@ -482,7 +482,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/icookin@workspace:packages/icookin"
   dependencies:
-    "@akala/core": "npm:^41.9.2"
+    "@akala/core": "npm:^41.10.0"
     "@types/debug": "npm:4.1.12"
     "@types/mongodb": "npm:4.0.7"
     "@types/node": "npm:22.17.1"
@@ -497,9 +497,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/iscp@workspace:packages/iscp"
   dependencies:
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/server": "npm:^27.1.15"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/server": "npm:^27.1.16"
     "@domojs/devices": "workspace:*"
     "@types/ws": "npm:8.18.1"
   peerDependencies:
@@ -512,9 +512,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/lifttt@workspace:packages/lifttt"
   dependencies:
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/json-rpc-ws": "npm:^14.3.2"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/json-rpc-ws": "npm:^14.3.3"
     "@domojs/theme-default": "workspace:*"
     "@fortawesome/fontawesome-common-types": "npm:7.0.0"
     "@popperjs/core": "npm:2.11.8"
@@ -527,9 +527,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/matter@workspace:packages/matter"
   dependencies:
-    "@akala/cli": "npm:^5.12.13"
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/core": "npm:^41.9.2"
+    "@akala/cli": "npm:^5.12.14"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/core": "npm:^41.10.0"
     fast-xml-parser: "npm:^5.2.5"
   languageName: unknown
   linkType: soft
@@ -538,11 +538,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/mdns@workspace:packages/mdns"
   dependencies:
-    "@akala/cli": "npm:^5.12.13"
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/config": "npm:^6.1.13"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/sidecar": "npm:^8.3.16"
+    "@akala/cli": "npm:^5.12.14"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/config": "npm:^6.1.14"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/sidecar": "npm:^8.3.17"
     "@types/multicast-dns": "npm:^7.2.4"
     multicast-dns: "npm:^7.2.5"
   bin:
@@ -554,7 +554,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/media-chromecast-parsers@workspace:packages/media-chromecast-parsers"
   dependencies:
-    "@akala/protocol-parser": "npm:^11.3.13"
+    "@akala/protocol-parser": "npm:^11.3.14"
   languageName: unknown
   linkType: soft
 
@@ -562,8 +562,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/media-chromecast@workspace:packages/media-chromecast"
   dependencies:
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/core": "npm:^41.9.2"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/core": "npm:^41.10.0"
     "@domojs/media-chromecast-parsers": "workspace:*"
   languageName: unknown
   linkType: soft
@@ -572,9 +572,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/media-crunchyroll@workspace:packages/media-crunchyroll"
   dependencies:
-    "@akala/cli": "npm:^5.12.13"
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/config": "npm:^6.1.13"
+    "@akala/cli": "npm:^5.12.14"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/config": "npm:^6.1.14"
     "@domojs/media": "workspace:^"
     crunchyroll.js: "npm:^1.1.0"
   languageName: unknown
@@ -592,14 +592,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/media@workspace:packages/media"
   dependencies:
-    "@akala/cli": "npm:^5.12.13"
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/config": "npm:^6.1.13"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/json-rpc-ws": "npm:^14.3.2"
-    "@akala/pm": "npm:^15.8.1"
-    "@akala/server": "npm:^27.1.15"
-    "@akala/storage": "npm:^20.3.13"
+    "@akala/cli": "npm:^5.12.14"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/config": "npm:^6.1.14"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/json-rpc-ws": "npm:^14.3.3"
+    "@akala/pm": "npm:^15.8.2"
+    "@akala/server": "npm:^27.1.16"
+    "@akala/storage": "npm:^20.3.14"
     "@domojs/theme-default": "workspace:*"
     "@ffmpeg.wasm/core-st": "npm:^0.13.2"
     "@ffmpeg.wasm/main": "npm:^0.13.1"
@@ -623,9 +623,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/mqtt@workspace:packages/mqtt"
   dependencies:
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/protocol-parser": "npm:^11.3.13"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/protocol-parser": "npm:^11.3.14"
     "@types/debug": "npm:4.1.12"
     "@types/request": "npm:2.48.13"
     mqtt: "npm:^5.14.0"
@@ -638,8 +638,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/rfx-parsers@workspace:packages/rfx-parsers"
   dependencies:
-    "@akala/core": "npm:^41.9.2"
-    "@akala/protocol-parser": "npm:^11.3.13"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/protocol-parser": "npm:^11.3.14"
     "@domojs/devices": "workspace:*"
     "@types/debug": "npm:4.1.12"
     "@types/node": "npm:22.17.1"
@@ -662,10 +662,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/rfx@workspace:packages/rfx"
   dependencies:
-    "@akala/cli": "npm:^5.12.13"
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/pm": "npm:^15.8.1"
+    "@akala/cli": "npm:^5.12.14"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/pm": "npm:^15.8.2"
     "@domojs/devices": "workspace:*"
     "@domojs/rfx-parsers": "workspace:*"
     "@matter/main": "npm:^0.15.3"
@@ -690,7 +690,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/service-discovery@workspace:packages/service-discovery"
   dependencies:
-    "@akala/core": "npm:^41.9.2"
+    "@akala/core": "npm:^41.10.0"
   languageName: unknown
   linkType: soft
 
@@ -698,12 +698,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/theme-default@workspace:packages/theme-default"
   dependencies:
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/json-rpc-ws": "npm:^14.3.2"
-    "@akala/pm": "npm:^15.8.1"
-    "@akala/server": "npm:^27.1.15"
-    "@akala/web-ui": "npm:^5.0.21"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/json-rpc-ws": "npm:^14.3.3"
+    "@akala/pm": "npm:^15.8.2"
+    "@akala/server": "npm:^27.1.16"
+    "@akala/web-ui": "npm:^5.0.22"
     "@fortawesome/fontawesome-common-types": "npm:^7.0.0"
     "@fortawesome/fontawesome-svg-core": "npm:^7.0.0"
     "@fortawesome/free-brands-svg-icons": "npm:^7.0.0"
@@ -725,14 +725,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/weather@workspace:packages/weather"
   dependencies:
-    "@akala/cli": "npm:^5.12.13"
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/config": "npm:^6.1.13"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/json-rpc-ws": "npm:^14.3.2"
-    "@akala/pm": "npm:^15.8.1"
-    "@akala/server": "npm:^27.1.15"
-    "@akala/sidecar": "npm:^8.3.16"
+    "@akala/cli": "npm:^5.12.14"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/config": "npm:^6.1.14"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/json-rpc-ws": "npm:^14.3.3"
+    "@akala/pm": "npm:^15.8.2"
+    "@akala/server": "npm:^27.1.16"
+    "@akala/sidecar": "npm:^8.3.17"
     "@domojs/devices": "workspace:^"
   peerDependencies:
     "@akala/pm": ^15.0.0
@@ -745,11 +745,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/web@workspace:packages/web"
   dependencies:
-    "@akala/client": "npm:^42.0.9"
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/vite": "npm:^2.7.4"
-    "@akala/web-ui": "npm:^5.0.21"
+    "@akala/client": "npm:^42.0.10"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/vite": "npm:^2.7.5"
+    "@akala/web-ui": "npm:^5.0.22"
     "@carbon/icon-helpers": "npm:^10.63.0"
     "@carbon/icons": "npm:^11.64.0"
     "@domojs/devices": "workspace:^"
@@ -765,12 +765,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/webscrapper@workspace:packages/webscrapper"
   dependencies:
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/config": "npm:^6.1.13"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/json-rpc-ws": "npm:^14.3.2"
-    "@akala/pm": "npm:^15.8.1"
-    "@akala/server": "npm:^27.1.15"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/config": "npm:^6.1.14"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/json-rpc-ws": "npm:^14.3.3"
+    "@akala/pm": "npm:^15.8.2"
+    "@akala/server": "npm:^27.1.16"
     "@domojs/devices": "workspace:*"
     css-select: "npm:^6.0.0"
     domhandler: "npm:^5.0.3"
@@ -785,8 +785,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/zigate-parsers@workspace:packages/zigate-parsers"
   dependencies:
-    "@akala/core": "npm:^41.9.2"
-    "@akala/protocol-parser": "npm:^11.3.13"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/protocol-parser": "npm:^11.3.14"
     "@domojs/devices": "workspace:*"
     "@types/debug": "npm:4.1.12"
     "@types/usb": "npm:2.0.5"
@@ -810,11 +810,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@domojs/zigate@workspace:packages/zigate"
   dependencies:
-    "@akala/cli": "npm:^5.12.13"
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/core": "npm:^41.9.2"
-    "@akala/pubsub": "npm:^3.1.15"
-    "@akala/sidecar": "npm:^8.3.16"
+    "@akala/cli": "npm:^5.12.14"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/core": "npm:^41.10.0"
+    "@akala/pubsub": "npm:^3.1.16"
+    "@akala/sidecar": "npm:^8.3.17"
     "@domojs/devices": "workspace:*"
     "@domojs/zigate-parsers": "workspace:*"
     "@types/debug": "npm:4.1.12"
@@ -4544,12 +4544,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "domojs@workspace:."
   dependencies:
-    "@akala/automate": "npm:^6.8.15"
-    "@akala/automate-yamlloader": "npm:^3.1.15"
-    "@akala/cli": "npm:^5.12.13"
-    "@akala/commands": "npm:^17.6.4"
-    "@akala/pm": "npm:^15.8.1"
-    "@akala/semantic-release": "npm:^3.2.13"
+    "@akala/automate": "npm:^6.8.16"
+    "@akala/automate-yamlloader": "npm:^3.1.16"
+    "@akala/cli": "npm:^5.12.14"
+    "@akala/commands": "npm:^17.6.5"
+    "@akala/pm": "npm:^15.8.2"
+    "@akala/semantic-release": "npm:^3.2.14"
     typescript: "npm:^5.9.2"
   languageName: unknown
   linkType: soft
@@ -8806,7 +8806,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sfrtv@workspace:packages/sfrtv"
   dependencies:
-    "@akala/core": "npm:^41.9.2"
+    "@akala/core": "npm:^41.10.0"
     "@types/cookiejar": "npm:^2.1.5"
     cookiejar: "npm:^2.1.4"
     puppeteer: "npm:^24.16.0"

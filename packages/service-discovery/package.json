@@ -5,7 +5,7 @@
     "types": "dist/cjs/index.d.ts",
     "type": "module",
     "dependencies": {
-        "@akala/core": "^41.9.2"
+        "@akala/core": "^41.10.0"
     },
     "exports": {
         ".": {

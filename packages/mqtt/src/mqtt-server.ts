@@ -7,7 +7,7 @@ import { Server } from 'net';
 import './protocol/index.js'
 import { parserWrite } from '@akala/protocol-parser';
 import { topicTemplate } from './mqtt-client.shared.js';
-import { NetSocketAdapter } from '@akala/commands';
+import { TcpSocketAdapter } from '@akala/core';
 
 class MqttClientProxy
 {
@@ -53,7 +53,7 @@ export class MqttServer extends EventEmitter<MqttEvents>
         super();
         server.on('connection', socket =>
         {
-            const protocolEvents = new ProtocolEvents(new NetSocketAdapter(socket));
+            const protocolEvents = new ProtocolEvents(new TcpSocketAdapter(socket));
             protocolEvents.on(ControlPacketType.PUBLISH, m =>
             {
                 if (m.retain)

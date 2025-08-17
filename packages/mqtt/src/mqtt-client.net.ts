@@ -4,7 +4,7 @@ import { Socket } from 'net';
 import { TLSSocket } from 'tls';
 import './protocol/index.js'
 import { MqttClient } from './mqtt-client.shared.js';
-import { NetSocketAdapter } from '@akala/commands';
+import { TcpSocketAdapter } from '@akala/core';
 
 asyncEventBuses.useProtocol('mqtt', async (url, config) =>
 {
@@ -17,7 +17,7 @@ asyncEventBuses.useProtocol('mqtt', async (url, config) =>
 
     await defer;
 
-    const protocolEvents = new ProtocolEvents(new NetSocketAdapter(socket));
+    const protocolEvents = new ProtocolEvents(new TcpSocketAdapter(socket));
 
     socket.on('error', err =>
     {
@@ -61,7 +61,7 @@ asyncEventBuses.useProtocol('mqtts', async (url, config) =>
 
     await defer;
 
-    const protocolEvents = new ProtocolEvents(new NetSocketAdapter(tlsSocket));
+    const protocolEvents = new ProtocolEvents(new TcpSocketAdapter(tlsSocket));
 
     const client = new MqttClient(config?.['clientId'] as string ?? crypto.randomUUID(), protocolEvents);
 
