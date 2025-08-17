@@ -81,6 +81,11 @@ export { ${importName} };`);
         await eachAsync(clusterIds[name], (_id, c) => output.write(`\n\t${validTSIdentifier(toCamelCase(c))}: ${name}.${validTSIdentifier(toPascalCase(c))},`));
     await output.write('\n}')
 
+    await output.write('\n\nexport const ClusterMap = {')
+    for (const name in clusterIds)
+        await eachAsync(clusterIds[name], (id, c) => output.write(`\n\t[${id}]: ${name}.${validTSIdentifier(toCamelCase(c))},`));
+    await output.write('\n}')
+
     await output.write('\n\nexport enum ClusterIdNames {')
     for (const name in clusterIds)
         await eachAsync(clusterIds[name], (id, c) => output.write(`\n\t${validTSIdentifier(toCamelCase(c))} = ClusterIds.${validTSIdentifier(toPascalCase(c))},`));
@@ -234,10 +239,14 @@ type XmlCluster = {
     };
 };
 
-function mapType(x: { '@type': string, entry?: { '@type': string }, '@entryType'?: string }, knownTypes?: string[])
+function mapType(x: { '@type': string, '@array'?: 'true', entry?: { '@type': string }, '@entryType'?: string }, knownTypes?: string[])
 {
     if (x['@type'].match(/^[A-Z_\d]+$/))
-        x['@type'] = x['@type'].toLowerCase()
+        x['@type'] = x['@type'].toLowerCase();
+
+    if (x['@array'])
+        return mapType({ '@type': 'array', '@entryType': x['@type'] }, knownTypes);
+
     switch (x['@type'])
     {
         case 'bool':
@@ -294,9 +303,9 @@ function mapType(x: { '@type': string, entry?: { '@type': string }, '@entryType'
         case 'int8s':
         case 'systime_us':
         case 'posix_ms':
-            return (' number');
+            return ('number');
         case 'map16':
-            return ' number[]';
+            return 'number[]';
         case 'uint40':
         case 'uint48':
         case 'uint56':
@@ -317,7 +326,7 @@ function mapType(x: { '@type': string, entry?: { '@type': string }, '@entryType'
         case 'ipv6adr':
         case 'hwadr':
         case 'bitmap16':
-            return (' bigint');
+            return ('bigint');
         case 'node_id':
         case 'subject_id':
         case 'char_string':
@@ -325,7 +334,7 @@ function mapType(x: { '@type': string, entry?: { '@type': string }, '@entryType'
         case 'long_char_string':
         case 'LONG_CHAR_STRING':
         case 'string':
-            return (' string');
+            return ('string');
         case 'octstr':
         case 'octet_string':
         case 'long_octet_string':
@@ -418,14 +427,40 @@ function mapType(x: { '@type': string, entry?: { '@type': string }, '@entryType'
     }
 }
 
+function getDefault(type: string): string
+{
+    switch (type)
+    {
+        case 'bool':
+            return 'false';
+        case 'number':
+            return '0';
+        default:
+            if (type.endsWith('[]'))
+                return '[]';
+            return 'null';
+    }
+}
+
 function validTSIdentifier(s: string)
 {
-    return s.replace(/^\d/, m => '_' + m).replace(/[-\/\.]/g, '_')
+    const result = s.replace(/^\d/, m => '_' + m).replace(/[-\/\.]/g, '_');
+    switch (result)
+    {
+        case 'switch':
+            return 'switch_';
+        default:
+            return result;
+    }
 }
 
 async function generateTypescriptFromXml(folderURL: URL, parsedXml: XmlCluster, fileName: string, signal: AbortSignal)
 {
     const { output } = await FileGenerator.outputHelper(folderURL.toString(), fileName.replace('.xml', '.ts'), true);
+
+    await output.write(`// This file is generated from ${fileName} - do not edit it directly\n`);
+    await output.write(`// Generated on ${new Date().toISOString()}\n\n`);
+    await output.write(`import { Cluster } from '../../server/clients/shared.js';\n`);
 
     const knownTypes = [];
     console.log(fileName);
@@ -484,7 +519,10 @@ async function generateTypescriptFromXml(folderURL: URL, parsedXml: XmlCluster, 
             signal.throwIfAborted();
             if (cluster.description)
                 await output.write(`\n\n/**\n * ${cluster.description}\n */`)
-            await output.write(`\n\nexport interface ${validTSIdentifier(toPascalCase(cluster.name))} {`);
+
+            const clusterInterfaceName = validTSIdentifier(toPascalCase(cluster.name));
+
+            await output.write(`\n\nexport interface ${clusterInterfaceName} {`);
 
             if (cluster.attribute && !Array.isArray(cluster.attribute))
                 cluster.attribute = [cluster.attribute];
@@ -603,7 +641,122 @@ async function generateTypescriptFromXml(folderURL: URL, parsedXml: XmlCluster, 
 
             await output.write(`\n\t}`)
             await output.write(`\n}`)
-        })
+
+
+            await output.write(`\n\nexport const ${validTSIdentifier(toCamelCase(cluster.name))}: Cluster<${clusterInterfaceName}['attributes'], ${clusterInterfaceName}['commands'], ${clusterInterfaceName}['events']> = {`);
+
+            await output.write('\n\id: ' + cluster.code + ',');
+            await output.write('\n\tattributes: {')
+            if (cluster.attribute?.length)
+                await eachAsync(cluster.attribute, async att =>
+                {
+                    if (!att['@type'])
+                        return;
+                    await output.write('\n\t\t')
+                    await output.write(att['@name'] || att['#text'] || att['@define'])
+                    await output.write(':');
+
+                    await output.write(getDefault(mapType(att, knownTypes)));
+                    await output.write(',');
+                }, true);
+            if (cluster.features?.feature?.length)
+                await eachAsync(cluster.features.feature, async ft =>
+                {
+                    if (ft['@summary'])
+                    {
+                        await output.write('\n\t\t/** ')
+                        await output.write(ft['@summary'])
+                        await output.write(' */')
+                    }
+                    await output.write('\n\t\Supports');
+                    await output.write(validTSIdentifier(toPascalCase(ft['@name'])))
+                    await output.write(': false,');
+                }, true);
+            await output.write('\n},')
+
+            if (cluster.command && !Array.isArray(cluster.command))
+                cluster.command = [cluster.command];
+
+            await output.write('\n\tcommands: {')
+            if (cluster.command?.length)
+                await eachAsync(cluster.command, async cmd =>
+                {
+                    if (cmd['@source'] === 'client')
+                    {
+                        if (cmd.description)
+                        {
+                            await output.write('\n\t\t/** ')
+                            await output.write(cmd.description)
+                            await output.write(' */')
+                        }
+                        await output.write(`\n\t\t${validTSIdentifier(cmd['@name'])}: {
+\t\t\tinputparams: [`);
+
+                        if (cmd.arg && !Array.isArray(cmd.arg))
+                            cmd.arg = [cmd.arg];
+
+                        if (cmd.arg?.length)
+                            await eachAsync(cmd.arg, async f => 
+                            {
+                                await output.write(`\n\t\t\t\t${getDefault(mapType(f, knownTypes))}, `)
+                            }, true);
+
+                        await output.write(`\n\t\t\t],\n\t\t\t outputparams: [`)
+
+                        if (cmd['@response'])
+                        {
+                            const response = cluster.command.find(c => c['@name'] === cmd['@response']);
+                            if (!response)
+                                throw new Error('cannout find ' + cmd['@response']);
+
+                            if (response.arg && !Array.isArray(response.arg))
+                                response.arg = [response.arg];
+
+                            await eachAsync(response.arg, async f => 
+                            {
+                                await output.write(`\n\t\t\t\t${getDefault(mapType(f, knownTypes))}, `)
+                            }, true);
+                        }
+
+                        await output.write(`]
+            },`);
+                    }
+                }, true)
+            await output.write('\n},')
+
+
+
+            if (cluster.event && !Array.isArray(cluster.event))
+                cluster.event = [cluster.event];
+
+            await output.write('\n\tevents: {')
+            if (cluster.event?.length)
+                await eachAsync(cluster.event, async ev =>
+                {
+                    if (ev['@side'] === 'server' || ev['@side'] === 'both')
+                    {
+                        await output.write(`\n\t\t${validTSIdentifier(ev['@name'])}: [
+\t\t\t`);
+
+                        if (ev.field && !Array.isArray(ev.field))
+                            ev.field = [ev.field];
+
+                        if (ev.field?.length)
+                            await eachAsync(ev.field, async f => 
+                            {
+                                await output.write(`\n\t\t\t${getDefault(mapType(f, knownTypes))}, `)
+                            }, true);
+
+                        await output.write(`],`);
+                    }
+                }, true)
+
+            await output.write(`\n\t}`)
+            await output.write(`\n}`)
+        });
+
+        if (parsedXml.configurator.cluster.length == 1)
+            await output.write(`\n\nexport default ${validTSIdentifier(toCamelCase(parsedXml.configurator.cluster[0].name))};`);
     }
 
     await output.close();
