@@ -6,11 +6,11 @@
         "url": "https://github.com/npenin/domojs/issues"
     },
     "dependencies": {
-        "@akala/cli": "^5.11.16",
-        "@akala/commands": "^17.2.17",
-        "@akala/core": "^41.0.3",
+        "@akala/cli": "^5.12.12",
+        "@akala/commands": "^17.6.3",
+        "@akala/core": "^41.9.1",
         "@domojs/rfx-parsers": "workspace:*",
-        "@matter/main": "^0.15.1",
+        "@matter/main": "^0.15.3",
         "http-punch-hole": "^1.0.12"
     },
     "type": "module",
@@ -31,12 +31,12 @@
     "deprecated": false,
     "description": "",
     "devDependencies": {
-        "@akala/pm": "^15.3.46",
+        "@akala/pm": "^15.7.4",
         "@domojs/devices": "workspace:*",
         "@types/debug": "^4.1.12",
         "@types/usb": "^2.0.5",
         "@types/ws": "^8.18.1",
-        "typescript": "5.8.3"
+        "typescript": "^5.9.2"
     },
     "homepage": "https://github.com/npenin/domojs#readme",
     "license": "MIT",

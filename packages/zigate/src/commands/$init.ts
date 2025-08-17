@@ -6,8 +6,6 @@ import { Container } from '@akala/commands';
 import app, { SidecarConfiguration } from '@akala/sidecar'
 import { ProxyConfiguration } from '@akala/config';
 import os from 'os';
-import { IsomorphicBuffer } from '@akala/core';
-import { AdministratorCommissioning } from '@domojs/devices/src/server/behaviors/admin-commissionning.js';
 
 var setGateway: (gw: Zigate) => void = null;
 

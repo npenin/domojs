@@ -10,20 +10,32 @@
     "commands": {
         "@domojs/devices": "./device-commands.json"
     },
+    "exports": {
+        ".": {
+            "browser": {
+                "types": "./dist/index.browser.d.ts",
+                "default": "./dist/index.browser.js"
+            },
+            "import": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
+            }
+        }
+    },
     "type": "module",
     "dependencies": {
-        "@akala/cli": "^5.11.16",
-        "@akala/commands": "^17.2.17",
-        "@akala/config": "^6.0.111",
-        "@akala/core": "^41.0.3",
-        "@akala/json-rpc-ws": "^12.0.25",
-        "@akala/pm": "^15.3.46",
-        "@akala/pubsub": "^3.0.210",
-        "@akala/server": "^27.0.60",
-        "@akala/sidecar": "^8.2.33",
-        "@akala/storage": "^20.2.29",
+        "@akala/cli": "^5.12.12",
+        "@akala/commands": "^17.6.3",
+        "@akala/config": "^6.1.12",
+        "@akala/core": "^41.9.1",
+        "@akala/json-rpc-ws": "^14.3.1",
+        "@akala/pm": "^15.7.4",
+        "@akala/pubsub": "^3.1.13",
+        "@akala/server": "^27.1.13",
+        "@akala/sidecar": "^8.3.14",
+        "@akala/storage": "^20.3.12",
         "@domojs/mqtt": "^2.0.55",
-        "@fortawesome/free-brands-svg-icons": "6.7.2",
+        "@fortawesome/free-brands-svg-icons": "7.0.0",
         "ws": "8.18.3"
     },
     "deprecated": false,
@@ -33,7 +45,7 @@
         "@popperjs/core": "2.11.8",
         "@types/debug": "4.1.12",
         "@types/ws": "8.18.1",
-        "typescript": "5.8.3"
+        "typescript": "^5.9.2"
     },
     "homepage": "https://github.com/domojs/devices#readme",
     "license": "MIT",

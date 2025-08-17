@@ -78,16 +78,6 @@
         "matter": "npm:///@domojs/matter/commands.json"
     },
     "@domojs/devices": {
-        "pubsub": {
-            "transport": "mqtt://localhost",
-            "transportOptions": {
-                "username": "devices",
-                "password": {
-                    "iv": "d7Lp1D2Lq0X7tdRHZwAZFw==",
-                    "value": "vjpEPq9EB37rMLEg5hjLc4ooy8JHxcYGq/48JxR969gfJGp4dq2zpjsBOb9zORE8"
-                }
-            }
-        },
         "store": {
             "provider": "file+json://./",
             "models": {
@@ -111,7 +101,17 @@
                 }
             }
         },
-        "endpointsMapping": {}
+        "endpointsMapping": {},
+        "pubsub": {
+            "transport": "mqtt://localhost",
+            "transportOptions": {
+                "username": "devices",
+                "password": {
+                    "iv": "4XEpr8HZYffT8Dov43yoWQ==",
+                    "value": "GU40RjWEL1wYHw10VjMZm7a4qI09ySuBa8Hk6evpgcWA0bQuvU/Osqic/fnoisbl"
+                }
+            }
+        }
     },
     "@domojs/weather": {
         "pubsub": {
@@ -119,16 +119,6 @@
         }
     },
     "@domojs/mdns": {
-        "pubsub": {
-            "transport": "mqtt://localhost",
-            "transportOptions": {
-                "username": "mdns",
-                "password": {
-                    "iv": "9F3V51Hpkux3mamD3+QsiQ==",
-                    "value": "0ZSIFo7wSC33SN1f2xlp7iCl67G6rt0TtBxCQB/63TgmU5l7A/sKla+thpz2ioRp"
-                }
-            }
-        },
         "endpointsMapping": {
             "b9aecf5c618e2c877de9ad2f788f55dfc572363ca9499af38c9d75e1ace2fb6": 1,
             "628f12108c1b82833f81ceddf47fc1fec6ec72455bc2e0f8c83d3320c1c3dd": 2,
@@ -171,7 +161,20 @@
             "e644c832ca61b53921def503d90c3bc3d2399427351f159d4fd498e7b67bc1": 39,
             "122fde76e789736413b42ecb817a546bfbccc0b611904d2966a1e442ac8fc6": 40,
             "bb7f6ae5c96c7634343ceb5080714fe6161421f7473344c8bd3dc20384d26": 41,
-            "3959ab27453e24ee20f2e8fe5360a7a19845c52521129da9c4da1763e6165b": 42
+            "3959ab27453e24ee20f2e8fe5360a7a19845c52521129da9c4da1763e6165b": 42,
+            "4e0c4fa1187288ee3f0bb7c37db83a017434cabbcabfbb39a59086bd21ecd9": 43,
+            "46224b42eb9fe0e0cbbb2513ec2f49dcb6a98993fae987931e4417acd9bd8": 44,
+            "c21c47a4de44b67ed2a4d76f2b704e11fa9bf716c97e187b8e6c1e52e6377dd": 45
+        },
+        "pubsub": {
+            "transport": "mqtt://localhost",
+            "transportOptions": {
+                "username": "mdns",
+                "password": {
+                    "iv": "TO2qC3QMHCDT+nXI/Wbjbg==",
+                    "value": "uGojFOe6ipjpaLSnLlAi36IP8jTp47G79Ui/wrnvrSKIdgprh5MuoK8N3YdqEN8u"
+                }
+            }
         }
     }
 }
