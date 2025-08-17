@@ -1,46 +1,58 @@
 <header class="full-body-width">
     <nav>
         <h1 class="logo">Domojs</h1>
+        <div id="top-actions">
+            <input type="text" id="searchbox" name="searchbox" />
+            <div id="searchbox-placeholder"></div>
+            <button class="borderless">
+                <label for="searchbox">
+                    <ibm-icon icon="icons.search" />
+                </label>
+            </button>
+            <button class="borderless">
+                <ibm-icon icon="icons.bell"></ibm-icon>
+            </button>
+            <button class="borderless">
+                <ibm-icon icon="icons.user"></ibm-icon>
+            </button>
+        </div>
     </nav>
 </header>
 <main>
-    <h1>Welcome <span data-bind data-bind-inner-text="context.name || ''"></span> !</h1>
-
-    <div class="card-container controllable" on="{'controllable.selected':controller.cardSelected.bind(controller)}">
-        <template is="kl-each" each="controller.commands#async" data-bind item-property-name="command">
-            <div class="tile" data-bind data-bind-inner-text="command.name"
-                data-bind-attributes="{command:[command.name]#json}" tabindex="0">
-            </div>
-        </template>
-        <div class="tile" command="['pm.@domojs/devicetype.RFXCOM.exec' ,'Tous', 'up']">
-            <div>
-                Ouvrir les volets
-            </div>
+    <div class="room-container horizontal">
+        <kl-each each="controller.rooms#async" class="horizontal">
+            <room-card data-context="item">
+            </room-card>
+        </kl-each>
+        <div class="card actionable">
+            <header>
+                Salon
+            </header>
         </div>
-        <div class="tile">
-            <div></div>
+        <div class="card">
+            <header>
+                Salle à manger
+            </header>
         </div>
-        <div class="tile" tabindex="-1">
-            <div></div>
+        <div class="card">
+            <header>
+                Chambre
+            </header>
         </div>
-        <div class="tile" command="['pm.@domojs/devicetype.RFXCOM.exec' ,'Tous', 'stop']">
-            <div>
-                Arrêter les volets
-            </div>
+        <div class="card">
+            <header>
+                Chambre
+            </header>
         </div>
-        <div class="tile" tabindex="-1">
-            <div></div>
+        <div class="card">
+            <header>
+                Bureau
+            </header>
         </div>
-        <div class="tile">
-            <div></div>
-        </div>
-        <div class="tile" command="['pm.@domojs/devicetype.RFXCOM.exec' ,'Tous', 'down']">
-            <div>
-                Baisser les volets
-            </div>
-        </div>
-        <div class="tile">
-            <div></div>
+        <div class="card">
+            <header>
+                Salle de bain
+            </header>
         </div>
     </div>
 </main>

@@ -1,16 +1,21 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Domojs</title>
-    <base href="/" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' places.googleapis.com; script-src 'self'; style-src 'unsafe-inline' 'self'" />
+    <meta http-equiv="X-Content-Security-Policy"
+        content="default-src 'self' places.googleapis.com; script-src 'self'; style-src 'unsafe-inline' 'self'" />
+    <title>Akala Home</title>
 </head>
 
 <body>
-    <kl-outlet data-context id="app">Splash screen</kl-outlet>
-    <script type="module" src="/index.ts"></script>
+    <kl-outlet data-context id="app">
+        <h1>Akala Home</h1>
+    </kl-outlet>
+    <script type="module" src="./index.ts"></script>
 </body>
 
 </html>

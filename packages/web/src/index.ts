@@ -1,45 +1,71 @@
 /// <reference types="vite/client" />
-import './index.scss'
-import { Container } from '@akala/commands'
-import { Event, EventEmitter } from '@akala/core';
-import { Scope as IScope, LocationService, Template, serviceModule, bootstrapModule, DataContext, DataBind, OutletService, EventComposer, webComponent, EachAsTemplate } from '@akala/client'
-import { Processors } from '@akala/commands';
-import { Popover } from '@akala/web-ui';
+import { bootstrap } from '@akala/web-ui'
+import { bootstrapModule, DataContext, HotKeyTrigger, outletDefinition, OutletService, Scope, serviceModule } from '@akala/client'
+import './index.css';
 import Home from './pages/home/home.js';
-import { ControllableNavigationComposer } from './focusable/table.js';
+import { configure, connect, Container } from '@akala/commands/browser';
+import './components/ibm-icon/ibm-icon.js'
+import './components/device-button-selector/device-button-selector.js'
+import './components/room-card/room-card.js'
+import './components/device-button-selector/device-button-selector.js'
+import { IconDescriptor } from './components/ibm-icon/ibm-icon.js';
 
-bootstrapModule.register('services', serviceModule);
+import searchIcon from '@carbon/icons/es/search/24.js'
+import bellIcon from '@carbon/icons/es/notification/24.js'
+import userIcon from '@carbon/icons/es/user/24.js'
+import lightOnIcon from '@carbon/icons/es/light--filled/24.js'
+import lightOffIcon from '@carbon/icons/es/light/24.js'
+import temperatureIcon from '@carbon/icons/es/temperature/24.js'
+import thisSideUpIcon from '@carbon/icons/es/this-side-up/24.js'
+import deskAdjustableIcon from '@carbon/icons/es/desk--adjustable/24.js'
 
-type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, Event<[unknown]>>> }>;
-
-bootstrapModule.activate(['$rootScope', 'services.$outlet'], async (rootScope: Scope, outlet: OutletService) =>
+bootstrapModule.activate([[serviceModule, OutletService.InjectionToken], '$rootScope'], (outlet: OutletService, scope: Scope<{ icons: Record<string, IconDescriptor> }>) =>
 {
-    // Template.composers.push(new FormComposer(rootScope.container))
-    Template.composers.push(new DataContext());
-    Template.composers.push(new DataBind());
-    Template.composers.push(new EventComposer());
-    Template.composers.push(new ControllableNavigationComposer());
-    webComponent('kl-popover')(Popover);
-    webComponent('kl-each', { extends: 'template' })(EachAsTemplate);
+    const abort = new AbortController();
 
-    serviceModule.register('templateOptions', {
-        $rootScope: rootScope
-    })
+    const container = new Container('hotkeys', undefined);
+    container.register(configure({
+        keyboard: {
+            shortcuts: [
+                'Numpad0',
+                'Digit0',
+            ]
+        }
+    })(() =>
+    {
+        location.reload();
+    }, 'reload'));
 
+    container.register(configure({
+        keyboard: {
+            shortcuts: [
+                'Numpad1',
+                'Digit1',
+            ]
+        }
+    })(() =>
+    {
+        document.body.classList.toggle('dark');
+    }, 'dark'));
 
-    outlet.use('/', 'main', Home);
+    container.attach(HotKeyTrigger, { element: document.body });
+    bootstrapModule.register('container', container);
 
-    // outlet.use('/signup', 'main', Signup[outletDefinition]);
-    // outlet.use('/login', 'main', Login[outletDefinition]);
+    outlet.use('/', 'main', Home[outletDefinition]);
 })
 
-bootstrapModule.ready(['services.$location', '$rootScope'], async function (location: LocationService, rootScope: IScope<any>)
-{
-    this.whenDone.then(async () =>
-    {
-        Template.composeAll([document.getElementById('app')!], document.body, { $rootScope: rootScope });
-        location.start({ dispatch: true, hashbang: false })
-    })
-});
+DataContext.propagateProperties.push('icons');
 
-await bootstrapModule.start();
+await bootstrap(document.getElementById('app'), {
+    icons: {
+        search: searchIcon,
+        bell: bellIcon,
+        user: userIcon,
+        lightOn: lightOnIcon,
+        lightOff: lightOffIcon,
+        temperature: temperatureIcon,
+        shutterUp: thisSideUpIcon,
+        shutterDown: { ...thisSideUpIcon, attrs: { ...thisSideUpIcon.attrs, transform: 'rotate(180)', } },
+        windowCoveringLift: deskAdjustableIcon,
+    },
+} as any);

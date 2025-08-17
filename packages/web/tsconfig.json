@@ -3,13 +3,12 @@
     "compileOnSave": true,
     "compilerOptions": {
         "experimentalDecorators": true,
-        "rootDir": ".",
+        "rootDir": "src",
         "outDir": "dist",
         "resolveJsonModule": true
     },
     "include": [
-        "**/*.ts",
-        "weather.json"
+        "src/**/*.ts",
     ],
     "exclude": [
         "dist",

@@ -1,0 +1,98 @@
+@import '@akala/web-ui/theme.min.css';
+
+:root {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+ibm-icon {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+}
+
+body>kl-outlet>header,
+body>kl-outlet>main,
+body>kl-outlet>footer {
+    padding: var(--local-gutter-y) var(--local-gutter-x);
+}
+
+body>kl-outlet>header>nav {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--local-gutter-y) var(--local-gutter-x);
+}
+
+#searchbox,
+#searchbox-placeholder {
+    opacity: 0;
+    transition-property: all;
+    transition: .5s;
+    flex-basis: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+#searchbox {
+    position: absolute;
+    left: 0;
+    margin-left: var(--local-gutter-x);
+    width: calc(100vw - (3 * var(--local-gutter-x) + 3 * 48px + 2 * var(--gutter-x)));
+    font-size: 1.4rem;
+
+    &:focus-visible {
+        opacity: 1;
+    }
+}
+
+#top-actions {
+    flex-basis: 100%;
+    flex-grow: 1;
+    display: flex;
+
+    --local-gutter-x: calc(var(--gutter-x) / 2);
+    --local-gutter-y: calc(var(--gutter-y) / 2);
+    gap: var(--local-gutter-y) var(--local-gutter-x);
+}
+
+.room-container {
+    overflow: auto;
+
+    .card {
+        min-width: 110px;
+        overflow: hidden;
+
+        --standard-item-background-color: var(--control-background-color);
+
+        &>header {
+            flex: 1 1 auto;
+            min-width: 0;
+            overflow: hidden;
+            width: 110px;
+            white-space: nowrap;
+        }
+    }
+}
+
+room-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--local-gutter-y) var(--local-gutter-x);
+}
+
+.light-on {
+    --item-text-color: var(--system-yellow);
+}
+
+.light-off {
+    --hover-text-color: var(--system-yellow);
+}
+
+button.rounded {
+    border-radius: 16px;
+    height: 32px;
+    --local-gutter-x: 4px;
+    --local-gutter-y: 0;
+
+}

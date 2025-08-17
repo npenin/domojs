@@ -1,34 +1,30 @@
-import { DataContext, Page, page, ScopeImpl } from '@akala/client'
-import { Container, Metadata } from '@akala/commands';
-import { Binding, ParsedArray, ParsedString, parser, Parser } from '@akala/core';
+import { e, Page, page, RootElement, content, t, bootstrapModule, Template } from '@akala/client'
+import template from './home.html?raw'
+import { EndpointProxy } from '@domojs/devices';
+import { asyncEventBuses } from '@akala/core';
+import { MqttEvents } from '@domojs/mqtt';
 
-// type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, Event<[unknown]>>> }>;
-
-class HomePage extends Page
+@page({ template, 'inject': [RootElement] })
+export default class Home extends Page
 {
-    commands: Promise<Metadata.Command[]>;
-    constructor(private container: Container<void>)
+    public readonly rooms = asyncEventBuses.process<MqttEvents>(new URL(`mqtt+ws://${location.host}/mqtt`), { username: 'domojs-guest', password: 'domojs' }).then(mqtt => [
+        { name: 'AllHouse', devices: [EndpointProxy.fromBus(mqtt, 'domojs/RFXCOM', '6')] },
+        { name: 'Cuisine', devices: [EndpointProxy.fromBus(mqtt, 'domojs/devices', '0')] },
+        { name: 'Salon', devices: [] }
+    ]);
+
+    constructor(private el: HTMLElement)
     {
         super();
-        this.commands = container.dispatch('$metadata', true).then(m => m.commands.filter(c => c.config?.['html-form']));
+        document.addEventListener('keydown', (ev) =>
+        {
+            const debug = document.querySelector('#debug')!;
+            debug?.append(content(e('div'), t(ev.code)));
+            if (debug?.childNodes.length > 10)
+                debug.childNodes[0].remove();
+        });
     }
 
-    cardSelected(ev: Event & { focused: HTMLElement })
-    {
-        const binding = new Binding({ controller: this, get context() { return DataContext.find(ev.focused) } }, Parser.parameterLess.parse(ev.focused.getAttribute('command')));
-        const args = binding.getValue();
-        if (typeof args == 'string')
-            return this.container.dispatch(args)
-        if (Array.isArray(args) && typeof args[0] == 'string')
-            return this.container.dispatch.apply(this.container, args);
-        throw new Error('Invalid command');
-    }
+
 }
 
-export const Home =
-    page({
-        template: new URL('./home.html', import.meta.url).toString(),
-        inject: [[ScopeImpl.injectionToken, 'container']]
-    })(HomePage);
-
-export default Home;
