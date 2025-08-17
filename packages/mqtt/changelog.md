@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* ensure mqtt-client.net.js is imported in index.ts dea90e5
+* await socket.send in MqttClient.write to ensure message delivery c7a5095
 
 
 
