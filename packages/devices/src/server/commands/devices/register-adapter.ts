@@ -49,7 +49,7 @@ export default async function (this: State, node: string): Promise<SidecarConfig
                         "username": 'domojs-guest',
                         "password": 'domojs',
                         "clientid": "",
-                        "textname": root,
+                        "textname": 'guest',
                         "textdescription": `DomoJS guest client`,
                         "roles": [{ rolename: "domojs-guest" }]
                     },
@@ -66,6 +66,22 @@ export default async function (this: State, node: string): Promise<SidecarConfig
                         "rolename": "domojs-guest",
                         "acltype": "publishClientSend",
                         "topic": `domojs/devices/0/commissionning/registerCommand/execute`,
+                        "priority": 0,
+                        allow: true
+                    },
+                    {
+                        "command": "addRoleACL",
+                        "rolename": "domojs-guest",
+                        "acltype": "publishClientSend",
+                        "topic": `domojs/+/+/+/+/+`,
+                        "priority": 0,
+                        allow: true
+                    },
+                    {
+                        "command": "addRoleACL",
+                        "rolename": "domojs-guest",
+                        "acltype": "subscribePattern",
+                        "topic": `domojs/+/+/+/+/+`,
                         "priority": 0,
                         allow: true
                     },
