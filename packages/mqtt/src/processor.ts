@@ -1,6 +1,6 @@
 import { Trigger, Configuration, Container, Metadata, ICommandProcessor, StructuredParameters, Processors } from '@akala/commands'
 import { asyncEventBuses, eachAsync, mapAsync, MiddlewarePromise, NotHandled, UrlTemplate } from '@akala/core';
-import { MqttClient } from './mqtt-client.js';
+import { MqttClient } from './mqtt-client.shared.js';
 import { Properties } from './protocol/_shared.js';
 import { MqttEvents } from './shared.js';
 

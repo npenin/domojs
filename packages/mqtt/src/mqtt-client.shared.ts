@@ -1,8 +1,6 @@
 import { AsyncTeardownManager, AsyncEventBus, StatefulAsyncSubscription, EventOptions, EventListener, AllEvents, AsyncSubscription, IsomorphicBuffer, asyncEventBuses, Deferred, delay, HttpStatusCode, ErrorWithStatus, EventKeys, EventBus, eachAsync, UrlTemplate } from '@akala/core';
 import { MqttEvents, MqttEvent, ProtocolEvents, mappings, DisconnectError, MessageMap } from './shared.js';
 import { StandardMessages, ControlPacketType, Properties, PropertyKeys, ReasonCodes, Message, connect, disconnect, publish, puback, subscribe, unsubscribe, pingresp, pingreq, MessageTypes } from './protocol/index.js';
-import { Socket } from 'net';
-import { TLSSocket } from 'tls';
 import './protocol/index.js'
 import { parserWrite } from '@akala/protocol-parser';
 
@@ -23,7 +21,7 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
     {
         super();
         this.teardown(protocolEvents.on(ControlPacketType.CONNACK, () => this._connected = true));
-        this.teardown(protocolEvents.on(ControlPacketType.DISCONNECT, () => { clearInterval(this.pingInterval); protocolEvents.socket.end() }));
+        this.teardown(protocolEvents.on(ControlPacketType.DISCONNECT, () => { clearInterval(this.pingInterval); protocolEvents.socket.close() }));
         protocolEvents.socket.on('close', () => this._connected = false);
         this.teardown(protocolEvents.on(ControlPacketType.PINGREQ, () =>
         {
@@ -74,7 +72,7 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
     async write(msg: Uint8Array<ArrayBufferLike>)
     {
         clearTimeout(this.pingInterval);
-        await new Promise<void>((resolve, reject) => this.protocolEvents.socket.write(msg, err => err ? reject(err) : resolve()));
+        this.protocolEvents.socket.send(new IsomorphicBuffer(msg));
         this.pingInterval = setTimeout(() =>
         {
             const ping: pingreq.Message = {
@@ -288,7 +286,7 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
         };
         await this.write(parserWrite(StandardMessages, message, message, 0).toArray())
         clearTimeout(this.pingInterval);
-        await new Promise<void>(resolve => this.protocolEvents.socket.end(resolve));
+        await this.protocolEvents.socket.close();
 
     }
 
@@ -390,78 +388,6 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
         return this.dialog(message);
     }
 }
-
-asyncEventBuses.useProtocol('mqtt', async (url, config) =>
-{
-    const socket = new Socket({ ...config, signal: config.abort });
-
-    const defer = new Deferred<void>();
-    const port = Number(url.port);
-    socket.connect(!isNaN(port) && port ? port : 1883, url.hostname, defer.resolve.bind(defer));
-    socket.on('error', defer.reject.bind(defer));
-
-    await defer;
-
-    const protocolEvents = new ProtocolEvents(socket);
-
-    socket.on('error', err =>
-    {
-        if (err.cause !== config.abort.reason)
-            console.error(err);
-    })
-
-    const client = new MqttClient(config?.['clientId'] as string ?? crypto.randomUUID(), protocolEvents);
-
-    if (url.username || url.password || config.username || config.password)
-        await client.connect({ userName: url.username || config.username as string, password: IsomorphicBuffer.from(url.password || config.password as string) });
-    else
-        await client.connect({});
-
-    return client as AsyncEventBus;
-});
-
-asyncEventBuses.useProtocol('mqtts', async (url, config) =>
-{
-    const socket = new Socket({ ...config, signal: config.abort });
-    const tlsSocket = new TLSSocket(socket, config as any);
-
-    const defer = new Deferred<void>();
-    const port = Number(url.port);
-    socket.connect(!isNaN(port) && port ? port : 8883, url.hostname, defer.resolve.bind(defer));
-
-    socket.on('error', err =>
-    {
-        if (err.cause !== config.abort.reason)
-            console.error(err);
-    })
-    tlsSocket.on('error', err =>
-    {
-        if (err.cause !== config.abort.reason)
-            console.error(err);
-    })
-    tlsSocket.on('error',
-        (x) => defer.reject(x));
-    socket.on('error',
-        (x) => defer.reject(x));
-
-    await defer;
-
-    const protocolEvents = new ProtocolEvents(tlsSocket);
-
-    const client = new MqttClient(config?.['clientId'] as string ?? crypto.randomUUID(), protocolEvents);
-
-    if (url.username || url.password)
-        await client.connect({ userName: url.username, password: IsomorphicBuffer.from(url.password) });
-    else
-        await client.connect({});
-
-    return client as AsyncEventBus;
-})
-
-asyncEventBuses.useProtocol('mqtt+tls', async (url, config) =>
-{
-    return asyncEventBuses.process(new URL('mqtts:' + url.host + url.pathname + url.search + url.hash), config);
-})
 
 const templateCache: Record<string, UrlTemplate.UriTemplate> = {};
 

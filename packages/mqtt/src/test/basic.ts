@@ -1,10 +1,11 @@
 import { asyncEventBuses, Deferred, delay } from '@akala/core'
 import { describe, it } from 'node:test'
-import '../mqtt-client.js'
-import { MqttClient } from '../mqtt-client.js'
+import '../mqtt-client.net.js'
+import { MqttClient } from '../mqtt-client.shared.js'
 import { RetainHandling } from '../protocol/subscribe.js'
 import { Socket } from 'net'
 import { ProtocolEvents } from '../index.js'
+import { NetSocketAdapter } from '@akala/commands'
 
 describe('mosquitto tests', () =>
 {
@@ -19,7 +20,7 @@ describe('mosquitto tests', () =>
 
         await defer;
 
-        const protocolEvents = new ProtocolEvents(socket);
+        const protocolEvents = new ProtocolEvents(new NetSocketAdapter(socket));
 
         const mqtt = new MqttClient('akala_v0', protocolEvents);
 

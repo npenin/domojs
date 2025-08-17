@@ -5,7 +5,11 @@
     "main": "dist/index.js",
     "type": "module",
     "exports": {
-        ".": "./dist/index.js",
+        ".": {
+            "browser": "./dist/index.browser.js",
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        },
         "./akala": "./dist/akala.mjs"
     },
     "scripts": {
@@ -18,14 +22,14 @@
         "@akala/pubsub": "^3.0.151"
     },
     "dependencies": {
-        "@akala/commands": "^17.2.17",
-        "@akala/core": "^41.0.3",
-        "@akala/protocol-parser": "^11.2.0"
+        "@akala/commands": "^17.6.3",
+        "@akala/core": "^41.9.1",
+        "@akala/protocol-parser": "^11.3.12"
     },
     "devDependencies": {
         "@types/debug": "4.1.12",
-        "@types/request": "2.48.12",
-        "mqtt": "^5.13.2"
+        "@types/request": "2.48.13",
+        "mqtt": "^5.14.0"
     },
     "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
 }

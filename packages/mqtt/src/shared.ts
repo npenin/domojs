@@ -1,7 +1,7 @@
 import { Message, MessageTypes, StandardMessages } from './protocol/index.js'
 import { Cursor } from '@akala/protocol-parser';
 import { ControlPacketType, Properties, ReasonCodes, auth, connack, connect, disconnect, pingreq, pingresp, puback, pubcomp, publish, pubrec, pubrel, suback, subscribe, unsuback, unsubscribe } from './protocol/index.js';
-import { IsomorphicBuffer, EventEmitter, IEvent, EventKeys, ErrorWithStatus, HttpStatusCode } from '@akala/core';
+import { IsomorphicBuffer, EventEmitter, IEvent, EventKeys, ErrorWithStatus, HttpStatusCode, SocketAdapter } from '@akala/core';
 import { Socket } from 'net';
 
 import { TopicSubscription } from './protocol/subscribe.js';
@@ -46,16 +46,18 @@ export type ProtocolEventsMap =
 
 export class ProtocolEvents extends EventEmitter<ProtocolEventsMap>
 {
-    constructor(public readonly socket: Socket)
+    constructor(public readonly socket: SocketAdapter)
     {
         super(Number.MAX_SAFE_INTEGER);
-        socket.on('data', (data) =>
+        socket.on('message', (data) =>
         {
+            if (typeof data === 'string')
+                throw new Error('Received string data, expected binary data');
             const c = new Cursor();
             while (c.offset < data.length)
             {
                 console.time('mqtt-read')
-                var msg = StandardMessages.read(IsomorphicBuffer.fromBuffer(data), c, {}) as MessageMap[keyof MessageMap];
+                var msg = StandardMessages.read(data, c, {}) as MessageMap[keyof MessageMap];
                 console.timeEnd('mqtt-read')
                 this.emit(msg.type, msg as any);
             }

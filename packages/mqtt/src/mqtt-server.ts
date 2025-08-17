@@ -1,25 +1,44 @@
-import { IsomorphicBuffer, EventEmitter } from '@akala/core';
+import { IsomorphicBuffer, EventEmitter, UrlTemplate } from '@akala/core';
 import { MqttEvents, ProtocolEvents, mappings, DisconnectError } from './shared.js';
 import { StandardMessages } from './protocol/_protocol.js';
-import { ControlPacketType, Properties, ReasonCodes, Message, disconnect, connect } from './protocol/index.js';
+import { ControlPacketType, Properties, ReasonCodes, Message, disconnect, connect, publish } from './protocol/index.js';
 import { SubscribeParser } from './protocol/subscribe.js';
 import { Server } from 'net';
 import './protocol/index.js'
 import { parserWrite } from '@akala/protocol-parser';
+import { topicTemplate } from './mqtt-client.shared.js';
+import { NetSocketAdapter } from '@akala/commands';
 
 class MqttClientProxy
 {
+    isSubscribed(topic: string): boolean
+    {
+        return this.subscriptions.some(template => UrlTemplate.match(topic, template));
+    }
+
+    subscriptions: UrlTemplate.UriTemplate[];
+
     constructor(private protocolEvents: ProtocolEvents)
     {
     }
 
     public acknowledge(message: Message)
     {
-        this.protocolEvents.socket.write(parserWrite(StandardMessages, {
+        return this.protocolEvents.socket.send(parserWrite(StandardMessages, {
             type: mappings[message.type],
             dup: false,
 
-        }).toArray())
+        }))
+    }
+
+    public subscribe(topic: string)
+    {
+        this.subscriptions.push(topicTemplate(topic));
+    }
+
+    public publish(message: publish.Message)
+    {
+        return this.protocolEvents.socket.send(parserWrite(StandardMessages, message))
     }
 }
 
@@ -34,11 +53,13 @@ export class MqttServer extends EventEmitter<MqttEvents>
         super();
         server.on('connection', socket =>
         {
-            const protocolEvents = new ProtocolEvents(socket);
+            const protocolEvents = new ProtocolEvents(new NetSocketAdapter(socket));
             protocolEvents.on(ControlPacketType.PUBLISH, m =>
             {
                 if (m.retain)
                     this.retain.push(m);
+
+                Promise.all(this.clients.filter(c => c.isSubscribed(m.topic)).map(c => c.publish(m)));
             })
             const client = new MqttClientProxy(protocolEvents);
 
@@ -50,17 +71,12 @@ export class MqttServer extends EventEmitter<MqttEvents>
         })
     }
 
-    private getNextPacketId()
-    {
-        return this.packetId++;
-    }
-
     private dialog(protocolEvents: ProtocolEvents, message: Message): Promise<Message>
     {
         const mapping = mappings[message.type];
         if (!mapping)
             return Promise.reject(new Error('there is no such mapping for ' + JSON.stringify(message)));
-        return new Promise((resolve, reject) =>
+        return new Promise(async (resolve, reject) =>
         {
             const sub = protocolEvents.on(mapping, (m: Message) =>
             {
@@ -91,17 +107,9 @@ export class MqttServer extends EventEmitter<MqttEvents>
 
             console.time('mqtt-write')
             if (message.type === ControlPacketType.SUBSCRIBE)
-                protocolEvents.socket.write(parserWrite(SubscribeParser, message, message, 0).toArray(), err =>
-                {
-                    if (err)
-                        reject(err)
-                });
+                await protocolEvents.socket.send(parserWrite(SubscribeParser, message, message, 0));
             else
-                protocolEvents.socket.write(parserWrite(StandardMessages, message, message, 0).toArray(), err =>
-                {
-                    if (err)
-                        reject(err);
-                });
+                await protocolEvents.socket.send(parserWrite(StandardMessages, message, message, 0));
             console.timeEnd('mqtt-write')
 
         });
@@ -113,10 +121,9 @@ export class MqttServer extends EventEmitter<MqttEvents>
             type: ControlPacketType.DISCONNECT,
             properties: []
         };
-        await new Promise<void>((resolve, reject) =>
-            protocolEvents.socket.write(parserWrite(StandardMessages, message, message, 0).toArray(), err => err ? reject(err) : resolve()));
+        await protocolEvents.socket.send(parserWrite(StandardMessages, message, message, 0));
 
-        await new Promise<void>(resolve => protocolEvents.socket.end(resolve));
+        await protocolEvents.socket.close();
     }
 
     public ping(protocolEvents: ProtocolEvents): Promise<Message>
