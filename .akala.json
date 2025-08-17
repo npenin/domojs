@@ -103,19 +103,19 @@
         },
         "endpointsMapping": {},
         "pubsub": {
-            "transport": "mqtt://home.dragon-angel.fr",
+            "transport": "mqtt://localhost",
             "transportOptions": {
                 "username": "devices",
                 "password": {
-                    "iv": "4XEpr8HZYffT8Dov43yoWQ==",
-                    "value": "GU40RjWEL1wYHw10VjMZm7a4qI09ySuBa8Hk6evpgcWA0bQuvU/Osqic/fnoisbl"
+                    "iv": "lr0zrmafS0DfH2FgLNElpg==",
+                    "value": "+jrQyqkGIQmCajOXJRBell+NP+PNqOV/nFnEzcbimMr4NJGK0gG40GjslL8n8cax"
                 }
             }
         }
     },
     "@domojs/weather": {
         "pubsub": {
-            "transport": "mqtt://home.dragon-angel.fr"
+            "transport": "mqtt://localhost"
         }
     },
     "@domojs/mdns": {
@@ -162,17 +162,29 @@
             "122fde76e789736413b42ecb817a546bfbccc0b611904d2966a1e442ac8fc6": 40,
             "bb7f6ae5c96c7634343ceb5080714fe6161421f7473344c8bd3dc20384d26": 41,
             "3959ab27453e24ee20f2e8fe5360a7a19845c52521129da9c4da1763e6165b": 42,
-            "4e0c4fa1187288ee3f0bb7c37db83a017434cabbcabfbb39a59086bd21ecd9": 43,
-            "46224b42eb9fe0e0cbbb2513ec2f49dcb6a98993fae987931e4417acd9bd8": 44,
-            "c21c47a4de44b67ed2a4d76f2b704e11fa9bf716c97e187b8e6c1e52e6377dd": 45
+            "ebede5f87f052a2f5447e7cfb32ec29bc3cf87673911e321c79d9e6c42173": 43,
+            "451f3480dae58e82379b473eb7492216d4dbf6ab50c63af134cbf198a78781f4": 44,
+            "97116f3fb27515e84ad81a52dd6f9549da8383845c242156b189033f16fb6": 45,
+            "8bec68deaa252db4a21891be2e8f155f389ce25b21fef3f4d986a9895f9e66": 46,
+            "7ad9183fe39ab33546b8fac7c8a53373eec48fa48dcd6aee02879a6d72fb2": 47,
+            "ab4825fa598ab349ae0317719e08af3cbfc55898be40a2578adcfc62496d3c": 48,
+            "b6e7c817e9a255a23d47a5505b14ba30faf6366ce74f7030fce5f16fa5f76572": 49,
+            "1bac6da09092bb2d7d2a9bee39f898a13bd08748843563fc3acbba50fe915353": 50,
+            "792acf5b83371165951d51bdf9c7bd532e73010a797b52baa749fe2969e44c": 51,
+            "efcaa02796d3923e572b684816579a82ab96019405782bad162fcc5a5149": 52,
+            "45412eab4a2c7b75b7eaa18e17f9da46b612923f598266d9d718be9c97a1c": 53,
+            "bb5cb638aaea2c5d46f3cdbf18f2744dc4914681268b28a568a6c2d38e8b9": 54,
+            "cd84c49ae285f8bdf7591027c9b3e84ff69aa8f810fba22daac5804791f5b4": 55,
+            "7822ba8234aa12f1b66f1bcfa3781871e64d99e46cfe43a67f8039c26910d1": 56,
+            "e996616bf30b09c689df65c99fa5983947fcef18a7e24a789e8ca6f8a0579b": 57
         },
         "pubsub": {
-            "transport": "mqtt://home.dragon-angel.fr",
+            "transport": "mqtt://localhost",
             "transportOptions": {
                 "username": "mdns",
                 "password": {
-                    "iv": "TO2qC3QMHCDT+nXI/Wbjbg==",
-                    "value": "uGojFOe6ipjpaLSnLlAi36IP8jTp47G79Ui/wrnvrSKIdgprh5MuoK8N3YdqEN8u"
+                    "iv": "U/bj8NPni3cobtPL58kmDw==",
+                    "value": "hDWFDAoyNNJ0KwX+oFVoG2iH4hRZvGPKz4Bp4amk0IMsdViNoFJNQfo5xd8DfpMX"
                 }
             }
         }
