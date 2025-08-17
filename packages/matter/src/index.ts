@@ -15,7 +15,7 @@ async function deriveScalar(passcode: number, salt: Uint8Array, iterations: numb
 
     const baseKey = await crypto.subtle.importKey(
         'raw',
-        passcodeBytes,
+        passcodeBytes.buffer as ArrayBuffer,
         'PBKDF2',
         false,
         ['deriveBits']
@@ -25,7 +25,7 @@ async function deriveScalar(passcode: number, salt: Uint8Array, iterations: numb
         {
             name: 'PBKDF2',
             hash: 'SHA-256',
-            salt,
+            salt: salt.buffer as ArrayBuffer,
             iterations,
         },
         baseKey,
@@ -40,7 +40,7 @@ async function generateVerifierFromScalar(scalar: Uint8Array): Promise<Uint8Arra
     // Import the scalar as a raw P-256 private key
     const privateKey = await crypto.subtle.importKey(
         'raw',
-        scalar,
+        scalar.buffer as ArrayBuffer,
         {
             name: 'ECDSA', // or 'ECDH', Matter uses PASE which is SPAKE2+ over P-256
             namedCurve: 'P-256',
@@ -55,15 +55,16 @@ async function generateVerifierFromScalar(scalar: Uint8Array): Promise<Uint8Arra
     return new Uint8Array(publicKeySpki);
 }
 
-const setupPin = 20202021;
-const iterations = 1000;
+// const setupPin = 20202021;
+// const iterations = 1000;
 
-const salt = await generateSalt();
+// const salt = await generateSalt();
 
-const scalar = await deriveScalar(setupPin, salt, iterations);
+// const scalar = await deriveScalar(setupPin, salt, iterations);
 
-const verifier = await generateVerifierFromScalar(scalar);
+// const verifier = await generateVerifierFromScalar(scalar);
 
-console.log('Salt (base64):', Buffer.from(salt).toString('base64'));
-console.log('Verifier (spki hex):', Buffer.from(verifier).toString('hex'));
-console.log('Iterations:', iterations);
+// console.log('Salt (base64):', Buffer.from(salt).toString('base64'));
+// console.log('Verifier (spki hex):', Buffer.from(verifier).toString('hex'));
+// console.log('Iterations:', iterations);
+
