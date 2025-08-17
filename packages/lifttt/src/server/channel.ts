@@ -1,5 +1,6 @@
 import { proxy, Processors, Container } from '@akala/commands';
 import { SocketAdapter } from '@akala/core';
+import { Payload } from '@akala/json-rpc-ws'
 
 export interface Field
 {
@@ -11,7 +12,7 @@ export interface Field
 
 export class Channel<T>
 {
-    public static attachTo<T>(container: Container<T>, adapter: SocketAdapter)
+    public static attachTo<T>(container: Container<T>, adapter: SocketAdapter<Payload<ReadableStream>>)
     {
         var tm = proxy(require('../../task-manager'), new Processors.JsonRpcBrowser(Processors.JsonRpcBrowser.getConnection(adapter, container)));
         tm.dispatch('new-channel', container.name);
