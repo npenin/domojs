@@ -1,6 +1,7 @@
 import { AsyncEventBus, AsyncSubscription, logger, ObservableArray } from "@akala/core";
 import { ClusterMap } from "../clusters/index.js";
-import { Endpoint, EndpointProxy, MixedClusterMap } from "./Endpoint.js";
+import { Endpoint, MixedClusterMap } from "./Endpoint.js";
+import { EndpointProxy } from "./EndpointProxy.js";
 import { MqttEvents } from "@domojs/mqtt";
 
 const log = logger('domojs:devices:aggregator')

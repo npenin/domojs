@@ -1,6 +1,7 @@
 import { allProperties, AsyncEventBus, AsyncSubscription, combineAsyncSubscriptions, IsomorphicBuffer, ObservableArray, Subscription, UrlTemplate } from "@akala/core";
 import { ClusterIds, ClusterMap } from "../clusters/index.js";
-import { Endpoint, EndpointProxy, MixedClusterMap } from "./Endpoint.js";
+import { Endpoint, MixedClusterMap } from "./Endpoint.js";
+import { EndpointProxy } from "./EndpointProxy.js";
 import { ClusterIdNames, ClusterInstance, Node } from "./index.js";
 import { MqttEvents } from "@domojs/mqtt";
 import { AggregatorEndpoint } from "./Aggregator.js";

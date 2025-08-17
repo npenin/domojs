@@ -1,10 +1,9 @@
-import { AsyncEventBus, base64, Deferred, ErrorWithStatus, EventOptions, fromAsyncEventBus, HttpStatusCode, IsomorphicBuffer, ObservableArray, Queue } from "@akala/core";
+import { AsyncEventBus, base64, Deferred, Queue } from "@akala/core";
 import { State } from "./$init.js";
 import { DynSecRequest, DynSecResponse } from '../../mosquitto-dynsec.js'
 import { SidecarConfiguration } from "@akala/sidecar";
 import { MqttEvents } from "@domojs/mqtt";
-// import { Commissionner, FabricClient } from "../../clients/index.js";
-import { Endpoint, EndpointProxy } from "../../clients/Endpoint.js";
+import { EndpointProxy } from "../../clients/EndpointProxy.js";
 
 const queue = new Queue<{ pubsub: AsyncEventBus<MqttEvents>, message: DynSecRequest, defer: Deferred<DynSecResponse> }>(async (e, next) =>
 {

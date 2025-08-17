@@ -3,13 +3,27 @@ import { Container } from "@akala/commands";
 import Configuration, { ProxyConfiguration } from "@akala/config";
 import app, { pubsub, Sidecar, SidecarConfiguration } from "@akala/sidecar";
 import { Container as pmContainer } from '@akala/pm'
-// import { Commissionner, FabricServer, FabricClient } from "../../clients/index.js";
 import { MqttClient, MqttEvents } from "@domojs/mqtt";
 import devices from '../../device-commands.js'
-import { Endpoint, EndpointProxy } from "../../clients/Endpoint.js";
-import Commissionnee from "../../clusters/Commissionnee.js";
-import { ClusterIds, ClusterMap } from "../../clusters/index.js";
+import { EndpointProxy } from "../../clients/EndpointProxy.js";
+import { ClusterMap, type Commissionnee } from "../../clusters/index.js";
 import { RootNode } from "../../clients/RootNode.js";
+import { ClusterInstance } from "../../clients/shared.js";
+import { ObservableObject } from "@akala/core";
+import registerAdapter from "./register-adapter.js";
+import { clusterId } from "../../clusters/Commissionnee.js";
+
+
+export function Commissionnee(state: State): ClusterInstance<Commissionnee>
+{
+    return new ObservableObject({
+        async registerCommand(name)
+        {
+            return [await registerAdapter.call(state, name)]
+        },
+        id: clusterId,
+    });
+}
 
 export interface State extends Sidecar<{}, MqttEvents>
 {

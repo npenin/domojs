@@ -26,7 +26,8 @@ export interface Node
 
 export * from '../../codegen/index.js';
 import { Gateway } from "./Gateway.js";
-import { Endpoint, EndpointProxy } from "./Endpoint.js";
+import { Endpoint } from "./Endpoint.js";
+import { EndpointProxy } from "./EndpointProxy.js";
 import { ClusterIds, ClusterMap, ClusterIdNames } from "../clusters/index.js";
 export { AggregatorEndpoint } from './Aggregator.js'
 
