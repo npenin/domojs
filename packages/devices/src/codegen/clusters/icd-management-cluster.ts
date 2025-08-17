@@ -1,3 +1,7 @@
+// This file is generated from icd-management-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:47.404Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum ClientTypeEnum {
@@ -31,8 +35,8 @@ export enum UserActiveModeTriggerBitmap {
 }
 
 export interface MonitoringRegistrationStruct {
-	CheckInNodeID: string,
-	MonitoredSubject: bigint,
+	CheckInNodeID:string,
+	MonitoredSubject:bigint,
 	ClientType:ClientTypeEnum,
 }
 
@@ -43,16 +47,16 @@ export interface MonitoringRegistrationStruct {
 export interface ICDManagement {
 id: 70;
 	attributes: {
-		readonly IdleModeDuration: number
-		readonly ActiveModeDuration: number
-		readonly ActiveModeThreshold: number
+		readonly IdleModeDuration:number
+		readonly ActiveModeDuration:number
+		readonly ActiveModeThreshold:number
 		readonly RegisteredClients?:readonly MonitoringRegistrationStruct[]
-		readonly ICDCounter?: number
-		readonly ClientsSupportedPerFabric?: number
+		readonly ICDCounter?:number
+		readonly ClientsSupportedPerFabric?:number
 		readonly UserActiveModeTriggerHint?:UserActiveModeTriggerBitmap
-		readonly UserActiveModeTriggerInstruction?: string
+		readonly UserActiveModeTriggerInstruction?:string
 		readonly OperatingMode?:OperatingModeEnum
-		readonly MaximumCheckInBackOff?: number
+		readonly MaximumCheckInBackOff?:number
 		/** Device supports attributes and commands for the Check-In Protocol support. */
 		readonly SupportsCheckInProtocolSupport: boolean
 		/** Device supports the user active mode trigger feature. */
@@ -66,19 +70,19 @@ id: 70;
 		/** Register a client to the end device */
 		RegisterClient?: {
 			inputparams: readonly [
-				CheckInNodeID:  string, 
-				MonitoredSubject:  bigint, 
+				CheckInNodeID: string, 
+				MonitoredSubject: bigint, 
 				Key: import ("@akala/core").IsomorphicBuffer, 
 				VerificationKey: import ("@akala/core").IsomorphicBuffer, 
 				ClientType: ClientTypeEnum, 
 			],
 			 outputparams: readonly [
-				ICDCounter:  number, ]
+				ICDCounter: number, ]
             }
 		/** Unregister a client from an end device */
 		UnregisterClient?: {
 			inputparams: readonly [
-				CheckInNodeID:  string, 
+				CheckInNodeID: string, 
 				VerificationKey: import ("@akala/core").IsomorphicBuffer, 
 			],
 			 outputparams: readonly []
@@ -86,12 +90,70 @@ id: 70;
 		/** Request the end device to stay in Active Mode for an additional ActiveModeThreshold */
 		StayActiveRequest?: {
 			inputparams: readonly [
-				StayActiveDuration:  number, 
+				StayActiveDuration: number, 
 			],
 			 outputparams: readonly [
-				PromisedActiveDuration:  number, ]
+				PromisedActiveDuration: number, ]
             }
 }
 	events: {
 	}
 }
+
+export const iCDManagement: Cluster<ICDManagement['attributes'], ICDManagement['commands'], ICDManagement['events']> = {
+id: 70,
+	attributes: {
+		IdleModeDuration:0,
+		ActiveModeDuration:0,
+		ActiveModeThreshold:0,
+		RegisteredClients:[],
+		ICDCounter:0,
+		ClientsSupportedPerFabric:0,
+		UserActiveModeTriggerHint:null,
+		UserActiveModeTriggerInstruction:null,
+		OperatingMode:null,
+		MaximumCheckInBackOff:0,
+		/** Device supports attributes and commands for the Check-In Protocol support. */
+	SupportsCheckInProtocolSupport: false,
+		/** Device supports the user active mode trigger feature. */
+	SupportsUserActiveModeTrigger: false,
+		/** Device supports operating as a Long Idle Time ICD. */
+	SupportsLongIdleTimeSupport: false,
+		/** Device supports dynamic switching from SIT to LIT operating modes. */
+	SupportsDynamicSitLitSupport: false,
+},
+	commands: {
+		/** Register a client to the end device */
+		RegisterClient: {
+			inputparams: [
+				null, 
+				null, 
+				null, 
+				null, 
+				null, 
+			],
+			 outputparams: [
+				0, ]
+            },
+		/** Unregister a client from an end device */
+		UnregisterClient: {
+			inputparams: [
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Request the end device to stay in Active Mode for an additional ActiveModeThreshold */
+		StayActiveRequest: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: [
+				0, ]
+            },
+},
+	events: {
+	}
+}
+
+export default iCDManagement;

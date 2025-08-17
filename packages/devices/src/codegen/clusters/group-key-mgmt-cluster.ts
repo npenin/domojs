@@ -1,3 +1,7 @@
+// This file is generated from group-key-mgmt-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:47.358Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum GroupKeySecurityPolicyEnum {
@@ -6,25 +10,25 @@ export enum GroupKeySecurityPolicyEnum {
 }
 
 export interface GroupKeyMapStruct {
-	GroupId: number,
-	GroupKeySetID: number,
+	GroupId:number,
+	GroupKeySetID:number,
 }
 
 export interface GroupInfoMapStruct {
-	GroupId: number,
-	Endpoints: number,
-	GroupName?: string,
+	GroupId:number,
+	Endpoints:readonly number[],
+	GroupName?:string,
 }
 
 export interface GroupKeySetStruct {
-	GroupKeySetID: number,
+	GroupKeySetID:number,
 	GroupKeySecurityPolicy:GroupKeySecurityPolicyEnum,
 	EpochKey0:import ("@akala/core").IsomorphicBuffer,
-	EpochStartTime0: number,
+	EpochStartTime0:number,
 	EpochKey1:import ("@akala/core").IsomorphicBuffer,
-	EpochStartTime1: number,
+	EpochStartTime1:number,
 	EpochKey2:import ("@akala/core").IsomorphicBuffer,
-	EpochStartTime2: number,
+	EpochStartTime2:number,
 }
 
 /**
@@ -36,8 +40,8 @@ id: 63;
 	attributes: {
 		GroupKeyMap?:readonly GroupKeyMapStruct[]
 		readonly GroupTable:readonly GroupInfoMapStruct[]
-		readonly MaxGroupsPerFabric: number
-		readonly MaxGroupKeysPerFabric: number
+		readonly MaxGroupsPerFabric:number
+		readonly MaxGroupKeysPerFabric:number
 		/** The ability to support CacheAndSync security policy and MCSP. */
 		readonly SupportsCacheAndSync: boolean
 }
@@ -52,7 +56,7 @@ id: 63;
 		/** Read the keys for a given key set id. */
 		KeySetRead: {
 			inputparams: readonly [
-				GroupKeySetID:  number, 
+				GroupKeySetID: number, 
 			],
 			 outputparams: readonly [
 				GroupKeySet: GroupKeySetStruct, ]
@@ -60,7 +64,7 @@ id: 63;
 		/** Revoke a Root Key from a Group */
 		KeySetRemove: {
 			inputparams: readonly [
-				GroupKeySetID:  number, 
+				GroupKeySetID: number, 
 			],
 			 outputparams: readonly []
             }
@@ -69,9 +73,56 @@ id: 63;
 			inputparams: readonly [
 			],
 			 outputparams: readonly [
-				GroupKeySetIDs:  number[], ]
+				GroupKeySetIDs: readonly number[][], ]
             }
 }
 	events: {
 	}
 }
+
+export const groupKeyManagement: Cluster<GroupKeyManagement['attributes'], GroupKeyManagement['commands'], GroupKeyManagement['events']> = {
+id: 63,
+	attributes: {
+		GroupKeyMap:[],
+		GroupTable:[],
+		MaxGroupsPerFabric:0,
+		MaxGroupKeysPerFabric:0,
+		/** The ability to support CacheAndSync security policy and MCSP. */
+	SupportsCacheAndSync: false,
+},
+	commands: {
+		/** Write a new set of keys for the given key set id. */
+		KeySetWrite: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Read the keys for a given key set id. */
+		KeySetRead: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: [
+				null, ]
+            },
+		/** Revoke a Root Key from a Group */
+		KeySetRemove: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+		/** Return the list of Group Key Sets associated with the accessing fabric */
+		KeySetReadAllIndices: {
+			inputparams: [
+			],
+			 outputparams: [
+				[], ]
+            },
+},
+	events: {
+	}
+}
+
+export default groupKeyManagement;

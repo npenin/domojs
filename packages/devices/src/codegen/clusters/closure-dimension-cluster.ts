@@ -1,3 +1,7 @@
+// This file is generated from closure-dimension-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.252Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum ClosureUnitEnum {
@@ -67,19 +71,19 @@ export enum LatchControlModesBitmap {
 }
 
 export interface DimensionStateStruct {
-	Position?: number,
+	Position?:number,
 	Latch?:boolean,
 	Speed?:import("./global-enums.js").ThreeLevelAutoEnum,
 }
 
 export interface RangePercent100thsStruct {
-	Min: number,
-	Max: number,
+	Min:number,
+	Max:number,
 }
 
 export interface UnitRangeStruct {
-	Min: number,
-	Max: number,
+	Min:number,
+	Max:number,
 }
 
 /**
@@ -91,8 +95,8 @@ id: 261;
 	attributes: {
 		readonly CurrentState?:DimensionStateStruct
 		readonly TargetState?:DimensionStateStruct
-		readonly Resolution: number
-		readonly StepValue: number
+		readonly Resolution:number
+		readonly StepValue:number
 		readonly Unit:ClosureUnitEnum
 		readonly UnitRange?:UnitRangeStruct
 		readonly LimitRange:RangePercent100thsStruct
@@ -122,7 +126,7 @@ id: 261;
 		/** This command is used to move a dimension of the closure to a target position. */
 		SetTarget: {
 			inputparams: readonly [
-				Position:  number, 
+				Position: number, 
 				Latch: boolean, 
 				Speed: import("./global-enums.js").ThreeLevelAutoEnum, 
 			],
@@ -132,7 +136,7 @@ id: 261;
 		Step: {
 			inputparams: readonly [
 				Direction: StepDirectionEnum, 
-				NumberOfSteps:  number, 
+				NumberOfSteps: number, 
 				Speed: import("./global-enums.js").ThreeLevelAutoEnum, 
 			],
 			 outputparams: readonly []
@@ -141,3 +145,61 @@ id: 261;
 	events: {
 	}
 }
+
+export const closureDimension: Cluster<ClosureDimension['attributes'], ClosureDimension['commands'], ClosureDimension['events']> = {
+id: 261,
+	attributes: {
+		CurrentState:null,
+		TargetState:null,
+		Resolution:0,
+		StepValue:0,
+		Unit:null,
+		UnitRange:null,
+		LimitRange:null,
+		TranslationDirection:null,
+		RotationAxis:null,
+		Overflow:null,
+		ModulationType:null,
+		LatchControlModes:null,
+		/** Supports Positioning in the range from 0.00% to 100.00% */
+	SupportsPositioning: false,
+		/** Supports a latch to secure the closure to a position or state */
+	SupportsMotionLatching: false,
+		/** Specifies the relevant unit and range for this dimension (mm, degrees etc.) */
+	SupportsUnit: false,
+		/** Supports limitation of the operating range */
+	SupportsLimitation: false,
+		/** Supports speed motion throttling. */
+	SupportsSpeed: false,
+		/** Drives a translation motion */
+	SupportsTranslation: false,
+		/** Drives a rotation motion */
+	SupportsRotation: false,
+		/** Modulates a particular flow level (light, air, privacy ...) */
+	SupportsModulation: false,
+},
+	commands: {
+		/** This command is used to move a dimension of the closure to a target position. */
+		SetTarget: {
+			inputparams: [
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command is used to move a dimension of the closure to a target position by a number of steps. */
+		Step: {
+			inputparams: [
+				null, 
+				0, 
+				null, 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+	}
+}
+
+export default closureDimension;

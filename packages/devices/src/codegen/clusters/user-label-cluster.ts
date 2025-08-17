@@ -1,3 +1,7 @@
+// This file is generated from user-label-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.997Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 /**
@@ -14,3 +18,16 @@ id: 65;
 	events: {
 	}
 }
+
+export const userLabel: Cluster<UserLabel['attributes'], UserLabel['commands'], UserLabel['events']> = {
+id: 65,
+	attributes: {
+		LabelList:[],
+},
+	commands: {
+},
+	events: {
+	}
+}
+
+export default userLabel;

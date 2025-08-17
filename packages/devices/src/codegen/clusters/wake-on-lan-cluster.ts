@@ -1,3 +1,7 @@
+// This file is generated from wake-on-lan-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:49.038Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 /**
@@ -7,7 +11,7 @@
 export interface WakeOnLAN {
 id: 1283;
 	attributes: {
-		readonly MACAddress?: string
+		readonly MACAddress?:string
 		readonly LinkLocalAddress?:import ("@akala/core").IsomorphicBuffer
 }
 	commands: {
@@ -15,3 +19,17 @@ id: 1283;
 	events: {
 	}
 }
+
+export const wakeOnLAN: Cluster<WakeOnLAN['attributes'], WakeOnLAN['commands'], WakeOnLAN['events']> = {
+id: 1283,
+	attributes: {
+		MACAddress:null,
+		LinkLocalAddress:null,
+},
+	commands: {
+},
+	events: {
+	}
+}
+
+export default wakeOnLAN;

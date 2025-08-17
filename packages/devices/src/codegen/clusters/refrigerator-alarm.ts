@@ -1,3 +1,7 @@
+// This file is generated from refrigerator-alarm.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.408Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum AlarmBitmap {
@@ -26,3 +30,24 @@ id: 87;
 			Mask: AlarmBitmap, ];
 	}
 }
+
+export const refrigeratorAlarm: Cluster<RefrigeratorAlarm['attributes'], RefrigeratorAlarm['commands'], RefrigeratorAlarm['events']> = {
+id: 87,
+	attributes: {
+		Mask:null,
+		State:null,
+		Supported:null,
+},
+	commands: {
+},
+	events: {
+		Notify: [
+			
+			null, 
+			null, 
+			null, 
+			null, ],
+	}
+}
+
+export default refrigeratorAlarm;

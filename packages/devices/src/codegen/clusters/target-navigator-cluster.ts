@@ -1,3 +1,7 @@
+// This file is generated from target-navigator-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.679Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum StatusEnum {
@@ -7,8 +11,8 @@ export enum StatusEnum {
 }
 
 export interface TargetInfoStruct {
-	Identifier: number,
-	Name: string,
+	Identifier:number,
+	Name:string,
 }
 
 /**
@@ -19,25 +23,54 @@ export interface TargetNavigator {
 id: 1285;
 	attributes: {
 		readonly TargetList:readonly TargetInfoStruct[]
-		readonly CurrentTarget?: number
+		readonly CurrentTarget?:number
 }
 	commands: {
 		/** Upon receipt, this SHALL navigation the UX to the target identified. */
 		NavigateTarget: {
 			inputparams: readonly [
-				Target:  number, 
-				Data:  string, 
+				Target: number, 
+				Data: string, 
 			],
 			 outputparams: readonly [
 				Status: StatusEnum, 
-				Data:  string, ]
+				Data: string, ]
             }
 }
 	events: {
 		TargetUpdated: [
 			
-			TargetList: TargetInfoStruct, 
-			CurrentTarget:  number, 
+			TargetList: readonly TargetInfoStruct[], 
+			CurrentTarget: number, 
 			Data: import ("@akala/core").IsomorphicBuffer, ];
 	}
 }
+
+export const targetNavigator: Cluster<TargetNavigator['attributes'], TargetNavigator['commands'], TargetNavigator['events']> = {
+id: 1285,
+	attributes: {
+		TargetList:[],
+		CurrentTarget:0,
+},
+	commands: {
+		/** Upon receipt, this SHALL navigation the UX to the target identified. */
+		NavigateTarget: {
+			inputparams: [
+				0, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				null, ]
+            },
+},
+	events: {
+		TargetUpdated: [
+			
+			[], 
+			0, 
+			null, ],
+	}
+}
+
+export default targetNavigator;

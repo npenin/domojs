@@ -1,3 +1,7 @@
+// This file is generated from messages-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:47.771Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum FutureMessagePreferenceEnum {
@@ -27,15 +31,15 @@ export interface MessageStruct {
 	MessageID:import ("@akala/core").IsomorphicBuffer,
 	Priority:MessagePriorityEnum,
 	MessageControl:MessageControlBitmap,
-	StartTime: number,
-	Duration: bigint,
-	MessageText: string,
-	Responses?:MessageResponseOptionStruct,
+	StartTime:number,
+	Duration:bigint,
+	MessageText:string,
+	Responses?:readonly MessageResponseOptionStruct[],
 }
 
 export interface MessageResponseOptionStruct {
-	MessageResponseID?: number,
-	Label?: string,
+	MessageResponseID?:number,
+	Label?:string,
 }
 
 /**
@@ -59,17 +63,17 @@ id: 151;
 				MessageID: import ("@akala/core").IsomorphicBuffer, 
 				Priority: MessagePriorityEnum, 
 				MessageControl: MessageControlBitmap, 
-				StartTime:  number, 
-				Duration:  bigint, 
-				MessageText:  string, 
-				Responses: MessageResponseOptionStruct[], 
+				StartTime: number, 
+				Duration: bigint, 
+				MessageText: string, 
+				Responses: readonly MessageResponseOptionStruct[][], 
 			],
 			 outputparams: readonly []
             }
 		/** Command for cancelling message present requests */
 		CancelMessagesRequest: {
 			inputparams: readonly [
-				MessageIDs: import ("@akala/core").IsomorphicBuffer[], 
+				MessageIDs: readonly import ("@akala/core").IsomorphicBuffer[][], 
 			],
 			 outputparams: readonly []
             }
@@ -84,8 +88,58 @@ id: 151;
 		MessageComplete: [
 			
 			MessageID: import ("@akala/core").IsomorphicBuffer, 
-			ResponseID:  number, 
-			Reply:  string, 
+			ResponseID: number, 
+			Reply: string, 
 			FutureMessagesPreference: FutureMessagePreferenceEnum, ];
 	}
 }
+
+export const messages: Cluster<Messages['attributes'], Messages['commands'], Messages['events']> = {
+id: 151,
+	attributes: {
+		Messages:[],
+		ActiveMessageIDs:[],
+	SupportsReceivedConfirmation: false,
+	SupportsConfirmationResponse: false,
+	SupportsConfirmationReply: false,
+	SupportsProtectedMessages: false,
+},
+	commands: {
+		/** Command for requesting messages be presented */
+		PresentMessagesRequest: {
+			inputparams: [
+				null, 
+				null, 
+				null, 
+				0, 
+				null, 
+				null, 
+				[], 
+			],
+			 outputparams: []
+            },
+		/** Command for cancelling message present requests */
+		CancelMessagesRequest: {
+			inputparams: [
+				[], 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+		MessageQueued: [
+			
+			null, ],
+		MessagePresented: [
+			
+			null, ],
+		MessageComplete: [
+			
+			null, 
+			0, 
+			null, 
+			null, ],
+	}
+}
+
+export default messages;

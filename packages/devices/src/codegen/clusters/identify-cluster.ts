@@ -1,3 +1,7 @@
+// This file is generated from identify-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:47.430Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum IdentifyTypeEnum {
@@ -29,14 +33,14 @@ export enum EffectVariantEnum {
 export interface Identify {
 id: 3;
 	attributes: {
-		IdentifyTime: number
+		IdentifyTime:number
 		readonly IdentifyType:IdentifyTypeEnum
 }
 	commands: {
 		/** This command starts or stops the receiving device identifying itself. */
 		Identify: {
 			inputparams: readonly [
-				IdentifyTime:  number, 
+				IdentifyTime: number, 
 			],
 			 outputparams: readonly []
             }
@@ -52,3 +56,32 @@ id: 3;
 	events: {
 	}
 }
+
+export const identify: Cluster<Identify['attributes'], Identify['commands'], Identify['events']> = {
+id: 3,
+	attributes: {
+		IdentifyTime:0,
+		IdentifyType:null,
+},
+	commands: {
+		/** This command starts or stops the receiving device identifying itself. */
+		Identify: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command allows the support of feedback to the user, such as a certain light effect. */
+		TriggerEffect: {
+			inputparams: [
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+	}
+}
+
+export default identify;

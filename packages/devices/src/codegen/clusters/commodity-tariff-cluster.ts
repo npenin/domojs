@@ -1,3 +1,7 @@
+// This file is generated from commodity-tariff-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.377Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum AuxiliaryLoadSettingEnum {
@@ -45,69 +49,69 @@ export enum DayPatternDayOfWeekBitmap {
 }
 
 export interface AuxiliaryLoadSwitchSettingsStruct {
-	Number: number,
+	Number:number,
 	RequiredState:AuxiliaryLoadSettingEnum,
 }
 
 export interface CalendarPeriodStruct {
-	StartDate: number,
-	DayPatternIDs: number,
+	StartDate:number,
+	DayPatternIDs:readonly number[],
 }
 
 export interface DayEntryStruct {
-	DayEntryID: number,
-	StartTime: number,
-	Duration?: number,
-	RandomizationOffset?: number,
+	DayEntryID:number,
+	StartTime:number,
+	Duration?:number,
+	RandomizationOffset?:number,
 	RandomizationType?:DayEntryRandomizationTypeEnum,
 }
 
 export interface DayPatternStruct {
-	DayPatternID: number,
+	DayPatternID:number,
 	DaysOfWeek:DayPatternDayOfWeekBitmap,
-	DayEntryIDs: number,
+	DayEntryIDs:readonly number[],
 }
 
 export interface DayStruct {
-	Date: number,
+	Date:number,
 	DayType:DayTypeEnum,
-	DayEntryIDs: number,
+	DayEntryIDs:readonly number[],
 }
 
 export interface PeakPeriodStruct {
 	Severity:PeakPeriodSeverityEnum,
-	PeakPeriod: number,
+	PeakPeriod:number,
 }
 
 export interface TariffComponentStruct {
-	TariffComponentID: number,
+	TariffComponentID:number,
 	Price?:TariffPriceStruct,
 	FriendlyCredit?:boolean,
 	AuxiliaryLoad?:AuxiliaryLoadSwitchSettingsStruct,
 	PeakPeriod?:PeakPeriodStruct,
 	PowerThreshold?:import("./global-structs.js").PowerThresholdStruct,
-	Threshold: number,
-	Label?: string,
+	Threshold:bigint,
+	Label?:string,
 	Predicted?:boolean,
 }
 
 export interface TariffInformationStruct {
-	TariffLabel: string,
-	ProviderName: string,
+	TariffLabel:string,
+	ProviderName:string,
 	Currency?:import("./global-structs.js").CurrencyStruct,
 	BlockMode:BlockModeEnum,
 }
 
 export interface TariffPeriodStruct {
-	Label: string,
-	DayEntryIDs: number,
-	TariffComponentIDs: number,
+	Label:string,
+	DayEntryIDs:readonly number[],
+	TariffComponentIDs:readonly number[],
 }
 
 export interface TariffPriceStruct {
 	PriceType:import("./global-enums.js").TariffPriceTypeEnum,
-	Price?: number,
-	PriceLevel?: number,
+	Price?:number,
+	PriceLevel?:number,
 }
 
 /**
@@ -119,7 +123,7 @@ id: 1792;
 	attributes: {
 		readonly TariffInfo?:TariffInformationStruct
 		readonly TariffUnit?:import("./global-enums.js").TariffUnitEnum
-		readonly StartDate?: number
+		readonly StartDate?:number
 		readonly DayEntries?:readonly DayEntryStruct[]
 		readonly DayPatterns?:readonly DayPatternStruct[]
 		readonly CalendarPeriods?:readonly CalendarPeriodStruct[]
@@ -127,14 +131,14 @@ id: 1792;
 		readonly CurrentDay?:DayStruct
 		readonly NextDay?:DayStruct
 		readonly CurrentDayEntry?:DayEntryStruct
-		readonly CurrentDayEntryDate?: number
+		readonly CurrentDayEntryDate?:number
 		readonly NextDayEntry?:DayEntryStruct
-		readonly NextDayEntryDate?: number
+		readonly NextDayEntryDate?:number
 		readonly TariffComponents?:readonly TariffComponentStruct[]
 		readonly TariffPeriods?:readonly TariffPeriodStruct[]
 		readonly CurrentTariffComponents?:readonly TariffComponentStruct[]
 		readonly NextTariffComponents?:readonly TariffComponentStruct[]
-		readonly DefaultRandomizationOffset?: number
+		readonly DefaultRandomizationOffset?:number
 		readonly DefaultRandomizationType?:DayEntryRandomizationTypeEnum
 		/** Supports information about commodity pricing */
 		readonly SupportsPricing: boolean
@@ -153,17 +157,17 @@ id: 1792;
 		/** The GetTariffComponent command allows a client to request information for a tariff component identifier that may no longer be available in the TariffPeriods attributes. */
 		GetTariffComponent: {
 			inputparams: readonly [
-				TariffComponentID:  number, 
+				TariffComponentID: number, 
 			],
 			 outputparams: readonly [
-				Label:  string, 
-				DayEntryIDs:  number[], 
+				Label: string, 
+				DayEntryIDs: readonly number[][], 
 				TariffComponent: TariffComponentStruct, ]
             }
 		/** The GetDayEntry command allows a client to request information for a calendar day entry identifier that may no longer be available in the CalendarPeriods or IndividualDays attributes. */
 		GetDayEntry: {
 			inputparams: readonly [
-				DayEntryID:  number, 
+				DayEntryID: number, 
 			],
 			 outputparams: readonly [
 				DayEntry: DayEntryStruct, ]
@@ -172,3 +176,64 @@ id: 1792;
 	events: {
 	}
 }
+
+export const commodityTariff: Cluster<CommodityTariff['attributes'], CommodityTariff['commands'], CommodityTariff['events']> = {
+id: 1792,
+	attributes: {
+		TariffInfo:null,
+		TariffUnit:null,
+		StartDate:0,
+		DayEntries:[],
+		DayPatterns:[],
+		CalendarPeriods:[],
+		IndividualDays:[],
+		CurrentDay:null,
+		NextDay:null,
+		CurrentDayEntry:null,
+		CurrentDayEntryDate:0,
+		NextDayEntry:null,
+		NextDayEntryDate:0,
+		TariffComponents:[],
+		TariffPeriods:[],
+		CurrentTariffComponents:[],
+		NextTariffComponents:[],
+		DefaultRandomizationOffset:0,
+		DefaultRandomizationType:null,
+		/** Supports information about commodity pricing */
+	SupportsPricing: false,
+		/** Supports information about when friendly credit periods begin and end */
+	SupportsFriendlyCredit: false,
+		/** Supports information about when auxiliary loads should be enabled or disabled */
+	SupportsAuxiliaryLoad: false,
+		/** Supports information about peak periods */
+	SupportsPeakPeriod: false,
+		/** Supports information about power threshold */
+	SupportsPowerThreshold: false,
+		/** Supports information about randomization of calendar day entries */
+	SupportsRandomization: false,
+},
+	commands: {
+		/** The GetTariffComponent command allows a client to request information for a tariff component identifier that may no longer be available in the TariffPeriods attributes. */
+		GetTariffComponent: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: [
+				null, 
+				[], 
+				null, ]
+            },
+		/** The GetDayEntry command allows a client to request information for a calendar day entry identifier that may no longer be available in the CalendarPeriods or IndividualDays attributes. */
+		GetDayEntry: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: [
+				null, ]
+            },
+},
+	events: {
+	}
+}
+
+export default commodityTariff;

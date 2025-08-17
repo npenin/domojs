@@ -1,3 +1,7 @@
+// This file is generated from bridged-device-basic-information-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.068Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum ProductFinishEnum {
@@ -48,24 +52,24 @@ export interface ProductAppearanceStruct {
 export interface BridgedDeviceBasicInformation {
 id: 57;
 	attributes: {
-		readonly VendorName?: string
-		readonly VendorID?: number
-		readonly ProductName?: string
-		readonly ProductID?: number
-		NodeLabel?: string
-		readonly HardwareVersion?: number
-		readonly HardwareVersionString?: string
-		readonly SoftwareVersion?: number
-		readonly SoftwareVersionString?: string
-		readonly ManufacturingDate?: string
-		readonly PartNumber?: string
-		readonly ProductURL?: string
-		readonly ProductLabel?: string
-		readonly SerialNumber?: string
+		readonly VendorName?:string
+		readonly VendorID?:number
+		readonly ProductName?:string
+		readonly ProductID?:number
+		NodeLabel?:string
+		readonly HardwareVersion?:number
+		readonly HardwareVersionString?:string
+		readonly SoftwareVersion?:number
+		readonly SoftwareVersionString?:string
+		readonly ManufacturingDate?:string
+		readonly PartNumber?:string
+		readonly ProductURL?:string
+		readonly ProductLabel?:string
+		readonly SerialNumber?:string
 		readonly Reachable:boolean
-		readonly UniqueID: string
+		readonly UniqueID:string
 		readonly ProductAppearance?:ProductAppearanceStruct
-		readonly ConfigurationVersion?: number
+		readonly ConfigurationVersion?:number
 		/** Support bridged ICDs. */
 		readonly SupportsBridgedICDSupport: boolean
 }
@@ -73,8 +77,8 @@ id: 57;
 		/** Upon receipt, the server SHALL attempt to keep the bridged device active for the duration specified by the command, when the device is next active. */
 		KeepActive?: {
 			inputparams: readonly [
-				StayActiveDuration:  number, 
-				TimeoutMs:  number, 
+				StayActiveDuration: number, 
+				TimeoutMs: number, 
 			],
 			 outputparams: readonly []
             }
@@ -82,7 +86,7 @@ id: 57;
 	events: {
 		StartUp?: [
 			
-			SoftwareVersion:  number, ];
+			SoftwareVersion: number, ];
 		ShutDown?: [
 			];
 		Leave?: [
@@ -92,6 +96,59 @@ id: 57;
 			ReachableNewValue: boolean, ];
 		ActiveChanged?: [
 			
-			PromisedActiveDuration:  number, ];
+			PromisedActiveDuration: number, ];
 	}
 }
+
+export const bridgedDeviceBasicInformation: Cluster<BridgedDeviceBasicInformation['attributes'], BridgedDeviceBasicInformation['commands'], BridgedDeviceBasicInformation['events']> = {
+id: 57,
+	attributes: {
+		VendorName:null,
+		VendorID:0,
+		ProductName:null,
+		ProductID:0,
+		NodeLabel:null,
+		HardwareVersion:0,
+		HardwareVersionString:null,
+		SoftwareVersion:0,
+		SoftwareVersionString:null,
+		ManufacturingDate:null,
+		PartNumber:null,
+		ProductURL:null,
+		ProductLabel:null,
+		SerialNumber:null,
+		Reachable:null,
+		UniqueID:null,
+		ProductAppearance:null,
+		ConfigurationVersion:0,
+		/** Support bridged ICDs. */
+	SupportsBridgedICDSupport: false,
+},
+	commands: {
+		/** Upon receipt, the server SHALL attempt to keep the bridged device active for the duration specified by the command, when the device is next active. */
+		KeepActive: {
+			inputparams: [
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+		StartUp: [
+			
+			0, ],
+		ShutDown: [
+			],
+		Leave: [
+			],
+		ReachableChanged: [
+			
+			null, ],
+		ActiveChanged: [
+			
+			0, ],
+	}
+}
+
+export default bridgedDeviceBasicInformation;

@@ -1,3 +1,7 @@
+// This file is generated from switch-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.661Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 /**
@@ -9,9 +13,9 @@ Interactions with the switch device are exposed as attributes (for the latching 
 export interface Switch {
 id: 59;
 	attributes: {
-		readonly NumberOfPositions: number
-		readonly CurrentPosition: number
-		readonly MultiPressMax: number
+		readonly NumberOfPositions:number
+		readonly CurrentPosition:number
+		readonly MultiPressMax:number
 		/** Switch is latching */
 		readonly SupportsLatchingSwitch: boolean
 		/** Switch is momentary */
@@ -30,26 +34,76 @@ id: 59;
 	events: {
 		SwitchLatched: [
 			
-			NewPosition:  number, ];
+			NewPosition: number, ];
 		InitialPress: [
 			
-			NewPosition:  number, ];
+			NewPosition: number, ];
 		LongPress: [
 			
-			NewPosition:  number, ];
+			NewPosition: number, ];
 		ShortRelease: [
 			
-			PreviousPosition:  number, ];
+			PreviousPosition: number, ];
 		LongRelease: [
 			
-			PreviousPosition:  number, ];
+			PreviousPosition: number, ];
 		MultiPressOngoing: [
 			
-			NewPosition:  number, 
-			CurrentNumberOfPressesCounted:  number, ];
+			NewPosition: number, 
+			CurrentNumberOfPressesCounted: number, ];
 		MultiPressComplete: [
 			
-			PreviousPosition:  number, 
-			TotalNumberOfPressesCounted:  number, ];
+			PreviousPosition: number, 
+			TotalNumberOfPressesCounted: number, ];
 	}
 }
+
+export const switch_: Cluster<Switch['attributes'], Switch['commands'], Switch['events']> = {
+id: 59,
+	attributes: {
+		NumberOfPositions:0,
+		CurrentPosition:0,
+		MultiPressMax:0,
+		/** Switch is latching */
+	SupportsLatchingSwitch: false,
+		/** Switch is momentary */
+	SupportsMomentarySwitch: false,
+		/** Switch supports release events generation */
+	SupportsMomentarySwitchRelease: false,
+		/** Switch supports long press detection */
+	SupportsMomentarySwitchLongPress: false,
+		/** Switch supports multi-press detection */
+	SupportsMomentarySwitchMultiPress: false,
+		/** Switch is momentary, targeted at specific user actions (focus on multi-press and optionally long press) with a reduced event generation scheme */
+	SupportsActionSwitch: false,
+},
+	commands: {
+},
+	events: {
+		SwitchLatched: [
+			
+			0, ],
+		InitialPress: [
+			
+			0, ],
+		LongPress: [
+			
+			0, ],
+		ShortRelease: [
+			
+			0, ],
+		LongRelease: [
+			
+			0, ],
+		MultiPressOngoing: [
+			
+			0, 
+			0, ],
+		MultiPressComplete: [
+			
+			0, 
+			0, ],
+	}
+}
+
+export default switch_;

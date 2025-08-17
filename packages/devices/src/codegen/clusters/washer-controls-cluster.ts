@@ -1,3 +1,7 @@
+// This file is generated from washer-controls-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:49.060Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum NumberOfRinsesEnum {
@@ -14,8 +18,8 @@ export enum NumberOfRinsesEnum {
 export interface LaundryWasherControls {
 id: 83;
 	attributes: {
-		readonly SpinSpeeds?:readonly  string[]
-		SpinSpeedCurrent?: number
+		readonly SpinSpeeds?:readonly string[]
+		SpinSpeedCurrent?:number
 		NumberOfRinses?:NumberOfRinsesEnum
 		readonly SupportedRinses?:readonly NumberOfRinsesEnum[]
 		/** Multiple spin speeds supported */
@@ -28,3 +32,23 @@ id: 83;
 	events: {
 	}
 }
+
+export const laundryWasherControls: Cluster<LaundryWasherControls['attributes'], LaundryWasherControls['commands'], LaundryWasherControls['events']> = {
+id: 83,
+	attributes: {
+		SpinSpeeds:[],
+		SpinSpeedCurrent:0,
+		NumberOfRinses:null,
+		SupportedRinses:[],
+		/** Multiple spin speeds supported */
+	SupportsSpin: false,
+		/** Multiple rinse cycles supported */
+	SupportsRinse: false,
+},
+	commands: {
+},
+	events: {
+	}
+}
+
+export default laundryWasherControls;

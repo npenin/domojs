@@ -1,3 +1,7 @@
+// This file is generated from rvc-run-mode-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.507Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum StatusCode {
@@ -35,7 +39,7 @@ export interface RVCRunMode {
 id: 84;
 	attributes: {
 		readonly SupportedModes:readonly import("./mode-base-cluster.js").ModeOptionStruct[]
-		readonly CurrentMode: number
+		readonly CurrentMode:number
 		/** Cluster supports changing run modes from non-Idle states */
 		readonly SupportsDirectModeChange: boolean
 }
@@ -44,13 +48,39 @@ id: 84;
         On receipt of this command the device SHALL respond with a ChangeToModeResponse command. */
 		ChangeToMode: {
 			inputparams: readonly [
-				NewMode:  number, 
+				NewMode: number, 
 			],
 			 outputparams: readonly [
-				Status:  number, 
-				StatusText:  string, ]
+				Status: number, 
+				StatusText: string, ]
             }
 }
 	events: {
 	}
 }
+
+export const rVCRunMode: Cluster<RVCRunMode['attributes'], RVCRunMode['commands'], RVCRunMode['events']> = {
+id: 84,
+	attributes: {
+		SupportedModes:[],
+		CurrentMode:0,
+		/** Cluster supports changing run modes from non-Idle states */
+	SupportsDirectModeChange: false,
+},
+	commands: {
+		/** This command is used to change device modes.
+        On receipt of this command the device SHALL respond with a ChangeToModeResponse command. */
+		ChangeToMode: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: [
+				0, 
+				null, ]
+            },
+},
+	events: {
+	}
+}
+
+export default rVCRunMode;

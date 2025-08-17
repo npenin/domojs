@@ -1,3 +1,7 @@
+// This file is generated from keypad-input-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:47.526Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum StatusEnum {
@@ -122,3 +126,29 @@ id: 1289;
 	events: {
 	}
 }
+
+export const keypadInput: Cluster<KeypadInput['attributes'], KeypadInput['commands'], KeypadInput['events']> = {
+id: 1289,
+	attributes: {
+		/** Supports UP, DOWN, LEFT, RIGHT, SELECT, BACK, EXIT, MENU */
+	SupportsNavigationKeyCodes: false,
+		/** Supports CEC keys 0x0A (Settings) and 0x09 (Home) */
+	SupportsLocationKeys: false,
+		/** Supports numeric input 0..9 */
+	SupportsNumberKeys: false,
+},
+	commands: {
+		/** Upon receipt, this SHALL process a keycode as input to the media device. */
+		SendKey: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: [
+				null, ]
+            },
+},
+	events: {
+	}
+}
+
+export default keypadInput;

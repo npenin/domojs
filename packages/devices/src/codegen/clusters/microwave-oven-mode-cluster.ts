@@ -1,3 +1,7 @@
+// This file is generated from microwave-oven-mode-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:47.826Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum ModeTag {
@@ -23,10 +27,24 @@ export interface MicrowaveOvenMode {
 id: 94;
 	attributes: {
 		readonly SupportedModes:readonly import("./mode-base-cluster.js").ModeOptionStruct[]
-		readonly CurrentMode: number
+		readonly CurrentMode:number
 }
 	commands: {
 }
 	events: {
 	}
 }
+
+export const microwaveOvenMode: Cluster<MicrowaveOvenMode['attributes'], MicrowaveOvenMode['commands'], MicrowaveOvenMode['events']> = {
+id: 94,
+	attributes: {
+		SupportedModes:[],
+		CurrentMode:0,
+},
+	commands: {
+},
+	events: {
+	}
+}
+
+export default microwaveOvenMode;

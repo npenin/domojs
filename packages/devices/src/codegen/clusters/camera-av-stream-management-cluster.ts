@@ -1,3 +1,7 @@
+// This file is generated from camera-av-stream-management-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.111Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum AudioCodecEnum {
@@ -29,45 +33,45 @@ export enum VideoCodecEnum {
 }
 
 export interface AudioCapabilitiesStruct {
-	MaxNumberOfChannels: number,
-	SupportedCodecs:AudioCodecEnum,
-	SupportedSampleRates: number,
-	SupportedBitDepths: number,
+	MaxNumberOfChannels:number,
+	SupportedCodecs:readonly AudioCodecEnum[],
+	SupportedSampleRates:readonly number[],
+	SupportedBitDepths:readonly number[],
 }
 
 export interface AudioStreamStruct {
-	AudioStreamID: number,
+	AudioStreamID:number,
 	StreamUsage:import("./global-enums.js").StreamUsageEnum,
 	AudioCodec:AudioCodecEnum,
-	ChannelCount: number,
-	SampleRate: number,
-	BitRate: number,
-	BitDepth: number,
-	ReferenceCount: number,
+	ChannelCount:number,
+	SampleRate:number,
+	BitRate:number,
+	BitDepth:number,
+	ReferenceCount:number,
 }
 
 export interface RateDistortionTradeOffPointsStruct {
 	Codec:VideoCodecEnum,
 	Resolution:VideoResolutionStruct,
-	MinBitRate: number,
+	MinBitRate:number,
 }
 
 export interface SnapshotCapabilitiesStruct {
 	Resolution:VideoResolutionStruct,
-	MaxFrameRate: number,
+	MaxFrameRate:number,
 	ImageCodec:ImageCodecEnum,
 	RequiresEncodedPixels:boolean,
 	RequiresHardwareEncoder?:boolean,
 }
 
 export interface SnapshotStreamStruct {
-	SnapshotStreamID: number,
+	SnapshotStreamID:number,
 	ImageCodec:ImageCodecEnum,
-	FrameRate: number,
+	FrameRate:number,
 	MinResolution:VideoResolutionStruct,
 	MaxResolution:VideoResolutionStruct,
-	Quality: number,
-	ReferenceCount: number,
+	Quality:number,
+	ReferenceCount:number,
 	EncodedPixels:boolean,
 	HardwareEncoder:boolean,
 	WatermarkEnabled?:boolean,
@@ -75,32 +79,31 @@ export interface SnapshotStreamStruct {
 }
 
 export interface VideoResolutionStruct {
-	Width: number,
-	Height: number,
+	Width:number,
+	Height:number,
 }
 
 export interface VideoSensorParamsStruct {
-	SensorWidth: number,
-	SensorHeight: number,
-	MaxFPS: number,
-	MaxHDRFPS?: number,
+	SensorWidth:number,
+	SensorHeight:number,
+	MaxFPS:number,
+	MaxHDRFPS?:number,
 }
 
 export interface VideoStreamStruct {
-	VideoStreamID: number,
+	VideoStreamID:number,
 	StreamUsage:import("./global-enums.js").StreamUsageEnum,
 	VideoCodec:VideoCodecEnum,
-	MinFrameRate: number,
-	MaxFrameRate: number,
+	MinFrameRate:number,
+	MaxFrameRate:number,
 	MinResolution:VideoResolutionStruct,
 	MaxResolution:VideoResolutionStruct,
-	MinBitRate: number,
-	MaxBitRate: number,
-	MinKeyFrameInterval: number,
-	MaxKeyFrameInterval: number,
+	MinBitRate:number,
+	MaxBitRate:number,
+	KeyFrameInterval:number,
 	WatermarkEnabled?:boolean,
 	OSDEnabled?:boolean,
-	ReferenceCount: number,
+	ReferenceCount:number,
 }
 
 /**
@@ -110,47 +113,47 @@ export interface VideoStreamStruct {
 export interface CameraAVStreamManagement {
 id: 1361;
 	attributes: {
-		readonly MaxConcurrentEncoders: number
-		readonly MaxEncodedPixelRate: number
-		readonly VideoSensorParams:VideoSensorParamsStruct
-		readonly NightVisionUsesInfrared:boolean
-		readonly MinViewport:VideoResolutionStruct
-		readonly RateDistortionTradeOffPoints:readonly RateDistortionTradeOffPointsStruct[]
-		readonly MaxContentBufferSize: number
-		readonly MicrophoneCapabilities:AudioCapabilitiesStruct
-		readonly SpeakerCapabilities:AudioCapabilitiesStruct
-		readonly TwoWayTalkSupport:TwoWayTalkSupportTypeEnum
-		readonly SnapshotCapabilities:readonly SnapshotCapabilitiesStruct[]
-		readonly MaxNetworkBandwidth: number
-		readonly CurrentFrameRate: number
-		HDRModeEnabled:boolean
+		readonly MaxConcurrentEncoders?:number
+		readonly MaxEncodedPixelRate?:number
+		readonly VideoSensorParams?:VideoSensorParamsStruct
+		readonly NightVisionUsesInfrared?:boolean
+		readonly MinViewport?:VideoResolutionStruct
+		readonly RateDistortionTradeOffPoints?:readonly RateDistortionTradeOffPointsStruct[]
+		readonly MaxContentBufferSize:number
+		readonly MicrophoneCapabilities?:AudioCapabilitiesStruct
+		readonly SpeakerCapabilities?:AudioCapabilitiesStruct
+		readonly TwoWayTalkSupport?:TwoWayTalkSupportTypeEnum
+		readonly SnapshotCapabilities?:readonly SnapshotCapabilitiesStruct[]
+		readonly MaxNetworkBandwidth:number
+		readonly CurrentFrameRate?:number
+		HDRModeEnabled?:boolean
 		readonly SupportedStreamUsages:readonly import("./global-enums.js").StreamUsageEnum[]
-		readonly AllocatedVideoStreams:readonly VideoStreamStruct[]
-		readonly AllocatedAudioStreams:readonly AudioStreamStruct[]
-		readonly AllocatedSnapshotStreams:readonly SnapshotStreamStruct[]
+		readonly AllocatedVideoStreams?:readonly VideoStreamStruct[]
+		readonly AllocatedAudioStreams?:readonly AudioStreamStruct[]
+		readonly AllocatedSnapshotStreams?:readonly SnapshotStreamStruct[]
 		readonly StreamUsagePriorities:readonly import("./global-enums.js").StreamUsageEnum[]
-		SoftRecordingPrivacyModeEnabled:boolean
-		SoftLivestreamPrivacyModeEnabled:boolean
-		readonly HardPrivacyModeOn:boolean
-		NightVision:TriStateAutoEnum
-		NightVisionIllum:TriStateAutoEnum
-		Viewport:import("./global-structs.js").ViewportStruct
-		SpeakerMuted:boolean
-		SpeakerVolumeLevel: number
-		readonly SpeakerMaxLevel: number
-		readonly SpeakerMinLevel: number
-		MicrophoneMuted:boolean
-		MicrophoneVolumeLevel: number
-		readonly MicrophoneMaxLevel: number
-		readonly MicrophoneMinLevel: number
-		MicrophoneAGCEnabled:boolean
-		ImageRotation: number
-		ImageFlipHorizontal:boolean
-		ImageFlipVertical:boolean
-		LocalVideoRecordingEnabled:boolean
-		LocalSnapshotRecordingEnabled:boolean
-		StatusLightEnabled:boolean
-		StatusLightBrightness:import("./global-enums.js").ThreeLevelAutoEnum
+		SoftRecordingPrivacyModeEnabled?:boolean
+		SoftLivestreamPrivacyModeEnabled?:boolean
+		readonly HardPrivacyModeOn?:boolean
+		NightVision?:TriStateAutoEnum
+		NightVisionIllum?:TriStateAutoEnum
+		Viewport?:import("./global-structs.js").ViewportStruct
+		SpeakerMuted?:boolean
+		SpeakerVolumeLevel?:number
+		readonly SpeakerMaxLevel?:number
+		readonly SpeakerMinLevel?:number
+		MicrophoneMuted?:boolean
+		MicrophoneVolumeLevel?:number
+		readonly MicrophoneMaxLevel?:number
+		readonly MicrophoneMinLevel?:number
+		MicrophoneAGCEnabled?:boolean
+		ImageRotation?:number
+		ImageFlipHorizontal?:boolean
+		ImageFlipVertical?:boolean
+		LocalVideoRecordingEnabled?:boolean
+		LocalSnapshotRecordingEnabled?:boolean
+		StatusLightEnabled?:boolean
+		StatusLightBrightness?:import("./global-enums.js").ThreeLevelAutoEnum
 		/** Audio Streams supported */
 		readonly SupportsAudio: boolean
 		/** Video Streams supported */
@@ -176,101 +179,100 @@ id: 1361;
 }
 	commands: {
 		/** This command SHALL allocate an audio stream on the camera and return an allocated audio stream identifier. */
-		AudioStreamAllocate: {
+		AudioStreamAllocate?: {
 			inputparams: readonly [
 				StreamUsage: import("./global-enums.js").StreamUsageEnum, 
 				AudioCodec: AudioCodecEnum, 
-				ChannelCount:  number, 
-				SampleRate:  number, 
-				BitRate:  number, 
-				BitDepth:  number, 
+				ChannelCount: number, 
+				SampleRate: number, 
+				BitRate: number, 
+				BitDepth: number, 
 			],
 			 outputparams: readonly [
-				AudioStreamID:  number, ]
+				AudioStreamID: number, ]
             }
 		/** This command SHALL deallocate an audio stream on the camera, corresponding to the given audio stream identifier. */
-		AudioStreamDeallocate: {
+		AudioStreamDeallocate?: {
 			inputparams: readonly [
-				AudioStreamID:  number, 
+				AudioStreamID: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command SHALL allocate a video stream on the camera and return an allocated video stream identifier. */
-		VideoStreamAllocate: {
+		VideoStreamAllocate?: {
 			inputparams: readonly [
 				StreamUsage: import("./global-enums.js").StreamUsageEnum, 
 				VideoCodec: VideoCodecEnum, 
-				MinFrameRate:  number, 
-				MaxFrameRate:  number, 
+				MinFrameRate: number, 
+				MaxFrameRate: number, 
 				MinResolution: VideoResolutionStruct, 
 				MaxResolution: VideoResolutionStruct, 
-				MinBitRate:  number, 
-				MaxBitRate:  number, 
-				MinKeyFrameInterval:  number, 
-				MaxKeyFrameInterval:  number, 
+				MinBitRate: number, 
+				MaxBitRate: number, 
+				KeyFrameInterval: number, 
 				WatermarkEnabled: boolean, 
 				OSDEnabled: boolean, 
 			],
 			 outputparams: readonly [
-				VideoStreamID:  number, ]
+				VideoStreamID: number, ]
             }
 		/** This command SHALL be used to modify a stream specified by the VideoStreamID. */
-		VideoStreamModify: {
+		VideoStreamModify?: {
 			inputparams: readonly [
-				VideoStreamID:  number, 
+				VideoStreamID: number, 
 				WatermarkEnabled: boolean, 
 				OSDEnabled: boolean, 
 			],
 			 outputparams: readonly []
             }
 		/** This command SHALL deallocate a video stream on the camera, corresponding to the given video stream identifier. */
-		VideoStreamDeallocate: {
+		VideoStreamDeallocate?: {
 			inputparams: readonly [
-				VideoStreamID:  number, 
+				VideoStreamID: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command SHALL allocate a snapshot stream on the device and return an allocated snapshot stream identifier. */
-		SnapshotStreamAllocate: {
+		SnapshotStreamAllocate?: {
 			inputparams: readonly [
 				ImageCodec: ImageCodecEnum, 
-				MaxFrameRate:  number, 
+				MaxFrameRate: number, 
 				MinResolution: VideoResolutionStruct, 
 				MaxResolution: VideoResolutionStruct, 
-				Quality:  number, 
+				Quality: number, 
 				WatermarkEnabled: boolean, 
 				OSDEnabled: boolean, 
 			],
 			 outputparams: readonly [
-				SnapshotStreamID:  number, ]
+				SnapshotStreamID: number, ]
             }
 		/** This command SHALL be used to modify a stream specified by the VideoStreamID. */
-		SnapshotStreamModify: {
+		SnapshotStreamModify?: {
 			inputparams: readonly [
-				SnapshotStreamID:  number, 
+				SnapshotStreamID: number, 
 				WatermarkEnabled: boolean, 
 				OSDEnabled: boolean, 
 			],
 			 outputparams: readonly []
             }
 		/** This command SHALL deallocate an snapshot stream on the camera, corresponding to the given snapshot stream identifier. */
-		SnapshotStreamDeallocate: {
+		SnapshotStreamDeallocate?: {
 			inputparams: readonly [
-				SnapshotStreamID:  number, 
+				SnapshotStreamID: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command SHALL set the relative priorities of the various stream usages on the camera. */
 		SetStreamPriorities: {
 			inputparams: readonly [
-				StreamPriorities: import("./global-enums.js").StreamUsageEnum[], 
+				StreamPriorities: readonly import("./global-enums.js").StreamUsageEnum[][], 
 			],
 			 outputparams: readonly []
             }
 		/** This command SHALL return a Snapshot from the camera. */
-		CaptureSnapshot: {
+		CaptureSnapshot?: {
 			inputparams: readonly [
-				SnapshotStreamID:  number, 
+				SnapshotStreamID: number, 
 				RequestedResolution: VideoResolutionStruct, 
 			],
 			 outputparams: readonly [
@@ -282,3 +284,180 @@ id: 1361;
 	events: {
 	}
 }
+
+export const cameraAVStreamManagement: Cluster<CameraAVStreamManagement['attributes'], CameraAVStreamManagement['commands'], CameraAVStreamManagement['events']> = {
+id: 1361,
+	attributes: {
+		MaxConcurrentEncoders:0,
+		MaxEncodedPixelRate:0,
+		VideoSensorParams:null,
+		NightVisionUsesInfrared:null,
+		MinViewport:null,
+		RateDistortionTradeOffPoints:[],
+		MaxContentBufferSize:0,
+		MicrophoneCapabilities:null,
+		SpeakerCapabilities:null,
+		TwoWayTalkSupport:null,
+		SnapshotCapabilities:[],
+		MaxNetworkBandwidth:0,
+		CurrentFrameRate:0,
+		HDRModeEnabled:null,
+		SupportedStreamUsages:[],
+		AllocatedVideoStreams:[],
+		AllocatedAudioStreams:[],
+		AllocatedSnapshotStreams:[],
+		StreamUsagePriorities:[],
+		SoftRecordingPrivacyModeEnabled:null,
+		SoftLivestreamPrivacyModeEnabled:null,
+		HardPrivacyModeOn:null,
+		NightVision:null,
+		NightVisionIllum:null,
+		Viewport:null,
+		SpeakerMuted:null,
+		SpeakerVolumeLevel:0,
+		SpeakerMaxLevel:0,
+		SpeakerMinLevel:0,
+		MicrophoneMuted:null,
+		MicrophoneVolumeLevel:0,
+		MicrophoneMaxLevel:0,
+		MicrophoneMinLevel:0,
+		MicrophoneAGCEnabled:null,
+		ImageRotation:0,
+		ImageFlipHorizontal:null,
+		ImageFlipVertical:null,
+		LocalVideoRecordingEnabled:null,
+		LocalSnapshotRecordingEnabled:null,
+		StatusLightEnabled:null,
+		StatusLightBrightness:null,
+		/** Audio Streams supported */
+	SupportsAudio: false,
+		/** Video Streams supported */
+	SupportsVideo: false,
+		/** Snapshot Streams supported */
+	SupportsSnapshot: false,
+		/** Privacy supported */
+	SupportsPrivacy: false,
+		/** Speaker supported */
+	SupportsSpeaker: false,
+		/** Image control supported */
+	SupportsImageControl: false,
+		/** Watermark supported */
+	SupportsWatermark: false,
+		/** OSD supported */
+	SupportsOnScreenDisplay: false,
+		/** Local Storage available */
+	SupportsLocalStorage: false,
+		/** High Dynamic Range supported */
+	SupportsHighDynamicRange: false,
+		/** Night Vision mode supported */
+	SupportsNightVision: false,
+},
+	commands: {
+		/** This command SHALL allocate an audio stream on the camera and return an allocated audio stream identifier. */
+		AudioStreamAllocate: {
+			inputparams: [
+				null, 
+				null, 
+				0, 
+				0, 
+				0, 
+				0, 
+			],
+			 outputparams: [
+				0, ]
+            },
+		/** This command SHALL deallocate an audio stream on the camera, corresponding to the given audio stream identifier. */
+		AudioStreamDeallocate: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command SHALL allocate a video stream on the camera and return an allocated video stream identifier. */
+		VideoStreamAllocate: {
+			inputparams: [
+				null, 
+				null, 
+				0, 
+				0, 
+				null, 
+				null, 
+				0, 
+				0, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: [
+				0, ]
+            },
+		/** This command SHALL be used to modify a stream specified by the VideoStreamID. */
+		VideoStreamModify: {
+			inputparams: [
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command SHALL deallocate a video stream on the camera, corresponding to the given video stream identifier. */
+		VideoStreamDeallocate: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command SHALL allocate a snapshot stream on the device and return an allocated snapshot stream identifier. */
+		SnapshotStreamAllocate: {
+			inputparams: [
+				null, 
+				0, 
+				null, 
+				null, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: [
+				0, ]
+            },
+		/** This command SHALL be used to modify a stream specified by the VideoStreamID. */
+		SnapshotStreamModify: {
+			inputparams: [
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command SHALL deallocate an snapshot stream on the camera, corresponding to the given snapshot stream identifier. */
+		SnapshotStreamDeallocate: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command SHALL set the relative priorities of the various stream usages on the camera. */
+		SetStreamPriorities: {
+			inputparams: [
+				[], 
+			],
+			 outputparams: []
+            },
+		/** This command SHALL return a Snapshot from the camera. */
+		CaptureSnapshot: {
+			inputparams: [
+				0, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				null, 
+				null, ]
+            },
+},
+	events: {
+	}
+}
+
+export default cameraAVStreamManagement;

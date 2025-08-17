@@ -1,3 +1,7 @@
+// This file is generated from valve-configuration-and-control-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:49.019Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum ValveStateEnum {
@@ -26,17 +30,17 @@ export enum ValveFaultBitmap {
 export interface ValveConfigurationAndControl {
 id: 129;
 	attributes: {
-		readonly OpenDuration?: number
-		DefaultOpenDuration?: number
-		readonly AutoCloseTime?: number
-		readonly RemainingDuration?: number
+		readonly OpenDuration?:number
+		DefaultOpenDuration?:number
+		readonly AutoCloseTime?:number
+		readonly RemainingDuration?:number
 		readonly CurrentState?:ValveStateEnum
 		readonly TargetState?:ValveStateEnum
-		readonly CurrentLevel?: number
-		readonly TargetLevel?: number
-		DefaultOpenLevel: number
+		readonly CurrentLevel?:number
+		readonly TargetLevel?:number
+		DefaultOpenLevel:number
 		readonly ValveFault:ValveFaultBitmap
-		readonly LevelStep: number
+		readonly LevelStep:number
 		/** UTC time is used for time indications */
 		readonly SupportsTimeSync: boolean
 		/** Device supports setting the specific position of the valve */
@@ -46,8 +50,8 @@ id: 129;
 		/** This command is used to set the valve to its open position. */
 		Open: {
 			inputparams: readonly [
-				OpenDuration:  number, 
-				TargetLevel:  number, 
+				OpenDuration: number, 
+				TargetLevel: number, 
 			],
 			 outputparams: readonly []
             }
@@ -62,9 +66,57 @@ id: 129;
 		ValveStateChanged: [
 			
 			ValveState: ValveStateEnum, 
-			ValveLevel:  number, ];
+			ValveLevel: number, ];
 		ValveFault: [
 			
 			ValveFault: ValveFaultBitmap, ];
 	}
 }
+
+export const valveConfigurationAndControl: Cluster<ValveConfigurationAndControl['attributes'], ValveConfigurationAndControl['commands'], ValveConfigurationAndControl['events']> = {
+id: 129,
+	attributes: {
+		OpenDuration:0,
+		DefaultOpenDuration:0,
+		AutoCloseTime:0,
+		RemainingDuration:0,
+		CurrentState:null,
+		TargetState:null,
+		CurrentLevel:0,
+		TargetLevel:0,
+		DefaultOpenLevel:0,
+		ValveFault:null,
+		LevelStep:0,
+		/** UTC time is used for time indications */
+	SupportsTimeSync: false,
+		/** Device supports setting the specific position of the valve */
+	SupportsLevel: false,
+},
+	commands: {
+		/** This command is used to set the valve to its open position. */
+		Open: {
+			inputparams: [
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command is used to set the valve to its closed position. */
+		Close: {
+			inputparams: [
+			],
+			 outputparams: []
+            },
+},
+	events: {
+		ValveStateChanged: [
+			
+			null, 
+			0, ],
+		ValveFault: [
+			
+			null, ],
+	}
+}
+
+export default valveConfigurationAndControl;

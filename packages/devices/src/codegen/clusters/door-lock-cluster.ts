@@ -1,3 +1,7 @@
+// This file is generated from door-lock-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.850Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum AlarmCodeEnum {
@@ -328,7 +332,7 @@ export enum DoorLockDayOfWeek {
 
 export interface CredentialStruct {
 	CredentialType:CredentialTypeEnum,
-	CredentialIndex: number,
+	CredentialIndex:number,
 }
 
 /**
@@ -342,25 +346,25 @@ id: 257;
 		readonly LockType:DlLockType
 		readonly ActuatorEnabled:boolean
 		readonly DoorState?:DoorStateEnum
-		DoorOpenEvents?: number
-		DoorClosedEvents?: number
-		OpenPeriod?: number
-		readonly NumberOfTotalUsersSupported?: number
-		readonly NumberOfPINUsersSupported?: number
-		readonly NumberOfRFIDUsersSupported?: number
-		readonly NumberOfWeekDaySchedulesSupportedPerUser?: number
-		readonly NumberOfYearDaySchedulesSupportedPerUser?: number
-		readonly NumberOfHolidaySchedulesSupported?: number
-		readonly MaxPINCodeLength?: number
-		readonly MinPINCodeLength?: number
-		readonly MaxRFIDCodeLength?: number
-		readonly MinRFIDCodeLength?: number
+		DoorOpenEvents?:number
+		DoorClosedEvents?:number
+		OpenPeriod?:number
+		readonly NumberOfTotalUsersSupported?:number
+		readonly NumberOfPINUsersSupported?:number
+		readonly NumberOfRFIDUsersSupported?:number
+		readonly NumberOfWeekDaySchedulesSupportedPerUser?:number
+		readonly NumberOfYearDaySchedulesSupportedPerUser?:number
+		readonly NumberOfHolidaySchedulesSupported?:number
+		readonly MaxPINCodeLength?:number
+		readonly MinPINCodeLength?:number
+		readonly MaxRFIDCodeLength?:number
+		readonly MinRFIDCodeLength?:number
 		readonly CredentialRulesSupport?:DlCredentialRuleMask
-		readonly NumberOfCredentialsSupportedPerUser?: number
-		Language?: string
-		LEDSettings?: number
-		AutoRelockTime?: number
-		SoundVolume?: number
+		readonly NumberOfCredentialsSupportedPerUser?:number
+		Language?:string
+		LEDSettings?:number
+		AutoRelockTime?:number
+		SoundVolume?:number
 		OperatingMode:OperatingModeEnum
 		readonly SupportedOperatingModes:DlSupportedOperatingModes
 		readonly DefaultConfigurationRegister?:DlDefaultConfigurationRegister
@@ -369,20 +373,20 @@ id: 257;
 		EnableInsideStatusLED?:boolean
 		EnablePrivacyModeButton?:boolean
 		LocalProgrammingFeatures?:DlLocalProgrammingFeatures
-		WrongCodeEntryLimit?: number
-		UserCodeTemporaryDisableTime?: number
+		WrongCodeEntryLimit?:number
+		UserCodeTemporaryDisableTime?:number
 		SendPINOverTheAir?:boolean
 		RequirePINforRemoteOperation?:boolean
-		ExpiringUserTimeout?: number
+		ExpiringUserTimeout?:number
 		readonly AliroReaderVerificationKey?:import ("@akala/core").IsomorphicBuffer
 		readonly AliroReaderGroupIdentifier?:import ("@akala/core").IsomorphicBuffer
 		readonly AliroReaderGroupSubIdentifier?:import ("@akala/core").IsomorphicBuffer
 		readonly AliroExpeditedTransactionSupportedProtocolVersions?:readonly import ("@akala/core").IsomorphicBuffer[]
 		readonly AliroGroupResolvingKey?:import ("@akala/core").IsomorphicBuffer
 		readonly AliroSupportedBLEUWBProtocolVersions?:readonly import ("@akala/core").IsomorphicBuffer[]
-		readonly AliroBLEAdvertisingVersion?: number
-		readonly NumberOfAliroCredentialIssuerKeysSupported?: number
-		readonly NumberOfAliroEndpointKeysSupported?: number
+		readonly AliroBLEAdvertisingVersion?:number
+		readonly NumberOfAliroCredentialIssuerKeysSupported?:number
+		readonly NumberOfAliroEndpointKeysSupported?:number
 		/** Lock supports PIN credentials (via keypad, or over-the-air) */
 		readonly SupportsPINCredential: boolean
 		/** Lock supports RFID credentials */
@@ -432,7 +436,7 @@ id: 257;
 		/** This command causes the lock device to unlock the door with a timeout parameter. */
 		UnlockWithTimeout?: {
 			inputparams: readonly [
-				Timeout:  number, 
+				Timeout: number, 
 				PINCode: import ("@akala/core").IsomorphicBuffer, 
 			],
 			 outputparams: readonly []
@@ -440,77 +444,77 @@ id: 257;
 		/** Set a weekly repeating schedule for a specified user. */
 		SetWeekDaySchedule?: {
 			inputparams: readonly [
-				WeekDayIndex:  number, 
-				UserIndex:  number, 
+				WeekDayIndex: number, 
+				UserIndex: number, 
 				DaysMask: DaysMaskMap, 
-				StartHour:  number, 
-				StartMinute:  number, 
-				EndHour:  number, 
-				EndMinute:  number, 
+				StartHour: number, 
+				StartMinute: number, 
+				EndHour: number, 
+				EndMinute: number, 
 			],
 			 outputparams: readonly []
             }
 		/** Retrieve the specific weekly schedule for the specific user. */
 		GetWeekDaySchedule?: {
 			inputparams: readonly [
-				WeekDayIndex:  number, 
-				UserIndex:  number, 
+				WeekDayIndex: number, 
+				UserIndex: number, 
 			],
 			 outputparams: readonly [
-				WeekDayIndex:  number, 
-				UserIndex:  number, 
+				WeekDayIndex: number, 
+				UserIndex: number, 
 				Status: DlStatus, 
 				DaysMask: DaysMaskMap, 
-				StartHour:  number, 
-				StartMinute:  number, 
-				EndHour:  number, 
-				EndMinute:  number, ]
+				StartHour: number, 
+				StartMinute: number, 
+				EndHour: number, 
+				EndMinute: number, ]
             }
 		/** Clear the specific weekly schedule or all weekly schedules for the specific user. */
 		ClearWeekDaySchedule?: {
 			inputparams: readonly [
-				WeekDayIndex:  number, 
-				UserIndex:  number, 
+				WeekDayIndex: number, 
+				UserIndex: number, 
 			],
 			 outputparams: readonly []
             }
 		/** Set a time-specific schedule ID for a specified user. */
 		SetYearDaySchedule?: {
 			inputparams: readonly [
-				YearDayIndex:  number, 
-				UserIndex:  number, 
-				LocalStartTime:  number, 
-				LocalEndTime:  number, 
+				YearDayIndex: number, 
+				UserIndex: number, 
+				LocalStartTime: number, 
+				LocalEndTime: number, 
 			],
 			 outputparams: readonly []
             }
 		/** Returns the year day schedule data for the specified schedule and user indexes. */
 		GetYearDaySchedule?: {
 			inputparams: readonly [
-				YearDayIndex:  number, 
-				UserIndex:  number, 
+				YearDayIndex: number, 
+				UserIndex: number, 
 			],
 			 outputparams: readonly [
-				YearDayIndex:  number, 
-				UserIndex:  number, 
+				YearDayIndex: number, 
+				UserIndex: number, 
 				Status: DlStatus, 
-				LocalStartTime:  number, 
-				LocalEndTime:  number, ]
+				LocalStartTime: number, 
+				LocalEndTime: number, ]
             }
 		/** Clears the specific year day schedule or all year day schedules for the specific user. */
 		ClearYearDaySchedule?: {
 			inputparams: readonly [
-				YearDayIndex:  number, 
-				UserIndex:  number, 
+				YearDayIndex: number, 
+				UserIndex: number, 
 			],
 			 outputparams: readonly []
             }
 		/** Set the holiday Schedule by specifying local start time and local end time with respect to any Lock Operating Mode. */
 		SetHolidaySchedule?: {
 			inputparams: readonly [
-				HolidayIndex:  number, 
-				LocalStartTime:  number, 
-				LocalEndTime:  number, 
+				HolidayIndex: number, 
+				LocalStartTime: number, 
+				LocalEndTime: number, 
 				OperatingMode: OperatingModeEnum, 
 			],
 			 outputparams: readonly []
@@ -518,19 +522,19 @@ id: 257;
 		/** Get the holiday schedule for the specified index. */
 		GetHolidaySchedule?: {
 			inputparams: readonly [
-				HolidayIndex:  number, 
+				HolidayIndex: number, 
 			],
 			 outputparams: readonly [
-				HolidayIndex:  number, 
+				HolidayIndex: number, 
 				Status: DlStatus, 
-				LocalStartTime:  number, 
-				LocalEndTime:  number, 
+				LocalStartTime: number, 
+				LocalEndTime: number, 
 				OperatingMode: OperatingModeEnum, ]
             }
 		/** Clears the holiday schedule or all holiday schedules. */
 		ClearHolidaySchedule?: {
 			inputparams: readonly [
-				HolidayIndex:  number, 
+				HolidayIndex: number, 
 			],
 			 outputparams: readonly []
             }
@@ -538,9 +542,9 @@ id: 257;
 		SetUser?: {
 			inputparams: readonly [
 				OperationType: DataOperationTypeEnum, 
-				UserIndex:  number, 
-				UserName:  string, 
-				UserUniqueID:  number, 
+				UserIndex: number, 
+				UserName: string, 
+				UserUniqueID: number, 
 				UserStatus: UserStatusEnum, 
 				UserType: UserTypeEnum, 
 				CredentialRule: CredentialRuleEnum, 
@@ -550,24 +554,24 @@ id: 257;
 		/** Retrieve User. */
 		GetUser?: {
 			inputparams: readonly [
-				UserIndex:  number, 
+				UserIndex: number, 
 			],
 			 outputparams: readonly [
-				UserIndex:  number, 
-				UserName:  string, 
-				UserUniqueID:  number, 
+				UserIndex: number, 
+				UserName: string, 
+				UserUniqueID: number, 
 				UserStatus: UserStatusEnum, 
 				UserType: UserTypeEnum, 
 				CredentialRule: CredentialRuleEnum, 
-				Credentials: CredentialStruct[], 
-				CreatorFabricIndex:  number, 
-				LastModifiedFabricIndex:  number, 
-				NextUserIndex:  number, ]
+				Credentials: readonly CredentialStruct[][], 
+				CreatorFabricIndex: number, 
+				LastModifiedFabricIndex: number, 
+				NextUserIndex: number, ]
             }
 		/** Clears a User or all Users. */
 		ClearUser?: {
 			inputparams: readonly [
-				UserIndex:  number, 
+				UserIndex: number, 
 			],
 			 outputparams: readonly []
             }
@@ -577,14 +581,14 @@ id: 257;
 				OperationType: DataOperationTypeEnum, 
 				Credential: CredentialStruct, 
 				CredentialData: import ("@akala/core").IsomorphicBuffer, 
-				UserIndex:  number, 
+				UserIndex: number, 
 				UserStatus: UserStatusEnum, 
 				UserType: UserTypeEnum, 
 			],
 			 outputparams: readonly [
 				Status: DlStatus, 
-				UserIndex:  number, 
-				NextCredentialIndex:  number, ]
+				UserIndex: number, 
+				NextCredentialIndex: number, ]
             }
 		/** Retrieve the status of a particular credential (e.g. PIN, RFID, Fingerprint, etc.) by index. */
 		GetCredentialStatus?: {
@@ -593,10 +597,10 @@ id: 257;
 			],
 			 outputparams: readonly [
 				CredentialExists: boolean, 
-				UserIndex:  number, 
-				CreatorFabricIndex:  number, 
-				LastModifiedFabricIndex:  number, 
-				NextCredentialIndex:  number, 
+				UserIndex: number, 
+				CreatorFabricIndex: number, 
+				LastModifiedFabricIndex: number, 
+				NextCredentialIndex: number, 
 				CredentialData: import ("@akala/core").IsomorphicBuffer, ]
             }
 		/** Clear one, one type, or all credentials except ProgrammingPIN credential. */
@@ -641,27 +645,360 @@ id: 257;
 			
 			LockOperationType: LockOperationTypeEnum, 
 			OperationSource: OperationSourceEnum, 
-			UserIndex:  number, 
-			FabricIndex:  number, 
-			SourceNode:  string, 
-			Credentials: CredentialStruct, ];
+			UserIndex: number, 
+			FabricIndex: number, 
+			SourceNode: string, 
+			Credentials: readonly CredentialStruct[], ];
 		LockOperationError: [
 			
 			LockOperationType: LockOperationTypeEnum, 
 			OperationSource: OperationSourceEnum, 
 			OperationError: OperationErrorEnum, 
-			UserIndex:  number, 
-			FabricIndex:  number, 
-			SourceNode:  string, 
-			Credentials: CredentialStruct, ];
+			UserIndex: number, 
+			FabricIndex: number, 
+			SourceNode: string, 
+			Credentials: readonly CredentialStruct[], ];
 		LockUserChange: [
 			
 			LockDataType: LockDataTypeEnum, 
 			DataOperationType: DataOperationTypeEnum, 
 			OperationSource: OperationSourceEnum, 
-			UserIndex:  number, 
-			FabricIndex:  number, 
-			SourceNode:  string, 
-			DataIndex:  number, ];
+			UserIndex: number, 
+			FabricIndex: number, 
+			SourceNode: string, 
+			DataIndex: number, ];
 	}
 }
+
+export const doorLock: Cluster<DoorLock['attributes'], DoorLock['commands'], DoorLock['events']> = {
+id: 257,
+	attributes: {
+		LockState:null,
+		LockType:null,
+		ActuatorEnabled:null,
+		DoorState:null,
+		DoorOpenEvents:0,
+		DoorClosedEvents:0,
+		OpenPeriod:0,
+		NumberOfTotalUsersSupported:0,
+		NumberOfPINUsersSupported:0,
+		NumberOfRFIDUsersSupported:0,
+		NumberOfWeekDaySchedulesSupportedPerUser:0,
+		NumberOfYearDaySchedulesSupportedPerUser:0,
+		NumberOfHolidaySchedulesSupported:0,
+		MaxPINCodeLength:0,
+		MinPINCodeLength:0,
+		MaxRFIDCodeLength:0,
+		MinRFIDCodeLength:0,
+		CredentialRulesSupport:null,
+		NumberOfCredentialsSupportedPerUser:0,
+		Language:null,
+		LEDSettings:0,
+		AutoRelockTime:0,
+		SoundVolume:0,
+		OperatingMode:null,
+		SupportedOperatingModes:null,
+		DefaultConfigurationRegister:null,
+		EnableLocalProgramming:null,
+		EnableOneTouchLocking:null,
+		EnableInsideStatusLED:null,
+		EnablePrivacyModeButton:null,
+		LocalProgrammingFeatures:null,
+		WrongCodeEntryLimit:0,
+		UserCodeTemporaryDisableTime:0,
+		SendPINOverTheAir:null,
+		RequirePINforRemoteOperation:null,
+		ExpiringUserTimeout:0,
+		AliroReaderVerificationKey:null,
+		AliroReaderGroupIdentifier:null,
+		AliroReaderGroupSubIdentifier:null,
+		AliroExpeditedTransactionSupportedProtocolVersions:[],
+		AliroGroupResolvingKey:null,
+		AliroSupportedBLEUWBProtocolVersions:[],
+		AliroBLEAdvertisingVersion:0,
+		NumberOfAliroCredentialIssuerKeysSupported:0,
+		NumberOfAliroEndpointKeysSupported:0,
+		/** Lock supports PIN credentials (via keypad, or over-the-air) */
+	SupportsPINCredential: false,
+		/** Lock supports RFID credentials */
+	SupportsRFIDCredential: false,
+		/** Lock supports finger related credentials (fingerprint, finger vein) */
+	SupportsFingerCredentials: false,
+		/** Lock supports local/on-lock logging when Events are not supported */
+	SupportsLogging: false,
+		/** Lock supports week day user access schedules */
+	SupportsWeekDayAccessSchedules: false,
+		/** Lock supports a door position sensor that indicates door's state */
+	SupportsDoorPositionSensor: false,
+		/** Lock supports face related credentials (face, iris, retina) */
+	SupportsFaceCredentials: false,
+		/** PIN codes over-the-air supported for lock/unlock operations */
+	SupportsCredentialsOverTheAirAccess: false,
+		/** Lock supports the user commands and database */
+	SupportsUser: false,
+		/** Operation and Programming Notifications */
+	SupportsNotification: false,
+		/** Lock supports year day user access schedules */
+	SupportsYearDayAccessSchedules: false,
+		/** Lock supports holiday schedules */
+	SupportsHolidaySchedules: false,
+		/** Lock supports unbolting */
+	SupportsUnbolt: false,
+		/** AliroProvisioning */
+	SupportsAliroProvisioning: false,
+		/** AliroBLEUWB */
+	SupportsAliroBLEUWB: false,
+},
+	commands: {
+		/** This command causes the lock device to lock the door. */
+		LockDoor: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command causes the lock device to unlock the door. */
+		UnlockDoor: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command causes the lock device to unlock the door with a timeout parameter. */
+		UnlockWithTimeout: {
+			inputparams: [
+				0, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Set a weekly repeating schedule for a specified user. */
+		SetWeekDaySchedule: {
+			inputparams: [
+				0, 
+				0, 
+				null, 
+				0, 
+				0, 
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** Retrieve the specific weekly schedule for the specific user. */
+		GetWeekDaySchedule: {
+			inputparams: [
+				0, 
+				0, 
+			],
+			 outputparams: [
+				0, 
+				0, 
+				null, 
+				null, 
+				0, 
+				0, 
+				0, 
+				0, ]
+            },
+		/** Clear the specific weekly schedule or all weekly schedules for the specific user. */
+		ClearWeekDaySchedule: {
+			inputparams: [
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** Set a time-specific schedule ID for a specified user. */
+		SetYearDaySchedule: {
+			inputparams: [
+				0, 
+				0, 
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** Returns the year day schedule data for the specified schedule and user indexes. */
+		GetYearDaySchedule: {
+			inputparams: [
+				0, 
+				0, 
+			],
+			 outputparams: [
+				0, 
+				0, 
+				null, 
+				0, 
+				0, ]
+            },
+		/** Clears the specific year day schedule or all year day schedules for the specific user. */
+		ClearYearDaySchedule: {
+			inputparams: [
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** Set the holiday Schedule by specifying local start time and local end time with respect to any Lock Operating Mode. */
+		SetHolidaySchedule: {
+			inputparams: [
+				0, 
+				0, 
+				0, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Get the holiday schedule for the specified index. */
+		GetHolidaySchedule: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: [
+				0, 
+				null, 
+				0, 
+				0, 
+				null, ]
+            },
+		/** Clears the holiday schedule or all holiday schedules. */
+		ClearHolidaySchedule: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+		/** Set User into the lock. */
+		SetUser: {
+			inputparams: [
+				null, 
+				0, 
+				null, 
+				0, 
+				null, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Retrieve User. */
+		GetUser: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: [
+				0, 
+				null, 
+				0, 
+				null, 
+				null, 
+				null, 
+				[], 
+				0, 
+				0, 
+				0, ]
+            },
+		/** Clears a User or all Users. */
+		ClearUser: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+		/** Set a credential (e.g. PIN, RFID, Fingerprint, etc.) into the lock for a new user, existing user, or ProgrammingUser. */
+		SetCredential: {
+			inputparams: [
+				null, 
+				null, 
+				null, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				0, 
+				0, ]
+            },
+		/** Retrieve the status of a particular credential (e.g. PIN, RFID, Fingerprint, etc.) by index. */
+		GetCredentialStatus: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: [
+				null, 
+				0, 
+				0, 
+				0, 
+				0, 
+				null, ]
+            },
+		/** Clear one, one type, or all credentials except ProgrammingPIN credential. */
+		ClearCredential: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command causes the lock device to unlock the door without pulling the latch. */
+		UnboltDoor: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command communicates an Aliro Reader configuration to the lock. */
+		SetAliroReaderConfig: {
+			inputparams: [
+				null, 
+				null, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command clears an existing Aliro Reader configuration for the lock. */
+		ClearAliroReaderConfig: {
+			inputparams: [
+			],
+			 outputparams: []
+            },
+},
+	events: {
+		DoorLockAlarm: [
+			
+			null, ],
+		DoorStateChange: [
+			
+			null, ],
+		LockOperation: [
+			
+			null, 
+			null, 
+			0, 
+			0, 
+			null, 
+			[], ],
+		LockOperationError: [
+			
+			null, 
+			null, 
+			null, 
+			0, 
+			0, 
+			null, 
+			[], ],
+		LockUserChange: [
+			
+			null, 
+			null, 
+			null, 
+			0, 
+			0, 
+			null, 
+			0, ],
+	}
+}
+
+export default doorLock;

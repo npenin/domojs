@@ -1,3 +1,7 @@
+// This file is generated from commodity-price-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.356Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum CommodityPriceDetailBitmap {
@@ -6,19 +10,19 @@ export enum CommodityPriceDetailBitmap {
 }
 
 export interface CommodityPriceComponentStruct {
-	Price: number,
+	Price:number,
 	Source:import("./global-enums.js").TariffPriceTypeEnum,
-	Description?: string,
-	TariffComponentID?: number,
+	Description?:string,
+	TariffComponentID?:number,
 }
 
 export interface CommodityPriceStruct {
-	PeriodStart: number,
-	PeriodEnd: number,
-	Price?: number,
-	PriceLevel?: number,
-	Description?: string,
-	Components?:CommodityPriceComponentStruct,
+	PeriodStart:number,
+	PeriodEnd:number,
+	Price?:number,
+	PriceLevel?:number,
+	Description?:string,
+	Components?:readonly CommodityPriceComponentStruct[],
 }
 
 /**
@@ -50,7 +54,7 @@ id: 149;
 				Details: CommodityPriceDetailBitmap, 
 			],
 			 outputparams: readonly [
-				PriceForecast: CommodityPriceStruct[], ]
+				PriceForecast: readonly CommodityPriceStruct[][], ]
             }
 }
 	events: {
@@ -59,3 +63,40 @@ id: 149;
 			CurrentPrice: CommodityPriceStruct, ];
 	}
 }
+
+export const commodityPrice: Cluster<CommodityPrice['attributes'], CommodityPrice['commands'], CommodityPrice['events']> = {
+id: 149,
+	attributes: {
+		TariffUnit:null,
+		Currency:null,
+		CurrentPrice:null,
+		PriceForecast:[],
+		/** Forecasts upcoming pricing */
+	SupportsForecasting: false,
+},
+	commands: {
+		/** Upon receipt, this SHALL generate a GetDetailedPrice Response command. */
+		GetDetailedPriceRequest: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: [
+				null, ]
+            },
+		/** Upon receipt, this SHALL generate a GetDetailedForecast Response command. */
+		GetDetailedForecastRequest: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: [
+				[], ]
+            },
+},
+	events: {
+		PriceChange: [
+			
+			null, ],
+	}
+}
+
+export default commodityPrice;

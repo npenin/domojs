@@ -1,3 +1,7 @@
+// This file is generated from global-enums.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:47.309Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum AtomicRequestTypeEnum {

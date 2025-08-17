@@ -1,3 +1,7 @@
+// This file is generated from time-format-localization-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.873Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum HourFormatEnum {
@@ -43,3 +47,20 @@ id: 44;
 	events: {
 	}
 }
+
+export const timeFormatLocalization: Cluster<TimeFormatLocalization['attributes'], TimeFormatLocalization['commands'], TimeFormatLocalization['events']> = {
+id: 44,
+	attributes: {
+		HourFormat:null,
+		ActiveCalendarType:null,
+		SupportedCalendarTypes:[],
+		/** The Node can be configured to use different calendar formats when conveying values to a user. */
+	SupportsCalendarFormat: false,
+},
+	commands: {
+},
+	events: {
+	}
+}
+
+export default timeFormatLocalization;

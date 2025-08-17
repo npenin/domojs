@@ -1,3 +1,7 @@
+// This file is generated from webrtc-requestor-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:49.133Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 /**
@@ -13,33 +17,33 @@ id: 1364;
 		/** This command provides the stream requestor with WebRTC session details. */
 		Offer: {
 			inputparams: readonly [
-				WebRTCSessionID:  number, 
-				SDP:  string, 
-				ICEServers: import("./global-structs.js").ICEServerStruct[], 
-				ICETransportPolicy:  string, 
+				WebRTCSessionID: number, 
+				SDP: string, 
+				ICEServers: readonly import("./global-structs.js").ICEServerStruct[][], 
+				ICETransportPolicy: string, 
 			],
 			 outputparams: readonly []
             }
 		/** This command provides the stream requestor with the WebRTC session details (i.e. Session ID and SDP answer), It is the next command in the Offer/Answer flow to the ProvideOffer command. */
 		Answer: {
 			inputparams: readonly [
-				WebRTCSessionID:  number, 
-				SDP:  string, 
+				WebRTCSessionID: number, 
+				SDP: string, 
 			],
 			 outputparams: readonly []
             }
-		/** This command allows for the object based https://rfc-editor.org/rfc/rfc8839#section-5.1 generated after the initial Offer / Answer exchange, via a JSEP https://datatracker.ietf.org/doc/html/rfc9429#section-4.1.20 event, a DOM https://www.w3.org/TR/webrtc/#dom-rtcpeerconnectioniceevent event, or other WebRTC compliant implementations, to be added to a session during the gathering phase. */
+		/** This command allows for the object based ICE candidates generated after the initial Offer / Answer exchange, via a JSEP onicecandidate event, a DOM rtcpeerconnectioniceevent event, or other WebRTC compliant implementations, to be added to a session during the gathering phase. */
 		ICECandidates: {
 			inputparams: readonly [
-				WebRTCSessionID:  number, 
-				ICECandidates: import("./global-structs.js").ICECandidateStruct[], 
+				WebRTCSessionID: number, 
+				ICECandidates: readonly import("./global-structs.js").ICECandidateStruct[][], 
 			],
 			 outputparams: readonly []
             }
 		/** This command notifies the stream requestor that the provider has ended the WebRTC session. */
 		End: {
 			inputparams: readonly [
-				WebRTCSessionID:  number, 
+				WebRTCSessionID: number, 
 				Reason: import("./global-enums.js").WebRTCEndReasonEnum, 
 			],
 			 outputparams: readonly []
@@ -48,3 +52,50 @@ id: 1364;
 	events: {
 	}
 }
+
+export const webRTCTransportRequestor: Cluster<WebRTCTransportRequestor['attributes'], WebRTCTransportRequestor['commands'], WebRTCTransportRequestor['events']> = {
+id: 1364,
+	attributes: {
+		CurrentSessions:[],
+},
+	commands: {
+		/** This command provides the stream requestor with WebRTC session details. */
+		Offer: {
+			inputparams: [
+				0, 
+				null, 
+				[], 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command provides the stream requestor with the WebRTC session details (i.e. Session ID and SDP answer), It is the next command in the Offer/Answer flow to the ProvideOffer command. */
+		Answer: {
+			inputparams: [
+				0, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command allows for the object based ICE candidates generated after the initial Offer / Answer exchange, via a JSEP onicecandidate event, a DOM rtcpeerconnectioniceevent event, or other WebRTC compliant implementations, to be added to a session during the gathering phase. */
+		ICECandidates: {
+			inputparams: [
+				0, 
+				[], 
+			],
+			 outputparams: []
+            },
+		/** This command notifies the stream requestor that the provider has ended the WebRTC session. */
+		End: {
+			inputparams: [
+				0, 
+				null, 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+	}
+}
+
+export default webRTCTransportRequestor;

@@ -1,8 +1,12 @@
+// This file is generated from commodity-metering-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.333Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export interface MeteredQuantityStruct {
-	TariffComponentIDs: number,
-	Quantity: bigint,
+	TariffComponentIDs:readonly number[],
+	Quantity:bigint,
 }
 
 /**
@@ -13,12 +17,28 @@ export interface CommodityMetering {
 id: 2823;
 	attributes: {
 		readonly MeteredQuantity?:readonly MeteredQuantityStruct[]
-		readonly MeteredQuantityTimestamp?: number
-		readonly MeasurementType?:import("./global-enums.js").MeasurementTypeEnum
-		readonly MaximumMeteredQuantities?: number
+		readonly MeteredQuantityTimestamp?:number
+		readonly TariffUnit?:import("./global-enums.js").TariffUnitEnum
+		readonly MaximumMeteredQuantities?:number
 }
 	commands: {
 }
 	events: {
 	}
 }
+
+export const commodityMetering: Cluster<CommodityMetering['attributes'], CommodityMetering['commands'], CommodityMetering['events']> = {
+id: 2823,
+	attributes: {
+		MeteredQuantity:[],
+		MeteredQuantityTimestamp:0,
+		TariffUnit:null,
+		MaximumMeteredQuantities:0,
+},
+	commands: {
+},
+	events: {
+	}
+}
+
+export default commodityMetering;

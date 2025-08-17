@@ -1,3 +1,7 @@
+// This file is generated from zone-management-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:49.344Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum ZoneEventStoppedReasonEnum {
@@ -25,31 +29,31 @@ export enum ZoneUseEnum {
 }
 
 export interface TwoDCartesianVertexStruct {
-	X: number,
-	Y: number,
+	X:number,
+	Y:number,
 }
 
 export interface TwoDCartesianZoneStruct {
-	Name: string,
+	Name:string,
 	Use:ZoneUseEnum,
-	Vertices:TwoDCartesianVertexStruct,
-	Color?: string,
+	Vertices:readonly TwoDCartesianVertexStruct[],
+	Color?:string,
 }
 
 export interface ZoneInformationStruct {
-	ZoneID: number,
+	ZoneID:number,
 	ZoneType:ZoneTypeEnum,
 	ZoneSource:ZoneSourceEnum,
 	TwoDCartesianZone?:TwoDCartesianZoneStruct,
 }
 
 export interface ZoneTriggerControlStruct {
-	ZoneID: number,
-	InitialDuration: number,
-	AugmentationDuration: number,
-	MaxDuration: number,
-	BlindDuration: number,
-	Sensitivity?: number,
+	ZoneID:number,
+	InitialDuration:number,
+	AugmentationDuration:number,
+	MaxDuration:number,
+	BlindDuration:number,
+	Sensitivity?:number,
 }
 
 /**
@@ -59,12 +63,12 @@ export interface ZoneTriggerControlStruct {
 export interface ZoneManagement {
 id: 1360;
 	attributes: {
-		readonly MaxUserDefinedZones?: number
-		readonly MaxZones: number
+		readonly MaxUserDefinedZones?:number
+		readonly MaxZones:number
 		readonly Zones:readonly ZoneInformationStruct[]
 		readonly Triggers:readonly ZoneTriggerControlStruct[]
-		readonly SensitivityMax: number
-		Sensitivity?: number
+		readonly SensitivityMax:number
+		Sensitivity?:number
 		readonly TwoDCartesianMax?:TwoDCartesianVertexStruct
 		/** Supports Two Dimensional Cartesian Zones */
 		readonly SupportsTwoDimensionalCartesianZone: boolean
@@ -82,12 +86,12 @@ id: 1360;
 				Zone: TwoDCartesianZoneStruct, 
 			],
 			 outputparams: readonly [
-				ZoneID:  number, ]
+				ZoneID: number, ]
             }
 		/** The UpdateTwoDCartesianZone SHALL update a stored TwoD Cartesian Zone. */
 		UpdateTwoDCartesianZone?: {
 			inputparams: readonly [
-				ZoneID:  number, 
+				ZoneID: number, 
 				Zone: TwoDCartesianZoneStruct, 
 			],
 			 outputparams: readonly []
@@ -95,7 +99,7 @@ id: 1360;
 		/** This command SHALL remove the Zone mapped to the passed in ZoneID. */
 		RemoveZone?: {
 			inputparams: readonly [
-				ZoneID:  number, 
+				ZoneID: number, 
 			],
 			 outputparams: readonly []
             }
@@ -109,7 +113,7 @@ id: 1360;
 		/** This command SHALL remove the Trigger mapped to the provided ZoneID. */
 		RemoveTrigger: {
 			inputparams: readonly [
-				ZoneID:  number, 
+				ZoneID: number, 
 			],
 			 outputparams: readonly []
             }
@@ -117,11 +121,83 @@ id: 1360;
 	events: {
 		ZoneTriggered: [
 			
-			Zone:  number, 
+			Zone: number, 
 			Reason: ZoneEventTriggeredReasonEnum, ];
 		ZoneStopped: [
 			
-			Zone:  number, 
+			Zone: number, 
 			Reason: ZoneEventStoppedReasonEnum, ];
 	}
 }
+
+export const zoneManagement: Cluster<ZoneManagement['attributes'], ZoneManagement['commands'], ZoneManagement['events']> = {
+id: 1360,
+	attributes: {
+		MaxUserDefinedZones:0,
+		MaxZones:0,
+		Zones:[],
+		Triggers:[],
+		SensitivityMax:0,
+		Sensitivity:0,
+		TwoDCartesianMax:null,
+		/** Supports Two Dimensional Cartesian Zones */
+	SupportsTwoDimensionalCartesianZone: false,
+		/** Supports a sensitivity value per Zone */
+	SupportsPerZoneSensitivity: false,
+		/** Supports user defined zones */
+	SupportsUserDefined: false,
+		/** Supports user defined focus zones */
+	SupportsFocusZones: false,
+},
+	commands: {
+		/** This command SHALL create and store a TwoD Cartesian Zone. */
+		CreateTwoDCartesianZone: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: [
+				0, ]
+            },
+		/** The UpdateTwoDCartesianZone SHALL update a stored TwoD Cartesian Zone. */
+		UpdateTwoDCartesianZone: {
+			inputparams: [
+				0, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command SHALL remove the Zone mapped to the passed in ZoneID. */
+		RemoveZone: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command is used to create or update a Trigger for the specified motion Zone. */
+		CreateOrUpdateTrigger: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command SHALL remove the Trigger mapped to the provided ZoneID. */
+		RemoveTrigger: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+		ZoneTriggered: [
+			
+			0, 
+			null, ],
+		ZoneStopped: [
+			
+			0, 
+			null, ],
+	}
+}
+
+export default zoneManagement;

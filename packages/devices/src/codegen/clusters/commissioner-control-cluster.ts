@@ -1,3 +1,7 @@
+// This file is generated from commissioner-control-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.314Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum SupportedDeviceCategoryBitmap {
@@ -17,32 +21,73 @@ id: 1873;
 		/** This command is sent by a client to request approval for a future CommissionNode call. */
 		RequestCommissioningApproval: {
 			inputparams: readonly [
-				RequestID:  bigint, 
-				VendorID:  number, 
-				ProductID:  number, 
-				Label:  string, 
+				RequestID: bigint, 
+				VendorID: number, 
+				ProductID: number, 
+				Label: string, 
 			],
 			 outputparams: readonly []
             }
 		/** This command is sent by a client to request that the server begins commissioning a previously approved request. */
 		CommissionNode: {
 			inputparams: readonly [
-				RequestID:  bigint, 
-				ResponseTimeoutSeconds:  number, 
+				RequestID: bigint, 
+				ResponseTimeoutSeconds: number, 
 			],
 			 outputparams: readonly [
-				CommissioningTimeout:  number, 
+				CommissioningTimeout: number, 
 				PAKEPasscodeVerifier: import ("@akala/core").IsomorphicBuffer, 
-				Discriminator:  number, 
-				Iterations:  number, 
+				Discriminator: number, 
+				Iterations: number, 
 				Salt: import ("@akala/core").IsomorphicBuffer, ]
             }
 }
 	events: {
 		CommissioningRequestResult: [
 			
-			RequestID:  bigint, 
-			ClientNodeID:  string, 
-			StatusCode:  number, ];
+			RequestID: bigint, 
+			ClientNodeID: string, 
+			StatusCode: number, ];
 	}
 }
+
+export const commissionerControl: Cluster<CommissionerControl['attributes'], CommissionerControl['commands'], CommissionerControl['events']> = {
+id: 1873,
+	attributes: {
+		SupportedDeviceCategories:null,
+},
+	commands: {
+		/** This command is sent by a client to request approval for a future CommissionNode call. */
+		RequestCommissioningApproval: {
+			inputparams: [
+				null, 
+				0, 
+				0, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command is sent by a client to request that the server begins commissioning a previously approved request. */
+		CommissionNode: {
+			inputparams: [
+				null, 
+				0, 
+			],
+			 outputparams: [
+				0, 
+				null, 
+				0, 
+				0, 
+				null, ]
+            },
+},
+	events: {
+		CommissioningRequestResult: [
+			
+			null, 
+			null, 
+			0, ],
+	}
+}
+
+export default commissionerControl;

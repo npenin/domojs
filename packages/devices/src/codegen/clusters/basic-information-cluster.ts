@@ -1,3 +1,7 @@
+// This file is generated from basic-information-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:45.870Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum ProductFinishEnum {
@@ -34,8 +38,8 @@ export enum ColorEnum {
 }
 
 export interface CapabilityMinimaStruct {
-	CaseSessionsPerFabric: number,
-	SubscriptionsPerFabric: number,
+	CaseSessionsPerFabric:number,
+	SubscriptionsPerFabric:number,
 }
 
 export interface ProductAppearanceStruct {
@@ -52,44 +56,91 @@ export interface ProductAppearanceStruct {
 export interface BasicInformation {
 id: 40;
 	attributes: {
-		readonly DataModelRevision: number
-		readonly VendorName: string
-		readonly VendorID: number
-		readonly ProductName: string
-		readonly ProductID: number
-		NodeLabel: string
-		Location: string
-		readonly HardwareVersion: number
-		readonly HardwareVersionString: string
-		readonly SoftwareVersion: number
-		readonly SoftwareVersionString: string
-		readonly ManufacturingDate?: string
-		readonly PartNumber?: string
-		readonly ProductURL?: string
-		readonly ProductLabel?: string
-		readonly SerialNumber?: string
+		readonly DataModelRevision:number
+		readonly VendorName:string
+		readonly VendorID:number
+		readonly ProductName:string
+		readonly ProductID:number
+		NodeLabel:string
+		Location:string
+		readonly HardwareVersion:number
+		readonly HardwareVersionString:string
+		readonly SoftwareVersion:number
+		readonly SoftwareVersionString:string
+		readonly ManufacturingDate?:string
+		readonly PartNumber?:string
+		readonly ProductURL?:string
+		readonly ProductLabel?:string
+		readonly SerialNumber?:string
 		LocalConfigDisabled?:boolean
 		readonly Reachable?:boolean
-		readonly UniqueID: string
+		readonly UniqueID:string
 		readonly CapabilityMinima:CapabilityMinimaStruct
 		readonly ProductAppearance?:ProductAppearanceStruct
-		readonly SpecificationVersion: number
-		readonly MaxPathsPerInvoke: number
-		readonly ConfigurationVersion: number
+		readonly SpecificationVersion:number
+		readonly MaxPathsPerInvoke:number
+		readonly ConfigurationVersion:number
 }
 	commands: {
 }
 	events: {
 		StartUp: [
 			
-			SoftwareVersion:  number, ];
+			SoftwareVersion: number, ];
 		ShutDown?: [
 			];
 		Leave?: [
 			
-			FabricIndex:  number, ];
+			FabricIndex: number, ];
 		ReachableChanged?: [
 			
 			ReachableNewValue: boolean, ];
 	}
 }
+
+export const basicInformation: Cluster<BasicInformation['attributes'], BasicInformation['commands'], BasicInformation['events']> = {
+id: 40,
+	attributes: {
+		DataModelRevision:0,
+		VendorName:null,
+		VendorID:0,
+		ProductName:null,
+		ProductID:0,
+		NodeLabel:null,
+		Location:null,
+		HardwareVersion:0,
+		HardwareVersionString:null,
+		SoftwareVersion:0,
+		SoftwareVersionString:null,
+		ManufacturingDate:null,
+		PartNumber:null,
+		ProductURL:null,
+		ProductLabel:null,
+		SerialNumber:null,
+		LocalConfigDisabled:null,
+		Reachable:null,
+		UniqueID:null,
+		CapabilityMinima:null,
+		ProductAppearance:null,
+		SpecificationVersion:0,
+		MaxPathsPerInvoke:0,
+		ConfigurationVersion:0,
+},
+	commands: {
+},
+	events: {
+		StartUp: [
+			
+			0, ],
+		ShutDown: [
+			],
+		Leave: [
+			
+			0, ],
+		ReachableChanged: [
+			
+			null, ],
+	}
+}
+
+export default basicInformation;

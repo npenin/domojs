@@ -1,3 +1,7 @@
+// This file is generated from account-login-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:45.700Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 /**
@@ -12,24 +16,24 @@ id: 1294;
 		/** The purpose of this command is to determine if the active user account of the given Content App matches the active user account of a given Commissionee, and when it does, return a Setup PIN which can be used for password-authenticated session establishment (PASE) with the Commissionee. */
 		GetSetupPIN: {
 			inputparams: readonly [
-				TempAccountIdentifier:  string, 
+				TempAccountIdentifier: string, 
 			],
 			 outputparams: readonly [
-				SetupPIN:  string, ]
+				SetupPIN: string, ]
             }
 		/** The purpose of this command is to allow the Content App to assume the user account of a given Commissionee by leveraging the Setup PIN input by the user during the commissioning process. */
 		Login: {
 			inputparams: readonly [
-				TempAccountIdentifier:  string, 
-				SetupPIN:  string, 
-				Node:  string, 
+				TempAccountIdentifier: string, 
+				SetupPIN: string, 
+				Node: string, 
 			],
 			 outputparams: readonly []
             }
 		/** The purpose of this command is to instruct the Content App to clear the current user account. */
 		Logout: {
 			inputparams: readonly [
-				Node:  string, 
+				Node: string, 
 			],
 			 outputparams: readonly []
             }
@@ -37,6 +41,45 @@ id: 1294;
 	events: {
 		LoggedOut?: [
 			
-			Node:  string, ];
+			Node: string, ];
 	}
 }
+
+export const accountLogin: Cluster<AccountLogin['attributes'], AccountLogin['commands'], AccountLogin['events']> = {
+id: 1294,
+	attributes: {
+},
+	commands: {
+		/** The purpose of this command is to determine if the active user account of the given Content App matches the active user account of a given Commissionee, and when it does, return a Setup PIN which can be used for password-authenticated session establishment (PASE) with the Commissionee. */
+		GetSetupPIN: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: [
+				null, ]
+            },
+		/** The purpose of this command is to allow the Content App to assume the user account of a given Commissionee by leveraging the Setup PIN input by the user during the commissioning process. */
+		Login: {
+			inputparams: [
+				null, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** The purpose of this command is to instruct the Content App to clear the current user account. */
+		Logout: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+		LoggedOut: [
+			
+			null, ],
+	}
+}
+
+export default accountLogin;

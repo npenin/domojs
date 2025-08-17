@@ -1,3 +1,7 @@
+// This file is generated from smoke-co-alarm-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.602Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum AlarmStateEnum {
@@ -60,7 +64,7 @@ id: 92;
 		readonly InterconnectCOAlarm?:AlarmStateEnum
 		readonly ContaminationState?:ContaminationStateEnum
 		SmokeSensitivityLevel?:SensitivityEnum
-		readonly ExpiryDate?: number
+		readonly ExpiryDate?:number
 		/** Supports Smoke alarm */
 		readonly SupportsSmokeAlarm: boolean
 		/** Supports CO alarm */
@@ -104,3 +108,65 @@ id: 92;
 			];
 	}
 }
+
+export const smokeCOAlarm: Cluster<SmokeCOAlarm['attributes'], SmokeCOAlarm['commands'], SmokeCOAlarm['events']> = {
+id: 92,
+	attributes: {
+		ExpressedState:null,
+		SmokeState:null,
+		COState:null,
+		BatteryAlert:null,
+		DeviceMuted:null,
+		TestInProgress:null,
+		HardwareFaultAlert:null,
+		EndOfServiceAlert:null,
+		InterconnectSmokeAlarm:null,
+		InterconnectCOAlarm:null,
+		ContaminationState:null,
+		SmokeSensitivityLevel:null,
+		ExpiryDate:0,
+		/** Supports Smoke alarm */
+	SupportsSmokeAlarm: false,
+		/** Supports CO alarm */
+	SupportsCOAlarm: false,
+},
+	commands: {
+		/** This command SHALL initiate a device self-test. */
+		SelfTestRequest: {
+			inputparams: [
+			],
+			 outputparams: []
+            },
+},
+	events: {
+		SmokeAlarm: [
+			
+			null, ],
+		COAlarm: [
+			
+			null, ],
+		LowBattery: [
+			
+			null, ],
+		HardwareFault: [
+			],
+		EndOfService: [
+			],
+		SelfTestComplete: [
+			],
+		AlarmMuted: [
+			],
+		MuteEnded: [
+			],
+		InterconnectSmokeAlarm: [
+			
+			null, ],
+		InterconnectCOAlarm: [
+			
+			null, ],
+		AllClear: [
+			],
+	}
+}
+
+export default smokeCOAlarm;

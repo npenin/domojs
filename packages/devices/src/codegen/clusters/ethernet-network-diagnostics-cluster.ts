@@ -1,3 +1,7 @@
+// This file is generated from ethernet-network-diagnostics-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:47.063Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum PHYRateEnum {
@@ -22,13 +26,13 @@ id: 55;
 	attributes: {
 		readonly PHYRate?:PHYRateEnum
 		readonly FullDuplex?:boolean
-		readonly PacketRxCount?: bigint
-		readonly PacketTxCount?: bigint
-		readonly TxErrCount?: bigint
-		readonly CollisionCount?: bigint
-		readonly OverrunCount?: bigint
+		readonly PacketRxCount?:bigint
+		readonly PacketTxCount?:bigint
+		readonly TxErrCount?:bigint
+		readonly CollisionCount?:bigint
+		readonly OverrunCount?:bigint
 		readonly CarrierDetect?:boolean
-		readonly TimeSinceReset?: bigint
+		readonly TimeSinceReset?:bigint
 		/** Node makes available the counts for the number of received and transmitted packets on the ethernet interface. */
 		readonly SupportsPacketCounts: boolean
 		/** Node makes available the counts for the number of errors that have occurred during the reception and transmission of packets on the ethernet interface. */
@@ -45,3 +49,34 @@ id: 55;
 	events: {
 	}
 }
+
+export const ethernetNetworkDiagnostics: Cluster<EthernetNetworkDiagnostics['attributes'], EthernetNetworkDiagnostics['commands'], EthernetNetworkDiagnostics['events']> = {
+id: 55,
+	attributes: {
+		PHYRate:null,
+		FullDuplex:null,
+		PacketRxCount:null,
+		PacketTxCount:null,
+		TxErrCount:null,
+		CollisionCount:null,
+		OverrunCount:null,
+		CarrierDetect:null,
+		TimeSinceReset:null,
+		/** Node makes available the counts for the number of received and transmitted packets on the ethernet interface. */
+	SupportsPacketCounts: false,
+		/** Node makes available the counts for the number of errors that have occurred during the reception and transmission of packets on the ethernet interface. */
+	SupportsErrorCounts: false,
+},
+	commands: {
+		/** This command is used to reset the count attributes. */
+		ResetCounts: {
+			inputparams: [
+			],
+			 outputparams: []
+            },
+},
+	events: {
+	}
+}
+
+export default ethernetNetworkDiagnostics;

@@ -1,3 +1,7 @@
+// This file is generated from energy-evse-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.973Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum StateEnum {
@@ -56,14 +60,14 @@ export enum TargetDayOfWeekBitmap {
 }
 
 export interface ChargingTargetStruct {
-	TargetTimeMinutesPastMidnight: number,
-	TargetSoC?: number,
-	AddedEnergy?: number,
+	TargetTimeMinutesPastMidnight:number,
+	TargetSoC?:number,
+	AddedEnergy?:number,
 }
 
 export interface ChargingTargetScheduleStruct {
 	DayOfWeekForSequence:TargetDayOfWeekBitmap,
-	ChargingTargets:ChargingTargetStruct,
+	ChargingTargets:readonly ChargingTargetStruct[],
 }
 
 /**
@@ -76,26 +80,26 @@ id: 153;
 		readonly State?:StateEnum
 		readonly SupplyState:SupplyStateEnum
 		readonly FaultState:FaultStateEnum
-		readonly ChargingEnabledUntil?: number
-		readonly DischargingEnabledUntil?: number
-		readonly CircuitCapacity: number
-		readonly MinimumChargeCurrent: number
-		readonly MaximumChargeCurrent: number
-		readonly MaximumDischargeCurrent?: number
-		USER_MAXIMUM_CHARGE_CURRENT?: number
-		RANDOMIZATION_DELAY_WINDOW?: number
-		readonly NextChargeStartTime?: number
-		readonly NextChargeTargetTime?: number
-		readonly NextChargeRequiredEnergy?: number
-		readonly NextChargeTargetSoC?: number
-		APPROXIMATE_EV_EFFICIENCY?: number
-		readonly StateOfCharge?: number
-		readonly BatteryCapacity?: number
-		readonly VehicleID?: string
-		readonly SessionID?: number
-		readonly SessionDuration?: number
-		readonly SessionEnergyCharged?: number
-		readonly SessionEnergyDischarged?: number
+		readonly ChargingEnabledUntil?:number
+		readonly DischargingEnabledUntil?:number
+		readonly CircuitCapacity:number
+		readonly MinimumChargeCurrent:number
+		readonly MaximumChargeCurrent:number
+		readonly MaximumDischargeCurrent?:number
+		USER_MAXIMUM_CHARGE_CURRENT?:number
+		RANDOMIZATION_DELAY_WINDOW?:number
+		readonly NextChargeStartTime?:number
+		readonly NextChargeTargetTime?:number
+		readonly NextChargeRequiredEnergy?:number
+		readonly NextChargeTargetSoC?:number
+		APPROXIMATE_EV_EFFICIENCY?:number
+		readonly StateOfCharge?:number
+		readonly BatteryCapacity?:number
+		readonly VehicleID?:string
+		readonly SessionID?:number
+		readonly SessionDuration?:number
+		readonly SessionEnergyCharged?:number
+		readonly SessionEnergyDischarged?:number
 		/** EVSE supports storing user charging preferences */
 		readonly SupportsChargingPreferences: boolean
 		/** EVSE supports reporting of vehicle State of Charge (SoC) */
@@ -117,17 +121,17 @@ id: 153;
 		/** This command allows a client to enable the EVSE to charge an EV, and to provide or update the maximum and minimum charge current. */
 		EnableCharging: {
 			inputparams: readonly [
-				ChargingEnabledUntil:  number, 
-				MinimumChargeCurrent:  number, 
-				MaximumChargeCurrent:  number, 
+				ChargingEnabledUntil: number, 
+				MinimumChargeCurrent: number, 
+				MaximumChargeCurrent: number, 
 			],
 			 outputparams: readonly []
             }
 		/** Upon receipt, this SHALL allow a client to enable the discharge of an EV, and to provide or update the maximum discharge current. */
 		EnableDischarging?: {
 			inputparams: readonly [
-				DischargingEnabledUntil:  number, 
-				MaximumDischargeCurrent:  number, 
+				DischargingEnabledUntil: number, 
+				MaximumDischargeCurrent: number, 
 			],
 			 outputparams: readonly []
             }
@@ -140,7 +144,7 @@ id: 153;
 		/** Allows a client to set the user specified charging targets. */
 		SetTargets?: {
 			inputparams: readonly [
-				ChargingTargetSchedules: ChargingTargetScheduleStruct[], 
+				ChargingTargetSchedules: readonly ChargingTargetScheduleStruct[][], 
 			],
 			 outputparams: readonly []
             }
@@ -149,7 +153,7 @@ id: 153;
 			inputparams: readonly [
 			],
 			 outputparams: readonly [
-				ChargingTargetSchedules: ChargingTargetScheduleStruct[], ]
+				ChargingTargetSchedules: readonly ChargingTargetScheduleStruct[][], ]
             }
 		/** Allows a client to clear all stored charging targets. */
 		ClearTargets?: {
@@ -161,30 +165,30 @@ id: 153;
 	events: {
 		EVConnected: [
 			
-			SessionID:  number, ];
+			SessionID: number, ];
 		EVNotDetected: [
 			
-			SessionID:  number, 
+			SessionID: number, 
 			State: StateEnum, 
-			SessionDuration:  number, 
-			SessionEnergyCharged:  number, 
-			SessionEnergyDischarged:  number, ];
+			SessionDuration: number, 
+			SessionEnergyCharged: number, 
+			SessionEnergyDischarged: number, ];
 		EnergyTransferStarted: [
 			
-			SessionID:  number, 
+			SessionID: number, 
 			State: StateEnum, 
-			MaximumCurrent:  number, 
-			MaximumDischargeCurrent:  number, ];
+			MaximumCurrent: number, 
+			MaximumDischargeCurrent: number, ];
 		EnergyTransferStopped: [
 			
-			SessionID:  number, 
+			SessionID: number, 
 			State: StateEnum, 
 			Reason: EnergyTransferStoppedReasonEnum, 
-			EnergyTransferred:  number, 
-			EnergyDischarged:  number, ];
+			EnergyTransferred: number, 
+			EnergyDischarged: number, ];
 		Fault: [
 			
-			SessionID:  number, 
+			SessionID: number, 
 			State: StateEnum, 
 			FaultStatePreviousState: FaultStateEnum, 
 			FaultStateCurrentState: FaultStateEnum, ];
@@ -193,3 +197,129 @@ id: 153;
 			UID: import ("@akala/core").IsomorphicBuffer, ];
 	}
 }
+
+export const energyEVSE: Cluster<EnergyEVSE['attributes'], EnergyEVSE['commands'], EnergyEVSE['events']> = {
+id: 153,
+	attributes: {
+		State:null,
+		SupplyState:null,
+		FaultState:null,
+		ChargingEnabledUntil:0,
+		DischargingEnabledUntil:0,
+		CircuitCapacity:0,
+		MinimumChargeCurrent:0,
+		MaximumChargeCurrent:0,
+		MaximumDischargeCurrent:0,
+		USER_MAXIMUM_CHARGE_CURRENT:0,
+		RANDOMIZATION_DELAY_WINDOW:0,
+		NextChargeStartTime:0,
+		NextChargeTargetTime:0,
+		NextChargeRequiredEnergy:0,
+		NextChargeTargetSoC:0,
+		APPROXIMATE_EV_EFFICIENCY:0,
+		StateOfCharge:0,
+		BatteryCapacity:0,
+		VehicleID:null,
+		SessionID:0,
+		SessionDuration:0,
+		SessionEnergyCharged:0,
+		SessionEnergyDischarged:0,
+		/** EVSE supports storing user charging preferences */
+	SupportsChargingPreferences: false,
+		/** EVSE supports reporting of vehicle State of Charge (SoC) */
+	SupportsSoCReporting: false,
+		/** EVSE supports PLC to support Plug and Charge */
+	SupportsPlugAndCharge: false,
+		/** EVSE is fitted with an RFID reader */
+	SupportsRFID: false,
+		/** EVSE supports bi-directional charging / discharging */
+	SupportsV2X: false,
+},
+	commands: {
+		/** Allows a client to disable the EVSE from charging and discharging. */
+		Disable: {
+			inputparams: [
+			],
+			 outputparams: []
+            },
+		/** This command allows a client to enable the EVSE to charge an EV, and to provide or update the maximum and minimum charge current. */
+		EnableCharging: {
+			inputparams: [
+				0, 
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** Upon receipt, this SHALL allow a client to enable the discharge of an EV, and to provide or update the maximum discharge current. */
+		EnableDischarging: {
+			inputparams: [
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** Allows a client to put the EVSE into a self-diagnostics mode. */
+		StartDiagnostics: {
+			inputparams: [
+			],
+			 outputparams: []
+            },
+		/** Allows a client to set the user specified charging targets. */
+		SetTargets: {
+			inputparams: [
+				[], 
+			],
+			 outputparams: []
+            },
+		/** Allows a client to retrieve the current set of charging targets. */
+		GetTargets: {
+			inputparams: [
+			],
+			 outputparams: [
+				[], ]
+            },
+		/** Allows a client to clear all stored charging targets. */
+		ClearTargets: {
+			inputparams: [
+			],
+			 outputparams: []
+            },
+},
+	events: {
+		EVConnected: [
+			
+			0, ],
+		EVNotDetected: [
+			
+			0, 
+			null, 
+			0, 
+			0, 
+			0, ],
+		EnergyTransferStarted: [
+			
+			0, 
+			null, 
+			0, 
+			0, ],
+		EnergyTransferStopped: [
+			
+			0, 
+			null, 
+			null, 
+			0, 
+			0, ],
+		Fault: [
+			
+			0, 
+			null, 
+			null, 
+			null, ],
+		RFID: [
+			
+			null, ],
+	}
+}
+
+export default energyEVSE;

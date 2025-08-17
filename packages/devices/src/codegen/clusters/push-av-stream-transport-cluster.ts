@@ -1,4 +1,14 @@
+// This file is generated from push-av-stream-transport-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.365Z
 
+import { Cluster } from '../../server/clients/shared.js';
+
+
+export enum CMAFInterfaceEnum {
+	Interface1= 0,
+	Interface2DASH= 1,
+	Interface2HLS= 2,
+}
 
 export enum ContainerFormatEnum {
 	CMAF= 0,
@@ -16,6 +26,8 @@ export enum StatusCodeEnum {
 	InvalidCombination= 6,
 	InvalidTriggerType= 7,
 	InvalidTransportStatus= 8,
+	InvalidOptions= 9,
+	InvalidStreamUsage= 10,
 }
 
 export enum TransportStatusEnum {
@@ -36,10 +48,14 @@ export enum TriggerActivationReasonEnum {
 }
 
 export interface CMAFContainerOptionsStruct {
-	ChunkDuration: number,
+	CMAFInterface:CMAFInterfaceEnum,
+	SegmentDuration:number,
+	ChunkDuration:number,
+	SessionGroup:number,
+	TrackName:string,
 	CENCKey?:import ("@akala/core").IsomorphicBuffer,
-	MetadataEnabled?:boolean,
 	CENCKeyID?:import ("@akala/core").IsomorphicBuffer,
+	MetadataEnabled?:boolean,
 }
 
 export interface ContainerOptionsStruct {
@@ -53,41 +69,41 @@ export interface SupportedFormatStruct {
 }
 
 export interface TransportConfigurationStruct {
-	ConnectionID: number,
+	ConnectionID:number,
 	TransportStatus:TransportStatusEnum,
 	TransportOptions?:TransportOptionsStruct,
 }
 
 export interface TransportMotionTriggerTimeControlStruct {
-	InitialDuration: number,
-	AugmentationDuration: number,
-	MaxDuration: number,
-	BlindDuration: number,
+	InitialDuration:number,
+	AugmentationDuration:number,
+	MaxDuration:number,
+	BlindDuration:number,
 }
 
 export interface TransportOptionsStruct {
 	StreamUsage:import("./global-enums.js").StreamUsageEnum,
-	VideoStreamID?: number,
-	AudioStreamID?: number,
-	EndpointID: number,
-	URL: string,
+	VideoStreamID?:number,
+	AudioStreamID?:number,
+	EndpointID:number,
+	URL:string,
 	TriggerOptions:TransportTriggerOptionsStruct,
 	IngestMethod:IngestMethodsEnum,
 	ContainerOptions:ContainerOptionsStruct,
-	ExpiryTime?: number,
+	ExpiryTime?:number,
 }
 
 export interface TransportTriggerOptionsStruct {
 	TriggerType:TransportTriggerTypeEnum,
-	MotionZones?:TransportZoneOptionsStruct,
-	MotionSensitivity?: number,
+	MotionZones?:readonly TransportZoneOptionsStruct[],
+	MotionSensitivity?:number,
 	MotionTimeControl?:TransportMotionTriggerTimeControlStruct,
-	MaxPreRollLen?: number,
+	MaxPreRollLen?:number,
 }
 
 export interface TransportZoneOptionsStruct {
-	Zone: number,
-	Sensitivity?: number,
+	Zone:number,
+	Sensitivity?:number,
 }
 
 /**
@@ -116,14 +132,14 @@ id: 1365;
 		/** This command SHALL be generated to request the Node deallocates the specified transport. */
 		DeallocatePushTransport: {
 			inputparams: readonly [
-				ConnectionID:  number, 
+				ConnectionID: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command is used to request the Node modifies the configuration of the specified push transport. */
 		ModifyPushTransport: {
 			inputparams: readonly [
-				ConnectionID:  number, 
+				ConnectionID: number, 
 				TransportOptions: TransportOptionsStruct, 
 			],
 			 outputparams: readonly []
@@ -131,7 +147,7 @@ id: 1365;
 		/** This command SHALL be generated to request the Node modifies the Transport Status of a specified transport or all transports. */
 		SetTransportStatus: {
 			inputparams: readonly [
-				ConnectionID:  number, 
+				ConnectionID: number, 
 				TransportStatus: TransportStatusEnum, 
 			],
 			 outputparams: readonly []
@@ -139,31 +155,109 @@ id: 1365;
 		/** This command SHALL be generated to request the Node to manually start the specified push transport. */
 		ManuallyTriggerTransport: {
 			inputparams: readonly [
-				ConnectionID:  number, 
+				ConnectionID: number, 
 				ActivationReason: TriggerActivationReasonEnum, 
 				TimeControl: TransportMotionTriggerTimeControlStruct, 
+				UserDefined: import ("@akala/core").IsomorphicBuffer, 
 			],
 			 outputparams: readonly []
             }
 		/** This command SHALL return the Transport Configuration for the specified push transport or all allocated transports for the fabric if null. */
 		FindTransport: {
 			inputparams: readonly [
-				ConnectionID:  number, 
+				ConnectionID: number, 
 			],
 			 outputparams: readonly [
-				TransportConfigurations: TransportConfigurationStruct[], ]
+				TransportConfigurations: readonly TransportConfigurationStruct[][], ]
             }
 }
 	events: {
 		PushTransportBegin: [
 			
-			ConnectionID:  number, 
+			ConnectionID: number, 
 			TriggerType: TransportTriggerTypeEnum, 
 			ActivationReason: TriggerActivationReasonEnum, ];
 		PushTransportEnd: [
 			
-			ConnectionID:  number, 
+			ConnectionID: number, 
 			TriggerType: TransportTriggerTypeEnum, 
 			ActivationReason: TriggerActivationReasonEnum, ];
 	}
 }
+
+export const pushAVStreamTransport: Cluster<PushAVStreamTransport['attributes'], PushAVStreamTransport['commands'], PushAVStreamTransport['events']> = {
+id: 1365,
+	attributes: {
+		SupportedFormats:[],
+		CurrentConnections:[],
+		/** Supports a sensitivity value per Zone */
+	SupportsPerZoneSensitivity: false,
+		/** Supports metadata transmission in Push transports */
+	SupportsMetadata: false,
+},
+	commands: {
+		/** This command SHALL allocate a transport and return a PushTransportConnectionID. */
+		AllocatePushTransport: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: [
+				null, ]
+            },
+		/** This command SHALL be generated to request the Node deallocates the specified transport. */
+		DeallocatePushTransport: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command is used to request the Node modifies the configuration of the specified push transport. */
+		ModifyPushTransport: {
+			inputparams: [
+				0, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command SHALL be generated to request the Node modifies the Transport Status of a specified transport or all transports. */
+		SetTransportStatus: {
+			inputparams: [
+				0, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command SHALL be generated to request the Node to manually start the specified push transport. */
+		ManuallyTriggerTransport: {
+			inputparams: [
+				0, 
+				null, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command SHALL return the Transport Configuration for the specified push transport or all allocated transports for the fabric if null. */
+		FindTransport: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: [
+				[], ]
+            },
+},
+	events: {
+		PushTransportBegin: [
+			
+			0, 
+			null, 
+			null, ],
+		PushTransportEnd: [
+			
+			0, 
+			null, 
+			null, ],
+	}
+}
+
+export default pushAVStreamTransport;

@@ -1,3 +1,7 @@
+// This file is generated from illuminance-measurement-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:47.453Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum LightSensorTypeEnum {
@@ -12,10 +16,10 @@ export enum LightSensorTypeEnum {
 export interface IlluminanceMeasurement {
 id: 1024;
 	attributes: {
-		readonly MeasuredValue?: number
-		readonly MinMeasuredValue?: number
-		readonly MaxMeasuredValue?: number
-		readonly Tolerance?: number
+		readonly MeasuredValue?:number
+		readonly MinMeasuredValue?:number
+		readonly MaxMeasuredValue?:number
+		readonly Tolerance?:number
 		readonly LightSensorType?:LightSensorTypeEnum
 }
 	commands: {
@@ -23,3 +27,20 @@ id: 1024;
 	events: {
 	}
 }
+
+export const illuminanceMeasurement: Cluster<IlluminanceMeasurement['attributes'], IlluminanceMeasurement['commands'], IlluminanceMeasurement['events']> = {
+id: 1024,
+	attributes: {
+		MeasuredValue:0,
+		MinMeasuredValue:0,
+		MaxMeasuredValue:0,
+		Tolerance:0,
+		LightSensorType:null,
+},
+	commands: {
+},
+	events: {
+	}
+}
+
+export default illuminanceMeasurement;

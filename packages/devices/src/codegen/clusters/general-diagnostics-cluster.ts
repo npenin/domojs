@@ -1,3 +1,7 @@
+// This file is generated from general-diagnostics-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:47.237Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum HardwareFaultEnum {
@@ -50,13 +54,13 @@ export enum InterfaceTypeEnum {
 }
 
 export interface NetworkInterface {
-	Name: string,
+	Name:string,
 	IsOperational:boolean,
 	OffPremiseServicesReachableIPv4:boolean,
 	OffPremiseServicesReachableIPv6:boolean,
 	HardwareAddress:import ("@akala/core").IsomorphicBuffer,
-	IPv4Addresses:import ("@akala/core").IsomorphicBuffer,
-	IPv6Addresses:import ("@akala/core").IsomorphicBuffer,
+	IPv4Addresses:readonly import ("@akala/core").IsomorphicBuffer[],
+	IPv6Addresses:readonly import ("@akala/core").IsomorphicBuffer[],
 	Type:InterfaceTypeEnum,
 }
 
@@ -68,9 +72,9 @@ export interface GeneralDiagnostics {
 id: 51;
 	attributes: {
 		readonly NetworkInterfaces:readonly NetworkInterface[]
-		readonly RebootCount: number
-		readonly UpTime?: bigint
-		readonly TotalOperationalHours?: number
+		readonly RebootCount:number
+		readonly UpTime?:bigint
+		readonly TotalOperationalHours?:number
 		readonly BootReason?:BootReasonEnum
 		readonly ActiveHardwareFaults?:readonly HardwareFaultEnum[]
 		readonly ActiveRadioFaults?:readonly RadioFaultEnum[]
@@ -84,7 +88,7 @@ id: 51;
 		TestEventTrigger: {
 			inputparams: readonly [
 				EnableKey: import ("@akala/core").IsomorphicBuffer, 
-				EventTrigger:  bigint, 
+				EventTrigger: bigint, 
 			],
 			 outputparams: readonly []
             }
@@ -93,15 +97,15 @@ id: 51;
 			inputparams: readonly [
 			],
 			 outputparams: readonly [
-				SystemTimeMs:  number, 
-				PosixTimeMs:  number, ]
+				SystemTimeMs: number, 
+				PosixTimeMs: number, ]
             }
 		/** Request a variable length payload response. */
 		PayloadTestRequest?: {
 			inputparams: readonly [
 				EnableKey: import ("@akala/core").IsomorphicBuffer, 
-				Value:  number, 
-				Count:  number, 
+				Value: number, 
+				Count: number, 
 			],
 			 outputparams: readonly [
 				Payload: import ("@akala/core").IsomorphicBuffer, ]
@@ -110,18 +114,82 @@ id: 51;
 	events: {
 		HardwareFaultChange?: [
 			
-			Current: HardwareFaultEnum, 
-			Previous: HardwareFaultEnum, ];
+			Current: readonly HardwareFaultEnum[], 
+			Previous: readonly HardwareFaultEnum[], ];
 		RadioFaultChange?: [
 			
-			Current: RadioFaultEnum, 
-			Previous: RadioFaultEnum, ];
+			Current: readonly RadioFaultEnum[], 
+			Previous: readonly RadioFaultEnum[], ];
 		NetworkFaultChange?: [
 			
-			Current: NetworkFaultEnum, 
-			Previous: NetworkFaultEnum, ];
+			Current: readonly NetworkFaultEnum[], 
+			Previous: readonly NetworkFaultEnum[], ];
 		BootReason: [
 			
 			BootReason: BootReasonEnum, ];
 	}
 }
+
+export const generalDiagnostics: Cluster<GeneralDiagnostics['attributes'], GeneralDiagnostics['commands'], GeneralDiagnostics['events']> = {
+id: 51,
+	attributes: {
+		NetworkInterfaces:[],
+		RebootCount:0,
+		UpTime:null,
+		TotalOperationalHours:0,
+		BootReason:null,
+		ActiveHardwareFaults:[],
+		ActiveRadioFaults:[],
+		ActiveNetworkFaults:[],
+		TestEventTriggersEnabled:null,
+		/** Support specific testing needs for extended Data Model features */
+	SupportsDataModelTest: false,
+},
+	commands: {
+		/** Provide a means for certification tests to trigger some test-plan-specific events */
+		TestEventTrigger: {
+			inputparams: [
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Take a snapshot of system time and epoch time. */
+		TimeSnapshot: {
+			inputparams: [
+			],
+			 outputparams: [
+				0, 
+				0, ]
+            },
+		/** Request a variable length payload response. */
+		PayloadTestRequest: {
+			inputparams: [
+				null, 
+				0, 
+				0, 
+			],
+			 outputparams: [
+				null, ]
+            },
+},
+	events: {
+		HardwareFaultChange: [
+			
+			[], 
+			[], ],
+		RadioFaultChange: [
+			
+			[], 
+			[], ],
+		NetworkFaultChange: [
+			
+			[], 
+			[], ],
+		BootReason: [
+			
+			null, ],
+	}
+}
+
+export default generalDiagnostics;

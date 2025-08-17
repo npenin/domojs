@@ -1,3 +1,7 @@
+// This file is generated from operational-state-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.115Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum OperationalStateEnum {
@@ -15,14 +19,14 @@ export enum ErrorStateEnum {
 }
 
 export interface OperationalStateStruct {
-	OperationalStateID: number,
-	OperationalStateLabel?: string,
+	OperationalStateID:number,
+	OperationalStateLabel?:string,
 }
 
 export interface ErrorStateStruct {
-	ErrorStateID: number,
-	ErrorStateLabel?: string,
-	ErrorStateDetails?: string,
+	ErrorStateID:number,
+	ErrorStateLabel?:string,
+	ErrorStateDetails?:string,
 }
 
 /**
@@ -32,9 +36,9 @@ export interface ErrorStateStruct {
 export interface OperationalState {
 id: 96;
 	attributes: {
-		readonly PhaseList?:readonly  string[]
-		readonly CurrentPhase?: number
-		readonly CountdownTime?: number
+		readonly PhaseList?:readonly string[]
+		readonly CurrentPhase?:number
+		readonly CountdownTime?:number
 		readonly OperationalStateList:readonly OperationalStateStruct[]
 		readonly OperationalState:OperationalStateEnum
 		readonly OperationalError:ErrorStateStruct
@@ -75,8 +79,62 @@ id: 96;
 			ErrorState: ErrorStateStruct, ];
 		OperationCompletion?: [
 			
-			CompletionErrorCode:  number, 
-			TotalOperationalTime:  number, 
-			PausedTime:  number, ];
+			CompletionErrorCode: number, 
+			TotalOperationalTime: number, 
+			PausedTime: number, ];
 	}
 }
+
+export const operationalState: Cluster<OperationalState['attributes'], OperationalState['commands'], OperationalState['events']> = {
+id: 96,
+	attributes: {
+		PhaseList:[],
+		CurrentPhase:0,
+		CountdownTime:0,
+		OperationalStateList:[],
+		OperationalState:null,
+		OperationalError:null,
+},
+	commands: {
+		/** Upon receipt, the device SHALL pause its operation if it is possible based on the current function of the server. */
+		Pause: {
+			inputparams: [
+			],
+			 outputparams: [
+				null, ]
+            },
+		/** Upon receipt, the device SHALL stop its operation if it is at a position where it is safe to do so and/or permitted. */
+		Stop: {
+			inputparams: [
+			],
+			 outputparams: [
+				null, ]
+            },
+		/** Upon receipt, the device SHALL start its operation if it is safe to do so and the device is in an operational state from which it can be started. */
+		Start: {
+			inputparams: [
+			],
+			 outputparams: [
+				null, ]
+            },
+		/** Upon receipt, the device SHALL resume its operation from the point it was at when it received the Pause command, or from the point when it was paused by means outside of this cluster (for example by manual button press). */
+		Resume: {
+			inputparams: [
+			],
+			 outputparams: [
+				null, ]
+            },
+},
+	events: {
+		OperationalError: [
+			
+			null, ],
+		OperationCompletion: [
+			
+			0, 
+			0, 
+			0, ],
+	}
+}
+
+export default operationalState;

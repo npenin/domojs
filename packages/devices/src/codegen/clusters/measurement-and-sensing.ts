@@ -1,3 +1,7 @@
+// This file is generated from measurement-and-sensing.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:47.708Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum MeasurementTypeEnum {
@@ -21,20 +25,20 @@ export enum MeasurementTypeEnum {
 }
 
 export interface MeasurementAccuracyRangeStruct {
-	RangeMin: bigint,
-	RangeMax: bigint,
-	PercentMax?: number,
-	PercentMin?: number,
-	PercentTypical?: number,
-	FixedMax?: bigint,
-	FixedMin?: bigint,
-	FixedTypical?: bigint,
+	RangeMin:bigint,
+	RangeMax:bigint,
+	PercentMax?:number,
+	PercentMin?:number,
+	PercentTypical?:number,
+	FixedMax?:bigint,
+	FixedMin?:bigint,
+	FixedTypical?:bigint,
 }
 
 export interface MeasurementAccuracyStruct {
 	MeasurementType:MeasurementTypeEnum,
 	Measured:boolean,
-	MinMeasuredValue: bigint,
-	MaxMeasuredValue: bigint,
-	AccuracyRanges:MeasurementAccuracyRangeStruct,
+	MinMeasuredValue:bigint,
+	MaxMeasuredValue:bigint,
+	AccuracyRanges:readonly MeasurementAccuracyRangeStruct[],
 }

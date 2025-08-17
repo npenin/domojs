@@ -1,3 +1,7 @@
+// This file is generated from chip-ota.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.178Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum StatusEnum {
@@ -47,8 +51,8 @@ export enum ChangeReasonEnum {
 }
 
 export interface ProviderLocation {
-	ProviderNodeID: string,
-	Endpoint: number,
+	ProviderNodeID:string,
+	Endpoint:number,
 }
 
 /**
@@ -63,21 +67,21 @@ id: 41;
 		/** Determine availability of a new Software Image */
 		QueryImage: {
 			inputparams: readonly [
-				VendorID:  number, 
-				ProductID:  number, 
-				SoftwareVersion:  number, 
-				ProtocolsSupported: DownloadProtocolEnum[], 
-				HardwareVersion:  number, 
-				Location:  string, 
+				VendorID: number, 
+				ProductID: number, 
+				SoftwareVersion: number, 
+				ProtocolsSupported: readonly DownloadProtocolEnum[][], 
+				HardwareVersion: number, 
+				Location: string, 
 				RequestorCanConsent: boolean, 
 				MetadataForProvider: import ("@akala/core").IsomorphicBuffer, 
 			],
 			 outputparams: readonly [
 				Status: StatusEnum, 
-				DelayedActionTime:  number, 
-				ImageURI:  string, 
-				SoftwareVersion:  number, 
-				SoftwareVersionString:  string, 
+				DelayedActionTime: number, 
+				ImageURI: string, 
+				SoftwareVersion: number, 
+				SoftwareVersionString: string, 
 				UpdateToken: import ("@akala/core").IsomorphicBuffer, 
 				UserConsentNeeded: boolean, 
 				MetadataForRequestor: import ("@akala/core").IsomorphicBuffer, ]
@@ -86,21 +90,71 @@ id: 41;
 		ApplyUpdateRequest: {
 			inputparams: readonly [
 				UpdateToken: import ("@akala/core").IsomorphicBuffer, 
-				NewVersion:  number, 
+				NewVersion: number, 
 			],
 			 outputparams: readonly [
 				Action: ApplyUpdateActionEnum, 
-				DelayedActionTime:  number, ]
+				DelayedActionTime: number, ]
             }
 		/** Notify OTA Provider that an update was applied */
 		NotifyUpdateApplied: {
 			inputparams: readonly [
 				UpdateToken: import ("@akala/core").IsomorphicBuffer, 
-				SoftwareVersion:  number, 
+				SoftwareVersion: number, 
 			],
 			 outputparams: readonly []
             }
 }
+	events: {
+	}
+}
+
+export const oTASoftwareUpdateProvider: Cluster<OTASoftwareUpdateProvider['attributes'], OTASoftwareUpdateProvider['commands'], OTASoftwareUpdateProvider['events']> = {
+id: 41,
+	attributes: {
+},
+	commands: {
+		/** Determine availability of a new Software Image */
+		QueryImage: {
+			inputparams: [
+				0, 
+				0, 
+				0, 
+				[], 
+				0, 
+				null, 
+				null, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				0, 
+				null, 
+				0, 
+				null, 
+				null, 
+				null, 
+				null, ]
+            },
+		/** Determine next action to take for a downloaded Software Image */
+		ApplyUpdateRequest: {
+			inputparams: [
+				null, 
+				0, 
+			],
+			 outputparams: [
+				null, 
+				0, ]
+            },
+		/** Notify OTA Provider that an update was applied */
+		NotifyUpdateApplied: {
+			inputparams: [
+				null, 
+				0, 
+			],
+			 outputparams: []
+            },
+},
 	events: {
 	}
 }
@@ -115,17 +169,17 @@ id: 42;
 		DefaultOTAProviders?:readonly ProviderLocation[]
 		readonly UpdatePossible?:boolean
 		readonly UpdateState?:UpdateStateEnum
-		readonly UpdateStateProgress?: number
+		readonly UpdateStateProgress?:number
 }
 	commands: {
 		/** Announce the presence of an OTA Provider */
 		AnnounceOTAProvider?: {
 			inputparams: readonly [
-				ProviderNodeID:  string, 
-				VendorID:  number, 
+				ProviderNodeID: string, 
+				VendorID: number, 
 				AnnouncementReason: AnnouncementReasonEnum, 
 				MetadataForNode: import ("@akala/core").IsomorphicBuffer, 
-				Endpoint:  number, 
+				Endpoint: number, 
 			],
 			 outputparams: readonly []
             }
@@ -136,16 +190,57 @@ id: 42;
 			PreviousState: UpdateStateEnum, 
 			NewState: UpdateStateEnum, 
 			Reason: ChangeReasonEnum, 
-			TargetSoftwareVersion:  number, ];
+			TargetSoftwareVersion: number, ];
 		VersionApplied: [
 			
-			SoftwareVersion:  number, 
-			ProductID:  number, ];
+			SoftwareVersion: number, 
+			ProductID: number, ];
 		DownloadError: [
 			
-			SoftwareVersion:  number, 
-			BytesDownloaded:  bigint, 
-			ProgressPercent:  number, 
-			PlatformCode:  bigint, ];
+			SoftwareVersion: number, 
+			BytesDownloaded: bigint, 
+			ProgressPercent: number, 
+			PlatformCode: bigint, ];
+	}
+}
+
+export const oTASoftwareUpdateRequestor: Cluster<OTASoftwareUpdateRequestor['attributes'], OTASoftwareUpdateRequestor['commands'], OTASoftwareUpdateRequestor['events']> = {
+id: 42,
+	attributes: {
+		DefaultOTAProviders:[],
+		UpdatePossible:null,
+		UpdateState:null,
+		UpdateStateProgress:0,
+},
+	commands: {
+		/** Announce the presence of an OTA Provider */
+		AnnounceOTAProvider: {
+			inputparams: [
+				null, 
+				0, 
+				null, 
+				null, 
+				0, 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+		StateTransition: [
+			
+			null, 
+			null, 
+			null, 
+			0, ],
+		VersionApplied: [
+			
+			0, 
+			0, ],
+		DownloadError: [
+			
+			0, 
+			null, 
+			0, 
+			null, ],
 	}
 }

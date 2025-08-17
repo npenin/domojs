@@ -1,20 +1,24 @@
+// This file is generated from electrical-energy-measurement-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.908Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export interface CumulativeEnergyResetStruct {
-	ImportedResetTimestamp?: number,
-	ExportedResetTimestamp?: number,
-	ImportedResetSystime?: number,
-	ExportedResetSystime?: number,
+	ImportedResetTimestamp?:number,
+	ExportedResetTimestamp?:number,
+	ImportedResetSystime?:number,
+	ExportedResetSystime?:number,
 }
 
 export interface EnergyMeasurementStruct {
-	Energy: number,
-	StartTimestamp?: number,
-	EndTimestamp?: number,
-	StartSystime?: number,
-	EndSystime?: number,
-	ApparentEnergy?: number,
-	ReactiveEnergy?: number,
+	Energy:number,
+	StartTimestamp?:number,
+	EndTimestamp?:number,
+	StartSystime?:number,
+	EndSystime?:number,
+	ApparentEnergy?:number,
+	ReactiveEnergy?:number,
 }
 
 /**
@@ -56,3 +60,41 @@ id: 145;
 			EnergyExported: EnergyMeasurementStruct, ];
 	}
 }
+
+export const electricalEnergyMeasurement: Cluster<ElectricalEnergyMeasurement['attributes'], ElectricalEnergyMeasurement['commands'], ElectricalEnergyMeasurement['events']> = {
+id: 145,
+	attributes: {
+		Accuracy:null,
+		CumulativeEnergyImported:null,
+		CumulativeEnergyExported:null,
+		PeriodicEnergyImported:null,
+		PeriodicEnergyExported:null,
+		CumulativeEnergyReset:null,
+		/** Measurement of energy imported by the server */
+	SupportsImportedEnergy: false,
+		/** Measurement of energy provided by the server */
+	SupportsExportedEnergy: false,
+		/** Measurements are cumulative */
+	SupportsCumulativeEnergy: false,
+		/** Measurements are periodic */
+	SupportsPeriodicEnergy: false,
+		/** Measurements report apparent energy */
+	SupportsApparentEnergy: false,
+		/** Measurements report reactive energy */
+	SupportsReactiveEnergy: false,
+},
+	commands: {
+},
+	events: {
+		CumulativeEnergyMeasured: [
+			
+			null, 
+			null, ],
+		PeriodicEnergyMeasured: [
+			
+			null, 
+			null, ],
+	}
+}
+
+export default electricalEnergyMeasurement;

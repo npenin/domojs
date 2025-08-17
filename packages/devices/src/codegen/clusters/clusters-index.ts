@@ -1,147 +1,146 @@
 import * as accessControlCluster from "./access-control-cluster.js";
-export { accessControlCluster }; import * as accessControlDefinitions from "./access-control-definitions.js";
-export { accessControlDefinitions }; import * as accountLoginCluster from "./account-login-cluster.js";
-export { accountLoginCluster }; import * as actionsCluster from "./actions-cluster.js";
-export { actionsCluster }; import * as administratorCommissioningCluster from "./administrator-commissioning-cluster.js";
-export { administratorCommissioningCluster }; import * as airQualityCluster from "./air-quality-cluster.js";
-export { airQualityCluster }; import * as applicationBasicCluster from "./application-basic-cluster.js";
-export { applicationBasicCluster }; import * as applicationLauncherCluster from "./application-launcher-cluster.js";
-export { applicationLauncherCluster }; import * as audioOutputCluster from "./audio-output-cluster.js";
-export { audioOutputCluster }; import * as ballastConfigurationCluster from "./ballast-configuration-cluster.js";
-export { ballastConfigurationCluster }; import * as basicInformationCluster from "./basic-information-cluster.js";
-export { basicInformationCluster }; import * as bindingCluster from "./binding-cluster.js";
-export { bindingCluster }; import * as booleanStateCluster from "./boolean-state-cluster.js";
-export { booleanStateCluster }; import * as booleanStateConfigurationCluster from "./boolean-state-configuration-cluster.js";
-export { booleanStateConfigurationCluster }; import * as bridgedDeviceBasicInformationCluster from "./bridged-device-basic-information-cluster.js";
-export { bridgedDeviceBasicInformationCluster }; import * as cameraAvSettingsUserLevelManagementCluster from "./camera-av-settings-user-level-management-cluster.js";
-export { cameraAvSettingsUserLevelManagementCluster }; import * as cameraAvStreamManagementCluster from "./camera-av-stream-management-cluster.js";
-export { cameraAvStreamManagementCluster }; import * as channelCluster from "./channel-cluster.js";
-export { channelCluster }; import * as chimeCluster from "./chime-cluster.js";
-export { chimeCluster }; import * as chipOta from "./chip-ota.js";
-export { chipOta }; import * as chipTypes from "./chip-types.js";
-export { chipTypes }; import * as closureControlCluster from "./closure-control-cluster.js";
-export { closureControlCluster }; import * as closureDimensionCluster from "./closure-dimension-cluster.js";
-export { closureDimensionCluster }; import * as clustersExtensions from "./clusters-extensions.js";
-export { clustersExtensions }; import * as colorControlCluster from "./color-control-cluster.js";
-export { colorControlCluster }; import * as commissionerControlCluster from "./commissioner-control-cluster.js";
-export { commissionerControlCluster }; import * as commodityMeteringCluster from "./commodity-metering-cluster.js";
-export { commodityMeteringCluster }; import * as commodityPriceCluster from "./commodity-price-cluster.js";
-export { commodityPriceCluster }; import * as commodityTariffCluster from "./commodity-tariff-cluster.js";
-export { commodityTariffCluster }; import * as concentrationMeasurementCluster from "./concentration-measurement-cluster.js";
-export { concentrationMeasurementCluster }; import * as contentAppObserverCluster from "./content-app-observer-cluster.js";
-export { contentAppObserverCluster }; import * as contentControlCluster from "./content-control-cluster.js";
-export { contentControlCluster }; import * as contentLaunchCluster from "./content-launch-cluster.js";
-export { contentLaunchCluster }; import * as descriptorCluster from "./descriptor-cluster.js";
-export { descriptorCluster }; import * as deviceEnergyManagementCluster from "./device-energy-management-cluster.js";
-export { deviceEnergyManagementCluster }; import * as deviceEnergyManagementModeCluster from "./device-energy-management-mode-cluster.js";
-export { deviceEnergyManagementModeCluster }; import * as diagnosticLogsCluster from "./diagnostic-logs-cluster.js";
-export { diagnosticLogsCluster }; import * as dishwasherAlarmCluster from "./dishwasher-alarm-cluster.js";
-export { dishwasherAlarmCluster }; import * as dishwasherModeCluster from "./dishwasher-mode-cluster.js";
-export { dishwasherModeCluster }; import * as doorLockCluster from "./door-lock-cluster.js";
-export { doorLockCluster }; import * as ecosystemInformationCluster from "./ecosystem-information-cluster.js";
-export { ecosystemInformationCluster }; import * as electricalEnergyMeasurementCluster from "./electrical-energy-measurement-cluster.js";
-export { electricalEnergyMeasurementCluster }; import * as electricalGridConditionsCluster from "./electrical-grid-conditions-cluster.js";
-export { electricalGridConditionsCluster }; import * as electricalPowerMeasurementCluster from "./electrical-power-measurement-cluster.js";
-export { electricalPowerMeasurementCluster }; import * as energyEvseCluster from "./energy-evse-cluster.js";
-export { energyEvseCluster }; import * as energyEvseModeCluster from "./energy-evse-mode-cluster.js";
-export { energyEvseModeCluster }; import * as energyPreferenceCluster from "./energy-preference-cluster.js";
-export { energyPreferenceCluster }; import * as ethernetNetworkDiagnosticsCluster from "./ethernet-network-diagnostics-cluster.js";
-export { ethernetNetworkDiagnosticsCluster }; import * as fanControlCluster from "./fan-control-cluster.js";
-export { fanControlCluster }; import * as faultInjectionCluster from "./fault-injection-cluster.js";
-export { faultInjectionCluster }; import * as fixedLabelCluster from "./fixed-label-cluster.js";
-export { fixedLabelCluster }; import * as flowMeasurementCluster from "./flow-measurement-cluster.js";
-export { flowMeasurementCluster }; import * as generalCommissioningCluster from "./general-commissioning-cluster.js";
-export { generalCommissioningCluster }; import * as generalDiagnosticsCluster from "./general-diagnostics-cluster.js";
-export { generalDiagnosticsCluster }; import * as globalAttributes from "./global-attributes.js";
-export { globalAttributes }; import * as globalBitmaps from "./global-bitmaps.js";
-export { globalBitmaps }; import * as globalEnums from "./global-enums.js";
-export { globalEnums }; import * as globalStructs from "./global-structs.js";
-export { globalStructs }; import * as groupKeyMgmtCluster from "./group-key-mgmt-cluster.js";
-export { groupKeyMgmtCluster }; import * as groupsCluster from "./groups-cluster.js";
-export { groupsCluster }; import * as icdManagementCluster from "./icd-management-cluster.js";
-export { icdManagementCluster }; import * as identifyCluster from "./identify-cluster.js";
-export { identifyCluster }; import * as illuminanceMeasurementCluster from "./illuminance-measurement-cluster.js";
-export { illuminanceMeasurementCluster }; import * as jointFabricAdministratorCluster from "./joint-fabric-administrator-cluster.js";
-export { jointFabricAdministratorCluster }; import * as jointFabricDatastoreCluster from "./joint-fabric-datastore-cluster.js";
-export { jointFabricDatastoreCluster }; import * as keypadInputCluster from "./keypad-input-cluster.js";
-export { keypadInputCluster }; import * as laundryDryerControlsCluster from "./laundry-dryer-controls-cluster.js";
-export { laundryDryerControlsCluster }; import * as laundryWasherModeCluster from "./laundry-washer-mode-cluster.js";
-export { laundryWasherModeCluster }; import * as levelControlCluster from "./level-control-cluster.js";
-export { levelControlCluster }; import * as localizationConfigurationCluster from "./localization-configuration-cluster.js";
-export { localizationConfigurationCluster }; import * as lowPowerCluster from "./low-power-cluster.js";
-export { lowPowerCluster }; import * as matterDevices from "./matter-devices.js";
-export { matterDevices }; import * as measurementAndSensing from "./measurement-and-sensing.js";
-export { measurementAndSensing }; import * as mediaInputCluster from "./media-input-cluster.js";
-export { mediaInputCluster }; import * as mediaPlaybackCluster from "./media-playback-cluster.js";
-export { mediaPlaybackCluster }; import * as messagesCluster from "./messages-cluster.js";
-export { messagesCluster }; import * as meterIdentificationCluster from "./meter-identification-cluster.js";
-export { meterIdentificationCluster }; import * as microwaveOvenControlCluster from "./microwave-oven-control-cluster.js";
-export { microwaveOvenControlCluster }; import * as microwaveOvenModeCluster from "./microwave-oven-mode-cluster.js";
-export { microwaveOvenModeCluster }; import * as modeBaseCluster from "./mode-base-cluster.js";
-export { modeBaseCluster }; import * as modeSelectCluster from "./mode-select-cluster.js";
-export { modeSelectCluster }; import * as networkCommissioningCluster from "./network-commissioning-cluster.js";
-export { networkCommissioningCluster }; import * as occupancySensingCluster from "./occupancy-sensing-cluster.js";
-export { occupancySensingCluster }; import * as onoffCluster from "./onoff-cluster.js";
-export { onoffCluster }; import * as operationalCredentialsCluster from "./operational-credentials-cluster.js";
-export { operationalCredentialsCluster }; import * as operationalStateCluster from "./operational-state-cluster.js";
-export { operationalStateCluster }; import * as operationalStateOvenCluster from "./operational-state-oven-cluster.js";
-export { operationalStateOvenCluster }; import * as operationalStateRvcCluster from "./operational-state-rvc-cluster.js";
-export { operationalStateRvcCluster }; import * as ovenModeCluster from "./oven-mode-cluster.js";
-export { ovenModeCluster }; import * as powerSourceCluster from "./power-source-cluster.js";
-export { powerSourceCluster }; import * as powerSourceConfigurationCluster from "./power-source-configuration-cluster.js";
-export { powerSourceConfigurationCluster }; import * as powerTopologyCluster from "./power-topology-cluster.js";
-export { powerTopologyCluster }; import * as pressureMeasurementCluster from "./pressure-measurement-cluster.js";
-export { pressureMeasurementCluster }; import * as proxyConfigurationCluster from "./proxy-configuration-cluster.js";
-export { proxyConfigurationCluster }; import * as proxyDiscoveryCluster from "./proxy-discovery-cluster.js";
-export { proxyDiscoveryCluster }; import * as proxyValidCluster from "./proxy-valid-cluster.js";
-export { proxyValidCluster }; import * as pumpConfigurationAndControlCluster from "./pump-configuration-and-control-cluster.js";
-export { pumpConfigurationAndControlCluster }; import * as pushAvStreamTransportCluster from "./push-av-stream-transport-cluster.js";
-export { pushAvStreamTransportCluster }; import * as pwmCluster from "./pwm-cluster.js";
-export { pwmCluster }; import * as refrigeratorAlarm from "./refrigerator-alarm.js";
-export { refrigeratorAlarm }; import * as refrigeratorAndTemperatureControlledCabinetModeCluster from "./refrigerator-and-temperature-controlled-cabinet-mode-cluster.js";
-export { refrigeratorAndTemperatureControlledCabinetModeCluster }; import * as relativeHumidityMeasurementCluster from "./relative-humidity-measurement-cluster.js";
-export { relativeHumidityMeasurementCluster }; import * as resourceMonitoringCluster from "./resource-monitoring-cluster.js";
-export { resourceMonitoringCluster }; import * as rvcCleanModeCluster from "./rvc-clean-mode-cluster.js";
-export { rvcCleanModeCluster }; import * as rvcRunModeCluster from "./rvc-run-mode-cluster.js";
-export { rvcRunModeCluster }; import * as sampleMeiCluster from "./sample-mei-cluster.js";
-export { sampleMeiCluster }; import * as scene from "./scene.js";
-export { scene }; import * as semanticTagNamespaceEnums from "./semantic-tag-namespace-enums.js";
-export { semanticTagNamespaceEnums }; import * as serviceAreaCluster from "./service-area-cluster.js";
-export { serviceAreaCluster }; import * as smokeCoAlarmCluster from "./smoke-co-alarm-cluster.js";
-export { smokeCoAlarmCluster }; import * as softwareDiagnosticsCluster from "./software-diagnostics-cluster.js";
-export { softwareDiagnosticsCluster }; import * as soilMeasurementCluster from "./soil-measurement-cluster.js";
-export { soilMeasurementCluster }; import * as switchCluster from "./switch-cluster.js";
-export { switchCluster }; import * as targetNavigatorCluster from "./target-navigator-cluster.js";
-export { targetNavigatorCluster }; import * as temperatureControlCluster from "./temperature-control-cluster.js";
-export { temperatureControlCluster }; import * as temperatureMeasurementCluster from "./temperature-measurement-cluster.js";
-export { temperatureMeasurementCluster }; import * as testCluster from "./test-cluster.js";
-export { testCluster }; import * as thermostatCluster from "./thermostat-cluster.js";
-export { thermostatCluster }; import * as thermostatUserInterfaceConfigurationCluster from "./thermostat-user-interface-configuration-cluster.js";
-export { thermostatUserInterfaceConfigurationCluster }; import * as threadBorderRouterManagementCluster from "./thread-border-router-management-cluster.js";
-export { threadBorderRouterManagementCluster }; import * as threadNetworkDiagnosticsCluster from "./thread-network-diagnostics-cluster.js";
-export { threadNetworkDiagnosticsCluster }; import * as threadNetworkDirectoryCluster from "./thread-network-directory-cluster.js";
-export { threadNetworkDirectoryCluster }; import * as timeFormatLocalizationCluster from "./time-format-localization-cluster.js";
-export { timeFormatLocalizationCluster }; import * as timeSynchronizationCluster from "./time-synchronization-cluster.js";
-export { timeSynchronizationCluster }; import * as timerCluster from "./timer-cluster.js";
-export { timerCluster }; import * as tlsCertificateManagementCluster from "./tls-certificate-management-cluster.js";
-export { tlsCertificateManagementCluster }; import * as tlsClientManagementCluster from "./tls-client-management-cluster.js";
-export { tlsClientManagementCluster }; import * as unitLocalizationCluster from "./unit-localization-cluster.js";
-export { unitLocalizationCluster }; import * as userLabelCluster from "./user-label-cluster.js";
-export { userLabelCluster }; import * as valveConfigurationAndControlCluster from "./valve-configuration-and-control-cluster.js";
-export { valveConfigurationAndControlCluster }; import * as wakeOnLanCluster from "./wake-on-lan-cluster.js";
-export { wakeOnLanCluster }; import * as washerControlsCluster from "./washer-controls-cluster.js";
-export { washerControlsCluster }; import * as waterHeaterManagementCluster from "./water-heater-management-cluster.js";
-export { waterHeaterManagementCluster }; import * as waterHeaterModeCluster from "./water-heater-mode-cluster.js";
-export { waterHeaterModeCluster }; import * as webrtcProviderCluster from "./webrtc-provider-cluster.js";
-export { webrtcProviderCluster }; import * as webrtcRequestorCluster from "./webrtc-requestor-cluster.js";
-export { webrtcRequestorCluster }; import * as wifiNetworkDiagnosticsCluster from "./wifi-network-diagnostics-cluster.js";
-export { wifiNetworkDiagnosticsCluster }; import * as wifiNetworkManagementCluster from "./wifi-network-management-cluster.js";
-export { wifiNetworkManagementCluster }; import * as windowCovering from "./window-covering.js";
-export { windowCovering }; import * as zoneManagementCluster from "./zone-management-cluster.js";
+export { accessControlCluster };import * as accessControlDefinitions from "./access-control-definitions.js";
+export { accessControlDefinitions };import * as accountLoginCluster from "./account-login-cluster.js";
+export { accountLoginCluster };import * as actionsCluster from "./actions-cluster.js";
+export { actionsCluster };import * as administratorCommissioningCluster from "./administrator-commissioning-cluster.js";
+export { administratorCommissioningCluster };import * as airQualityCluster from "./air-quality-cluster.js";
+export { airQualityCluster };import * as applicationBasicCluster from "./application-basic-cluster.js";
+export { applicationBasicCluster };import * as applicationLauncherCluster from "./application-launcher-cluster.js";
+export { applicationLauncherCluster };import * as audioOutputCluster from "./audio-output-cluster.js";
+export { audioOutputCluster };import * as ballastConfigurationCluster from "./ballast-configuration-cluster.js";
+export { ballastConfigurationCluster };import * as basicInformationCluster from "./basic-information-cluster.js";
+export { basicInformationCluster };import * as bindingCluster from "./binding-cluster.js";
+export { bindingCluster };import * as booleanStateCluster from "./boolean-state-cluster.js";
+export { booleanStateCluster };import * as booleanStateConfigurationCluster from "./boolean-state-configuration-cluster.js";
+export { booleanStateConfigurationCluster };import * as bridgedDeviceBasicInformationCluster from "./bridged-device-basic-information-cluster.js";
+export { bridgedDeviceBasicInformationCluster };import * as cameraAvSettingsUserLevelManagementCluster from "./camera-av-settings-user-level-management-cluster.js";
+export { cameraAvSettingsUserLevelManagementCluster };import * as cameraAvStreamManagementCluster from "./camera-av-stream-management-cluster.js";
+export { cameraAvStreamManagementCluster };import * as channelCluster from "./channel-cluster.js";
+export { channelCluster };import * as chimeCluster from "./chime-cluster.js";
+export { chimeCluster };import * as chipOta from "./chip-ota.js";
+export { chipOta };import * as chipTypes from "./chip-types.js";
+export { chipTypes };import * as closureControlCluster from "./closure-control-cluster.js";
+export { closureControlCluster };import * as closureDimensionCluster from "./closure-dimension-cluster.js";
+export { closureDimensionCluster };import * as clustersExtensions from "./clusters-extensions.js";
+export { clustersExtensions };import * as colorControlCluster from "./color-control-cluster.js";
+export { colorControlCluster };import * as commissionerControlCluster from "./commissioner-control-cluster.js";
+export { commissionerControlCluster };import * as commodityMeteringCluster from "./commodity-metering-cluster.js";
+export { commodityMeteringCluster };import * as commodityPriceCluster from "./commodity-price-cluster.js";
+export { commodityPriceCluster };import * as commodityTariffCluster from "./commodity-tariff-cluster.js";
+export { commodityTariffCluster };import * as concentrationMeasurementCluster from "./concentration-measurement-cluster.js";
+export { concentrationMeasurementCluster };import * as contentAppObserverCluster from "./content-app-observer-cluster.js";
+export { contentAppObserverCluster };import * as contentControlCluster from "./content-control-cluster.js";
+export { contentControlCluster };import * as contentLaunchCluster from "./content-launch-cluster.js";
+export { contentLaunchCluster };import * as descriptorCluster from "./descriptor-cluster.js";
+export { descriptorCluster };import * as deviceEnergyManagementCluster from "./device-energy-management-cluster.js";
+export { deviceEnergyManagementCluster };import * as deviceEnergyManagementModeCluster from "./device-energy-management-mode-cluster.js";
+export { deviceEnergyManagementModeCluster };import * as diagnosticLogsCluster from "./diagnostic-logs-cluster.js";
+export { diagnosticLogsCluster };import * as dishwasherAlarmCluster from "./dishwasher-alarm-cluster.js";
+export { dishwasherAlarmCluster };import * as dishwasherModeCluster from "./dishwasher-mode-cluster.js";
+export { dishwasherModeCluster };import * as doorLockCluster from "./door-lock-cluster.js";
+export { doorLockCluster };import * as ecosystemInformationCluster from "./ecosystem-information-cluster.js";
+export { ecosystemInformationCluster };import * as electricalEnergyMeasurementCluster from "./electrical-energy-measurement-cluster.js";
+export { electricalEnergyMeasurementCluster };import * as electricalGridConditionsCluster from "./electrical-grid-conditions-cluster.js";
+export { electricalGridConditionsCluster };import * as electricalPowerMeasurementCluster from "./electrical-power-measurement-cluster.js";
+export { electricalPowerMeasurementCluster };import * as energyEvseCluster from "./energy-evse-cluster.js";
+export { energyEvseCluster };import * as energyEvseModeCluster from "./energy-evse-mode-cluster.js";
+export { energyEvseModeCluster };import * as energyPreferenceCluster from "./energy-preference-cluster.js";
+export { energyPreferenceCluster };import * as ethernetNetworkDiagnosticsCluster from "./ethernet-network-diagnostics-cluster.js";
+export { ethernetNetworkDiagnosticsCluster };import * as fanControlCluster from "./fan-control-cluster.js";
+export { fanControlCluster };import * as faultInjectionCluster from "./fault-injection-cluster.js";
+export { faultInjectionCluster };import * as fixedLabelCluster from "./fixed-label-cluster.js";
+export { fixedLabelCluster };import * as flowMeasurementCluster from "./flow-measurement-cluster.js";
+export { flowMeasurementCluster };import * as generalCommissioningCluster from "./general-commissioning-cluster.js";
+export { generalCommissioningCluster };import * as generalDiagnosticsCluster from "./general-diagnostics-cluster.js";
+export { generalDiagnosticsCluster };import * as globalAttributes from "./global-attributes.js";
+export { globalAttributes };import * as globalBitmaps from "./global-bitmaps.js";
+export { globalBitmaps };import * as globalEnums from "./global-enums.js";
+export { globalEnums };import * as globalStructs from "./global-structs.js";
+export { globalStructs };import * as groupKeyMgmtCluster from "./group-key-mgmt-cluster.js";
+export { groupKeyMgmtCluster };import * as groupsCluster from "./groups-cluster.js";
+export { groupsCluster };import * as icdManagementCluster from "./icd-management-cluster.js";
+export { icdManagementCluster };import * as identifyCluster from "./identify-cluster.js";
+export { identifyCluster };import * as illuminanceMeasurementCluster from "./illuminance-measurement-cluster.js";
+export { illuminanceMeasurementCluster };import * as jointFabricAdministratorCluster from "./joint-fabric-administrator-cluster.js";
+export { jointFabricAdministratorCluster };import * as jointFabricDatastoreCluster from "./joint-fabric-datastore-cluster.js";
+export { jointFabricDatastoreCluster };import * as keypadInputCluster from "./keypad-input-cluster.js";
+export { keypadInputCluster };import * as laundryDryerControlsCluster from "./laundry-dryer-controls-cluster.js";
+export { laundryDryerControlsCluster };import * as laundryWasherModeCluster from "./laundry-washer-mode-cluster.js";
+export { laundryWasherModeCluster };import * as levelControlCluster from "./level-control-cluster.js";
+export { levelControlCluster };import * as localizationConfigurationCluster from "./localization-configuration-cluster.js";
+export { localizationConfigurationCluster };import * as lowPowerCluster from "./low-power-cluster.js";
+export { lowPowerCluster };import * as matterDevices from "./matter-devices.js";
+export { matterDevices };import * as measurementAndSensing from "./measurement-and-sensing.js";
+export { measurementAndSensing };import * as mediaInputCluster from "./media-input-cluster.js";
+export { mediaInputCluster };import * as mediaPlaybackCluster from "./media-playback-cluster.js";
+export { mediaPlaybackCluster };import * as messagesCluster from "./messages-cluster.js";
+export { messagesCluster };import * as meterIdentificationCluster from "./meter-identification-cluster.js";
+export { meterIdentificationCluster };import * as microwaveOvenControlCluster from "./microwave-oven-control-cluster.js";
+export { microwaveOvenControlCluster };import * as microwaveOvenModeCluster from "./microwave-oven-mode-cluster.js";
+export { microwaveOvenModeCluster };import * as modeBaseCluster from "./mode-base-cluster.js";
+export { modeBaseCluster };import * as modeSelectCluster from "./mode-select-cluster.js";
+export { modeSelectCluster };import * as networkCommissioningCluster from "./network-commissioning-cluster.js";
+export { networkCommissioningCluster };import * as occupancySensingCluster from "./occupancy-sensing-cluster.js";
+export { occupancySensingCluster };import * as onoffCluster from "./onoff-cluster.js";
+export { onoffCluster };import * as operationalCredentialsCluster from "./operational-credentials-cluster.js";
+export { operationalCredentialsCluster };import * as operationalStateCluster from "./operational-state-cluster.js";
+export { operationalStateCluster };import * as operationalStateOvenCluster from "./operational-state-oven-cluster.js";
+export { operationalStateOvenCluster };import * as operationalStateRvcCluster from "./operational-state-rvc-cluster.js";
+export { operationalStateRvcCluster };import * as ovenModeCluster from "./oven-mode-cluster.js";
+export { ovenModeCluster };import * as powerSourceCluster from "./power-source-cluster.js";
+export { powerSourceCluster };import * as powerSourceConfigurationCluster from "./power-source-configuration-cluster.js";
+export { powerSourceConfigurationCluster };import * as powerTopologyCluster from "./power-topology-cluster.js";
+export { powerTopologyCluster };import * as pressureMeasurementCluster from "./pressure-measurement-cluster.js";
+export { pressureMeasurementCluster };import * as proxyConfigurationCluster from "./proxy-configuration-cluster.js";
+export { proxyConfigurationCluster };import * as proxyDiscoveryCluster from "./proxy-discovery-cluster.js";
+export { proxyDiscoveryCluster };import * as proxyValidCluster from "./proxy-valid-cluster.js";
+export { proxyValidCluster };import * as pumpConfigurationAndControlCluster from "./pump-configuration-and-control-cluster.js";
+export { pumpConfigurationAndControlCluster };import * as pushAvStreamTransportCluster from "./push-av-stream-transport-cluster.js";
+export { pushAvStreamTransportCluster };import * as pwmCluster from "./pwm-cluster.js";
+export { pwmCluster };import * as refrigeratorAlarm from "./refrigerator-alarm.js";
+export { refrigeratorAlarm };import * as refrigeratorAndTemperatureControlledCabinetModeCluster from "./refrigerator-and-temperature-controlled-cabinet-mode-cluster.js";
+export { refrigeratorAndTemperatureControlledCabinetModeCluster };import * as relativeHumidityMeasurementCluster from "./relative-humidity-measurement-cluster.js";
+export { relativeHumidityMeasurementCluster };import * as resourceMonitoringCluster from "./resource-monitoring-cluster.js";
+export { resourceMonitoringCluster };import * as rvcCleanModeCluster from "./rvc-clean-mode-cluster.js";
+export { rvcCleanModeCluster };import * as rvcRunModeCluster from "./rvc-run-mode-cluster.js";
+export { rvcRunModeCluster };import * as sampleMeiCluster from "./sample-mei-cluster.js";
+export { sampleMeiCluster };import * as scene from "./scene.js";
+export { scene };import * as semanticTagNamespaceEnums from "./semantic-tag-namespace-enums.js";
+export { semanticTagNamespaceEnums };import * as serviceAreaCluster from "./service-area-cluster.js";
+export { serviceAreaCluster };import * as smokeCoAlarmCluster from "./smoke-co-alarm-cluster.js";
+export { smokeCoAlarmCluster };import * as softwareDiagnosticsCluster from "./software-diagnostics-cluster.js";
+export { softwareDiagnosticsCluster };import * as soilMeasurementCluster from "./soil-measurement-cluster.js";
+export { soilMeasurementCluster };import * as switchCluster from "./switch-cluster.js";
+export { switchCluster };import * as targetNavigatorCluster from "./target-navigator-cluster.js";
+export { targetNavigatorCluster };import * as temperatureControlCluster from "./temperature-control-cluster.js";
+export { temperatureControlCluster };import * as temperatureMeasurementCluster from "./temperature-measurement-cluster.js";
+export { temperatureMeasurementCluster };import * as testCluster from "./test-cluster.js";
+export { testCluster };import * as thermostatCluster from "./thermostat-cluster.js";
+export { thermostatCluster };import * as thermostatUserInterfaceConfigurationCluster from "./thermostat-user-interface-configuration-cluster.js";
+export { thermostatUserInterfaceConfigurationCluster };import * as threadBorderRouterManagementCluster from "./thread-border-router-management-cluster.js";
+export { threadBorderRouterManagementCluster };import * as threadNetworkDiagnosticsCluster from "./thread-network-diagnostics-cluster.js";
+export { threadNetworkDiagnosticsCluster };import * as threadNetworkDirectoryCluster from "./thread-network-directory-cluster.js";
+export { threadNetworkDirectoryCluster };import * as timeFormatLocalizationCluster from "./time-format-localization-cluster.js";
+export { timeFormatLocalizationCluster };import * as timeSynchronizationCluster from "./time-synchronization-cluster.js";
+export { timeSynchronizationCluster };import * as timerCluster from "./timer-cluster.js";
+export { timerCluster };import * as tlsCertificateManagementCluster from "./tls-certificate-management-cluster.js";
+export { tlsCertificateManagementCluster };import * as tlsClientManagementCluster from "./tls-client-management-cluster.js";
+export { tlsClientManagementCluster };import * as unitLocalizationCluster from "./unit-localization-cluster.js";
+export { unitLocalizationCluster };import * as userLabelCluster from "./user-label-cluster.js";
+export { userLabelCluster };import * as valveConfigurationAndControlCluster from "./valve-configuration-and-control-cluster.js";
+export { valveConfigurationAndControlCluster };import * as wakeOnLanCluster from "./wake-on-lan-cluster.js";
+export { wakeOnLanCluster };import * as washerControlsCluster from "./washer-controls-cluster.js";
+export { washerControlsCluster };import * as waterHeaterManagementCluster from "./water-heater-management-cluster.js";
+export { waterHeaterManagementCluster };import * as waterHeaterModeCluster from "./water-heater-mode-cluster.js";
+export { waterHeaterModeCluster };import * as webrtcProviderCluster from "./webrtc-provider-cluster.js";
+export { webrtcProviderCluster };import * as webrtcRequestorCluster from "./webrtc-requestor-cluster.js";
+export { webrtcRequestorCluster };import * as wifiNetworkDiagnosticsCluster from "./wifi-network-diagnostics-cluster.js";
+export { wifiNetworkDiagnosticsCluster };import * as wifiNetworkManagementCluster from "./wifi-network-management-cluster.js";
+export { wifiNetworkManagementCluster };import * as windowCovering from "./window-covering.js";
+export { windowCovering };import * as zoneManagementCluster from "./zone-management-cluster.js";
 export { zoneManagementCluster };
 
-export enum ClusterIds
-{
+export enum ClusterIds {
 	AccessControl = 31,
 	AccountLogin = 1294,
 	Actions = 37,
@@ -540,7 +539,7 @@ export type ClusterMap = {
 	smokeCOAlarm: smokeCoAlarmCluster.SmokeCOAlarm,
 	softwareDiagnostics: softwareDiagnosticsCluster.SoftwareDiagnostics,
 	soilMeasurement: soilMeasurementCluster.SoilMeasurement,
-	switch: switchCluster.Switch,
+	switch_: switchCluster.Switch,
 	targetNavigator: targetNavigatorCluster.TargetNavigator,
 	temperatureControl: temperatureControlCluster.TemperatureControl,
 	temperatureMeasurement: temperatureMeasurementCluster.TemperatureMeasurement,
@@ -570,8 +569,150 @@ export type ClusterMap = {
 	zoneManagement: zoneManagementCluster.ZoneManagement,
 }
 
-export enum ClusterIdNames
-{
+export const ClusterMap = {
+	[31]: accessControlCluster.accessControl,
+	[1294]: accountLoginCluster.accountLogin,
+	[37]: actionsCluster.actions,
+	[60]: administratorCommissioningCluster.administratorCommissioning,
+	[91]: airQualityCluster.airQuality,
+	[1293]: applicationBasicCluster.applicationBasic,
+	[1292]: applicationLauncherCluster.applicationLauncher,
+	[1291]: audioOutputCluster.audioOutput,
+	[769]: ballastConfigurationCluster.ballastConfiguration,
+	[40]: basicInformationCluster.basicInformation,
+	[30]: bindingCluster.binding,
+	[69]: booleanStateCluster.booleanState,
+	[128]: booleanStateConfigurationCluster.booleanStateConfiguration,
+	[57]: bridgedDeviceBasicInformationCluster.bridgedDeviceBasicInformation,
+	[1362]: cameraAvSettingsUserLevelManagementCluster.cameraAVSettingsUserLevelManagement,
+	[1361]: cameraAvStreamManagementCluster.cameraAVStreamManagement,
+	[1284]: channelCluster.channel,
+	[1366]: chimeCluster.chime,
+	[41]: chipOta.oTASoftwareUpdateProvider,
+	[42]: chipOta.oTASoftwareUpdateRequestor,
+	[260]: closureControlCluster.closureControl,
+	[261]: closureDimensionCluster.closureDimension,
+	[768]: colorControlCluster.colorControl,
+	[1873]: commissionerControlCluster.commissionerControl,
+	[2823]: commodityMeteringCluster.commodityMetering,
+	[149]: commodityPriceCluster.commodityPrice,
+	[1792]: commodityTariffCluster.commodityTariff,
+	[1036]: concentrationMeasurementCluster.carbonMonoxideConcentrationMeasurement,
+	[1037]: concentrationMeasurementCluster.carbonDioxideConcentrationMeasurement,
+	[1043]: concentrationMeasurementCluster.nitrogenDioxideConcentrationMeasurement,
+	[1045]: concentrationMeasurementCluster.ozoneConcentrationMeasurement,
+	[1066]: concentrationMeasurementCluster.pM2_5ConcentrationMeasurement,
+	[1067]: concentrationMeasurementCluster.formaldehydeConcentrationMeasurement,
+	[1068]: concentrationMeasurementCluster.pM1ConcentrationMeasurement,
+	[1069]: concentrationMeasurementCluster.pM10ConcentrationMeasurement,
+	[1070]: concentrationMeasurementCluster.totalVolatileOrganicCompoundsConcentrationMeasurement,
+	[1071]: concentrationMeasurementCluster.radonConcentrationMeasurement,
+	[1296]: contentAppObserverCluster.contentAppObserver,
+	[1295]: contentControlCluster.contentControl,
+	[1290]: contentLaunchCluster.contentLauncher,
+	[29]: descriptorCluster.descriptor,
+	[152]: deviceEnergyManagementCluster.deviceEnergyManagement,
+	[159]: deviceEnergyManagementModeCluster.deviceEnergyManagementMode,
+	[50]: diagnosticLogsCluster.diagnosticLogs,
+	[93]: dishwasherAlarmCluster.dishwasherAlarm,
+	[89]: dishwasherModeCluster.dishwasherMode,
+	[257]: doorLockCluster.doorLock,
+	[1872]: ecosystemInformationCluster.ecosystemInformation,
+	[145]: electricalEnergyMeasurementCluster.electricalEnergyMeasurement,
+	[160]: electricalGridConditionsCluster.electricalGridConditions,
+	[144]: electricalPowerMeasurementCluster.electricalPowerMeasurement,
+	[153]: energyEvseCluster.energyEVSE,
+	[157]: energyEvseModeCluster.energyEVSEMode,
+	[155]: energyPreferenceCluster.energyPreference,
+	[55]: ethernetNetworkDiagnosticsCluster.ethernetNetworkDiagnostics,
+	[514]: fanControlCluster.fanControl,
+	[4294048774]: faultInjectionCluster.faultInjection,
+	[64]: fixedLabelCluster.fixedLabel,
+	[1028]: flowMeasurementCluster.flowMeasurement,
+	[48]: generalCommissioningCluster.generalCommissioning,
+	[51]: generalDiagnosticsCluster.generalDiagnostics,
+	[63]: groupKeyMgmtCluster.groupKeyManagement,
+	[4]: groupsCluster.groups,
+	[70]: icdManagementCluster.iCDManagement,
+	[3]: identifyCluster.identify,
+	[1024]: illuminanceMeasurementCluster.illuminanceMeasurement,
+	[1875]: jointFabricAdministratorCluster.jointFabricAdministrator,
+	[1874]: jointFabricDatastoreCluster.jointFabricDatastore,
+	[1289]: keypadInputCluster.keypadInput,
+	[74]: laundryDryerControlsCluster.laundryDryerControls,
+	[81]: laundryWasherModeCluster.laundryWasherMode,
+	[8]: levelControlCluster.levelControl,
+	[43]: localizationConfigurationCluster.localizationConfiguration,
+	[1288]: lowPowerCluster.lowPower,
+	[1287]: mediaInputCluster.mediaInput,
+	[1286]: mediaPlaybackCluster.mediaPlayback,
+	[151]: messagesCluster.messages,
+	[2822]: meterIdentificationCluster.meterIdentification,
+	[95]: microwaveOvenControlCluster.microwaveOvenControl,
+	[94]: microwaveOvenModeCluster.microwaveOvenMode,
+	[80]: modeSelectCluster.modeSelect,
+	[49]: networkCommissioningCluster.networkCommissioning,
+	[1030]: occupancySensingCluster.occupancySensing,
+	[6]: onoffCluster.onOff,
+	[62]: operationalCredentialsCluster.operationalCredentials,
+	[96]: operationalStateCluster.operationalState,
+	[72]: operationalStateOvenCluster.ovenCavityOperationalState,
+	[97]: operationalStateRvcCluster.rVCOperationalState,
+	[73]: ovenModeCluster.ovenMode,
+	[47]: powerSourceCluster.powerSource,
+	[46]: powerSourceConfigurationCluster.powerSourceConfiguration,
+	[156]: powerTopologyCluster.powerTopology,
+	[1027]: pressureMeasurementCluster.pressureMeasurement,
+	[66]: proxyConfigurationCluster.proxyConfiguration,
+	[67]: proxyDiscoveryCluster.proxyDiscovery,
+	[68]: proxyValidCluster.proxyValid,
+	[512]: pumpConfigurationAndControlCluster.pumpConfigurationAndControl,
+	[1365]: pushAvStreamTransportCluster.pushAVStreamTransport,
+	[28]: pwmCluster.pulseWidthModulation,
+	[87]: refrigeratorAlarm.refrigeratorAlarm,
+	[82]: refrigeratorAndTemperatureControlledCabinetModeCluster.refrigeratorAndTemperatureControlledCabinetMode,
+	[1029]: relativeHumidityMeasurementCluster.relativeHumidityMeasurement,
+	[113]: resourceMonitoringCluster.hEPAFilterMonitoring,
+	[114]: resourceMonitoringCluster.activatedCarbonFilterMonitoring,
+	[85]: rvcCleanModeCluster.rVCCleanMode,
+	[84]: rvcRunModeCluster.rVCRunMode,
+	[4294048800]: sampleMeiCluster.sampleMEI,
+	[98]: scene.scenesManagement,
+	[336]: serviceAreaCluster.serviceArea,
+	[92]: smokeCoAlarmCluster.smokeCOAlarm,
+	[52]: softwareDiagnosticsCluster.softwareDiagnostics,
+	[1072]: soilMeasurementCluster.soilMeasurement,
+	[59]: switchCluster.switch_,
+	[1285]: targetNavigatorCluster.targetNavigator,
+	[86]: temperatureControlCluster.temperatureControl,
+	[1026]: temperatureMeasurementCluster.temperatureMeasurement,
+	[4294048773]: testCluster.unitTesting,
+	[513]: thermostatCluster.thermostat,
+	[516]: thermostatUserInterfaceConfigurationCluster.thermostatUserInterfaceConfiguration,
+	[1106]: threadBorderRouterManagementCluster.threadBorderRouterManagement,
+	[53]: threadNetworkDiagnosticsCluster.threadNetworkDiagnostics,
+	[1107]: threadNetworkDirectoryCluster.threadNetworkDirectory,
+	[44]: timeFormatLocalizationCluster.timeFormatLocalization,
+	[56]: timeSynchronizationCluster.timeSynchronization,
+	[71]: timerCluster.timer,
+	[2049]: tlsCertificateManagementCluster.tLSCertificateManagement,
+	[2050]: tlsClientManagementCluster.tLSClientManagement,
+	[45]: unitLocalizationCluster.unitLocalization,
+	[65]: userLabelCluster.userLabel,
+	[129]: valveConfigurationAndControlCluster.valveConfigurationAndControl,
+	[1283]: wakeOnLanCluster.wakeOnLAN,
+	[83]: washerControlsCluster.laundryWasherControls,
+	[148]: waterHeaterManagementCluster.waterHeaterManagement,
+	[158]: waterHeaterModeCluster.waterHeaterMode,
+	[1363]: webrtcProviderCluster.webRTCTransportProvider,
+	[1364]: webrtcRequestorCluster.webRTCTransportRequestor,
+	[54]: wifiNetworkDiagnosticsCluster.wiFiNetworkDiagnostics,
+	[1105]: wifiNetworkManagementCluster.wiFiNetworkManagement,
+	[258]: windowCovering.windowCovering,
+	[1360]: zoneManagementCluster.zoneManagement,
+}
+
+export enum ClusterIdNames {
 	accessControl = ClusterIds.AccessControl,
 	accountLogin = ClusterIds.AccountLogin,
 	actions = ClusterIds.Actions,
@@ -684,7 +825,7 @@ export enum ClusterIdNames
 	smokeCOAlarm = ClusterIds.SmokeCOAlarm,
 	softwareDiagnostics = ClusterIds.SoftwareDiagnostics,
 	soilMeasurement = ClusterIds.SoilMeasurement,
-	switch = ClusterIds.Switch,
+	switch_ = ClusterIds.Switch,
 	targetNavigator = ClusterIds.TargetNavigator,
 	temperatureControl = ClusterIds.TemperatureControl,
 	temperatureMeasurement = ClusterIds.TemperatureMeasurement,
@@ -827,7 +968,7 @@ export type ReverseClusterIdNames = {
 	[92]: 'smokeCOAlarm',
 	[52]: 'softwareDiagnostics',
 	[1072]: 'soilMeasurement',
-	[59]: 'switch',
+	[59]: 'switch_',
 	[1285]: 'targetNavigator',
 	[86]: 'temperatureControl',
 	[1026]: 'temperatureMeasurement',

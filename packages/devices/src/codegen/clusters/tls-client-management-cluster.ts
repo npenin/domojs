@@ -1,3 +1,7 @@
+// This file is generated from tls-client-management-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.957Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum StatusCodeEnum {
@@ -13,11 +17,11 @@ export enum TLSEndpointStatusEnum {
 }
 
 export interface TLSEndpointStruct {
-	EndpointID: number,
+	EndpointID:number,
 	Hostname:import ("@akala/core").IsomorphicBuffer,
-	Port: number,
-	CAID: number,
-	CCDID: number,
+	Port:number,
+	CAID:number,
+	CCDID:number,
 	Status:TLSEndpointStatusEnum,
 }
 
@@ -28,7 +32,7 @@ export interface TLSEndpointStruct {
 export interface TLSClientManagement {
 id: 2050;
 	attributes: {
-		readonly MaxProvisioned: number
+		readonly MaxProvisioned:number
 		readonly ProvisionedEndpoints:readonly TLSEndpointStruct[]
 }
 	commands: {
@@ -36,18 +40,18 @@ id: 2050;
 		ProvisionEndpoint: {
 			inputparams: readonly [
 				Hostname: import ("@akala/core").IsomorphicBuffer, 
-				Port:  number, 
-				CAID:  number, 
-				CCDID:  number, 
-				EndpointID:  number, 
+				Port: number, 
+				CAID: number, 
+				CCDID: number, 
+				EndpointID: number, 
 			],
 			 outputparams: readonly [
-				EndpointID:  number, ]
+				EndpointID: number, ]
             }
 		/** This command is used to find a TLS Endpoint by its ID. */
 		FindEndpoint: {
 			inputparams: readonly [
-				EndpointID:  number, 
+				EndpointID: number, 
 			],
 			 outputparams: readonly [
 				Endpoint: TLSEndpointStruct, ]
@@ -55,7 +59,7 @@ id: 2050;
 		/** This command is used to remove a TLS Endpoint by its ID. */
 		RemoveEndpoint: {
 			inputparams: readonly [
-				EndpointID:  number, 
+				EndpointID: number, 
 			],
 			 outputparams: readonly []
             }
@@ -63,3 +67,44 @@ id: 2050;
 	events: {
 	}
 }
+
+export const tLSClientManagement: Cluster<TLSClientManagement['attributes'], TLSClientManagement['commands'], TLSClientManagement['events']> = {
+id: 2050,
+	attributes: {
+		MaxProvisioned:0,
+		ProvisionedEndpoints:[],
+},
+	commands: {
+		/** This command is used to provision a TLS Endpoint for the provided HostName / Port combination. */
+		ProvisionEndpoint: {
+			inputparams: [
+				null, 
+				0, 
+				0, 
+				0, 
+				0, 
+			],
+			 outputparams: [
+				0, ]
+            },
+		/** This command is used to find a TLS Endpoint by its ID. */
+		FindEndpoint: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: [
+				null, ]
+            },
+		/** This command is used to remove a TLS Endpoint by its ID. */
+		RemoveEndpoint: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+	}
+}
+
+export default tLSClientManagement;

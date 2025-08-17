@@ -1,3 +1,7 @@
+// This file is generated from color-control-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.295Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum DirectionEnum {
@@ -76,48 +80,48 @@ export enum OptionsBitmap {
 export interface ColorControl {
 id: 768;
 	attributes: {
-		readonly CurrentHue?: number
-		readonly CurrentSaturation?: number
-		readonly RemainingTime?: number
-		readonly CurrentX?: number
-		readonly CurrentY?: number
+		readonly CurrentHue?:number
+		readonly CurrentSaturation?:number
+		readonly RemainingTime?:number
+		readonly CurrentX?:number
+		readonly CurrentY?:number
 		readonly DriftCompensation?:DriftCompensationEnum
-		readonly CompensationText?: string
-		readonly ColorTemperatureMireds?: number
+		readonly CompensationText?:string
+		readonly ColorTemperatureMireds?:number
 		readonly ColorMode:ColorModeEnum
 		Options:OptionsBitmap
-		readonly NumberOfPrimaries?: number
-		readonly Primary1X?: number
-		readonly Primary1Y?: number
-		readonly Primary1Intensity?: number
-		readonly Primary2X?: number
-		readonly Primary2Y?: number
-		readonly Primary2Intensity?: number
-		readonly Primary3X?: number
-		readonly Primary3Y?: number
-		readonly Primary3Intensity?: number
-		readonly Primary4X?: number
-		readonly Primary4Y?: number
-		readonly Primary4Intensity?: number
-		readonly Primary5X?: number
-		readonly Primary5Y?: number
-		readonly Primary5Intensity?: number
-		readonly Primary6X?: number
-		readonly Primary6Y?: number
-		readonly Primary6Intensity?: number
-		WhitePointX?: number
-		WhitePointY?: number
-		ColorPointRX?: number
-		ColorPointRY?: number
-		ColorPointRIntensity?: number
-		ColorPointGX?: number
-		ColorPointGY?: number
-		ColorPointGIntensity?: number
-		ColorPointBX?: number
-		ColorPointBY?: number
-		ColorPointBIntensity?: number
-		readonly CoupleColorTempToLevelMinMireds?: number
-		StartUpColorTemperatureMireds?: number
+		readonly NumberOfPrimaries?:number
+		readonly Primary1X?:number
+		readonly Primary1Y?:number
+		readonly Primary1Intensity?:number
+		readonly Primary2X?:number
+		readonly Primary2Y?:number
+		readonly Primary2Intensity?:number
+		readonly Primary3X?:number
+		readonly Primary3Y?:number
+		readonly Primary3Intensity?:number
+		readonly Primary4X?:number
+		readonly Primary4Y?:number
+		readonly Primary4Intensity?:number
+		readonly Primary5X?:number
+		readonly Primary5Y?:number
+		readonly Primary5Intensity?:number
+		readonly Primary6X?:number
+		readonly Primary6Y?:number
+		readonly Primary6Intensity?:number
+		readonly WhitePointX?:number
+		readonly WhitePointY?:number
+		readonly ColorPointRX?:number
+		readonly ColorPointRY?:number
+		readonly ColorPointRIntensity?:number
+		readonly ColorPointGX?:number
+		readonly ColorPointGY?:number
+		readonly ColorPointGIntensity?:number
+		readonly ColorPointBX?:number
+		readonly ColorPointBY?:number
+		readonly ColorPointBIntensity?:number
+		readonly CoupleColorTempToLevelMinMireds?:number
+		StartUpColorTemperatureMireds?:number
 		/** Supports color specification via hue/saturation. */
 		readonly SupportsHueAndSaturation: boolean
 		/** Enhanced hue is supported. */
@@ -133,9 +137,9 @@ id: 768;
 		/** Move to specified hue. */
 		MoveToHue?: {
 			inputparams: readonly [
-				Hue:  number, 
+				Hue: number, 
 				Direction: DirectionEnum, 
-				TransitionTime:  number, 
+				TransitionTime: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -145,7 +149,7 @@ id: 768;
 		MoveHue?: {
 			inputparams: readonly [
 				MoveMode: MoveModeEnum, 
-				Rate:  number, 
+				Rate: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -155,8 +159,8 @@ id: 768;
 		StepHue?: {
 			inputparams: readonly [
 				StepMode: StepModeEnum, 
-				StepSize:  number, 
-				TransitionTime:  number, 
+				StepSize: number, 
+				TransitionTime: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -165,8 +169,8 @@ id: 768;
 		/** Move to specified saturation. */
 		MoveToSaturation?: {
 			inputparams: readonly [
-				Saturation:  number, 
-				TransitionTime:  number, 
+				Saturation: number, 
+				TransitionTime: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -176,7 +180,7 @@ id: 768;
 		MoveSaturation?: {
 			inputparams: readonly [
 				MoveMode: MoveModeEnum, 
-				Rate:  number, 
+				Rate: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -186,8 +190,8 @@ id: 768;
 		StepSaturation?: {
 			inputparams: readonly [
 				StepMode: StepModeEnum, 
-				StepSize:  number, 
-				TransitionTime:  number, 
+				StepSize: number, 
+				TransitionTime: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -196,9 +200,9 @@ id: 768;
 		/** Move to hue and saturation. */
 		MoveToHueAndSaturation?: {
 			inputparams: readonly [
-				Hue:  number, 
-				Saturation:  number, 
-				TransitionTime:  number, 
+				Hue: number, 
+				Saturation: number, 
+				TransitionTime: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -207,9 +211,9 @@ id: 768;
 		/** Move to specified color. */
 		MoveToColor?: {
 			inputparams: readonly [
-				ColorX:  number, 
-				ColorY:  number, 
-				TransitionTime:  number, 
+				ColorX: number, 
+				ColorY: number, 
+				TransitionTime: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -218,8 +222,8 @@ id: 768;
 		/** Moves the color. */
 		MoveColor?: {
 			inputparams: readonly [
-				RateX:  number, 
-				RateY:  number, 
+				RateX: number, 
+				RateY: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -228,9 +232,9 @@ id: 768;
 		/** Steps the lighting to a specific color. */
 		StepColor?: {
 			inputparams: readonly [
-				StepX:  number, 
-				StepY:  number, 
-				TransitionTime:  number, 
+				StepX: number, 
+				StepY: number, 
+				TransitionTime: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -239,8 +243,8 @@ id: 768;
 		/** Move to a specific color temperature. */
 		MoveToColorTemperature?: {
 			inputparams: readonly [
-				ColorTemperatureMireds:  number, 
-				TransitionTime:  number, 
+				ColorTemperatureMireds: number, 
+				TransitionTime: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -250,3 +254,183 @@ id: 768;
 	events: {
 	}
 }
+
+export const colorControl: Cluster<ColorControl['attributes'], ColorControl['commands'], ColorControl['events']> = {
+id: 768,
+	attributes: {
+		CurrentHue:0,
+		CurrentSaturation:0,
+		RemainingTime:0,
+		CurrentX:0,
+		CurrentY:0,
+		DriftCompensation:null,
+		CompensationText:null,
+		ColorTemperatureMireds:0,
+		ColorMode:null,
+		Options:null,
+		NumberOfPrimaries:0,
+		Primary1X:0,
+		Primary1Y:0,
+		Primary1Intensity:0,
+		Primary2X:0,
+		Primary2Y:0,
+		Primary2Intensity:0,
+		Primary3X:0,
+		Primary3Y:0,
+		Primary3Intensity:0,
+		Primary4X:0,
+		Primary4Y:0,
+		Primary4Intensity:0,
+		Primary5X:0,
+		Primary5Y:0,
+		Primary5Intensity:0,
+		Primary6X:0,
+		Primary6Y:0,
+		Primary6Intensity:0,
+		WhitePointX:0,
+		WhitePointY:0,
+		ColorPointRX:0,
+		ColorPointRY:0,
+		ColorPointRIntensity:0,
+		ColorPointGX:0,
+		ColorPointGY:0,
+		ColorPointGIntensity:0,
+		ColorPointBX:0,
+		ColorPointBY:0,
+		ColorPointBIntensity:0,
+		CoupleColorTempToLevelMinMireds:0,
+		StartUpColorTemperatureMireds:0,
+		/** Supports color specification via hue/saturation. */
+	SupportsHueAndSaturation: false,
+		/** Enhanced hue is supported. */
+	SupportsEnhancedHue: false,
+		/** Color loop is supported. */
+	SupportsColorLoop: false,
+		/** Supports color specification via XY. */
+	SupportsXY: false,
+		/** Supports specification of color temperature. */
+	SupportsColorTemperature: false,
+},
+	commands: {
+		/** Move to specified hue. */
+		MoveToHue: {
+			inputparams: [
+				0, 
+				null, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Move hue up or down at specified rate. */
+		MoveHue: {
+			inputparams: [
+				null, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Step hue up or down by specified size at specified rate. */
+		StepHue: {
+			inputparams: [
+				null, 
+				0, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Move to specified saturation. */
+		MoveToSaturation: {
+			inputparams: [
+				0, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Move saturation up or down at specified rate. */
+		MoveSaturation: {
+			inputparams: [
+				null, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Step saturation up or down by specified size at specified rate. */
+		StepSaturation: {
+			inputparams: [
+				null, 
+				0, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Move to hue and saturation. */
+		MoveToHueAndSaturation: {
+			inputparams: [
+				0, 
+				0, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Move to specified color. */
+		MoveToColor: {
+			inputparams: [
+				0, 
+				0, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Moves the color. */
+		MoveColor: {
+			inputparams: [
+				0, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Steps the lighting to a specific color. */
+		StepColor: {
+			inputparams: [
+				0, 
+				0, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Move to a specific color temperature. */
+		MoveToColorTemperature: {
+			inputparams: [
+				0, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+	}
+}
+
+export default colorControl;

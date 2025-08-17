@@ -1,3 +1,7 @@
+// This file is generated from wifi-network-diagnostics-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:49.154Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum SecurityTypeEnum {
@@ -41,16 +45,16 @@ id: 54;
 		readonly BSSID?:import ("@akala/core").IsomorphicBuffer
 		readonly SecurityType?:SecurityTypeEnum
 		readonly WiFiVersion?:WiFiVersionEnum
-		readonly ChannelNumber?: number
-		readonly RSSI?: number
-		readonly BeaconLostCount?: number
-		readonly BeaconRxCount?: number
-		readonly PacketMulticastRxCount?: number
-		readonly PacketMulticastTxCount?: number
-		readonly PacketUnicastRxCount?: number
-		readonly PacketUnicastTxCount?: number
-		readonly CurrentMaxRate?: bigint
-		readonly OverrunCount?: bigint
+		readonly ChannelNumber?:number
+		readonly RSSI?:number
+		readonly BeaconLostCount?:number
+		readonly BeaconRxCount?:number
+		readonly PacketMulticastRxCount?:number
+		readonly PacketMulticastTxCount?:number
+		readonly PacketUnicastRxCount?:number
+		readonly PacketUnicastTxCount?:number
+		readonly CurrentMaxRate?:bigint
+		readonly OverrunCount?:bigint
 		/** Node makes available the counts for the number of received and transmitted packets on the Wi-Fi interface. */
 		readonly SupportsPacketCounts: boolean
 		/** Node makes available the counts for the number of errors that have occurred during the reception and transmission of packets on the Wi-Fi interface. */
@@ -67,13 +71,58 @@ id: 54;
 	events: {
 		Disconnection?: [
 			
-			ReasonCode:  number, ];
+			ReasonCode: number, ];
 		AssociationFailure?: [
 			
 			AssociationFailureCause: AssociationFailureCauseEnum, 
-			Status:  number, ];
+			Status: number, ];
 		ConnectionStatus?: [
 			
 			ConnectionStatus: ConnectionStatusEnum, ];
 	}
 }
+
+export const wiFiNetworkDiagnostics: Cluster<WiFiNetworkDiagnostics['attributes'], WiFiNetworkDiagnostics['commands'], WiFiNetworkDiagnostics['events']> = {
+id: 54,
+	attributes: {
+		BSSID:null,
+		SecurityType:null,
+		WiFiVersion:null,
+		ChannelNumber:0,
+		RSSI:0,
+		BeaconLostCount:0,
+		BeaconRxCount:0,
+		PacketMulticastRxCount:0,
+		PacketMulticastTxCount:0,
+		PacketUnicastRxCount:0,
+		PacketUnicastTxCount:0,
+		CurrentMaxRate:null,
+		OverrunCount:null,
+		/** Node makes available the counts for the number of received and transmitted packets on the Wi-Fi interface. */
+	SupportsPacketCounts: false,
+		/** Node makes available the counts for the number of errors that have occurred during the reception and transmission of packets on the Wi-Fi interface. */
+	SupportsErrorCounts: false,
+},
+	commands: {
+		/** This command is used to reset the count attributes. */
+		ResetCounts: {
+			inputparams: [
+			],
+			 outputparams: []
+            },
+},
+	events: {
+		Disconnection: [
+			
+			0, ],
+		AssociationFailure: [
+			
+			null, 
+			0, ],
+		ConnectionStatus: [
+			
+			null, ],
+	}
+}
+
+export default wiFiNetworkDiagnostics;

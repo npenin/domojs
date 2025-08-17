@@ -1,3 +1,7 @@
+// This file is generated from operational-credentials-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.096Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum NodeOperationalCertStatusEnum {
@@ -20,10 +24,10 @@ export enum CertificateChainTypeEnum {
 
 export interface FabricDescriptorStruct {
 	RootPublicKey:import ("@akala/core").IsomorphicBuffer,
-	VendorID: number,
-	FabricID: number,
-	NodeID: string,
-	Label: string,
+	VendorID:number,
+	FabricID:number,
+	NodeID:string,
+	Label:string,
 	VIDVerificationStatement?:import ("@akala/core").IsomorphicBuffer,
 }
 
@@ -42,10 +46,10 @@ id: 62;
 	attributes: {
 		readonly NOCs:readonly NOCStruct[]
 		readonly Fabrics:readonly FabricDescriptorStruct[]
-		readonly SupportedFabrics: number
-		readonly CommissionedFabrics: number
+		readonly SupportedFabrics:number
+		readonly CommissionedFabrics:number
 		readonly TrustedRootCertificates:readonly import ("@akala/core").IsomorphicBuffer[]
-		readonly CurrentFabricIndex: number
+		readonly CurrentFabricIndex:number
 }
 	commands: {
 		/** Sender is requesting attestation information from the receiver. */
@@ -81,13 +85,13 @@ id: 62;
 				NOCValue: import ("@akala/core").IsomorphicBuffer, 
 				ICACValue: import ("@akala/core").IsomorphicBuffer, 
 				IPKValue: import ("@akala/core").IsomorphicBuffer, 
-				CaseAdminSubject:  bigint, 
-				AdminVendorId:  number, 
+				CaseAdminSubject: bigint, 
+				AdminVendorId: number, 
 			],
 			 outputparams: readonly [
 				StatusCode: NodeOperationalCertStatusEnum, 
-				FabricIndex:  number, 
-				DebugText:  string, ]
+				FabricIndex: number, 
+				DebugText: string, ]
             }
 		/** This command SHALL replace the NOC and optional associated ICAC (if present) scoped under the accessing fabric upon successful validation of all arguments and preconditions. */
 		UpdateNOC: {
@@ -97,28 +101,28 @@ id: 62;
 			],
 			 outputparams: readonly [
 				StatusCode: NodeOperationalCertStatusEnum, 
-				FabricIndex:  number, 
-				DebugText:  string, ]
+				FabricIndex: number, 
+				DebugText: string, ]
             }
 		/** This command SHALL be used by an Administrative Node to set the user-visible Label field for a given Fabric, as reflected by entries in the Fabrics attribute. */
 		UpdateFabricLabel: {
 			inputparams: readonly [
-				Label:  string, 
+				Label: string, 
 			],
 			 outputparams: readonly [
 				StatusCode: NodeOperationalCertStatusEnum, 
-				FabricIndex:  number, 
-				DebugText:  string, ]
+				FabricIndex: number, 
+				DebugText: string, ]
             }
 		/** This command is used by Administrative Nodes to remove a given fabric index and delete all associated fabric-scoped data. */
 		RemoveFabric: {
 			inputparams: readonly [
-				FabricIndex:  number, 
+				FabricIndex: number, 
 			],
 			 outputparams: readonly [
 				StatusCode: NodeOperationalCertStatusEnum, 
-				FabricIndex:  number, 
-				DebugText:  string, ]
+				FabricIndex: number, 
+				DebugText: string, ]
             }
 		/** This command SHALL add a Trusted Root CA Certificate, provided as its CHIP Certificate representation. */
 		AddTrustedRootCertificate: {
@@ -130,7 +134,7 @@ id: 62;
 		/** This command SHALL be used to update any of the accessing fabric's associated VendorID, VidVerificatioNStatement or VVSC (Vendor Verification Signing Certificate). */
 		SetVIDVerificationStatement: {
 			inputparams: readonly [
-				VendorID:  number, 
+				VendorID: number, 
 				VIDVerificationStatement: import ("@akala/core").IsomorphicBuffer, 
 				VVSC: import ("@akala/core").IsomorphicBuffer, 
 			],
@@ -139,15 +143,132 @@ id: 62;
 		/** This command SHALL be used to request that the server authenticate the fabric associated with the FabricIndex given. */
 		SignVIDVerificationRequest: {
 			inputparams: readonly [
-				FabricIndex:  number, 
+				FabricIndex: number, 
 				ClientChallenge: import ("@akala/core").IsomorphicBuffer, 
 			],
 			 outputparams: readonly [
-				FabricIndex:  number, 
-				FabricBindingVersion:  number, 
+				FabricIndex: number, 
+				FabricBindingVersion: number, 
 				Signature: import ("@akala/core").IsomorphicBuffer, ]
             }
 }
 	events: {
 	}
 }
+
+export const operationalCredentials: Cluster<OperationalCredentials['attributes'], OperationalCredentials['commands'], OperationalCredentials['events']> = {
+id: 62,
+	attributes: {
+		NOCs:[],
+		Fabrics:[],
+		SupportedFabrics:0,
+		CommissionedFabrics:0,
+		TrustedRootCertificates:[],
+		CurrentFabricIndex:0,
+},
+	commands: {
+		/** Sender is requesting attestation information from the receiver. */
+		AttestationRequest: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: [
+				null, 
+				null, ]
+            },
+		/** Sender is requesting a device attestation certificate from the receiver. */
+		CertificateChainRequest: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: [
+				null, ]
+            },
+		/** Sender is requesting a certificate signing request (CSR) from the receiver. */
+		CSRRequest: {
+			inputparams: [
+				null, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				null, ]
+            },
+		/** Sender is requesting to add the new node operational certificates. */
+		AddNOC: {
+			inputparams: [
+				null, 
+				null, 
+				null, 
+				null, 
+				0, 
+			],
+			 outputparams: [
+				null, 
+				0, 
+				null, ]
+            },
+		/** This command SHALL replace the NOC and optional associated ICAC (if present) scoped under the accessing fabric upon successful validation of all arguments and preconditions. */
+		UpdateNOC: {
+			inputparams: [
+				null, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				0, 
+				null, ]
+            },
+		/** This command SHALL be used by an Administrative Node to set the user-visible Label field for a given Fabric, as reflected by entries in the Fabrics attribute. */
+		UpdateFabricLabel: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: [
+				null, 
+				0, 
+				null, ]
+            },
+		/** This command is used by Administrative Nodes to remove a given fabric index and delete all associated fabric-scoped data. */
+		RemoveFabric: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: [
+				null, 
+				0, 
+				null, ]
+            },
+		/** This command SHALL add a Trusted Root CA Certificate, provided as its CHIP Certificate representation. */
+		AddTrustedRootCertificate: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command SHALL be used to update any of the accessing fabric's associated VendorID, VidVerificatioNStatement or VVSC (Vendor Verification Signing Certificate). */
+		SetVIDVerificationStatement: {
+			inputparams: [
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command SHALL be used to request that the server authenticate the fabric associated with the FabricIndex given. */
+		SignVIDVerificationRequest: {
+			inputparams: [
+				0, 
+				null, 
+			],
+			 outputparams: [
+				0, 
+				0, 
+				null, ]
+            },
+},
+	events: {
+	}
+}
+
+export default operationalCredentials;

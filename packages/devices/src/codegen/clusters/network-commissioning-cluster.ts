@@ -1,3 +1,7 @@
+// This file is generated from network-commissioning-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.022Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum NetworkCommissioningStatusEnum {
@@ -46,20 +50,20 @@ export interface WiFiInterfaceScanResultStruct {
 	Security:WiFiSecurityBitmap,
 	SSID:import ("@akala/core").IsomorphicBuffer,
 	BSSID:import ("@akala/core").IsomorphicBuffer,
-	Channel: number,
+	Channel:number,
 	WiFiBand:WiFiBandEnum,
-	RSSI: number,
+	RSSI:number,
 }
 
 export interface ThreadInterfaceScanResultStruct {
-	PanId: number,
-	ExtendedPanId: bigint,
-	NetworkName: string,
-	Channel: number,
-	Version: number,
+	PanId:number,
+	ExtendedPanId:bigint,
+	NetworkName:string,
+	Channel:number,
+	Version:number,
 	ExtendedAddress:import ("@akala/core").IsomorphicBuffer,
-	RSSI: number,
-	LQI: number,
+	RSSI:number,
+	LQI:number,
 }
 
 export interface NetworkInfoStruct {
@@ -76,17 +80,17 @@ export interface NetworkInfoStruct {
 export interface NetworkCommissioning {
 id: 49;
 	attributes: {
-		readonly MaxNetworks: number
+		readonly MaxNetworks:number
 		readonly Networks:readonly NetworkInfoStruct[]
-		readonly ScanMaxTimeSeconds?: number
-		readonly ConnectMaxTimeSeconds?: number
+		readonly ScanMaxTimeSeconds?:number
+		readonly ConnectMaxTimeSeconds?:number
 		InterfaceEnabled:boolean
 		readonly LastNetworkingStatus?:NetworkCommissioningStatusEnum
 		readonly LastNetworkID?:import ("@akala/core").IsomorphicBuffer
-		readonly LastConnectErrorValue?: number
+		readonly LastConnectErrorValue?:number
 		readonly SupportedWiFiBands?:readonly WiFiBandEnum[]
 		readonly SupportedThreadFeatures?:ThreadCapabilitiesBitmap
-		readonly ThreadVersion?: number
+		readonly ThreadVersion?:number
 		/** Wi-Fi related features */
 		readonly SupportsWiFiNetworkInterface: boolean
 		/** Thread related features */
@@ -101,28 +105,28 @@ id: 49;
 		ScanNetworks?: {
 			inputparams: readonly [
 				SSID: import ("@akala/core").IsomorphicBuffer, 
-				Breadcrumb:  bigint, 
+				Breadcrumb: bigint, 
 			],
 			 outputparams: readonly [
 				NetworkingStatus: NetworkCommissioningStatusEnum, 
-				DebugText:  string, 
-				WiFiScanResults: WiFiInterfaceScanResultStruct[], 
-				ThreadScanResults: ThreadInterfaceScanResultStruct[], ]
+				DebugText: string, 
+				WiFiScanResults: readonly WiFiInterfaceScanResultStruct[][], 
+				ThreadScanResults: readonly ThreadInterfaceScanResultStruct[][], ]
             }
 		/** Add or update the credentials for a given Wi-Fi network. */
 		AddOrUpdateWiFiNetwork?: {
 			inputparams: readonly [
 				SSID: import ("@akala/core").IsomorphicBuffer, 
 				Credentials: import ("@akala/core").IsomorphicBuffer, 
-				Breadcrumb:  bigint, 
+				Breadcrumb: bigint, 
 				NetworkIdentity: import ("@akala/core").IsomorphicBuffer, 
 				ClientIdentifier: import ("@akala/core").IsomorphicBuffer, 
 				PossessionNonce: import ("@akala/core").IsomorphicBuffer, 
 			],
 			 outputparams: readonly [
 				NetworkingStatus: NetworkCommissioningStatusEnum, 
-				DebugText:  string, 
-				NetworkIndex:  number, 
+				DebugText: string, 
+				NetworkIndex: number, 
 				ClientIdentity: import ("@akala/core").IsomorphicBuffer, 
 				PossessionSignature: import ("@akala/core").IsomorphicBuffer, ]
             }
@@ -130,12 +134,12 @@ id: 49;
 		AddOrUpdateThreadNetwork?: {
 			inputparams: readonly [
 				OperationalDataset: import ("@akala/core").IsomorphicBuffer, 
-				Breadcrumb:  bigint, 
+				Breadcrumb: bigint, 
 			],
 			 outputparams: readonly [
 				NetworkingStatus: NetworkCommissioningStatusEnum, 
-				DebugText:  string, 
-				NetworkIndex:  number, 
+				DebugText: string, 
+				NetworkIndex: number, 
 				ClientIdentity: import ("@akala/core").IsomorphicBuffer, 
 				PossessionSignature: import ("@akala/core").IsomorphicBuffer, ]
             }
@@ -143,12 +147,12 @@ id: 49;
 		RemoveNetwork?: {
 			inputparams: readonly [
 				NetworkID: import ("@akala/core").IsomorphicBuffer, 
-				Breadcrumb:  bigint, 
+				Breadcrumb: bigint, 
 			],
 			 outputparams: readonly [
 				NetworkingStatus: NetworkCommissioningStatusEnum, 
-				DebugText:  string, 
-				NetworkIndex:  number, 
+				DebugText: string, 
+				NetworkIndex: number, 
 				ClientIdentity: import ("@akala/core").IsomorphicBuffer, 
 				PossessionSignature: import ("@akala/core").IsomorphicBuffer, ]
             }
@@ -156,24 +160,24 @@ id: 49;
 		ConnectNetwork?: {
 			inputparams: readonly [
 				NetworkID: import ("@akala/core").IsomorphicBuffer, 
-				Breadcrumb:  bigint, 
+				Breadcrumb: bigint, 
 			],
 			 outputparams: readonly [
 				NetworkingStatus: NetworkCommissioningStatusEnum, 
-				DebugText:  string, 
-				ErrorValue:  number, ]
+				DebugText: string, 
+				ErrorValue: number, ]
             }
 		/** Modify the order in which networks will be presented in the Networks attribute. */
 		ReorderNetwork?: {
 			inputparams: readonly [
 				NetworkID: import ("@akala/core").IsomorphicBuffer, 
-				NetworkIndex:  number, 
-				Breadcrumb:  bigint, 
+				NetworkIndex: number, 
+				Breadcrumb: bigint, 
 			],
 			 outputparams: readonly [
 				NetworkingStatus: NetworkCommissioningStatusEnum, 
-				DebugText:  string, 
-				NetworkIndex:  number, 
+				DebugText: string, 
+				NetworkIndex: number, 
 				ClientIdentity: import ("@akala/core").IsomorphicBuffer, 
 				PossessionSignature: import ("@akala/core").IsomorphicBuffer, ]
             }
@@ -191,3 +195,124 @@ id: 49;
 	events: {
 	}
 }
+
+export const networkCommissioning: Cluster<NetworkCommissioning['attributes'], NetworkCommissioning['commands'], NetworkCommissioning['events']> = {
+id: 49,
+	attributes: {
+		MaxNetworks:0,
+		Networks:[],
+		ScanMaxTimeSeconds:0,
+		ConnectMaxTimeSeconds:0,
+		InterfaceEnabled:null,
+		LastNetworkingStatus:null,
+		LastNetworkID:null,
+		LastConnectErrorValue:0,
+		SupportedWiFiBands:[],
+		SupportedThreadFeatures:null,
+		ThreadVersion:0,
+		/** Wi-Fi related features */
+	SupportsWiFiNetworkInterface: false,
+		/** Thread related features */
+	SupportsThreadNetworkInterface: false,
+		/** Ethernet related features */
+	SupportsEthernetNetworkInterface: false,
+		/** Wi-Fi Per-Device Credentials */
+	SupportsPerDeviceCredentials: false,
+},
+	commands: {
+		/** Detemine the set of networks the device sees as available. */
+		ScanNetworks: {
+			inputparams: [
+				null, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				null, 
+				[], 
+				[], ]
+            },
+		/** Add or update the credentials for a given Wi-Fi network. */
+		AddOrUpdateWiFiNetwork: {
+			inputparams: [
+				null, 
+				null, 
+				null, 
+				null, 
+				null, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				null, 
+				0, 
+				null, 
+				null, ]
+            },
+		/** Add or update the credentials for a given Thread network. */
+		AddOrUpdateThreadNetwork: {
+			inputparams: [
+				null, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				null, 
+				0, 
+				null, 
+				null, ]
+            },
+		/** Remove the definition of a given network (including its credentials). */
+		RemoveNetwork: {
+			inputparams: [
+				null, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				null, 
+				0, 
+				null, 
+				null, ]
+            },
+		/** Connect to the specified network, using previously-defined credentials. */
+		ConnectNetwork: {
+			inputparams: [
+				null, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				null, 
+				0, ]
+            },
+		/** Modify the order in which networks will be presented in the Networks attribute. */
+		ReorderNetwork: {
+			inputparams: [
+				null, 
+				0, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				null, 
+				0, 
+				null, 
+				null, ]
+            },
+		/** Retrieve details about and optionally proof of possession of a network client identity. */
+		QueryIdentity: {
+			inputparams: [
+				null, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				null, ]
+            },
+},
+	events: {
+	}
+}
+
+export default networkCommissioning;

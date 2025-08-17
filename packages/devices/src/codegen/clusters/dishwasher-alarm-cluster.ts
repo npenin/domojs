@@ -1,3 +1,7 @@
+// This file is generated from dishwasher-alarm-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.794Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum AlarmBitmap {
@@ -48,3 +52,41 @@ id: 93;
 			Mask: AlarmBitmap, ];
 	}
 }
+
+export const dishwasherAlarm: Cluster<DishwasherAlarm['attributes'], DishwasherAlarm['commands'], DishwasherAlarm['events']> = {
+id: 93,
+	attributes: {
+		Mask:null,
+		Latch:null,
+		State:null,
+		Supported:null,
+		/** Supports the ability to reset alarms */
+	SupportsReset: false,
+},
+	commands: {
+		/** This command resets active and latched alarms (if possible). */
+		Reset: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command allows a client to request that an alarm be enabled or suppressed at the server. */
+		ModifyEnabledAlarms: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+		Notify: [
+			
+			null, 
+			null, 
+			null, 
+			null, ],
+	}
+}
+
+export default dishwasherAlarm;

@@ -1,3 +1,7 @@
+// This file is generated from power-source-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.199Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum WiredFaultEnum {
@@ -179,18 +183,18 @@ export enum BatApprovedChemistryEnum {
 }
 
 export interface WiredFaultChangeType {
-	current:WiredFaultEnum,
-	previous:WiredFaultEnum,
+	current:readonly WiredFaultEnum[],
+	previous:readonly WiredFaultEnum[],
 }
 
 export interface BatFaultChangeType {
-	current:BatFaultEnum,
-	previous:BatFaultEnum,
+	current:readonly BatFaultEnum[],
+	previous:readonly BatFaultEnum[],
 }
 
 export interface BatChargeFaultChangeType {
-	current:BatChargeFaultEnum,
-	previous:BatChargeFaultEnum,
+	current:readonly BatChargeFaultEnum[],
+	previous:readonly BatChargeFaultEnum[],
 }
 
 /**
@@ -201,37 +205,37 @@ export interface PowerSource {
 id: 47;
 	attributes: {
 		readonly Status:PowerSourceStatusEnum
-		readonly Order: number
-		readonly Description: string
-		readonly WiredAssessedInputVoltage?: number
-		readonly WiredAssessedInputFrequency?: number
+		readonly Order:number
+		readonly Description:string
+		readonly WiredAssessedInputVoltage?:number
+		readonly WiredAssessedInputFrequency?:number
 		readonly WiredCurrentType?:WiredCurrentTypeEnum
-		readonly WiredAssessedCurrent?: number
-		readonly WiredNominalVoltage?: number
-		readonly WiredMaximumCurrent?: number
+		readonly WiredAssessedCurrent?:number
+		readonly WiredNominalVoltage?:number
+		readonly WiredMaximumCurrent?:number
 		readonly WiredPresent?:boolean
 		readonly ActiveWiredFaults?:readonly WiredFaultEnum[]
-		readonly BatVoltage?: number
-		readonly BatPercentRemaining?: number
-		readonly BatTimeRemaining?: number
+		readonly BatVoltage?:number
+		readonly BatPercentRemaining?:number
+		readonly BatTimeRemaining?:number
 		readonly BatChargeLevel?:BatChargeLevelEnum
 		readonly BatReplacementNeeded?:boolean
 		readonly BatReplaceability?:BatReplaceabilityEnum
 		readonly BatPresent?:boolean
 		readonly ActiveBatFaults?:readonly BatFaultEnum[]
-		readonly BatReplacementDescription?: string
+		readonly BatReplacementDescription?:string
 		readonly BatCommonDesignation?:BatCommonDesignationEnum
-		readonly BatANSIDesignation?: string
-		readonly BatIECDesignation?: string
+		readonly BatANSIDesignation?:string
+		readonly BatIECDesignation?:string
 		readonly BatApprovedChemistry?:BatApprovedChemistryEnum
-		readonly BatCapacity?: number
-		readonly BatQuantity?: number
+		readonly BatCapacity?:number
+		readonly BatQuantity?:number
 		readonly BatChargeState?:BatChargeStateEnum
-		readonly BatTimeToFullCharge?: number
+		readonly BatTimeToFullCharge?:number
 		readonly BatFunctionalWhileCharging?:boolean
-		readonly BatChargingCurrent?: number
+		readonly BatChargingCurrent?:number
 		readonly ActiveBatChargeFaults?:readonly BatChargeFaultEnum[]
-		readonly EndpointList:readonly  number[]
+		readonly EndpointList:readonly number[]
 		/** A wired power source */
 		readonly SupportsWired: boolean
 		/** A battery power source */
@@ -246,15 +250,79 @@ id: 47;
 	events: {
 		WiredFaultChange?: [
 			
-			Current: WiredFaultEnum, 
-			Previous: WiredFaultEnum, ];
+			Current: readonly WiredFaultEnum[], 
+			Previous: readonly WiredFaultEnum[], ];
 		BatFaultChange?: [
 			
-			Current: BatFaultEnum, 
-			Previous: BatFaultEnum, ];
+			Current: readonly BatFaultEnum[], 
+			Previous: readonly BatFaultEnum[], ];
 		BatChargeFaultChange?: [
 			
-			Current: BatChargeFaultEnum, 
-			Previous: BatChargeFaultEnum, ];
+			Current: readonly BatChargeFaultEnum[], 
+			Previous: readonly BatChargeFaultEnum[], ];
 	}
 }
+
+export const powerSource: Cluster<PowerSource['attributes'], PowerSource['commands'], PowerSource['events']> = {
+id: 47,
+	attributes: {
+		Status:null,
+		Order:0,
+		Description:null,
+		WiredAssessedInputVoltage:0,
+		WiredAssessedInputFrequency:0,
+		WiredCurrentType:null,
+		WiredAssessedCurrent:0,
+		WiredNominalVoltage:0,
+		WiredMaximumCurrent:0,
+		WiredPresent:null,
+		ActiveWiredFaults:[],
+		BatVoltage:0,
+		BatPercentRemaining:0,
+		BatTimeRemaining:0,
+		BatChargeLevel:null,
+		BatReplacementNeeded:null,
+		BatReplaceability:null,
+		BatPresent:null,
+		ActiveBatFaults:[],
+		BatReplacementDescription:null,
+		BatCommonDesignation:null,
+		BatANSIDesignation:null,
+		BatIECDesignation:null,
+		BatApprovedChemistry:null,
+		BatCapacity:0,
+		BatQuantity:0,
+		BatChargeState:null,
+		BatTimeToFullCharge:0,
+		BatFunctionalWhileCharging:null,
+		BatChargingCurrent:0,
+		ActiveBatChargeFaults:[],
+		EndpointList:[],
+		/** A wired power source */
+	SupportsWired: false,
+		/** A battery power source */
+	SupportsBattery: false,
+		/** A rechargeable battery power source */
+	SupportsRechargeable: false,
+		/** A replaceable battery power source */
+	SupportsReplaceable: false,
+},
+	commands: {
+},
+	events: {
+		WiredFaultChange: [
+			
+			[], 
+			[], ],
+		BatFaultChange: [
+			
+			[], 
+			[], ],
+		BatChargeFaultChange: [
+			
+			[], 
+			[], ],
+	}
+}
+
+export default powerSource;

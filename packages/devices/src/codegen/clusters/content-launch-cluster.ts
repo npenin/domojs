@@ -1,3 +1,7 @@
+// This file is generated from content-launch-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.471Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum MetricTypeEnum {
@@ -68,28 +72,28 @@ export enum Feature {
 }
 
 export interface ContentSearchStruct {
-	ParameterList:ParameterStruct,
+	ParameterList:readonly ParameterStruct[],
 }
 
 export interface AdditionalInfoStruct {
-	Name: string,
-	Value: string,
+	Name:string,
+	Value:string,
 }
 
 export interface DimensionStruct {
-	Width: number,
-	Height: number,
+	Width:number,
+	Height:number,
 	Metric:MetricTypeEnum,
 }
 
 export interface StyleInformationStruct {
-	ImageURL?: string,
-	Color?: string,
+	ImageURL?:string,
+	Color?:string,
 	Size?:DimensionStruct,
 }
 
 export interface BrandingInformationStruct {
-	ProviderName: string,
+	ProviderName:string,
 	Background?:StyleInformationStruct,
 	Logo?:StyleInformationStruct,
 	ProgressBar?:StyleInformationStruct,
@@ -99,20 +103,20 @@ export interface BrandingInformationStruct {
 
 export interface ParameterStruct {
 	Type:ParameterEnum,
-	Value: string,
-	ExternalIDList?:AdditionalInfoStruct,
+	Value:string,
+	ExternalIDList?:readonly AdditionalInfoStruct[],
 }
 
 export interface PlaybackPreferencesStruct {
-	PlaybackPosition: bigint,
+	PlaybackPosition:bigint,
 	TextTrack:TrackPreferenceStruct,
-	AudioTracks?:TrackPreferenceStruct,
+	AudioTracks?:readonly TrackPreferenceStruct[],
 }
 
 export interface TrackPreferenceStruct {
-	LanguageCode: string,
-	Characteristics?:CharacteristicEnum,
-	AudioOutputIndex: number,
+	LanguageCode:string,
+	Characteristics?:readonly CharacteristicEnum[],
+	AudioOutputIndex:number,
 }
 
 /**
@@ -122,7 +126,7 @@ export interface TrackPreferenceStruct {
 export interface ContentLauncher {
 id: 1290;
 	attributes: {
-		readonly AcceptHeader?:readonly  string[]
+		readonly AcceptHeader?:readonly string[]
 		readonly SupportedStreamingProtocols?:SupportedProtocolsBitmap
 }
 	commands: {
@@ -131,26 +135,64 @@ id: 1290;
 			inputparams: readonly [
 				Search: ContentSearchStruct, 
 				AutoPlay: boolean, 
-				Data:  string, 
+				Data: string, 
 				PlaybackPreferences: PlaybackPreferencesStruct, 
 				UseCurrentContext: boolean, 
 			],
 			 outputparams: readonly [
 				Status: StatusEnum, 
-				Data:  string, ]
+				Data: string, ]
             }
 		/** Upon receipt, this SHALL launch content from the specified URL. */
 		LaunchURL?: {
 			inputparams: readonly [
-				ContentURL:  string, 
-				DisplayString:  string, 
+				ContentURL: string, 
+				DisplayString: string, 
 				BrandingInformation: BrandingInformationStruct, 
 			],
 			 outputparams: readonly [
 				Status: StatusEnum, 
-				Data:  string, ]
+				Data: string, ]
             }
 }
 	events: {
 	}
 }
+
+export const contentLauncher: Cluster<ContentLauncher['attributes'], ContentLauncher['commands'], ContentLauncher['events']> = {
+id: 1290,
+	attributes: {
+		AcceptHeader:[],
+		SupportedStreamingProtocols:null,
+},
+	commands: {
+		/** Upon receipt, this SHALL launch the specified content with optional search criteria. */
+		LaunchContent: {
+			inputparams: [
+				null, 
+				null, 
+				null, 
+				null, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				null, ]
+            },
+		/** Upon receipt, this SHALL launch content from the specified URL. */
+		LaunchURL: {
+			inputparams: [
+				null, 
+				null, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				null, ]
+            },
+},
+	events: {
+	}
+}
+
+export default contentLauncher;

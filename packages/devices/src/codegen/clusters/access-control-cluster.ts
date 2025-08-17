@@ -1,3 +1,7 @@
+// This file is generated from access-control-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:45.651Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum AccessControlEntryPrivilegeEnum {
@@ -29,15 +33,15 @@ export enum ChangeTypeEnum {
 
 export interface AccessControlTargetStruct {
 	Cluster:import ("./clusters-index.js").ClusterIds,
-	Endpoint: number,
-	DeviceType: number,
+	Endpoint:number,
+	DeviceType:number,
 }
 
 export interface AccessControlEntryStruct {
 	Privilege:AccessControlEntryPrivilegeEnum,
 	AuthMode:AccessControlEntryAuthModeEnum,
-	Subjects: bigint,
-	Targets:AccessControlTargetStruct,
+	Subjects:readonly bigint[],
+	Targets:readonly AccessControlTargetStruct[],
 }
 
 export interface AccessControlExtensionStruct {
@@ -45,20 +49,20 @@ export interface AccessControlExtensionStruct {
 }
 
 export interface AccessRestrictionEntryStruct {
-	Endpoint: number,
+	Endpoint:number,
 	Cluster:import ("./clusters-index.js").ClusterIds,
-	Restrictions:AccessRestrictionStruct,
+	Restrictions:readonly AccessRestrictionStruct[],
 }
 
 export interface AccessRestrictionStruct {
 	Type:AccessRestrictionTypeEnum,
-	ID: number,
+	ID:number,
 }
 
 export interface CommissioningAccessRestrictionEntryStruct {
-	Endpoint: number,
+	Endpoint:number,
 	Cluster:import ("./clusters-index.js").ClusterIds,
-	Restrictions:AccessRestrictionStruct,
+	Restrictions:readonly AccessRestrictionStruct[],
 }
 
 /**
@@ -73,9 +77,9 @@ id: 31;
 	attributes: {
 		ACL:readonly AccessControlEntryStruct[]
 		Extension?:readonly AccessControlExtensionStruct[]
-		readonly SubjectsPerAccessControlEntry: number
-		readonly TargetsPerAccessControlEntry: number
-		readonly AccessControlEntriesPerFabric: number
+		readonly SubjectsPerAccessControlEntry:number
+		readonly TargetsPerAccessControlEntry:number
+		readonly AccessControlEntriesPerFabric:number
 		readonly CommissioningARL?:readonly CommissioningAccessRestrictionEntryStruct[]
 		readonly ARL?:readonly AccessRestrictionEntryStruct[]
 		/** Device provides ACL Extension attribute */
@@ -87,29 +91,77 @@ id: 31;
 		/** This command signals to the service associated with the device vendor that the fabric administrator would like a review of the current restrictions on the accessing fabric. */
 		ReviewFabricRestrictions?: {
 			inputparams: readonly [
-				ARL: CommissioningAccessRestrictionEntryStruct[], 
+				ARL: readonly CommissioningAccessRestrictionEntryStruct[][], 
 			],
 			 outputparams: readonly [
-				Token:  bigint, ]
+				Token: bigint, ]
             }
 }
 	events: {
 		AccessControlEntryChanged: [
 			
-			AdminNodeID:  string, 
-			AdminPasscodeID:  number, 
+			AdminNodeID: string, 
+			AdminPasscodeID: number, 
 			ChangeType: ChangeTypeEnum, 
 			LatestValue: AccessControlEntryStruct, ];
 		AccessControlExtensionChanged?: [
 			
-			AdminNodeID:  string, 
-			AdminPasscodeID:  number, 
+			AdminNodeID: string, 
+			AdminPasscodeID: number, 
 			ChangeType: ChangeTypeEnum, 
 			LatestValue: AccessControlExtensionStruct, ];
 		FabricRestrictionReviewUpdate?: [
 			
-			Token:  bigint, 
-			Instruction:  string, 
-			ARLRequestFlowUrl:  string, ];
+			Token: bigint, 
+			Instruction: string, 
+			ARLRequestFlowUrl: string, ];
 	}
 }
+
+export const accessControl: Cluster<AccessControl['attributes'], AccessControl['commands'], AccessControl['events']> = {
+id: 31,
+	attributes: {
+		ACL:[],
+		Extension:[],
+		SubjectsPerAccessControlEntry:0,
+		TargetsPerAccessControlEntry:0,
+		AccessControlEntriesPerFabric:0,
+		CommissioningARL:[],
+		ARL:[],
+		/** Device provides ACL Extension attribute */
+	SupportsExtension: false,
+		/** Device is managed */
+	SupportsManagedDevice: false,
+},
+	commands: {
+		/** This command signals to the service associated with the device vendor that the fabric administrator would like a review of the current restrictions on the accessing fabric. */
+		ReviewFabricRestrictions: {
+			inputparams: [
+				[], 
+			],
+			 outputparams: [
+				null, ]
+            },
+},
+	events: {
+		AccessControlEntryChanged: [
+			
+			null, 
+			0, 
+			null, 
+			null, ],
+		AccessControlExtensionChanged: [
+			
+			null, 
+			0, 
+			null, 
+			null, ],
+		FabricRestrictionReviewUpdate: [
+			
+			null, 
+			null, 
+			null, ],
+	}
+}
+
+export default accessControl;

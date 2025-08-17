@@ -1,3 +1,7 @@
+// This file is generated from closure-control-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.225Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum ClosureErrorEnum {
@@ -61,7 +65,7 @@ export interface OverallTargetStateStruct {
 export interface ClosureControl {
 id: 260;
 	attributes: {
-		readonly CountdownTime?: number
+		readonly CountdownTime?:number
 		readonly MainState:MainStateEnum
 		readonly CurrentErrorList:readonly ClosureErrorEnum[]
 		readonly OverallCurrentState?:OverallCurrentStateStruct
@@ -112,7 +116,7 @@ id: 260;
 	events: {
 		OperationalError: [
 			
-			ErrorState: ClosureErrorEnum, ];
+			ErrorState: readonly ClosureErrorEnum[], ];
 		MovementCompleted: [
 			];
 		EngageStateChanged: [
@@ -123,3 +127,71 @@ id: 260;
 			SecureValue: boolean, ];
 	}
 }
+
+export const closureControl: Cluster<ClosureControl['attributes'], ClosureControl['commands'], ClosureControl['events']> = {
+id: 260,
+	attributes: {
+		CountdownTime:0,
+		MainState:null,
+		CurrentErrorList:[],
+		OverallCurrentState:null,
+		OverallTargetState:null,
+		LatchControlModes:null,
+		/** Supports Positioning with at least Fully Opened (0%) and Fully Closed (100%) discrete positions */
+	SupportsPositioning: false,
+		/** Supports a latch (securing a position, or a state) */
+	SupportsMotionLatching: false,
+		/** Supports the Instantaneous feature */
+	SupportsInstantaneous: false,
+		/** Supports Speed motion throttling */
+	SupportsSpeed: false,
+		/** Supports Ventilation discrete state */
+	SupportsVentilation: false,
+		/** Supports Pedestrian discrete state */
+	SupportsPedestrian: false,
+		/** Supports the Calibration feature */
+	SupportsCalibration: false,
+		/** Supports the Protection feature */
+	SupportsProtection: false,
+		/** Supports the manual operation feature */
+	SupportsManuallyOperable: false,
+},
+	commands: {
+		/** On receipt of this command, the closure SHALL stop its movement as fast as the closure is able too. */
+		Stop: {
+			inputparams: [
+			],
+			 outputparams: []
+            },
+		/** On receipt of this command, the closure SHALL operate to update its position, latch state and/or motion speed. */
+		MoveTo: {
+			inputparams: [
+				null, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command is used to trigger a calibration of the closure. */
+		Calibrate: {
+			inputparams: [
+			],
+			 outputparams: []
+            },
+},
+	events: {
+		OperationalError: [
+			
+			[], ],
+		MovementCompleted: [
+			],
+		EngageStateChanged: [
+			
+			null, ],
+		SecureStateChanged: [
+			
+			null, ],
+	}
+}
+
+export default closureControl;

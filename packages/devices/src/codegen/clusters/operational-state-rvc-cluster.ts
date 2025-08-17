@@ -1,3 +1,7 @@
+// This file is generated from operational-state-rvc-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.152Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum OperationalStateEnum {
@@ -43,11 +47,11 @@ export enum ErrorStateEnum {
 export interface RVCOperationalState {
 id: 97;
 	attributes: {
-		readonly PhaseList?:readonly  string[]
-		readonly CurrentPhase?: number
-		readonly CountdownTime?: number
+		readonly PhaseList?:readonly string[]
+		readonly CurrentPhase?:number
+		readonly CountdownTime?:number
 		readonly OperationalStateList:readonly import("./operational-state-cluster.js").OperationalStateStruct[]
-		readonly OperationalState: number
+		readonly OperationalState:number
 		readonly OperationalError:import("./operational-state-cluster.js").ErrorStateStruct
 }
 	commands: {
@@ -79,8 +83,55 @@ id: 97;
 			ErrorState: import("./operational-state-cluster.js").ErrorStateStruct, ];
 		OperationCompletion?: [
 			
-			CompletionErrorCode:  number, 
-			TotalOperationalTime:  number, 
-			PausedTime:  number, ];
+			CompletionErrorCode: number, 
+			TotalOperationalTime: number, 
+			PausedTime: number, ];
 	}
 }
+
+export const rVCOperationalState: Cluster<RVCOperationalState['attributes'], RVCOperationalState['commands'], RVCOperationalState['events']> = {
+id: 97,
+	attributes: {
+		PhaseList:[],
+		CurrentPhase:0,
+		CountdownTime:0,
+		OperationalStateList:[],
+		OperationalState:0,
+		OperationalError:null,
+},
+	commands: {
+		/** Upon receipt, the device SHALL pause its operation if it is possible based on the current function of the server. */
+		Pause: {
+			inputparams: [
+			],
+			 outputparams: [
+				null, ]
+            },
+		/** Upon receipt, the device SHALL resume its operation from the point it was at when it received the Pause command, or from the point when it was paused by means outside of this cluster (for example by manual button press). */
+		Resume: {
+			inputparams: [
+			],
+			 outputparams: [
+				null, ]
+            },
+		/** On receipt of this command, the device SHALL start seeking the charging dock, if possible in the current state of the device. */
+		GoHome: {
+			inputparams: [
+			],
+			 outputparams: [
+				null, ]
+            },
+},
+	events: {
+		OperationalError: [
+			
+			null, ],
+		OperationCompletion: [
+			
+			0, 
+			0, 
+			0, ],
+	}
+}
+
+export default rVCOperationalState;

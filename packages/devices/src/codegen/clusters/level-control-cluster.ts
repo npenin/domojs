@@ -1,3 +1,7 @@
+// This file is generated from level-control-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:47.586Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum MoveModeEnum {
@@ -22,20 +26,20 @@ export enum OptionsBitmap {
 export interface LevelControl {
 id: 8;
 	attributes: {
-		readonly CurrentLevel?: number
-		readonly RemainingTime?: number
-		readonly MinLevel?: number
-		readonly MaxLevel?: number
-		readonly CurrentFrequency?: number
-		readonly MinFrequency?: number
-		readonly MaxFrequency?: number
-		OnOffTransitionTime?: number
-		OnLevel?: number
-		OnTransitionTime?: number
-		OffTransitionTime?: number
-		DefaultMoveRate?: number
+		readonly CurrentLevel?:number
+		readonly RemainingTime?:number
+		readonly MinLevel?:number
+		readonly MaxLevel?:number
+		readonly CurrentFrequency?:number
+		readonly MinFrequency?:number
+		readonly MaxFrequency?:number
+		OnOffTransitionTime?:number
+		OnLevel?:number
+		OnTransitionTime?:number
+		OffTransitionTime?:number
+		DefaultMoveRate?:number
 		Options:OptionsBitmap
-		StartUpCurrentLevel?: number
+		StartUpCurrentLevel?:number
 		/** Dependency with the On/Off cluster */
 		readonly SupportsOnOff: boolean
 		/** Behavior that supports lighting applications */
@@ -49,8 +53,8 @@ id: 8;
 		/** Command description for MoveToLevel */
 		MoveToLevel: {
 			inputparams: readonly [
-				Level:  number, 
-				TransitionTime:  number, 
+				Level: number, 
+				TransitionTime: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -60,7 +64,7 @@ id: 8;
 		Move: {
 			inputparams: readonly [
 				MoveMode: MoveModeEnum, 
-				Rate:  number, 
+				Rate: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -70,8 +74,8 @@ id: 8;
 		Step: {
 			inputparams: readonly [
 				StepMode: StepModeEnum, 
-				StepSize:  number, 
-				TransitionTime:  number, 
+				StepSize: number, 
+				TransitionTime: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -88,8 +92,8 @@ id: 8;
 		/** Command description for MoveToLevelWithOnOff */
 		MoveToLevelWithOnOff: {
 			inputparams: readonly [
-				Level:  number, 
-				TransitionTime:  number, 
+				Level: number, 
+				TransitionTime: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -99,7 +103,7 @@ id: 8;
 		MoveWithOnOff: {
 			inputparams: readonly [
 				MoveMode: MoveModeEnum, 
-				Rate:  number, 
+				Rate: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -109,8 +113,8 @@ id: 8;
 		StepWithOnOff: {
 			inputparams: readonly [
 				StepMode: StepModeEnum, 
-				StepSize:  number, 
-				TransitionTime:  number, 
+				StepSize: number, 
+				TransitionTime: number, 
 				OptionsMask: OptionsBitmap, 
 				OptionsOverride: OptionsBitmap, 
 			],
@@ -128,7 +132,7 @@ id: 8;
         approximation if the exact provided one is not possible. */
 		MoveToClosestFrequency?: {
 			inputparams: readonly [
-				Frequency:  number, 
+				Frequency: number, 
 			],
 			 outputparams: readonly []
             }
@@ -136,3 +140,123 @@ id: 8;
 	events: {
 	}
 }
+
+export const levelControl: Cluster<LevelControl['attributes'], LevelControl['commands'], LevelControl['events']> = {
+id: 8,
+	attributes: {
+		CurrentLevel:0,
+		RemainingTime:0,
+		MinLevel:0,
+		MaxLevel:0,
+		CurrentFrequency:0,
+		MinFrequency:0,
+		MaxFrequency:0,
+		OnOffTransitionTime:0,
+		OnLevel:0,
+		OnTransitionTime:0,
+		OffTransitionTime:0,
+		DefaultMoveRate:0,
+		Options:null,
+		StartUpCurrentLevel:0,
+		/** Dependency with the On/Off cluster */
+	SupportsOnOff: false,
+		/** Behavior that supports lighting applications */
+	SupportsLighting: false,
+		/** Supports frequency attributes and behavior.
+                                        The Pulse Width Modulation cluster was created
+                                        for frequency control. */
+	SupportsFrequency: false,
+},
+	commands: {
+		/** Command description for MoveToLevel */
+		MoveToLevel: {
+			inputparams: [
+				0, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Command description for Move */
+		Move: {
+			inputparams: [
+				null, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Command description for Step */
+		Step: {
+			inputparams: [
+				null, 
+				0, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Command description for Stop */
+		Stop: {
+			inputparams: [
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Command description for MoveToLevelWithOnOff */
+		MoveToLevelWithOnOff: {
+			inputparams: [
+				0, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Command description for MoveWithOnOff */
+		MoveWithOnOff: {
+			inputparams: [
+				null, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Command description for StepWithOnOff */
+		StepWithOnOff: {
+			inputparams: [
+				null, 
+				0, 
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Command description for StopWithOnOff */
+		StopWithOnOff: {
+			inputparams: [
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Change the currrent frequency to the provided one, or a close
+        approximation if the exact provided one is not possible. */
+		MoveToClosestFrequency: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+	}
+}
+
+export default levelControl;

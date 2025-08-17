@@ -1,3 +1,7 @@
+// This file is generated from device-energy-management-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.699Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum CostTypeEnum {
@@ -67,68 +71,68 @@ export enum PowerAdjustReasonEnum {
 
 export interface CostStruct {
 	CostType:CostTypeEnum,
-	Value: number,
-	DecimalPoints: number,
-	Currency?: number,
+	Value:number,
+	DecimalPoints:number,
+	Currency?:number,
 }
 
 export interface PowerAdjustCapabilityStruct {
-	PowerAdjustCapability:PowerAdjustStruct,
+	PowerAdjustCapability:readonly PowerAdjustStruct[],
 	Cause:PowerAdjustReasonEnum,
 }
 
 export interface PowerAdjustStruct {
-	MinPower: number,
-	MaxPower: number,
-	MinDuration: number,
-	MaxDuration: number,
+	MinPower:number,
+	MaxPower:number,
+	MinDuration:number,
+	MaxDuration:number,
 }
 
 export interface ForecastStruct {
-	ForecastID: number,
-	ActiveSlotNumber: number,
-	StartTime: number,
-	EndTime: number,
-	EarliestStartTime?: number,
-	LatestEndTime?: number,
+	ForecastID:number,
+	ActiveSlotNumber:number,
+	StartTime:number,
+	EndTime:number,
+	EarliestStartTime?:number,
+	LatestEndTime?:number,
 	IsPausable:boolean,
-	Slots:SlotStruct,
+	Slots:readonly SlotStruct[],
 	ForecastUpdateReason:ForecastUpdateReasonEnum,
 }
 
 export interface SlotStruct {
-	MinDuration: number,
-	MaxDuration: number,
-	DefaultDuration: number,
-	ElapsedSlotTime: number,
-	RemainingSlotTime: number,
+	MinDuration:number,
+	MaxDuration:number,
+	DefaultDuration:number,
+	ElapsedSlotTime:number,
+	RemainingSlotTime:number,
 	SlotIsPausable?:boolean,
-	MinPauseDuration?: number,
-	MaxPauseDuration?: number,
-	ManufacturerESAState?: number,
-	NominalPower?: number,
-	MinPower?: number,
-	MaxPower?: number,
-	NominalEnergy?: number,
-	Costs?:CostStruct,
-	MinPowerAdjustment?: number,
-	MaxPowerAdjustment?: number,
-	MinDurationAdjustment?: number,
-	MaxDurationAdjustment?: number,
+	MinPauseDuration?:number,
+	MaxPauseDuration?:number,
+	ManufacturerESAState?:number,
+	NominalPower?:number,
+	MinPower?:number,
+	MaxPower?:number,
+	NominalEnergy?:number,
+	Costs?:readonly CostStruct[],
+	MinPowerAdjustment?:number,
+	MaxPowerAdjustment?:number,
+	MinDurationAdjustment?:number,
+	MaxDurationAdjustment?:number,
 }
 
 export interface SlotAdjustmentStruct {
-	SlotIndex: number,
-	NominalPower?: number,
-	Duration: number,
+	SlotIndex:number,
+	NominalPower?:number,
+	Duration:number,
 }
 
 export interface ConstraintsStruct {
-	StartTime: number,
-	Duration: number,
-	NominalPower?: number,
-	MaximumEnergy?: number,
-	LoadControl?: number,
+	StartTime:number,
+	Duration:number,
+	NominalPower?:number,
+	MaximumEnergy?:number,
+	LoadControl?:number,
 }
 
 /**
@@ -141,8 +145,8 @@ id: 152;
 		readonly ESAType:ESATypeEnum
 		readonly ESACanGenerate:boolean
 		readonly ESAState:ESAStateEnum
-		readonly AbsMinPower: number
-		readonly AbsMaxPower: number
+		readonly AbsMinPower:number
+		readonly AbsMaxPower:number
 		readonly PowerAdjustmentCapability?:PowerAdjustCapabilityStruct
 		readonly Forecast?:ForecastStruct
 		readonly OptOutState?:OptOutStateEnum
@@ -165,8 +169,8 @@ id: 152;
 		/** Allows a client to request an adjustment in the power consumption of an ESA for a specified duration. */
 		PowerAdjustRequest?: {
 			inputparams: readonly [
-				Power:  number, 
-				Duration:  number, 
+				Power: number, 
+				Duration: number, 
 				Cause: AdjustmentCauseEnum, 
 			],
 			 outputparams: readonly []
@@ -180,7 +184,7 @@ id: 152;
 		/** Allows a client to adjust the start time of a Forecast sequence that has not yet started operation (i.e. where the current Forecast StartTime is in the future). */
 		StartTimeAdjustRequest?: {
 			inputparams: readonly [
-				RequestedStartTime:  number, 
+				RequestedStartTime: number, 
 				Cause: AdjustmentCauseEnum, 
 			],
 			 outputparams: readonly []
@@ -188,7 +192,7 @@ id: 152;
 		/** Allows a client to temporarily pause an operation and reduce the ESAs energy demand. */
 		PauseRequest?: {
 			inputparams: readonly [
-				Duration:  number, 
+				Duration: number, 
 				Cause: AdjustmentCauseEnum, 
 			],
 			 outputparams: readonly []
@@ -202,8 +206,8 @@ id: 152;
 		/** Allows a client to modify a Forecast within the limits allowed by the ESA. */
 		ModifyForecastRequest?: {
 			inputparams: readonly [
-				ForecastID:  number, 
-				SlotAdjustments: SlotAdjustmentStruct[], 
+				ForecastID: number, 
+				SlotAdjustments: readonly SlotAdjustmentStruct[][], 
 				Cause: AdjustmentCauseEnum, 
 			],
 			 outputparams: readonly []
@@ -211,7 +215,7 @@ id: 152;
 		/** Allows a client to ask the ESA to recompute its Forecast based on power and time constraints. */
 		RequestConstraintBasedForecast?: {
 			inputparams: readonly [
-				Constraints: ConstraintsStruct[], 
+				Constraints: readonly ConstraintsStruct[][], 
 				Cause: AdjustmentCauseEnum, 
 			],
 			 outputparams: readonly []
@@ -229,8 +233,8 @@ id: 152;
 		PowerAdjustEnd?: [
 			
 			Cause: CauseEnum, 
-			Duration:  number, 
-			EnergyUse:  number, ];
+			Duration: number, 
+			EnergyUse: number, ];
 		Paused?: [
 			];
 		Resumed?: [
@@ -238,3 +242,109 @@ id: 152;
 			Cause: CauseEnum, ];
 	}
 }
+
+export const deviceEnergyManagement: Cluster<DeviceEnergyManagement['attributes'], DeviceEnergyManagement['commands'], DeviceEnergyManagement['events']> = {
+id: 152,
+	attributes: {
+		ESAType:null,
+		ESACanGenerate:null,
+		ESAState:null,
+		AbsMinPower:0,
+		AbsMaxPower:0,
+		PowerAdjustmentCapability:null,
+		Forecast:null,
+		OptOutState:null,
+		/** Allows an EMS to make a temporary power adjustment (within the limits offered by the ESA). */
+	SupportsPowerAdjustment: false,
+		/** Allows an ESA to advertise its indicative future power consumption vs time. */
+	SupportsPowerForecastReporting: false,
+		/** Allows an ESA to advertise its indicative future state vs time. */
+	SupportsStateForecastReporting: false,
+		/** Allows an EMS to delay an ESA's planned operation. */
+	SupportsStartTimeAdjustment: false,
+		/** Allows an EMS to pause an ESA's planned operation. */
+	SupportsPausable: false,
+		/** Allows an EMS to adjust an ESA's planned operation. */
+	SupportsForecastAdjustment: false,
+		/** Allows an EMS to request constraints to an ESA's planned operation. */
+	SupportsConstraintBasedAdjustment: false,
+},
+	commands: {
+		/** Allows a client to request an adjustment in the power consumption of an ESA for a specified duration. */
+		PowerAdjustRequest: {
+			inputparams: [
+				0, 
+				0, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Allows a client to cancel an ongoing PowerAdjustmentRequest operation. */
+		CancelPowerAdjustRequest: {
+			inputparams: [
+			],
+			 outputparams: []
+            },
+		/** Allows a client to adjust the start time of a Forecast sequence that has not yet started operation (i.e. where the current Forecast StartTime is in the future). */
+		StartTimeAdjustRequest: {
+			inputparams: [
+				0, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Allows a client to temporarily pause an operation and reduce the ESAs energy demand. */
+		PauseRequest: {
+			inputparams: [
+				0, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Allows a client to cancel the PauseRequest command and enable earlier resumption of operation. */
+		ResumeRequest: {
+			inputparams: [
+			],
+			 outputparams: []
+            },
+		/** Allows a client to modify a Forecast within the limits allowed by the ESA. */
+		ModifyForecastRequest: {
+			inputparams: [
+				0, 
+				[], 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Allows a client to ask the ESA to recompute its Forecast based on power and time constraints. */
+		RequestConstraintBasedForecast: {
+			inputparams: [
+				[], 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** Allows a client to request cancellation of a previous adjustment request in a StartTimeAdjustRequest, ModifyForecastRequest or RequestConstraintBasedForecast command. */
+		CancelRequest: {
+			inputparams: [
+			],
+			 outputparams: []
+            },
+},
+	events: {
+		PowerAdjustStart: [
+			],
+		PowerAdjustEnd: [
+			
+			null, 
+			0, 
+			0, ],
+		Paused: [
+			],
+		Resumed: [
+			
+			null, ],
+	}
+}
+
+export default deviceEnergyManagement;

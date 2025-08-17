@@ -1,3 +1,7 @@
+// This file is generated from fan-control-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:47.101Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum FanModeEnum {
@@ -49,11 +53,11 @@ id: 514;
 	attributes: {
 		FanMode:FanModeEnum
 		readonly FanModeSequence:FanModeSequenceEnum
-		PercentSetting?: number
-		readonly PercentCurrent: number
-		readonly SPEED_MAX?: number
-		SPEED_SETTING?: number
-		readonly SPEED_CURRENT?: number
+		PercentSetting?:number
+		readonly PercentCurrent:number
+		readonly SPEED_MAX?:number
+		SPEED_SETTING?:number
+		readonly SPEED_CURRENT?:number
 		readonly ROCK_SUPPORT?:RockBitmap
 		ROCK_SETTING?:RockBitmap
 		readonly WIND_SUPPORT?:WindBitmap
@@ -86,3 +90,48 @@ id: 514;
 	events: {
 	}
 }
+
+export const fanControl: Cluster<FanControl['attributes'], FanControl['commands'], FanControl['events']> = {
+id: 514,
+	attributes: {
+		FanMode:null,
+		FanModeSequence:null,
+		PercentSetting:0,
+		PercentCurrent:0,
+		SPEED_MAX:0,
+		SPEED_SETTING:0,
+		SPEED_CURRENT:0,
+		ROCK_SUPPORT:null,
+		ROCK_SETTING:null,
+		WIND_SUPPORT:null,
+		WIND_SETTING:null,
+		AIRFLOW_DIRECTION:null,
+		/** 0-SpeedMax Fan Speeds */
+	SupportsMultiSpeed: false,
+		/** Automatic mode supported for fan speed */
+	SupportsAuto: false,
+		/** Rocking movement supported */
+	SupportsRocking: false,
+		/** Wind emulation supported */
+	SupportsWind: false,
+		/** Step command supported */
+	SupportsStep: false,
+		/** Airflow Direction attribute is supported */
+	SupportsAirflowDirection: false,
+},
+	commands: {
+		/** This command speeds up or slows down the fan, in steps, without a client having to know the fan speed. */
+		Step: {
+			inputparams: [
+				null, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+	}
+}
+
+export default fanControl;

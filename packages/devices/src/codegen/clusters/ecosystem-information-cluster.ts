@@ -1,24 +1,28 @@
+// This file is generated from ecosystem-information-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.889Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export interface DeviceTypeStruct {
-	DeviceType: number,
-	Revision: number,
+	DeviceType:number,
+	Revision:number,
 }
 
 export interface EcosystemDeviceStruct {
-	DeviceName?: string,
-	DeviceNameLastEdit?: number,
-	BridgedEndpoint: number,
-	OriginalEndpoint: number,
-	DeviceTypes:DeviceTypeStruct,
-	UniqueLocationIDs: string,
-	UniqueLocationIDsLastEdit: number,
+	DeviceName?:string,
+	DeviceNameLastEdit?:number,
+	BridgedEndpoint:number,
+	OriginalEndpoint:number,
+	DeviceTypes:readonly DeviceTypeStruct[],
+	UniqueLocationIDs:readonly string[],
+	UniqueLocationIDsLastEdit:number,
 }
 
 export interface EcosystemLocationStruct {
-	UniqueLocationID: string,
+	UniqueLocationID:string,
 	LocationDescriptor:import("./global-structs.js").LocationDescriptorStruct,
-	LocationDescriptorLastEdit: number,
+	LocationDescriptorLastEdit:number,
 }
 
 /**
@@ -36,3 +40,17 @@ id: 1872;
 	events: {
 	}
 }
+
+export const ecosystemInformation: Cluster<EcosystemInformation['attributes'], EcosystemInformation['commands'], EcosystemInformation['events']> = {
+id: 1872,
+	attributes: {
+		DeviceDirectory:[],
+		LocationDirectory:[],
+},
+	commands: {
+},
+	events: {
+	}
+}
+
+export default ecosystemInformation;

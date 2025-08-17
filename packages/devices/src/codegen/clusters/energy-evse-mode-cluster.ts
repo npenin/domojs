@@ -1,3 +1,7 @@
+// This file is generated from energy-evse-mode-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:47.005Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum ModeTag {
@@ -25,7 +29,7 @@ export interface EnergyEVSEMode {
 id: 157;
 	attributes: {
 		readonly SupportedModes:readonly import("./mode-base-cluster.js").ModeOptionStruct[]
-		readonly CurrentMode: number
+		readonly CurrentMode:number
 		/** Dependency with the OnOff cluster */
 		readonly SupportsOnOff: boolean
 }
@@ -33,13 +37,38 @@ id: 157;
 		/** This command is used to change device modes. */
 		ChangeToMode: {
 			inputparams: readonly [
-				NewMode:  number, 
+				NewMode: number, 
 			],
 			 outputparams: readonly [
-				Status:  number, 
-				StatusText:  string, ]
+				Status: number, 
+				StatusText: string, ]
             }
 }
 	events: {
 	}
 }
+
+export const energyEVSEMode: Cluster<EnergyEVSEMode['attributes'], EnergyEVSEMode['commands'], EnergyEVSEMode['events']> = {
+id: 157,
+	attributes: {
+		SupportedModes:[],
+		CurrentMode:0,
+		/** Dependency with the OnOff cluster */
+	SupportsOnOff: false,
+},
+	commands: {
+		/** This command is used to change device modes. */
+		ChangeToMode: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: [
+				0, 
+				null, ]
+            },
+},
+	events: {
+	}
+}
+
+export default energyEVSEMode;

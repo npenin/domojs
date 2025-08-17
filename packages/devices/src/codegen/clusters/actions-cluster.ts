@@ -1,3 +1,7 @@
+// This file is generated from actions-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:45.723Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum ActionErrorEnum {
@@ -44,19 +48,19 @@ export enum CommandBits {
 }
 
 export interface ActionStruct {
-	ActionID: number,
-	Name: string,
+	ActionID:number,
+	Name:string,
 	Type:ActionTypeEnum,
-	EndpointListID: number,
+	EndpointListID:number,
 	SupportedCommands:CommandBits,
 	State:ActionStateEnum,
 }
 
 export interface EndpointListStruct {
-	EndpointListID: number,
-	Name: string,
+	EndpointListID:number,
+	Name:string,
 	Type:EndpointListTypeEnum,
-	Endpoints: number,
+	Endpoints:readonly number[],
 }
 
 /**
@@ -68,107 +72,107 @@ id: 37;
 	attributes: {
 		readonly ActionList:readonly ActionStruct[]
 		readonly EndpointLists:readonly EndpointListStruct[]
-		readonly SetupURL?: string
+		readonly SetupURL?:string
 }
 	commands: {
 		/** This command is used to trigger an instantaneous action. */
 		InstantAction?: {
 			inputparams: readonly [
-				ActionID:  number, 
-				InvokeID:  number, 
+				ActionID: number, 
+				InvokeID: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command is used to trigger an instantaneous action with a transition over a given time. */
 		InstantActionWithTransition?: {
 			inputparams: readonly [
-				ActionID:  number, 
-				InvokeID:  number, 
-				TransitionTime:  number, 
+				ActionID: number, 
+				InvokeID: number, 
+				TransitionTime: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command is used to trigger the commencement of an action. */
 		StartAction?: {
 			inputparams: readonly [
-				ActionID:  number, 
-				InvokeID:  number, 
+				ActionID: number, 
+				InvokeID: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command is used to trigger the commencement of an action with a duration. */
 		StartActionWithDuration?: {
 			inputparams: readonly [
-				ActionID:  number, 
-				InvokeID:  number, 
-				Duration:  number, 
+				ActionID: number, 
+				InvokeID: number, 
+				Duration: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command is used to stop an action. */
 		StopAction?: {
 			inputparams: readonly [
-				ActionID:  number, 
-				InvokeID:  number, 
+				ActionID: number, 
+				InvokeID: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command is used to pause an action. */
 		PauseAction?: {
 			inputparams: readonly [
-				ActionID:  number, 
-				InvokeID:  number, 
+				ActionID: number, 
+				InvokeID: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command is used to pause an action with a duration. */
 		PauseActionWithDuration?: {
 			inputparams: readonly [
-				ActionID:  number, 
-				InvokeID:  number, 
-				Duration:  number, 
+				ActionID: number, 
+				InvokeID: number, 
+				Duration: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command is used to resume an action. */
 		ResumeAction?: {
 			inputparams: readonly [
-				ActionID:  number, 
-				InvokeID:  number, 
+				ActionID: number, 
+				InvokeID: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command is used to enable an action. */
 		EnableAction?: {
 			inputparams: readonly [
-				ActionID:  number, 
-				InvokeID:  number, 
+				ActionID: number, 
+				InvokeID: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command is used to enable an action with a duration. */
 		EnableActionWithDuration?: {
 			inputparams: readonly [
-				ActionID:  number, 
-				InvokeID:  number, 
-				Duration:  number, 
+				ActionID: number, 
+				InvokeID: number, 
+				Duration: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command is used to disable an action. */
 		DisableAction?: {
 			inputparams: readonly [
-				ActionID:  number, 
-				InvokeID:  number, 
+				ActionID: number, 
+				InvokeID: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command is used to disable an action with a duration. */
 		DisableActionWithDuration?: {
 			inputparams: readonly [
-				ActionID:  number, 
-				InvokeID:  number, 
-				Duration:  number, 
+				ActionID: number, 
+				InvokeID: number, 
+				Duration: number, 
 			],
 			 outputparams: readonly []
             }
@@ -176,14 +180,141 @@ id: 37;
 	events: {
 		StateChanged: [
 			
-			ActionID:  number, 
-			InvokeID:  number, 
+			ActionID: number, 
+			InvokeID: number, 
 			NewState: ActionStateEnum, ];
 		ActionFailed: [
 			
-			ActionID:  number, 
-			InvokeID:  number, 
+			ActionID: number, 
+			InvokeID: number, 
 			NewState: ActionStateEnum, 
 			Error: ActionErrorEnum, ];
 	}
 }
+
+export const actions: Cluster<Actions['attributes'], Actions['commands'], Actions['events']> = {
+id: 37,
+	attributes: {
+		ActionList:[],
+		EndpointLists:[],
+		SetupURL:null,
+},
+	commands: {
+		/** This command is used to trigger an instantaneous action. */
+		InstantAction: {
+			inputparams: [
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command is used to trigger an instantaneous action with a transition over a given time. */
+		InstantActionWithTransition: {
+			inputparams: [
+				0, 
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command is used to trigger the commencement of an action. */
+		StartAction: {
+			inputparams: [
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command is used to trigger the commencement of an action with a duration. */
+		StartActionWithDuration: {
+			inputparams: [
+				0, 
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command is used to stop an action. */
+		StopAction: {
+			inputparams: [
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command is used to pause an action. */
+		PauseAction: {
+			inputparams: [
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command is used to pause an action with a duration. */
+		PauseActionWithDuration: {
+			inputparams: [
+				0, 
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command is used to resume an action. */
+		ResumeAction: {
+			inputparams: [
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command is used to enable an action. */
+		EnableAction: {
+			inputparams: [
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command is used to enable an action with a duration. */
+		EnableActionWithDuration: {
+			inputparams: [
+				0, 
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command is used to disable an action. */
+		DisableAction: {
+			inputparams: [
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+		/** This command is used to disable an action with a duration. */
+		DisableActionWithDuration: {
+			inputparams: [
+				0, 
+				0, 
+				0, 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+		StateChanged: [
+			
+			0, 
+			0, 
+			null, ],
+		ActionFailed: [
+			
+			0, 
+			0, 
+			null, 
+			null, ],
+	}
+}
+
+export default actions;

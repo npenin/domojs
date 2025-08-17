@@ -1,3 +1,7 @@
+// This file is generated from window-covering.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:49.194Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum Type {
@@ -88,25 +92,25 @@ export interface WindowCovering {
 id: 258;
 	attributes: {
 		readonly Type:Type
-		readonly PhysicalClosedLimitLift?: number
-		readonly PhysicalClosedLimitTilt?: number
-		readonly CurrentPositionLift?: number
-		readonly CurrentPositionTilt?: number
-		readonly NumberOfActuationsLift?: number
-		readonly NumberOfActuationsTilt?: number
+		readonly PhysicalClosedLimitLift?:number
+		readonly PhysicalClosedLimitTilt?:number
+		readonly CurrentPositionLift?:number
+		readonly CurrentPositionTilt?:number
+		readonly NumberOfActuationsLift?:number
+		readonly NumberOfActuationsTilt?:number
 		readonly ConfigStatus:ConfigStatus
-		readonly CurrentPositionLiftPercentage?: number
-		readonly CurrentPositionTiltPercentage?: number
+		readonly CurrentPositionLiftPercentage?:number
+		readonly CurrentPositionTiltPercentage?:number
 		readonly OperationalStatus:OperationalStatus
-		readonly TargetPositionLiftPercent100ths?: number
-		readonly TargetPositionTiltPercent100ths?: number
+		readonly TargetPositionLiftPercent100ths?:number
+		readonly TargetPositionTiltPercent100ths?:number
 		readonly EndProductType:EndProductType
-		readonly CurrentPositionLiftPercent100ths?: number
-		readonly CurrentPositionTiltPercent100ths?: number
-		readonly InstalledOpenLimitLift?: number
-		readonly InstalledClosedLimitLift?: number
-		readonly InstalledOpenLimitTilt?: number
-		readonly InstalledClosedLimitTilt?: number
+		readonly CurrentPositionLiftPercent100ths?:number
+		readonly CurrentPositionTiltPercent100ths?:number
+		readonly InstalledOpenLimitLift?:number
+		readonly InstalledClosedLimitLift?:number
+		readonly InstalledOpenLimitTilt?:number
+		readonly InstalledClosedLimitTilt?:number
 		Mode?:Mode
 		readonly SafetyStatus?:SafetyStatus
 		/** Lift control and behavior for lifting/sliding window coverings */
@@ -142,28 +146,28 @@ id: 258;
 		/** Go to lift value specified */
 		GoToLiftValue?: {
 			inputparams: readonly [
-				LiftValue:  number, 
+				LiftValue: number, 
 			],
 			 outputparams: readonly []
             }
 		/** Go to lift percentage specified */
 		GoToLiftPercentage?: {
 			inputparams: readonly [
-				LiftPercent100thsValue:  number, 
+				LiftPercent100thsValue: number, 
 			],
 			 outputparams: readonly []
             }
 		/** Go to tilt value specified */
 		GoToTiltValue?: {
 			inputparams: readonly [
-				TiltValue:  number, 
+				TiltValue: number, 
 			],
 			 outputparams: readonly []
             }
 		/** Go to tilt percentage specified */
 		GoToTiltPercentage?: {
 			inputparams: readonly [
-				TiltPercent100thsValue:  number, 
+				TiltPercent100thsValue: number, 
 			],
 			 outputparams: readonly []
             }
@@ -171,3 +175,93 @@ id: 258;
 	events: {
 	}
 }
+
+export const windowCovering: Cluster<WindowCovering['attributes'], WindowCovering['commands'], WindowCovering['events']> = {
+id: 258,
+	attributes: {
+		Type:null,
+		PhysicalClosedLimitLift:0,
+		PhysicalClosedLimitTilt:0,
+		CurrentPositionLift:0,
+		CurrentPositionTilt:0,
+		NumberOfActuationsLift:0,
+		NumberOfActuationsTilt:0,
+		ConfigStatus:null,
+		CurrentPositionLiftPercentage:0,
+		CurrentPositionTiltPercentage:0,
+		OperationalStatus:null,
+		TargetPositionLiftPercent100ths:0,
+		TargetPositionTiltPercent100ths:0,
+		EndProductType:null,
+		CurrentPositionLiftPercent100ths:0,
+		CurrentPositionTiltPercent100ths:0,
+		InstalledOpenLimitLift:0,
+		InstalledClosedLimitLift:0,
+		InstalledOpenLimitTilt:0,
+		InstalledClosedLimitTilt:0,
+		Mode:null,
+		SafetyStatus:null,
+		/** Lift control and behavior for lifting/sliding window coverings */
+	SupportsLift: false,
+		/** Tilt control and behavior for tilting window coverings */
+	SupportsTilt: false,
+		/** Position aware lift control is supported. */
+	SupportsPositionAwareLift: false,
+		/** Absolute positioning is supported. */
+	SupportsAbsolutePosition: false,
+		/** Position aware tilt control is supported. */
+	SupportsPositionAwareTilt: false,
+},
+	commands: {
+		/** Moves window covering to InstalledOpenLimitLift and InstalledOpenLimitTilt */
+		UpOrOpen: {
+			inputparams: [
+			],
+			 outputparams: []
+            },
+		/** Moves window covering to InstalledClosedLimitLift and InstalledCloseLimitTilt */
+		DownOrClose: {
+			inputparams: [
+			],
+			 outputparams: []
+            },
+		/** Stop any adjusting of window covering */
+		StopMotion: {
+			inputparams: [
+			],
+			 outputparams: []
+            },
+		/** Go to lift value specified */
+		GoToLiftValue: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+		/** Go to lift percentage specified */
+		GoToLiftPercentage: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+		/** Go to tilt value specified */
+		GoToTiltValue: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+		/** Go to tilt percentage specified */
+		GoToTiltPercentage: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+	}
+}
+
+export default windowCovering;

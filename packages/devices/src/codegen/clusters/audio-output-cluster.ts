@@ -1,3 +1,7 @@
+// This file is generated from audio-output-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:45.827Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum OutputTypeEnum {
@@ -10,9 +14,9 @@ export enum OutputTypeEnum {
 }
 
 export interface OutputInfoStruct {
-	Index: number,
+	Index:number,
 	OutputType:OutputTypeEnum,
-	Name: string,
+	Name:string,
 }
 
 /**
@@ -23,7 +27,7 @@ export interface AudioOutput {
 id: 1291;
 	attributes: {
 		readonly OutputList:readonly OutputInfoStruct[]
-		readonly CurrentOutput: number
+		readonly CurrentOutput:number
 		/** Supports updates to output names */
 		readonly SupportsNameUpdates: boolean
 }
@@ -31,15 +35,15 @@ id: 1291;
 		/** Upon receipt, this SHALL change the output on the device to the output at a specific index in the Output List. */
 		SelectOutput: {
 			inputparams: readonly [
-				Index:  number, 
+				Index: number, 
 			],
 			 outputparams: readonly []
             }
 		/** Upon receipt, this SHALL rename the output at a specific index in the Output List. */
 		RenameOutput?: {
 			inputparams: readonly [
-				Index:  number, 
-				Name:  string, 
+				Index: number, 
+				Name: string, 
 			],
 			 outputparams: readonly []
             }
@@ -47,3 +51,34 @@ id: 1291;
 	events: {
 	}
 }
+
+export const audioOutput: Cluster<AudioOutput['attributes'], AudioOutput['commands'], AudioOutput['events']> = {
+id: 1291,
+	attributes: {
+		OutputList:[],
+		CurrentOutput:0,
+		/** Supports updates to output names */
+	SupportsNameUpdates: false,
+},
+	commands: {
+		/** Upon receipt, this SHALL change the output on the device to the output at a specific index in the Output List. */
+		SelectOutput: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: []
+            },
+		/** Upon receipt, this SHALL rename the output at a specific index in the Output List. */
+		RenameOutput: {
+			inputparams: [
+				0, 
+				null, 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+	}
+}
+
+export default audioOutput;

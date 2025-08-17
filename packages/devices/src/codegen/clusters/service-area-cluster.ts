@@ -1,3 +1,7 @@
+// This file is generated from service-area-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.583Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum OperationalStatusEnum {
@@ -32,21 +36,21 @@ export interface AreaInfoStruct {
 }
 
 export interface MapStruct {
-	MapID: number,
-	Name: string,
+	MapID:number,
+	Name:string,
 }
 
 export interface AreaStruct {
-	AreaID: number,
-	MapID: number,
+	AreaID:number,
+	MapID:number,
 	AreaInfo:AreaInfoStruct,
 }
 
 export interface ProgressStruct {
-	AreaID: number,
+	AreaID:number,
 	Status:OperationalStatusEnum,
-	TotalOperationalTime?: number,
-	EstimatedTime?: number,
+	TotalOperationalTime?:number,
+	EstimatedTime?:number,
 }
 
 /**
@@ -58,9 +62,9 @@ id: 336;
 	attributes: {
 		readonly SupportedAreas:readonly AreaStruct[]
 		readonly SupportedMaps:readonly MapStruct[]
-		readonly SelectedAreas:readonly  number[]
-		readonly CurrentArea?: number
-		readonly EstimatedEndTime?: number
+		readonly SelectedAreas:readonly number[]
+		readonly CurrentArea?:number
+		readonly EstimatedEndTime?:number
 		readonly Progress:readonly ProgressStruct[]
 		/** The device allows changing the selected areas while running */
 		readonly SupportsSelectWhileRunning: boolean
@@ -73,22 +77,64 @@ id: 336;
 		/** This command is used to select a set of device areas, where the device is to operate. */
 		SelectAreas: {
 			inputparams: readonly [
-				NewAreas:  number[], 
+				NewAreas: readonly number[][], 
 			],
 			 outputparams: readonly [
 				Status: SelectAreasStatus, 
-				StatusText:  string, ]
+				StatusText: string, ]
             }
 		/** This command is used to skip the given area, and to attempt operating at other areas on the SupportedAreas attribute list. */
 		SkipArea: {
 			inputparams: readonly [
-				SkippedArea:  number, 
+				SkippedArea: number, 
 			],
 			 outputparams: readonly [
 				Status: SkipAreaStatus, 
-				StatusText:  string, ]
+				StatusText: string, ]
             }
 }
 	events: {
 	}
 }
+
+export const serviceArea: Cluster<ServiceArea['attributes'], ServiceArea['commands'], ServiceArea['events']> = {
+id: 336,
+	attributes: {
+		SupportedAreas:[],
+		SupportedMaps:[],
+		SelectedAreas:[],
+		CurrentArea:0,
+		EstimatedEndTime:0,
+		Progress:[],
+		/** The device allows changing the selected areas while running */
+	SupportsSelectWhileRunning: false,
+		/** The device implements the progress reporting feature */
+	SupportsProgressReporting: false,
+		/** The device has map support */
+	SupportsMaps: false,
+},
+	commands: {
+		/** This command is used to select a set of device areas, where the device is to operate. */
+		SelectAreas: {
+			inputparams: [
+				[], 
+			],
+			 outputparams: [
+				null, 
+				null, ]
+            },
+		/** This command is used to skip the given area, and to attempt operating at other areas on the SupportedAreas attribute list. */
+		SkipArea: {
+			inputparams: [
+				0, 
+			],
+			 outputparams: [
+				null, 
+				null, ]
+            },
+},
+	events: {
+	}
+}
+
+export default serviceArea;

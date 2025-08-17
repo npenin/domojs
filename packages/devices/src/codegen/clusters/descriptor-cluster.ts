@@ -1,15 +1,19 @@
+// This file is generated from descriptor-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:46.663Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export interface DeviceTypeStruct {
-	DeviceType: number,
-	Revision: number,
+	DeviceType:number,
+	Revision:number,
 }
 
 export interface SemanticTagStruct {
-	MfgCode: number,
-	NamespaceID: number,
-	Tag: number,
-	Label?: string,
+	MfgCode:number,
+	NamespaceID:number,
+	Tag:number,
+	Label?:string,
 }
 
 /**
@@ -22,9 +26,9 @@ id: 29;
 		readonly DeviceTypeList:readonly DeviceTypeStruct[]
 		readonly ServerList:readonly import ("./clusters-index.js").ClusterIds[]
 		readonly ClientList:readonly import ("./clusters-index.js").ClusterIds[]
-		readonly PartsList:readonly  number[]
+		readonly PartsList:readonly number[]
 		readonly TagList?:readonly SemanticTagStruct[]
-		readonly EndpointUniqueID?: string
+		readonly EndpointUniqueID?:string
 		/** The TagList attribute is present */
 		readonly SupportsTagList: boolean
 }
@@ -33,3 +37,23 @@ id: 29;
 	events: {
 	}
 }
+
+export const descriptor: Cluster<Descriptor['attributes'], Descriptor['commands'], Descriptor['events']> = {
+id: 29,
+	attributes: {
+		DeviceTypeList:[],
+		ServerList:[],
+		ClientList:[],
+		PartsList:[],
+		TagList:[],
+		EndpointUniqueID:null,
+		/** The TagList attribute is present */
+	SupportsTagList: false,
+},
+	commands: {
+},
+	events: {
+	}
+}
+
+export default descriptor;

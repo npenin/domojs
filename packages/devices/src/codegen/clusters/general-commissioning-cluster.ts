@@ -1,3 +1,7 @@
+// This file is generated from general-commissioning-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:47.210Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum CommissioningErrorEnum {
@@ -24,8 +28,8 @@ export enum RegulatoryLocationTypeEnum {
 }
 
 export interface BasicCommissioningInfo {
-	FailSafeExpiryLengthSeconds: number,
-	MaxCumulativeFailsafeSeconds: number,
+	FailSafeExpiryLengthSeconds:number,
+	MaxCumulativeFailsafeSeconds:number,
 }
 
 /**
@@ -35,16 +39,16 @@ export interface BasicCommissioningInfo {
 export interface GeneralCommissioning {
 id: 48;
 	attributes: {
-		Breadcrumb: bigint
+		Breadcrumb:bigint
 		readonly BasicCommissioningInfo:BasicCommissioningInfo
 		readonly RegulatoryConfig:RegulatoryLocationTypeEnum
 		readonly LocationCapability:RegulatoryLocationTypeEnum
 		readonly SupportsConcurrentConnection:boolean
-		readonly TCAcceptedVersion: number
-		readonly TCMinRequiredVersion: number
-		readonly TCAcknowledgements: bigint
+		readonly TCAcceptedVersion:number
+		readonly TCMinRequiredVersion:number
+		readonly TCAcknowledgements:bigint
 		readonly TCAcknowledgementsRequired:boolean
-		readonly TCUpdateDeadline?: number
+		readonly TCUpdateDeadline?:number
 		readonly RecoveryIdentifier:import ("@akala/core").IsomorphicBuffer
 		readonly NetworkRecoveryReason?:NetworkRecoveryReasonEnum
 		readonly IsCommissioningWithoutPower:boolean
@@ -57,23 +61,23 @@ id: 48;
 		/** This command is used to arm or disarm the fail-safe timer. */
 		ArmFailSafe: {
 			inputparams: readonly [
-				ExpiryLengthSeconds:  number, 
-				Breadcrumb:  bigint, 
+				ExpiryLengthSeconds: number, 
+				Breadcrumb: bigint, 
 			],
 			 outputparams: readonly [
 				ErrorCode: CommissioningErrorEnum, 
-				DebugText:  string, ]
+				DebugText: string, ]
             }
 		/** This command is used to set the regulatory configuration for the device. */
 		SetRegulatoryConfig: {
 			inputparams: readonly [
 				NewRegulatoryConfig: RegulatoryLocationTypeEnum, 
-				CountryCode:  string, 
-				Breadcrumb:  bigint, 
+				CountryCode: string, 
+				Breadcrumb: bigint, 
 			],
 			 outputparams: readonly [
 				ErrorCode: CommissioningErrorEnum, 
-				DebugText:  string, ]
+				DebugText: string, ]
             }
 		/** This command is used to indicate that the commissioning process is complete. */
 		CommissioningComplete: {
@@ -81,13 +85,13 @@ id: 48;
 			],
 			 outputparams: readonly [
 				ErrorCode: CommissioningErrorEnum, 
-				DebugText:  string, ]
+				DebugText: string, ]
             }
 		/** This command is used to set the user acknowledgements received in the Enhanced Setup Flow Terms & Conditions into the node. */
 		SetTCAcknowledgements: {
 			inputparams: readonly [
-				TCVersion:  number, 
-				TCUserResponse:  bigint, 
+				TCVersion: number, 
+				TCUserResponse: bigint, 
 			],
 			 outputparams: readonly [
 				ErrorCode: CommissioningErrorEnum, ]
@@ -96,3 +100,70 @@ id: 48;
 	events: {
 	}
 }
+
+export const generalCommissioning: Cluster<GeneralCommissioning['attributes'], GeneralCommissioning['commands'], GeneralCommissioning['events']> = {
+id: 48,
+	attributes: {
+		Breadcrumb:null,
+		BasicCommissioningInfo:null,
+		RegulatoryConfig:null,
+		LocationCapability:null,
+		SupportsConcurrentConnection:null,
+		TCAcceptedVersion:0,
+		TCMinRequiredVersion:0,
+		TCAcknowledgements:null,
+		TCAcknowledgementsRequired:null,
+		TCUpdateDeadline:0,
+		RecoveryIdentifier:null,
+		NetworkRecoveryReason:null,
+		IsCommissioningWithoutPower:null,
+		/** Supports Terms & Conditions acknowledgement */
+	SupportsTermsAndConditions: false,
+		/** Supports Network Recovery */
+	SupportsNetworkRecovery: false,
+},
+	commands: {
+		/** This command is used to arm or disarm the fail-safe timer. */
+		ArmFailSafe: {
+			inputparams: [
+				0, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				null, ]
+            },
+		/** This command is used to set the regulatory configuration for the device. */
+		SetRegulatoryConfig: {
+			inputparams: [
+				null, 
+				null, 
+				null, 
+			],
+			 outputparams: [
+				null, 
+				null, ]
+            },
+		/** This command is used to indicate that the commissioning process is complete. */
+		CommissioningComplete: {
+			inputparams: [
+			],
+			 outputparams: [
+				null, 
+				null, ]
+            },
+		/** This command is used to set the user acknowledgements received in the Enhanced Setup Flow Terms & Conditions into the node. */
+		SetTCAcknowledgements: {
+			inputparams: [
+				0, 
+				null, 
+			],
+			 outputparams: [
+				null, ]
+            },
+},
+	events: {
+	}
+}
+
+export default generalCommissioning;

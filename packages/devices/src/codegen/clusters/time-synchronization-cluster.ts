@@ -1,3 +1,7 @@
+// This file is generated from time-synchronization-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.895Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum StatusCode {
@@ -39,26 +43,26 @@ export enum TimeZoneDatabaseEnum {
 }
 
 export interface TrustedTimeSourceStruct {
-	FabricIndex: number,
-	NodeID: string,
-	Endpoint: number,
+	FabricIndex:number,
+	NodeID:string,
+	Endpoint:number,
 }
 
 export interface FabricScopedTrustedTimeSourceStruct {
-	NodeID: string,
-	Endpoint: number,
+	NodeID:string,
+	Endpoint:number,
 }
 
 export interface TimeZoneStruct {
-	Offset: number,
-	ValidAt: number,
-	Name?: string,
+	Offset:number,
+	ValidAt:number,
+	Name?:string,
 }
 
 export interface DSTOffsetStruct {
-	Offset: number,
-	ValidStarting: number,
-	ValidUntil: number,
+	Offset:number,
+	ValidStarting:number,
+	ValidUntil:number,
 }
 
 /**
@@ -68,18 +72,18 @@ export interface DSTOffsetStruct {
 export interface TimeSynchronization {
 id: 56;
 	attributes: {
-		readonly UTCTime?: number
+		readonly UTCTime?:number
 		readonly Granularity:GranularityEnum
 		readonly TimeSource?:TimeSourceEnum
 		readonly TrustedTimeSource?:TrustedTimeSourceStruct
-		readonly DefaultNTP?: string
+		readonly DefaultNTP?:string
 		readonly TimeZone?:readonly TimeZoneStruct[]
 		readonly DSTOffset?:readonly DSTOffsetStruct[]
-		readonly LocalTime?: number
+		readonly LocalTime?:number
 		readonly TimeZoneDatabase?:TimeZoneDatabaseEnum
 		readonly NTPServerAvailable?:boolean
-		readonly TimeZoneListMaxSize?: number
-		readonly DSTOffsetListMaxSize?: number
+		readonly TimeZoneListMaxSize?:number
+		readonly DSTOffsetListMaxSize?:number
 		readonly SupportsDNSResolve?:boolean
 		/** Server supports time zone. */
 		readonly SupportsTimeZone: boolean
@@ -94,7 +98,7 @@ id: 56;
 		/** This command MAY be issued by Administrator to set the time. */
 		SetUTCTime: {
 			inputparams: readonly [
-				UTCTime:  number, 
+				UTCTime: number, 
 				Granularity: GranularityEnum, 
 				TimeSource: TimeSourceEnum, 
 			],
@@ -110,7 +114,7 @@ id: 56;
 		/** This command SHALL set TimeZone. */
 		SetTimeZone?: {
 			inputparams: readonly [
-				TimeZone: TimeZoneStruct[], 
+				TimeZone: readonly TimeZoneStruct[][], 
 			],
 			 outputparams: readonly [
 				DSTOffsetRequired: boolean, ]
@@ -118,14 +122,14 @@ id: 56;
 		/** This command SHALL set DSTOffset. */
 		SetDSTOffset?: {
 			inputparams: readonly [
-				DSTOffset: DSTOffsetStruct[], 
+				DSTOffset: readonly DSTOffsetStruct[][], 
 			],
 			 outputparams: readonly []
             }
 		/** This command is used to set DefaultNTP. */
 		SetDefaultNTP?: {
 			inputparams: readonly [
-				DefaultNTP:  string, 
+				DefaultNTP: string, 
 			],
 			 outputparams: readonly []
             }
@@ -138,11 +142,95 @@ id: 56;
 			DSTOffsetActive: boolean, ];
 		TimeZoneStatus?: [
 			
-			Offset:  number, 
-			Name:  string, ];
+			Offset: number, 
+			Name: string, ];
 		TimeFailure: [
 			];
 		MissingTrustedTimeSource?: [
 			];
 	}
 }
+
+export const timeSynchronization: Cluster<TimeSynchronization['attributes'], TimeSynchronization['commands'], TimeSynchronization['events']> = {
+id: 56,
+	attributes: {
+		UTCTime:0,
+		Granularity:null,
+		TimeSource:null,
+		TrustedTimeSource:null,
+		DefaultNTP:null,
+		TimeZone:[],
+		DSTOffset:[],
+		LocalTime:0,
+		TimeZoneDatabase:null,
+		NTPServerAvailable:null,
+		TimeZoneListMaxSize:0,
+		DSTOffsetListMaxSize:0,
+		SupportsDNSResolve:null,
+		/** Server supports time zone. */
+	SupportsTimeZone: false,
+		/** Server supports an NTP or SNTP client. */
+	SupportsNTPClient: false,
+		/** Server supports an NTP server role. */
+	SupportsNTPServer: false,
+		/** Time synchronization client cluster is present. */
+	SupportsTimeSyncClient: false,
+},
+	commands: {
+		/** This command MAY be issued by Administrator to set the time. */
+		SetUTCTime: {
+			inputparams: [
+				0, 
+				null, 
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command SHALL set TrustedTimeSource. */
+		SetTrustedTimeSource: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: []
+            },
+		/** This command SHALL set TimeZone. */
+		SetTimeZone: {
+			inputparams: [
+				[], 
+			],
+			 outputparams: [
+				null, ]
+            },
+		/** This command SHALL set DSTOffset. */
+		SetDSTOffset: {
+			inputparams: [
+				[], 
+			],
+			 outputparams: []
+            },
+		/** This command is used to set DefaultNTP. */
+		SetDefaultNTP: {
+			inputparams: [
+				null, 
+			],
+			 outputparams: []
+            },
+},
+	events: {
+		DSTTableEmpty: [
+			],
+		DSTStatus: [
+			
+			null, ],
+		TimeZoneStatus: [
+			
+			0, 
+			null, ],
+		TimeFailure: [
+			],
+		MissingTrustedTimeSource: [
+			],
+	}
+}
+
+export default timeSynchronization;

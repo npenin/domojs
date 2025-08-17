@@ -1,3 +1,7 @@
+// This file is generated from occupancy-sensing-cluster.xml - do not edit it directly
+// Generated on 2025-08-15T06:41:48.049Z
+
+import { Cluster } from '../../server/clients/shared.js';
 
 
 export enum OccupancySensorTypeEnum {
@@ -18,9 +22,9 @@ export enum OccupancySensorTypeBitmap {
 }
 
 export interface HoldTimeLimitsStruct {
-	HoldTimeMin: number,
-	HoldTimeMax: number,
-	HoldTimeDefault: number,
+	HoldTimeMin:number,
+	HoldTimeMax:number,
+	HoldTimeDefault:number,
 }
 
 /**
@@ -33,17 +37,17 @@ id: 1030;
 		readonly Occupancy:OccupancyBitmap
 		readonly OccupancySensorType:OccupancySensorTypeEnum
 		readonly OccupancySensorTypeBitmap:OccupancySensorTypeBitmap
-		HoldTime?: number
+		HoldTime?:number
 		readonly HoldTimeLimits?:HoldTimeLimitsStruct
-		PIROccupiedToUnoccupiedDelay?: number
-		PIRUnoccupiedToOccupiedDelay?: number
-		PIRUnoccupiedToOccupiedThreshold?: number
-		UltrasonicOccupiedToUnoccupiedDelay?: number
-		UltrasonicUnoccupiedToOccupiedDelay?: number
-		UltrasonicUnoccupiedToOccupiedThreshold?: number
-		PhysicalContactOccupiedToUnoccupiedDelay?: number
-		PhysicalContactUnoccupiedToOccupiedDelay?: number
-		PhysicalContactUnoccupiedToOccupiedThreshold?: number
+		PIROccupiedToUnoccupiedDelay?:number
+		PIRUnoccupiedToOccupiedDelay?:number
+		PIRUnoccupiedToOccupiedThreshold?:number
+		UltrasonicOccupiedToUnoccupiedDelay?:number
+		UltrasonicUnoccupiedToOccupiedDelay?:number
+		UltrasonicUnoccupiedToOccupiedThreshold?:number
+		PhysicalContactOccupiedToUnoccupiedDelay?:number
+		PhysicalContactUnoccupiedToOccupiedDelay?:number
+		PhysicalContactUnoccupiedToOccupiedThreshold?:number
 		/** Supports sensing using a modality not listed in the other bits */
 		readonly SupportsOther: boolean
 		/** Supports sensing using PIR (Passive InfraRed) */
@@ -69,3 +73,48 @@ id: 1030;
 			Occupancy: OccupancyBitmap, ];
 	}
 }
+
+export const occupancySensing: Cluster<OccupancySensing['attributes'], OccupancySensing['commands'], OccupancySensing['events']> = {
+id: 1030,
+	attributes: {
+		Occupancy:null,
+		OccupancySensorType:null,
+		OccupancySensorTypeBitmap:null,
+		HoldTime:0,
+		HoldTimeLimits:null,
+		PIROccupiedToUnoccupiedDelay:0,
+		PIRUnoccupiedToOccupiedDelay:0,
+		PIRUnoccupiedToOccupiedThreshold:0,
+		UltrasonicOccupiedToUnoccupiedDelay:0,
+		UltrasonicUnoccupiedToOccupiedDelay:0,
+		UltrasonicUnoccupiedToOccupiedThreshold:0,
+		PhysicalContactOccupiedToUnoccupiedDelay:0,
+		PhysicalContactUnoccupiedToOccupiedDelay:0,
+		PhysicalContactUnoccupiedToOccupiedThreshold:0,
+		/** Supports sensing using a modality not listed in the other bits */
+	SupportsOther: false,
+		/** Supports sensing using PIR (Passive InfraRed) */
+	SupportsPassiveInfrared: false,
+		/** Supports sensing using UltraSound */
+	SupportsUltrasonic: false,
+		/** Supports sensing using a physical contact */
+	SupportsPhysicalContact: false,
+		/** Supports sensing using Active InfraRed measurement (e.g. time-of-flight or transflective/reflective IR sensing) */
+	SupportsActiveInfrared: false,
+		/** Supports sensing using radar waves (microwave) */
+	SupportsRadar: false,
+		/** Supports sensing based on RF signal analysis */
+	SupportsRFSensing: false,
+		/** Supports sensing based on analyzing images */
+	SupportsVision: false,
+},
+	commands: {
+},
+	events: {
+		OccupancyChanged: [
+			
+			null, ],
+	}
+}
+
+export default occupancySensing;
