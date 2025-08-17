@@ -78,6 +78,7 @@
 * enable yarn cec2353
 * endpoint command result adf4756
 * ensure config is initialized 31238d4
+* ensure mqtt-client.net.js is imported in index.ts dea90e5
 * ensure proper permissions 80f00b8
 * entry point startup d5a0a61
 * entrypoint 51411b4
