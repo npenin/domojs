@@ -55,6 +55,7 @@
 * cast processor 07a479e
 * client subscriptions 53ac6eb
 * cluster proxy mqtt topic 91c3d7e
+* ClusterMap and ClusterIds consistency 8f665be
 * config file after upgrade 9b6bdfc
 * configs 845de88
 * configs 500a265
@@ -153,6 +154,7 @@
 * remove wwwroot from git tracking 4a77d5f
 * reopen on close 97206ad
 * replace CECKeyCodeEnum import with keypadInputCluster for improved modularity 74fd565
+* restore localhost akala config 17db37a
 * rfx modeendpoint naming 5e42bb3
 * rfx parsing 09bbea5
 * **rfx:** init 7045c7f
@@ -184,6 +186,7 @@
 * update after breaking changes in akala 28983f9
 * update after commands upgrade e41e30a
 * update after jsonrpc breaking change a5d8dbf
+* update codegen to provide ClusterDefinitions f191fd7
 * update config 26a8d19
 * update default config ed6451b
 * update dependencies a3ea3a6
