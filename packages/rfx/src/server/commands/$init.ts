@@ -1,19 +1,16 @@
 import { State } from "../state.js";
-import { InterfaceControl, InterfaceMessage, Message, PacketType, Rfxtrx, Rfy, Type } from "@domojs/rfx-parsers";
-import { Cluster, ClusterMap, ClusterIds, PairingHints, windowCovering, EndpointProxy, Commissionnee, Commissionning, clusterProxyFactory, CommissionningCluster, RootNode, registerNode, AggregatorEndpoint, BridgeConfiguration } from '@domojs/devices';
-import { Device, usb as usbType } from 'usb'
-import { Container } from "@akala/commands";
-import { eachAsync, logger as Logger, ObservableArray } from "@akala/core";
-import Configuration, { ProxyConfiguration } from "@akala/config";
+import { Rfxtrx } from "@domojs/rfx-parsers";
+import { registerNode, BridgeConfiguration } from '@domojs/devices';
+import { usb as usbType } from 'usb'
+import { eachAsync, logger as Logger } from "@akala/core";
+import { ProxyConfiguration } from "@akala/config";
 import os from 'os';
-import app, { pubsub, SidecarConfiguration } from "@akala/sidecar";
+import app, { SidecarConfiguration } from "@akala/sidecar";
 import { CliContext } from "@akala/cli";
 import { MqttEvents } from "@domojs/mqtt";
-import { gatewayHandler, Node, Endpoint } from "@domojs/devices";
+import { gatewayHandler } from "@domojs/devices";
 import { punch } from "http-punch-hole";
 import net from 'net'
-import { ModeEndpoint } from "../endpoints/mode.js";
-import { RfyEndpoint } from "../endpoints/rfy.js";
 import { GatewayEndpoint } from "../endpoints/gateway.js";
 
 var state: State = null;
