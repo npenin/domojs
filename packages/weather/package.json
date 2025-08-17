@@ -15,15 +15,15 @@
     },
     "devDependencies": {
         "@akala/cli": "^5.12.15",
-        "@akala/json-rpc-ws": "^14.3.4",
-        "@akala/pm": "^15.8.3",
-        "@akala/server": "^27.1.17",
-        "@akala/sidecar": "^8.3.18",
+        "@akala/json-rpc-ws": "^14.3.5",
+        "@akala/pm": "^15.8.4",
+        "@akala/server": "^27.1.18",
+        "@akala/sidecar": "^8.3.19",
         "@domojs/devices": "workspace:^"
     },
     "dependencies": {
-        "@akala/commands": "^17.6.6",
-        "@akala/config": "^6.1.15",
+        "@akala/commands": "^17.6.7",
+        "@akala/config": "^6.1.16",
         "@akala/core": "^41.10.1"
     },
     "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8",
