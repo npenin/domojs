@@ -1,26 +1,15 @@
 
 
-// export * from './devices.js';
-import { Metadata } from '@akala/commands';
-import { CommandDescription } from './devices.js';
-export * from './server/clients/index.js';
-import { pubsub, Sidecar, SidecarConfiguration } from '@akala/sidecar';
-import devices from './server/device-commands.js'
+export * from './index.browser.js';
+import { pubsub, Sidecar } from '@akala/sidecar';
+
 import { ClusterMap, CommissionningCluster, EndpointProxy, RootNode } from './server/clients/index.js';
 import { MqttClient, MqttEvents } from '@domojs/mqtt';
 import { ReasonCodes } from '../../mqtt/dist/protocol/_shared.js';
 import { ProxyConfiguration } from '@akala/config';
-import { BridgeConfiguration } from './server/clients/RootNode.js';
+import type { BridgeConfiguration } from './server/clients/RootNode.js';
 
-declare module '@akala/pm'
-{
-    export interface SidecarMap
-    {
-        '@domojs/devices': devices.container;
-    }
-}
-
-export { BridgeConfiguration }
+export { type BridgeConfiguration }
 
 export async function registerNode(name: string, self: Sidecar<any, MqttEvents>, config: ProxyConfiguration<BridgeConfiguration>, abort: AbortSignal): Promise<RootNode<never>>
 {
@@ -55,33 +44,4 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
         }
     }
     return new RootNode<never>(name, {}, config)
-}
-
-export type PubSubConfiguration = SidecarConfiguration['pubsub'];
-
-export function command(name: string, cmd: CommandDescription): Metadata.Command[]
-{
-    switch (cmd.type)
-    {
-        case 'onoff':
-            return [{ name, config: { "": { inject: ["params.0"] }, "cli": { inject: ["params.0"] }, '@domojs/devicetype': cmd } }];
-        case 'button':
-            return [{ name, config: { "": { inject: [] }, "cli": { inject: [] }, '@domojs/devicetype': cmd } }];
-        case 'range':
-        case 'input':
-            return [{ name, config: { "": { inject: ["params.0"] }, "cli": { inject: ["params.0"] }, '@domojs/devicetype': cmd } }];
-        case 'toggle':
-            return [
-                { name, config: { "": { inject: [] }, "cli": { inject: [] }, '@domojs/devicetype': cmd } }
-            ];
-
-    }
-}
-
-declare module '@akala/commands'
-{
-    interface ConfigurationMap
-    {
-        '@domojs/devicetype': CommandDescription
-    }
 }
