@@ -27,11 +27,11 @@ export interface Node
 export * from '../../codegen/index.js';
 import { Gateway } from "./Gateway.js";
 import { Endpoint, EndpointProxy } from "./Endpoint.js";
-import { ClusterIds, ClusterMap } from "../clusters/index.js";
+import { ClusterIds, ClusterMap, ClusterIdNames } from "../clusters/index.js";
 export { AggregatorEndpoint } from './Aggregator.js'
 
 export * from '../clusters/index.js'
-export { Gateway, Endpoint, EndpointProxy, ClusterMap, ClusterIds }
+export { Gateway, Endpoint, EndpointProxy, ClusterMap, ClusterIds, ClusterIdNames }
 export { RootNode } from './RootNode.js'
 
 export { Binding } from '../behaviors/binding.js'

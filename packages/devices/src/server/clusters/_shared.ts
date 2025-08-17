@@ -1,10 +1,25 @@
-import { ClusterIds as MatterClusterIds, ClusterMap as MatterClusterMap } from "../../codegen/index.js";
+import { ClusterIds as MatterClusterIds, ClusterMap as MatterClusterMap, ClusterIdNames as MatterClusterIdNames } from "../../codegen/index.js";
+import { clusterId as commissioningClusterId, CommissionningCluster } from "./Commissionnee.js";
+import { clusterId as notificationClusterId, NotificationEmitter } from "./Notifications.js";
 
 export enum ClusterIds
 {
-    commissionning = 0xFC01,
-    aggregator = 0xFC02,
-    notifications = 0xFC03,
+    commissionning = commissioningClusterId,
+    notifications = notificationClusterId,
 }
 
-export { MatterClusterIds, MatterClusterMap };
+export enum ClusterIdNames
+{
+    commissionning = commissioningClusterId,
+    notifications = 0xFC02,
+}
+
+export const ClusterMap = {
+    [ClusterIds.commissionning]: CommissionningCluster,
+    [ClusterIds.notifications]: NotificationEmitter,
+    ...MatterClusterMap
+}
+
+Object.entries(MatterClusterIdNames).forEach(e => ClusterIdNames[e[0]] = e[1]);
+
+export { MatterClusterIds, MatterClusterMap, MatterClusterIdNames };

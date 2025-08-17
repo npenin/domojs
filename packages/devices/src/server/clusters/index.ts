@@ -1,7 +1,7 @@
 export * from './_shared.js'
 export * from './Commands.js'
-export * from './Commissionnee.js'
-export * from './Notifications.js'
+export { Commissionnee, CommissionningCluster } from './Commissionnee.js'
+export { Notification, NotificationAction, NotificationEmitter, NotificationSeverity } from './Notifications.js'
 
 import { ClusterMap as MatterClusterMap } from '../../codegen/index.js'
 import { Commands } from './Commands.js'

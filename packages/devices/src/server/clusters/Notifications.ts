@@ -1,6 +1,7 @@
 import { ObservableArray } from "@akala/core";
-import { Cluster } from "../clients/index.js";
+import { Cluster, ClusterDefinition } from "../clients/index.js";
 
+export const clusterId = 0xfc02;
 
 export type NotificationEmitter = Cluster<{ notifications: ObservableArray<Notification>; }, {
     actOnNotification: {
@@ -11,6 +12,15 @@ export type NotificationEmitter = Cluster<{ notifications: ObservableArray<Notif
         outputparams: [];
     };
 }, {}>;
+
+export const NotificationEmitter: ClusterDefinition<NotificationEmitter> = {
+    id: clusterId,
+    commands: [
+        'actOnNotification'
+    ] as const,
+    attributes: ['notifications'] as const,
+    events: [] as const
+}
 
 export enum NotificationSeverity
 {

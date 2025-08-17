@@ -2,7 +2,8 @@ import { allProperties, AsyncEvent, AsyncEventBus, AsyncSubscription, combineAsy
 import { ClusterInstanceLight, clusterProxyFactory, ClusterInstance, Cluster, ClusterDefinition, NonWatchableClusterInstance } from "./shared.js";
 import { Descriptor, DescriptorClusterId } from "../behaviors/descriptor.js";
 import { MqttEvents } from "@domojs/mqtt";
-import { ClusterIdNames, ClusterMap } from "../../codegen/index.js";
+import { ClusterIdNames, ClusterMap } from "../clusters/_shared.js";
+// import { ClusterIdNames, ClusterMap } from "../../codegen/index.js";
 
 export type SemiPartial<K extends keyof TClusterMap, TClusterMap extends Record<string, Cluster<any, any, any>>> =
     Partial<{ [key in Exclude<keyof TClusterMap, K>]: TClusterMap[key] }>
