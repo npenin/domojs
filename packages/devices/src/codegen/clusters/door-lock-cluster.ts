@@ -1,7 +1,7 @@
 // This file is generated from door-lock-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.850Z
+// Generated on 2025-08-17T14:20:45.278Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum AlarmCodeEnum {
@@ -670,335 +670,100 @@ id: 257;
 	}
 }
 
-export const doorLock: Cluster<DoorLock['attributes'], DoorLock['commands'], DoorLock['events']> = {
+export const doorLock: ClusterDefinition<DoorLock> = {
 id: 257,
-	attributes: {
-		LockState:null,
-		LockType:null,
-		ActuatorEnabled:null,
-		DoorState:null,
-		DoorOpenEvents:0,
-		DoorClosedEvents:0,
-		OpenPeriod:0,
-		NumberOfTotalUsersSupported:0,
-		NumberOfPINUsersSupported:0,
-		NumberOfRFIDUsersSupported:0,
-		NumberOfWeekDaySchedulesSupportedPerUser:0,
-		NumberOfYearDaySchedulesSupportedPerUser:0,
-		NumberOfHolidaySchedulesSupported:0,
-		MaxPINCodeLength:0,
-		MinPINCodeLength:0,
-		MaxRFIDCodeLength:0,
-		MinRFIDCodeLength:0,
-		CredentialRulesSupport:null,
-		NumberOfCredentialsSupportedPerUser:0,
-		Language:null,
-		LEDSettings:0,
-		AutoRelockTime:0,
-		SoundVolume:0,
-		OperatingMode:null,
-		SupportedOperatingModes:null,
-		DefaultConfigurationRegister:null,
-		EnableLocalProgramming:null,
-		EnableOneTouchLocking:null,
-		EnableInsideStatusLED:null,
-		EnablePrivacyModeButton:null,
-		LocalProgrammingFeatures:null,
-		WrongCodeEntryLimit:0,
-		UserCodeTemporaryDisableTime:0,
-		SendPINOverTheAir:null,
-		RequirePINforRemoteOperation:null,
-		ExpiringUserTimeout:0,
-		AliroReaderVerificationKey:null,
-		AliroReaderGroupIdentifier:null,
-		AliroReaderGroupSubIdentifier:null,
-		AliroExpeditedTransactionSupportedProtocolVersions:[],
-		AliroGroupResolvingKey:null,
-		AliroSupportedBLEUWBProtocolVersions:[],
-		AliroBLEAdvertisingVersion:0,
-		NumberOfAliroCredentialIssuerKeysSupported:0,
-		NumberOfAliroEndpointKeysSupported:0,
-		/** Lock supports PIN credentials (via keypad, or over-the-air) */
-	SupportsPINCredential: false,
-		/** Lock supports RFID credentials */
-	SupportsRFIDCredential: false,
-		/** Lock supports finger related credentials (fingerprint, finger vein) */
-	SupportsFingerCredentials: false,
-		/** Lock supports local/on-lock logging when Events are not supported */
-	SupportsLogging: false,
-		/** Lock supports week day user access schedules */
-	SupportsWeekDayAccessSchedules: false,
-		/** Lock supports a door position sensor that indicates door's state */
-	SupportsDoorPositionSensor: false,
-		/** Lock supports face related credentials (face, iris, retina) */
-	SupportsFaceCredentials: false,
-		/** PIN codes over-the-air supported for lock/unlock operations */
-	SupportsCredentialsOverTheAirAccess: false,
-		/** Lock supports the user commands and database */
-	SupportsUser: false,
-		/** Operation and Programming Notifications */
-	SupportsNotification: false,
-		/** Lock supports year day user access schedules */
-	SupportsYearDayAccessSchedules: false,
-		/** Lock supports holiday schedules */
-	SupportsHolidaySchedules: false,
-		/** Lock supports unbolting */
-	SupportsUnbolt: false,
-		/** AliroProvisioning */
-	SupportsAliroProvisioning: false,
-		/** AliroBLEUWB */
-	SupportsAliroBLEUWB: false,
-},
-	commands: {
-		/** This command causes the lock device to lock the door. */
-		LockDoor: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command causes the lock device to unlock the door. */
-		UnlockDoor: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command causes the lock device to unlock the door with a timeout parameter. */
-		UnlockWithTimeout: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Set a weekly repeating schedule for a specified user. */
-		SetWeekDaySchedule: {
-			inputparams: [
-				0, 
-				0, 
-				null, 
-				0, 
-				0, 
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** Retrieve the specific weekly schedule for the specific user. */
-		GetWeekDaySchedule: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: [
-				0, 
-				0, 
-				null, 
-				null, 
-				0, 
-				0, 
-				0, 
-				0, ]
-            },
-		/** Clear the specific weekly schedule or all weekly schedules for the specific user. */
-		ClearWeekDaySchedule: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** Set a time-specific schedule ID for a specified user. */
-		SetYearDaySchedule: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** Returns the year day schedule data for the specified schedule and user indexes. */
-		GetYearDaySchedule: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: [
-				0, 
-				0, 
-				null, 
-				0, 
-				0, ]
-            },
-		/** Clears the specific year day schedule or all year day schedules for the specific user. */
-		ClearYearDaySchedule: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** Set the holiday Schedule by specifying local start time and local end time with respect to any Lock Operating Mode. */
-		SetHolidaySchedule: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Get the holiday schedule for the specified index. */
-		GetHolidaySchedule: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				0, 
-				null, 
-				0, 
-				0, 
-				null, ]
-            },
-		/** Clears the holiday schedule or all holiday schedules. */
-		ClearHolidaySchedule: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** Set User into the lock. */
-		SetUser: {
-			inputparams: [
-				null, 
-				0, 
-				null, 
-				0, 
-				null, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Retrieve User. */
-		GetUser: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				0, 
-				null, 
-				0, 
-				null, 
-				null, 
-				null, 
-				[], 
-				0, 
-				0, 
-				0, ]
-            },
-		/** Clears a User or all Users. */
-		ClearUser: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** Set a credential (e.g. PIN, RFID, Fingerprint, etc.) into the lock for a new user, existing user, or ProgrammingUser. */
-		SetCredential: {
-			inputparams: [
-				null, 
-				null, 
-				null, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: [
-				null, 
-				0, 
-				0, ]
-            },
-		/** Retrieve the status of a particular credential (e.g. PIN, RFID, Fingerprint, etc.) by index. */
-		GetCredentialStatus: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, 
-				0, 
-				0, 
-				0, 
-				0, 
-				null, ]
-            },
-		/** Clear one, one type, or all credentials except ProgrammingPIN credential. */
-		ClearCredential: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command causes the lock device to unlock the door without pulling the latch. */
-		UnboltDoor: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command communicates an Aliro Reader configuration to the lock. */
-		SetAliroReaderConfig: {
-			inputparams: [
-				null, 
-				null, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command clears an existing Aliro Reader configuration for the lock. */
-		ClearAliroReaderConfig: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-},
-	events: {
-		DoorLockAlarm: [
-			
-			null, ],
-		DoorStateChange: [
-			
-			null, ],
-		LockOperation: [
-			
-			null, 
-			null, 
-			0, 
-			0, 
-			null, 
-			[], ],
-		LockOperationError: [
-			
-			null, 
-			null, 
-			null, 
-			0, 
-			0, 
-			null, 
-			[], ],
-		LockUserChange: [
-			
-			null, 
-			null, 
-			null, 
-			0, 
-			0, 
-			null, 
-			0, ],
-	}
+	attributes: [
+		"LockState",
+		"LockType",
+		"ActuatorEnabled",
+		"DoorState",
+		"DoorOpenEvents",
+		"DoorClosedEvents",
+		"OpenPeriod",
+		"NumberOfTotalUsersSupported",
+		"NumberOfPINUsersSupported",
+		"NumberOfRFIDUsersSupported",
+		"NumberOfWeekDaySchedulesSupportedPerUser",
+		"NumberOfYearDaySchedulesSupportedPerUser",
+		"NumberOfHolidaySchedulesSupported",
+		"MaxPINCodeLength",
+		"MinPINCodeLength",
+		"MaxRFIDCodeLength",
+		"MinRFIDCodeLength",
+		"CredentialRulesSupport",
+		"NumberOfCredentialsSupportedPerUser",
+		"Language",
+		"LEDSettings",
+		"AutoRelockTime",
+		"SoundVolume",
+		"OperatingMode",
+		"SupportedOperatingModes",
+		"DefaultConfigurationRegister",
+		"EnableLocalProgramming",
+		"EnableOneTouchLocking",
+		"EnableInsideStatusLED",
+		"EnablePrivacyModeButton",
+		"LocalProgrammingFeatures",
+		"WrongCodeEntryLimit",
+		"UserCodeTemporaryDisableTime",
+		"SendPINOverTheAir",
+		"RequirePINforRemoteOperation",
+		"ExpiringUserTimeout",
+		"AliroReaderVerificationKey",
+		"AliroReaderGroupIdentifier",
+		"AliroReaderGroupSubIdentifier",
+		"AliroExpeditedTransactionSupportedProtocolVersions",
+		"AliroGroupResolvingKey",
+		"AliroSupportedBLEUWBProtocolVersions",
+		"AliroBLEAdvertisingVersion",
+		"NumberOfAliroCredentialIssuerKeysSupported",
+		"NumberOfAliroEndpointKeysSupported",
+		"SupportsPINCredential",
+		"SupportsRFIDCredential",
+		"SupportsFingerCredentials",
+		"SupportsLogging",
+		"SupportsWeekDayAccessSchedules",
+		"SupportsDoorPositionSensor",
+		"SupportsFaceCredentials",
+		"SupportsCredentialsOverTheAirAccess",
+		"SupportsUser",
+		"SupportsNotification",
+		"SupportsYearDayAccessSchedules",
+		"SupportsHolidaySchedules",
+		"SupportsUnbolt",
+		"SupportsAliroProvisioning",
+		"SupportsAliroBLEUWB",
+	] as const,
+	commands: [
+		"LockDoor",
+		"UnlockDoor",
+		"UnlockWithTimeout",
+		"SetWeekDaySchedule",
+		"GetWeekDaySchedule",
+		"ClearWeekDaySchedule",
+		"SetYearDaySchedule",
+		"GetYearDaySchedule",
+		"ClearYearDaySchedule",
+		"SetHolidaySchedule",
+		"GetHolidaySchedule",
+		"ClearHolidaySchedule",
+		"SetUser",
+		"GetUser",
+		"ClearUser",
+		"SetCredential",
+		"GetCredentialStatus",
+		"ClearCredential",
+		"UnboltDoor",
+		"SetAliroReaderConfig",
+		"ClearAliroReaderConfig",
+	] as const,
+	events: [
+		"DoorLockAlarm",
+		"DoorStateChange",
+		"LockOperation",
+		"LockOperationError",
+		"LockUserChange",
+	] as const
 }
 
 export default doorLock;

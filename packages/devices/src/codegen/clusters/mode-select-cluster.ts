@@ -1,7 +1,7 @@
 // This file is generated from mode-select-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.866Z
+// Generated on 2025-08-17T14:20:46.083Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export interface SemanticTagStruct {
@@ -44,29 +44,22 @@ id: 80;
 	}
 }
 
-export const modeSelect: Cluster<ModeSelect['attributes'], ModeSelect['commands'], ModeSelect['events']> = {
+export const modeSelect: ClusterDefinition<ModeSelect> = {
 id: 80,
-	attributes: {
-		Description:null,
-		StandardNamespace:0,
-		SupportedModes:[],
-		CurrentMode:0,
-		StartUpMode:0,
-		OnMode:0,
-		/** Dependency with the OnOff cluster */
-	SupportsOnOff: false,
-},
-	commands: {
-		/** On receipt of this command, if the NewMode field indicates a valid mode transition within the supported list, the server SHALL set the CurrentMode attribute to the NewMode value, otherwise, the server SHALL respond with an INVALID_COMMAND status response. */
-		ChangeToMode: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"Description",
+		"StandardNamespace",
+		"SupportedModes",
+		"CurrentMode",
+		"StartUpMode",
+		"OnMode",
+		"SupportsOnOff",
+	] as const,
+	commands: [
+		"ChangeToMode",
+	] as const,
+	events: [
+	] as const
 }
 
 export default modeSelect;

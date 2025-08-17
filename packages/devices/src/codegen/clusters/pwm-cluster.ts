@@ -1,7 +1,7 @@
 // This file is generated from pwm-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.386Z
+// Generated on 2025-08-17T14:20:46.430Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 /**
@@ -18,14 +18,14 @@ id: 28;
 	}
 }
 
-export const pulseWidthModulation: Cluster<PulseWidthModulation['attributes'], PulseWidthModulation['commands'], PulseWidthModulation['events']> = {
+export const pulseWidthModulation: ClusterDefinition<PulseWidthModulation> = {
 id: 28,
-	attributes: {
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default pulseWidthModulation;

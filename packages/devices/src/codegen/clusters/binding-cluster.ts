@@ -1,7 +1,7 @@
 // This file is generated from binding-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:45.892Z
+// Generated on 2025-08-17T14:20:44.722Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export interface TargetStruct {
@@ -26,15 +26,15 @@ id: 30;
 	}
 }
 
-export const binding: Cluster<Binding['attributes'], Binding['commands'], Binding['events']> = {
+export const binding: ClusterDefinition<Binding> = {
 id: 30,
-	attributes: {
-		Binding:[],
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"Binding",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default binding;

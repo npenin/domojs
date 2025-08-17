@@ -1,7 +1,7 @@
 // This file is generated from service-area-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.583Z
+// Generated on 2025-08-17T14:20:46.630Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum OperationalStatusEnum {
@@ -97,44 +97,25 @@ id: 336;
 	}
 }
 
-export const serviceArea: Cluster<ServiceArea['attributes'], ServiceArea['commands'], ServiceArea['events']> = {
+export const serviceArea: ClusterDefinition<ServiceArea> = {
 id: 336,
-	attributes: {
-		SupportedAreas:[],
-		SupportedMaps:[],
-		SelectedAreas:[],
-		CurrentArea:0,
-		EstimatedEndTime:0,
-		Progress:[],
-		/** The device allows changing the selected areas while running */
-	SupportsSelectWhileRunning: false,
-		/** The device implements the progress reporting feature */
-	SupportsProgressReporting: false,
-		/** The device has map support */
-	SupportsMaps: false,
-},
-	commands: {
-		/** This command is used to select a set of device areas, where the device is to operate. */
-		SelectAreas: {
-			inputparams: [
-				[], 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** This command is used to skip the given area, and to attempt operating at other areas on the SupportedAreas attribute list. */
-		SkipArea: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-},
-	events: {
-	}
+	attributes: [
+		"SupportedAreas",
+		"SupportedMaps",
+		"SelectedAreas",
+		"CurrentArea",
+		"EstimatedEndTime",
+		"Progress",
+		"SupportsSelectWhileRunning",
+		"SupportsProgressReporting",
+		"SupportsMaps",
+	] as const,
+	commands: [
+		"SelectAreas",
+		"SkipArea",
+	] as const,
+	events: [
+	] as const
 }
 
 export default serviceArea;

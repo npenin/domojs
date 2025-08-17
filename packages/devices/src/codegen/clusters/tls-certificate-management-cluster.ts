@@ -1,7 +1,7 @@
 // This file is generated from tls-certificate-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.936Z
+// Generated on 2025-08-17T14:20:47.000Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum StatusCodeEnum {
@@ -112,91 +112,27 @@ id: 2049;
 	}
 }
 
-export const tLSCertificateManagement: Cluster<TLSCertificateManagement['attributes'], TLSCertificateManagement['commands'], TLSCertificateManagement['events']> = {
+export const tLSCertificateManagement: ClusterDefinition<TLSCertificateManagement> = {
 id: 2049,
-	attributes: {
-		MaxRootCertificates:0,
-		ProvisionedRootCertificates:[],
-		MaxClientCertificates:0,
-		ProvisionedClientCertificates:[],
-},
-	commands: {
-		/** This command SHALL provision a newly provided certificate, or rotate an existing one, based on the contents of the CAID field. */
-		ProvisionRootCertificate: {
-			inputparams: [
-				null, 
-				0, 
-			],
-			 outputparams: [
-				0, ]
-            },
-		/** This command SHALL return the specified TLS root certificate, or all TLS provisioned root certificates, based on the contents of the CAID field. */
-		FindRootCertificate: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				[], ]
-            },
-		/** This command SHALL return the CAID for the passed in fingerprint. */
-		LookupRootCertificate: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				0, ]
-            },
-		/** This command SHALL be generated to request the server removes the certificate provisioned to the provided Certificate Authority ID. */
-		RemoveRootCertificate: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be generated to request the Node generates a Certificate Signing Request. */
-		TLSClientCSR: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				0, 
-				null, 
-				null, ]
-            },
-		/** This command SHALL be generated to request the Node provisions newly provided Client Certificate Details, or rotate an existing client certificate. */
-		ProvisionClientCertificate: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL return the TLSClientCertificateDetailStruct for the passed in CCDID, or all TLS client certificates, based on the contents of the CCDID field. */
-		FindClientCertificate: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				[], ]
-            },
-		/** This command SHALL return the CCDID for the passed in Fingerprint. */
-		LookupClientCertificate: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				0, ]
-            },
-		/** This command SHALL be used to request the Node removes all stored information for the provided CCDID. */
-		RemoveClientCertificate: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"MaxRootCertificates",
+		"ProvisionedRootCertificates",
+		"MaxClientCertificates",
+		"ProvisionedClientCertificates",
+	] as const,
+	commands: [
+		"ProvisionRootCertificate",
+		"FindRootCertificate",
+		"LookupRootCertificate",
+		"RemoveRootCertificate",
+		"TLSClientCSR",
+		"ProvisionClientCertificate",
+		"FindClientCertificate",
+		"LookupClientCertificate",
+		"RemoveClientCertificate",
+	] as const,
+	events: [
+	] as const
 }
 
 export default tLSCertificateManagement;

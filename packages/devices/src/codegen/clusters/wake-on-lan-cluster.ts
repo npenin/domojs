@@ -1,7 +1,7 @@
 // This file is generated from wake-on-lan-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:49.038Z
+// Generated on 2025-08-17T14:20:47.109Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 /**
@@ -20,16 +20,16 @@ id: 1283;
 	}
 }
 
-export const wakeOnLAN: Cluster<WakeOnLAN['attributes'], WakeOnLAN['commands'], WakeOnLAN['events']> = {
+export const wakeOnLAN: ClusterDefinition<WakeOnLAN> = {
 id: 1283,
-	attributes: {
-		MACAddress:null,
-		LinkLocalAddress:null,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"MACAddress",
+		"LinkLocalAddress",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default wakeOnLAN;

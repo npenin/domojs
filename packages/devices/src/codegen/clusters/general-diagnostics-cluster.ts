@@ -1,7 +1,7 @@
 // This file is generated from general-diagnostics-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.237Z
+// Generated on 2025-08-17T14:20:45.547Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum HardwareFaultEnum {
@@ -130,66 +130,31 @@ id: 51;
 	}
 }
 
-export const generalDiagnostics: Cluster<GeneralDiagnostics['attributes'], GeneralDiagnostics['commands'], GeneralDiagnostics['events']> = {
+export const generalDiagnostics: ClusterDefinition<GeneralDiagnostics> = {
 id: 51,
-	attributes: {
-		NetworkInterfaces:[],
-		RebootCount:0,
-		UpTime:null,
-		TotalOperationalHours:0,
-		BootReason:null,
-		ActiveHardwareFaults:[],
-		ActiveRadioFaults:[],
-		ActiveNetworkFaults:[],
-		TestEventTriggersEnabled:null,
-		/** Support specific testing needs for extended Data Model features */
-	SupportsDataModelTest: false,
-},
-	commands: {
-		/** Provide a means for certification tests to trigger some test-plan-specific events */
-		TestEventTrigger: {
-			inputparams: [
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Take a snapshot of system time and epoch time. */
-		TimeSnapshot: {
-			inputparams: [
-			],
-			 outputparams: [
-				0, 
-				0, ]
-            },
-		/** Request a variable length payload response. */
-		PayloadTestRequest: {
-			inputparams: [
-				null, 
-				0, 
-				0, 
-			],
-			 outputparams: [
-				null, ]
-            },
-},
-	events: {
-		HardwareFaultChange: [
-			
-			[], 
-			[], ],
-		RadioFaultChange: [
-			
-			[], 
-			[], ],
-		NetworkFaultChange: [
-			
-			[], 
-			[], ],
-		BootReason: [
-			
-			null, ],
-	}
+	attributes: [
+		"NetworkInterfaces",
+		"RebootCount",
+		"UpTime",
+		"TotalOperationalHours",
+		"BootReason",
+		"ActiveHardwareFaults",
+		"ActiveRadioFaults",
+		"ActiveNetworkFaults",
+		"TestEventTriggersEnabled",
+		"SupportsDataModelTest",
+	] as const,
+	commands: [
+		"TestEventTrigger",
+		"TimeSnapshot",
+		"PayloadTestRequest",
+	] as const,
+	events: [
+		"HardwareFaultChange",
+		"RadioFaultChange",
+		"NetworkFaultChange",
+		"BootReason",
+	] as const
 }
 
 export default generalDiagnostics;

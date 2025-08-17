@@ -1,7 +1,7 @@
 // This file is generated from device-energy-management-mode-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.734Z
+// Generated on 2025-08-17T14:20:45.194Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum ModeTag {
@@ -48,27 +48,18 @@ id: 159;
 	}
 }
 
-export const deviceEnergyManagementMode: Cluster<DeviceEnergyManagementMode['attributes'], DeviceEnergyManagementMode['commands'], DeviceEnergyManagementMode['events']> = {
+export const deviceEnergyManagementMode: ClusterDefinition<DeviceEnergyManagementMode> = {
 id: 159,
-	attributes: {
-		SupportedModes:[],
-		CurrentMode:0,
-		/** Dependency with the OnOff cluster */
-	SupportsOnOff: false,
-},
-	commands: {
-		/** This command is used to change device modes. */
-		ChangeToMode: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				0, 
-				null, ]
-            },
-},
-	events: {
-	}
+	attributes: [
+		"SupportedModes",
+		"CurrentMode",
+		"SupportsOnOff",
+	] as const,
+	commands: [
+		"ChangeToMode",
+	] as const,
+	events: [
+	] as const
 }
 
 export default deviceEnergyManagementMode;

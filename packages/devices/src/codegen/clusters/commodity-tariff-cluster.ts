@@ -1,7 +1,7 @@
 // This file is generated from commodity-tariff-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.377Z
+// Generated on 2025-08-17T14:20:45.058Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum AuxiliaryLoadSettingEnum {
@@ -177,63 +177,41 @@ id: 1792;
 	}
 }
 
-export const commodityTariff: Cluster<CommodityTariff['attributes'], CommodityTariff['commands'], CommodityTariff['events']> = {
+export const commodityTariff: ClusterDefinition<CommodityTariff> = {
 id: 1792,
-	attributes: {
-		TariffInfo:null,
-		TariffUnit:null,
-		StartDate:0,
-		DayEntries:[],
-		DayPatterns:[],
-		CalendarPeriods:[],
-		IndividualDays:[],
-		CurrentDay:null,
-		NextDay:null,
-		CurrentDayEntry:null,
-		CurrentDayEntryDate:0,
-		NextDayEntry:null,
-		NextDayEntryDate:0,
-		TariffComponents:[],
-		TariffPeriods:[],
-		CurrentTariffComponents:[],
-		NextTariffComponents:[],
-		DefaultRandomizationOffset:0,
-		DefaultRandomizationType:null,
-		/** Supports information about commodity pricing */
-	SupportsPricing: false,
-		/** Supports information about when friendly credit periods begin and end */
-	SupportsFriendlyCredit: false,
-		/** Supports information about when auxiliary loads should be enabled or disabled */
-	SupportsAuxiliaryLoad: false,
-		/** Supports information about peak periods */
-	SupportsPeakPeriod: false,
-		/** Supports information about power threshold */
-	SupportsPowerThreshold: false,
-		/** Supports information about randomization of calendar day entries */
-	SupportsRandomization: false,
-},
-	commands: {
-		/** The GetTariffComponent command allows a client to request information for a tariff component identifier that may no longer be available in the TariffPeriods attributes. */
-		GetTariffComponent: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				null, 
-				[], 
-				null, ]
-            },
-		/** The GetDayEntry command allows a client to request information for a calendar day entry identifier that may no longer be available in the CalendarPeriods or IndividualDays attributes. */
-		GetDayEntry: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				null, ]
-            },
-},
-	events: {
-	}
+	attributes: [
+		"TariffInfo",
+		"TariffUnit",
+		"StartDate",
+		"DayEntries",
+		"DayPatterns",
+		"CalendarPeriods",
+		"IndividualDays",
+		"CurrentDay",
+		"NextDay",
+		"CurrentDayEntry",
+		"CurrentDayEntryDate",
+		"NextDayEntry",
+		"NextDayEntryDate",
+		"TariffComponents",
+		"TariffPeriods",
+		"CurrentTariffComponents",
+		"NextTariffComponents",
+		"DefaultRandomizationOffset",
+		"DefaultRandomizationType",
+		"SupportsPricing",
+		"SupportsFriendlyCredit",
+		"SupportsAuxiliaryLoad",
+		"SupportsPeakPeriod",
+		"SupportsPowerThreshold",
+		"SupportsRandomization",
+	] as const,
+	commands: [
+		"GetTariffComponent",
+		"GetDayEntry",
+	] as const,
+	events: [
+	] as const
 }
 
 export default commodityTariff;

@@ -1,7 +1,7 @@
 // This file is generated from closure-dimension-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.252Z
+// Generated on 2025-08-17T14:20:44.932Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum ClosureUnitEnum {
@@ -146,60 +146,36 @@ id: 261;
 	}
 }
 
-export const closureDimension: Cluster<ClosureDimension['attributes'], ClosureDimension['commands'], ClosureDimension['events']> = {
+export const closureDimension: ClusterDefinition<ClosureDimension> = {
 id: 261,
-	attributes: {
-		CurrentState:null,
-		TargetState:null,
-		Resolution:0,
-		StepValue:0,
-		Unit:null,
-		UnitRange:null,
-		LimitRange:null,
-		TranslationDirection:null,
-		RotationAxis:null,
-		Overflow:null,
-		ModulationType:null,
-		LatchControlModes:null,
-		/** Supports Positioning in the range from 0.00% to 100.00% */
-	SupportsPositioning: false,
-		/** Supports a latch to secure the closure to a position or state */
-	SupportsMotionLatching: false,
-		/** Specifies the relevant unit and range for this dimension (mm, degrees etc.) */
-	SupportsUnit: false,
-		/** Supports limitation of the operating range */
-	SupportsLimitation: false,
-		/** Supports speed motion throttling. */
-	SupportsSpeed: false,
-		/** Drives a translation motion */
-	SupportsTranslation: false,
-		/** Drives a rotation motion */
-	SupportsRotation: false,
-		/** Modulates a particular flow level (light, air, privacy ...) */
-	SupportsModulation: false,
-},
-	commands: {
-		/** This command is used to move a dimension of the closure to a target position. */
-		SetTarget: {
-			inputparams: [
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to move a dimension of the closure to a target position by a number of steps. */
-		Step: {
-			inputparams: [
-				null, 
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"CurrentState",
+		"TargetState",
+		"Resolution",
+		"StepValue",
+		"Unit",
+		"UnitRange",
+		"LimitRange",
+		"TranslationDirection",
+		"RotationAxis",
+		"Overflow",
+		"ModulationType",
+		"LatchControlModes",
+		"SupportsPositioning",
+		"SupportsMotionLatching",
+		"SupportsUnit",
+		"SupportsLimitation",
+		"SupportsSpeed",
+		"SupportsTranslation",
+		"SupportsRotation",
+		"SupportsModulation",
+	] as const,
+	commands: [
+		"SetTarget",
+		"Step",
+	] as const,
+	events: [
+	] as const
 }
 
 export default closureDimension;

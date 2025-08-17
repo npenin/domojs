@@ -1,7 +1,7 @@
 // This file is generated from joint-fabric-datastore-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.503Z
+// Generated on 2025-08-17T14:20:45.766Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum DatastoreAccessControlEntryAuthModeEnum {
@@ -326,197 +326,48 @@ id: 1874;
 	}
 }
 
-export const jointFabricDatastore: Cluster<JointFabricDatastore['attributes'], JointFabricDatastore['commands'], JointFabricDatastore['events']> = {
+export const jointFabricDatastore: ClusterDefinition<JointFabricDatastore> = {
 id: 1874,
-	attributes: {
-		AnchorRootCA:null,
-		AnchorNodeID:null,
-		AnchorVendorID:0,
-		FriendlyName:null,
-		GroupKeySetList:[],
-		GroupList:[],
-		NodeList:[],
-		AdminList:[],
-		Status:null,
-		EndpointGroupIDList:[],
-		EndpointBindingList:[],
-		NodeKeySetList:[],
-		NodeACLList:[],
-		NodeEndpointList:[],
-},
-	commands: {
-		/** This command SHALL be used to add a KeySet to the Joint Fabric Datastore Cluster of the accessing fabric. */
-		AddKeySet: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to update a KeySet in the Joint Fabric Datastore Cluster of the accessing fabric. */
-		UpdateKeySet: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to remove a KeySet from the Joint Fabric Datastore Cluster of the accessing fabric. */
-		RemoveKeySet: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to add a group to the Joint Fabric Datastore Cluster of the accessing fabric. */
-		AddGroup: {
-			inputparams: [
-				0, 
-				null, 
-				0, 
-				0, 
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to update a group in the Joint Fabric Datastore Cluster of the accessing fabric. */
-		UpdateGroup: {
-			inputparams: [
-				0, 
-				null, 
-				0, 
-				0, 
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to remove a group from the Joint Fabric Datastore Cluster of the accessing fabric. */
-		RemoveGroup: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to add an admin to the Joint Fabric Datastore Cluster of the accessing fabric. */
-		AddAdmin: {
-			inputparams: [
-				null, 
-				null, 
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to update an admin in the Joint Fabric Datastore Cluster of the accessing fabric. */
-		UpdateAdmin: {
-			inputparams: [
-				null, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to remove an admin from the Joint Fabric Datastore Cluster of the accessing fabric. */
-		RemoveAdmin: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** The command SHALL be used to add a node to the Joint Fabric Datastore Cluster of the accessing fabric. */
-		AddPendingNode: {
-			inputparams: [
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** The command SHALL be used to request that Datastore information relating to a Node of the accessing fabric is refreshed. */
-		RefreshNode: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** The command SHALL be used to update the friendly name for a node in the Joint Fabric Datastore Cluster of the accessing fabric. */
-		UpdateNode: {
-			inputparams: [
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to remove a node from the Joint Fabric Datastore Cluster of the accessing fabric. */
-		RemoveNode: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to update the state of an endpoint for a node in the Joint Fabric Datastore Cluster of the accessing fabric. */
-		UpdateEndpointForNode: {
-			inputparams: [
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to add a Group ID to an endpoint for a node in the Joint Fabric Datastore Cluster of the accessing fabric. */
-		AddGroupIDToEndpointForNode: {
-			inputparams: [
-				null, 
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to remove a Group ID from an endpoint for a node in the Joint Fabric Datastore Cluster of the accessing fabric. */
-		RemoveGroupIDFromEndpointForNode: {
-			inputparams: [
-				null, 
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to add a binding to an endpoint for a node in the Joint Fabric Datastore Cluster of the accessing fabric. */
-		AddBindingToEndpointForNode: {
-			inputparams: [
-				null, 
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to remove a binding from an endpoint for a node in the Joint Fabric Datastore Cluster of the accessing fabric. */
-		RemoveBindingFromEndpointForNode: {
-			inputparams: [
-				0, 
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to add an ACL to a node in the Joint Fabric Datastore Cluster of the accessing fabric. */
-		AddACLToNode: {
-			inputparams: [
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to remove an ACL from a node in the Joint Fabric Datastore Cluster of the accessing fabric. */
-		RemoveACLFromNode: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"AnchorRootCA",
+		"AnchorNodeID",
+		"AnchorVendorID",
+		"FriendlyName",
+		"GroupKeySetList",
+		"GroupList",
+		"NodeList",
+		"AdminList",
+		"Status",
+		"EndpointGroupIDList",
+		"EndpointBindingList",
+		"NodeKeySetList",
+		"NodeACLList",
+		"NodeEndpointList",
+	] as const,
+	commands: [
+		"AddKeySet",
+		"UpdateKeySet",
+		"RemoveKeySet",
+		"AddGroup",
+		"UpdateGroup",
+		"RemoveGroup",
+		"AddAdmin",
+		"UpdateAdmin",
+		"RemoveAdmin",
+		"AddPendingNode",
+		"RefreshNode",
+		"UpdateNode",
+		"RemoveNode",
+		"UpdateEndpointForNode",
+		"AddGroupIDToEndpointForNode",
+		"RemoveGroupIDFromEndpointForNode",
+		"AddBindingToEndpointForNode",
+		"RemoveBindingFromEndpointForNode",
+		"AddACLToNode",
+		"RemoveACLFromNode",
+	] as const,
+	events: [
+	] as const
 }
 
 export default jointFabricDatastore;

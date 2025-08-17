@@ -1,7 +1,7 @@
 // This file is generated from commodity-metering-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.333Z
+// Generated on 2025-08-17T14:20:45.014Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export interface MeteredQuantityStruct {
@@ -27,18 +27,18 @@ id: 2823;
 	}
 }
 
-export const commodityMetering: Cluster<CommodityMetering['attributes'], CommodityMetering['commands'], CommodityMetering['events']> = {
+export const commodityMetering: ClusterDefinition<CommodityMetering> = {
 id: 2823,
-	attributes: {
-		MeteredQuantity:[],
-		MeteredQuantityTimestamp:0,
-		TariffUnit:null,
-		MaximumMeteredQuantities:0,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"MeteredQuantity",
+		"MeteredQuantityTimestamp",
+		"TariffUnit",
+		"MaximumMeteredQuantities",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default commodityMetering;

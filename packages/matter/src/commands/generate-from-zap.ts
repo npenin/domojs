@@ -460,7 +460,7 @@ async function generateTypescriptFromXml(folderURL: URL, parsedXml: XmlCluster, 
 
     await output.write(`// This file is generated from ${fileName} - do not edit it directly\n`);
     await output.write(`// Generated on ${new Date().toISOString()}\n\n`);
-    await output.write(`import { Cluster } from '../../server/clients/shared.js';\n`);
+    await output.write(`import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';\n`);
 
     const knownTypes = [];
     console.log(fileName);
@@ -643,115 +643,56 @@ async function generateTypescriptFromXml(folderURL: URL, parsedXml: XmlCluster, 
             await output.write(`\n}`)
 
 
-            await output.write(`\n\nexport const ${validTSIdentifier(toCamelCase(cluster.name))}: Cluster<${clusterInterfaceName}['attributes'], ${clusterInterfaceName}['commands'], ${clusterInterfaceName}['events']> = {`);
+            await output.write(`\n\nexport const ${validTSIdentifier(toCamelCase(cluster.name))}: ClusterDefinition<${clusterInterfaceName}> = {`);
 
             await output.write('\n\id: ' + cluster.code + ',');
-            await output.write('\n\tattributes: {')
+            await output.write('\n\tattributes: [')
             if (cluster.attribute?.length)
                 await eachAsync(cluster.attribute, async att =>
                 {
                     if (!att['@type'])
                         return;
                     await output.write('\n\t\t')
-                    await output.write(att['@name'] || att['#text'] || att['@define'])
-                    await output.write(':');
 
-                    await output.write(getDefault(mapType(att, knownTypes)));
+                    await output.write(JSON.stringify(att['@name'] || att['#text'] || att['@define']))
                     await output.write(',');
                 }, true);
             if (cluster.features?.feature?.length)
                 await eachAsync(cluster.features.feature, async ft =>
                 {
-                    if (ft['@summary'])
-                    {
-                        await output.write('\n\t\t/** ')
-                        await output.write(ft['@summary'])
-                        await output.write(' */')
-                    }
-                    await output.write('\n\t\Supports');
-                    await output.write(validTSIdentifier(toPascalCase(ft['@name'])))
-                    await output.write(': false,');
+                    await output.write('\n\t\t');
+                    await output.write(JSON.stringify("Supports" + validTSIdentifier(toPascalCase(ft['@name']))));
+                    await output.write(',');
                 }, true);
-            await output.write('\n},')
+            await output.write('\n\t] as const,')
 
             if (cluster.command && !Array.isArray(cluster.command))
                 cluster.command = [cluster.command];
 
-            await output.write('\n\tcommands: {')
+            await output.write('\n\tcommands: [')
             if (cluster.command?.length)
                 await eachAsync(cluster.command, async cmd =>
                 {
                     if (cmd['@source'] === 'client')
-                    {
-                        if (cmd.description)
-                        {
-                            await output.write('\n\t\t/** ')
-                            await output.write(cmd.description)
-                            await output.write(' */')
-                        }
-                        await output.write(`\n\t\t${validTSIdentifier(cmd['@name'])}: {
-\t\t\tinputparams: [`);
+                        await output.write(`\n\t\t${JSON.stringify(validTSIdentifier(cmd['@name']))},`);
 
-                        if (cmd.arg && !Array.isArray(cmd.arg))
-                            cmd.arg = [cmd.arg];
-
-                        if (cmd.arg?.length)
-                            await eachAsync(cmd.arg, async f => 
-                            {
-                                await output.write(`\n\t\t\t\t${getDefault(mapType(f, knownTypes))}, `)
-                            }, true);
-
-                        await output.write(`\n\t\t\t],\n\t\t\t outputparams: [`)
-
-                        if (cmd['@response'])
-                        {
-                            const response = cluster.command.find(c => c['@name'] === cmd['@response']);
-                            if (!response)
-                                throw new Error('cannout find ' + cmd['@response']);
-
-                            if (response.arg && !Array.isArray(response.arg))
-                                response.arg = [response.arg];
-
-                            await eachAsync(response.arg, async f => 
-                            {
-                                await output.write(`\n\t\t\t\t${getDefault(mapType(f, knownTypes))}, `)
-                            }, true);
-                        }
-
-                        await output.write(`]
-            },`);
-                    }
                 }, true)
-            await output.write('\n},')
+            await output.write('\n\t] as const,')
 
 
 
             if (cluster.event && !Array.isArray(cluster.event))
                 cluster.event = [cluster.event];
 
-            await output.write('\n\tevents: {')
+            await output.write('\n\tevents: [')
             if (cluster.event?.length)
                 await eachAsync(cluster.event, async ev =>
                 {
                     if (ev['@side'] === 'server' || ev['@side'] === 'both')
-                    {
-                        await output.write(`\n\t\t${validTSIdentifier(ev['@name'])}: [
-\t\t\t`);
-
-                        if (ev.field && !Array.isArray(ev.field))
-                            ev.field = [ev.field];
-
-                        if (ev.field?.length)
-                            await eachAsync(ev.field, async f => 
-                            {
-                                await output.write(`\n\t\t\t${getDefault(mapType(f, knownTypes))}, `)
-                            }, true);
-
-                        await output.write(`],`);
-                    }
+                        await output.write(`\n\t\t${JSON.stringify(validTSIdentifier(ev['@name']))},`);
                 }, true)
 
-            await output.write(`\n\t}`)
+            await output.write(`\n\t] as const`)
             await output.write(`\n}`)
         });
 

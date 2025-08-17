@@ -1,7 +1,7 @@
 // This file is generated from power-source-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.199Z
+// Generated on 2025-08-17T14:20:46.256Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum WiredFaultEnum {
@@ -263,66 +263,53 @@ id: 47;
 	}
 }
 
-export const powerSource: Cluster<PowerSource['attributes'], PowerSource['commands'], PowerSource['events']> = {
+export const powerSource: ClusterDefinition<PowerSource> = {
 id: 47,
-	attributes: {
-		Status:null,
-		Order:0,
-		Description:null,
-		WiredAssessedInputVoltage:0,
-		WiredAssessedInputFrequency:0,
-		WiredCurrentType:null,
-		WiredAssessedCurrent:0,
-		WiredNominalVoltage:0,
-		WiredMaximumCurrent:0,
-		WiredPresent:null,
-		ActiveWiredFaults:[],
-		BatVoltage:0,
-		BatPercentRemaining:0,
-		BatTimeRemaining:0,
-		BatChargeLevel:null,
-		BatReplacementNeeded:null,
-		BatReplaceability:null,
-		BatPresent:null,
-		ActiveBatFaults:[],
-		BatReplacementDescription:null,
-		BatCommonDesignation:null,
-		BatANSIDesignation:null,
-		BatIECDesignation:null,
-		BatApprovedChemistry:null,
-		BatCapacity:0,
-		BatQuantity:0,
-		BatChargeState:null,
-		BatTimeToFullCharge:0,
-		BatFunctionalWhileCharging:null,
-		BatChargingCurrent:0,
-		ActiveBatChargeFaults:[],
-		EndpointList:[],
-		/** A wired power source */
-	SupportsWired: false,
-		/** A battery power source */
-	SupportsBattery: false,
-		/** A rechargeable battery power source */
-	SupportsRechargeable: false,
-		/** A replaceable battery power source */
-	SupportsReplaceable: false,
-},
-	commands: {
-},
-	events: {
-		WiredFaultChange: [
-			
-			[], 
-			[], ],
-		BatFaultChange: [
-			
-			[], 
-			[], ],
-		BatChargeFaultChange: [
-			
-			[], 
-			[], ],
-	}
+	attributes: [
+		"Status",
+		"Order",
+		"Description",
+		"WiredAssessedInputVoltage",
+		"WiredAssessedInputFrequency",
+		"WiredCurrentType",
+		"WiredAssessedCurrent",
+		"WiredNominalVoltage",
+		"WiredMaximumCurrent",
+		"WiredPresent",
+		"ActiveWiredFaults",
+		"BatVoltage",
+		"BatPercentRemaining",
+		"BatTimeRemaining",
+		"BatChargeLevel",
+		"BatReplacementNeeded",
+		"BatReplaceability",
+		"BatPresent",
+		"ActiveBatFaults",
+		"BatReplacementDescription",
+		"BatCommonDesignation",
+		"BatANSIDesignation",
+		"BatIECDesignation",
+		"BatApprovedChemistry",
+		"BatCapacity",
+		"BatQuantity",
+		"BatChargeState",
+		"BatTimeToFullCharge",
+		"BatFunctionalWhileCharging",
+		"BatChargingCurrent",
+		"ActiveBatChargeFaults",
+		"EndpointList",
+		"SupportsWired",
+		"SupportsBattery",
+		"SupportsRechargeable",
+		"SupportsReplaceable",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+		"WiredFaultChange",
+		"BatFaultChange",
+		"BatChargeFaultChange",
+	] as const
 }
 
 export default powerSource;

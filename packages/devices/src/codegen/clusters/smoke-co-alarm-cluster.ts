@@ -1,7 +1,7 @@
 // This file is generated from smoke-co-alarm-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.602Z
+// Generated on 2025-08-17T14:20:46.649Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum AlarmStateEnum {
@@ -109,64 +109,41 @@ id: 92;
 	}
 }
 
-export const smokeCOAlarm: Cluster<SmokeCOAlarm['attributes'], SmokeCOAlarm['commands'], SmokeCOAlarm['events']> = {
+export const smokeCOAlarm: ClusterDefinition<SmokeCOAlarm> = {
 id: 92,
-	attributes: {
-		ExpressedState:null,
-		SmokeState:null,
-		COState:null,
-		BatteryAlert:null,
-		DeviceMuted:null,
-		TestInProgress:null,
-		HardwareFaultAlert:null,
-		EndOfServiceAlert:null,
-		InterconnectSmokeAlarm:null,
-		InterconnectCOAlarm:null,
-		ContaminationState:null,
-		SmokeSensitivityLevel:null,
-		ExpiryDate:0,
-		/** Supports Smoke alarm */
-	SupportsSmokeAlarm: false,
-		/** Supports CO alarm */
-	SupportsCOAlarm: false,
-},
-	commands: {
-		/** This command SHALL initiate a device self-test. */
-		SelfTestRequest: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-},
-	events: {
-		SmokeAlarm: [
-			
-			null, ],
-		COAlarm: [
-			
-			null, ],
-		LowBattery: [
-			
-			null, ],
-		HardwareFault: [
-			],
-		EndOfService: [
-			],
-		SelfTestComplete: [
-			],
-		AlarmMuted: [
-			],
-		MuteEnded: [
-			],
-		InterconnectSmokeAlarm: [
-			
-			null, ],
-		InterconnectCOAlarm: [
-			
-			null, ],
-		AllClear: [
-			],
-	}
+	attributes: [
+		"ExpressedState",
+		"SmokeState",
+		"COState",
+		"BatteryAlert",
+		"DeviceMuted",
+		"TestInProgress",
+		"HardwareFaultAlert",
+		"EndOfServiceAlert",
+		"InterconnectSmokeAlarm",
+		"InterconnectCOAlarm",
+		"ContaminationState",
+		"SmokeSensitivityLevel",
+		"ExpiryDate",
+		"SupportsSmokeAlarm",
+		"SupportsCOAlarm",
+	] as const,
+	commands: [
+		"SelfTestRequest",
+	] as const,
+	events: [
+		"SmokeAlarm",
+		"COAlarm",
+		"LowBattery",
+		"HardwareFault",
+		"EndOfService",
+		"SelfTestComplete",
+		"AlarmMuted",
+		"MuteEnded",
+		"InterconnectSmokeAlarm",
+		"InterconnectCOAlarm",
+		"AllClear",
+	] as const
 }
 
 export default smokeCOAlarm;

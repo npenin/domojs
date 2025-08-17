@@ -1,7 +1,7 @@
 // This file is generated from icd-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.404Z
+// Generated on 2025-08-17T14:20:45.683Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum ClientTypeEnum {
@@ -100,60 +100,31 @@ id: 70;
 	}
 }
 
-export const iCDManagement: Cluster<ICDManagement['attributes'], ICDManagement['commands'], ICDManagement['events']> = {
+export const iCDManagement: ClusterDefinition<ICDManagement> = {
 id: 70,
-	attributes: {
-		IdleModeDuration:0,
-		ActiveModeDuration:0,
-		ActiveModeThreshold:0,
-		RegisteredClients:[],
-		ICDCounter:0,
-		ClientsSupportedPerFabric:0,
-		UserActiveModeTriggerHint:null,
-		UserActiveModeTriggerInstruction:null,
-		OperatingMode:null,
-		MaximumCheckInBackOff:0,
-		/** Device supports attributes and commands for the Check-In Protocol support. */
-	SupportsCheckInProtocolSupport: false,
-		/** Device supports the user active mode trigger feature. */
-	SupportsUserActiveModeTrigger: false,
-		/** Device supports operating as a Long Idle Time ICD. */
-	SupportsLongIdleTimeSupport: false,
-		/** Device supports dynamic switching from SIT to LIT operating modes. */
-	SupportsDynamicSitLitSupport: false,
-},
-	commands: {
-		/** Register a client to the end device */
-		RegisterClient: {
-			inputparams: [
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-			],
-			 outputparams: [
-				0, ]
-            },
-		/** Unregister a client from an end device */
-		UnregisterClient: {
-			inputparams: [
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Request the end device to stay in Active Mode for an additional ActiveModeThreshold */
-		StayActiveRequest: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				0, ]
-            },
-},
-	events: {
-	}
+	attributes: [
+		"IdleModeDuration",
+		"ActiveModeDuration",
+		"ActiveModeThreshold",
+		"RegisteredClients",
+		"ICDCounter",
+		"ClientsSupportedPerFabric",
+		"UserActiveModeTriggerHint",
+		"UserActiveModeTriggerInstruction",
+		"OperatingMode",
+		"MaximumCheckInBackOff",
+		"SupportsCheckInProtocolSupport",
+		"SupportsUserActiveModeTrigger",
+		"SupportsLongIdleTimeSupport",
+		"SupportsDynamicSitLitSupport",
+	] as const,
+	commands: [
+		"RegisterClient",
+		"UnregisterClient",
+		"StayActiveRequest",
+	] as const,
+	events: [
+	] as const
 }
 
 export default iCDManagement;

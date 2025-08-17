@@ -1,7 +1,7 @@
 // This file is generated from ecosystem-information-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.889Z
+// Generated on 2025-08-17T14:20:45.296Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export interface DeviceTypeStruct {
@@ -41,16 +41,16 @@ id: 1872;
 	}
 }
 
-export const ecosystemInformation: Cluster<EcosystemInformation['attributes'], EcosystemInformation['commands'], EcosystemInformation['events']> = {
+export const ecosystemInformation: ClusterDefinition<EcosystemInformation> = {
 id: 1872,
-	attributes: {
-		DeviceDirectory:[],
-		LocationDirectory:[],
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"DeviceDirectory",
+		"LocationDirectory",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default ecosystemInformation;

@@ -1,7 +1,7 @@
 // This file is generated from power-source-configuration-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.219Z
+// Generated on 2025-08-17T14:20:46.275Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 /**
@@ -19,15 +19,15 @@ id: 46;
 	}
 }
 
-export const powerSourceConfiguration: Cluster<PowerSourceConfiguration['attributes'], PowerSourceConfiguration['commands'], PowerSourceConfiguration['events']> = {
+export const powerSourceConfiguration: ClusterDefinition<PowerSourceConfiguration> = {
 id: 46,
-	attributes: {
-		Sources:[],
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"Sources",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default powerSourceConfiguration;

@@ -1,7 +1,7 @@
 // This file is generated from thermostat-user-interface-configuration-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.795Z
+// Generated on 2025-08-17T14:20:46.856Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum KeypadLockoutEnum {
@@ -40,17 +40,17 @@ id: 516;
 	}
 }
 
-export const thermostatUserInterfaceConfiguration: Cluster<ThermostatUserInterfaceConfiguration['attributes'], ThermostatUserInterfaceConfiguration['commands'], ThermostatUserInterfaceConfiguration['events']> = {
+export const thermostatUserInterfaceConfiguration: ClusterDefinition<ThermostatUserInterfaceConfiguration> = {
 id: 516,
-	attributes: {
-		TemperatureDisplayMode:null,
-		KeypadLockout:null,
-		ScheduleProgrammingVisibility:null,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"TemperatureDisplayMode",
+		"KeypadLockout",
+		"ScheduleProgrammingVisibility",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default thermostatUserInterfaceConfiguration;

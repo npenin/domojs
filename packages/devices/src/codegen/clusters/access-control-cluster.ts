@@ -1,7 +1,7 @@
 // This file is generated from access-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:45.651Z
+// Generated on 2025-08-17T14:20:44.506Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum AccessControlEntryPrivilegeEnum {
@@ -118,50 +118,27 @@ id: 31;
 	}
 }
 
-export const accessControl: Cluster<AccessControl['attributes'], AccessControl['commands'], AccessControl['events']> = {
+export const accessControl: ClusterDefinition<AccessControl> = {
 id: 31,
-	attributes: {
-		ACL:[],
-		Extension:[],
-		SubjectsPerAccessControlEntry:0,
-		TargetsPerAccessControlEntry:0,
-		AccessControlEntriesPerFabric:0,
-		CommissioningARL:[],
-		ARL:[],
-		/** Device provides ACL Extension attribute */
-	SupportsExtension: false,
-		/** Device is managed */
-	SupportsManagedDevice: false,
-},
-	commands: {
-		/** This command signals to the service associated with the device vendor that the fabric administrator would like a review of the current restrictions on the accessing fabric. */
-		ReviewFabricRestrictions: {
-			inputparams: [
-				[], 
-			],
-			 outputparams: [
-				null, ]
-            },
-},
-	events: {
-		AccessControlEntryChanged: [
-			
-			null, 
-			0, 
-			null, 
-			null, ],
-		AccessControlExtensionChanged: [
-			
-			null, 
-			0, 
-			null, 
-			null, ],
-		FabricRestrictionReviewUpdate: [
-			
-			null, 
-			null, 
-			null, ],
-	}
+	attributes: [
+		"ACL",
+		"Extension",
+		"SubjectsPerAccessControlEntry",
+		"TargetsPerAccessControlEntry",
+		"AccessControlEntriesPerFabric",
+		"CommissioningARL",
+		"ARL",
+		"SupportsExtension",
+		"SupportsManagedDevice",
+	] as const,
+	commands: [
+		"ReviewFabricRestrictions",
+	] as const,
+	events: [
+		"AccessControlEntryChanged",
+		"AccessControlExtensionChanged",
+		"FabricRestrictionReviewUpdate",
+	] as const
 }
 
 export default accessControl;

@@ -1,7 +1,7 @@
 // This file is generated from laundry-dryer-controls-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.547Z
+// Generated on 2025-08-17T14:20:45.802Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum DrynessLevelEnum {
@@ -28,16 +28,16 @@ id: 74;
 	}
 }
 
-export const laundryDryerControls: Cluster<LaundryDryerControls['attributes'], LaundryDryerControls['commands'], LaundryDryerControls['events']> = {
+export const laundryDryerControls: ClusterDefinition<LaundryDryerControls> = {
 id: 74,
-	attributes: {
-		SupportedDrynessLevels:[],
-		SelectedDrynessLevel:null,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"SupportedDrynessLevels",
+		"SelectedDrynessLevel",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default laundryDryerControls;

@@ -1,7 +1,7 @@
 // This file is generated from operational-credentials-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.096Z
+// Generated on 2025-08-17T14:20:46.161Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum NodeOperationalCertStatusEnum {
@@ -156,119 +156,30 @@ id: 62;
 	}
 }
 
-export const operationalCredentials: Cluster<OperationalCredentials['attributes'], OperationalCredentials['commands'], OperationalCredentials['events']> = {
+export const operationalCredentials: ClusterDefinition<OperationalCredentials> = {
 id: 62,
-	attributes: {
-		NOCs:[],
-		Fabrics:[],
-		SupportedFabrics:0,
-		CommissionedFabrics:0,
-		TrustedRootCertificates:[],
-		CurrentFabricIndex:0,
-},
-	commands: {
-		/** Sender is requesting attestation information from the receiver. */
-		AttestationRequest: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Sender is requesting a device attestation certificate from the receiver. */
-		CertificateChainRequest: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Sender is requesting a certificate signing request (CSR) from the receiver. */
-		CSRRequest: {
-			inputparams: [
-				null, 
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Sender is requesting to add the new node operational certificates. */
-		AddNOC: {
-			inputparams: [
-				null, 
-				null, 
-				null, 
-				null, 
-				0, 
-			],
-			 outputparams: [
-				null, 
-				0, 
-				null, ]
-            },
-		/** This command SHALL replace the NOC and optional associated ICAC (if present) scoped under the accessing fabric upon successful validation of all arguments and preconditions. */
-		UpdateNOC: {
-			inputparams: [
-				null, 
-				null, 
-			],
-			 outputparams: [
-				null, 
-				0, 
-				null, ]
-            },
-		/** This command SHALL be used by an Administrative Node to set the user-visible Label field for a given Fabric, as reflected by entries in the Fabrics attribute. */
-		UpdateFabricLabel: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, 
-				0, 
-				null, ]
-            },
-		/** This command is used by Administrative Nodes to remove a given fabric index and delete all associated fabric-scoped data. */
-		RemoveFabric: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				null, 
-				0, 
-				null, ]
-            },
-		/** This command SHALL add a Trusted Root CA Certificate, provided as its CHIP Certificate representation. */
-		AddTrustedRootCertificate: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to update any of the accessing fabric's associated VendorID, VidVerificatioNStatement or VVSC (Vendor Verification Signing Certificate). */
-		SetVIDVerificationStatement: {
-			inputparams: [
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to request that the server authenticate the fabric associated with the FabricIndex given. */
-		SignVIDVerificationRequest: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: [
-				0, 
-				0, 
-				null, ]
-            },
-},
-	events: {
-	}
+	attributes: [
+		"NOCs",
+		"Fabrics",
+		"SupportedFabrics",
+		"CommissionedFabrics",
+		"TrustedRootCertificates",
+		"CurrentFabricIndex",
+	] as const,
+	commands: [
+		"AttestationRequest",
+		"CertificateChainRequest",
+		"CSRRequest",
+		"AddNOC",
+		"UpdateNOC",
+		"UpdateFabricLabel",
+		"RemoveFabric",
+		"AddTrustedRootCertificate",
+		"SetVIDVerificationStatement",
+		"SignVIDVerificationRequest",
+	] as const,
+	events: [
+	] as const
 }
 
 export default operationalCredentials;

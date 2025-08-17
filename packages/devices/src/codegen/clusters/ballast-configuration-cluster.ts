@@ -1,7 +1,7 @@
 // This file is generated from ballast-configuration-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:45.850Z
+// Generated on 2025-08-17T14:20:44.683Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum BallastStatusBitmap {
@@ -41,28 +41,28 @@ id: 769;
 	}
 }
 
-export const ballastConfiguration: Cluster<BallastConfiguration['attributes'], BallastConfiguration['commands'], BallastConfiguration['events']> = {
+export const ballastConfiguration: ClusterDefinition<BallastConfiguration> = {
 id: 769,
-	attributes: {
-		PhysicalMinLevel:0,
-		PhysicalMaxLevel:0,
-		BallastStatus:null,
-		MinLevel:0,
-		MaxLevel:0,
-		IntrinsicBallastFactor:0,
-		BallastFactorAdjustment:0,
-		LampQuantity:0,
-		LampType:null,
-		LampManufacturer:null,
-		LampRatedHours:0,
-		LampBurnHours:0,
-		LampAlarmMode:null,
-		LampBurnHoursTripPoint:0,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"PhysicalMinLevel",
+		"PhysicalMaxLevel",
+		"BallastStatus",
+		"MinLevel",
+		"MaxLevel",
+		"IntrinsicBallastFactor",
+		"BallastFactorAdjustment",
+		"LampQuantity",
+		"LampType",
+		"LampManufacturer",
+		"LampRatedHours",
+		"LampBurnHours",
+		"LampAlarmMode",
+		"LampBurnHoursTripPoint",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default ballastConfiguration;

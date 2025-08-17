@@ -1,7 +1,7 @@
 // This file is generated from color-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.295Z
+// Generated on 2025-08-17T14:20:44.973Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum DirectionEnum {
@@ -255,182 +255,72 @@ id: 768;
 	}
 }
 
-export const colorControl: Cluster<ColorControl['attributes'], ColorControl['commands'], ColorControl['events']> = {
+export const colorControl: ClusterDefinition<ColorControl> = {
 id: 768,
-	attributes: {
-		CurrentHue:0,
-		CurrentSaturation:0,
-		RemainingTime:0,
-		CurrentX:0,
-		CurrentY:0,
-		DriftCompensation:null,
-		CompensationText:null,
-		ColorTemperatureMireds:0,
-		ColorMode:null,
-		Options:null,
-		NumberOfPrimaries:0,
-		Primary1X:0,
-		Primary1Y:0,
-		Primary1Intensity:0,
-		Primary2X:0,
-		Primary2Y:0,
-		Primary2Intensity:0,
-		Primary3X:0,
-		Primary3Y:0,
-		Primary3Intensity:0,
-		Primary4X:0,
-		Primary4Y:0,
-		Primary4Intensity:0,
-		Primary5X:0,
-		Primary5Y:0,
-		Primary5Intensity:0,
-		Primary6X:0,
-		Primary6Y:0,
-		Primary6Intensity:0,
-		WhitePointX:0,
-		WhitePointY:0,
-		ColorPointRX:0,
-		ColorPointRY:0,
-		ColorPointRIntensity:0,
-		ColorPointGX:0,
-		ColorPointGY:0,
-		ColorPointGIntensity:0,
-		ColorPointBX:0,
-		ColorPointBY:0,
-		ColorPointBIntensity:0,
-		CoupleColorTempToLevelMinMireds:0,
-		StartUpColorTemperatureMireds:0,
-		/** Supports color specification via hue/saturation. */
-	SupportsHueAndSaturation: false,
-		/** Enhanced hue is supported. */
-	SupportsEnhancedHue: false,
-		/** Color loop is supported. */
-	SupportsColorLoop: false,
-		/** Supports color specification via XY. */
-	SupportsXY: false,
-		/** Supports specification of color temperature. */
-	SupportsColorTemperature: false,
-},
-	commands: {
-		/** Move to specified hue. */
-		MoveToHue: {
-			inputparams: [
-				0, 
-				null, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Move hue up or down at specified rate. */
-		MoveHue: {
-			inputparams: [
-				null, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Step hue up or down by specified size at specified rate. */
-		StepHue: {
-			inputparams: [
-				null, 
-				0, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Move to specified saturation. */
-		MoveToSaturation: {
-			inputparams: [
-				0, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Move saturation up or down at specified rate. */
-		MoveSaturation: {
-			inputparams: [
-				null, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Step saturation up or down by specified size at specified rate. */
-		StepSaturation: {
-			inputparams: [
-				null, 
-				0, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Move to hue and saturation. */
-		MoveToHueAndSaturation: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Move to specified color. */
-		MoveToColor: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Moves the color. */
-		MoveColor: {
-			inputparams: [
-				0, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Steps the lighting to a specific color. */
-		StepColor: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Move to a specific color temperature. */
-		MoveToColorTemperature: {
-			inputparams: [
-				0, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"CurrentHue",
+		"CurrentSaturation",
+		"RemainingTime",
+		"CurrentX",
+		"CurrentY",
+		"DriftCompensation",
+		"CompensationText",
+		"ColorTemperatureMireds",
+		"ColorMode",
+		"Options",
+		"NumberOfPrimaries",
+		"Primary1X",
+		"Primary1Y",
+		"Primary1Intensity",
+		"Primary2X",
+		"Primary2Y",
+		"Primary2Intensity",
+		"Primary3X",
+		"Primary3Y",
+		"Primary3Intensity",
+		"Primary4X",
+		"Primary4Y",
+		"Primary4Intensity",
+		"Primary5X",
+		"Primary5Y",
+		"Primary5Intensity",
+		"Primary6X",
+		"Primary6Y",
+		"Primary6Intensity",
+		"WhitePointX",
+		"WhitePointY",
+		"ColorPointRX",
+		"ColorPointRY",
+		"ColorPointRIntensity",
+		"ColorPointGX",
+		"ColorPointGY",
+		"ColorPointGIntensity",
+		"ColorPointBX",
+		"ColorPointBY",
+		"ColorPointBIntensity",
+		"CoupleColorTempToLevelMinMireds",
+		"StartUpColorTemperatureMireds",
+		"SupportsHueAndSaturation",
+		"SupportsEnhancedHue",
+		"SupportsColorLoop",
+		"SupportsXY",
+		"SupportsColorTemperature",
+	] as const,
+	commands: [
+		"MoveToHue",
+		"MoveHue",
+		"StepHue",
+		"MoveToSaturation",
+		"MoveSaturation",
+		"StepSaturation",
+		"MoveToHueAndSaturation",
+		"MoveToColor",
+		"MoveColor",
+		"StepColor",
+		"MoveToColorTemperature",
+	] as const,
+	events: [
+	] as const
 }
 
 export default colorControl;

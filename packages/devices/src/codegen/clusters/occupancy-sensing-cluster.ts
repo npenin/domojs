@@ -1,7 +1,7 @@
 // This file is generated from occupancy-sensing-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.049Z
+// Generated on 2025-08-17T14:20:46.121Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum OccupancySensorTypeEnum {
@@ -74,47 +74,37 @@ id: 1030;
 	}
 }
 
-export const occupancySensing: Cluster<OccupancySensing['attributes'], OccupancySensing['commands'], OccupancySensing['events']> = {
+export const occupancySensing: ClusterDefinition<OccupancySensing> = {
 id: 1030,
-	attributes: {
-		Occupancy:null,
-		OccupancySensorType:null,
-		OccupancySensorTypeBitmap:null,
-		HoldTime:0,
-		HoldTimeLimits:null,
-		PIROccupiedToUnoccupiedDelay:0,
-		PIRUnoccupiedToOccupiedDelay:0,
-		PIRUnoccupiedToOccupiedThreshold:0,
-		UltrasonicOccupiedToUnoccupiedDelay:0,
-		UltrasonicUnoccupiedToOccupiedDelay:0,
-		UltrasonicUnoccupiedToOccupiedThreshold:0,
-		PhysicalContactOccupiedToUnoccupiedDelay:0,
-		PhysicalContactUnoccupiedToOccupiedDelay:0,
-		PhysicalContactUnoccupiedToOccupiedThreshold:0,
-		/** Supports sensing using a modality not listed in the other bits */
-	SupportsOther: false,
-		/** Supports sensing using PIR (Passive InfraRed) */
-	SupportsPassiveInfrared: false,
-		/** Supports sensing using UltraSound */
-	SupportsUltrasonic: false,
-		/** Supports sensing using a physical contact */
-	SupportsPhysicalContact: false,
-		/** Supports sensing using Active InfraRed measurement (e.g. time-of-flight or transflective/reflective IR sensing) */
-	SupportsActiveInfrared: false,
-		/** Supports sensing using radar waves (microwave) */
-	SupportsRadar: false,
-		/** Supports sensing based on RF signal analysis */
-	SupportsRFSensing: false,
-		/** Supports sensing based on analyzing images */
-	SupportsVision: false,
-},
-	commands: {
-},
-	events: {
-		OccupancyChanged: [
-			
-			null, ],
-	}
+	attributes: [
+		"Occupancy",
+		"OccupancySensorType",
+		"OccupancySensorTypeBitmap",
+		"HoldTime",
+		"HoldTimeLimits",
+		"PIROccupiedToUnoccupiedDelay",
+		"PIRUnoccupiedToOccupiedDelay",
+		"PIRUnoccupiedToOccupiedThreshold",
+		"UltrasonicOccupiedToUnoccupiedDelay",
+		"UltrasonicUnoccupiedToOccupiedDelay",
+		"UltrasonicUnoccupiedToOccupiedThreshold",
+		"PhysicalContactOccupiedToUnoccupiedDelay",
+		"PhysicalContactUnoccupiedToOccupiedDelay",
+		"PhysicalContactUnoccupiedToOccupiedThreshold",
+		"SupportsOther",
+		"SupportsPassiveInfrared",
+		"SupportsUltrasonic",
+		"SupportsPhysicalContact",
+		"SupportsActiveInfrared",
+		"SupportsRadar",
+		"SupportsRFSensing",
+		"SupportsVision",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+		"OccupancyChanged",
+	] as const
 }
 
 export default occupancySensing;

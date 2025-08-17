@@ -1,7 +1,7 @@
 // This file is generated from content-launch-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.471Z
+// Generated on 2025-08-17T14:20:45.135Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum MetricTypeEnum {
@@ -159,40 +159,18 @@ id: 1290;
 	}
 }
 
-export const contentLauncher: Cluster<ContentLauncher['attributes'], ContentLauncher['commands'], ContentLauncher['events']> = {
+export const contentLauncher: ClusterDefinition<ContentLauncher> = {
 id: 1290,
-	attributes: {
-		AcceptHeader:[],
-		SupportedStreamingProtocols:null,
-},
-	commands: {
-		/** Upon receipt, this SHALL launch the specified content with optional search criteria. */
-		LaunchContent: {
-			inputparams: [
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Upon receipt, this SHALL launch content from the specified URL. */
-		LaunchURL: {
-			inputparams: [
-				null, 
-				null, 
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-},
-	events: {
-	}
+	attributes: [
+		"AcceptHeader",
+		"SupportedStreamingProtocols",
+	] as const,
+	commands: [
+		"LaunchContent",
+		"LaunchURL",
+	] as const,
+	events: [
+	] as const
 }
 
 export default contentLauncher;

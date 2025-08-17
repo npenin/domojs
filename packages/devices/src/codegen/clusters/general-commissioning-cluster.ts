@@ -1,7 +1,7 @@
 // This file is generated from general-commissioning-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.210Z
+// Generated on 2025-08-17T14:20:45.530Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum CommissioningErrorEnum {
@@ -101,69 +101,33 @@ id: 48;
 	}
 }
 
-export const generalCommissioning: Cluster<GeneralCommissioning['attributes'], GeneralCommissioning['commands'], GeneralCommissioning['events']> = {
+export const generalCommissioning: ClusterDefinition<GeneralCommissioning> = {
 id: 48,
-	attributes: {
-		Breadcrumb:null,
-		BasicCommissioningInfo:null,
-		RegulatoryConfig:null,
-		LocationCapability:null,
-		SupportsConcurrentConnection:null,
-		TCAcceptedVersion:0,
-		TCMinRequiredVersion:0,
-		TCAcknowledgements:null,
-		TCAcknowledgementsRequired:null,
-		TCUpdateDeadline:0,
-		RecoveryIdentifier:null,
-		NetworkRecoveryReason:null,
-		IsCommissioningWithoutPower:null,
-		/** Supports Terms & Conditions acknowledgement */
-	SupportsTermsAndConditions: false,
-		/** Supports Network Recovery */
-	SupportsNetworkRecovery: false,
-},
-	commands: {
-		/** This command is used to arm or disarm the fail-safe timer. */
-		ArmFailSafe: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** This command is used to set the regulatory configuration for the device. */
-		SetRegulatoryConfig: {
-			inputparams: [
-				null, 
-				null, 
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** This command is used to indicate that the commissioning process is complete. */
-		CommissioningComplete: {
-			inputparams: [
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** This command is used to set the user acknowledgements received in the Enhanced Setup Flow Terms & Conditions into the node. */
-		SetTCAcknowledgements: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: [
-				null, ]
-            },
-},
-	events: {
-	}
+	attributes: [
+		"Breadcrumb",
+		"BasicCommissioningInfo",
+		"RegulatoryConfig",
+		"LocationCapability",
+		"SupportsConcurrentConnection",
+		"TCAcceptedVersion",
+		"TCMinRequiredVersion",
+		"TCAcknowledgements",
+		"TCAcknowledgementsRequired",
+		"TCUpdateDeadline",
+		"RecoveryIdentifier",
+		"NetworkRecoveryReason",
+		"IsCommissioningWithoutPower",
+		"SupportsTermsAndConditions",
+		"SupportsNetworkRecovery",
+	] as const,
+	commands: [
+		"ArmFailSafe",
+		"SetRegulatoryConfig",
+		"CommissioningComplete",
+		"SetTCAcknowledgements",
+	] as const,
+	events: [
+	] as const
 }
 
 export default generalCommissioning;

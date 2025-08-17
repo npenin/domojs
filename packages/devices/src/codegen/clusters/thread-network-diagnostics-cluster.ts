@@ -1,7 +1,7 @@
 // This file is generated from thread-network-diagnostics-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.835Z
+// Generated on 2025-08-17T14:20:46.897Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum NetworkFaultEnum {
@@ -176,100 +176,86 @@ id: 53;
 	}
 }
 
-export const threadNetworkDiagnostics: Cluster<ThreadNetworkDiagnostics['attributes'], ThreadNetworkDiagnostics['commands'], ThreadNetworkDiagnostics['events']> = {
+export const threadNetworkDiagnostics: ClusterDefinition<ThreadNetworkDiagnostics> = {
 id: 53,
-	attributes: {
-		Channel:0,
-		RoutingRole:null,
-		NetworkName:null,
-		PanId:0,
-		ExtendedPanId:null,
-		MeshLocalPrefix:null,
-		OverrunCount:null,
-		NeighborTable:[],
-		RouteTable:[],
-		PartitionId:0,
-		Weighting:0,
-		DataVersion:0,
-		StableDataVersion:0,
-		LeaderRouterId:0,
-		DetachedRoleCount:0,
-		ChildRoleCount:0,
-		RouterRoleCount:0,
-		LeaderRoleCount:0,
-		AttachAttemptCount:0,
-		PartitionIdChangeCount:0,
-		BetterPartitionAttachAttemptCount:0,
-		ParentChangeCount:0,
-		TxTotalCount:0,
-		TxUnicastCount:0,
-		TxBroadcastCount:0,
-		TxAckRequestedCount:0,
-		TxAckedCount:0,
-		TxNoAckRequestedCount:0,
-		TxDataCount:0,
-		TxDataPollCount:0,
-		TxBeaconCount:0,
-		TxBeaconRequestCount:0,
-		TxOtherCount:0,
-		TxRetryCount:0,
-		TxDirectMaxRetryExpiryCount:0,
-		TxIndirectMaxRetryExpiryCount:0,
-		TxErrCcaCount:0,
-		TxErrAbortCount:0,
-		TxErrBusyChannelCount:0,
-		RxTotalCount:0,
-		RxUnicastCount:0,
-		RxBroadcastCount:0,
-		RxDataCount:0,
-		RxDataPollCount:0,
-		RxBeaconCount:0,
-		RxBeaconRequestCount:0,
-		RxOtherCount:0,
-		RxAddressFilteredCount:0,
-		RxDestAddrFilteredCount:0,
-		RxDuplicatedCount:0,
-		RxErrNoFrameCount:0,
-		RxErrUnknownNeighborCount:0,
-		RxErrInvalidSrcAddrCount:0,
-		RxErrSecCount:0,
-		RxErrFcsCount:0,
-		RxErrOtherCount:0,
-		ActiveTimestamp:null,
-		PendingTimestamp:null,
-		Delay:0,
-		SecurityPolicy:null,
-		ChannelPage0Mask:null,
-		OperationalDatasetComponents:null,
-		ActiveNetworkFaultsList:[],
-		ExtAddress:null,
-		Rloc16:0,
-		/** Server supports the counts for the number of received and transmitted packets on the Thread interface. */
-	SupportsPacketCounts: false,
-		/** Server supports the counts for the number of errors that have occurred during the reception and transmission of packets on the Thread interface. */
-	SupportsErrorCounts: false,
-		/** Server supports the counts for various MLE layer happenings. */
-	SupportsMLECounts: false,
-		/** Server supports the counts for various MAC layer happenings. */
-	SupportsMACCounts: false,
-},
-	commands: {
-		/** Reception of this command SHALL reset the following attributes to 0: */
-		ResetCounts: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-},
-	events: {
-		ConnectionStatus: [
-			
-			null, ],
-		NetworkFaultChange: [
-			
-			[], 
-			[], ],
-	}
+	attributes: [
+		"Channel",
+		"RoutingRole",
+		"NetworkName",
+		"PanId",
+		"ExtendedPanId",
+		"MeshLocalPrefix",
+		"OverrunCount",
+		"NeighborTable",
+		"RouteTable",
+		"PartitionId",
+		"Weighting",
+		"DataVersion",
+		"StableDataVersion",
+		"LeaderRouterId",
+		"DetachedRoleCount",
+		"ChildRoleCount",
+		"RouterRoleCount",
+		"LeaderRoleCount",
+		"AttachAttemptCount",
+		"PartitionIdChangeCount",
+		"BetterPartitionAttachAttemptCount",
+		"ParentChangeCount",
+		"TxTotalCount",
+		"TxUnicastCount",
+		"TxBroadcastCount",
+		"TxAckRequestedCount",
+		"TxAckedCount",
+		"TxNoAckRequestedCount",
+		"TxDataCount",
+		"TxDataPollCount",
+		"TxBeaconCount",
+		"TxBeaconRequestCount",
+		"TxOtherCount",
+		"TxRetryCount",
+		"TxDirectMaxRetryExpiryCount",
+		"TxIndirectMaxRetryExpiryCount",
+		"TxErrCcaCount",
+		"TxErrAbortCount",
+		"TxErrBusyChannelCount",
+		"RxTotalCount",
+		"RxUnicastCount",
+		"RxBroadcastCount",
+		"RxDataCount",
+		"RxDataPollCount",
+		"RxBeaconCount",
+		"RxBeaconRequestCount",
+		"RxOtherCount",
+		"RxAddressFilteredCount",
+		"RxDestAddrFilteredCount",
+		"RxDuplicatedCount",
+		"RxErrNoFrameCount",
+		"RxErrUnknownNeighborCount",
+		"RxErrInvalidSrcAddrCount",
+		"RxErrSecCount",
+		"RxErrFcsCount",
+		"RxErrOtherCount",
+		"ActiveTimestamp",
+		"PendingTimestamp",
+		"Delay",
+		"SecurityPolicy",
+		"ChannelPage0Mask",
+		"OperationalDatasetComponents",
+		"ActiveNetworkFaultsList",
+		"ExtAddress",
+		"Rloc16",
+		"SupportsPacketCounts",
+		"SupportsErrorCounts",
+		"SupportsMLECounts",
+		"SupportsMACCounts",
+	] as const,
+	commands: [
+		"ResetCounts",
+	] as const,
+	events: [
+		"ConnectionStatus",
+		"NetworkFaultChange",
+	] as const
 }
 
 export default threadNetworkDiagnostics;

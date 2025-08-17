@@ -1,7 +1,7 @@
 // This file is generated from concentration-measurement-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.404Z
+// Generated on 2025-08-17T14:20:45.078Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum LevelValueEnum {
@@ -66,37 +66,31 @@ id: 1036;
 	}
 }
 
-export const carbonMonoxideConcentrationMeasurement: Cluster<CarbonMonoxideConcentrationMeasurement['attributes'], CarbonMonoxideConcentrationMeasurement['commands'], CarbonMonoxideConcentrationMeasurement['events']> = {
+export const carbonMonoxideConcentrationMeasurement: ClusterDefinition<CarbonMonoxideConcentrationMeasurement> = {
 id: 1036,
-	attributes: {
-		MeasuredValue:0,
-		MinMeasuredValue:0,
-		MaxMeasuredValue:0,
-		PeakMeasuredValue:0,
-		PeakMeasuredValueWindow:0,
-		AverageMeasuredValue:0,
-		AverageMeasuredValueWindow:0,
-		Uncertainty:0,
-		MeasurementUnit:null,
-		MeasurementMedium:null,
-		LevelValue:null,
-		/** Cluster supports numeric measurement of substance */
-	SupportsNumericMeasurement: false,
-		/** Cluster supports basic level indication for substance using the ConcentrationLevel enum */
-	SupportsLevelIndication: false,
-		/** Cluster supports the Medium Concentration Level */
-	SupportsMediumLevel: false,
-		/** Cluster supports the Critical Concentration Level */
-	SupportsCriticalLevel: false,
-		/** Cluster supports peak numeric measurement of substance */
-	SupportsPeakMeasurement: false,
-		/** Cluster supports average numeric measurement of substance */
-	SupportsAverageMeasurement: false,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"MeasuredValue",
+		"MinMeasuredValue",
+		"MaxMeasuredValue",
+		"PeakMeasuredValue",
+		"PeakMeasuredValueWindow",
+		"AverageMeasuredValue",
+		"AverageMeasuredValueWindow",
+		"Uncertainty",
+		"MeasurementUnit",
+		"MeasurementMedium",
+		"LevelValue",
+		"SupportsNumericMeasurement",
+		"SupportsLevelIndication",
+		"SupportsMediumLevel",
+		"SupportsCriticalLevel",
+		"SupportsPeakMeasurement",
+		"SupportsAverageMeasurement",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 /**
@@ -136,37 +130,31 @@ id: 1037;
 	}
 }
 
-export const carbonDioxideConcentrationMeasurement: Cluster<CarbonDioxideConcentrationMeasurement['attributes'], CarbonDioxideConcentrationMeasurement['commands'], CarbonDioxideConcentrationMeasurement['events']> = {
+export const carbonDioxideConcentrationMeasurement: ClusterDefinition<CarbonDioxideConcentrationMeasurement> = {
 id: 1037,
-	attributes: {
-		MeasuredValue:0,
-		MinMeasuredValue:0,
-		MaxMeasuredValue:0,
-		PeakMeasuredValue:0,
-		PeakMeasuredValueWindow:0,
-		AverageMeasuredValue:0,
-		AverageMeasuredValueWindow:0,
-		Uncertainty:0,
-		MeasurementUnit:null,
-		MeasurementMedium:null,
-		LevelValue:null,
-		/** Cluster supports numeric measurement of substance */
-	SupportsNumericMeasurement: false,
-		/** Cluster supports basic level indication for substance using the ConcentrationLevel enum */
-	SupportsLevelIndication: false,
-		/** Cluster supports the Medium Concentration Level */
-	SupportsMediumLevel: false,
-		/** Cluster supports the Critical Concentration Level */
-	SupportsCriticalLevel: false,
-		/** Cluster supports peak numeric measurement of substance */
-	SupportsPeakMeasurement: false,
-		/** Cluster supports average numeric measurement of substance */
-	SupportsAverageMeasurement: false,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"MeasuredValue",
+		"MinMeasuredValue",
+		"MaxMeasuredValue",
+		"PeakMeasuredValue",
+		"PeakMeasuredValueWindow",
+		"AverageMeasuredValue",
+		"AverageMeasuredValueWindow",
+		"Uncertainty",
+		"MeasurementUnit",
+		"MeasurementMedium",
+		"LevelValue",
+		"SupportsNumericMeasurement",
+		"SupportsLevelIndication",
+		"SupportsMediumLevel",
+		"SupportsCriticalLevel",
+		"SupportsPeakMeasurement",
+		"SupportsAverageMeasurement",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 /**
@@ -206,37 +194,31 @@ id: 1043;
 	}
 }
 
-export const nitrogenDioxideConcentrationMeasurement: Cluster<NitrogenDioxideConcentrationMeasurement['attributes'], NitrogenDioxideConcentrationMeasurement['commands'], NitrogenDioxideConcentrationMeasurement['events']> = {
+export const nitrogenDioxideConcentrationMeasurement: ClusterDefinition<NitrogenDioxideConcentrationMeasurement> = {
 id: 1043,
-	attributes: {
-		MeasuredValue:0,
-		MinMeasuredValue:0,
-		MaxMeasuredValue:0,
-		PeakMeasuredValue:0,
-		PeakMeasuredValueWindow:0,
-		AverageMeasuredValue:0,
-		AverageMeasuredValueWindow:0,
-		Uncertainty:0,
-		MeasurementUnit:null,
-		MeasurementMedium:null,
-		LevelValue:null,
-		/** Cluster supports numeric measurement of substance */
-	SupportsNumericMeasurement: false,
-		/** Cluster supports basic level indication for substance using the ConcentrationLevel enum */
-	SupportsLevelIndication: false,
-		/** Cluster supports the Medium Concentration Level */
-	SupportsMediumLevel: false,
-		/** Cluster supports the Critical Concentration Level */
-	SupportsCriticalLevel: false,
-		/** Cluster supports peak numeric measurement of substance */
-	SupportsPeakMeasurement: false,
-		/** Cluster supports average numeric measurement of substance */
-	SupportsAverageMeasurement: false,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"MeasuredValue",
+		"MinMeasuredValue",
+		"MaxMeasuredValue",
+		"PeakMeasuredValue",
+		"PeakMeasuredValueWindow",
+		"AverageMeasuredValue",
+		"AverageMeasuredValueWindow",
+		"Uncertainty",
+		"MeasurementUnit",
+		"MeasurementMedium",
+		"LevelValue",
+		"SupportsNumericMeasurement",
+		"SupportsLevelIndication",
+		"SupportsMediumLevel",
+		"SupportsCriticalLevel",
+		"SupportsPeakMeasurement",
+		"SupportsAverageMeasurement",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 /**
@@ -276,37 +258,31 @@ id: 1045;
 	}
 }
 
-export const ozoneConcentrationMeasurement: Cluster<OzoneConcentrationMeasurement['attributes'], OzoneConcentrationMeasurement['commands'], OzoneConcentrationMeasurement['events']> = {
+export const ozoneConcentrationMeasurement: ClusterDefinition<OzoneConcentrationMeasurement> = {
 id: 1045,
-	attributes: {
-		MeasuredValue:0,
-		MinMeasuredValue:0,
-		MaxMeasuredValue:0,
-		PeakMeasuredValue:0,
-		PeakMeasuredValueWindow:0,
-		AverageMeasuredValue:0,
-		AverageMeasuredValueWindow:0,
-		Uncertainty:0,
-		MeasurementUnit:null,
-		MeasurementMedium:null,
-		LevelValue:null,
-		/** Cluster supports numeric measurement of substance */
-	SupportsNumericMeasurement: false,
-		/** Cluster supports basic level indication for substance using the ConcentrationLevel enum */
-	SupportsLevelIndication: false,
-		/** Cluster supports the Medium Concentration Level */
-	SupportsMediumLevel: false,
-		/** Cluster supports the Critical Concentration Level */
-	SupportsCriticalLevel: false,
-		/** Cluster supports peak numeric measurement of substance */
-	SupportsPeakMeasurement: false,
-		/** Cluster supports average numeric measurement of substance */
-	SupportsAverageMeasurement: false,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"MeasuredValue",
+		"MinMeasuredValue",
+		"MaxMeasuredValue",
+		"PeakMeasuredValue",
+		"PeakMeasuredValueWindow",
+		"AverageMeasuredValue",
+		"AverageMeasuredValueWindow",
+		"Uncertainty",
+		"MeasurementUnit",
+		"MeasurementMedium",
+		"LevelValue",
+		"SupportsNumericMeasurement",
+		"SupportsLevelIndication",
+		"SupportsMediumLevel",
+		"SupportsCriticalLevel",
+		"SupportsPeakMeasurement",
+		"SupportsAverageMeasurement",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 /**
@@ -346,37 +322,31 @@ id: 1066;
 	}
 }
 
-export const pM2_5ConcentrationMeasurement: Cluster<PM2_5ConcentrationMeasurement['attributes'], PM2_5ConcentrationMeasurement['commands'], PM2_5ConcentrationMeasurement['events']> = {
+export const pM2_5ConcentrationMeasurement: ClusterDefinition<PM2_5ConcentrationMeasurement> = {
 id: 1066,
-	attributes: {
-		MeasuredValue:0,
-		MinMeasuredValue:0,
-		MaxMeasuredValue:0,
-		PeakMeasuredValue:0,
-		PeakMeasuredValueWindow:0,
-		AverageMeasuredValue:0,
-		AverageMeasuredValueWindow:0,
-		Uncertainty:0,
-		MeasurementUnit:null,
-		MeasurementMedium:null,
-		LevelValue:null,
-		/** Cluster supports numeric measurement of substance */
-	SupportsNumericMeasurement: false,
-		/** Cluster supports basic level indication for substance using the ConcentrationLevel enum */
-	SupportsLevelIndication: false,
-		/** Cluster supports the Medium Concentration Level */
-	SupportsMediumLevel: false,
-		/** Cluster supports the Critical Concentration Level */
-	SupportsCriticalLevel: false,
-		/** Cluster supports peak numeric measurement of substance */
-	SupportsPeakMeasurement: false,
-		/** Cluster supports average numeric measurement of substance */
-	SupportsAverageMeasurement: false,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"MeasuredValue",
+		"MinMeasuredValue",
+		"MaxMeasuredValue",
+		"PeakMeasuredValue",
+		"PeakMeasuredValueWindow",
+		"AverageMeasuredValue",
+		"AverageMeasuredValueWindow",
+		"Uncertainty",
+		"MeasurementUnit",
+		"MeasurementMedium",
+		"LevelValue",
+		"SupportsNumericMeasurement",
+		"SupportsLevelIndication",
+		"SupportsMediumLevel",
+		"SupportsCriticalLevel",
+		"SupportsPeakMeasurement",
+		"SupportsAverageMeasurement",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 /**
@@ -416,37 +386,31 @@ id: 1067;
 	}
 }
 
-export const formaldehydeConcentrationMeasurement: Cluster<FormaldehydeConcentrationMeasurement['attributes'], FormaldehydeConcentrationMeasurement['commands'], FormaldehydeConcentrationMeasurement['events']> = {
+export const formaldehydeConcentrationMeasurement: ClusterDefinition<FormaldehydeConcentrationMeasurement> = {
 id: 1067,
-	attributes: {
-		MeasuredValue:0,
-		MinMeasuredValue:0,
-		MaxMeasuredValue:0,
-		PeakMeasuredValue:0,
-		PeakMeasuredValueWindow:0,
-		AverageMeasuredValue:0,
-		AverageMeasuredValueWindow:0,
-		Uncertainty:0,
-		MeasurementUnit:null,
-		MeasurementMedium:null,
-		LevelValue:null,
-		/** Cluster supports numeric measurement of substance */
-	SupportsNumericMeasurement: false,
-		/** Cluster supports basic level indication for substance using the ConcentrationLevel enum */
-	SupportsLevelIndication: false,
-		/** Cluster supports the Medium Concentration Level */
-	SupportsMediumLevel: false,
-		/** Cluster supports the Critical Concentration Level */
-	SupportsCriticalLevel: false,
-		/** Cluster supports peak numeric measurement of substance */
-	SupportsPeakMeasurement: false,
-		/** Cluster supports average numeric measurement of substance */
-	SupportsAverageMeasurement: false,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"MeasuredValue",
+		"MinMeasuredValue",
+		"MaxMeasuredValue",
+		"PeakMeasuredValue",
+		"PeakMeasuredValueWindow",
+		"AverageMeasuredValue",
+		"AverageMeasuredValueWindow",
+		"Uncertainty",
+		"MeasurementUnit",
+		"MeasurementMedium",
+		"LevelValue",
+		"SupportsNumericMeasurement",
+		"SupportsLevelIndication",
+		"SupportsMediumLevel",
+		"SupportsCriticalLevel",
+		"SupportsPeakMeasurement",
+		"SupportsAverageMeasurement",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 /**
@@ -486,37 +450,31 @@ id: 1068;
 	}
 }
 
-export const pM1ConcentrationMeasurement: Cluster<PM1ConcentrationMeasurement['attributes'], PM1ConcentrationMeasurement['commands'], PM1ConcentrationMeasurement['events']> = {
+export const pM1ConcentrationMeasurement: ClusterDefinition<PM1ConcentrationMeasurement> = {
 id: 1068,
-	attributes: {
-		MeasuredValue:0,
-		MinMeasuredValue:0,
-		MaxMeasuredValue:0,
-		PeakMeasuredValue:0,
-		PeakMeasuredValueWindow:0,
-		AverageMeasuredValue:0,
-		AverageMeasuredValueWindow:0,
-		Uncertainty:0,
-		MeasurementUnit:null,
-		MeasurementMedium:null,
-		LevelValue:null,
-		/** Cluster supports numeric measurement of substance */
-	SupportsNumericMeasurement: false,
-		/** Cluster supports basic level indication for substance using the ConcentrationLevel enum */
-	SupportsLevelIndication: false,
-		/** Cluster supports the Medium Concentration Level */
-	SupportsMediumLevel: false,
-		/** Cluster supports the Critical Concentration Level */
-	SupportsCriticalLevel: false,
-		/** Cluster supports peak numeric measurement of substance */
-	SupportsPeakMeasurement: false,
-		/** Cluster supports average numeric measurement of substance */
-	SupportsAverageMeasurement: false,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"MeasuredValue",
+		"MinMeasuredValue",
+		"MaxMeasuredValue",
+		"PeakMeasuredValue",
+		"PeakMeasuredValueWindow",
+		"AverageMeasuredValue",
+		"AverageMeasuredValueWindow",
+		"Uncertainty",
+		"MeasurementUnit",
+		"MeasurementMedium",
+		"LevelValue",
+		"SupportsNumericMeasurement",
+		"SupportsLevelIndication",
+		"SupportsMediumLevel",
+		"SupportsCriticalLevel",
+		"SupportsPeakMeasurement",
+		"SupportsAverageMeasurement",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 /**
@@ -556,37 +514,31 @@ id: 1069;
 	}
 }
 
-export const pM10ConcentrationMeasurement: Cluster<PM10ConcentrationMeasurement['attributes'], PM10ConcentrationMeasurement['commands'], PM10ConcentrationMeasurement['events']> = {
+export const pM10ConcentrationMeasurement: ClusterDefinition<PM10ConcentrationMeasurement> = {
 id: 1069,
-	attributes: {
-		MeasuredValue:0,
-		MinMeasuredValue:0,
-		MaxMeasuredValue:0,
-		PeakMeasuredValue:0,
-		PeakMeasuredValueWindow:0,
-		AverageMeasuredValue:0,
-		AverageMeasuredValueWindow:0,
-		Uncertainty:0,
-		MeasurementUnit:null,
-		MeasurementMedium:null,
-		LevelValue:null,
-		/** Cluster supports numeric measurement of substance */
-	SupportsNumericMeasurement: false,
-		/** Cluster supports basic level indication for substance using the ConcentrationLevel enum */
-	SupportsLevelIndication: false,
-		/** Cluster supports the Medium Concentration Level */
-	SupportsMediumLevel: false,
-		/** Cluster supports the Critical Concentration Level */
-	SupportsCriticalLevel: false,
-		/** Cluster supports peak numeric measurement of substance */
-	SupportsPeakMeasurement: false,
-		/** Cluster supports average numeric measurement of substance */
-	SupportsAverageMeasurement: false,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"MeasuredValue",
+		"MinMeasuredValue",
+		"MaxMeasuredValue",
+		"PeakMeasuredValue",
+		"PeakMeasuredValueWindow",
+		"AverageMeasuredValue",
+		"AverageMeasuredValueWindow",
+		"Uncertainty",
+		"MeasurementUnit",
+		"MeasurementMedium",
+		"LevelValue",
+		"SupportsNumericMeasurement",
+		"SupportsLevelIndication",
+		"SupportsMediumLevel",
+		"SupportsCriticalLevel",
+		"SupportsPeakMeasurement",
+		"SupportsAverageMeasurement",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 /**
@@ -626,37 +578,31 @@ id: 1070;
 	}
 }
 
-export const totalVolatileOrganicCompoundsConcentrationMeasurement: Cluster<TotalVolatileOrganicCompoundsConcentrationMeasurement['attributes'], TotalVolatileOrganicCompoundsConcentrationMeasurement['commands'], TotalVolatileOrganicCompoundsConcentrationMeasurement['events']> = {
+export const totalVolatileOrganicCompoundsConcentrationMeasurement: ClusterDefinition<TotalVolatileOrganicCompoundsConcentrationMeasurement> = {
 id: 1070,
-	attributes: {
-		MeasuredValue:0,
-		MinMeasuredValue:0,
-		MaxMeasuredValue:0,
-		PeakMeasuredValue:0,
-		PeakMeasuredValueWindow:0,
-		AverageMeasuredValue:0,
-		AverageMeasuredValueWindow:0,
-		Uncertainty:0,
-		MeasurementUnit:null,
-		MeasurementMedium:null,
-		LevelValue:null,
-		/** Cluster supports numeric measurement of substance */
-	SupportsNumericMeasurement: false,
-		/** Cluster supports basic level indication for substance using the ConcentrationLevel enum */
-	SupportsLevelIndication: false,
-		/** Cluster supports the Medium Concentration Level */
-	SupportsMediumLevel: false,
-		/** Cluster supports the Critical Concentration Level */
-	SupportsCriticalLevel: false,
-		/** Cluster supports peak numeric measurement of substance */
-	SupportsPeakMeasurement: false,
-		/** Cluster supports average numeric measurement of substance */
-	SupportsAverageMeasurement: false,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"MeasuredValue",
+		"MinMeasuredValue",
+		"MaxMeasuredValue",
+		"PeakMeasuredValue",
+		"PeakMeasuredValueWindow",
+		"AverageMeasuredValue",
+		"AverageMeasuredValueWindow",
+		"Uncertainty",
+		"MeasurementUnit",
+		"MeasurementMedium",
+		"LevelValue",
+		"SupportsNumericMeasurement",
+		"SupportsLevelIndication",
+		"SupportsMediumLevel",
+		"SupportsCriticalLevel",
+		"SupportsPeakMeasurement",
+		"SupportsAverageMeasurement",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 /**
@@ -696,35 +642,29 @@ id: 1071;
 	}
 }
 
-export const radonConcentrationMeasurement: Cluster<RadonConcentrationMeasurement['attributes'], RadonConcentrationMeasurement['commands'], RadonConcentrationMeasurement['events']> = {
+export const radonConcentrationMeasurement: ClusterDefinition<RadonConcentrationMeasurement> = {
 id: 1071,
-	attributes: {
-		MeasuredValue:0,
-		MinMeasuredValue:0,
-		MaxMeasuredValue:0,
-		PeakMeasuredValue:0,
-		PeakMeasuredValueWindow:0,
-		AverageMeasuredValue:0,
-		AverageMeasuredValueWindow:0,
-		Uncertainty:0,
-		MeasurementUnit:null,
-		MeasurementMedium:null,
-		LevelValue:null,
-		/** Cluster supports numeric measurement of substance */
-	SupportsNumericMeasurement: false,
-		/** Cluster supports basic level indication for substance using the ConcentrationLevel enum */
-	SupportsLevelIndication: false,
-		/** Cluster supports the Medium Concentration Level */
-	SupportsMediumLevel: false,
-		/** Cluster supports the Critical Concentration Level */
-	SupportsCriticalLevel: false,
-		/** Cluster supports peak numeric measurement of substance */
-	SupportsPeakMeasurement: false,
-		/** Cluster supports average numeric measurement of substance */
-	SupportsAverageMeasurement: false,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"MeasuredValue",
+		"MinMeasuredValue",
+		"MaxMeasuredValue",
+		"PeakMeasuredValue",
+		"PeakMeasuredValueWindow",
+		"AverageMeasuredValue",
+		"AverageMeasuredValueWindow",
+		"Uncertainty",
+		"MeasurementUnit",
+		"MeasurementMedium",
+		"LevelValue",
+		"SupportsNumericMeasurement",
+		"SupportsLevelIndication",
+		"SupportsMediumLevel",
+		"SupportsCriticalLevel",
+		"SupportsPeakMeasurement",
+		"SupportsAverageMeasurement",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }

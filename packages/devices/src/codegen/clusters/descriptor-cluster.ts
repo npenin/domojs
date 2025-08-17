@@ -1,7 +1,7 @@
 // This file is generated from descriptor-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.663Z
+// Generated on 2025-08-17T14:20:45.156Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export interface DeviceTypeStruct {
@@ -38,22 +38,21 @@ id: 29;
 	}
 }
 
-export const descriptor: Cluster<Descriptor['attributes'], Descriptor['commands'], Descriptor['events']> = {
+export const descriptor: ClusterDefinition<Descriptor> = {
 id: 29,
-	attributes: {
-		DeviceTypeList:[],
-		ServerList:[],
-		ClientList:[],
-		PartsList:[],
-		TagList:[],
-		EndpointUniqueID:null,
-		/** The TagList attribute is present */
-	SupportsTagList: false,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"DeviceTypeList",
+		"ServerList",
+		"ClientList",
+		"PartsList",
+		"TagList",
+		"EndpointUniqueID",
+		"SupportsTagList",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default descriptor;

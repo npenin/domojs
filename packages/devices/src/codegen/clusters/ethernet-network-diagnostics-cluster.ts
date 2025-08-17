@@ -1,7 +1,7 @@
 // This file is generated from ethernet-network-diagnostics-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.063Z
+// Generated on 2025-08-17T14:20:45.429Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum PHYRateEnum {
@@ -50,33 +50,26 @@ id: 55;
 	}
 }
 
-export const ethernetNetworkDiagnostics: Cluster<EthernetNetworkDiagnostics['attributes'], EthernetNetworkDiagnostics['commands'], EthernetNetworkDiagnostics['events']> = {
+export const ethernetNetworkDiagnostics: ClusterDefinition<EthernetNetworkDiagnostics> = {
 id: 55,
-	attributes: {
-		PHYRate:null,
-		FullDuplex:null,
-		PacketRxCount:null,
-		PacketTxCount:null,
-		TxErrCount:null,
-		CollisionCount:null,
-		OverrunCount:null,
-		CarrierDetect:null,
-		TimeSinceReset:null,
-		/** Node makes available the counts for the number of received and transmitted packets on the ethernet interface. */
-	SupportsPacketCounts: false,
-		/** Node makes available the counts for the number of errors that have occurred during the reception and transmission of packets on the ethernet interface. */
-	SupportsErrorCounts: false,
-},
-	commands: {
-		/** This command is used to reset the count attributes. */
-		ResetCounts: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"PHYRate",
+		"FullDuplex",
+		"PacketRxCount",
+		"PacketTxCount",
+		"TxErrCount",
+		"CollisionCount",
+		"OverrunCount",
+		"CarrierDetect",
+		"TimeSinceReset",
+		"SupportsPacketCounts",
+		"SupportsErrorCounts",
+	] as const,
+	commands: [
+		"ResetCounts",
+	] as const,
+	events: [
+	] as const
 }
 
 export default ethernetNetworkDiagnostics;

@@ -1,7 +1,7 @@
 // This file is generated from resource-monitoring-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.467Z
+// Generated on 2025-08-17T14:20:46.516Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum DegradationDirectionEnum {
@@ -65,32 +65,24 @@ id: 113;
 	}
 }
 
-export const hEPAFilterMonitoring: Cluster<HEPAFilterMonitoring['attributes'], HEPAFilterMonitoring['commands'], HEPAFilterMonitoring['events']> = {
+export const hEPAFilterMonitoring: ClusterDefinition<HEPAFilterMonitoring> = {
 id: 113,
-	attributes: {
-		Condition:0,
-		DegradationDirection:null,
-		ChangeIndication:null,
-		InPlaceIndicator:null,
-		LastChangedTime:0,
-		ReplacementProductList:[],
-		/** Supports monitoring the condition of the resource in percentage */
-	SupportsCondition: false,
-		/** Supports warning indication */
-	SupportsWarning: false,
-		/** Supports specifying the list of replacement products */
-	SupportsReplacementProductList: false,
-},
-	commands: {
-		/** Reset the condition of the replaceable to the non degraded state */
-		ResetCondition: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"Condition",
+		"DegradationDirection",
+		"ChangeIndication",
+		"InPlaceIndicator",
+		"LastChangedTime",
+		"ReplacementProductList",
+		"SupportsCondition",
+		"SupportsWarning",
+		"SupportsReplacementProductList",
+	] as const,
+	commands: [
+		"ResetCondition",
+	] as const,
+	events: [
+	] as const
 }
 
 /**
@@ -125,30 +117,22 @@ id: 114;
 	}
 }
 
-export const activatedCarbonFilterMonitoring: Cluster<ActivatedCarbonFilterMonitoring['attributes'], ActivatedCarbonFilterMonitoring['commands'], ActivatedCarbonFilterMonitoring['events']> = {
+export const activatedCarbonFilterMonitoring: ClusterDefinition<ActivatedCarbonFilterMonitoring> = {
 id: 114,
-	attributes: {
-		Condition:0,
-		DegradationDirection:null,
-		ChangeIndication:null,
-		InPlaceIndicator:null,
-		LastChangedTime:0,
-		ReplacementProductList:[],
-		/** Supports monitoring the condition of the resource in percentage */
-	SupportsCondition: false,
-		/** Supports warning indication */
-	SupportsWarning: false,
-		/** Supports specifying the list of replacement products */
-	SupportsReplacementProductList: false,
-},
-	commands: {
-		/** Reset the condition of the replaceable to the non degraded state */
-		ResetCondition: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"Condition",
+		"DegradationDirection",
+		"ChangeIndication",
+		"InPlaceIndicator",
+		"LastChangedTime",
+		"ReplacementProductList",
+		"SupportsCondition",
+		"SupportsWarning",
+		"SupportsReplacementProductList",
+	] as const,
+	commands: [
+		"ResetCondition",
+	] as const,
+	events: [
+	] as const
 }

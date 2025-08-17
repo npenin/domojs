@@ -1,7 +1,7 @@
 // This file is generated from chime-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.154Z
+// Generated on 2025-08-17T14:20:44.856Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export interface ChimeSoundStruct {
@@ -31,22 +31,18 @@ id: 1366;
 	}
 }
 
-export const chime: Cluster<Chime['attributes'], Chime['commands'], Chime['events']> = {
+export const chime: ClusterDefinition<Chime> = {
 id: 1366,
-	attributes: {
-		InstalledChimeSounds:[],
-		SelectedChime:0,
-		Enabled:null,
-},
-	commands: {
-		PlayChimeSound: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"InstalledChimeSounds",
+		"SelectedChime",
+		"Enabled",
+	] as const,
+	commands: [
+		"PlayChimeSound",
+	] as const,
+	events: [
+	] as const
 }
 
 export default chime;

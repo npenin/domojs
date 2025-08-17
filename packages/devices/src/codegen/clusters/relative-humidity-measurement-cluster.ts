@@ -1,7 +1,7 @@
 // This file is generated from relative-humidity-measurement-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.450Z
+// Generated on 2025-08-17T14:20:46.497Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 /**
@@ -22,18 +22,18 @@ id: 1029;
 	}
 }
 
-export const relativeHumidityMeasurement: Cluster<RelativeHumidityMeasurement['attributes'], RelativeHumidityMeasurement['commands'], RelativeHumidityMeasurement['events']> = {
+export const relativeHumidityMeasurement: ClusterDefinition<RelativeHumidityMeasurement> = {
 id: 1029,
-	attributes: {
-		MeasuredValue:0,
-		MinMeasuredValue:0,
-		MaxMeasuredValue:0,
-		Tolerance:0,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"MeasuredValue",
+		"MinMeasuredValue",
+		"MaxMeasuredValue",
+		"Tolerance",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default relativeHumidityMeasurement;

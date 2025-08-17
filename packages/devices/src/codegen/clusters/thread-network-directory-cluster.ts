@@ -1,7 +1,7 @@
 // This file is generated from thread-network-directory-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.854Z
+// Generated on 2025-08-17T14:20:46.917Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export interface ThreadNetworkStruct {
@@ -50,39 +50,20 @@ id: 1107;
 	}
 }
 
-export const threadNetworkDirectory: Cluster<ThreadNetworkDirectory['attributes'], ThreadNetworkDirectory['commands'], ThreadNetworkDirectory['events']> = {
+export const threadNetworkDirectory: ClusterDefinition<ThreadNetworkDirectory> = {
 id: 1107,
-	attributes: {
-		PreferredExtendedPanID:null,
-		ThreadNetworks:[],
-		ThreadNetworkTableSize:0,
-},
-	commands: {
-		/** Adds an entry to the ThreadNetworks attribute with the specified Thread Operational Dataset. */
-		AddNetwork: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Removes the network with the given Extended PAN ID from the ThreadNetworks attribute. */
-		RemoveNetwork: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Retrieves the Thread Operational Dataset with the given Extended PAN ID. */
-		GetOperationalDataset: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, ]
-            },
-},
-	events: {
-	}
+	attributes: [
+		"PreferredExtendedPanID",
+		"ThreadNetworks",
+		"ThreadNetworkTableSize",
+	] as const,
+	commands: [
+		"AddNetwork",
+		"RemoveNetwork",
+		"GetOperationalDataset",
+	] as const,
+	events: [
+	] as const
 }
 
 export default threadNetworkDirectory;

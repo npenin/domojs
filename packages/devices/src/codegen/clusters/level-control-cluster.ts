@@ -1,7 +1,7 @@
 // This file is generated from level-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.586Z
+// Generated on 2025-08-17T14:20:45.840Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum MoveModeEnum {
@@ -141,122 +141,40 @@ id: 8;
 	}
 }
 
-export const levelControl: Cluster<LevelControl['attributes'], LevelControl['commands'], LevelControl['events']> = {
+export const levelControl: ClusterDefinition<LevelControl> = {
 id: 8,
-	attributes: {
-		CurrentLevel:0,
-		RemainingTime:0,
-		MinLevel:0,
-		MaxLevel:0,
-		CurrentFrequency:0,
-		MinFrequency:0,
-		MaxFrequency:0,
-		OnOffTransitionTime:0,
-		OnLevel:0,
-		OnTransitionTime:0,
-		OffTransitionTime:0,
-		DefaultMoveRate:0,
-		Options:null,
-		StartUpCurrentLevel:0,
-		/** Dependency with the On/Off cluster */
-	SupportsOnOff: false,
-		/** Behavior that supports lighting applications */
-	SupportsLighting: false,
-		/** Supports frequency attributes and behavior.
-                                        The Pulse Width Modulation cluster was created
-                                        for frequency control. */
-	SupportsFrequency: false,
-},
-	commands: {
-		/** Command description for MoveToLevel */
-		MoveToLevel: {
-			inputparams: [
-				0, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Command description for Move */
-		Move: {
-			inputparams: [
-				null, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Command description for Step */
-		Step: {
-			inputparams: [
-				null, 
-				0, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Command description for Stop */
-		Stop: {
-			inputparams: [
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Command description for MoveToLevelWithOnOff */
-		MoveToLevelWithOnOff: {
-			inputparams: [
-				0, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Command description for MoveWithOnOff */
-		MoveWithOnOff: {
-			inputparams: [
-				null, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Command description for StepWithOnOff */
-		StepWithOnOff: {
-			inputparams: [
-				null, 
-				0, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Command description for StopWithOnOff */
-		StopWithOnOff: {
-			inputparams: [
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Change the currrent frequency to the provided one, or a close
-        approximation if the exact provided one is not possible. */
-		MoveToClosestFrequency: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"CurrentLevel",
+		"RemainingTime",
+		"MinLevel",
+		"MaxLevel",
+		"CurrentFrequency",
+		"MinFrequency",
+		"MaxFrequency",
+		"OnOffTransitionTime",
+		"OnLevel",
+		"OnTransitionTime",
+		"OffTransitionTime",
+		"DefaultMoveRate",
+		"Options",
+		"StartUpCurrentLevel",
+		"SupportsOnOff",
+		"SupportsLighting",
+		"SupportsFrequency",
+	] as const,
+	commands: [
+		"MoveToLevel",
+		"Move",
+		"Step",
+		"Stop",
+		"MoveToLevelWithOnOff",
+		"MoveWithOnOff",
+		"StepWithOnOff",
+		"StopWithOnOff",
+		"MoveToClosestFrequency",
+	] as const,
+	events: [
+	] as const
 }
 
 export default levelControl;

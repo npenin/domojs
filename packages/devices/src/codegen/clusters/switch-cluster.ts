@@ -1,7 +1,7 @@
 // This file is generated from switch-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.661Z
+// Generated on 2025-08-17T14:20:46.710Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 /**
@@ -58,52 +58,30 @@ id: 59;
 	}
 }
 
-export const switch_: Cluster<Switch['attributes'], Switch['commands'], Switch['events']> = {
+export const switch_: ClusterDefinition<Switch> = {
 id: 59,
-	attributes: {
-		NumberOfPositions:0,
-		CurrentPosition:0,
-		MultiPressMax:0,
-		/** Switch is latching */
-	SupportsLatchingSwitch: false,
-		/** Switch is momentary */
-	SupportsMomentarySwitch: false,
-		/** Switch supports release events generation */
-	SupportsMomentarySwitchRelease: false,
-		/** Switch supports long press detection */
-	SupportsMomentarySwitchLongPress: false,
-		/** Switch supports multi-press detection */
-	SupportsMomentarySwitchMultiPress: false,
-		/** Switch is momentary, targeted at specific user actions (focus on multi-press and optionally long press) with a reduced event generation scheme */
-	SupportsActionSwitch: false,
-},
-	commands: {
-},
-	events: {
-		SwitchLatched: [
-			
-			0, ],
-		InitialPress: [
-			
-			0, ],
-		LongPress: [
-			
-			0, ],
-		ShortRelease: [
-			
-			0, ],
-		LongRelease: [
-			
-			0, ],
-		MultiPressOngoing: [
-			
-			0, 
-			0, ],
-		MultiPressComplete: [
-			
-			0, 
-			0, ],
-	}
+	attributes: [
+		"NumberOfPositions",
+		"CurrentPosition",
+		"MultiPressMax",
+		"SupportsLatchingSwitch",
+		"SupportsMomentarySwitch",
+		"SupportsMomentarySwitchRelease",
+		"SupportsMomentarySwitchLongPress",
+		"SupportsMomentarySwitchMultiPress",
+		"SupportsActionSwitch",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+		"SwitchLatched",
+		"InitialPress",
+		"LongPress",
+		"ShortRelease",
+		"LongRelease",
+		"MultiPressOngoing",
+		"MultiPressComplete",
+	] as const
 }
 
 export default switch_;

@@ -1,7 +1,7 @@
 // This file is generated from thread-border-router-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.813Z
+// Generated on 2025-08-17T14:20:46.875Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 /**
@@ -55,51 +55,25 @@ id: 1106;
 	}
 }
 
-export const threadBorderRouterManagement: Cluster<ThreadBorderRouterManagement['attributes'], ThreadBorderRouterManagement['commands'], ThreadBorderRouterManagement['events']> = {
+export const threadBorderRouterManagement: ClusterDefinition<ThreadBorderRouterManagement> = {
 id: 1106,
-	attributes: {
-		BorderRouterName:null,
-		BorderAgentID:null,
-		ThreadVersion:0,
-		InterfaceEnabled:null,
-		ActiveDatasetTimestamp:null,
-		PendingDatasetTimestamp:null,
-		/** The ability to change PAN configuration with pending dataset setting request. */
-	SupportsPANChange: false,
-},
-	commands: {
-		/** This command SHALL be used to request the active operational dataset of the Thread network to which the border router is connected. */
-		GetActiveDatasetRequest: {
-			inputparams: [
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** This command SHALL be used to request the pending dataset of the Thread network to which the border router is connected. */
-		GetPendingDatasetRequest: {
-			inputparams: [
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** This command SHALL be used to set the active Dataset of the Thread network to which the Border Router is connected, when there is no active dataset already. */
-		SetActiveDatasetRequest: {
-			inputparams: [
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be used to set or update the pending Dataset of the Thread network to which the Border Router is connected, if the Border Router supports PANChange Feature. */
-		SetPendingDatasetRequest: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"BorderRouterName",
+		"BorderAgentID",
+		"ThreadVersion",
+		"InterfaceEnabled",
+		"ActiveDatasetTimestamp",
+		"PendingDatasetTimestamp",
+		"SupportsPANChange",
+	] as const,
+	commands: [
+		"GetActiveDatasetRequest",
+		"GetPendingDatasetRequest",
+		"SetActiveDatasetRequest",
+		"SetPendingDatasetRequest",
+	] as const,
+	events: [
+	] as const
 }
 
 export default threadBorderRouterManagement;

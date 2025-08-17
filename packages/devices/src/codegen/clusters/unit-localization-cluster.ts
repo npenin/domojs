@@ -1,7 +1,7 @@
 // This file is generated from unit-localization-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.980Z
+// Generated on 2025-08-17T14:20:47.048Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum TempUnitEnum {
@@ -31,18 +31,17 @@ id: 45;
 	}
 }
 
-export const unitLocalization: Cluster<UnitLocalization['attributes'], UnitLocalization['commands'], UnitLocalization['events']> = {
+export const unitLocalization: ClusterDefinition<UnitLocalization> = {
 id: 45,
-	attributes: {
-		TemperatureUnit:null,
-		SupportedTemperatureUnits:[],
-		/** The Node can be configured to use different units of temperature when conveying values to a user. */
-	SupportsTemperatureUnit: false,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"TemperatureUnit",
+		"SupportedTemperatureUnits",
+		"SupportsTemperatureUnit",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default unitLocalization;

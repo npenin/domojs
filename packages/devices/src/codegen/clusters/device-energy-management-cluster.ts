@@ -1,7 +1,7 @@
 // This file is generated from device-energy-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.699Z
+// Generated on 2025-08-17T14:20:45.174Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum CostTypeEnum {
@@ -243,108 +243,41 @@ id: 152;
 	}
 }
 
-export const deviceEnergyManagement: Cluster<DeviceEnergyManagement['attributes'], DeviceEnergyManagement['commands'], DeviceEnergyManagement['events']> = {
+export const deviceEnergyManagement: ClusterDefinition<DeviceEnergyManagement> = {
 id: 152,
-	attributes: {
-		ESAType:null,
-		ESACanGenerate:null,
-		ESAState:null,
-		AbsMinPower:0,
-		AbsMaxPower:0,
-		PowerAdjustmentCapability:null,
-		Forecast:null,
-		OptOutState:null,
-		/** Allows an EMS to make a temporary power adjustment (within the limits offered by the ESA). */
-	SupportsPowerAdjustment: false,
-		/** Allows an ESA to advertise its indicative future power consumption vs time. */
-	SupportsPowerForecastReporting: false,
-		/** Allows an ESA to advertise its indicative future state vs time. */
-	SupportsStateForecastReporting: false,
-		/** Allows an EMS to delay an ESA's planned operation. */
-	SupportsStartTimeAdjustment: false,
-		/** Allows an EMS to pause an ESA's planned operation. */
-	SupportsPausable: false,
-		/** Allows an EMS to adjust an ESA's planned operation. */
-	SupportsForecastAdjustment: false,
-		/** Allows an EMS to request constraints to an ESA's planned operation. */
-	SupportsConstraintBasedAdjustment: false,
-},
-	commands: {
-		/** Allows a client to request an adjustment in the power consumption of an ESA for a specified duration. */
-		PowerAdjustRequest: {
-			inputparams: [
-				0, 
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Allows a client to cancel an ongoing PowerAdjustmentRequest operation. */
-		CancelPowerAdjustRequest: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-		/** Allows a client to adjust the start time of a Forecast sequence that has not yet started operation (i.e. where the current Forecast StartTime is in the future). */
-		StartTimeAdjustRequest: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Allows a client to temporarily pause an operation and reduce the ESAs energy demand. */
-		PauseRequest: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Allows a client to cancel the PauseRequest command and enable earlier resumption of operation. */
-		ResumeRequest: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-		/** Allows a client to modify a Forecast within the limits allowed by the ESA. */
-		ModifyForecastRequest: {
-			inputparams: [
-				0, 
-				[], 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Allows a client to ask the ESA to recompute its Forecast based on power and time constraints. */
-		RequestConstraintBasedForecast: {
-			inputparams: [
-				[], 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Allows a client to request cancellation of a previous adjustment request in a StartTimeAdjustRequest, ModifyForecastRequest or RequestConstraintBasedForecast command. */
-		CancelRequest: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-},
-	events: {
-		PowerAdjustStart: [
-			],
-		PowerAdjustEnd: [
-			
-			null, 
-			0, 
-			0, ],
-		Paused: [
-			],
-		Resumed: [
-			
-			null, ],
-	}
+	attributes: [
+		"ESAType",
+		"ESACanGenerate",
+		"ESAState",
+		"AbsMinPower",
+		"AbsMaxPower",
+		"PowerAdjustmentCapability",
+		"Forecast",
+		"OptOutState",
+		"SupportsPowerAdjustment",
+		"SupportsPowerForecastReporting",
+		"SupportsStateForecastReporting",
+		"SupportsStartTimeAdjustment",
+		"SupportsPausable",
+		"SupportsForecastAdjustment",
+		"SupportsConstraintBasedAdjustment",
+	] as const,
+	commands: [
+		"PowerAdjustRequest",
+		"CancelPowerAdjustRequest",
+		"StartTimeAdjustRequest",
+		"PauseRequest",
+		"ResumeRequest",
+		"ModifyForecastRequest",
+		"RequestConstraintBasedForecast",
+		"CancelRequest",
+	] as const,
+	events: [
+		"PowerAdjustStart",
+		"PowerAdjustEnd",
+		"Paused",
+		"Resumed",
+	] as const
 }
 
 export default deviceEnergyManagement;

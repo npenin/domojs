@@ -1,7 +1,7 @@
 // This file is generated from localization-configuration-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.611Z
+// Generated on 2025-08-17T14:20:45.861Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 /**
@@ -23,16 +23,16 @@ id: 43;
 	}
 }
 
-export const localizationConfiguration: Cluster<LocalizationConfiguration['attributes'], LocalizationConfiguration['commands'], LocalizationConfiguration['events']> = {
+export const localizationConfiguration: ClusterDefinition<LocalizationConfiguration> = {
 id: 43,
-	attributes: {
-		ActiveLocale:null,
-		SupportedLocales:[],
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"ActiveLocale",
+		"SupportedLocales",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default localizationConfiguration;

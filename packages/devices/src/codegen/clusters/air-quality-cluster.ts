@@ -1,7 +1,7 @@
 // This file is generated from air-quality-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:45.765Z
+// Generated on 2025-08-17T14:20:44.607Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum AirQualityEnum {
@@ -37,23 +37,19 @@ id: 91;
 	}
 }
 
-export const airQuality: Cluster<AirQuality['attributes'], AirQuality['commands'], AirQuality['events']> = {
+export const airQuality: ClusterDefinition<AirQuality> = {
 id: 91,
-	attributes: {
-		AirQuality:null,
-		/** Cluster supports the Fair air quality level */
-	SupportsFair: false,
-		/** Cluster supports the Moderate air quality level */
-	SupportsModerate: false,
-		/** Cluster supports the Very poor air quality level */
-	SupportsVeryPoor: false,
-		/** Cluster supports the Extremely poor air quality level */
-	SupportsExtremelyPoor: false,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"AirQuality",
+		"SupportsFair",
+		"SupportsModerate",
+		"SupportsVeryPoor",
+		"SupportsExtremelyPoor",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default airQuality;

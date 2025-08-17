@@ -1,7 +1,7 @@
 // This file is generated from content-app-observer-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.428Z
+// Generated on 2025-08-17T14:20:45.097Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum StatusEnum {
@@ -34,25 +34,15 @@ id: 1296;
 	}
 }
 
-export const contentAppObserver: Cluster<ContentAppObserver['attributes'], ContentAppObserver['commands'], ContentAppObserver['events']> = {
+export const contentAppObserver: ClusterDefinition<ContentAppObserver> = {
 id: 1296,
-	attributes: {
-},
-	commands: {
-		/** Upon receipt, the data field MAY be parsed and interpreted. Message encoding is specific to the Content App. A Content App MAY when possible read attributes from the Basic Information Cluster on the Observer and use this to determine the Message encoding. */
-		ContentAppMessage: {
-			inputparams: [
-				null, 
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, 
-				null, ]
-            },
-},
-	events: {
-	}
+	attributes: [
+	] as const,
+	commands: [
+		"ContentAppMessage",
+	] as const,
+	events: [
+	] as const
 }
 
 export default contentAppObserver;

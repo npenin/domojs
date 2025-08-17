@@ -1,7 +1,7 @@
 // This file is generated from diagnostic-logs-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.769Z
+// Generated on 2025-08-17T14:20:45.215Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum IntentEnum {
@@ -50,27 +50,15 @@ id: 50;
 	}
 }
 
-export const diagnosticLogs: Cluster<DiagnosticLogs['attributes'], DiagnosticLogs['commands'], DiagnosticLogs['events']> = {
+export const diagnosticLogs: ClusterDefinition<DiagnosticLogs> = {
 id: 50,
-	attributes: {
-},
-	commands: {
-		/** Reception of this command starts the process of retrieving diagnostic logs from a Node. */
-		RetrieveLogsRequest: {
-			inputparams: [
-				null, 
-				null, 
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, 
-				0, 
-				0, ]
-            },
-},
-	events: {
-	}
+	attributes: [
+	] as const,
+	commands: [
+		"RetrieveLogsRequest",
+	] as const,
+	events: [
+	] as const
 }
 
 export default diagnosticLogs;

@@ -1,7 +1,7 @@
 // This file is generated from proxy-discovery-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.300Z
+// Generated on 2025-08-17T14:20:46.351Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 /**
@@ -18,14 +18,14 @@ id: 67;
 	}
 }
 
-export const proxyDiscovery: Cluster<ProxyDiscovery['attributes'], ProxyDiscovery['commands'], ProxyDiscovery['events']> = {
+export const proxyDiscovery: ClusterDefinition<ProxyDiscovery> = {
 id: 67,
-	attributes: {
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default proxyDiscovery;

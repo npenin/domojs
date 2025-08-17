@@ -1,7 +1,7 @@
 // This file is generated from tls-client-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.957Z
+// Generated on 2025-08-17T14:20:47.023Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum StatusCodeEnum {
@@ -68,43 +68,19 @@ id: 2050;
 	}
 }
 
-export const tLSClientManagement: Cluster<TLSClientManagement['attributes'], TLSClientManagement['commands'], TLSClientManagement['events']> = {
+export const tLSClientManagement: ClusterDefinition<TLSClientManagement> = {
 id: 2050,
-	attributes: {
-		MaxProvisioned:0,
-		ProvisionedEndpoints:[],
-},
-	commands: {
-		/** This command is used to provision a TLS Endpoint for the provided HostName / Port combination. */
-		ProvisionEndpoint: {
-			inputparams: [
-				null, 
-				0, 
-				0, 
-				0, 
-				0, 
-			],
-			 outputparams: [
-				0, ]
-            },
-		/** This command is used to find a TLS Endpoint by its ID. */
-		FindEndpoint: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** This command is used to remove a TLS Endpoint by its ID. */
-		RemoveEndpoint: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"MaxProvisioned",
+		"ProvisionedEndpoints",
+	] as const,
+	commands: [
+		"ProvisionEndpoint",
+		"FindEndpoint",
+		"RemoveEndpoint",
+	] as const,
+	events: [
+	] as const
 }
 
 export default tLSClientManagement;

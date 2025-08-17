@@ -1,7 +1,7 @@
 // This file is generated from electrical-energy-measurement-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.908Z
+// Generated on 2025-08-17T14:20:45.319Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export interface CumulativeEnergyResetStruct {
@@ -61,40 +61,28 @@ id: 145;
 	}
 }
 
-export const electricalEnergyMeasurement: Cluster<ElectricalEnergyMeasurement['attributes'], ElectricalEnergyMeasurement['commands'], ElectricalEnergyMeasurement['events']> = {
+export const electricalEnergyMeasurement: ClusterDefinition<ElectricalEnergyMeasurement> = {
 id: 145,
-	attributes: {
-		Accuracy:null,
-		CumulativeEnergyImported:null,
-		CumulativeEnergyExported:null,
-		PeriodicEnergyImported:null,
-		PeriodicEnergyExported:null,
-		CumulativeEnergyReset:null,
-		/** Measurement of energy imported by the server */
-	SupportsImportedEnergy: false,
-		/** Measurement of energy provided by the server */
-	SupportsExportedEnergy: false,
-		/** Measurements are cumulative */
-	SupportsCumulativeEnergy: false,
-		/** Measurements are periodic */
-	SupportsPeriodicEnergy: false,
-		/** Measurements report apparent energy */
-	SupportsApparentEnergy: false,
-		/** Measurements report reactive energy */
-	SupportsReactiveEnergy: false,
-},
-	commands: {
-},
-	events: {
-		CumulativeEnergyMeasured: [
-			
-			null, 
-			null, ],
-		PeriodicEnergyMeasured: [
-			
-			null, 
-			null, ],
-	}
+	attributes: [
+		"Accuracy",
+		"CumulativeEnergyImported",
+		"CumulativeEnergyExported",
+		"PeriodicEnergyImported",
+		"PeriodicEnergyExported",
+		"CumulativeEnergyReset",
+		"SupportsImportedEnergy",
+		"SupportsExportedEnergy",
+		"SupportsCumulativeEnergy",
+		"SupportsPeriodicEnergy",
+		"SupportsApparentEnergy",
+		"SupportsReactiveEnergy",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+		"CumulativeEnergyMeasured",
+		"PeriodicEnergyMeasured",
+	] as const
 }
 
 export default electricalEnergyMeasurement;

@@ -1,7 +1,7 @@
 // This file is generated from oven-mode-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.177Z
+// Generated on 2025-08-17T14:20:46.233Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum ModeTag {
@@ -53,27 +53,18 @@ id: 73;
 	}
 }
 
-export const ovenMode: Cluster<OvenMode['attributes'], OvenMode['commands'], OvenMode['events']> = {
+export const ovenMode: ClusterDefinition<OvenMode> = {
 id: 73,
-	attributes: {
-		SupportedModes:[],
-		CurrentMode:0,
-		/** Dependency with the OnOff cluster */
-	SupportsOnOff: false,
-},
-	commands: {
-		/** This command is used to change device modes. */
-		ChangeToMode: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				0, 
-				null, ]
-            },
-},
-	events: {
-	}
+	attributes: [
+		"SupportedModes",
+		"CurrentMode",
+		"SupportsOnOff",
+	] as const,
+	commands: [
+		"ChangeToMode",
+	] as const,
+	events: [
+	] as const
 }
 
 export default ovenMode;

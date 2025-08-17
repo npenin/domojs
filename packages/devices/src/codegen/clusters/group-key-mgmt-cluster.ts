@@ -1,7 +1,7 @@
 // This file is generated from group-key-mgmt-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.358Z
+// Generated on 2025-08-17T14:20:45.648Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum GroupKeySecurityPolicyEnum {
@@ -80,49 +80,23 @@ id: 63;
 	}
 }
 
-export const groupKeyManagement: Cluster<GroupKeyManagement['attributes'], GroupKeyManagement['commands'], GroupKeyManagement['events']> = {
+export const groupKeyManagement: ClusterDefinition<GroupKeyManagement> = {
 id: 63,
-	attributes: {
-		GroupKeyMap:[],
-		GroupTable:[],
-		MaxGroupsPerFabric:0,
-		MaxGroupKeysPerFabric:0,
-		/** The ability to support CacheAndSync security policy and MCSP. */
-	SupportsCacheAndSync: false,
-},
-	commands: {
-		/** Write a new set of keys for the given key set id. */
-		KeySetWrite: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Read the keys for a given key set id. */
-		KeySetRead: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Revoke a Root Key from a Group */
-		KeySetRemove: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** Return the list of Group Key Sets associated with the accessing fabric */
-		KeySetReadAllIndices: {
-			inputparams: [
-			],
-			 outputparams: [
-				[], ]
-            },
-},
-	events: {
-	}
+	attributes: [
+		"GroupKeyMap",
+		"GroupTable",
+		"MaxGroupsPerFabric",
+		"MaxGroupKeysPerFabric",
+		"SupportsCacheAndSync",
+	] as const,
+	commands: [
+		"KeySetWrite",
+		"KeySetRead",
+		"KeySetRemove",
+		"KeySetReadAllIndices",
+	] as const,
+	events: [
+	] as const
 }
 
 export default groupKeyManagement;

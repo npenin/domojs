@@ -1,7 +1,7 @@
 // This file is generated from messages-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.771Z
+// Generated on 2025-08-17T14:20:45.983Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum FutureMessagePreferenceEnum {
@@ -94,52 +94,25 @@ id: 151;
 	}
 }
 
-export const messages: Cluster<Messages['attributes'], Messages['commands'], Messages['events']> = {
+export const messages: ClusterDefinition<Messages> = {
 id: 151,
-	attributes: {
-		Messages:[],
-		ActiveMessageIDs:[],
-	SupportsReceivedConfirmation: false,
-	SupportsConfirmationResponse: false,
-	SupportsConfirmationReply: false,
-	SupportsProtectedMessages: false,
-},
-	commands: {
-		/** Command for requesting messages be presented */
-		PresentMessagesRequest: {
-			inputparams: [
-				null, 
-				null, 
-				null, 
-				0, 
-				null, 
-				null, 
-				[], 
-			],
-			 outputparams: []
-            },
-		/** Command for cancelling message present requests */
-		CancelMessagesRequest: {
-			inputparams: [
-				[], 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-		MessageQueued: [
-			
-			null, ],
-		MessagePresented: [
-			
-			null, ],
-		MessageComplete: [
-			
-			null, 
-			0, 
-			null, 
-			null, ],
-	}
+	attributes: [
+		"Messages",
+		"ActiveMessageIDs",
+		"SupportsReceivedConfirmation",
+		"SupportsConfirmationResponse",
+		"SupportsConfirmationReply",
+		"SupportsProtectedMessages",
+	] as const,
+	commands: [
+		"PresentMessagesRequest",
+		"CancelMessagesRequest",
+	] as const,
+	events: [
+		"MessageQueued",
+		"MessagePresented",
+		"MessageComplete",
+	] as const
 }
 
 export default messages;

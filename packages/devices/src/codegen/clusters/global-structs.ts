@@ -1,7 +1,7 @@
 // This file is generated from global-structs.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.336Z
+// Generated on 2025-08-17T14:20:45.626Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export interface AtomicAttributeStatusStruct {

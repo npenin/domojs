@@ -1,7 +1,7 @@
 // This file is generated from media-input-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.727Z
+// Generated on 2025-08-17T14:20:45.941Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum InputTypeEnum {
@@ -71,45 +71,21 @@ id: 1287;
 	}
 }
 
-export const mediaInput: Cluster<MediaInput['attributes'], MediaInput['commands'], MediaInput['events']> = {
+export const mediaInput: ClusterDefinition<MediaInput> = {
 id: 1287,
-	attributes: {
-		InputList:[],
-		CurrentInput:0,
-		/** Supports updates to the input names */
-	SupportsNameUpdates: false,
-},
-	commands: {
-		/** Upon receipt, this command SHALL change the media input on the device to the input at a specific index in the Input List. */
-		SelectInput: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** Upon receipt, this command SHALL display the active status of the input list on screen. */
-		ShowInputStatus: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-		/** Upon receipt, this command SHALL hide the input list from the screen. */
-		HideInputStatus: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-		/** Upon receipt, this command SHALL rename the input at a specific index in the Input List. */
-		RenameInput: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"InputList",
+		"CurrentInput",
+		"SupportsNameUpdates",
+	] as const,
+	commands: [
+		"SelectInput",
+		"ShowInputStatus",
+		"HideInputStatus",
+		"RenameInput",
+	] as const,
+	events: [
+	] as const
 }
 
 export default mediaInput;

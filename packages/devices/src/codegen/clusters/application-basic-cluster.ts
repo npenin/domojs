@@ -1,7 +1,7 @@
 // This file is generated from application-basic-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:45.784Z
+// Generated on 2025-08-17T14:20:44.625Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum ApplicationStatusEnum {
@@ -33,22 +33,22 @@ id: 1293;
 	}
 }
 
-export const applicationBasic: Cluster<ApplicationBasic['attributes'], ApplicationBasic['commands'], ApplicationBasic['events']> = {
+export const applicationBasic: ClusterDefinition<ApplicationBasic> = {
 id: 1293,
-	attributes: {
-		VendorName:null,
-		VendorID:0,
-		ApplicationName:null,
-		ProductID:0,
-		Application:null,
-		Status:null,
-		ApplicationVersion:null,
-		AllowedVendorList:[],
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"VendorName",
+		"VendorID",
+		"ApplicationName",
+		"ProductID",
+		"Application",
+		"Status",
+		"ApplicationVersion",
+		"AllowedVendorList",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default applicationBasic;

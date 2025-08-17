@@ -1,7 +1,7 @@
 // This file is generated from basic-information-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:45.870Z
+// Generated on 2025-08-17T14:20:44.703Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum ProductFinishEnum {
@@ -98,49 +98,42 @@ id: 40;
 	}
 }
 
-export const basicInformation: Cluster<BasicInformation['attributes'], BasicInformation['commands'], BasicInformation['events']> = {
+export const basicInformation: ClusterDefinition<BasicInformation> = {
 id: 40,
-	attributes: {
-		DataModelRevision:0,
-		VendorName:null,
-		VendorID:0,
-		ProductName:null,
-		ProductID:0,
-		NodeLabel:null,
-		Location:null,
-		HardwareVersion:0,
-		HardwareVersionString:null,
-		SoftwareVersion:0,
-		SoftwareVersionString:null,
-		ManufacturingDate:null,
-		PartNumber:null,
-		ProductURL:null,
-		ProductLabel:null,
-		SerialNumber:null,
-		LocalConfigDisabled:null,
-		Reachable:null,
-		UniqueID:null,
-		CapabilityMinima:null,
-		ProductAppearance:null,
-		SpecificationVersion:0,
-		MaxPathsPerInvoke:0,
-		ConfigurationVersion:0,
-},
-	commands: {
-},
-	events: {
-		StartUp: [
-			
-			0, ],
-		ShutDown: [
-			],
-		Leave: [
-			
-			0, ],
-		ReachableChanged: [
-			
-			null, ],
-	}
+	attributes: [
+		"DataModelRevision",
+		"VendorName",
+		"VendorID",
+		"ProductName",
+		"ProductID",
+		"NodeLabel",
+		"Location",
+		"HardwareVersion",
+		"HardwareVersionString",
+		"SoftwareVersion",
+		"SoftwareVersionString",
+		"ManufacturingDate",
+		"PartNumber",
+		"ProductURL",
+		"ProductLabel",
+		"SerialNumber",
+		"LocalConfigDisabled",
+		"Reachable",
+		"UniqueID",
+		"CapabilityMinima",
+		"ProductAppearance",
+		"SpecificationVersion",
+		"MaxPathsPerInvoke",
+		"ConfigurationVersion",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+		"StartUp",
+		"ShutDown",
+		"Leave",
+		"ReachableChanged",
+	] as const
 }
 
 export default basicInformation;

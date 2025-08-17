@@ -1,7 +1,7 @@
 // This file is generated from audio-output-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:45.827Z
+// Generated on 2025-08-17T14:20:44.666Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum OutputTypeEnum {
@@ -52,33 +52,19 @@ id: 1291;
 	}
 }
 
-export const audioOutput: Cluster<AudioOutput['attributes'], AudioOutput['commands'], AudioOutput['events']> = {
+export const audioOutput: ClusterDefinition<AudioOutput> = {
 id: 1291,
-	attributes: {
-		OutputList:[],
-		CurrentOutput:0,
-		/** Supports updates to output names */
-	SupportsNameUpdates: false,
-},
-	commands: {
-		/** Upon receipt, this SHALL change the output on the device to the output at a specific index in the Output List. */
-		SelectOutput: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** Upon receipt, this SHALL rename the output at a specific index in the Output List. */
-		RenameOutput: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"OutputList",
+		"CurrentOutput",
+		"SupportsNameUpdates",
+	] as const,
+	commands: [
+		"SelectOutput",
+		"RenameOutput",
+	] as const,
+	events: [
+	] as const
 }
 
 export default audioOutput;

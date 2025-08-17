@@ -1,7 +1,7 @@
 // This file is generated from soil-measurement-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.640Z
+// Generated on 2025-08-17T14:20:46.690Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 /**
@@ -20,16 +20,16 @@ id: 1072;
 	}
 }
 
-export const soilMeasurement: Cluster<SoilMeasurement['attributes'], SoilMeasurement['commands'], SoilMeasurement['events']> = {
+export const soilMeasurement: ClusterDefinition<SoilMeasurement> = {
 id: 1072,
-	attributes: {
-		SoilMoistureMeasurementLimits:null,
-		SoilMoistureMeasuredValue:0,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"SoilMoistureMeasurementLimits",
+		"SoilMoistureMeasuredValue",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default soilMeasurement;

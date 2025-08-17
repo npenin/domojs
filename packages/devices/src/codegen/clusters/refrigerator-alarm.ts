@@ -1,7 +1,7 @@
 // This file is generated from refrigerator-alarm.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.408Z
+// Generated on 2025-08-17T14:20:46.451Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum AlarmBitmap {
@@ -31,23 +31,18 @@ id: 87;
 	}
 }
 
-export const refrigeratorAlarm: Cluster<RefrigeratorAlarm['attributes'], RefrigeratorAlarm['commands'], RefrigeratorAlarm['events']> = {
+export const refrigeratorAlarm: ClusterDefinition<RefrigeratorAlarm> = {
 id: 87,
-	attributes: {
-		Mask:null,
-		State:null,
-		Supported:null,
-},
-	commands: {
-},
-	events: {
-		Notify: [
-			
-			null, 
-			null, 
-			null, 
-			null, ],
-	}
+	attributes: [
+		"Mask",
+		"State",
+		"Supported",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+		"Notify",
+	] as const
 }
 
 export default refrigeratorAlarm;

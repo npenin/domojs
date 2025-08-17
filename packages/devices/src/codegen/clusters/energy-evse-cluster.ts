@@ -1,7 +1,7 @@
 // This file is generated from energy-evse-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.973Z
+// Generated on 2025-08-17T14:20:45.378Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum StateEnum {
@@ -198,128 +198,55 @@ id: 153;
 	}
 }
 
-export const energyEVSE: Cluster<EnergyEVSE['attributes'], EnergyEVSE['commands'], EnergyEVSE['events']> = {
+export const energyEVSE: ClusterDefinition<EnergyEVSE> = {
 id: 153,
-	attributes: {
-		State:null,
-		SupplyState:null,
-		FaultState:null,
-		ChargingEnabledUntil:0,
-		DischargingEnabledUntil:0,
-		CircuitCapacity:0,
-		MinimumChargeCurrent:0,
-		MaximumChargeCurrent:0,
-		MaximumDischargeCurrent:0,
-		USER_MAXIMUM_CHARGE_CURRENT:0,
-		RANDOMIZATION_DELAY_WINDOW:0,
-		NextChargeStartTime:0,
-		NextChargeTargetTime:0,
-		NextChargeRequiredEnergy:0,
-		NextChargeTargetSoC:0,
-		APPROXIMATE_EV_EFFICIENCY:0,
-		StateOfCharge:0,
-		BatteryCapacity:0,
-		VehicleID:null,
-		SessionID:0,
-		SessionDuration:0,
-		SessionEnergyCharged:0,
-		SessionEnergyDischarged:0,
-		/** EVSE supports storing user charging preferences */
-	SupportsChargingPreferences: false,
-		/** EVSE supports reporting of vehicle State of Charge (SoC) */
-	SupportsSoCReporting: false,
-		/** EVSE supports PLC to support Plug and Charge */
-	SupportsPlugAndCharge: false,
-		/** EVSE is fitted with an RFID reader */
-	SupportsRFID: false,
-		/** EVSE supports bi-directional charging / discharging */
-	SupportsV2X: false,
-},
-	commands: {
-		/** Allows a client to disable the EVSE from charging and discharging. */
-		Disable: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-		/** This command allows a client to enable the EVSE to charge an EV, and to provide or update the maximum and minimum charge current. */
-		EnableCharging: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** Upon receipt, this SHALL allow a client to enable the discharge of an EV, and to provide or update the maximum discharge current. */
-		EnableDischarging: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** Allows a client to put the EVSE into a self-diagnostics mode. */
-		StartDiagnostics: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-		/** Allows a client to set the user specified charging targets. */
-		SetTargets: {
-			inputparams: [
-				[], 
-			],
-			 outputparams: []
-            },
-		/** Allows a client to retrieve the current set of charging targets. */
-		GetTargets: {
-			inputparams: [
-			],
-			 outputparams: [
-				[], ]
-            },
-		/** Allows a client to clear all stored charging targets. */
-		ClearTargets: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-},
-	events: {
-		EVConnected: [
-			
-			0, ],
-		EVNotDetected: [
-			
-			0, 
-			null, 
-			0, 
-			0, 
-			0, ],
-		EnergyTransferStarted: [
-			
-			0, 
-			null, 
-			0, 
-			0, ],
-		EnergyTransferStopped: [
-			
-			0, 
-			null, 
-			null, 
-			0, 
-			0, ],
-		Fault: [
-			
-			0, 
-			null, 
-			null, 
-			null, ],
-		RFID: [
-			
-			null, ],
-	}
+	attributes: [
+		"State",
+		"SupplyState",
+		"FaultState",
+		"ChargingEnabledUntil",
+		"DischargingEnabledUntil",
+		"CircuitCapacity",
+		"MinimumChargeCurrent",
+		"MaximumChargeCurrent",
+		"MaximumDischargeCurrent",
+		"USER_MAXIMUM_CHARGE_CURRENT",
+		"RANDOMIZATION_DELAY_WINDOW",
+		"NextChargeStartTime",
+		"NextChargeTargetTime",
+		"NextChargeRequiredEnergy",
+		"NextChargeTargetSoC",
+		"APPROXIMATE_EV_EFFICIENCY",
+		"StateOfCharge",
+		"BatteryCapacity",
+		"VehicleID",
+		"SessionID",
+		"SessionDuration",
+		"SessionEnergyCharged",
+		"SessionEnergyDischarged",
+		"SupportsChargingPreferences",
+		"SupportsSoCReporting",
+		"SupportsPlugAndCharge",
+		"SupportsRFID",
+		"SupportsV2X",
+	] as const,
+	commands: [
+		"Disable",
+		"EnableCharging",
+		"EnableDischarging",
+		"StartDiagnostics",
+		"SetTargets",
+		"GetTargets",
+		"ClearTargets",
+	] as const,
+	events: [
+		"EVConnected",
+		"EVNotDetected",
+		"EnergyTransferStarted",
+		"EnergyTransferStopped",
+		"Fault",
+		"RFID",
+	] as const
 }
 
 export default energyEVSE;

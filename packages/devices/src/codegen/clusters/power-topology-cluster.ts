@@ -1,7 +1,7 @@
 // This file is generated from power-topology-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.238Z
+// Generated on 2025-08-17T14:20:46.291Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 /**
@@ -28,24 +28,20 @@ id: 156;
 	}
 }
 
-export const powerTopology: Cluster<PowerTopology['attributes'], PowerTopology['commands'], PowerTopology['events']> = {
+export const powerTopology: ClusterDefinition<PowerTopology> = {
 id: 156,
-	attributes: {
-		AvailableEndpoints:[],
-		ActiveEndpoints:[],
-		/** This endpoint provides or consumes power to/from the entire node */
-	SupportsNodeTopology: false,
-		/** This endpoint provides or consumes power to/from itself and its child endpoints */
-	SupportsTreeTopology: false,
-		/** This endpoint provides or consumes power to/from a specified set of endpoints */
-	SupportsSetTopology: false,
-		/** The specified set of endpoints may change */
-	SupportsDynamicPowerFlow: false,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"AvailableEndpoints",
+		"ActiveEndpoints",
+		"SupportsNodeTopology",
+		"SupportsTreeTopology",
+		"SupportsSetTopology",
+		"SupportsDynamicPowerFlow",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default powerTopology;

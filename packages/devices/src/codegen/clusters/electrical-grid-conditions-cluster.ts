@@ -1,7 +1,7 @@
 // This file is generated from electrical-grid-conditions-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.931Z
+// Generated on 2025-08-17T14:20:45.337Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum ThreeLevelEnum {
@@ -41,22 +41,19 @@ id: 160;
 	}
 }
 
-export const electricalGridConditions: Cluster<ElectricalGridConditions['attributes'], ElectricalGridConditions['commands'], ElectricalGridConditions['events']> = {
+export const electricalGridConditions: ClusterDefinition<ElectricalGridConditions> = {
 id: 160,
-	attributes: {
-		LocalGenerationAvailable:null,
-		CurrentConditions:null,
-		ForecastConditions:[],
-		/** Forecasts upcoming */
-	SupportsForecasting: false,
-},
-	commands: {
-},
-	events: {
-		CurrentConditionsChanged: [
-			
-			null, ],
-	}
+	attributes: [
+		"LocalGenerationAvailable",
+		"CurrentConditions",
+		"ForecastConditions",
+		"SupportsForecasting",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+		"CurrentConditionsChanged",
+	] as const
 }
 
 export default electricalGridConditions;

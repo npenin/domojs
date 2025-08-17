@@ -1,7 +1,7 @@
 // This file is generated from window-covering.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:49.194Z
+// Generated on 2025-08-17T14:20:47.266Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum Type {
@@ -176,92 +176,48 @@ id: 258;
 	}
 }
 
-export const windowCovering: Cluster<WindowCovering['attributes'], WindowCovering['commands'], WindowCovering['events']> = {
+export const windowCovering: ClusterDefinition<WindowCovering> = {
 id: 258,
-	attributes: {
-		Type:null,
-		PhysicalClosedLimitLift:0,
-		PhysicalClosedLimitTilt:0,
-		CurrentPositionLift:0,
-		CurrentPositionTilt:0,
-		NumberOfActuationsLift:0,
-		NumberOfActuationsTilt:0,
-		ConfigStatus:null,
-		CurrentPositionLiftPercentage:0,
-		CurrentPositionTiltPercentage:0,
-		OperationalStatus:null,
-		TargetPositionLiftPercent100ths:0,
-		TargetPositionTiltPercent100ths:0,
-		EndProductType:null,
-		CurrentPositionLiftPercent100ths:0,
-		CurrentPositionTiltPercent100ths:0,
-		InstalledOpenLimitLift:0,
-		InstalledClosedLimitLift:0,
-		InstalledOpenLimitTilt:0,
-		InstalledClosedLimitTilt:0,
-		Mode:null,
-		SafetyStatus:null,
-		/** Lift control and behavior for lifting/sliding window coverings */
-	SupportsLift: false,
-		/** Tilt control and behavior for tilting window coverings */
-	SupportsTilt: false,
-		/** Position aware lift control is supported. */
-	SupportsPositionAwareLift: false,
-		/** Absolute positioning is supported. */
-	SupportsAbsolutePosition: false,
-		/** Position aware tilt control is supported. */
-	SupportsPositionAwareTilt: false,
-},
-	commands: {
-		/** Moves window covering to InstalledOpenLimitLift and InstalledOpenLimitTilt */
-		UpOrOpen: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-		/** Moves window covering to InstalledClosedLimitLift and InstalledCloseLimitTilt */
-		DownOrClose: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-		/** Stop any adjusting of window covering */
-		StopMotion: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-		/** Go to lift value specified */
-		GoToLiftValue: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** Go to lift percentage specified */
-		GoToLiftPercentage: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** Go to tilt value specified */
-		GoToTiltValue: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** Go to tilt percentage specified */
-		GoToTiltPercentage: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"Type",
+		"PhysicalClosedLimitLift",
+		"PhysicalClosedLimitTilt",
+		"CurrentPositionLift",
+		"CurrentPositionTilt",
+		"NumberOfActuationsLift",
+		"NumberOfActuationsTilt",
+		"ConfigStatus",
+		"CurrentPositionLiftPercentage",
+		"CurrentPositionTiltPercentage",
+		"OperationalStatus",
+		"TargetPositionLiftPercent100ths",
+		"TargetPositionTiltPercent100ths",
+		"EndProductType",
+		"CurrentPositionLiftPercent100ths",
+		"CurrentPositionTiltPercent100ths",
+		"InstalledOpenLimitLift",
+		"InstalledClosedLimitLift",
+		"InstalledOpenLimitTilt",
+		"InstalledClosedLimitTilt",
+		"Mode",
+		"SafetyStatus",
+		"SupportsLift",
+		"SupportsTilt",
+		"SupportsPositionAwareLift",
+		"SupportsAbsolutePosition",
+		"SupportsPositionAwareTilt",
+	] as const,
+	commands: [
+		"UpOrOpen",
+		"DownOrClose",
+		"StopMotion",
+		"GoToLiftValue",
+		"GoToLiftPercentage",
+		"GoToTiltValue",
+		"GoToTiltPercentage",
+	] as const,
+	events: [
+	] as const
 }
 
 export default windowCovering;

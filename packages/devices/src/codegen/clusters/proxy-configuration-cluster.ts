@@ -1,7 +1,7 @@
 // This file is generated from proxy-configuration-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.281Z
+// Generated on 2025-08-17T14:20:46.328Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 /**
@@ -18,14 +18,14 @@ id: 66;
 	}
 }
 
-export const proxyConfiguration: Cluster<ProxyConfiguration['attributes'], ProxyConfiguration['commands'], ProxyConfiguration['events']> = {
+export const proxyConfiguration: ClusterDefinition<ProxyConfiguration> = {
 id: 66,
-	attributes: {
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default proxyConfiguration;

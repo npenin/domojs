@@ -1,7 +1,7 @@
 // This file is generated from temperature-measurement-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.720Z
+// Generated on 2025-08-17T14:20:46.781Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 /**
@@ -22,18 +22,18 @@ id: 1026;
 	}
 }
 
-export const temperatureMeasurement: Cluster<TemperatureMeasurement['attributes'], TemperatureMeasurement['commands'], TemperatureMeasurement['events']> = {
+export const temperatureMeasurement: ClusterDefinition<TemperatureMeasurement> = {
 id: 1026,
-	attributes: {
-		MeasuredValue:0,
-		MinMeasuredValue:0,
-		MaxMeasuredValue:0,
-		Tolerance:0,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"MeasuredValue",
+		"MinMeasuredValue",
+		"MaxMeasuredValue",
+		"Tolerance",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default temperatureMeasurement;

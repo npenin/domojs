@@ -1,7 +1,7 @@
 // This file is generated from water-heater-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:49.079Z
+// Generated on 2025-08-17T14:20:47.147Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum BoostStateEnum {
@@ -68,42 +68,26 @@ id: 148;
 	}
 }
 
-export const waterHeaterManagement: Cluster<WaterHeaterManagement['attributes'], WaterHeaterManagement['commands'], WaterHeaterManagement['events']> = {
+export const waterHeaterManagement: ClusterDefinition<WaterHeaterManagement> = {
 id: 148,
-	attributes: {
-		HeaterTypes:null,
-		HeatDemand:null,
-		TankVolume:0,
-		EstimatedHeatRequired:0,
-		TankPercentage:0,
-		BoostState:null,
-		/** Allows energy management control of the tank */
-	SupportsEnergyManagement: false,
-		/** Supports monitoring the percentage of hot water in the tank */
-	SupportsTankPercent: false,
-},
-	commands: {
-		/** Allows a client to request that the water heater is put into a Boost state. */
-		Boost: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Allows a client to cancel an ongoing Boost operation. */
-		CancelBoost: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-},
-	events: {
-		BoostStarted: [
-			
-			null, ],
-		BoostEnded: [
-			],
-	}
+	attributes: [
+		"HeaterTypes",
+		"HeatDemand",
+		"TankVolume",
+		"EstimatedHeatRequired",
+		"TankPercentage",
+		"BoostState",
+		"SupportsEnergyManagement",
+		"SupportsTankPercent",
+	] as const,
+	commands: [
+		"Boost",
+		"CancelBoost",
+	] as const,
+	events: [
+		"BoostStarted",
+		"BoostEnded",
+	] as const
 }
 
 export default waterHeaterManagement;

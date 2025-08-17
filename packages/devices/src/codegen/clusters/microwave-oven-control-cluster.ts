@@ -1,7 +1,7 @@
 // This file is generated from microwave-oven-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.807Z
+// Generated on 2025-08-17T14:20:46.021Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 /**
@@ -51,47 +51,28 @@ id: 95;
 	}
 }
 
-export const microwaveOvenControl: Cluster<MicrowaveOvenControl['attributes'], MicrowaveOvenControl['commands'], MicrowaveOvenControl['events']> = {
+export const microwaveOvenControl: ClusterDefinition<MicrowaveOvenControl> = {
 id: 95,
-	attributes: {
-		CookTime:0,
-		MaxCookTime:0,
-		PowerSetting:0,
-		MinPower:0,
-		MaxPower:0,
-		PowerStep:0,
-		SupportedWatts:[],
-		SelectedWattIndex:0,
-		WattRating:0,
-		/** Power is specified as a unitless number or a percentage */
-	SupportsPowerAsNumber: false,
-		/** Power is specified in Watts */
-	SupportsPowerInWatts: false,
-		/** Supports the limit attributes used with the PWRNUM feature */
-	SupportsPowerNumberLimits: false,
-},
-	commands: {
-		/** This command is used to set the cooking parameters associated with the operation of the device. */
-		SetCookingParameters: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to add more time to the CookTime attribute of the server. */
-		AddMoreTime: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"CookTime",
+		"MaxCookTime",
+		"PowerSetting",
+		"MinPower",
+		"MaxPower",
+		"PowerStep",
+		"SupportedWatts",
+		"SelectedWattIndex",
+		"WattRating",
+		"SupportsPowerAsNumber",
+		"SupportsPowerInWatts",
+		"SupportsPowerNumberLimits",
+	] as const,
+	commands: [
+		"SetCookingParameters",
+		"AddMoreTime",
+	] as const,
+	events: [
+	] as const
 }
 
 export default microwaveOvenControl;

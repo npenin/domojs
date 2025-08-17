@@ -1,7 +1,7 @@
 // This file is generated from chip-ota.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.178Z
+// Generated on 2025-08-17T14:20:44.874Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum StatusEnum {
@@ -109,54 +109,17 @@ id: 41;
 	}
 }
 
-export const oTASoftwareUpdateProvider: Cluster<OTASoftwareUpdateProvider['attributes'], OTASoftwareUpdateProvider['commands'], OTASoftwareUpdateProvider['events']> = {
+export const oTASoftwareUpdateProvider: ClusterDefinition<OTASoftwareUpdateProvider> = {
 id: 41,
-	attributes: {
-},
-	commands: {
-		/** Determine availability of a new Software Image */
-		QueryImage: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-				[], 
-				0, 
-				null, 
-				null, 
-				null, 
-			],
-			 outputparams: [
-				null, 
-				0, 
-				null, 
-				0, 
-				null, 
-				null, 
-				null, 
-				null, ]
-            },
-		/** Determine next action to take for a downloaded Software Image */
-		ApplyUpdateRequest: {
-			inputparams: [
-				null, 
-				0, 
-			],
-			 outputparams: [
-				null, 
-				0, ]
-            },
-		/** Notify OTA Provider that an update was applied */
-		NotifyUpdateApplied: {
-			inputparams: [
-				null, 
-				0, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+	] as const,
+	commands: [
+		"QueryImage",
+		"ApplyUpdateRequest",
+		"NotifyUpdateApplied",
+	] as const,
+	events: [
+	] as const
 }
 
 /**
@@ -204,43 +167,20 @@ id: 42;
 	}
 }
 
-export const oTASoftwareUpdateRequestor: Cluster<OTASoftwareUpdateRequestor['attributes'], OTASoftwareUpdateRequestor['commands'], OTASoftwareUpdateRequestor['events']> = {
+export const oTASoftwareUpdateRequestor: ClusterDefinition<OTASoftwareUpdateRequestor> = {
 id: 42,
-	attributes: {
-		DefaultOTAProviders:[],
-		UpdatePossible:null,
-		UpdateState:null,
-		UpdateStateProgress:0,
-},
-	commands: {
-		/** Announce the presence of an OTA Provider */
-		AnnounceOTAProvider: {
-			inputparams: [
-				null, 
-				0, 
-				null, 
-				null, 
-				0, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-		StateTransition: [
-			
-			null, 
-			null, 
-			null, 
-			0, ],
-		VersionApplied: [
-			
-			0, 
-			0, ],
-		DownloadError: [
-			
-			0, 
-			null, 
-			0, 
-			null, ],
-	}
+	attributes: [
+		"DefaultOTAProviders",
+		"UpdatePossible",
+		"UpdateState",
+		"UpdateStateProgress",
+	] as const,
+	commands: [
+		"AnnounceOTAProvider",
+	] as const,
+	events: [
+		"StateTransition",
+		"VersionApplied",
+		"DownloadError",
+	] as const
 }

@@ -1,7 +1,7 @@
 // This file is generated from test-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.742Z
+// Generated on 2025-08-17T14:20:46.805Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum SimpleEnum {
@@ -526,418 +526,135 @@ id: 4294048773;
 	}
 }
 
-export const unitTesting: Cluster<UnitTesting['attributes'], UnitTesting['commands'], UnitTesting['events']> = {
+export const unitTesting: ClusterDefinition<UnitTesting> = {
 id: 4294048773,
-	attributes: {
-		boolean:null,
-		bitmap8:null,
-		bitmap16:null,
-		bitmap32:null,
-		bitmap64:null,
-		int8u:0,
-		int16u:0,
-		int24u:0,
-		int32u:0,
-		int40u:null,
-		int48u:null,
-		int56u:null,
-		int64u:null,
-		int8s:0,
-		int16s:0,
-		int24s:0,
-		int32s:0,
-		int40s:null,
-		int48s:null,
-		int56s:null,
-		int64s:null,
-		enum8:0,
-		enum16:0,
-		float_single:0,
-		float_double:0,
-		octet_string:null,
-		list_int8u:[],
-		list_octet_string:[],
-		list_struct_octet_string:[],
-		long_octet_string:null,
-		char_string:null,
-		long_char_string:null,
-		epoch_us:0,
-		epoch_s:0,
-		vendor_id:0,
-		list_nullables_and_optionals_struct:[],
-		enum_attr:null,
-		struct_attr:null,
-		range_restricted_int8u:0,
-		range_restricted_int8s:0,
-		range_restricted_int16u:0,
-		range_restricted_int16s:0,
-		list_long_octet_string:[],
-		list_fabric_scoped:[],
-		timed_write_boolean:null,
-		general_error_boolean:null,
-		cluster_error_boolean:null,
-		global_enum:null,
-		global_struct:null,
-		readFailureCode:0,
-		failureInt32U:0,
-		nullable_boolean:null,
-		nullable_bitmap8:null,
-		nullable_bitmap16:null,
-		nullable_bitmap32:null,
-		nullable_bitmap64:null,
-		nullable_int8u:0,
-		nullable_int16u:0,
-		nullable_int24u:0,
-		nullable_int32u:0,
-		nullable_int40u:null,
-		nullable_int48u:null,
-		nullable_int56u:null,
-		nullable_int64u:null,
-		nullable_int8s:0,
-		nullable_int16s:0,
-		nullable_int24s:0,
-		nullable_int32s:0,
-		nullable_int40s:null,
-		nullable_int48s:null,
-		nullable_int56s:null,
-		nullable_int64s:null,
-		nullable_enum8:0,
-		nullable_enum16:0,
-		nullable_float_single:0,
-		nullable_float_double:0,
-		nullable_octet_string:null,
-		nullable_char_string:null,
-		nullable_enum_attr:null,
-		nullable_struct:null,
-		nullable_range_restricted_int8u:0,
-		nullable_range_restricted_int8s:0,
-		nullable_range_restricted_int16u:0,
-		nullable_range_restricted_int16s:0,
-		write_only_int8u:0,
-		nullable_global_enum:null,
-		nullable_global_struct:null,
-		mei_int8u:0,
-		unsupported:null,
-		UnsupportedAttributeRequiringAdminPrivilege:null,
-},
-	commands: {
-		/** Simple command without any parameters and without a specific response.
-        To aid in unit testing, this command will re-initialize attribute storage to defaults. */
-		Test: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-		/** Simple command without any parameters and without a specific response not handled by the server */
-		TestNotHandled: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-		/** Simple command without any parameters and with a specific response */
-		TestSpecific: {
-			inputparams: [
-			],
-			 outputparams: [
-				0, ]
-            },
-		/** Simple command that should not be added to the server. */
-		TestUnknownCommand: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-		/** Command that takes two arguments and returns their sum. */
-		TestAddArguments: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: [
-				0, ]
-            },
-		/** Command that takes an argument which is bool */
-		TestSimpleArgumentRequest: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Command that takes various arguments that are arrays, including an array of structs which have a list member. */
-		TestStructArrayArgumentRequest: {
-			inputparams: [
-				[], 
-				[], 
-				[], 
-				[], 
-				null, 
-				null, 
-			],
-			 outputparams: [
-				[], 
-				[], 
-				[], 
-				[], 
-				null, 
-				null, ]
-            },
-		/** Command that takes an argument which is struct.  The response echoes the
-        'b' field of the single arg. */
-		TestStructArgumentRequest: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Command that takes an argument which is nested struct.  The response
-        echoes the 'b' field of ar1.c. */
-		TestNestedStructArgumentRequest: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Command that takes an argument which is a list of structs.  The response
-        returns false if there is some struct in the list whose 'b' field is
-        false, and true otherwise (including if the list is empty). */
-		TestListStructArgumentRequest: {
-			inputparams: [
-				[], 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Command that takes an argument which is a list of INT8U.  The response
-        returns false if the list contains a 0 in it, true otherwise (including
-        if the list is empty). */
-		TestListInt8UArgumentRequest: {
-			inputparams: [
-				[], 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Command that takes an argument which is a Nested Struct List.  The
-        response returns false if there is some struct in arg1 (either directly
-        in arg1.c or in the arg1.d list) whose 'b' field is false, and true
-        otherwise. */
-		TestNestedStructListArgumentRequest: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Command that takes an argument which is a list of Nested Struct List.
-        The response returns false if there is some struct in arg1 (either
-        directly in as the 'c' field of an entry 'd' list of an entry) whose 'b'
-        field is false, and true otherwise (including if the list is empty). */
-		TestListNestedStructListArgumentRequest: {
-			inputparams: [
-				[], 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Command that takes an argument which is a list of INT8U and expects a
-        response that reverses the list. */
-		TestListInt8UReverseRequest: {
-			inputparams: [
-				[], 
-			],
-			 outputparams: [
-				[], ]
-            },
-		/** Command that sends a vendor id and an enum.  The server is expected to
-        echo them back. */
-		TestEnumsRequest: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: [
-				0, 
-				null, ]
-            },
-		/** Command that takes an argument which is nullable and optional.  The
-        response returns a boolean indicating whether the argument was present,
-        if that's true a boolean indicating whether the argument was null, and
-        if that' false the argument it received. */
-		TestNullableOptionalRequest: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				null, 
-				null, 
-				0, 
-				0, ]
-            },
-		/** Command that takes various arguments which can be nullable and/or optional.  The
-        response returns information about which things were received and what
-        their state was. */
-		TestComplexNullableOptionalRequest: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				[], 
-				[], 
-				[], 
-			],
-			 outputparams: [
-				null, 
-				0, 
-				null, 
-				0, 
-				null, 
-				null, 
-				0, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				null, 
-				[], 
-				null, 
-				[], 
-				null, 
-				null, 
-				[], ]
-            },
-		/** Command that takes an argument which is a struct.  The response echoes
-        the struct back. */
-		SimpleStructEchoRequest: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Command that just responds with a success status if the timed invoke
-        conditions are met. */
-		TimedInvokeRequest: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-		/** Command that takes an optional argument which is bool. It responds with a success value if the optional is set to any value. */
-		TestSimpleOptionalArgumentRequest: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Command that takes identical arguments to the fields of the TestEvent and logs the TestEvent to the buffer.  Command returns an event ID as the response. */
-		TestEmitTestEventRequest: {
-			inputparams: [
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Command that takes identical arguments to the fields of the TestFabricScopedEvent and logs the TestFabricScopedEvent to the buffer.  Command returns an event ID as the response. */
-		TestEmitTestFabricScopedEventRequest: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Command that responds after sleepBeforeResponseTimeMs with an octet_string the size requested with fillCharacter. */
-		TestBatchHelperRequest: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Second command that responds after sleepBeforeResponseTimeMs with an octet_string the size requested with fillCharacter. */
-		TestSecondBatchHelperRequest: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Command that takes an argument which is an octet string.  The response echoes
-        the string back. If the string is large then it would require a session that
-        supports large payloads. */
-		StringEchoRequest: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Command that takes arguments that are global structs/enums and the
-        response just echoes them back. */
-		GlobalEchoRequest: {
-			inputparams: [
-				null, 
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Command that returns Success if the CommandFlags pass all checks at the IM layer.
-        Otherwise, return appropriate StatusCode back. */
-		TestCheckCommandFlags: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-		/** Command having a different MEI vendor ID than the cluster. Also emits TestDifferentVendorMeiEvent. */
-		TestDifferentVendorMeiRequest: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				0, 
-				null, ]
-            },
-},
-	events: {
-		TestEvent: [
-			
-			0, 
-			null, 
-			null, 
-			null, 
-			[], 
-			[], ],
-		TestFabricScopedEvent: [
-			],
-		TestDifferentVendorMeiEvent: [
-			
-			0, ],
-	}
+	attributes: [
+		"boolean",
+		"bitmap8",
+		"bitmap16",
+		"bitmap32",
+		"bitmap64",
+		"int8u",
+		"int16u",
+		"int24u",
+		"int32u",
+		"int40u",
+		"int48u",
+		"int56u",
+		"int64u",
+		"int8s",
+		"int16s",
+		"int24s",
+		"int32s",
+		"int40s",
+		"int48s",
+		"int56s",
+		"int64s",
+		"enum8",
+		"enum16",
+		"float_single",
+		"float_double",
+		"octet_string",
+		"list_int8u",
+		"list_octet_string",
+		"list_struct_octet_string",
+		"long_octet_string",
+		"char_string",
+		"long_char_string",
+		"epoch_us",
+		"epoch_s",
+		"vendor_id",
+		"list_nullables_and_optionals_struct",
+		"enum_attr",
+		"struct_attr",
+		"range_restricted_int8u",
+		"range_restricted_int8s",
+		"range_restricted_int16u",
+		"range_restricted_int16s",
+		"list_long_octet_string",
+		"list_fabric_scoped",
+		"timed_write_boolean",
+		"general_error_boolean",
+		"cluster_error_boolean",
+		"global_enum",
+		"global_struct",
+		"readFailureCode",
+		"failureInt32U",
+		"nullable_boolean",
+		"nullable_bitmap8",
+		"nullable_bitmap16",
+		"nullable_bitmap32",
+		"nullable_bitmap64",
+		"nullable_int8u",
+		"nullable_int16u",
+		"nullable_int24u",
+		"nullable_int32u",
+		"nullable_int40u",
+		"nullable_int48u",
+		"nullable_int56u",
+		"nullable_int64u",
+		"nullable_int8s",
+		"nullable_int16s",
+		"nullable_int24s",
+		"nullable_int32s",
+		"nullable_int40s",
+		"nullable_int48s",
+		"nullable_int56s",
+		"nullable_int64s",
+		"nullable_enum8",
+		"nullable_enum16",
+		"nullable_float_single",
+		"nullable_float_double",
+		"nullable_octet_string",
+		"nullable_char_string",
+		"nullable_enum_attr",
+		"nullable_struct",
+		"nullable_range_restricted_int8u",
+		"nullable_range_restricted_int8s",
+		"nullable_range_restricted_int16u",
+		"nullable_range_restricted_int16s",
+		"write_only_int8u",
+		"nullable_global_enum",
+		"nullable_global_struct",
+		"mei_int8u",
+		"unsupported",
+		"UnsupportedAttributeRequiringAdminPrivilege",
+	] as const,
+	commands: [
+		"Test",
+		"TestNotHandled",
+		"TestSpecific",
+		"TestUnknownCommand",
+		"TestAddArguments",
+		"TestSimpleArgumentRequest",
+		"TestStructArrayArgumentRequest",
+		"TestStructArgumentRequest",
+		"TestNestedStructArgumentRequest",
+		"TestListStructArgumentRequest",
+		"TestListInt8UArgumentRequest",
+		"TestNestedStructListArgumentRequest",
+		"TestListNestedStructListArgumentRequest",
+		"TestListInt8UReverseRequest",
+		"TestEnumsRequest",
+		"TestNullableOptionalRequest",
+		"TestComplexNullableOptionalRequest",
+		"SimpleStructEchoRequest",
+		"TimedInvokeRequest",
+		"TestSimpleOptionalArgumentRequest",
+		"TestEmitTestEventRequest",
+		"TestEmitTestFabricScopedEventRequest",
+		"TestBatchHelperRequest",
+		"TestSecondBatchHelperRequest",
+		"StringEchoRequest",
+		"GlobalEchoRequest",
+		"TestCheckCommandFlags",
+		"TestDifferentVendorMeiRequest",
+	] as const,
+	events: [
+		"TestEvent",
+		"TestFabricScopedEvent",
+		"TestDifferentVendorMeiEvent",
+	] as const
 }
 
 export default unitTesting;

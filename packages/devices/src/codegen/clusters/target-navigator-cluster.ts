@@ -1,7 +1,7 @@
 // This file is generated from target-navigator-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.679Z
+// Generated on 2025-08-17T14:20:46.731Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum StatusEnum {
@@ -46,31 +46,18 @@ id: 1285;
 	}
 }
 
-export const targetNavigator: Cluster<TargetNavigator['attributes'], TargetNavigator['commands'], TargetNavigator['events']> = {
+export const targetNavigator: ClusterDefinition<TargetNavigator> = {
 id: 1285,
-	attributes: {
-		TargetList:[],
-		CurrentTarget:0,
-},
-	commands: {
-		/** Upon receipt, this SHALL navigation the UX to the target identified. */
-		NavigateTarget: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-},
-	events: {
-		TargetUpdated: [
-			
-			[], 
-			0, 
-			null, ],
-	}
+	attributes: [
+		"TargetList",
+		"CurrentTarget",
+	] as const,
+	commands: [
+		"NavigateTarget",
+	] as const,
+	events: [
+		"TargetUpdated",
+	] as const
 }
 
 export default targetNavigator;

@@ -1,7 +1,7 @@
 // This file is generated from meter-identification-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.788Z
+// Generated on 2025-08-17T14:20:46.002Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum MeterTypeEnum {
@@ -31,21 +31,20 @@ id: 2822;
 	}
 }
 
-export const meterIdentification: Cluster<MeterIdentification['attributes'], MeterIdentification['commands'], MeterIdentification['events']> = {
+export const meterIdentification: ClusterDefinition<MeterIdentification> = {
 id: 2822,
-	attributes: {
-		MeterType:null,
-		PointOfDelivery:null,
-		MeterSerialNumber:null,
-		ProtocolVersion:null,
-		PowerThreshold:null,
-		/** Supports information about power threshold */
-	SupportsPowerThreshold: false,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"MeterType",
+		"PointOfDelivery",
+		"MeterSerialNumber",
+		"ProtocolVersion",
+		"PowerThreshold",
+		"SupportsPowerThreshold",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default meterIdentification;

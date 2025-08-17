@@ -1,7 +1,7 @@
 // This file is generated from commodity-price-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.356Z
+// Generated on 2025-08-17T14:20:45.038Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum CommodityPriceDetailBitmap {
@@ -64,39 +64,22 @@ id: 149;
 	}
 }
 
-export const commodityPrice: Cluster<CommodityPrice['attributes'], CommodityPrice['commands'], CommodityPrice['events']> = {
+export const commodityPrice: ClusterDefinition<CommodityPrice> = {
 id: 149,
-	attributes: {
-		TariffUnit:null,
-		Currency:null,
-		CurrentPrice:null,
-		PriceForecast:[],
-		/** Forecasts upcoming pricing */
-	SupportsForecasting: false,
-},
-	commands: {
-		/** Upon receipt, this SHALL generate a GetDetailedPrice Response command. */
-		GetDetailedPriceRequest: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Upon receipt, this SHALL generate a GetDetailedForecast Response command. */
-		GetDetailedForecastRequest: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				[], ]
-            },
-},
-	events: {
-		PriceChange: [
-			
-			null, ],
-	}
+	attributes: [
+		"TariffUnit",
+		"Currency",
+		"CurrentPrice",
+		"PriceForecast",
+		"SupportsForecasting",
+	] as const,
+	commands: [
+		"GetDetailedPriceRequest",
+		"GetDetailedForecastRequest",
+	] as const,
+	events: [
+		"PriceChange",
+	] as const
 }
 
 export default commodityPrice;

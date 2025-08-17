@@ -1,7 +1,7 @@
 // This file is generated from energy-preference-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.036Z
+// Generated on 2025-08-17T14:20:45.412Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum EnergyPriorityEnum {
@@ -39,23 +39,21 @@ id: 155;
 	}
 }
 
-export const energyPreference: Cluster<EnergyPreference['attributes'], EnergyPreference['commands'], EnergyPreference['events']> = {
+export const energyPreference: ClusterDefinition<EnergyPreference> = {
 id: 155,
-	attributes: {
-		EnergyBalances:[],
-		CurrentEnergyBalance:0,
-		EnergyPriorities:[],
-		LowPowerModeSensitivities:[],
-		CurrentLowPowerModeSensitivity:0,
-		/** Device can balance energy consumption vs. another priority */
-	SupportsEnergyBalance: false,
-		/** Device can adjust the conditions for entering a low power mode */
-	SupportsLowPowerModeSensitivity: false,
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"EnergyBalances",
+		"CurrentEnergyBalance",
+		"EnergyPriorities",
+		"LowPowerModeSensitivities",
+		"CurrentLowPowerModeSensitivity",
+		"SupportsEnergyBalance",
+		"SupportsLowPowerModeSensitivity",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default energyPreference;

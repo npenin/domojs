@@ -1,7 +1,7 @@
 // This file is generated from camera-av-stream-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.111Z
+// Generated on 2025-08-17T14:20:44.816Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum AudioCodecEnum {
@@ -285,179 +285,76 @@ id: 1361;
 	}
 }
 
-export const cameraAVStreamManagement: Cluster<CameraAVStreamManagement['attributes'], CameraAVStreamManagement['commands'], CameraAVStreamManagement['events']> = {
+export const cameraAVStreamManagement: ClusterDefinition<CameraAVStreamManagement> = {
 id: 1361,
-	attributes: {
-		MaxConcurrentEncoders:0,
-		MaxEncodedPixelRate:0,
-		VideoSensorParams:null,
-		NightVisionUsesInfrared:null,
-		MinViewport:null,
-		RateDistortionTradeOffPoints:[],
-		MaxContentBufferSize:0,
-		MicrophoneCapabilities:null,
-		SpeakerCapabilities:null,
-		TwoWayTalkSupport:null,
-		SnapshotCapabilities:[],
-		MaxNetworkBandwidth:0,
-		CurrentFrameRate:0,
-		HDRModeEnabled:null,
-		SupportedStreamUsages:[],
-		AllocatedVideoStreams:[],
-		AllocatedAudioStreams:[],
-		AllocatedSnapshotStreams:[],
-		StreamUsagePriorities:[],
-		SoftRecordingPrivacyModeEnabled:null,
-		SoftLivestreamPrivacyModeEnabled:null,
-		HardPrivacyModeOn:null,
-		NightVision:null,
-		NightVisionIllum:null,
-		Viewport:null,
-		SpeakerMuted:null,
-		SpeakerVolumeLevel:0,
-		SpeakerMaxLevel:0,
-		SpeakerMinLevel:0,
-		MicrophoneMuted:null,
-		MicrophoneVolumeLevel:0,
-		MicrophoneMaxLevel:0,
-		MicrophoneMinLevel:0,
-		MicrophoneAGCEnabled:null,
-		ImageRotation:0,
-		ImageFlipHorizontal:null,
-		ImageFlipVertical:null,
-		LocalVideoRecordingEnabled:null,
-		LocalSnapshotRecordingEnabled:null,
-		StatusLightEnabled:null,
-		StatusLightBrightness:null,
-		/** Audio Streams supported */
-	SupportsAudio: false,
-		/** Video Streams supported */
-	SupportsVideo: false,
-		/** Snapshot Streams supported */
-	SupportsSnapshot: false,
-		/** Privacy supported */
-	SupportsPrivacy: false,
-		/** Speaker supported */
-	SupportsSpeaker: false,
-		/** Image control supported */
-	SupportsImageControl: false,
-		/** Watermark supported */
-	SupportsWatermark: false,
-		/** OSD supported */
-	SupportsOnScreenDisplay: false,
-		/** Local Storage available */
-	SupportsLocalStorage: false,
-		/** High Dynamic Range supported */
-	SupportsHighDynamicRange: false,
-		/** Night Vision mode supported */
-	SupportsNightVision: false,
-},
-	commands: {
-		/** This command SHALL allocate an audio stream on the camera and return an allocated audio stream identifier. */
-		AudioStreamAllocate: {
-			inputparams: [
-				null, 
-				null, 
-				0, 
-				0, 
-				0, 
-				0, 
-			],
-			 outputparams: [
-				0, ]
-            },
-		/** This command SHALL deallocate an audio stream on the camera, corresponding to the given audio stream identifier. */
-		AudioStreamDeallocate: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL allocate a video stream on the camera and return an allocated video stream identifier. */
-		VideoStreamAllocate: {
-			inputparams: [
-				null, 
-				null, 
-				0, 
-				0, 
-				null, 
-				null, 
-				0, 
-				0, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: [
-				0, ]
-            },
-		/** This command SHALL be used to modify a stream specified by the VideoStreamID. */
-		VideoStreamModify: {
-			inputparams: [
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL deallocate a video stream on the camera, corresponding to the given video stream identifier. */
-		VideoStreamDeallocate: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL allocate a snapshot stream on the device and return an allocated snapshot stream identifier. */
-		SnapshotStreamAllocate: {
-			inputparams: [
-				null, 
-				0, 
-				null, 
-				null, 
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: [
-				0, ]
-            },
-		/** This command SHALL be used to modify a stream specified by the VideoStreamID. */
-		SnapshotStreamModify: {
-			inputparams: [
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL deallocate an snapshot stream on the camera, corresponding to the given snapshot stream identifier. */
-		SnapshotStreamDeallocate: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL set the relative priorities of the various stream usages on the camera. */
-		SetStreamPriorities: {
-			inputparams: [
-				[], 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL return a Snapshot from the camera. */
-		CaptureSnapshot: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, 
-				null, ]
-            },
-},
-	events: {
-	}
+	attributes: [
+		"MaxConcurrentEncoders",
+		"MaxEncodedPixelRate",
+		"VideoSensorParams",
+		"NightVisionUsesInfrared",
+		"MinViewport",
+		"RateDistortionTradeOffPoints",
+		"MaxContentBufferSize",
+		"MicrophoneCapabilities",
+		"SpeakerCapabilities",
+		"TwoWayTalkSupport",
+		"SnapshotCapabilities",
+		"MaxNetworkBandwidth",
+		"CurrentFrameRate",
+		"HDRModeEnabled",
+		"SupportedStreamUsages",
+		"AllocatedVideoStreams",
+		"AllocatedAudioStreams",
+		"AllocatedSnapshotStreams",
+		"StreamUsagePriorities",
+		"SoftRecordingPrivacyModeEnabled",
+		"SoftLivestreamPrivacyModeEnabled",
+		"HardPrivacyModeOn",
+		"NightVision",
+		"NightVisionIllum",
+		"Viewport",
+		"SpeakerMuted",
+		"SpeakerVolumeLevel",
+		"SpeakerMaxLevel",
+		"SpeakerMinLevel",
+		"MicrophoneMuted",
+		"MicrophoneVolumeLevel",
+		"MicrophoneMaxLevel",
+		"MicrophoneMinLevel",
+		"MicrophoneAGCEnabled",
+		"ImageRotation",
+		"ImageFlipHorizontal",
+		"ImageFlipVertical",
+		"LocalVideoRecordingEnabled",
+		"LocalSnapshotRecordingEnabled",
+		"StatusLightEnabled",
+		"StatusLightBrightness",
+		"SupportsAudio",
+		"SupportsVideo",
+		"SupportsSnapshot",
+		"SupportsPrivacy",
+		"SupportsSpeaker",
+		"SupportsImageControl",
+		"SupportsWatermark",
+		"SupportsOnScreenDisplay",
+		"SupportsLocalStorage",
+		"SupportsHighDynamicRange",
+		"SupportsNightVision",
+	] as const,
+	commands: [
+		"AudioStreamAllocate",
+		"AudioStreamDeallocate",
+		"VideoStreamAllocate",
+		"VideoStreamModify",
+		"VideoStreamDeallocate",
+		"SnapshotStreamAllocate",
+		"SnapshotStreamModify",
+		"SnapshotStreamDeallocate",
+		"SetStreamPriorities",
+		"CaptureSnapshot",
+	] as const,
+	events: [
+	] as const
 }
 
 export default cameraAVStreamManagement;

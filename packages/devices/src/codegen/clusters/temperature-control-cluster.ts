@@ -1,7 +1,7 @@
 // This file is generated from temperature-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.698Z
+// Generated on 2025-08-17T14:20:46.756Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 /**
@@ -38,34 +38,24 @@ id: 86;
 	}
 }
 
-export const temperatureControl: Cluster<TemperatureControl['attributes'], TemperatureControl['commands'], TemperatureControl['events']> = {
+export const temperatureControl: ClusterDefinition<TemperatureControl> = {
 id: 86,
-	attributes: {
-		TemperatureSetpoint:0,
-		MinTemperature:0,
-		MaxTemperature:0,
-		Step:0,
-		SelectedTemperatureLevel:0,
-		SupportedTemperatureLevels:[],
-		/** Use actual temperature numbers */
-	SupportsTemperatureNumber: false,
-		/** Use temperature levels */
-	SupportsTemperatureLevel: false,
-		/** Use step control with temperature numbers */
-	SupportsTemperatureStep: false,
-},
-	commands: {
-		/** The SetTemperature command SHALL have the following data fields: */
-		SetTemperature: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"TemperatureSetpoint",
+		"MinTemperature",
+		"MaxTemperature",
+		"Step",
+		"SelectedTemperatureLevel",
+		"SupportedTemperatureLevels",
+		"SupportsTemperatureNumber",
+		"SupportsTemperatureLevel",
+		"SupportsTemperatureStep",
+	] as const,
+	commands: [
+		"SetTemperature",
+	] as const,
+	events: [
+	] as const
 }
 
 export default temperatureControl;

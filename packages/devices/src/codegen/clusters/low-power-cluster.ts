@@ -1,7 +1,7 @@
 // This file is generated from low-power-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.639Z
+// Generated on 2025-08-17T14:20:45.879Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 /**
@@ -24,20 +24,15 @@ id: 1288;
 	}
 }
 
-export const lowPower: Cluster<LowPower['attributes'], LowPower['commands'], LowPower['events']> = {
+export const lowPower: ClusterDefinition<LowPower> = {
 id: 1288,
-	attributes: {
-},
-	commands: {
-		/** This command shall put the device into low power mode. */
-		Sleep: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+	] as const,
+	commands: [
+		"Sleep",
+	] as const,
+	events: [
+	] as const
 }
 
 export default lowPower;

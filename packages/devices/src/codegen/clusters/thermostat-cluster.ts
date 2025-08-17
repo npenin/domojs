@@ -1,7 +1,7 @@
 // This file is generated from thermostat-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.772Z
+// Generated on 2025-08-17T14:20:46.833Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum SystemModeEnum {
@@ -441,208 +441,105 @@ id: 513;
 	}
 }
 
-export const thermostat: Cluster<Thermostat['attributes'], Thermostat['commands'], Thermostat['events']> = {
+export const thermostat: ClusterDefinition<Thermostat> = {
 id: 513,
-	attributes: {
-		LocalTemperature:0,
-		OutdoorTemperature:0,
-		Occupancy:null,
-		AbsMinHeatSetpointLimit:0,
-		AbsMaxHeatSetpointLimit:0,
-		AbsMinCoolSetpointLimit:0,
-		AbsMaxCoolSetpointLimit:0,
-		PICoolingDemand:0,
-		PIHeatingDemand:0,
-		HVACSystemTypeConfiguration:null,
-		LocalTemperatureCalibration:0,
-		OccupiedCoolingSetpoint:0,
-		OccupiedHeatingSetpoint:0,
-		UnoccupiedCoolingSetpoint:0,
-		UnoccupiedHeatingSetpoint:0,
-		MinHeatSetpointLimit:0,
-		MaxHeatSetpointLimit:0,
-		MinCoolSetpointLimit:0,
-		MaxCoolSetpointLimit:0,
-		MinSetpointDeadBand:0,
-		RemoteSensing:null,
-		ControlSequenceOfOperation:null,
-		SystemMode:null,
-		ThermostatRunningMode:null,
-		StartOfWeek:null,
-		NumberOfWeeklyTransitions:0,
-		NumberOfDailyTransitions:0,
-		TemperatureSetpointHold:null,
-		TemperatureSetpointHoldDuration:0,
-		ThermostatProgrammingOperationMode:null,
-		ThermostatRunningState:null,
-		SetpointChangeSource:null,
-		SetpointChangeAmount:0,
-		SetpointChangeSourceTimestamp:0,
-		OccupiedSetback:0,
-		OccupiedSetbackMin:0,
-		OccupiedSetbackMax:0,
-		UnoccupiedSetback:0,
-		UnoccupiedSetbackMin:0,
-		UnoccupiedSetbackMax:0,
-		EmergencyHeatDelta:0,
-		ACType:null,
-		ACCapacity:0,
-		ACRefrigerantType:null,
-		ACCompressorType:null,
-		ACErrorCode:null,
-		ACLouverPosition:null,
-		ACCoilTemperature:0,
-		ACCapacityformat:null,
-		PresetTypes:[],
-		ScheduleTypes:[],
-		NumberOfPresets:0,
-		NumberOfSchedules:0,
-		NumberOfScheduleTransitions:0,
-		NumberOfScheduleTransitionPerDay:0,
-		ActivePresetHandle:null,
-		ActiveScheduleHandle:null,
-		Presets:[],
-		Schedules:[],
-		SetpointHoldExpiryTimestamp:0,
-		MaxThermostatSuggestions:0,
-		ThermostatSuggestions:[],
-		CurrentThermostatSuggestion:null,
-		ThermostatSuggestionNotFollowingReason:null,
-		/** Thermostat is capable of managing a heating device */
-	SupportsHeating: false,
-		/** Thermostat is capable of managing a cooling device */
-	SupportsCooling: false,
-		/** Supports Occupied and Unoccupied setpoints */
-	SupportsOccupancy: false,
-		/** Supports remote configuration of a weekly schedule of setpoint transitions */
-	SupportsScheduleConfiguration: false,
-		/** Supports configurable setback (or span) */
-	SupportsSetback: false,
-		/** Supports a System Mode of Auto */
-	SupportsAutoMode: false,
-		/** Thermostat does not expose the LocalTemperature Value in the LocalTemperature attribute */
-	SupportsLocalTemperatureNotExposed: false,
-		/** Supports enhanced schedules */
-	SupportsMatterScheduleConfiguration: false,
-		/** Thermostat supports setpoint presets */
-	SupportsPresets: false,
-		/** Thermostat supports events */
-	SupportsEvents: false,
-},
-	commands: {
-		/** Upon receipt, the attributes for the indicated setpoint(s) SHALL have the amount specified in the Amount field added to them. */
-		SetpointRaiseLower: {
-			inputparams: [
-				null, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to update the thermostat weekly setpoint schedule from a management system. */
-		SetWeeklySchedule: {
-			inputparams: [
-				0, 
-				null, 
-				null, 
-				[], 
-			],
-			 outputparams: []
-            },
-		/** The Current Weekly Schedule Command is sent from the server in response to the Get Weekly Schedule Command. */
-		GetWeeklySchedule: {
-			inputparams: [
-				null, 
-				null, 
-			],
-			 outputparams: [
-				0, 
-				null, 
-				null, 
-				[], ]
-            },
-		/** This command is used to clear the weekly schedule. */
-		ClearWeeklySchedule: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-		/** Upon receipt, if the Schedules attribute contains a ScheduleStruct whose ScheduleHandle field matches the value of the ScheduleHandle field, the server SHALL set the thermostat's ActiveScheduleHandle attribute to the value of the ScheduleHandle field. */
-		SetActiveScheduleRequest: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** ID */
-		SetActivePresetRequest: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		AddThermostatSuggestion: {
-			inputparams: [
-				null, 
-				0, 
-				0, 
-			],
-			 outputparams: [
-				0, ]
-            },
-		RemoveThermostatSuggestion: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** Begins, Commits or Cancels an atomic write */
-		AtomicRequest: {
-			inputparams: [
-				null, 
-				[], 
-				0, 
-			],
-			 outputparams: [
-				0, 
-				[], 
-				0, ]
-            },
-},
-	events: {
-		SystemModeChange: [
-			
-			null, 
-			null, ],
-		LocalTemperatureChange: [
-			
-			0, ],
-		OccupancyChange: [
-			
-			null, 
-			null, ],
-		SetpointChange: [
-			
-			null, 
-			null, 
-			0, 
-			0, ],
-		RunningStateChange: [
-			
-			null, 
-			null, ],
-		RunningModeChange: [
-			
-			null, 
-			null, ],
-		ActiveScheduleChange: [
-			
-			null, 
-			null, ],
-		ActivePresetChange: [
-			
-			null, 
-			null, ],
-	}
+	attributes: [
+		"LocalTemperature",
+		"OutdoorTemperature",
+		"Occupancy",
+		"AbsMinHeatSetpointLimit",
+		"AbsMaxHeatSetpointLimit",
+		"AbsMinCoolSetpointLimit",
+		"AbsMaxCoolSetpointLimit",
+		"PICoolingDemand",
+		"PIHeatingDemand",
+		"HVACSystemTypeConfiguration",
+		"LocalTemperatureCalibration",
+		"OccupiedCoolingSetpoint",
+		"OccupiedHeatingSetpoint",
+		"UnoccupiedCoolingSetpoint",
+		"UnoccupiedHeatingSetpoint",
+		"MinHeatSetpointLimit",
+		"MaxHeatSetpointLimit",
+		"MinCoolSetpointLimit",
+		"MaxCoolSetpointLimit",
+		"MinSetpointDeadBand",
+		"RemoteSensing",
+		"ControlSequenceOfOperation",
+		"SystemMode",
+		"ThermostatRunningMode",
+		"StartOfWeek",
+		"NumberOfWeeklyTransitions",
+		"NumberOfDailyTransitions",
+		"TemperatureSetpointHold",
+		"TemperatureSetpointHoldDuration",
+		"ThermostatProgrammingOperationMode",
+		"ThermostatRunningState",
+		"SetpointChangeSource",
+		"SetpointChangeAmount",
+		"SetpointChangeSourceTimestamp",
+		"OccupiedSetback",
+		"OccupiedSetbackMin",
+		"OccupiedSetbackMax",
+		"UnoccupiedSetback",
+		"UnoccupiedSetbackMin",
+		"UnoccupiedSetbackMax",
+		"EmergencyHeatDelta",
+		"ACType",
+		"ACCapacity",
+		"ACRefrigerantType",
+		"ACCompressorType",
+		"ACErrorCode",
+		"ACLouverPosition",
+		"ACCoilTemperature",
+		"ACCapacityformat",
+		"PresetTypes",
+		"ScheduleTypes",
+		"NumberOfPresets",
+		"NumberOfSchedules",
+		"NumberOfScheduleTransitions",
+		"NumberOfScheduleTransitionPerDay",
+		"ActivePresetHandle",
+		"ActiveScheduleHandle",
+		"Presets",
+		"Schedules",
+		"SetpointHoldExpiryTimestamp",
+		"MaxThermostatSuggestions",
+		"ThermostatSuggestions",
+		"CurrentThermostatSuggestion",
+		"ThermostatSuggestionNotFollowingReason",
+		"SupportsHeating",
+		"SupportsCooling",
+		"SupportsOccupancy",
+		"SupportsScheduleConfiguration",
+		"SupportsSetback",
+		"SupportsAutoMode",
+		"SupportsLocalTemperatureNotExposed",
+		"SupportsMatterScheduleConfiguration",
+		"SupportsPresets",
+		"SupportsEvents",
+	] as const,
+	commands: [
+		"SetpointRaiseLower",
+		"SetWeeklySchedule",
+		"GetWeeklySchedule",
+		"ClearWeeklySchedule",
+		"SetActiveScheduleRequest",
+		"SetActivePresetRequest",
+		"AddThermostatSuggestion",
+		"RemoveThermostatSuggestion",
+		"AtomicRequest",
+	] as const,
+	events: [
+		"SystemModeChange",
+		"LocalTemperatureChange",
+		"OccupancyChange",
+		"SetpointChange",
+		"RunningStateChange",
+		"RunningModeChange",
+		"ActiveScheduleChange",
+		"ActivePresetChange",
+	] as const
 }
 
 export default thermostat;

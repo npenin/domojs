@@ -1,7 +1,7 @@
 // This file is generated from valve-configuration-and-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:49.019Z
+// Generated on 2025-08-17T14:20:47.089Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum ValveStateEnum {
@@ -73,50 +73,31 @@ id: 129;
 	}
 }
 
-export const valveConfigurationAndControl: Cluster<ValveConfigurationAndControl['attributes'], ValveConfigurationAndControl['commands'], ValveConfigurationAndControl['events']> = {
+export const valveConfigurationAndControl: ClusterDefinition<ValveConfigurationAndControl> = {
 id: 129,
-	attributes: {
-		OpenDuration:0,
-		DefaultOpenDuration:0,
-		AutoCloseTime:0,
-		RemainingDuration:0,
-		CurrentState:null,
-		TargetState:null,
-		CurrentLevel:0,
-		TargetLevel:0,
-		DefaultOpenLevel:0,
-		ValveFault:null,
-		LevelStep:0,
-		/** UTC time is used for time indications */
-	SupportsTimeSync: false,
-		/** Device supports setting the specific position of the valve */
-	SupportsLevel: false,
-},
-	commands: {
-		/** This command is used to set the valve to its open position. */
-		Open: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to set the valve to its closed position. */
-		Close: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-},
-	events: {
-		ValveStateChanged: [
-			
-			null, 
-			0, ],
-		ValveFault: [
-			
-			null, ],
-	}
+	attributes: [
+		"OpenDuration",
+		"DefaultOpenDuration",
+		"AutoCloseTime",
+		"RemainingDuration",
+		"CurrentState",
+		"TargetState",
+		"CurrentLevel",
+		"TargetLevel",
+		"DefaultOpenLevel",
+		"ValveFault",
+		"LevelStep",
+		"SupportsTimeSync",
+		"SupportsLevel",
+	] as const,
+	commands: [
+		"Open",
+		"Close",
+	] as const,
+	events: [
+		"ValveStateChanged",
+		"ValveFault",
+	] as const
 }
 
 export default valveConfigurationAndControl;

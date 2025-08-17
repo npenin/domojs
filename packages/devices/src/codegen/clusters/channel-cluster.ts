@@ -1,7 +1,7 @@
 // This file is generated from channel-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.135Z
+// Generated on 2025-08-17T14:20:44.835Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum LineupInfoTypeEnum {
@@ -181,84 +181,27 @@ id: 1284;
 	}
 }
 
-export const channel: Cluster<Channel['attributes'], Channel['commands'], Channel['events']> = {
+export const channel: ClusterDefinition<Channel> = {
 id: 1284,
-	attributes: {
-		ChannelList:[],
-		Lineup:null,
-		CurrentChannel:null,
-		/** Provides list of available channels. */
-	SupportsChannelList: false,
-		/** Provides lineup info, which is a reference to an external source of lineup information. */
-	SupportsLineupInfo: false,
-		/** Provides electronic program guide information. */
-	SupportsElectronicGuide: false,
-		/** Provides ability to record program. */
-	SupportsRecordProgram: false,
-},
-	commands: {
-		/** Change the channel on the media player to the channel case-insensitive exact matching the value passed as an argument. */
-		ChangeChannel: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Change the channel on the media plaeyer to the channel with the given Number in the ChannelList attribute. */
-		ChangeChannelByNumber: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command provides channel up and channel down functionality, but allows channel index jumps of size Count. When the value of the increase or decrease is larger than the number of channels remaining in the given direction, then the behavior SHALL be to return to the beginning (or end) of the channel list and continue. For example, if the current channel is at index 0 and count value of -1 is given, then the current channel should change to the last channel. */
-		SkipChannel: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command retrieves the program guide. It accepts several filter parameters to return specific schedule and program information from a content app. The command shall receive in response a ProgramGuideResponse. */
-		GetProgramGuide: {
-			inputparams: [
-				0, 
-				0, 
-				[], 
-				null, 
-				null, 
-				[], 
-				null, 
-			],
-			 outputparams: [
-				null, 
-				[], ]
-            },
-		/** Record a specific program or series when it goes live. This functionality enables DVR recording features. */
-		RecordProgram: {
-			inputparams: [
-				null, 
-				null, 
-				[], 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Cancel recording for a specific program or series. */
-		CancelRecordProgram: {
-			inputparams: [
-				null, 
-				null, 
-				[], 
-				null, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"ChannelList",
+		"Lineup",
+		"CurrentChannel",
+		"SupportsChannelList",
+		"SupportsLineupInfo",
+		"SupportsElectronicGuide",
+		"SupportsRecordProgram",
+	] as const,
+	commands: [
+		"ChangeChannel",
+		"ChangeChannelByNumber",
+		"SkipChannel",
+		"GetProgramGuide",
+		"RecordProgram",
+		"CancelRecordProgram",
+	] as const,
+	events: [
+	] as const
 }
 
 export default channel;

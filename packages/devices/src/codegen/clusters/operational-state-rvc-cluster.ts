@@ -1,7 +1,7 @@
 // This file is generated from operational-state-rvc-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.152Z
+// Generated on 2025-08-17T14:20:46.216Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum OperationalStateEnum {
@@ -89,49 +89,25 @@ id: 97;
 	}
 }
 
-export const rVCOperationalState: Cluster<RVCOperationalState['attributes'], RVCOperationalState['commands'], RVCOperationalState['events']> = {
+export const rVCOperationalState: ClusterDefinition<RVCOperationalState> = {
 id: 97,
-	attributes: {
-		PhaseList:[],
-		CurrentPhase:0,
-		CountdownTime:0,
-		OperationalStateList:[],
-		OperationalState:0,
-		OperationalError:null,
-},
-	commands: {
-		/** Upon receipt, the device SHALL pause its operation if it is possible based on the current function of the server. */
-		Pause: {
-			inputparams: [
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Upon receipt, the device SHALL resume its operation from the point it was at when it received the Pause command, or from the point when it was paused by means outside of this cluster (for example by manual button press). */
-		Resume: {
-			inputparams: [
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** On receipt of this command, the device SHALL start seeking the charging dock, if possible in the current state of the device. */
-		GoHome: {
-			inputparams: [
-			],
-			 outputparams: [
-				null, ]
-            },
-},
-	events: {
-		OperationalError: [
-			
-			null, ],
-		OperationCompletion: [
-			
-			0, 
-			0, 
-			0, ],
-	}
+	attributes: [
+		"PhaseList",
+		"CurrentPhase",
+		"CountdownTime",
+		"OperationalStateList",
+		"OperationalState",
+		"OperationalError",
+	] as const,
+	commands: [
+		"Pause",
+		"Resume",
+		"GoHome",
+	] as const,
+	events: [
+		"OperationalError",
+		"OperationCompletion",
+	] as const
 }
 
 export default rVCOperationalState;

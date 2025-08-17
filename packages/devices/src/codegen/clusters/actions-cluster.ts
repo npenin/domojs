@@ -1,7 +1,7 @@
 // This file is generated from actions-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:45.723Z
+// Generated on 2025-08-17T14:20:44.570Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum ActionErrorEnum {
@@ -192,129 +192,31 @@ id: 37;
 	}
 }
 
-export const actions: Cluster<Actions['attributes'], Actions['commands'], Actions['events']> = {
+export const actions: ClusterDefinition<Actions> = {
 id: 37,
-	attributes: {
-		ActionList:[],
-		EndpointLists:[],
-		SetupURL:null,
-},
-	commands: {
-		/** This command is used to trigger an instantaneous action. */
-		InstantAction: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to trigger an instantaneous action with a transition over a given time. */
-		InstantActionWithTransition: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to trigger the commencement of an action. */
-		StartAction: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to trigger the commencement of an action with a duration. */
-		StartActionWithDuration: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to stop an action. */
-		StopAction: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to pause an action. */
-		PauseAction: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to pause an action with a duration. */
-		PauseActionWithDuration: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to resume an action. */
-		ResumeAction: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to enable an action. */
-		EnableAction: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to enable an action with a duration. */
-		EnableActionWithDuration: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to disable an action. */
-		DisableAction: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to disable an action with a duration. */
-		DisableActionWithDuration: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-		StateChanged: [
-			
-			0, 
-			0, 
-			null, ],
-		ActionFailed: [
-			
-			0, 
-			0, 
-			null, 
-			null, ],
-	}
+	attributes: [
+		"ActionList",
+		"EndpointLists",
+		"SetupURL",
+	] as const,
+	commands: [
+		"InstantAction",
+		"InstantActionWithTransition",
+		"StartAction",
+		"StartActionWithDuration",
+		"StopAction",
+		"PauseAction",
+		"PauseActionWithDuration",
+		"ResumeAction",
+		"EnableAction",
+		"EnableActionWithDuration",
+		"DisableAction",
+		"DisableActionWithDuration",
+	] as const,
+	events: [
+		"StateChanged",
+		"ActionFailed",
+	] as const
 }
 
 export default actions;

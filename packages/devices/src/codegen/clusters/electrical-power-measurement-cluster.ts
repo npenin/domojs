@@ -1,7 +1,7 @@
 // This file is generated from electrical-power-measurement-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.950Z
+// Generated on 2025-08-17T14:20:45.356Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum PowerModeEnum {
@@ -75,46 +75,39 @@ id: 144;
 	}
 }
 
-export const electricalPowerMeasurement: Cluster<ElectricalPowerMeasurement['attributes'], ElectricalPowerMeasurement['commands'], ElectricalPowerMeasurement['events']> = {
+export const electricalPowerMeasurement: ClusterDefinition<ElectricalPowerMeasurement> = {
 id: 144,
-	attributes: {
-		PowerMode:null,
-		NumberOfMeasurementTypes:0,
-		Accuracy:[],
-		Ranges:[],
-		Voltage:0,
-		ActiveCurrent:0,
-		ReactiveCurrent:0,
-		ApparentCurrent:0,
-		ActivePower:0,
-		ReactivePower:0,
-		ApparentPower:0,
-		RMSVoltage:0,
-		RMSCurrent:0,
-		RMSPower:0,
-		Frequency:null,
-		HarmonicCurrents:[],
-		HarmonicPhases:[],
-		PowerFactor:null,
-		NeutralCurrent:0,
-		/** Supports measurement of direct current */
-	SupportsDirectCurrent: false,
-		/** Supports measurement of alternating current */
-	SupportsAlternatingCurrent: false,
-		/** Supports polyphase measurements */
-	SupportsPolyphasePower: false,
-		/** Supports measurement of AC harmonics */
-	SupportsHarmonics: false,
-		/** Supports measurement of AC harmonic phases */
-	SupportsPowerQuality: false,
-},
-	commands: {
-},
-	events: {
-		MeasurementPeriodRanges: [
-			
-			[], ],
-	}
+	attributes: [
+		"PowerMode",
+		"NumberOfMeasurementTypes",
+		"Accuracy",
+		"Ranges",
+		"Voltage",
+		"ActiveCurrent",
+		"ReactiveCurrent",
+		"ApparentCurrent",
+		"ActivePower",
+		"ReactivePower",
+		"ApparentPower",
+		"RMSVoltage",
+		"RMSCurrent",
+		"RMSPower",
+		"Frequency",
+		"HarmonicCurrents",
+		"HarmonicPhases",
+		"PowerFactor",
+		"NeutralCurrent",
+		"SupportsDirectCurrent",
+		"SupportsAlternatingCurrent",
+		"SupportsPolyphasePower",
+		"SupportsHarmonics",
+		"SupportsPowerQuality",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+		"MeasurementPeriodRanges",
+	] as const
 }
 
 export default electricalPowerMeasurement;

@@ -1,7 +1,7 @@
 // This file is generated from operational-state-oven-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.135Z
+// Generated on 2025-08-17T14:20:46.197Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum OperationalStateEnum {
@@ -60,42 +60,24 @@ id: 72;
 	}
 }
 
-export const ovenCavityOperationalState: Cluster<OvenCavityOperationalState['attributes'], OvenCavityOperationalState['commands'], OvenCavityOperationalState['events']> = {
+export const ovenCavityOperationalState: ClusterDefinition<OvenCavityOperationalState> = {
 id: 72,
-	attributes: {
-		PhaseList:[],
-		CurrentPhase:0,
-		CountdownTime:0,
-		OperationalStateList:[],
-		OperationalState:null,
-		OperationalError:null,
-},
-	commands: {
-		/** Upon receipt, the device SHALL stop its operation if it is at a position where it is safe to do so and/or permitted. */
-		Stop: {
-			inputparams: [
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** Upon receipt, the device SHALL start its operation if it is safe to do so and the device is in an operational state from which it can be started. */
-		Start: {
-			inputparams: [
-			],
-			 outputparams: [
-				null, ]
-            },
-},
-	events: {
-		OperationalError: [
-			
-			null, ],
-		OperationCompletion: [
-			
-			0, 
-			0, 
-			0, ],
-	}
+	attributes: [
+		"PhaseList",
+		"CurrentPhase",
+		"CountdownTime",
+		"OperationalStateList",
+		"OperationalState",
+		"OperationalError",
+	] as const,
+	commands: [
+		"Stop",
+		"Start",
+	] as const,
+	events: [
+		"OperationalError",
+		"OperationCompletion",
+	] as const
 }
 
 export default ovenCavityOperationalState;

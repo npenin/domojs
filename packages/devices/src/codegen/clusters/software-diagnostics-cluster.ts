@@ -1,7 +1,7 @@
 // This file is generated from software-diagnostics-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.622Z
+// Generated on 2025-08-17T14:20:46.667Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export interface ThreadMetricsStruct {
@@ -43,31 +43,21 @@ id: 52;
 	}
 }
 
-export const softwareDiagnostics: Cluster<SoftwareDiagnostics['attributes'], SoftwareDiagnostics['commands'], SoftwareDiagnostics['events']> = {
+export const softwareDiagnostics: ClusterDefinition<SoftwareDiagnostics> = {
 id: 52,
-	attributes: {
-		ThreadMetrics:[],
-		CurrentHeapFree:null,
-		CurrentHeapUsed:null,
-		CurrentHeapHighWatermark:null,
-		/** Node makes available the metrics for high watermark related to memory consumption. */
-	SupportsWatermarks: false,
-},
-	commands: {
-		/** This command is used to reset the high watermarks for heap and stack memory. */
-		ResetWatermarks: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-},
-	events: {
-		SoftwareFault: [
-			
-			null, 
-			null, 
-			null, ],
-	}
+	attributes: [
+		"ThreadMetrics",
+		"CurrentHeapFree",
+		"CurrentHeapUsed",
+		"CurrentHeapHighWatermark",
+		"SupportsWatermarks",
+	] as const,
+	commands: [
+		"ResetWatermarks",
+	] as const,
+	events: [
+		"SoftwareFault",
+	] as const
 }
 
 export default softwareDiagnostics;

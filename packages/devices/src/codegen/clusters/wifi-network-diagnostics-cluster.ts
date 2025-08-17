@@ -1,7 +1,7 @@
 // This file is generated from wifi-network-diagnostics-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:49.154Z
+// Generated on 2025-08-17T14:20:47.228Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum SecurityTypeEnum {
@@ -82,47 +82,33 @@ id: 54;
 	}
 }
 
-export const wiFiNetworkDiagnostics: Cluster<WiFiNetworkDiagnostics['attributes'], WiFiNetworkDiagnostics['commands'], WiFiNetworkDiagnostics['events']> = {
+export const wiFiNetworkDiagnostics: ClusterDefinition<WiFiNetworkDiagnostics> = {
 id: 54,
-	attributes: {
-		BSSID:null,
-		SecurityType:null,
-		WiFiVersion:null,
-		ChannelNumber:0,
-		RSSI:0,
-		BeaconLostCount:0,
-		BeaconRxCount:0,
-		PacketMulticastRxCount:0,
-		PacketMulticastTxCount:0,
-		PacketUnicastRxCount:0,
-		PacketUnicastTxCount:0,
-		CurrentMaxRate:null,
-		OverrunCount:null,
-		/** Node makes available the counts for the number of received and transmitted packets on the Wi-Fi interface. */
-	SupportsPacketCounts: false,
-		/** Node makes available the counts for the number of errors that have occurred during the reception and transmission of packets on the Wi-Fi interface. */
-	SupportsErrorCounts: false,
-},
-	commands: {
-		/** This command is used to reset the count attributes. */
-		ResetCounts: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-},
-	events: {
-		Disconnection: [
-			
-			0, ],
-		AssociationFailure: [
-			
-			null, 
-			0, ],
-		ConnectionStatus: [
-			
-			null, ],
-	}
+	attributes: [
+		"BSSID",
+		"SecurityType",
+		"WiFiVersion",
+		"ChannelNumber",
+		"RSSI",
+		"BeaconLostCount",
+		"BeaconRxCount",
+		"PacketMulticastRxCount",
+		"PacketMulticastTxCount",
+		"PacketUnicastRxCount",
+		"PacketUnicastTxCount",
+		"CurrentMaxRate",
+		"OverrunCount",
+		"SupportsPacketCounts",
+		"SupportsErrorCounts",
+	] as const,
+	commands: [
+		"ResetCounts",
+	] as const,
+	events: [
+		"Disconnection",
+		"AssociationFailure",
+		"ConnectionStatus",
+	] as const
 }
 
 export default wiFiNetworkDiagnostics;

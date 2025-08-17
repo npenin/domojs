@@ -1,7 +1,7 @@
 // This file is generated from fault-injection-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.123Z
+// Generated on 2025-08-17T14:20:45.468Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum FaultType {
@@ -46,34 +46,16 @@ id: 4294048774;
 	}
 }
 
-export const faultInjection: Cluster<FaultInjection['attributes'], FaultInjection['commands'], FaultInjection['events']> = {
+export const faultInjection: ClusterDefinition<FaultInjection> = {
 id: 4294048774,
-	attributes: {
-},
-	commands: {
-		/** Configure a fault to be triggered deterministically */
-		FailAtFault: {
-			inputparams: [
-				null, 
-				0, 
-				0, 
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** Configure a fault to be triggered randomly, with a given probability defined as a percentage */
-		FailRandomlyAtFault: {
-			inputparams: [
-				null, 
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+	] as const,
+	commands: [
+		"FailAtFault",
+		"FailRandomlyAtFault",
+	] as const,
+	events: [
+	] as const
 }
 
 export default faultInjection;

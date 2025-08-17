@@ -1,7 +1,7 @@
 // This file is generated from pump-configuration-and-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.341Z
+// Generated on 2025-08-17T14:20:46.392Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum OperationModeEnum {
@@ -117,85 +117,61 @@ id: 512;
 	}
 }
 
-export const pumpConfigurationAndControl: Cluster<PumpConfigurationAndControl['attributes'], PumpConfigurationAndControl['commands'], PumpConfigurationAndControl['events']> = {
+export const pumpConfigurationAndControl: ClusterDefinition<PumpConfigurationAndControl> = {
 id: 512,
-	attributes: {
-		MaxPressure:0,
-		MaxSpeed:0,
-		MaxFlow:0,
-		MinConstPressure:0,
-		MaxConstPressure:0,
-		MinCompPressure:0,
-		MaxCompPressure:0,
-		MinConstSpeed:0,
-		MaxConstSpeed:0,
-		MinConstFlow:0,
-		MaxConstFlow:0,
-		MinConstTemp:0,
-		MaxConstTemp:0,
-		PumpStatus:null,
-		EffectiveOperationMode:null,
-		EffectiveControlMode:null,
-		Capacity:0,
-		Speed:0,
-		LifetimeRunningHours:0,
-		Power:0,
-		LifetimeEnergyConsumed:0,
-		OperationMode:null,
-		ControlMode:null,
-		/** Supports operating in constant pressure mode */
-	SupportsConstantPressure: false,
-		/** Supports operating in compensated pressure mode */
-	SupportsCompensatedPressure: false,
-		/** Supports operating in constant flow mode */
-	SupportsConstantFlow: false,
-		/** Supports operating in constant speed mode */
-	SupportsConstantSpeed: false,
-		/** Supports operating in constant temperature mode */
-	SupportsConstantTemperature: false,
-		/** Supports operating in automatic mode */
-	SupportsAutomatic: false,
-		/** Supports operating using local settings */
-	SupportsLocalOperation: false,
-},
-	commands: {
-},
-	events: {
-		SupplyVoltageLow: [
-			],
-		SupplyVoltageHigh: [
-			],
-		PowerMissingPhase: [
-			],
-		SystemPressureLow: [
-			],
-		SystemPressureHigh: [
-			],
-		DryRunning: [
-			],
-		MotorTemperatureHigh: [
-			],
-		PumpMotorFatalFailure: [
-			],
-		ElectronicTemperatureHigh: [
-			],
-		PumpBlocked: [
-			],
-		SensorFailure: [
-			],
-		ElectronicNonFatalFailure: [
-			],
-		ElectronicFatalFailure: [
-			],
-		GeneralFault: [
-			],
-		Leakage: [
-			],
-		AirDetection: [
-			],
-		TurbineOperation: [
-			],
-	}
+	attributes: [
+		"MaxPressure",
+		"MaxSpeed",
+		"MaxFlow",
+		"MinConstPressure",
+		"MaxConstPressure",
+		"MinCompPressure",
+		"MaxCompPressure",
+		"MinConstSpeed",
+		"MaxConstSpeed",
+		"MinConstFlow",
+		"MaxConstFlow",
+		"MinConstTemp",
+		"MaxConstTemp",
+		"PumpStatus",
+		"EffectiveOperationMode",
+		"EffectiveControlMode",
+		"Capacity",
+		"Speed",
+		"LifetimeRunningHours",
+		"Power",
+		"LifetimeEnergyConsumed",
+		"OperationMode",
+		"ControlMode",
+		"SupportsConstantPressure",
+		"SupportsCompensatedPressure",
+		"SupportsConstantFlow",
+		"SupportsConstantSpeed",
+		"SupportsConstantTemperature",
+		"SupportsAutomatic",
+		"SupportsLocalOperation",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+		"SupplyVoltageLow",
+		"SupplyVoltageHigh",
+		"PowerMissingPhase",
+		"SystemPressureLow",
+		"SystemPressureHigh",
+		"DryRunning",
+		"MotorTemperatureHigh",
+		"PumpMotorFatalFailure",
+		"ElectronicTemperatureHigh",
+		"PumpBlocked",
+		"SensorFailure",
+		"ElectronicNonFatalFailure",
+		"ElectronicFatalFailure",
+		"GeneralFault",
+		"Leakage",
+		"AirDetection",
+		"TurbineOperation",
+	] as const
 }
 
 export default pumpConfigurationAndControl;

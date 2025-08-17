@@ -1,7 +1,7 @@
 // This file is generated from webrtc-requestor-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:49.133Z
+// Generated on 2025-08-17T14:20:47.205Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 /**
@@ -53,49 +53,19 @@ id: 1364;
 	}
 }
 
-export const webRTCTransportRequestor: Cluster<WebRTCTransportRequestor['attributes'], WebRTCTransportRequestor['commands'], WebRTCTransportRequestor['events']> = {
+export const webRTCTransportRequestor: ClusterDefinition<WebRTCTransportRequestor> = {
 id: 1364,
-	attributes: {
-		CurrentSessions:[],
-},
-	commands: {
-		/** This command provides the stream requestor with WebRTC session details. */
-		Offer: {
-			inputparams: [
-				0, 
-				null, 
-				[], 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command provides the stream requestor with the WebRTC session details (i.e. Session ID and SDP answer), It is the next command in the Offer/Answer flow to the ProvideOffer command. */
-		Answer: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command allows for the object based ICE candidates generated after the initial Offer / Answer exchange, via a JSEP onicecandidate event, a DOM rtcpeerconnectioniceevent event, or other WebRTC compliant implementations, to be added to a session during the gathering phase. */
-		ICECandidates: {
-			inputparams: [
-				0, 
-				[], 
-			],
-			 outputparams: []
-            },
-		/** This command notifies the stream requestor that the provider has ended the WebRTC session. */
-		End: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-	}
+	attributes: [
+		"CurrentSessions",
+	] as const,
+	commands: [
+		"Offer",
+		"Answer",
+		"ICECandidates",
+		"End",
+	] as const,
+	events: [
+	] as const
 }
 
 export default webRTCTransportRequestor;

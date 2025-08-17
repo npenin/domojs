@@ -1,7 +1,7 @@
 // This file is generated from application-launcher-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:45.807Z
+// Generated on 2025-08-17T14:20:44.644Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum StatusEnum {
@@ -69,46 +69,20 @@ id: 1292;
 	}
 }
 
-export const applicationLauncher: Cluster<ApplicationLauncher['attributes'], ApplicationLauncher['commands'], ApplicationLauncher['events']> = {
+export const applicationLauncher: ClusterDefinition<ApplicationLauncher> = {
 id: 1292,
-	attributes: {
-		CatalogList:[],
-		CurrentApp:null,
-		/** Support for attributes and commands required for endpoint to support launching any application within the supported application catalogs */
-	SupportsApplicationPlatform: false,
-},
-	commands: {
-		/** Upon receipt, this SHALL launch the specified app with optional data. The TV Device SHALL launch and bring to foreground the identified application in the command if the application is not already launched and in foreground. The TV Device SHALL update state attribute on the Application Basic cluster of the Endpoint corresponding to the launched application. This command returns a Launch Response. */
-		LaunchApp: {
-			inputparams: [
-				null, 
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Upon receipt on a Video Player endpoint this SHALL stop the specified application if it is running. */
-		StopApp: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Upon receipt on a Video Player endpoint this SHALL hide the specified application if it is running and visible. */
-		HideApp: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-},
-	events: {
-	}
+	attributes: [
+		"CatalogList",
+		"CurrentApp",
+		"SupportsApplicationPlatform",
+	] as const,
+	commands: [
+		"LaunchApp",
+		"StopApp",
+		"HideApp",
+	] as const,
+	events: [
+	] as const
 }
 
 export default applicationLauncher;

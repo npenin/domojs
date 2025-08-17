@@ -1,7 +1,7 @@
 // This file is generated from bridged-device-basic-information-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.068Z
+// Generated on 2025-08-17T14:20:44.772Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum ProductFinishEnum {
@@ -100,55 +100,39 @@ id: 57;
 	}
 }
 
-export const bridgedDeviceBasicInformation: Cluster<BridgedDeviceBasicInformation['attributes'], BridgedDeviceBasicInformation['commands'], BridgedDeviceBasicInformation['events']> = {
+export const bridgedDeviceBasicInformation: ClusterDefinition<BridgedDeviceBasicInformation> = {
 id: 57,
-	attributes: {
-		VendorName:null,
-		VendorID:0,
-		ProductName:null,
-		ProductID:0,
-		NodeLabel:null,
-		HardwareVersion:0,
-		HardwareVersionString:null,
-		SoftwareVersion:0,
-		SoftwareVersionString:null,
-		ManufacturingDate:null,
-		PartNumber:null,
-		ProductURL:null,
-		ProductLabel:null,
-		SerialNumber:null,
-		Reachable:null,
-		UniqueID:null,
-		ProductAppearance:null,
-		ConfigurationVersion:0,
-		/** Support bridged ICDs. */
-	SupportsBridgedICDSupport: false,
-},
-	commands: {
-		/** Upon receipt, the server SHALL attempt to keep the bridged device active for the duration specified by the command, when the device is next active. */
-		KeepActive: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-		StartUp: [
-			
-			0, ],
-		ShutDown: [
-			],
-		Leave: [
-			],
-		ReachableChanged: [
-			
-			null, ],
-		ActiveChanged: [
-			
-			0, ],
-	}
+	attributes: [
+		"VendorName",
+		"VendorID",
+		"ProductName",
+		"ProductID",
+		"NodeLabel",
+		"HardwareVersion",
+		"HardwareVersionString",
+		"SoftwareVersion",
+		"SoftwareVersionString",
+		"ManufacturingDate",
+		"PartNumber",
+		"ProductURL",
+		"ProductLabel",
+		"SerialNumber",
+		"Reachable",
+		"UniqueID",
+		"ProductAppearance",
+		"ConfigurationVersion",
+		"SupportsBridgedICDSupport",
+	] as const,
+	commands: [
+		"KeepActive",
+	] as const,
+	events: [
+		"StartUp",
+		"ShutDown",
+		"Leave",
+		"ReachableChanged",
+		"ActiveChanged",
+	] as const
 }
 
 export default bridgedDeviceBasicInformation;

@@ -1,7 +1,7 @@
 // This file is generated from rvc-clean-mode-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.488Z
+// Generated on 2025-08-17T14:20:46.536Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum StatusCode {
@@ -53,28 +53,18 @@ id: 85;
 	}
 }
 
-export const rVCCleanMode: Cluster<RVCCleanMode['attributes'], RVCCleanMode['commands'], RVCCleanMode['events']> = {
+export const rVCCleanMode: ClusterDefinition<RVCCleanMode> = {
 id: 85,
-	attributes: {
-		SupportedModes:[],
-		CurrentMode:0,
-		/** Cluster supports changing clean modes from non-Idle states */
-	SupportsDirectModeChange: false,
-},
-	commands: {
-		/** This command is used to change device modes.
-        On receipt of this command the device SHALL respond with a ChangeToModeResponse command. */
-		ChangeToMode: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				0, 
-				null, ]
-            },
-},
-	events: {
-	}
+	attributes: [
+		"SupportedModes",
+		"CurrentMode",
+		"SupportsDirectModeChange",
+	] as const,
+	commands: [
+		"ChangeToMode",
+	] as const,
+	events: [
+	] as const
 }
 
 export default rVCCleanMode;

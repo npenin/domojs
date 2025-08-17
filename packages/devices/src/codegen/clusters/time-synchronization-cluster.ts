@@ -1,7 +1,7 @@
 // This file is generated from time-synchronization-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.895Z
+// Generated on 2025-08-17T14:20:46.963Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum StatusCode {
@@ -151,86 +151,41 @@ id: 56;
 	}
 }
 
-export const timeSynchronization: Cluster<TimeSynchronization['attributes'], TimeSynchronization['commands'], TimeSynchronization['events']> = {
+export const timeSynchronization: ClusterDefinition<TimeSynchronization> = {
 id: 56,
-	attributes: {
-		UTCTime:0,
-		Granularity:null,
-		TimeSource:null,
-		TrustedTimeSource:null,
-		DefaultNTP:null,
-		TimeZone:[],
-		DSTOffset:[],
-		LocalTime:0,
-		TimeZoneDatabase:null,
-		NTPServerAvailable:null,
-		TimeZoneListMaxSize:0,
-		DSTOffsetListMaxSize:0,
-		SupportsDNSResolve:null,
-		/** Server supports time zone. */
-	SupportsTimeZone: false,
-		/** Server supports an NTP or SNTP client. */
-	SupportsNTPClient: false,
-		/** Server supports an NTP server role. */
-	SupportsNTPServer: false,
-		/** Time synchronization client cluster is present. */
-	SupportsTimeSyncClient: false,
-},
-	commands: {
-		/** This command MAY be issued by Administrator to set the time. */
-		SetUTCTime: {
-			inputparams: [
-				0, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL set TrustedTimeSource. */
-		SetTrustedTimeSource: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL set TimeZone. */
-		SetTimeZone: {
-			inputparams: [
-				[], 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** This command SHALL set DSTOffset. */
-		SetDSTOffset: {
-			inputparams: [
-				[], 
-			],
-			 outputparams: []
-            },
-		/** This command is used to set DefaultNTP. */
-		SetDefaultNTP: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-		DSTTableEmpty: [
-			],
-		DSTStatus: [
-			
-			null, ],
-		TimeZoneStatus: [
-			
-			0, 
-			null, ],
-		TimeFailure: [
-			],
-		MissingTrustedTimeSource: [
-			],
-	}
+	attributes: [
+		"UTCTime",
+		"Granularity",
+		"TimeSource",
+		"TrustedTimeSource",
+		"DefaultNTP",
+		"TimeZone",
+		"DSTOffset",
+		"LocalTime",
+		"TimeZoneDatabase",
+		"NTPServerAvailable",
+		"TimeZoneListMaxSize",
+		"DSTOffsetListMaxSize",
+		"SupportsDNSResolve",
+		"SupportsTimeZone",
+		"SupportsNTPClient",
+		"SupportsNTPServer",
+		"SupportsTimeSyncClient",
+	] as const,
+	commands: [
+		"SetUTCTime",
+		"SetTrustedTimeSource",
+		"SetTimeZone",
+		"SetDSTOffset",
+		"SetDefaultNTP",
+	] as const,
+	events: [
+		"DSTTableEmpty",
+		"DSTStatus",
+		"TimeZoneStatus",
+		"TimeFailure",
+		"MissingTrustedTimeSource",
+	] as const
 }
 
 export default timeSynchronization;

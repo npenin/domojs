@@ -1,7 +1,7 @@
 // This file is generated from scene.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.548Z
+// Generated on 2025-08-17T14:20:46.592Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum CopyModeBitmap {
@@ -144,111 +144,25 @@ id: 98;
 	}
 }
 
-export const scenesManagement: Cluster<ScenesManagement['attributes'], ScenesManagement['commands'], ScenesManagement['events']> = {
+export const scenesManagement: ClusterDefinition<ScenesManagement> = {
 id: 98,
-	attributes: {
-		SceneTableSize:0,
-		FabricSceneInfo:[],
-		/** The ability to store a name for a scene. */
-	SupportsSceneNames: false,
-},
-	commands: {
-		/** Add a scene to the scene table. Extension field sets are input as '{"ClusterID": VALUE, "AttributeValueList":[{"AttributeID": VALUE, "Value*": VALUE}]}'. */
-		AddScene: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-				null, 
-				[], 
-			],
-			 outputparams: [
-				0, 
-				0, 
-				0, ]
-            },
-		/** Retrieves the requested scene entry from its Scene table. */
-		ViewScene: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: [
-				0, 
-				0, 
-				0, 
-				0, 
-				null, 
-				[], ]
-            },
-		/** Removes the requested scene entry, corresponding to the value of the GroupID field, from its Scene Table */
-		RemoveScene: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: [
-				0, 
-				0, 
-				0, ]
-            },
-		/** Remove all scenes, corresponding to the value of the GroupID field, from its Scene Table */
-		RemoveAllScenes: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				0, 
-				0, ]
-            },
-		/** Adds the scene entry into its Scene Table along with all extension field sets corresponding to the current state of other clusters on the same endpoint */
-		StoreScene: {
-			inputparams: [
-				0, 
-				0, 
-			],
-			 outputparams: [
-				0, 
-				0, 
-				0, ]
-            },
-		/** Set the attributes and corresponding state for each other cluster implemented on the endpoint accordingly to the resquested scene entry in the Scene Table */
-		RecallScene: {
-			inputparams: [
-				0, 
-				0, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command can be used to get the used scene identifiers within a certain group, for the endpoint that implements this cluster. */
-		GetSceneMembership: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				0, 
-				0, 
-				0, 
-				[], ]
-            },
-		/** This command allows a client to efficiently copy scenes from one group/scene identifier pair to another group/scene identifier pair. */
-		CopyScene: {
-			inputparams: [
-				null, 
-				0, 
-				0, 
-				0, 
-				0, 
-			],
-			 outputparams: [
-				0, 
-				0, 
-				0, ]
-            },
-},
-	events: {
-	}
+	attributes: [
+		"SceneTableSize",
+		"FabricSceneInfo",
+		"SupportsSceneNames",
+	] as const,
+	commands: [
+		"AddScene",
+		"ViewScene",
+		"RemoveScene",
+		"RemoveAllScenes",
+		"StoreScene",
+		"RecallScene",
+		"GetSceneMembership",
+		"CopyScene",
+	] as const,
+	events: [
+	] as const
 }
 
 export default scenesManagement;

@@ -1,7 +1,7 @@
 // This file is generated from push-av-stream-transport-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:48.365Z
+// Generated on 2025-08-17T14:20:46.410Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum CMAFInterfaceEnum {
@@ -185,79 +185,26 @@ id: 1365;
 	}
 }
 
-export const pushAVStreamTransport: Cluster<PushAVStreamTransport['attributes'], PushAVStreamTransport['commands'], PushAVStreamTransport['events']> = {
+export const pushAVStreamTransport: ClusterDefinition<PushAVStreamTransport> = {
 id: 1365,
-	attributes: {
-		SupportedFormats:[],
-		CurrentConnections:[],
-		/** Supports a sensitivity value per Zone */
-	SupportsPerZoneSensitivity: false,
-		/** Supports metadata transmission in Push transports */
-	SupportsMetadata: false,
-},
-	commands: {
-		/** This command SHALL allocate a transport and return a PushTransportConnectionID. */
-		AllocatePushTransport: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, ]
-            },
-		/** This command SHALL be generated to request the Node deallocates the specified transport. */
-		DeallocatePushTransport: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to request the Node modifies the configuration of the specified push transport. */
-		ModifyPushTransport: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be generated to request the Node modifies the Transport Status of a specified transport or all transports. */
-		SetTransportStatus: {
-			inputparams: [
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL be generated to request the Node to manually start the specified push transport. */
-		ManuallyTriggerTransport: {
-			inputparams: [
-				0, 
-				null, 
-				null, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command SHALL return the Transport Configuration for the specified push transport or all allocated transports for the fabric if null. */
-		FindTransport: {
-			inputparams: [
-				0, 
-			],
-			 outputparams: [
-				[], ]
-            },
-},
-	events: {
-		PushTransportBegin: [
-			
-			0, 
-			null, 
-			null, ],
-		PushTransportEnd: [
-			
-			0, 
-			null, 
-			null, ],
-	}
+	attributes: [
+		"SupportedFormats",
+		"CurrentConnections",
+		"SupportsPerZoneSensitivity",
+		"SupportsMetadata",
+	] as const,
+	commands: [
+		"AllocatePushTransport",
+		"DeallocatePushTransport",
+		"ModifyPushTransport",
+		"SetTransportStatus",
+		"ManuallyTriggerTransport",
+		"FindTransport",
+	] as const,
+	events: [
+		"PushTransportBegin",
+		"PushTransportEnd",
+	] as const
 }
 
 export default pushAVStreamTransport;

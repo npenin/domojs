@@ -1,7 +1,7 @@
 // This file is generated from media-playback-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.746Z
+// Generated on 2025-08-17T14:20:45.961Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum PlaybackStateEnum {
@@ -216,160 +216,45 @@ id: 1286;
 	}
 }
 
-export const mediaPlayback: Cluster<MediaPlayback['attributes'], MediaPlayback['commands'], MediaPlayback['events']> = {
+export const mediaPlayback: ClusterDefinition<MediaPlayback> = {
 id: 1286,
-	attributes: {
-		CurrentState:null,
-		StartTime:0,
-		Duration:null,
-		SampledPosition:null,
-		PlaybackSpeed:0,
-		SeekRangeEnd:null,
-		SeekRangeStart:null,
-		ActiveAudioTrack:null,
-		AvailableAudioTracks:[],
-		ActiveTextTrack:null,
-		AvailableTextTracks:[],
-		/** Advanced media seeking */
-	SupportsAdvancedSeek: false,
-		/** Variable speed playback */
-	SupportsVariableSpeed: false,
-		/** Text Tracks */
-	SupportsTextTracks: false,
-		/** Audio Tracks */
-	SupportsAudioTracks: false,
-		/** Can play audio during fast and slow playback speeds */
-	SupportsAudioAdvance: false,
-},
-	commands: {
-		/** Upon receipt, this SHALL play media. */
-		Play: {
-			inputparams: [
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Upon receipt, this SHALL pause media. */
-		Pause: {
-			inputparams: [
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Upon receipt, this SHALL stop media. User experience is context-specific. This will often navigate the user back to the location where media was originally launched. */
-		Stop: {
-			inputparams: [
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Upon receipt, this SHALL Start Over with the current media playback item. */
-		StartOver: {
-			inputparams: [
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Upon receipt, this SHALL cause the handler to be invoked for "Previous". User experience is context-specific. This will often Go back to the previous media playback item. */
-		Previous: {
-			inputparams: [
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Upon receipt, this SHALL cause the handler to be invoked for "Next". User experience is context-specific. This will often Go forward to the next media playback item. */
-		Next: {
-			inputparams: [
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Upon receipt, this SHALL Rewind through media. Different Rewind speeds can be used on the TV based upon the number of sequential calls to this function. This is to avoid needing to define every speed now (multiple fast, slow motion, etc). */
-		Rewind: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Upon receipt, this SHALL Advance through media. Different FF speeds can be used on the TV based upon the number of sequential calls to this function. This is to avoid needing to define every speed now (multiple fast, slow motion, etc). */
-		FastForward: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Upon receipt, this SHALL Skip forward in the media by the given number of seconds, using the data as follows: */
-		SkipForward: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Upon receipt, this SHALL Skip backward in the media by the given number of seconds, using the data as follows: */
-		SkipBackward: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Upon receipt, this SHALL Skip backward in the media by the given number of seconds, using the data as follows: */
-		Seek: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: [
-				null, 
-				null, ]
-            },
-		/** Upon receipt, the server SHALL set the active Audio Track to the one identified by the TrackID in the Track catalog for the streaming media. If the TrackID does not exist in the Track catalog, OR does not correspond to the streaming media OR no media is being streamed at the time of receipt of this command, the server will return an error status of INVALID_ARGUMENT. */
-		ActivateAudioTrack: {
-			inputparams: [
-				null, 
-				0, 
-			],
-			 outputparams: []
-            },
-		/** Upon receipt, the server SHALL set the active Text Track to the one identified by the TrackID in the Track catalog for the streaming media. If the TrackID does not exist in the Track catalog, OR does not correspond to the streaming media OR no media is being streamed at the time of receipt of this command, the server SHALL return an error status of INVALID_ARGUMENT. */
-		ActivateTextTrack: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** If a Text Track is active (i.e. being displayed), upon receipt of this command, the server SHALL stop displaying it. */
-		DeactivateTextTrack: {
-			inputparams: [
-			],
-			 outputparams: []
-            },
-},
-	events: {
-		StateChanged: [
-			
-			null, 
-			0, 
-			null, 
-			null, 
-			0, 
-			null, 
-			null, 
-			null, 
-			null, ],
-	}
+	attributes: [
+		"CurrentState",
+		"StartTime",
+		"Duration",
+		"SampledPosition",
+		"PlaybackSpeed",
+		"SeekRangeEnd",
+		"SeekRangeStart",
+		"ActiveAudioTrack",
+		"AvailableAudioTracks",
+		"ActiveTextTrack",
+		"AvailableTextTracks",
+		"SupportsAdvancedSeek",
+		"SupportsVariableSpeed",
+		"SupportsTextTracks",
+		"SupportsAudioTracks",
+		"SupportsAudioAdvance",
+	] as const,
+	commands: [
+		"Play",
+		"Pause",
+		"Stop",
+		"StartOver",
+		"Previous",
+		"Next",
+		"Rewind",
+		"FastForward",
+		"SkipForward",
+		"SkipBackward",
+		"Seek",
+		"ActivateAudioTrack",
+		"ActivateTextTrack",
+		"DeactivateTextTrack",
+	] as const,
+	events: [
+		"StateChanged",
+	] as const
 }
 
 export default mediaPlayback;

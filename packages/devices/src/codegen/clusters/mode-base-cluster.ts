@@ -1,7 +1,7 @@
 // This file is generated from mode-base-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.845Z
+// Generated on 2025-08-17T14:20:46.059Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export interface ModeTagStruct {

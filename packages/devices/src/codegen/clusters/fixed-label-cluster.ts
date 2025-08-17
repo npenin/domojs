@@ -1,7 +1,7 @@
 // This file is generated from fixed-label-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:47.151Z
+// Generated on 2025-08-17T14:20:45.488Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export interface LabelStruct {
@@ -25,15 +25,15 @@ id: 64;
 	}
 }
 
-export const fixedLabel: Cluster<FixedLabel['attributes'], FixedLabel['commands'], FixedLabel['events']> = {
+export const fixedLabel: ClusterDefinition<FixedLabel> = {
 id: 64,
-	attributes: {
-		LabelList:[],
-},
-	commands: {
-},
-	events: {
-	}
+	attributes: [
+		"LabelList",
+	] as const,
+	commands: [
+	] as const,
+	events: [
+	] as const
 }
 
 export default fixedLabel;

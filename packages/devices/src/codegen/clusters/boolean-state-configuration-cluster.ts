@@ -1,7 +1,7 @@
 // This file is generated from boolean-state-configuration-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.045Z
+// Generated on 2025-08-17T14:20:44.754Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum AlarmModeBitmap {
@@ -64,51 +64,30 @@ id: 128;
 	}
 }
 
-export const booleanStateConfiguration: Cluster<BooleanStateConfiguration['attributes'], BooleanStateConfiguration['commands'], BooleanStateConfiguration['events']> = {
+export const booleanStateConfiguration: ClusterDefinition<BooleanStateConfiguration> = {
 id: 128,
-	attributes: {
-		CurrentSensitivityLevel:0,
-		SupportedSensitivityLevels:0,
-		DefaultSensitivityLevel:0,
-		AlarmsActive:null,
-		AlarmsSuppressed:null,
-		AlarmsEnabled:null,
-		AlarmsSupported:null,
-		SensorFault:null,
-		/** Supports visual alarms */
-	SupportsVisual: false,
-		/** Supports audible alarms */
-	SupportsAudible: false,
-		/** Supports ability to suppress or acknowledge alarms */
-	SupportsAlarmSuppress: false,
-		/** Supports ability to set sensor sensitivity */
-	SupportsSensitivityLevel: false,
-},
-	commands: {
-		/** This command is used to suppress the specified alarm mode. */
-		SuppressAlarm: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command is used to enable or disable the specified alarm mode. */
-		EnableDisableAlarm: {
-			inputparams: [
-				null, 
-			],
-			 outputparams: []
-            },
-},
-	events: {
-		AlarmsStateChanged: [
-			
-			null, 
-			null, ],
-		SensorFault: [
-			
-			null, ],
-	}
+	attributes: [
+		"CurrentSensitivityLevel",
+		"SupportedSensitivityLevels",
+		"DefaultSensitivityLevel",
+		"AlarmsActive",
+		"AlarmsSuppressed",
+		"AlarmsEnabled",
+		"AlarmsSupported",
+		"SensorFault",
+		"SupportsVisual",
+		"SupportsAudible",
+		"SupportsAlarmSuppress",
+		"SupportsSensitivityLevel",
+	] as const,
+	commands: [
+		"SuppressAlarm",
+		"EnableDisableAlarm",
+	] as const,
+	events: [
+		"AlarmsStateChanged",
+		"SensorFault",
+	] as const
 }
 
 export default booleanStateConfiguration;

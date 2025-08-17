@@ -1,7 +1,7 @@
 // This file is generated from commissioner-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-15T06:41:46.314Z
+// Generated on 2025-08-17T14:20:44.997Z
 
-import { Cluster } from '../../server/clients/shared.js';
+import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
 export enum SupportedDeviceCategoryBitmap {
@@ -51,43 +51,18 @@ id: 1873;
 	}
 }
 
-export const commissionerControl: Cluster<CommissionerControl['attributes'], CommissionerControl['commands'], CommissionerControl['events']> = {
+export const commissionerControl: ClusterDefinition<CommissionerControl> = {
 id: 1873,
-	attributes: {
-		SupportedDeviceCategories:null,
-},
-	commands: {
-		/** This command is sent by a client to request approval for a future CommissionNode call. */
-		RequestCommissioningApproval: {
-			inputparams: [
-				null, 
-				0, 
-				0, 
-				null, 
-			],
-			 outputparams: []
-            },
-		/** This command is sent by a client to request that the server begins commissioning a previously approved request. */
-		CommissionNode: {
-			inputparams: [
-				null, 
-				0, 
-			],
-			 outputparams: [
-				0, 
-				null, 
-				0, 
-				0, 
-				null, ]
-            },
-},
-	events: {
-		CommissioningRequestResult: [
-			
-			null, 
-			null, 
-			0, ],
-	}
+	attributes: [
+		"SupportedDeviceCategories",
+	] as const,
+	commands: [
+		"RequestCommissioningApproval",
+		"CommissionNode",
+	] as const,
+	events: [
+		"CommissioningRequestResult",
+	] as const
 }
 
 export default commissionerControl;
