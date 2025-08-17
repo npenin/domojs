@@ -31,7 +31,7 @@ catch (e)
 
 try
 {
-    const pubKey = await crypto.subtle.importKey('spki', await fs.readFile(`${process.argv[2]}.pub`), algorithm, true, ['verify']);
+    const pubKey = await crypto.subtle.importKey('spki', (await fs.readFile(`${process.argv[2]}.pub`)).buffer as ArrayBuffer, algorithm, true, ['verify']);
     adb.remotePublicKey = pubKey;
 }
 catch (e)

@@ -107,7 +107,7 @@ class PairSetupClient
                 {
                     state: PairState.M1,
                     publicKey: new IsomorphicBuffer(this.keyPair.publicKey),
-                }).toArray(),
+                }).toArray().buffer as ArrayBuffer,
             method: 'post',
             type: 'raw'
         }).
@@ -201,7 +201,7 @@ class PairSetupClient
 
                 state: PairState.M3,
                 encryptedData: IsomorphicBuffer.concat([encrypted_M3.ciphertext, encrypted_M3.authTag]),
-            }).toArray(),
+            }).toArray().buffer as ArrayBuffer,
             type: "raw"
         }).
             then(r => r.arrayBuffer()).

@@ -199,7 +199,7 @@ class PairSetupClient
                     state: PairState.M1,
                     method: PairMethod.Setup,
                     flags: PairTypeFlags.Split & PairTypeFlags.Transient
-                }).toArray(),
+                }).toArray().buffer as ArrayBuffer,
             method: 'post',
             type: 'raw'
         }).
@@ -230,7 +230,7 @@ class PairSetupClient
                 state: PairState.M3,
                 publicKey: IsomorphicBuffer.fromBuffer(m3.computeA()),
                 proof: IsomorphicBuffer.fromBuffer(m3.computeM1())
-            }).toArray(),
+            }).toArray().buffer as ArrayBuffer,
             type: 'raw'
         }).
             then(r => r.arrayBuffer()).
@@ -291,7 +291,7 @@ class PairSetupClient
                 body: parserWrite(pairMessage, {
                     state: PairState.M6,
                     encryptedData: IsomorphicBuffer.concat([m5.ciphertext, m5.authTag])
-                }).toArray(),
+                }).toArray().buffer as ArrayBuffer,
                 type: 'raw'
             }).
             then(r => r.arrayBuffer()).

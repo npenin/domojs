@@ -164,7 +164,7 @@ export function OperationalCredentials(options: {
             const signature = await crypto.subtle.sign(
                 { name: 'ECDSA', hash: { name: 'SHA-256' } },
                 options.dac,
-                challengeBuf
+                challengeBuf.buffer as ArrayBuffer
             );
 
             const FabricBindingVersion = 1;
