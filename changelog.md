@@ -1,4 +1,4 @@
-#  (2025-08-06)
+#  (2025-08-17)
 
 
 ### Bug Fixes
@@ -56,6 +56,8 @@
 * config file after upgrade 9b6bdfc
 * configs 845de88
 * configs 500a265
+* crypto does not accept Uint8Array, but ArrayBuffer d1af686
+* crypto does not accept Uint8Array, but ArrayBuffer 04e4cc3
 * default configuration b8963eb
 * dependencies 8e1577c
 * device init saving 5980d33
@@ -128,6 +130,7 @@
 * prevent infinite loop on attribute get 96011cd
 * proper gateway closure e7eb9cd
 * proper gateway remote list support c15e201
+* proper support for commands result 8026fb7
 * provide signal to pubsub 3e0a570
 * provide signal to pubsub 538c505
 * publish workflow after semantic-release upgrade 3d373e1
@@ -146,6 +149,7 @@
 * remove useless config c2bf264
 * remove wwwroot from git tracking 4a77d5f
 * reopen on close 97206ad
+* replace CECKeyCodeEnum import with keypadInputCluster for improved modularity 74fd565
 * rfx modeendpoint naming 5e42bb3
 * rfx parsing 09bbea5
 * **rfx:** init 7045c7f
@@ -173,6 +177,7 @@
 * trying to fix docker permissions 756874a
 * typo b448cdb
 * udev permissions 8552c0a
+* update AccuracyRanges to use array format in GatewayEndpoint and enable SupportsLift in RfyWindowCovering e869096
 * update after breaking changes in akala 28983f9
 * update after commands upgrade e41e30a
 * update config 26a8d19
@@ -186,12 +191,14 @@
 * update home screen tailored impl 9898cb4
 * update lock file 17fbd2a
 * update parameter references from "param" to "params" in command JSON files 7634f8f
+* update SocketAdapter import and use JsonRpcBrowser 065c4b9
 * update terminology for rfy devices to match matter terminology 24cb712
 * update to errorwithstatus cfa1344
 * update to event emitter from akala 2bdfe95
 * update to latest serial port types 77515fc
 * update to proper logging 7de83c6
 * update to working akala b297101
+* update tsconfig.json to include 'web' path and remove commented 'icookin' path 648b768
 * update vite config c771226
 * upgrade @akala/core from 6.0.0 to 6.0.1 4336f5a
 * upgrade dependency 04c1122
@@ -231,6 +238,8 @@
 ### Features
 
 * add adb implementation 48b9904
+* add browser index f5403b1
+* add browser usage capability 980a93a
 * add changelog f7b7d51
 * add class to IDevice 716d8d8
 * add codegen from zap clusters and devices types f68bdea
@@ -240,6 +249,8 @@
 * add homekit server (homebridge equivalent) 4e86aa4
 * add list folders command 7ac6d78
 * add lots of commands b7d6e19
+* add ManualAdministration cluster 60e1960
+* add new components for device button selection and room card, enhance home page layout with search functionality 3295433
 * add service discovery (not ready yet) 7a7a7b4
 * add slim docker alternative a06e7c6
 * add tlv support be185cf
@@ -250,6 +261,7 @@
 * create new web site from scratch using vite and akala 1492bfe
 * enable debug mode 684b9cd
 * enable URL support 1f5dc23
+* enhance TypeScript generation with ClusterMap and default value handling 81dbad7
 * implement basic mqtt v5 protocol 01e31e0
 * make devices as containers c1e5c93
 * make exec on devicetype CLI compatible f92bf92
@@ -263,10 +275,13 @@
 * migrate to new device model and started device discovery implementation 732c679
 * migrate to new device model and started device discovery implementation 066177a
 * move device management to devicetype 07e06d7
+* provide cluster value (not types only anymore) f7586d4
+* provide fromBus to create an EndpointProxy from the bus 127e3cf
 * shared gateway implementation d7a42a9
 * start a dbus implementation 44b24d6
 * start to upgrade media to container 419e5a4
 * switch to matter like and mqtt implementation 7153114
+* update guest role configuration and add ACLs for publish and subscribe 35473f8
 * update scrapper as generic 1286958
 * upgrade devices as command container 7dcd4df
 * various fixes and improvements 5f6c5f1
