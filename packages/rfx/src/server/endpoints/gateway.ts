@@ -147,10 +147,10 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                 electricalEnergyMeasurement: clusterFactory({
                                     id: MatterClusterIds.ElectricalEnergyMeasurement,
                                     Accuracy: {
-                                        AccuracyRanges: {
+                                        AccuracyRanges: [{
                                             RangeMax: 0xffffffffn,
                                             RangeMin: 0x0n,
-                                        },
+                                        }],
                                         MaxMeasuredValue: 0xffffffffn,
                                         MinMeasuredValue: 0x0n,
                                         Measured: false,
@@ -282,10 +282,10 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                     electricalEnergyMeasurement: clusterFactory({
                                         id: MatterClusterIds.ElectricalEnergyMeasurement,
                                         Accuracy: {
-                                            AccuracyRanges: {
+                                            AccuracyRanges: [{
                                                 RangeMax: 0xffffffffn,
                                                 RangeMin: 0x0n,
-                                            },
+                                            }],
                                             MaxMeasuredValue: 0xffffffffn,
                                             MinMeasuredValue: 0x0n,
                                             Measured: false,
@@ -319,10 +319,10 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                     electricalEnergyMeasurement: clusterFactory({
                                         id: MatterClusterIds.ElectricalEnergyMeasurement,
                                         Accuracy: {
-                                            AccuracyRanges: {
+                                            AccuracyRanges: [{
                                                 RangeMax: 0xffffffffn,
                                                 RangeMin: 0x0n,
-                                            },
+                                            }],
                                             MaxMeasuredValue: 0xffffffffn,
                                             MinMeasuredValue: 0x0n,
                                             Measured: false,
@@ -356,10 +356,10 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                     electricalEnergyMeasurement: clusterFactory({
                                         id: MatterClusterIds.ElectricalEnergyMeasurement,
                                         Accuracy: {
-                                            AccuracyRanges: {
+                                            AccuracyRanges: [{
                                                 RangeMax: 0xffffffffn,
                                                 RangeMin: 0x0n,
-                                            },
+                                            }],
                                             MaxMeasuredValue: 0xffffffffn,
                                             MinMeasuredValue: 0x0n,
                                             Measured: false,

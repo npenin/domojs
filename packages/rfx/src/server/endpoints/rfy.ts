@@ -22,7 +22,7 @@ export function RfyWindowCovering(gateway: Rfxtrx, remote: Pick<Rfy.Device, 'uni
         Type: windowCovering.Type.Shutter,
         OperationalStatus: windowCovering.OperationalStatus.Global,
         SupportsAbsolutePosition: false,
-        SupportsLift: false,
+        SupportsLift: true,
         SupportsTilt: false,
         SupportsPositionAwareLift: false,
         SupportsPositionAwareTilt: false,
