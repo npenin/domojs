@@ -1,6 +1,6 @@
 {
     "name": "@domojs/homekit-controller",
-    "version": "3.0.17",
+    "version": "3.0.18",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "type": "module",
