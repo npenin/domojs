@@ -99,6 +99,7 @@
 * handle multiple gateways or merge gateways 1f19ef8
 * handle start from fork 98c8153
 * handle undefined pubsub config 233fa6d
+* import cycle 2dd896a
 * improve devicetype.add documentation 0f61da2
 * improve library indexing + fix akala cli support f235b43
 * improve mdns typings 3a5d0f1
@@ -114,6 +115,7 @@
 * make webscrapper private f2a547f
 * **mdns:** build and behavior 5934661
 * migrate to akala 19 and commands 9 c04f43e
+* missing async methods 4b0812b
 * move akala config in db 8645030
 * move config in existing config file from context a9b205a
 * move from require to import.meta f2e52f4
