@@ -72,7 +72,7 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
     async write(msg: Uint8Array<ArrayBufferLike>)
     {
         clearTimeout(this.pingInterval);
-        this.protocolEvents.socket.send(new IsomorphicBuffer(msg));
+        await this.protocolEvents.socket.send(new IsomorphicBuffer(msg));
         this.pingInterval = setTimeout(() =>
         {
             const ping: pingreq.Message = {
