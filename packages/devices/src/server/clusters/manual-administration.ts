@@ -1,4 +1,4 @@
-import { Cluster } from "../clients/index.js";
+import type { Cluster } from "../clients/index.js";
 
 
 export type ManualAdministrationCluster<T> = Cluster<{}, {

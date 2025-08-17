@@ -1,5 +1,5 @@
-import { ObservableArray } from "@akala/core";
-import { Cluster, ClusterDefinition } from "../clients/index.js";
+import type { ObservableArray } from "@akala/core";
+import type { Cluster, ClusterDefinition } from "../clients/index.js";
 
 export const clusterId = 0xfc02;
 

@@ -1,6 +1,6 @@
 import { ObservableObject } from "@akala/core";
-import { PubSubConfiguration } from "../../index.js";
-import { Cluster, ClusterInstance, ClusterDefinition } from "../clients/index.js";
+import type { PubSubConfiguration } from "../../index.js";
+import type { Cluster, ClusterInstance, ClusterDefinition } from "../clients/index.js";
 import registerAdapter from "../commands/devices/register-adapter.js";
 import { State } from "../commands/devices/$init.js";
 
