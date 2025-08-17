@@ -103,7 +103,7 @@
         },
         "endpointsMapping": {},
         "pubsub": {
-            "transport": "mqtt://localhost",
+            "transport": "mqtt://home.dragon-angel.fr",
             "transportOptions": {
                 "username": "devices",
                 "password": {
@@ -115,7 +115,7 @@
     },
     "@domojs/weather": {
         "pubsub": {
-            "transport": "mqtt://localhost"
+            "transport": "mqtt://home.dragon-angel.fr"
         }
     },
     "@domojs/mdns": {
@@ -167,7 +167,7 @@
             "c21c47a4de44b67ed2a4d76f2b704e11fa9bf716c97e187b8e6c1e52e6377dd": 45
         },
         "pubsub": {
-            "transport": "mqtt://localhost",
+            "transport": "mqtt://home.dragon-angel.fr",
             "transportOptions": {
                 "username": "mdns",
                 "password": {
