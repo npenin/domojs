@@ -53,6 +53,7 @@
 * build after upgrade 3064e60
 * busybox -S workaround dbf5433
 * cast processor 07a479e
+* cleanup useless imports 8bc7238
 * client subscriptions 53ac6eb
 * cluster proxy mqtt topic 91c3d7e
 * ClusterMap and ClusterIds consistency 8f665be
@@ -99,6 +100,7 @@
 * handle multiple gateways or merge gateways 1f19ef8
 * handle start from fork 98c8153
 * handle undefined pubsub config 233fa6d
+* import cycle 48903df
 * import cycle 2dd896a
 * improve devicetype.add documentation 0f61da2
 * improve library indexing + fix akala cli support f235b43
