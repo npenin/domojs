@@ -39,6 +39,7 @@
 * artificial bump b08a001
 * artificial patch b7ce7a7
 * artificial patch f117e0b
+* await socket.send in MqttClient.write to ensure message delivery c7a5095
 * broken parsing eb3e495
 * buffer reading safeguard 7a95a15
 * buffer slicing in rfx 48397c4
@@ -182,6 +183,7 @@
 * update AccuracyRanges to use array format in GatewayEndpoint and enable SupportsLift in RfyWindowCovering e869096
 * update after breaking changes in akala 28983f9
 * update after commands upgrade e41e30a
+* update after jsonrpc breaking change a5d8dbf
 * update config 26a8d19
 * update default config ed6451b
 * update dependencies a3ea3a6
