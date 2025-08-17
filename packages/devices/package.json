@@ -20,7 +20,8 @@
                 "types": "./dist/index.d.ts",
                 "default": "./dist/index.js"
             }
-        }
+        },
+        "./device-commands.json": "./device-commands.json"
     },
     "type": "module",
     "dependencies": {
