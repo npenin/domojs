@@ -1,7 +1,8 @@
-import { AllEventKeys, allProperties, AsyncEvent, AsyncEventBus, AsyncSubscription, AsyncTeardownManager, combineAsyncSubscriptions, ObjectEvent, ObservableObject, Subscription, TeardownManager, UrlTemplate } from "@akala/core";
+import { allProperties, AsyncEvent, AsyncEventBus, AsyncSubscription, combineAsyncSubscriptions, ObjectEvent, ObservableArray, ObservableObject, Subscription, UrlTemplate } from "@akala/core";
 import { ClusterInstanceLight, clusterProxyFactory, ClusterInstance, Cluster, ClusterDefinition, NonWatchableClusterInstance } from "./shared.js";
 import { Descriptor, DescriptorClusterId } from "../behaviors/descriptor.js";
 import { MqttEvents } from "@domojs/mqtt";
+import { ClusterIdNames, ClusterMap } from "../../codegen/index.js";
 
 export type SemiPartial<K extends keyof TClusterMap, TClusterMap extends Record<string, Cluster<any, any, any>>> =
     Partial<{ [key in Exclude<keyof TClusterMap, K>]: TClusterMap[key] }>
@@ -115,7 +116,10 @@ export class Endpoint<
                     case 'set':
                         cluster.setValue(match.attributeOrCommand, JSON.parse(data));
                     default:
-                        await bus.emit(`${prefix}/${endpointName || endpoint.id}/${match.cluster}/${match.attributeOrCommand}`, JSON.stringify(cluster.getValue(match.attributeOrCommand)), { qos: 1 });
+                        let value = cluster.getValue(match.attributeOrCommand);
+                        if (value instanceof ObservableArray)
+                            value = value.array;
+                        await bus.emit(`${prefix}/${endpointName || endpoint.id}/${match.cluster}/${match.attributeOrCommand}`, JSON.stringify(value), { qos: 1 });
                         break;
                 }
             }
@@ -164,5 +168,20 @@ export class EndpointProxy<TClusterMap extends Record<string, Cluster<any, any, 
     public attach(bus: AsyncEventBus<MqttEvents>, prefix: string, endpointName?: string): Promise<AsyncSubscription>
     {
         return Endpoint.attach<TClusterMap, TClusterMapKeys>(bus, prefix, this, endpointName);
+    }
+
+    public static async fromBus<TClusterMap extends Record<string, Cluster<any, any, any>>, TClusterMapKeys extends Exclude<keyof TClusterMap, 'descriptor'> = never>(bus: AsyncEventBus<MqttEvents>, prefix: string, endpointName: string): Promise<EndpointProxy<TClusterMap, TClusterMapKeys>>
+    {
+        let result: EndpointProxy<TClusterMap, TClusterMapKeys>;
+        await bus.on(`${prefix}/${endpointName}/descriptor/ServerList`, async (data, ev) =>
+        {
+            if (typeof data !== 'string')
+                data = data.toString('utf8');
+            const serverList: number[] = JSON.parse(data);
+            result = new EndpointProxy<TClusterMap, TClusterMapKeys>(parseInt(endpointName), endpointName, { name: prefix }, bus, Object.fromEntries(serverList.map(clusterId => [ClusterIdNames[clusterId], ClusterMap[clusterId]])) as MixedClusterDefinition<TClusterMapKeys, TClusterMap>);
+        });
+        await bus.emit(`${prefix}/${endpointName}/descriptor/ServerList/get`, '{}', { qos: 1 });
+
+        return result;
     }
 }
