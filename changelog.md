@@ -1,4 +1,4 @@
-#  (2025-08-17)
+#  (2025-08-19)
 
 
 ### Bug Fixes
@@ -89,6 +89,7 @@
 * export topic wildcard to urltemplate conversion b3a68bb
 * file copy ordering 2ece2ca
 * filter gateway mode endpoints 416ac45
+* first working version 325da72
 * fix wrong unit in keepalive 58ddd94
 * fix zigate start 349c0bd
 * gateway resolution 5877dde
@@ -189,6 +190,7 @@
 * update AccuracyRanges to use array format in GatewayEndpoint and enable SupportsLift in RfyWindowCovering e869096
 * update after breaking changes in akala 28983f9
 * update after commands upgrade e41e30a
+* update after devices break 1e59885
 * update after jsonrpc breaking change a5d8dbf
 * update codegen to provide ClusterDefinitions f191fd7
 * update config 26a8d19
