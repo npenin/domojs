@@ -66,6 +66,7 @@
 * dependencies 8e1577c
 * device init saving 5980d33
 * devices first setup 987ca3c
+* devices startup dc9a6aa
 * devicetype init dd87a23
 * devicetype start up + upgrade to latest sidecar 17378d1
 * devicetype startup 401db92
