@@ -3,9 +3,9 @@ import template from './switch-button-button.html?raw'
 
 export default class SwitchButtonButton extends Page
 {
-    constructor(private el: HTMLElement)
+    constructor(el: HTMLElement)
     {
-        super();
+        super(el);
     }
 }
 

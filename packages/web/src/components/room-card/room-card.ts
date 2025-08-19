@@ -9,14 +9,15 @@ export default class RoomCard extends Control<{ title: string, data: any }, HTML
     {
         super(el);
         el.classList.add('card', 'actionable');
-    }
 
-    connectedCallback(): void
-    {
         const shadow = this.element.attachShadow({ mode: 'open' });
         this.inheritStylesheets(shadow);
         const elements = Array.from(Template.buildElements(template));
         shadow.replaceChildren(...elements);
-        this.teardown(Template.composeAll(elements, shadow, { controller: this, room: this.bind('data') }));
+
+    }
+
+    connectedCallback(): void
+    {   // this.teardown(Template.composeAll(elements, shadow, { controller: this, room: this.bind('data') }));
     }
 }

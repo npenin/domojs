@@ -1,13 +1,13 @@
 /// <reference types="vite/client" />
 import { bootstrap } from '@akala/web-ui'
 import { bootstrapModule, DataContext, HotKeyTrigger, outletDefinition, OutletService, Scope, serviceModule } from '@akala/client'
+import '@akala/core';
 import './index.css';
 import Home from './pages/home/home.js';
 import { configure, connect, Container } from '@akala/commands/browser';
 import './components/ibm-icon/ibm-icon.js'
 import './components/device-button-selector/device-button-selector.js'
 import './components/room-card/room-card.js'
-import './components/device-button-selector/device-button-selector.js'
 import { IconDescriptor } from './components/ibm-icon/ibm-icon.js';
 
 import searchIcon from '@carbon/icons/es/search/24.js'

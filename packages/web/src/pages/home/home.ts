@@ -1,21 +1,17 @@
-import { e, Page, page, RootElement, content, t, bootstrapModule, Template } from '@akala/client'
+import { e, Page, page, RootElement, content, t, OutletService } from '@akala/client'
 import template from './home.html?raw'
-import { EndpointProxy } from '@domojs/devices';
-import { asyncEventBuses } from '@akala/core';
+import { ClusterMap, EndpointProxy } from '@domojs/devices';
+import { asyncEventBuses, ObservableArray } from '@akala/core';
 import { MqttEvents } from '@domojs/mqtt';
 
 @page({ template, 'inject': [RootElement] })
 export default class Home extends Page
 {
-    public readonly rooms = asyncEventBuses.process<MqttEvents>(new URL(`mqtt+ws://${location.host}/mqtt`), { username: 'domojs-guest', password: 'domojs' }).then(async mqtt => [
-        { name: 'AllHouse', devices: [await EndpointProxy.fromBus(mqtt, 'domojs/RFXCOM', '6')] },
-        { name: 'Cuisine', devices: [await EndpointProxy.fromBus(mqtt, 'domojs/devices', '0')] },
-        { name: 'Salon', devices: [] }
-    ]);
+    public readonly rooms = new ObservableArray([]);
 
-    constructor(private el: HTMLElement)
+    constructor(el: HTMLElement)
     {
-        super();
+        super(el);
         document.addEventListener('keydown', (ev) =>
         {
             const debug = document.querySelector('#debug')!;
@@ -25,6 +21,20 @@ export default class Home extends Page
         });
     }
 
+    public async [OutletService.onLoad]()
+    {
+        const mqtt = await asyncEventBuses.process<MqttEvents>(new URL(`mqtt+ws://${location.host}/mqtt`), { username: 'domojs-guest', password: 'domojs' });
+        // const allDevices = await EndpointProxy.fromBus<ClusterMap>(mqtt, 'domojs/devices', '0');
 
+        // const endpoints = await allDevices.clusters.descriptor.target.PartsList;
+        // debugger;
+        // console.log(endpoints);
+        await Promise.all(
+            [
+                EndpointProxy.fromBus(mqtt, 'domojs/RFXCOM', '6').then(tous => this.rooms.push({ name: 'AllHouse', devices: [tous] })),
+                EndpointProxy.fromBus(mqtt, 'domojs/devices', '0').then(allDevices => this.rooms.push({ name: 'AllHouse 2', devices: [allDevices] }))
+            ]);
+
+    }
 }
 

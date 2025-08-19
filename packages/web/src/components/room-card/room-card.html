@@ -1,8 +1,10 @@
 <header data-bind="{innerText: context.name}">
 </header>
 <main>
-    <kl-each each="context.devices" class="horizontal">
-        <div switch="item#deviceButtonSelector">
-        </div>
+    <kl-each each="context.devices" class="horizontal" item-property-name="device">
+        <template>
+            <div switch="context#unbind#deviceButtonSelector" data-context="device">
+            </div>
+        </template>
     </kl-each>
 </main>

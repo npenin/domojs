@@ -1,3 +1,18 @@
-<button>
-    <ibm-icon icon="icons.windowCovering"></ibm-icon>
-</button>
+<div>
+    <button on on-click="controller.openDialog?.()">
+        <ibm-icon icon="icons.windowCoveringLift"></ibm-icon>
+    </button>
+
+    <dialog class="bottom">
+        <button aria-label="close" type="button" on on-click="controller.closeDialog()">X</button>
+        <legend class="vertical split-button">
+            <button on on-click="controller.runCommand(context#unbind, 'UpOrOpenCommand')">
+                <ibm-icon icon="icons.shutterUp"></ibm-icon>
+            </button>
+            <button on on-click="controller.runCommand(context#unbind, 'DownOrCloseCommand')">
+                <ibm-icon icon="icons.shutterDown"></ibm-icon>
+            </button>
+
+        </legend>
+    </dialog>
+</div>
