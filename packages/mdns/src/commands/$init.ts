@@ -89,7 +89,7 @@ export default async function (this: State, context: Context<ProxyConfiguration<
     mdns.on('response', packet =>
     {
         const records = packet.answers.concat(packet.additionals);
-        records.filter(rr => rr.type === 'PTR' && rr.ttl == 0).forEach((p: StringAnswer) => this.fabric.endpoints.splice(this.fabric.endpoints.findIndex(e => e.clusters.fixedLabel?.getValue('LabelList').reduce((previous, current) =>
+        records.filter(rr => rr.type === 'PTR' && rr.ttl == 0).forEach((p: StringAnswer) => this.fabric.endpoints.splice(this.fabric.endpoints.findIndex(e => (e as Endpoint<ClusterMap>).clusters.fixedLabel?.target.LabelList.reduce((previous, current) =>
         {
             if (!previous)
                 return false;
