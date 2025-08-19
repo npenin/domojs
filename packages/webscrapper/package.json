@@ -13,13 +13,13 @@
     },
     "devDependencies": {
         "@akala/json-rpc-ws": "^14.3.8",
-        "@akala/pm": "^15.8.7",
-        "@akala/server": "^27.1.21",
+        "@akala/pm": "^15.8.8",
+        "@akala/server": "^27.1.22",
         "@domojs/devices": "workspace:*"
     },
     "dependencies": {
-        "@akala/commands": "^17.6.10",
-        "@akala/config": "^6.1.19",
+        "@akala/commands": "^17.6.11",
+        "@akala/config": "^6.1.20",
         "@akala/core": "^41.11.1",
         "css-select": "^6.0.0",
         "domhandler": "^5.0.3",

@@ -5,7 +5,7 @@
     "types": "dist/index.d.ts",
     "type": "module",
     "dependencies": {
-        "@akala/commands": "^17.6.10",
+        "@akala/commands": "^17.6.11",
         "@akala/core": "^41.11.1",
         "fast-xml-parser": "^5.2.5"
     },

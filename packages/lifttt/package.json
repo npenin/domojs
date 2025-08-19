@@ -31,7 +31,7 @@
         "@fortawesome/fontawesome-common-types": "7.0.0"
     },
     "devDependencies": {
-        "@akala/commands": "^17.6.10",
+        "@akala/commands": "^17.6.11",
         "@akala/core": "^41.11.1",
         "@akala/json-rpc-ws": "^14.3.8",
         "@domojs/theme-default": "workspace:*",
