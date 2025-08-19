@@ -1,5 +1,5 @@
 import { allProperties, AsyncEvent, AsyncEventBus, AsyncSubscription, combineAsyncSubscriptions, ObjectEvent, ObservableArray, ObservableObject, Subscription, UrlTemplate } from "@akala/core";
-import { ClusterInstanceLight, ClusterInstance, Cluster, ClusterDefinition, NonWatchableClusterInstance } from "./shared.js";
+import { ClusterInstanceLight, ClusterInstance, Cluster, ClusterDefinition, NonWatchableClusterInstance, RemoteClusterInstance } from "./shared.js";
 import { Descriptor, DescriptorClusterId } from "../behaviors/descriptor.js";
 import { MqttEvents } from "@domojs/mqtt";
 import { EndpointProxy } from "./EndpointProxy.js";

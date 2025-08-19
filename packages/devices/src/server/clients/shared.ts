@@ -1,5 +1,6 @@
-import { AsyncEventBus, Deferred, IEvent, Event, ObservableArray, ObservableObject, AsyncTeardownManager } from "@akala/core";
+import { AsyncEventBus, Deferred, IEvent, Event, ObservableArray, ObservableObject, AsyncTeardownManager, fromEvent } from "@akala/core";
 import { MqttEvents, protocol } from "@domojs/mqtt";
+import { DescriptorClusterId } from "../behaviors/descriptor.js";
 
 // export interface NodeDiscoveryAnnouncement
 // {
@@ -21,7 +22,7 @@ export function clusterFactory<TCluster extends Cluster<unknown, unknown, any>, 
     }) as any;
 }
 
-export function clusterProxyFactory<TCluster extends Cluster<unknown, unknown, any>, const TId>(cluster: ClusterDefinition<TCluster>, prefixTopic: string, pubsub: AsyncEventBus<MqttEvents>): ClusterInstance<TCluster>
+export function clusterProxyFactory<TCluster extends Cluster<unknown, unknown, any>>(cluster: ClusterDefinition<TCluster>, prefixTopic: string, pubsub: AsyncEventBus<MqttEvents>, serverList: number[]): RemoteClusterInstance<TCluster>
 {
     const target = Object.assign(new AsyncTeardownManager(), { id: cluster.id });
     Object.defineProperties(target, Object.fromEntries(cluster.commands.map(e => [e.toString() + 'Command', {
@@ -48,30 +49,47 @@ export function clusterProxyFactory<TCluster extends Cluster<unknown, unknown, a
         enumerable: true,
         writable: false
     } as PropertyDescriptor])));
-    Object.defineProperties(target, Object.fromEntries(Object.keys(cluster.attributes).map(e =>
+    Object.defineProperties(target, Object.fromEntries(cluster.attributes.flatMap(e =>
     {
         let value;
 
-        target.teardown(pubsub.on(`${prefixTopic}/${e}`, async (data) =>
+        if (cluster.id == DescriptorClusterId && e === 'ServerList')
+            value = serverList;
+
+        const sync = new Event<[], void>();
+        target.teardown(pubsub.on(`${prefixTopic}/${e.toString()}`, async (data) =>
         {
             if (typeof data == 'string')
                 value = JSON.parse(data);
             else
                 value = JSON.parse(data.toString('utf-8'));
+            sync.emit();
         }, { retainAsPublished: true, retainHandling: protocol.subscribe.RetainHandling.SendAtSubscribe }));
-        return [e, {
+        return [['local' + e.toString(), {
             get()
             {
                 return value;
             },
             set(newValue)
             {
-                pubsub.emit(`${prefixTopic}/${e}/set`, JSON.stringify(newValue)).then(() => value = newValue);
+                pubsub.emit(`${prefixTopic}/${e.toString()}/set`, JSON.stringify(newValue)).then(() => value = newValue);
             }
         } as PropertyDescriptor
-        ];
+        ], [e, {
+            async get()
+            {
+                await pubsub.emit(`${prefixTopic}/${e.toString()}/get`, '{}');
+                await new Promise<void>(resolve => sync.addListener(resolve, { once: true }));
+                return value;
+            },
+            set(newValue)
+            {
+                pubsub.emit(`${prefixTopic}/${e.toString()}/set`, JSON.stringify(newValue)).then(() => value = newValue);
+            }
+        } as PropertyDescriptor
+        ]];
     })));
-    Object.defineProperties(target, Object.fromEntries(Object.keys(cluster.events).map(e =>
+    Object.defineProperties(target, Object.fromEntries(cluster.events.map(e =>
     {
         let ev: Event<any[], void>;
         return [e, {
@@ -80,7 +98,7 @@ export function clusterProxyFactory<TCluster extends Cluster<unknown, unknown, a
                 if (!ev)
                 {
                     ev = new Event();
-                    target.teardown(pubsub.on(`${prefixTopic}/${e}`, async (data) =>
+                    target.teardown(pubsub.on(`${prefixTopic}/${e.toString()}`, async (data) =>
                     {
                         if (typeof data == 'string')
                             ev.emit(...JSON.parse(data));
@@ -114,9 +132,16 @@ export type ClusterDefinition<TCluster extends Cluster<any, any, any>> = {
 }
 
 export type NonWatchableClusterInstance<TCluster extends Cluster<any, any, any>> = ClusterInstanceLight<TCluster> & ClusterEvents<TCluster>
+export type NonWatchableRemoteClusterInstance<TCluster extends Cluster<any, any, any>> = RemoteClusterInstanceLight<TCluster> & ClusterEvents<TCluster>
 export type ClusterInstance<TCluster extends Cluster<any, any, any>> = ObservableObject<NonWatchableClusterInstance<TCluster>>
+export type RemoteClusterInstance<TCluster extends Cluster<any, any, any>> = ObservableObject<NonWatchableRemoteClusterInstance<TCluster>>
 
 export type ClusterInstanceLight<TCluster extends Cluster<any, any, any>> = ClusterAttributes<TCluster> & ClusterCommandsImpl<TCluster> &
+{
+    id: number;
+}
+
+export type RemoteClusterInstanceLight<TCluster extends Cluster<any, any, any>> = RemoteClusterAttributes<TCluster> & ClusterCommandsImpl<TCluster> &
 {
     id: number;
 }
@@ -125,6 +150,10 @@ export type ClusterInstanceLight<TCluster extends Cluster<any, any, any>> = Clus
 export type ClusterAttributes<T> = T extends Cluster<infer TAttributes, any, any> ? TAttributes : never;
 export type ClusterCommands<T> = T extends Cluster<any, infer TCommands, any> ? TCommands : never;
 export type ClusterEvents<T> = T extends Cluster<any, any, infer TEvents> ? TEvents : never;
+
+export type RemoteClusterAttributes<T> = T extends Cluster<infer TAttributes, any, any> ? { [key in keyof TAttributes]: Promise<TAttributes[key]> } & { [key in Extract<keyof TAttributes, string> as `local${key}`]: TAttributes[key] } : never;
+export type RemoteClusterCommands<T> = T extends Cluster<any, infer TCommands, any> ? TCommands : never;
+export type RemoteClusterEvents<T> = T extends Cluster<any, any, infer TEvents> ? TEvents : never;
 
 export type ClusterCommand<TIn extends readonly unknown[], TOut> = { inputparams: TIn, outputparams: TOut }
 

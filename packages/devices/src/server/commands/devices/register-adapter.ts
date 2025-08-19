@@ -25,7 +25,7 @@ const queue = new Queue<{ pubsub: AsyncEventBus<MqttEvents>, message: DynSecRequ
  * @param name 
  * @returns the password to be used to connect to the mosquitto
  */
-export default async function (this: State, node: string): Promise<SidecarConfiguration['pubsub']>
+export default async function (this: State, node: string): Promise<SidecarConfiguration['pubsub'] & { id: number }>
 {
     const pwd = base64.base64EncArr(crypto.getRandomValues(new Uint8Array(24)));
 
@@ -173,9 +173,10 @@ export default async function (this: State, node: string): Promise<SidecarConfig
 
     const clientResponse = result.responses.find(c => c.command === 'createClient');
 
+    let clientId = await this.self.getEndpointId(node);
     if (this.self)
     {
-        const client = new EndpointProxy(this.self.endpoints.length, node, this.self, this.pubsub, {});
+        const client = new EndpointProxy(clientId, node, this.self, this.pubsub, {});
         this.self.endpoints.push(client);
     }
 
@@ -183,6 +184,7 @@ export default async function (this: State, node: string): Promise<SidecarConfig
         return null;
 
     return {
+        id: clientId,
         transport: this.config.pubsub.transport,
         transportOptions: { ...this.config.pubsub.transportOptions?.extract() ?? {}, password: pwd, username: node }
     }

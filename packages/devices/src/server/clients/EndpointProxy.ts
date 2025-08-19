@@ -1,14 +1,19 @@
-import { AsyncEvent, AsyncEventBus, AsyncSubscription } from "@akala/core";
+import { AsyncEvent, AsyncEventBus, AsyncSubscription, Deferred } from "@akala/core";
 import { MqttEvents } from "@domojs/mqtt";
 import { ClusterMap } from "../clusters/_shared.js";
 import { ClusterIdNames } from "../clusters/index.js";
-import { MixedClusterMap, MixedClusterDefinition, Endpoint } from "./Endpoint.js";
-import { Cluster, ClusterInstance, clusterProxyFactory, ClusterInstanceLight } from "./shared.js";
+import { MixedClusterDefinition, Endpoint } from "./Endpoint.js";
+import { Cluster, ClusterInstance, clusterProxyFactory, ClusterInstanceLight, ClusterDefinition, RemoteClusterInstance } from "./shared.js";
+
+
+export type MixedRemoteClusterMap<K extends keyof TClusterMap, TClusterMap extends Record<string, Cluster<any, any, any>>> =
+    Partial<{ [key in Exclude<keyof TClusterMap, K>]: RemoteClusterInstance<TClusterMap[key]> }>
+    & { [key in K]: RemoteClusterInstance<TClusterMap[key]> }
 
 
 export class EndpointProxy<TClusterMap extends Record<string, Cluster<any, any, any>>, TClusterMapKeys extends Exclude<keyof TClusterMap, 'descriptor'> = never> extends AsyncEvent<[number, ClusterInstance<any>], void>
 {
-    readonly clusters: MixedClusterMap<TClusterMapKeys, TClusterMap>;
+    readonly clusters: MixedRemoteClusterMap<TClusterMapKeys, TClusterMap>;
 
     constructor(
         public readonly id: number,
@@ -20,7 +25,7 @@ export class EndpointProxy<TClusterMap extends Record<string, Cluster<any, any, 
     {
         super();
 
-        this.clusters = Object.fromEntries(Object.entries<TClusterMap[keyof TClusterMap]>(clusters).map(e => [e[0], clusterProxyFactory(e[1], `${parent.name}/${id}/${e[0]}`, pubsub)])) as MixedClusterMap<TClusterMapKeys, TClusterMap>;
+        this.clusters = Object.fromEntries(Object.entries<TClusterMap[keyof TClusterMap]>(clusters).map(e => [e[0], clusterProxyFactory(e[1], `${parent.name}/${id}/${e[0]}`, pubsub, Object.values(clusters).map(c => (c as ClusterDefinition<any>).id))])) as MixedRemoteClusterMap<TClusterMapKeys, TClusterMap>;
     }
 
     public patch(patch: {
@@ -44,16 +49,17 @@ export class EndpointProxy<TClusterMap extends Record<string, Cluster<any, any, 
 
     public static async fromBus<TClusterMap extends Record<string, Cluster<any, any, any>>, TClusterMapKeys extends Exclude<keyof TClusterMap, 'descriptor'> = never>(bus: AsyncEventBus<MqttEvents>, prefix: string, endpointName: string): Promise<EndpointProxy<TClusterMap, TClusterMapKeys>>
     {
-        let result: EndpointProxy<TClusterMap, TClusterMapKeys>;
-        await bus.on(`${prefix}/${endpointName}/descriptor/ServerList`, async (data, ev) =>
+        let result = new Deferred<EndpointProxy<TClusterMap, TClusterMapKeys>>();
+
+        await bus.once(`${prefix}/${endpointName}/descriptor/ServerList`, async (data, ev) =>
         {
             if (typeof data !== 'string')
                 data = data.toString('utf8');
             const serverList: number[] = JSON.parse(data);
-            result = new EndpointProxy<TClusterMap, TClusterMapKeys>(parseInt(endpointName), endpointName, { name: prefix }, bus, Object.fromEntries(serverList.map(clusterId => [ClusterIdNames[clusterId], ClusterMap[clusterId]])) as MixedClusterDefinition<TClusterMapKeys, TClusterMap>);
+            result.resolve(new EndpointProxy<TClusterMap, TClusterMapKeys>(parseInt(endpointName), endpointName, { name: prefix }, bus, Object.fromEntries(serverList.map(clusterId => [ClusterIdNames[clusterId], ClusterMap[clusterId]])) as MixedClusterDefinition<TClusterMapKeys, TClusterMap>));
         });
         await bus.emit(`${prefix}/${endpointName}/descriptor/ServerList/get`, '{}', { qos: 1 });
 
-        return result;
+        return await result;
     }
 }
