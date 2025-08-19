@@ -173,7 +173,7 @@ export default async function (this: State, node: string): Promise<SidecarConfig
 
     const clientResponse = result.responses.find(c => c.command === 'createClient');
 
-    let clientId = await this.self.getEndpointId(node);
+    let clientId = await this.self?.getEndpointId(node) ?? 0;
     if (this.self)
     {
         const client = new EndpointProxy(clientId, node, this.self, this.pubsub, {});
