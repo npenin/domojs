@@ -1,4 +1,4 @@
-#  (2025-08-19)
+#  (2025-08-20)
 
 
 ### Bug Fixes
@@ -136,6 +136,7 @@
 * permissions a99884c
 * permissions on install 4ff3fb2
 * permissions on install 5deccb7
+* prevent committing web bundles 72a3f16
 * prevent duplicate rfy endpoints 3d20a3b
 * prevent infinite loop on attribute get 96011cd
 * proper gateway closure e7eb9cd
@@ -192,6 +193,8 @@
 * update after breaking changes in akala 28983f9
 * update after commands upgrade e41e30a
 * update after devices break 1e59885
+* update after devices breaking change e693405
+* update after devices breaking change db3d19d
 * update after jsonrpc breaking change a5d8dbf
 * update codegen to provide ClusterDefinitions f191fd7
 * update config 26a8d19
@@ -246,6 +249,7 @@
 
 ### Code Refactoring
 
+* simplify endpoint and endpoint proxy typing a69a3e6
 * update to ESM + update dependencies 2370b96
 
 
@@ -274,6 +278,7 @@
 * add yt-music 5c09d55
 * create new web site from scratch using vite and akala 1492bfe
 * enable debug mode 684b9cd
+* enable swipeable dialog 2a6e447
 * enable URL support 1f5dc23
 * enhance TypeScript generation with ClusterMap and default value handling 81dbad7
 * implement basic mqtt v5 protocol 01e31e0
@@ -303,6 +308,7 @@
 
 ### BREAKING CHANGES
 
+* endpoints and endpointproxies do not expect ClusterMap anymore
 * no more commands for now
 * no more commands for now
 * no more commands for now
