@@ -218,6 +218,7 @@
 * update to working akala b297101
 * update tsconfig.json to include 'web' path and remove commented 'icookin' path 648b768
 * update vite config c771226
+* update yarn 336a099
 * upgrade @akala/core from 6.0.0 to 6.0.1 4336f5a
 * upgrade dependency 04c1122
 * usb permissions 0c1ef0c
