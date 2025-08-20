@@ -11,12 +11,6 @@ export default class LiftWindowCoveringButton extends Page
         super(el);
     }
 
-    log(data)
-    {
-        console.log(data);
-        return JSON.stringify(data);
-    }
-
     runCommand(context: EndpointProxy<'windowCovering'>, cmd: keyof ClusterCommands<ClusterMap['windowCovering']>)
     {
         return function ()

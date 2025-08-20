@@ -9,6 +9,7 @@ import './components/ibm-icon/ibm-icon.js'
 import './components/device-button-selector/device-button-selector.js'
 import './components/room-card/room-card.js'
 import { IconDescriptor } from './components/ibm-icon/ibm-icon.js';
+import './swipe-down.js'
 
 import searchIcon from '@carbon/icons/es/search/24.js'
 import bellIcon from '@carbon/icons/es/notification/24.js'
@@ -18,6 +19,19 @@ import lightOffIcon from '@carbon/icons/es/light/24.js'
 import temperatureIcon from '@carbon/icons/es/temperature/24.js'
 import thisSideUpIcon from '@carbon/icons/es/this-side-up/24.js'
 import deskAdjustableIcon from '@carbon/icons/es/desk--adjustable/24.js'
+import Device from './pages/device/device.js';
+import { asyncEventBuses, Formatter, formatters } from '@akala/core';
+import { MqttEvents } from '@domojs/mqtt';
+
+formatters.register('#log', class implements Formatter<unknown>
+{
+    format(value: unknown)
+    {
+        console.log(value);
+        return value;
+    }
+
+})
 
 bootstrapModule.activate([[serviceModule, OutletService.InjectionToken], '$rootScope'], (outlet: OutletService, scope: Scope<{ icons: Record<string, IconDescriptor> }>) =>
 {
@@ -51,8 +65,15 @@ bootstrapModule.activate([[serviceModule, OutletService.InjectionToken], '$rootS
     container.attach(HotKeyTrigger, { element: document.body });
     bootstrapModule.register('container', container);
 
+
     outlet.use('/', 'main', Home[outletDefinition]);
+    outlet.use('/device/{endpointId}', 'main', Device[outletDefinition]);
 })
+
+bootstrapModule.activateAsync([], async () =>
+{
+    serviceModule.register('mqtt', await asyncEventBuses.process<MqttEvents>(new URL(`mqtt+ws://${location.host}/mqtt`), { username: 'domojs-guest', password: 'domojs' }));
+});
 
 DataContext.propagateProperties.push('icons');
 

@@ -7,7 +7,7 @@ export default defineConfig({
     build: {
         // generate .vite/manifest.json in outDir
         manifest: true,
-        outDir: 'wwwroot',
+        outDir: '../wwwroot',
     },
     server: {
         proxy: {

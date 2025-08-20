@@ -1,15 +1,15 @@
-import { e, Page, page, RootElement, content, t, OutletService } from '@akala/client'
+import { e, Page, page, RootElement, content, t, OutletService, serviceModule } from '@akala/client'
 import template from './home.html?raw'
 import { ClusterMap, EndpointProxy } from '@domojs/devices';
-import { asyncEventBuses, ObservableArray } from '@akala/core';
+import { AsyncEventBus, asyncEventBuses, ObservableArray } from '@akala/core';
 import { MqttEvents } from '@domojs/mqtt';
 
-@page({ template, 'inject': [RootElement] })
+@page({ template, 'inject': [RootElement, [serviceModule, 'mqtt']] })
 export default class Home extends Page
 {
     public readonly rooms = new ObservableArray([]);
 
-    constructor(el: HTMLElement)
+    constructor(el: HTMLElement, private mqtt: AsyncEventBus<MqttEvents>)
     {
         super(el);
         document.addEventListener('keydown', (ev) =>
@@ -23,7 +23,6 @@ export default class Home extends Page
 
     public async [OutletService.onLoad]()
     {
-        const mqtt = await asyncEventBuses.process<MqttEvents>(new URL(`mqtt+ws://${location.host}/mqtt`), { username: 'domojs-guest', password: 'domojs' });
         // const allDevices = await EndpointProxy.fromBus<ClusterMap>(mqtt, 'domojs/devices', '0');
 
         // const endpoints = await allDevices.clusters.descriptor.target.PartsList;
@@ -31,8 +30,12 @@ export default class Home extends Page
         // console.log(endpoints);
         await Promise.all(
             [
-                EndpointProxy.fromBus(mqtt, 'domojs/RFXCOM', '6').then(tous => this.rooms.push({ name: 'AllHouse', devices: [tous] })),
-                EndpointProxy.fromBus(mqtt, 'domojs/devices', '0').then(allDevices => this.rooms.push({ name: 'AllHouse 2', devices: [allDevices] }))
+                EndpointProxy.fromBus(this.mqtt, 'domojs/RFXCOM', 6).then(tous => this.rooms.push({ name: 'AllHouse', devices: [tous] })),
+                EndpointProxy.fromBus(this.mqtt, 'domojs/devices', 0).then(allDevices =>
+                {
+                    debugger;
+                    this.rooms.push({ name: 'AllHouse 2', devices: [allDevices] });
+                })
             ]);
 
     }

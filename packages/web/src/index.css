@@ -94,5 +94,28 @@ button.rounded {
     height: 32px;
     --local-gutter-x: 4px;
     --local-gutter-y: 0;
+}
 
+dialog.vertical {
+    margin: 0;
+
+    >button[type="button"][aria-label="grip"] {
+        height: var(--local-gutter-y);
+        padding: 0;
+    }
+}
+
+.swipe-container {
+    --drag: translateY(0);
+
+}
+
+dialog.swipe-container {
+    --dialog-animation-transform-start: translateY(100%);
+}
+
+dialog.swipe-container>button[aria-label="grip"] {
+    max-width: 50px;
+    width: 50px;
+    align-self: center;
 }
