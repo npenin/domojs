@@ -46,9 +46,9 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
                         type: ControlPacketType.PUBACK,
                         properties: [],
                     };
-                    console.time('mqtt-write')
+                    // console.time('mqtt-write')
                     this.write(parserWrite(StandardMessages, message, message, 0).toArray())
-                    console.timeEnd('mqtt-write')
+                    // console.timeEnd('mqtt-write')
                 }
             }
             catch (e)
@@ -62,9 +62,9 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
                         type: ControlPacketType.PUBACK,
                         properties: [],
                     };
-                    console.time('mqtt-write')
+                    // console.time('mqtt-write')
                     this.write(parserWrite(StandardMessages, message, message, 0).toArray())
-                    console.timeEnd('mqtt-write')
+                    // console.timeEnd('mqtt-write')
                 }
             }
         }));
@@ -236,7 +236,7 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
                 }
             })
 
-            console.time('mqtt-write')
+            // console.time('mqtt-write')
             switch (message.type)
             {
                 case ControlPacketType.SUBSCRIBE:
@@ -250,7 +250,7 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
                     await this.write(parserWrite(StandardMessages, message, message, 0).toArray());
                     break;
             }
-            console.timeEnd('mqtt-write')
+            // console.timeEnd('mqtt-write')
 
         });
     }

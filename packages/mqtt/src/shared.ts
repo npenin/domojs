@@ -56,9 +56,9 @@ export class ProtocolEvents extends EventEmitter<ProtocolEventsMap>
             const c = new Cursor();
             while (c.offset < data.length)
             {
-                console.time('mqtt-read')
+                // console.time('mqtt-read')
                 var msg = StandardMessages.read(data, c, {}) as MessageMap[keyof MessageMap];
-                console.timeEnd('mqtt-read')
+                // console.timeEnd('mqtt-read')
                 this.emit(msg.type, msg as any);
             }
         });
