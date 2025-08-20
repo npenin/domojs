@@ -117,7 +117,7 @@ export class Endpoint<
                         let value = cluster.getValue(match.attributeOrCommand);
                         if (value instanceof ObservableArray)
                             value = value.array;
-                        await bus.emit(`${prefix}/${endpointName || endpoint.id}/${match.cluster}/${match.attributeOrCommand}`, JSON.stringify(typeof value == 'undefined' ? '' : value), { qos: 1 });
+                        await bus.emit(`${prefix}/${endpointName || endpoint.id}/${match.cluster}/${match.attributeOrCommand}`, JSON.stringify(typeof value == 'undefined' || value === null ? false : value), { qos: 1 });
                         break;
                 }
             }
