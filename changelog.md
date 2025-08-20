@@ -187,6 +187,7 @@
 * trying apk at first 16d00df
 * trying to fix config file issue 4ccf7ac
 * trying to fix docker permissions 756874a
+* trying to improve reliability 55e75a7
 * typo b448cdb
 * udev permissions 8552c0a
 * update AccuracyRanges to use array format in GatewayEndpoint and enable SupportsLift in RfyWindowCovering e869096
@@ -277,6 +278,7 @@
 * add web scrapping support and tests 62a3c61
 * add yt-music 5c09d55
 * create new web site from scratch using vite and akala 1492bfe
+* enable cluster definition on remote clusters 4a1852e
 * enable debug mode 684b9cd
 * enable swipeable dialog 2a6e447
 * enable URL support 1f5dc23
