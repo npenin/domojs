@@ -24,7 +24,10 @@ export function clusterFactory<TCluster extends Cluster<unknown, unknown, any>, 
 
 export function clusterProxyFactory<TCluster extends Cluster<unknown, unknown, any>>(cluster: ClusterDefinition<TCluster>, prefixTopic: string, pubsub: AsyncEventBus<MqttEvents>, serverList: number[]): RemoteClusterInstance<TCluster>
 {
-    const target = Object.assign(new AsyncTeardownManager(), { id: cluster.id });
+    const target = Object.assign(new AsyncTeardownManager(), {
+        id: cluster.id,
+        definition: cluster
+    });
     Object.defineProperties(target, Object.fromEntries(cluster.commands.map(e => [e.toString() + 'Command', {
         value:
             async (...args) =>
