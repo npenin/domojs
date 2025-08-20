@@ -11,10 +11,35 @@
     <title>Akala Home</title>
 </head>
 
-<body>
-    <kl-outlet data-context id="app">
-        <h1>Akala Home</h1>
-    </kl-outlet>
+<body data-context>
+    <header class="full-body-width">
+        <nav>
+            <h1 class="logo">Domojs</h1>
+            <div id="top-actions">
+                <input type="text" id="searchbox" name="searchbox" />
+                <div id="searchbox-placeholder"></div>
+                <button class="borderless">
+                    <label for="searchbox">
+                        <ibm-icon icon="icons.search" />
+                    </label>
+                </button>
+                <button class="borderless">
+                    <ibm-icon icon="icons.bell"></ibm-icon>
+                </button>
+                <button class="borderless">
+                    <ibm-icon icon="icons.user"></ibm-icon>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <kl-outlet id="app">
+            <h1>Akala Home</h1>
+        </kl-outlet>
+    </main>
+    <footer>
+
+    </footer>
     <script type="module" src="./index.ts"></script>
 </body>
 

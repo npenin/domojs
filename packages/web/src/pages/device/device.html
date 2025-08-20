@@ -1,3 +1,5 @@
-<kl-each each="context" item-property-name="cluster" item-property-index="clusterName">
-    <div data-bind="{innerText:clusterName}"></div>
+<div data-bind="{innerText:context#async#clusterIds}"></div>
+
+<kl-each each="context#async#clusters" item-property-name="cluster">
+    <div data-bind="{innerText:cluster#log#json}"></div>
 </kl-each>

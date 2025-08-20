@@ -5,9 +5,9 @@
     "types": "dist/cjs/index.d.ts",
     "type": "module",
     "dependencies": {
-        "@akala/core": "^41.11.1",
+        "@akala/core": "^41.11.2",
         "cookiejar": "^2.1.4",
-        "puppeteer": "^24.16.0"
+        "puppeteer": "^24.17.0"
     },
     "exports": {
         ".": {

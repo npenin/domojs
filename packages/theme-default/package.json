@@ -1,12 +1,12 @@
 {
     "author": "npenin",
     "dependencies": {
-        "@akala/commands": "^17.6.11",
-        "@akala/core": "^41.11.1",
-        "@akala/json-rpc-ws": "^14.3.8",
-        "@akala/pm": "^15.8.9",
-        "@akala/server": "^27.1.23",
-        "@akala/web-ui": "^5.3.1",
+        "@akala/commands": "^17.6.12",
+        "@akala/core": "^41.11.2",
+        "@akala/json-rpc-ws": "^14.3.9",
+        "@akala/pm": "^15.8.10",
+        "@akala/server": "^27.2.1",
+        "@akala/web-ui": "^5.3.3",
         "@fortawesome/fontawesome-common-types": "^7.0.0",
         "@fortawesome/fontawesome-svg-core": "^7.0.0",
         "@fortawesome/free-brands-svg-icons": "^7.0.0",
@@ -20,10 +20,10 @@
     "description": "",
     "devDependencies": {
         "@types/debug": "4.1.12",
-        "@types/node": "22.17.1",
+        "@types/node": "22.17.2",
         "@types/request": "2.48.13",
         "@types/ws": "8.18.1",
-        "esbuild": "0.25.8",
+        "esbuild": "0.25.9",
         "esbuild-sass-plugin": "3.3.1",
         "typescript": "^5.9.2"
     },

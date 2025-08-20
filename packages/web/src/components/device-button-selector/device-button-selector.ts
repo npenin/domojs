@@ -28,4 +28,4 @@ export class DeviceButtonSelector implements Formatter<Promise<OutletDefinition<
     }
 }
 
-formatters.register('#deviceButtonSelector', DeviceButtonSelector);
+formatters.register('deviceButtonSelector', DeviceButtonSelector);

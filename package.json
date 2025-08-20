@@ -2,19 +2,19 @@
     "name": "domojs",
     "repository": "https://github.com/npenin/domojs",
     "author": "npenin <nicolas.penin@dragon-angel.fr>",
-    "version": "100.0.0",
+    "version": "95.0.0",
     "license": "MIT",
     "private": true,
     "workspaces": [
         "packages/*"
     ],
     "devDependencies": {
-        "@akala/automate": "^6.8.23",
-        "@akala/automate-yamlloader": "^3.1.23",
-        "@akala/cli": "^5.12.18",
-        "@akala/commands": "^17.6.11",
-        "@akala/pm": "^15.8.9",
-        "@akala/semantic-release": "^3.2.20",
+        "@akala/automate": "^6.8.25",
+        "@akala/automate-yamlloader": "^3.1.25",
+        "@akala/cli": "^5.12.19",
+        "@akala/commands": "^17.6.12",
+        "@akala/pm": "^15.8.10",
+        "@akala/semantic-release": "^3.2.21",
         "typescript": "^5.9.2"
     },
     "scripts": {

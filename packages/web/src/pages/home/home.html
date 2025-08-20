@@ -1,61 +1,6 @@
-<header class="full-body-width">
-    <nav>
-        <h1 class="logo">Domojs</h1>
-        <div id="top-actions">
-            <input type="text" id="searchbox" name="searchbox" />
-            <div id="searchbox-placeholder"></div>
-            <button class="borderless">
-                <label for="searchbox">
-                    <ibm-icon icon="icons.search" />
-                </label>
-            </button>
-            <button class="borderless">
-                <ibm-icon icon="icons.bell"></ibm-icon>
-            </button>
-            <button class="borderless">
-                <ibm-icon icon="icons.user"></ibm-icon>
-            </button>
-        </div>
-    </nav>
-</header>
-<main>
-    <div class="room-container horizontal">
-        <kl-each each="controller.rooms" class="horizontal">
-            <room-card data-context="item">
-            </room-card>
-        </kl-each>
-        <div class="card actionable">
-            <header>
-                Salon
-            </header>
-        </div>
-        <div class="card">
-            <header>
-                Salle à manger
-            </header>
-        </div>
-        <div class="card">
-            <header>
-                Chambre
-            </header>
-        </div>
-        <div class="card">
-            <header>
-                Chambre
-            </header>
-        </div>
-        <div class="card">
-            <header>
-                Bureau
-            </header>
-        </div>
-        <div class="card">
-            <header>
-                Salle de bain
-            </header>
-        </div>
-    </div>
-</main>
-<footer>
-
-</footer>
+<div class="room-container horizontal">
+    <kl-each each="controller.rooms" class="horizontal">
+        <room-card data-context="item">
+        </room-card>
+    </kl-each>
+</div>

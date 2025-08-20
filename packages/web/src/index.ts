@@ -22,18 +22,37 @@ import deskAdjustableIcon from '@carbon/icons/es/desk--adjustable/24.js'
 import Device from './pages/device/device.js';
 import { asyncEventBuses, Formatter, formatters } from '@akala/core';
 import { MqttEvents } from '@domojs/mqtt';
+import { Cluster, ClusterIds, EndpointProxy, RemoteClusterInstance } from '@domojs/devices';
 
-formatters.register('#log', class implements Formatter<unknown>
+formatters.register('log', class implements Formatter<unknown>
 {
     format(value: unknown)
     {
+        debugger;
         console.log(value);
         return value;
     }
 
 })
 
-bootstrapModule.activate([[serviceModule, OutletService.InjectionToken], '$rootScope'], (outlet: OutletService, scope: Scope<{ icons: Record<string, IconDescriptor> }>) =>
+formatters.register('clusterIds', class implements Formatter<ClusterIds[]>
+{
+    format(value: EndpointProxy)
+    {
+        return Object.values(value?.clusters || []).map(c => c.target.id);
+    }
+})
+
+formatters.register('clusters', class implements Formatter<RemoteClusterInstance<any>[]>
+{
+    format(value: EndpointProxy)
+    {
+        return Object.values(value?.clusters || []) as any;
+    }
+
+})
+
+bootstrapModule.activate([[serviceModule, OutletService.InjectionToken]], (outlet: OutletService) =>
 {
     const abort = new AbortController();
 
@@ -67,7 +86,7 @@ bootstrapModule.activate([[serviceModule, OutletService.InjectionToken], '$rootS
 
 
     outlet.use('/', 'main', Home[outletDefinition]);
-    outlet.use('/device/{endpointId}', 'main', Device[outletDefinition]);
+    outlet.use('/device/{fabric}/{endpointId}', 'main', Device[outletDefinition]);
 })
 
 bootstrapModule.activateAsync([], async () =>
@@ -77,7 +96,7 @@ bootstrapModule.activateAsync([], async () =>
 
 DataContext.propagateProperties.push('icons');
 
-await bootstrap(document.getElementById('app'), {
+await bootstrap(document.body, {
     icons: {
         search: searchIcon,
         bell: bellIcon,

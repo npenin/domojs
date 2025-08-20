@@ -1,0 +1,11 @@
+{
+    "resolutions": {
+        "@akala/client": "portal:../akala/packages/client",
+        "@akala/core": "portal:../akala/packages/core",
+        "@akala/cli": "portal:../akala/packages/cli",
+        "@akala/fs": "portal:../akala/packages/fs",
+        "@akala/json-rpc-ws": "portal:../akala/packages/json-rpc-ws",
+        "@akala/web-ui": "portal:../akala/packages/web-ui",
+        "@akala/commands": "portal:../akala/packages/commands"
+    }
+}
