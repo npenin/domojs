@@ -6,13 +6,13 @@ import { MqttEvents } from "@domojs/mqtt";
 
 const log = logger('domojs:devices:aggregator')
 
-export class AggregatorEndpoint<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor'>> extends Endpoint<ClusterMap, TClusterMapKeys> 
+export class AggregatorEndpoint<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor'>> extends Endpoint<TClusterMapKeys> 
 {
-    constructor(id: number, clusters: MixedClusterMap<never, ClusterMap>)
+    constructor(id: number, clusters: MixedClusterMap<never>)
     {
         super(id, clusters);
 
-        this.endpoints = new ObservableArray<Endpoint<ClusterMap, never>>([]);
+        this.endpoints = new ObservableArray<Endpoint>([]);
         this.endpoints.maxListeners = Number.MAX_SAFE_INTEGER;
         this.teardown(this.endpoints.addListener(async (ev) =>
         {
@@ -24,7 +24,7 @@ export class AggregatorEndpoint<TClusterMapKeys extends Exclude<keyof ClusterMap
             return !!Object.values(this.endpointSubscriptions).flatMap(es => Object.values(es)).map(sub => sub())?.length;
         })
     }
-    public readonly endpoints: ObservableArray<Endpoint<ClusterMap, never> | EndpointProxy<ClusterMap, never>>;
+    public readonly endpoints: ObservableArray<Endpoint | EndpointProxy>;
 
     private readonly endpointSubscriptions: Record<string, Record<string, AsyncSubscription>> = {};
 

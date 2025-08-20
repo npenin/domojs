@@ -22,7 +22,7 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
         }
         await pubsub(self, { transport: self.config.pubsub.transport, transportOptions: { username: 'domojs-guest', password: 'domojs' } }, abort);
     }
-    const remote = new EndpointProxy<ClusterMap>(0, 'root', { name: 'domojs/devices' }, self.pubsub, { commissionning: CommissionningCluster });
+    const remote = new EndpointProxy(0, { name: 'domojs/devices' }, self.pubsub, { commissionning: CommissionningCluster });
     try
     {
         const [pubsubConfig] = await remote.clusters.commissionning.target.registerCommand(name);

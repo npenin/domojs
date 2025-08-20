@@ -20,7 +20,7 @@ export * from './shared.js'
 export interface Node
 {
     name: string;
-    endpoints: ObservableArray<Endpoint<ClusterMap> | EndpointProxy<ClusterMap>>;
+    endpoints: ObservableArray<Endpoint | EndpointProxy>;
     offline(): Promise<void>
 }
 

@@ -1,11 +1,12 @@
 import { ObservableObject } from '@akala/core';
-import { descriptorCluster, ClusterIds } from '../../codegen/clusters/clusters-index.js'
-import { Endpoint, ClusterInstance, ClusterInstanceLight, Cluster } from '../clients/index.js'
+import { descriptorCluster } from '../../codegen/clusters/clusters-index.js'
+import type { Endpoint, ClusterInstance, ClusterInstanceLight, Cluster } from '../clients/index.js'
+import type { ClusterMap } from "../clusters/index.js";
 
 export const DescriptorClusterId = 29;
 
-export function Descriptor<TClusterMap extends Record<string, Cluster<any, any, any>>, TClusterMapKeys extends Exclude<keyof TClusterMap, 'descriptor'>>():
-    ClusterInstance<descriptorCluster.Descriptor> & { setEndpoint(ep: Endpoint<TClusterMap, TClusterMapKeys>): void }
+export function Descriptor<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor'>>():
+    ClusterInstance<descriptorCluster.Descriptor> & { setEndpoint(ep: Endpoint<TClusterMapKeys>): void }
 {
     const descriptor = new ObservableObject({
         ClientList: [],
@@ -18,7 +19,7 @@ export function Descriptor<TClusterMap extends Record<string, Cluster<any, any, 
     } as ClusterInstanceLight<descriptorCluster.Descriptor>);
     return Object.assign(descriptor,
         {
-            setEndpoint(ep: Endpoint<TClusterMap, TClusterMapKeys>)
+            setEndpoint(ep: Endpoint<TClusterMapKeys>)
             {
                 descriptor.setValue('ServerList', Object.values(ep.clusters).map(c => (c as ClusterInstance<Cluster<unknown, unknown, {}>>).target.id));
             }

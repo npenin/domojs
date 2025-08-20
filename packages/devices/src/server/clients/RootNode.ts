@@ -15,11 +15,11 @@ export interface BridgeConfiguration
 
 export class RootNode<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor' | 'aggregator'>> extends AggregatorEndpoint<TClusterMapKeys> implements Node
 {
-    constructor(public readonly name: string, clusters: MixedClusterMap<never, ClusterMap>, private config: ProxyConfiguration<BridgeConfiguration>)
+    constructor(public readonly name: string, clusters: MixedClusterMap<never>, private config: ProxyConfiguration<BridgeConfiguration>)
     {
         super(0, clusters);
 
-        const root = new Endpoint<ClusterMap, TClusterMapKeys>(0, this.clusters);
+        const root = new Endpoint<TClusterMapKeys>(0, this.clusters);
         this.endpoints.push(root);
     }
     async offline(): Promise<void>
@@ -32,7 +32,7 @@ export class RootNode<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descrip
         return () => Promise.resolve(sub());
     }
 
-    public async newEndpoint<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor'>>(name: string, clusters: MixedClusterMap<TClusterMapKeys, ClusterMap>)
+    public async newEndpoint<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor'>>(name: string, clusters: MixedClusterMap<TClusterMapKeys>)
     {
         return new Endpoint(await this.getEndpointId(name), clusters);
     }

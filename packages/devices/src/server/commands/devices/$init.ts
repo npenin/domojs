@@ -28,7 +28,7 @@ export function Commissionnee(state: State): ClusterInstance<Commissionnee>
 export interface State extends Sidecar<{}, MqttEvents>
 {
     self: RootNode<'commissionning'>;
-    adapters: Record<string, EndpointProxy<ClusterMap>>;
+    adapters: Record<string, EndpointProxy>;
     config: ProxyConfiguration<SelfConfiguration>
 }
 
