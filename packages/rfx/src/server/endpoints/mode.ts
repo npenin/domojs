@@ -2,9 +2,9 @@ import { clusterFactory, ClusterIds, ClusterMap, Endpoint, MatterClusterIds, Roo
 import { InterfaceControl, Rfxtrx } from "@domojs/rfx-parsers";
 import { GatewayEndpoint } from "./gateway.js";
 
-export class ModeEndpoint<TName extends Extract<keyof TEnum, string>, TEnum extends { [key in TName]: number }> extends Endpoint<ClusterMap>
+export class ModeEndpoint<TName extends Extract<keyof TEnum, string>, TEnum extends { [key in TName]: number }> extends Endpoint
 {
-    static async getEndpoints(gateway: Rfxtrx, gatewayName: string, root: RootNode<never>): Promise<Endpoint<ClusterMap>[]>
+    static async getEndpoints(gateway: Rfxtrx, gatewayName: string, root: RootNode<never>): Promise<Endpoint[]>
     {
         return Promise.all(([3, 4, 5, 6] as const).flatMap(n => Object.entries(InterfaceControl[`protocols_msg${n}`]).map(async (e: [keyof typeof InterfaceControl[`protocols_msg${typeof n}`], number | string]) => typeof e[1] == 'number' ?
             new ModeEndpoint(await root.getEndpointId(`${gatewayName}-mode-${n}-${e[0]}`), n, InterfaceControl[`protocols_msg${n}`], e[0], gateway) : null))).then(v => v.filter(e => e));

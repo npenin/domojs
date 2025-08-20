@@ -43,7 +43,7 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
             }
         });
 
-        const sensors: { [key in PacketType]?: Record<number, Endpoint<ClusterMap>[]> } = {};
+        const sensors: { [key in PacketType]?: Record<number, Endpoint[]> } = {};
 
         gateway.on('message', async message =>
         {
@@ -61,7 +61,7 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                 case PacketType.TEMPERATURE_HUMIDITY:
                     {
                         const m = message.message as TemperatureHumidity.Device;
-                        let endpoint: Endpoint<ClusterMap>;
+                        let endpoint: Endpoint;
                         const sensorTypes = sensors[message.type];
                         if (!sensorTypes)
                             sensors[message.type] = {};
@@ -136,7 +136,7 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                 case PacketType.ENERGY:
                     {
                         const m = message.message as Elec2.Device;
-                        let endpoint: Endpoint<ClusterMap>;
+                        let endpoint: Endpoint;
                         const sensorTypes = sensors[message.type];
                         if (!sensorTypes)
                             sensors[message.type] = {};
@@ -225,7 +225,7 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                 case PacketType.CURRENT_ENERGY:
                     {
                         const m = message.message as Elec1.Device;
-                        let endpoint: Endpoint<ClusterMap>;
+                        let endpoint: Endpoint;
                         const sensorTypes = sensors[message.type as PacketType.CURRENT_ENERGY];
                         if (!sensorTypes)
                             sensors[message.type] = {};

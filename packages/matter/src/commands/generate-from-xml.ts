@@ -113,7 +113,7 @@ async function generateTypescriptFromXml(folderURL: URL, parsedXml: XmlCluster, 
     console.log(fileName);
     const { output } = await FileGenerator.outputHelper(folderURL.toString(), fileName.replace('.xml', '.ts'), true);
 
-    await output.write('import { ReverseClusterIdNames, ClusterMap } from "../clusters/clusters-index.js";')
+    await output.write('import { ReverseClusterIdNames } from "../clusters/clusters-index.js";')
     await output.write('\nimport { Endpoint, MixedClusterMap } from "../../server/clients/Endpoint.js";')
     // await output.write('\nimport { DeviceTypes } from "./devicetypes-shared.js";')
 
@@ -145,14 +145,14 @@ async function generateTypescriptFromXml(folderURL: URL, parsedXml: XmlCluster, 
         }, true)
 
 
-    await output.write(`\n\nexport default class DeviceType extends Endpoint<ClusterMap, MandatoryKeys>\n{`);
+    await output.write(`\n\nexport default class DeviceType extends Endpoint<MandatoryKeys>\n{`);
 
     if (fileName !== 'BaseDeviceType.xml')
     {
         if (fileName === 'RootNodeDeviceType.xml')
             await output.write(`
    
-	constructor(clusters: MixedClusterMap<MandatoryKeys, ClusterMap>)
+	constructor(clusters: MixedClusterMap<MandatoryKeys>)
 	{
 		super(0, clusters);
 	}
@@ -161,7 +161,7 @@ async function generateTypescriptFromXml(folderURL: URL, parsedXml: XmlCluster, 
 
             await output.write(`
    
-	constructor(id: number, clusters: MixedClusterMap<MandatoryKeys, ClusterMap>)
+	constructor(id: number, clusters: MixedClusterMap<MandatoryKeys>)
 	{
 		super(id, clusters);
 	}

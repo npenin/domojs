@@ -2,7 +2,7 @@ import { ObservableObject } from "@akala/core";
 import { ClusterIds, ClusterInstance, ClusterInstanceLight, ClusterMap, Endpoint, MatterClusterIds, windowCovering } from "@domojs/devices";
 import { Rfxtrx, Rfy, Type } from "@domojs/rfx-parsers";
 
-export class RfyEndpoint extends Endpoint<ClusterMap>
+export class RfyEndpoint extends Endpoint
 {
     constructor(id: number, remote: Pick<Rfy.Device, 'unitCode' | 'id1' | 'id2' | 'id3'>, gateway: Rfxtrx)
     {

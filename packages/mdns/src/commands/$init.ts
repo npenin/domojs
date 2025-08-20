@@ -89,7 +89,7 @@ export default async function (this: State, context: Context<ProxyConfiguration<
     mdns.on('response', packet =>
     {
         const records = packet.answers.concat(packet.additionals);
-        records.filter(rr => rr.type === 'PTR' && rr.ttl == 0).forEach((p: StringAnswer) => this.fabric.endpoints.splice(this.fabric.endpoints.findIndex(e => (e as Endpoint<ClusterMap>).clusters.fixedLabel?.target.LabelList.reduce((previous, current) =>
+        records.filter(rr => rr.type === 'PTR' && rr.ttl == 0).forEach((p: StringAnswer) => this.fabric.endpoints.splice(this.fabric.endpoints.findIndex(e => (e as Endpoint).clusters.fixedLabel?.target.LabelList.reduce((previous, current) =>
         {
             if (!previous)
                 return false;
@@ -170,10 +170,10 @@ export default async function (this: State, context: Context<ProxyConfiguration<
                 const hostId = await fabric.getEndpointId(c.host);
                 const fqdnId = await fabric.getEndpointId(c.fqdn);
 
-                let fqdnEndpoint: Endpoint<ClusterMap, 'fixedLabel'>;
-                if (!(fqdnEndpoint = fabric.endpoints.find(ep => ep.id == fqdnId) as Endpoint<ClusterMap, 'fixedLabel'>))
+                let fqdnEndpoint: Endpoint<'fixedLabel'>;
+                if (!(fqdnEndpoint = fabric.endpoints.find(ep => ep.id == fqdnId) as Endpoint<'fixedLabel'>))
                 {
-                    const ep = fqdnEndpoint = new Endpoint<ClusterMap, 'fixedLabel'>(fqdnId, {
+                    const ep = fqdnEndpoint = new Endpoint<'fixedLabel'>(fqdnId, {
                         fixedLabel: clusterFactory({
                             id: MatterClusterIds.UserLabel,
                             LabelList: [{ Label: 'Type', Value: c.type }, { Label: 'Host', Value: c.host }, { Label: 'FQDN', Value: c.fqdn }].
@@ -195,7 +195,7 @@ export default async function (this: State, context: Context<ProxyConfiguration<
                 if (!(typeEndpoint = fabric.endpoints.find(ep => ep.id == typeId) as AggregatorEndpoint<never>))
                 {
                     fabric.endpoints.push(typeEndpoint = new AggregatorEndpoint(typeId, {}));
-                    fqdnEndpoint.teardown(await Endpoint.attach<ClusterMap, never>(self.pubsub, `domojs/${fabric.name}`, typeEndpoint, c.type));
+                    fqdnEndpoint.teardown(await Endpoint.attach(self.pubsub, `domojs/${fabric.name}`, typeEndpoint, c.type));
                 }
 
                 let hostEndpoint: AggregatorEndpoint<never>;
@@ -203,7 +203,7 @@ export default async function (this: State, context: Context<ProxyConfiguration<
                 {
                     fabric.endpoints.push(hostEndpoint = new AggregatorEndpoint(hostId, {
                     }));
-                    fqdnEndpoint.teardown(await Endpoint.attach<ClusterMap, never>(self.pubsub, `domojs/${fabric.name}`, hostEndpoint, c.host));
+                    fqdnEndpoint.teardown(await Endpoint.attach(self.pubsub, `domojs/${fabric.name}`, hostEndpoint, c.host));
                 }
 
                 if (!hostEndpoint.endpoints.find(ep => ep.id == fqdnId))
