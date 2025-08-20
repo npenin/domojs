@@ -6,7 +6,7 @@ import { outlet as TiltWindowCoveringButtonOutlet } from "../lift-window-coverin
 
 export class DeviceButtonSelector implements Formatter<Promise<OutletDefinition<any> | OutletDefined<any>>>
 {
-    public async format(value: EndpointProxy<ClusterMap>): Promise<OutletDefinition<any> | OutletDefined<any>>
+    public async format(value: EndpointProxy): Promise<OutletDefinition<any> | OutletDefined<any>>
     {
         if (!value)
             return;

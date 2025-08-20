@@ -17,10 +17,11 @@ export default class LiftWindowCoveringButton extends Page
         return JSON.stringify(data);
     }
 
-    runCommand(context: EndpointProxy<ClusterMap, 'windowCovering'>, cmd: keyof ClusterCommands<ClusterMap['windowCovering']>)
+    runCommand(context: EndpointProxy<'windowCovering'>, cmd: keyof ClusterCommands<ClusterMap['windowCovering']>)
     {
         return function ()
         {
+            // context.clusters.windowCovering.target.CurrentPositionLiftPercentage
             context.clusters.windowCovering.target[cmd]()
         }
     }
