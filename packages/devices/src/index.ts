@@ -3,11 +3,12 @@
 export * from './index.browser.js';
 import { pubsub, Sidecar } from '@akala/sidecar';
 
-import { ClusterMap, CommissionningCluster, EndpointProxy, RootNode } from './server/clients/index.js';
+import { ClusterMap, CommissionningCluster, descriptorCluster, EndpointProxy, RootNode } from './server/clients/index.js';
 import { MqttClient, MqttEvents } from '@domojs/mqtt';
 import { ReasonCodes } from '../../mqtt/dist/protocol/_shared.js';
 import { ProxyConfiguration } from '@akala/config';
 import type { BridgeConfiguration } from './server/clients/RootNode.js';
+import { Descriptor } from './server/behaviors/descriptor.js';
 
 export { type BridgeConfiguration }
 

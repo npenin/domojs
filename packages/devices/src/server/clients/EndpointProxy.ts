@@ -3,7 +3,8 @@ import { MqttEvents } from "@domojs/mqtt";
 import { ClusterIdNames, ClusterMap as ClusterMapType } from "../clusters/index.js";
 import { MixedClusterDefinition, Endpoint } from "./Endpoint.js";
 import { Cluster, ClusterInstance, clusterProxyFactory, ClusterInstanceLight, ClusterDefinition, RemoteClusterInstance } from "./shared.js";
-import { ClusterMap } from "../clusters/_shared.js";
+import { ClusterIds, ClusterMap, MatterClusterIds } from "../clusters/_shared.js";
+import descriptor from "../../codegen/clusters/descriptor-cluster.js";
 
 
 export type MixedRemoteClusterMap<K extends keyof ClusterMapType> =
@@ -26,6 +27,8 @@ export class EndpointProxy<TClusterMapKeys extends Exclude<keyof ClusterMapType,
     {
         super();
 
+        clusters['descriptor'] = ClusterMap[MatterClusterIds.Descriptor];
+
         this.clusters = Object.fromEntries(Object.entries<ClusterDefinition<Cluster<any, any, any>>>(clusters).
             map(e => [e[0],
             clusterProxyFactory(
@@ -35,9 +38,10 @@ export class EndpointProxy<TClusterMapKeys extends Exclude<keyof ClusterMapType,
                 Object.values(clusters).map(c => (c as ClusterDefinition<any>).id)
             )])) as MixedRemoteClusterMap<TClusterMapKeys | 'descriptor'>;
 
+
         this.clusters.descriptor.target.PartsList.then(endpoints =>
         {
-            endpoints?.map(ep => EndpointProxy.fromBus(pubsub, parent.name, ep).then(ep => this.endpoints.push(ep)));
+            endpoints?.map(ep => ep !== this.id && EndpointProxy.fromBus(pubsub, parent.name, ep).then(ep => this.endpoints.push(ep)));
         })
     }
 

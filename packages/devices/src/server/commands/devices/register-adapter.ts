@@ -176,7 +176,7 @@ export default async function (this: State, node: string): Promise<SidecarConfig
     let clientId = await this.self?.getEndpointId(node) ?? 0;
     if (this.self)
     {
-        const client = new EndpointProxy(clientId, { name: 'domojs' + node }, this.pubsub, {});
+        const client = new EndpointProxy(clientId, { name: 'domojs/' + node }, this.pubsub, {});
         this.self.endpoints.push(client);
     }
 
