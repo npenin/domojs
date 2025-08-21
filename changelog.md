@@ -81,6 +81,7 @@
 * enable production mode 4e66bf1
 * enable yarn cec2353
 * endpoint command result adf4756
+* endpoint proxy descriptor 95f7aae
 * ensure config is initialized 31238d4
 * ensure mqtt-client.net.js is imported in index.ts dea90e5
 * ensure proper permissions 80f00b8
