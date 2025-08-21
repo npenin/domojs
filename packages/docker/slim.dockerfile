@@ -19,6 +19,7 @@ ENV NODE_ENV=production
 WORKDIR /usr/src/akala
 COPY entrypoint.sh entrypoint.sh
 COPY --from=build /root /root
+COPY .yarnrc.yml /usr/src/akala/.yarnrc.yml
 COPY --from=build /usr/src/akala /usr/src/akala
 COPY .akala.json db/.akala.json
 RUN ln -s db/.akala.json .akala.json && \
