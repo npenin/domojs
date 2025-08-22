@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add debugging log be1e6c0
+* restore all my personal shutters 4a9a0e0
 
 
 
