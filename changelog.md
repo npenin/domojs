@@ -102,6 +102,7 @@
 * gateway start 97998b5
 * gateway startup 64f6af0
 * gateway startup 32c2fe9
+* guest permissions ba4e91f
 * handle buffer read over limits 3bc14bb
 * handle gateways detection 0c682a0
 * handle multiple gateways or merge gateways 1f19ef8
@@ -144,6 +145,7 @@
 * prevent committing web bundles 72a3f16
 * prevent duplicate rfy endpoints 3d20a3b
 * prevent infinite loop on attribute get 96011cd
+* prevent overhead on descriptor cluster 4e68f18
 * proper gateway closure e7eb9cd
 * proper gateway remote list support c15e201
 * proper support for commands result 8026fb7
@@ -279,6 +281,7 @@
 * add ManualAdministration cluster 60e1960
 * add new components for device button selection and room card, enhance home page layout with search functionality 3295433
 * add reason code when disconnecting b44aa1b
+* add redirectTopic f692d3e
 * add service discovery (not ready yet) 7a7a7b4
 * add slim docker alternative a06e7c6
 * add tlv support be185cf
@@ -305,6 +308,7 @@
 * migrate to new device model and started device discovery implementation 732c679
 * migrate to new device model and started device discovery implementation 066177a
 * move device management to devicetype 07e06d7
+* move from Promise to Binding 3ff5970
 * provide cluster value (not types only anymore) f7586d4
 * provide fromBus to create an EndpointProxy from the bus 127e3cf
 * shared gateway implementation d7a42a9
@@ -319,6 +323,7 @@
 
 ### BREAKING CHANGES
 
+* EndpointProxy provide bindings instead of Promise
 * endpoints and endpointproxies do not expect ClusterMap anymore
 * no more commands for now
 * no more commands for now
