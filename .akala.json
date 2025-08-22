@@ -101,14 +101,18 @@
                 }
             }
         },
-        "endpointsMapping": {},
+        "endpointsMapping": {
+            "7cbdb153fdc1b15bf9c569329111cc8778822d78e73ffd7468fe7a969ceea": 1
+        },
+        "id": 0,
         "pubsub": {
+            "id": 0,
             "transport": "mqtt://localhost",
             "transportOptions": {
                 "username": "devices",
                 "password": {
-                    "iv": "lr0zrmafS0DfH2FgLNElpg==",
-                    "value": "+jrQyqkGIQmCajOXJRBell+NP+PNqOV/nFnEzcbimMr4NJGK0gG40GjslL8n8cax"
+                    "iv": "eG5yifEQ0jTsvhHz9bjg2g==",
+                    "value": "bUgo5FkgBiWETe32QsmqS02tN5qpN4oTrAXDTIaJw51ZPmacWJzjpPOkbLnN1RiZ"
                 }
             }
         }
@@ -176,15 +180,26 @@
             "bb5cb638aaea2c5d46f3cdbf18f2744dc4914681268b28a568a6c2d38e8b9": 54,
             "cd84c49ae285f8bdf7591027c9b3e84ff69aa8f810fba22daac5804791f5b4": 55,
             "7822ba8234aa12f1b66f1bcfa3781871e64d99e46cfe43a67f8039c26910d1": 56,
-            "e996616bf30b09c689df65c99fa5983947fcef18a7e24a789e8ca6f8a0579b": 57
+            "e996616bf30b09c689df65c99fa5983947fcef18a7e24a789e8ca6f8a0579b": 57,
+            "d1671d90742d92dfe8238f2fe3455d06955a2ebe8cd296f4e733b234b38031": 58,
+            "4c5db055ba48d0e8ed6bb61528a29d56fc9236dc271098dc75a562835d591f9c": 59,
+            "f76c4d5378716b88330b3f9711ae24c2b6bb21220a37a45bf1c16a6f3f93ddf": 60,
+            "2c242241981ef1e53766f7bfb6dc1633c3793a427bfd248e0f67d55b432f96": 61,
+            "f895e5d5ca6337ec41da9b4b468af55d18aa6553a3784af4807fdc91468e1c6": 62,
+            "7f62b3ebdf4fe60abbb06594169494188a27f297c6e8a19648b86754a640": 63,
+            "4264a7df796c2195254ee4ee95022467cbe2621be42bee646e8d97b923bca54": 64,
+            "93b194203be2eb8e697238c3d2276714b3475e952175105076b2b354251e8d": 65,
+            "c88646953b6728404f39af41e51c5a421428e1ff87a6b64f195345adc29da3b3": 66
         },
+        "id": 1,
         "pubsub": {
+            "id": 1,
             "transport": "mqtt://localhost",
             "transportOptions": {
                 "username": "mdns",
                 "password": {
-                    "iv": "U/bj8NPni3cobtPL58kmDw==",
-                    "value": "hDWFDAoyNNJ0KwX+oFVoG2iH4hRZvGPKz4Bp4amk0IMsdViNoFJNQfo5xd8DfpMX"
+                    "iv": "QWejv+xy29s6yunT5MHuzA==",
+                    "value": "cuih8VReT6fRaN5SU3oakHy9NwweCNJMOhX1d3fBzNJrIdexBBByYz1LavEqT/vD"
                 }
             }
         }
