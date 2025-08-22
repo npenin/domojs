@@ -35,6 +35,7 @@ export function clusterProxyFactory<TCluster extends Cluster<unknown, unknown, a
                 const defer = new Deferred();
                 const sub = await pubsub.on(`${prefixTopic}/${e.toString()}Command`, async (data) =>
                 {
+                    console.log(data);
                     await sub?.();
                     if (typeof data == 'string')
                         defer.resolve(JSON.parse(data));
