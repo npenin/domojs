@@ -3,7 +3,7 @@
 export * from './index.browser.js';
 import { pubsub, Sidecar } from '@akala/sidecar';
 
-import { ClusterMap, CommissionningCluster, descriptorCluster, EndpointProxy, RootNode } from './server/clients/index.js';
+import { clusterFactory, ClusterIds, ClusterMap, CommissionningCluster, descriptorCluster, Endpoint, EndpointProxy, MatterClusterIds, RootNode } from './server/clients/index.js';
 import { MqttClient, MqttEvents } from '@domojs/mqtt';
 import { ReasonCodes } from '../../mqtt/dist/protocol/_shared.js';
 import { ProxyConfiguration } from '@akala/config';
@@ -14,11 +14,12 @@ export { type BridgeConfiguration }
 
 export async function registerNode(name: string, self: Sidecar<any, MqttEvents>, config: ProxyConfiguration<BridgeConfiguration>, abort: AbortSignal): Promise<RootNode<never>>
 {
+    let id = config.id;
     if (!self.pubsub && self.config.pubsub?.transport || self.pubsub && !self.config.pubsub.transportOptions)
     {
         if (self.pubsub)
         {
-            await (self.pubsub as MqttClient).disconnect();
+            await (self.pubsub as MqttClient).disconnect(ReasonCodes.NormalDisconnection);
             delete self.pubsub
         }
         await pubsub(self, { transport: self.config.pubsub.transport, transportOptions: { username: 'domojs-guest', password: 'domojs' } }, abort);
@@ -26,10 +27,11 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
     const remote = new EndpointProxy(0, { name: 'domojs/devices' }, self.pubsub, { commissionning: CommissionningCluster });
     try
     {
-        const [pubsubConfig] = await remote.clusters.commissionning.target.registerCommand(name);
+        const [pubsubConfig, clientId] = await remote.clusters.commissionning.target.registerCommand(name);
         if (pubsubConfig)
         {
-            await (self.pubsub as MqttClient).disconnect();
+            id = clientId;
+            await (self.pubsub as MqttClient).disconnect(ReasonCodes.NormalDisconnection);
             delete self.pubsub;
             delete self.config.pubsub;
             await pubsub(self, pubsubConfig, abort);
@@ -37,12 +39,29 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
     }
     catch (e)
     {
-        if (e.reason !== ReasonCodes.NotAuthorized)
+        if (e.disconnect.reason !== ReasonCodes.NotAuthorized)
         {
             delete self.config.pubsub.transportOptions;
             await self.config.commit();
             throw e;
         }
     }
-    return new RootNode<never>(name, {}, config)
+
+    const endpoint = new Endpoint(id, {
+        fixedLabel: clusterFactory({
+            id: MatterClusterIds.FixedLabel,
+            LabelList: [
+                { Label: 'name', Value: name }
+            ]
+        })
+    });
+
+    const root = new RootNode<never>(name, {}, config)
+
+    await endpoint.attach(self.pubsub, 'domojs/devices');
+    await self.pubsub.emit(`domojs/devices/${id}/descriptor/ServerList`, JSON.stringify(Object.values(endpoint.clusters).map(c => c.target.id)), { qos: 1 });
+
+    root.clusters.descriptor.on('ServerList', l => endpoint.clusters.descriptor.setValue(l.property, l.value));
+
+    return root;
 }
