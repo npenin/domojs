@@ -13,6 +13,15 @@ export class ModeEndpoint<TName extends Extract<keyof TEnum, string>, TEnum exte
     {
         super(id,
             {
+                fixedLabel: clusterFactory({
+                    id: MatterClusterIds.FixedLabel,
+                    LabelList: [
+                        {
+                            Label: 'name',
+                            Value: name
+                        }
+                    ]
+                }),
                 onOff: clusterFactory({
                     id: MatterClusterIds.OnOff,
                     OnOff: (gateway.modes[`msg${n}`] & msg[name]) != 0,
