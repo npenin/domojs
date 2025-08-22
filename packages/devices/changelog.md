@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* redirectTopic value 7c77939
+* handle legacy configuration migration 7c37558
 
 
 
