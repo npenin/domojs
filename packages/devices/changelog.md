@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* handle legacy configuration migration 7c37558
+* add debugging log be1e6c0
 
 
 
