@@ -39,10 +39,10 @@ export class EndpointProxy<TClusterMapKeys extends Exclude<keyof ClusterMapType,
             )])) as MixedRemoteClusterMap<TClusterMapKeys | 'descriptor'>;
 
 
-        this.clusters.descriptor.target.PartsList.then(endpoints =>
-        {
-            endpoints?.map(ep => ep !== this.id && EndpointProxy.fromBus(pubsub, parent.name, ep).then(ep => this.endpoints.push(ep)));
-        })
+        // this.clusters.descriptor.target.PartsList.then(endpoints =>
+        // {
+        //     endpoints?.map(ep => ep !== this.id && EndpointProxy.fromBus(pubsub, parent.name, ep).then(ep => this.endpoints.push(ep)));
+        // })
     }
 
     public patch(patch: {
