@@ -105,6 +105,7 @@
 * guest permissions ba4e91f
 * handle buffer read over limits 3bc14bb
 * handle gateways detection 0c682a0
+* handle legacy configuration migration 7c37558
 * handle multiple gateways or merge gateways 1f19ef8
 * handle start from fork 98c8153
 * handle undefined pubsub config 233fa6d
