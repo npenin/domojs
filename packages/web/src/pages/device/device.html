@@ -1,5 +1,17 @@
 <div data-bind="{innerText:context#async#clusterIds}"></div>
 
 <kl-each each="context#async#clusters" item-property-name="cluster">
-    <div data-bind="{innerText:cluster#log#json}"></div>
+    <template>
+        <div>
+            <pre data-bind="{innerText:cluster#clusterDef#json:{space:4}}"></pre>
+            <kl-each each="(cluster#clusterDef).attributes" item-property-name="att">
+                <template>
+                    <div>
+                        <span data-bind="{innerText:att}"></span>:
+                        <span data-bind="{innerText:cluster[att]#async}"></span>
+                    </div>
+                </template>
+            </kl-each>
+        </div>
+    </template>
 </kl-each>

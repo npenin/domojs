@@ -1,0 +1,16 @@
+<div>
+    <button on on-click="controller.openDialog?.()">
+        <ibm-icon icon="icons.windowCoveringLift"></ibm-icon>
+    </button>
+
+    <div if="context.SupportsLift#async">
+
+        <button on on-click="controller.runCommand(context#unbind, 'UpOrOpenCommand')">
+            <ibm-icon icon="icons.shutterUp"></ibm-icon>
+        </button>
+        <button on on-click="controller.runCommand(context#unbind, 'DownOrCloseCommand')">
+            <ibm-icon icon="icons.shutterDown"></ibm-icon>
+        </button>
+    </div>
+
+</div>

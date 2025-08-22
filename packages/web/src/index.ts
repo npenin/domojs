@@ -6,9 +6,8 @@ import './index.css';
 import Home from './pages/home/home.js';
 import { configure, connect, Container } from '@akala/commands/browser';
 import './components/ibm-icon/ibm-icon.js'
-import './components/device-button-selector/device-button-selector.js'
+import './components/device-selector/device-button-selector.js'
 import './components/room-card/room-card.js'
-import { IconDescriptor } from './components/ibm-icon/ibm-icon.js';
 import './swipe-down.js'
 
 import searchIcon from '@carbon/icons/es/search/24.js'
@@ -22,13 +21,12 @@ import deskAdjustableIcon from '@carbon/icons/es/desk--adjustable/24.js'
 import Device from './pages/device/device.js';
 import { asyncEventBuses, Formatter, formatters } from '@akala/core';
 import { MqttEvents } from '@domojs/mqtt';
-import { Cluster, ClusterIds, EndpointProxy, RemoteClusterInstance } from '@domojs/devices';
+import { Cluster, ClusterDefinition, ClusterIds, EndpointProxy, RemoteClusterInstance } from '@domojs/devices';
 
 formatters.register('log', class implements Formatter<unknown>
 {
     format(value: unknown)
     {
-        debugger;
         console.log(value);
         return value;
     }
@@ -49,7 +47,20 @@ formatters.register('clusters', class implements Formatter<RemoteClusterInstance
     {
         return Object.values(value?.clusters || []) as any;
     }
-
+})
+formatters.register('clusterDefs', class implements Formatter<ClusterDefinition<any>[]>
+{
+    format(value: EndpointProxy)
+    {
+        return Object.values(value?.clusters || []).map(c => c.target['definition']);
+    }
+})
+formatters.register('clusterDef', class implements Formatter<ClusterDefinition<any>>
+{
+    format(value: any)
+    {
+        return value?.definition;
+    }
 })
 
 bootstrapModule.activate([[serviceModule, OutletService.InjectionToken]], (outlet: OutletService) =>

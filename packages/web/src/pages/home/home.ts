@@ -30,7 +30,11 @@ export default class Home extends Page
         // console.log(endpoints);
         await Promise.all(
             [
-                EndpointProxy.fromBus(this.mqtt, 'domojs/RFXCOM', 6).then(tous => this.rooms.push({ name: 'AllHouse', devices: [tous] })),
+                EndpointProxy.fromBus(this.mqtt, 'domojs/RFXCOM', 6).then(tous =>
+                {
+                    debugger;
+                    this.rooms.push({ name: 'AllHouse', devices: [tous] })
+                }),
                 EndpointProxy.fromBus(this.mqtt, 'domojs/devices', 0).then(allDevices =>
                 {
                     debugger;
