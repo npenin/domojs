@@ -8,7 +8,7 @@ import { ConstantExpression, MemberExpression } from '@akala/core/expressions';
 @page({ template, 'inject': [RootElement, [serviceModule, 'mqtt']] })
 export default class Home extends Page
 {
-    public readonly rooms: ObservableArray<{ name: string, devices: EndpointProxy[] }> = new ObservableArray([]);
+    public readonly rooms: ObservableArray<{ name: string, devices: ObservableArray<EndpointProxy> }> = new ObservableArray([]);
     public readonly devices = new ObservableObject({ 'domojs/devices': new ObservableArray([]) } as Record<string, ObservableArray<EndpointProxy>>);
 
     constructor(el: HTMLElement, private mqtt: AsyncEventBus<MqttEvents>)
@@ -68,40 +68,49 @@ export default class Home extends Page
         // console.log(endpoints);
 
         this.watch('domojs/devices');
+        const room = { name: 'AllHouse', devices: new ObservableArray<EndpointProxy>([]) };
+        this.rooms.push(room);
 
-        await Promise.all(
-            [
-
-                EndpointProxy.fromBus(this.mqtt, 'domojs/RFXCOM', 6).then(tous =>
+        this.devices.on('domojs/RFXCOM', ev =>
+        {
+            ev.value.addListener(l =>
+            {
+                if ('newItems' in l)
                 {
-                    this.rooms.push({ name: 'AllHouse', devices: [tous] })
-                }),
-                EndpointProxy.fromBus(this.mqtt, 'domojs/devices', 0).then(allDevices =>
-                {
-                    // this.rooms.push({ name: 'AllHouse', devices: [allDevices] });
-                    this.devices.target['domojs/devices'].push(allDevices)
-                    allDevices.endpoints.addListener(ev =>
+                    const tous = l.newItems.find(ep => ep.id == 6);
+                    if (tous)
                     {
-                        if ('newItems' in ev)
-                        {
-                            ev.newItems.forEach(ep =>
-                            {
-                                ep.clusters.fixedLabel?.target.LabelList.onChanged(ev =>
-                                {
-                                    const newTopic = ev.value.find(l => l.Label == 'redirectTopic').Value
-                                    if (newTopic in this.devices.target)
-                                        return;
-                                    ObservableObject.setValue(this.devices.target, new MemberExpression(null, new ConstantExpression(newTopic) as any, false), new ObservableArray([]));
-                                    this.watch(newTopic);
-                                    EndpointProxy.fromBus(this.mqtt, newTopic, 0).then(allDevices =>
-                                        this.devices.target[newTopic].push(allDevices));
-                                });
-                            });
-                        }
-                    })
-                })
-            ]);
+                        if (!room.devices.find(d => d.id == tous.id))
+                            room.devices.push(tous);
+                    }
+                }
+            })
+        })
 
+        await EndpointProxy.fromBus(this.mqtt, 'domojs/devices', 0).then(allDevices =>
+        {
+            // this.rooms.push({ name: 'AllHouse', devices: [allDevices] });
+            this.devices.target['domojs/devices'].push(allDevices)
+            allDevices.endpoints.addListener(ev =>
+            {
+                if ('newItems' in ev)
+                {
+                    ev.newItems.forEach(ep =>
+                    {
+                        ep.clusters.fixedLabel?.target.LabelList.onChanged(ev =>
+                        {
+                            const newTopic = ev.value.find(l => l.Label == 'redirectTopic').Value
+                            if (newTopic in this.devices.target)
+                                return;
+                            ObservableObject.setValue(this.devices.target, new MemberExpression(null, new ConstantExpression(newTopic) as any, false), new ObservableArray([]));
+                            this.watch(newTopic);
+                            EndpointProxy.fromBus(this.mqtt, newTopic, 0).then(allDevices =>
+                                this.devices.target[newTopic].push(allDevices));
+                        });
+                    });
+                }
+            })
+        })
     }
 }
 
