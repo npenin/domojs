@@ -52,7 +52,7 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
             id: MatterClusterIds.FixedLabel,
             LabelList: [
                 { Label: 'name', Value: name },
-                { Label: 'redirectTopic', Value: `domojs/${name}/0` }
+                { Label: 'redirectTopic', Value: `domojs/${name}` }
             ]
         })
     });
