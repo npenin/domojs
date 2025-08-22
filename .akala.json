@@ -189,7 +189,8 @@
             "7f62b3ebdf4fe60abbb06594169494188a27f297c6e8a19648b86754a640": 63,
             "4264a7df796c2195254ee4ee95022467cbe2621be42bee646e8d97b923bca54": 64,
             "93b194203be2eb8e697238c3d2276714b3475e952175105076b2b354251e8d": 65,
-            "c88646953b6728404f39af41e51c5a421428e1ff87a6b64f195345adc29da3b3": 66
+            "c88646953b6728404f39af41e51c5a421428e1ff87a6b64f195345adc29da3b3": 66,
+            "5f6d3df5c39d2cef80f75e6b66c67e561226f2963b95e1a7a32cccd841144": 67
         },
         "id": 1,
         "pubsub": {
@@ -198,8 +199,8 @@
             "transportOptions": {
                 "username": "mdns",
                 "password": {
-                    "iv": "QWejv+xy29s6yunT5MHuzA==",
-                    "value": "cuih8VReT6fRaN5SU3oakHy9NwweCNJMOhX1d3fBzNJrIdexBBByYz1LavEqT/vD"
+                    "iv": "8gEVVKkKNkKqe7CrSWOJXw==",
+                    "value": "Gj2R006/JtkqxX5YTkkPHOHdqtdhtAZQVT6LdBM1v8fDD8HGlFa9esxJla4KQkf5"
                 }
             }
         }
