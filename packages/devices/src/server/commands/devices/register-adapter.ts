@@ -96,7 +96,7 @@ export default async function (this: State, node: string): Promise<SidecarConfig
                         "command": "addRoleACL",
                         "rolename": "domojs-guest",
                         "acltype": "subscribePattern",
-                        "topic": `domojs/+/+/+/+/+`,
+                        "topic": `domojs/+/+/+/+`,
                         "priority": 0,
                         allow: true
                     },
@@ -201,7 +201,7 @@ export default async function (this: State, node: string): Promise<SidecarConfig
 
     if (this.self)
     {
-        const client = new EndpointProxy(0, { name: 'domojs/' + node }, this.pubsub, {});
+        const client = new EndpointProxy(clientId, { name: 'domojs/devices' }, this.pubsub, {});
         this.self.endpoints.push(client);
     }
 
