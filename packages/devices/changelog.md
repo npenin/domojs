@@ -3,9 +3,19 @@
 
 ### Bug Fixes
 
-* add id to register adapter and name to commissionned endpoint 819e2b4
-* add id to register adapter and name to commissionned endpoint c825c92
-* disable endpoint proxy discovery 0995b3c
+* guest permissions ba4e91f
+* prevent overhead on descriptor cluster 4e68f18
+
+
+### Features
+
+* add redirectTopic f692d3e
+* move from Promise to Binding 3ff5970
+
+
+### BREAKING CHANGES
+
+* EndpointProxy provide bindings instead of Promise
 
 
 
