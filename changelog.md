@@ -172,6 +172,7 @@
 * remove wwwroot from git tracking 4a77d5f
 * reopen on close 97206ad
 * replace CECKeyCodeEnum import with keypadInputCluster for improved modularity 74fd565
+* restore all my personal shutters 4a9a0e0
 * restore localhost akala config 17db37a
 * rfx modeendpoint naming 5e42bb3
 * rfx parsing 09bbea5
@@ -284,6 +285,7 @@
 * add list folders command 7ac6d78
 * add lots of commands b7d6e19
 * add ManualAdministration cluster 60e1960
+* add name on rfxtrx modes ded3290
 * add new components for device button selection and room card, enhance home page layout with search functionality 3295433
 * add reason code when disconnecting b44aa1b
 * add redirectTopic f692d3e
