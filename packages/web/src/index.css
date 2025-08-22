@@ -119,3 +119,7 @@ dialog.swipe-container>button[aria-label="grip"] {
     width: 50px;
     align-self: center;
 }
+
+kl-each {
+    display: contents;
+}

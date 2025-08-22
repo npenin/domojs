@@ -6,3 +6,37 @@
         </template>
     </kl-each>
 </div>
+
+<div class="device-container vertical">
+    <kl-each each="controller.devices#entries">
+        <template>
+            <div>
+                <legend data-bind="{innerText:item[0]}"></legend>
+                <kl-each each="item[1]" class="horizontal">
+                    <template>
+                        <div class="card vertical">
+                            <header data-bind="{innerText:item.id}"></header>
+                            <kl-each each="item#async#clusters" item-property-name="cluster">
+                                <template>
+                                    <div class="card outline">
+                                        <!-- <pre data-bind="{innerText:cluster#clusterDef#json:{space:4}}"></pre> -->
+                                        <header data-bind="{innerText:cluster#clusterName}"></header>
+                                        <kl-each each="(cluster#clusterDef).attributes" item-property-name="att">
+                                            <template>
+                                                <div>
+                                                    <span data-bind="{innerText:att}"></span>:
+                                                    <span
+                                                        data-bind="{innerText:cluster[att]#unbind#json:{space:4}}"></span>
+                                                </div>
+                                            </template>
+                                        </kl-each>
+                                    </div>
+                                </template>
+                            </kl-each>
+                        </div>
+                    </template>
+                </kl-each>
+            </div>
+        </template>
+    </kl-each>
+</div>

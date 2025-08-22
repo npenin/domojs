@@ -19,9 +19,9 @@ import temperatureIcon from '@carbon/icons/es/temperature/24.js'
 import thisSideUpIcon from '@carbon/icons/es/this-side-up/24.js'
 import deskAdjustableIcon from '@carbon/icons/es/desk--adjustable/24.js'
 import Device from './pages/device/device.js';
-import { asyncEventBuses, Formatter, formatters } from '@akala/core';
+import { allProperties, asyncEventBuses, Formatter, formatters, ObservableObject, watcher, WatcherFormatter } from '@akala/core';
 import { MqttEvents } from '@domojs/mqtt';
-import { Cluster, ClusterDefinition, ClusterIds, EndpointProxy, RemoteClusterInstance } from '@domojs/devices';
+import { Cluster, ClusterDefinition, ClusterIds, EndpointProxy, MatterClusterIds, NonWatchableRemoteClusterInstance, RemoteClusterInstance } from '@domojs/devices';
 
 formatters.register('log', class implements Formatter<unknown>
 {
@@ -37,7 +37,31 @@ formatters.register('clusterIds', class implements Formatter<ClusterIds[]>
 {
     format(value: EndpointProxy)
     {
-        return Object.values(value?.clusters || []).map(c => c.target.id);
+        return Object.values(value?.clusters || {}).map(c => c.target.id);
+    }
+})
+formatters.register('entries', class extends WatcherFormatter implements Formatter<unknown[]>
+{
+    format(value: object)
+    {
+        if (ObservableObject.isWatched(value))
+            (value[watcher] as ObservableObject<any>).on(allProperties, () => this.watcher?.emit('change', value))
+        return Object.entries(value || {});
+    }
+})
+formatters.register('values', class implements Formatter<unknown[]>
+{
+    format(value: object)
+    {
+        return Object.values(value || {});
+    }
+})
+
+formatters.register('clusterName', class implements Formatter<string>
+{
+    format(value: NonWatchableRemoteClusterInstance<any>)
+    {
+        return ClusterIds[value.id] || MatterClusterIds[value.id];
     }
 })
 
@@ -59,7 +83,12 @@ formatters.register('clusterDef', class implements Formatter<ClusterDefinition<a
 {
     format(value: any)
     {
-        return value?.definition;
+        const def = value?.definition as ClusterDefinition<any>;
+        if (ObservableObject.isWatched(def.attributes))
+        {
+            def.attributes[watcher].maxListeners = Number.POSITIVE_INFINITY;
+        }
+        return def;
     }
 })
 

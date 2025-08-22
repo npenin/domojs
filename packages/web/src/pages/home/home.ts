@@ -1,13 +1,15 @@
 import { e, Page, page, RootElement, content, t, OutletService, serviceModule } from '@akala/client'
 import template from './home.html?raw'
 import { ClusterMap, EndpointProxy } from '@domojs/devices';
-import { AsyncEventBus, asyncEventBuses, ObservableArray } from '@akala/core';
+import { AsyncEventBus, asyncEventBuses, ObservableArray, ObservableObject } from '@akala/core';
 import { MqttEvents } from '@domojs/mqtt';
+import { ConstantExpression, MemberExpression } from '@akala/core/expressions';
 
 @page({ template, 'inject': [RootElement, [serviceModule, 'mqtt']] })
 export default class Home extends Page
 {
-    public readonly rooms = new ObservableArray([]);
+    public readonly rooms: ObservableArray<{ name: string, devices: EndpointProxy[] }> = new ObservableArray([]);
+    public readonly devices = new ObservableObject({ 'domojs/devices': new ObservableArray([]) } as Record<string, ObservableArray<EndpointProxy>>);
 
     constructor(el: HTMLElement, private mqtt: AsyncEventBus<MqttEvents>)
     {
@@ -21,24 +23,82 @@ export default class Home extends Page
         });
     }
 
-    public async [OutletService.onLoad]()
+    public watch(name: string)
+    {
+        var processingIds: number[] = [];
+
+        this.teardown(this.devices.target[name].addListener(ev =>
+        {
+            if ('newItems' in ev)
+                ev.newItems.forEach(endpoint =>
+                {
+                    endpoint.clusters.descriptor.target.PartsList.onChanged(async endpoints =>
+                    {
+                        await Promise.all(endpoints.value?.map(async ep =>
+                        {
+                            if (ep === endpoint.id || processingIds.includes(ep))
+                                return;
+                            processingIds.push(ep);
+                            const child = await EndpointProxy.fromBus(this.mqtt, endpoint.parent.name, ep);
+
+                            if (this.devices.target[name].indexOf(child) == -1)
+                            {
+                                this.devices.target[name].push(child);
+                                endpoint.endpoints.push(child);
+                            }
+                        }));
+
+                        endpoints.value.forEach(ep =>
+                        {
+                            const indexOfEP = processingIds.indexOf(ep);
+                            if (indexOfEP > -1)
+                                processingIds.splice(indexOfEP, 1);
+                        })
+                    });
+                });
+        }));
+    }
+
+    public async[OutletService.onLoad]()
     {
         // const allDevices = await EndpointProxy.fromBus<ClusterMap>(mqtt, 'domojs/devices', '0');
 
         // const endpoints = await allDevices.clusters.descriptor.target.PartsList;
         // debugger;
         // console.log(endpoints);
+
+        this.watch('domojs/devices');
+
         await Promise.all(
             [
+
                 EndpointProxy.fromBus(this.mqtt, 'domojs/RFXCOM', 6).then(tous =>
                 {
-                    debugger;
                     this.rooms.push({ name: 'AllHouse', devices: [tous] })
                 }),
                 EndpointProxy.fromBus(this.mqtt, 'domojs/devices', 0).then(allDevices =>
                 {
-                    debugger;
-                    this.rooms.push({ name: 'AllHouse 2', devices: [allDevices] });
+                    // this.rooms.push({ name: 'AllHouse', devices: [allDevices] });
+                    this.devices.target['domojs/devices'].push(allDevices)
+                    allDevices.endpoints.addListener(ev =>
+                    {
+                        if ('newItems' in ev)
+                        {
+                            ev.newItems.forEach(ep =>
+                            {
+                                ep.clusters.fixedLabel?.target.LabelList.onChanged(ev =>
+                                {
+                                    const newTopic = ev.value.find(l => l.Label == 'redirectTopic').Value
+                                    if (newTopic in this.devices.target)
+                                        return;
+                                    ObservableObject.setValue(this.devices.target, new MemberExpression(null, new ConstantExpression(newTopic) as any, false), new ObservableArray([]));
+                                    this.watch(newTopic);
+                                    EndpointProxy.fromBus(this.mqtt, newTopic, 0).then(allDevices =>
+                                        this.devices.target[newTopic].push(allDevices));
+                                });
+                            });
+                        }
+                    })
                 })
             ]);
 
