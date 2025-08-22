@@ -78,7 +78,9 @@ export class ProtocolEvents extends EventEmitter<ProtocolEventsMap>
 
 }
 
-export class DisconnectError extends ErrorWithStatus
+type Responses<TMessage extends MessageTypes> = TMessage extends { reason: ReasonCodes } ? TMessage : never;
+
+export class DisconnectError<TMessage extends Responses<MessageTypes>> extends ErrorWithStatus
 {
     public static ReasonToHttpStatus(reason: ReasonCodes): HttpStatusCode
     {
@@ -158,8 +160,8 @@ export class DisconnectError extends ErrorWithStatus
         }
     }
 
-    public readonly disconnect: disconnect.Message;
-    constructor(message: disconnect.Message)
+    public readonly disconnect: TMessage;
+    constructor(message: TMessage, public readonly request?: MessageTypes)
     {
         super(DisconnectError.ReasonToHttpStatus(message.reason), 'Disconnected: ' + (ReasonCodes[message.reason] ?? 'Unknown reason'));
         this.disconnect = message;

@@ -115,11 +115,11 @@ export class MqttServer extends EventEmitter<MqttEvents>
         });
     }
 
-    public async disconnect(protocolEvents: ProtocolEvents): Promise<void>
+    public async disconnect(protocolEvents: ProtocolEvents, reason: ReasonCodes): Promise<void>
     {
         const message: disconnect.Message = {
             type: ControlPacketType.DISCONNECT,
-            properties: []
+            reason
         };
         await protocolEvents.socket.send(parserWrite(StandardMessages, message, message, 0));
 

@@ -17,12 +17,12 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
 
     private mqttSubscriptions: Record<string, { subscription: StatefulAsyncSubscription; options: EventOptions<MqttEvent>; listener: EventListener<MqttEvent>; }[]> = {};
 
-    constructor(private clientId: string, private readonly protocolEvents: ProtocolEvents, private readonly keepAlive: number = 60000)
+    constructor(private clientId: string, private readonly protocolEvents: ProtocolEvents, private keepAlive: number = 60000)
     {
         super();
         this.teardown(protocolEvents.on(ControlPacketType.CONNACK, () => this._connected = true));
         this.teardown(protocolEvents.on(ControlPacketType.DISCONNECT, () => { clearInterval(this.pingInterval); protocolEvents.socket.close() }));
-        protocolEvents.socket.on('close', () => this._connected = false);
+        protocolEvents.socket.on('close', () => { this._connected = false; clearTimeout(this.pingInterval); });
         this.teardown(protocolEvents.on(ControlPacketType.PINGREQ, () =>
         {
             const pong: pingresp.Message = {
@@ -78,7 +78,8 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
             const ping: pingreq.Message = {
                 type: ControlPacketType.PINGREQ
             }
-            this.write(parserWrite(StandardMessages, ping, ping).toArray());
+            if (this._connected)
+                this.write(parserWrite(StandardMessages, ping, ping).toArray());
         }, this.keepAlive);
     }
     hasListener<const TKey extends EventKeys<MqttEvents>>(name: TKey)
@@ -205,7 +206,7 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
                                     if (!resolved)
                                     {
                                         resolved = true;
-                                        reject(m);
+                                        reject(Object.assign(new DisconnectError(response, message), { stack }));
                                     }
                                     break;
                             }
@@ -259,11 +260,15 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
     {
         if (!opts)
             opts = {};
+
+        if (opts?.keepAlive)
+            this.keepAlive = opts.keepAlive * 1000;
+
         const message: connect.Message = {
             type: ControlPacketType.CONNECT,
             protocol: 'MQTT',
             version: 5,
-            keepAlive: opts?.keepAlive ?? 60,
+            keepAlive: this.keepAlive,
             cleanStart: !opts.sessionId,
             hasPassword: !!opts.password,
             hasUserName: !!opts.userName,
@@ -278,11 +283,11 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
         return this.dialog(message);
     }
 
-    public async disconnect(): Promise<void>
+    public async disconnect(reason: ReasonCodes): Promise<void>
     {
         const message: disconnect.Message = {
             type: ControlPacketType.DISCONNECT,
-            properties: []
+            reason
         };
         await this.write(parserWrite(StandardMessages, message, message, 0).toArray())
         clearTimeout(this.pingInterval);

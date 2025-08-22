@@ -6,6 +6,7 @@ import { RetainHandling } from '../protocol/subscribe.js'
 import { Socket } from 'net'
 import { ProtocolEvents } from '../index.js'
 import { TcpSocketAdapter } from '@akala/core'
+import { ReasonCodes } from '../protocol/_shared.js'
 
 describe('mosquitto tests', () =>
 {
@@ -44,7 +45,7 @@ describe('mosquitto tests', () =>
         await mqtt.emit('presence', 'Hello akala !');
         console.timeLog('mqtt', 'published')
 
-        await mqtt.disconnect();
+        await mqtt.disconnect(ReasonCodes.NormalDisconnection);
         console.timeLog('mqtt', 'disconnected')
         console.timeEnd('mqtt');
 
@@ -68,7 +69,7 @@ describe('mosquitto tests', () =>
 
         await mqtt.emit('presence', 'Hello akala !');
 
-        await mqtt.disconnect();
+        await mqtt.disconnect(ReasonCodes.NormalDisconnection);
 
         await mqtt[Symbol.asyncDispose]();
     });
@@ -89,7 +90,7 @@ describe('mosquitto tests', () =>
 
         await mqtt.emit('presence', 'Hello akala !');
 
-        await mqtt.disconnect();
+        await mqtt.disconnect(ReasonCodes.NormalDisconnection);
 
         await mqtt[Symbol.asyncDispose]();
     });
