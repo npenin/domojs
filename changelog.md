@@ -1,4 +1,4 @@
-#  (2025-08-21)
+#  (2025-08-22)
 
 
 ### Bug Fixes
@@ -15,6 +15,9 @@
 * add gateway endpoints to fabric d878f75
 * add generics on gateway 665e107
 * add homekit projects to compilation ce50c3d
+* add id to register adapter and name to commissionned endpoint 14f730d
+* add id to register adapter and name to commissionned endpoint 819e2b4
+* add id to register adapter and name to commissionned endpoint c825c92
 * add missing DB config 94437db
 * add missing dependency 60e2e49
 * add missing export for device-commands.json in package.json f85753a
@@ -70,6 +73,7 @@
 * devicetype init dd87a23
 * devicetype start up + upgrade to latest sidecar 17378d1
 * devicetype startup 401db92
+* disable endpoint proxy discovery 0995b3c
 * docker path 21d31e1
 * docker setup 99e29ae
 * docker warning 679077a
@@ -143,6 +147,7 @@
 * proper gateway closure e7eb9cd
 * proper gateway remote list support c15e201
 * proper support for commands result 8026fb7
+* property mandatoryness 82f99fa
 * provide signal to pubsub 3e0a570
 * provide signal to pubsub 538c505
 * publish workflow after semantic-release upgrade 3d373e1
@@ -177,6 +182,7 @@
 * slim user f605b15
 * specify proper params for save c949c4b
 * split buffer 4715286
+* start device component selector 3fa40f9
 * start gateway before creating endpoint 62bb79a
 * support for gateway closure a77d715
 * support for tcp gateway 1afe68a
@@ -272,6 +278,7 @@
 * add lots of commands b7d6e19
 * add ManualAdministration cluster 60e1960
 * add new components for device button selection and room card, enhance home page layout with search functionality 3295433
+* add reason code when disconnecting b44aa1b
 * add service discovery (not ready yet) 7a7a7b4
 * add slim docker alternative a06e7c6
 * add tlv support be185cf
