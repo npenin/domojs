@@ -36,6 +36,8 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
             delete self.config.pubsub;
             await pubsub(self, pubsubConfig, abort);
         }
+        else
+            id = clientId;
     }
     catch (e)
     {

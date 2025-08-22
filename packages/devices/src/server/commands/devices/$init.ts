@@ -12,6 +12,7 @@ import { ClusterInstance } from "../../clients/shared.js";
 import { ObservableObject } from "@akala/core";
 import registerAdapter from "./register-adapter.js";
 import { clusterId } from "../../clusters/Commissionnee.js";
+import { PubSubConfiguration } from "../../../index.js";
 
 
 export function Commissionnee(state: State): ClusterInstance<Commissionnee>
@@ -20,7 +21,9 @@ export function Commissionnee(state: State): ClusterInstance<Commissionnee>
         async registerCommand(name)
         {
             const result = await registerAdapter.call(state, name);
-            return [result, result?.id]
+            if (result.transport)
+                return [result as PubSubConfiguration, result?.id]
+            return [null, result?.id];
         },
         id: clusterId,
     });

@@ -25,7 +25,7 @@ const queue = new Queue<{ pubsub: AsyncEventBus<MqttEvents>, message: DynSecRequ
  * @param name 
  * @returns the password to be used to connect to the mosquitto
  */
-export default async function (this: State, node: string): Promise<SidecarConfiguration['pubsub'] & { id: number }>
+export default async function (this: State, node: string): Promise<Partial<SidecarConfiguration['pubsub']> & { id: number }>
 {
     const pwd = base64.base64EncArr(crypto.getRandomValues(new Uint8Array(24)));
 
@@ -206,7 +206,7 @@ export default async function (this: State, node: string): Promise<SidecarConfig
     }
 
     if (clientResponse.error === 'Client already exists')
-        return null;
+        return { id: clientId };
 
     return {
         id: clientId,
