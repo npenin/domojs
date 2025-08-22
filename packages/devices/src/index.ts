@@ -51,7 +51,8 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
         fixedLabel: clusterFactory({
             id: MatterClusterIds.FixedLabel,
             LabelList: [
-                { Label: 'name', Value: name }
+                { Label: 'name', Value: name },
+                { Label: 'redirectTopic', Value: `domojs/${name}/0` }
             ]
         })
     });
@@ -61,7 +62,7 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
     await endpoint.attach(self.pubsub, 'domojs/devices');
     await self.pubsub.emit(`domojs/devices/${id}/descriptor/ServerList`, JSON.stringify(Object.values(endpoint.clusters).map(c => c.target.id)), { qos: 1 });
 
-    root.clusters.descriptor.on('ServerList', l => endpoint.clusters.descriptor.setValue(l.property, l.value));
+    // root.clusters.descriptor.on('ServerList', l => endpoint.clusters.descriptor.setValue(l.property, l.value));
 
     return root;
 }
