@@ -154,6 +154,7 @@
 * provide signal to pubsub 538c505
 * publish workflow after semantic-release upgrade 3d373e1
 * recover from closed socket 0b733dd
+* redirectTopic value 7c77939
 * remove @akala/client for now 570f6fd
 * remove @akala/client for now fae299f
 * remove connect settings in docker e057800
@@ -240,6 +241,7 @@
 * user and volumes 5c04a92
 * various processing improvements 1984092
 * web implementation f2b5bcb
+* wrong cluster id being used 08bb3c5
 * wrong work dir 617ce09
 * yarn cache 856a0d8
 * yarn cache 0bb7a11
@@ -274,6 +276,7 @@
 * add codegen from zap clusters and devices types f68bdea
 * add crunchyroll media indexing 317eacc
 * add disconnect support to MqttClient and update tests for mqtt and mqtts ef451ea
+* add full device enumeration fe29d1c
 * add homekit controller 12c620a
 * add homekit server (homebridge equivalent) 4e86aa4
 * add list folders command 7ac6d78
