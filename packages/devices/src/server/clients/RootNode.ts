@@ -11,6 +11,7 @@ import { ProxyConfiguration } from "@akala/config";
 export interface BridgeConfiguration
 {
     endpointsMapping: Record<string, number>;
+    id: number;
 }
 
 export class RootNode<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor' | 'aggregator'>> extends AggregatorEndpoint<TClusterMapKeys> implements Node

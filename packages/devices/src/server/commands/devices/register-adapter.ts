@@ -71,6 +71,22 @@ export default async function (this: State, node: string): Promise<SidecarConfig
                     {
                         "command": "addRoleACL",
                         "rolename": "domojs-guest",
+                        "acltype": "subscribePattern",
+                        "topic": `domojs/devices/0/descriptor/+`,
+                        "priority": 0,
+                        allow: true
+                    },
+                    {
+                        "command": "addRoleACL",
+                        "rolename": "domojs-guest",
+                        "acltype": "publishClientSend",
+                        "topic": `domojs/devices/0/descriptor/+/get`,
+                        "priority": 0,
+                        allow: true
+                    },
+                    {
+                        "command": "addRoleACL",
+                        "rolename": "domojs-guest",
                         "acltype": "publishClientSend",
                         "topic": `domojs/+/+/+/+/+`,
                         "priority": 0,
@@ -94,6 +110,8 @@ export default async function (this: State, node: string): Promise<SidecarConfig
     }
 
     const defer = new Deferred<DynSecResponse>();
+    const clientId = await this.self?.getEndpointId(node) ?? 0;
+
     queue.enqueue({
         pubsub: this.pubsub,
         message: {
@@ -143,8 +161,8 @@ export default async function (this: State, node: string): Promise<SidecarConfig
                 {
                     "command": "addRoleACL",
                     "rolename": "domojs-" + node,
-                    "acltype": "publishClientSend",
-                    "topic": `domojs/devices/${node}`,
+                    "acltype": "subscribePattern",
+                    "topic": `domojs/devices/0/+/+`,
                     "priority": 0,
                     allow: true
                 },
@@ -152,7 +170,15 @@ export default async function (this: State, node: string): Promise<SidecarConfig
                     "command": "addRoleACL",
                     "rolename": "domojs-" + node,
                     "acltype": "publishClientSend",
-                    "topic": `domojs/devices/${node}/#`,
+                    "topic": `domojs/devices/0/+/+/+`,
+                    "priority": 0,
+                    allow: true
+                },
+                {
+                    "command": "addRoleACL",
+                    "rolename": "domojs-" + node,
+                    "acltype": "subscribePattern",
+                    "topic": `domojs/devices/${clientId}/#`,
                     "priority": 0,
                     allow: true
                 },
@@ -160,10 +186,10 @@ export default async function (this: State, node: string): Promise<SidecarConfig
                     "command": "addRoleACL",
                     "rolename": "domojs-" + node,
                     "acltype": "publishClientSend",
-                    "topic": `domojs/devices`,
+                    "topic": `domojs/devices/${clientId}/#`,
                     "priority": 0,
                     allow: true
-                }
+                },
             ]
         },
         defer
@@ -173,10 +199,9 @@ export default async function (this: State, node: string): Promise<SidecarConfig
 
     const clientResponse = result.responses.find(c => c.command === 'createClient');
 
-    let clientId = await this.self?.getEndpointId(node) ?? 0;
     if (this.self)
     {
-        const client = new EndpointProxy(clientId, { name: 'domojs/' + node }, this.pubsub, {});
+        const client = new EndpointProxy(0, { name: 'domojs/' + node }, this.pubsub, {});
         this.self.endpoints.push(client);
     }
 

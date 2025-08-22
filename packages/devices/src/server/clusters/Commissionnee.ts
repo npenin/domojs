@@ -6,7 +6,7 @@ export const clusterId = 0xfc01
 export type Commissionnee = Cluster<{}, {
     register: {
         inputparams: [name: string];
-        outputparams: [PubSubConfiguration];
+        outputparams: [PubSubConfiguration, number];
     };
 }, {}> & { id: typeof clusterId; };
 

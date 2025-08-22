@@ -3,11 +3,11 @@ import { Container } from "@akala/commands";
 import Configuration, { ProxyConfiguration } from "@akala/config";
 import app, { pubsub, Sidecar, SidecarConfiguration } from "@akala/sidecar";
 import { Container as pmContainer } from '@akala/pm'
-import { MqttClient, MqttEvents } from "@domojs/mqtt";
+import { MqttClient, MqttEvents, protocol } from "@domojs/mqtt";
 import devices from '../../device-commands.js'
 import { EndpointProxy } from "../../clients/EndpointProxy.js";
 import { ClusterMap, type Commissionnee } from "../../clusters/index.js";
-import { RootNode } from "../../clients/RootNode.js";
+import { BridgeConfiguration, RootNode } from "../../clients/RootNode.js";
 import { ClusterInstance } from "../../clients/shared.js";
 import { ObservableObject } from "@akala/core";
 import registerAdapter from "./register-adapter.js";
@@ -19,7 +19,8 @@ export function Commissionnee(state: State): ClusterInstance<Commissionnee>
     return new ObservableObject({
         async registerCommand(name)
         {
-            return [await registerAdapter.call(state, name)]
+            const result = await registerAdapter.call(state, name);
+            return [result, result?.id]
         },
         id: clusterId,
     });
@@ -32,10 +33,7 @@ export interface State extends Sidecar<{}, MqttEvents>
     config: ProxyConfiguration<SelfConfiguration>
 }
 
-export interface SelfConfiguration extends SidecarConfiguration
-{
-    endpointsMapping: Record<string, number>
-}
+export type SelfConfiguration = SidecarConfiguration & BridgeConfiguration;
 
 export default async function (this: State, context: CliContext<{ configFile: string }, State['config']>, pm: pmContainer & Container<any>, container: devices.container & Container<void>)
 {
@@ -86,7 +84,7 @@ export default async function (this: State, context: CliContext<{ configFile: st
     const [pubsubConfig] = await commissionner.target.registerCommand('devices');
     if (pubsubConfig)
     {
-        await (sidecar.pubsub as MqttClient).disconnect();
+        await (sidecar.pubsub as MqttClient).disconnect(protocol.ReasonCodes.NormalDisconnection);
         delete sidecar.pubsub;
         delete sidecar.config.pubsub;
         await pubsub(sidecar, pubsubConfig, context.abort.signal);
