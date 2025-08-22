@@ -4,8 +4,8 @@ import { ControlPacketType, Properties, ReasonCodes, propertiesParser, Message a
 
 export interface Message extends CoreMessage<ControlPacketType.DISCONNECT>
 {
-    reason?: ReasonCodes;
-    properties: Properties;
+    reason: ReasonCodes;
+    properties?: Properties;
 }
 
 header.register(ControlPacketType.DISCONNECT, parsers.series<Message>(
