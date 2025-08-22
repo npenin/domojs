@@ -8,6 +8,7 @@
 * add akala.json symlink in main folder a60a4d4
 * add coreutils e49b07b
 * add db volume b4243ef
+* add debugging log be1e6c0
 * add device type 53de407
 * add dialout group to node 1063529
 * add dialout group to node 29fe3a2
