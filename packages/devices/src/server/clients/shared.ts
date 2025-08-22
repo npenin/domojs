@@ -1,4 +1,4 @@
-import { AsyncEventBus, Deferred, IEvent, Event, ObservableArray, ObservableObject, AsyncTeardownManager, fromEvent } from "@akala/core";
+import { AsyncEventBus, Deferred, IEvent, Event, ObservableArray, ObservableObject, AsyncTeardownManager, fromEvent, EmptyBinding, Binding } from "@akala/core";
 import { MqttEvents, protocol } from "@domojs/mqtt";
 import { DescriptorClusterId } from "../behaviors/descriptor.js";
 
@@ -54,40 +54,59 @@ export function clusterProxyFactory<TCluster extends Cluster<unknown, unknown, a
     } as PropertyDescriptor])));
     Object.defineProperties(target, Object.fromEntries(cluster.attributes.flatMap(e =>
     {
-        let value;
+        const binding = new EmptyBinding();
+        let firstSet = false;
+        binding.once('change', ev => firstSet = true);
 
         if (cluster.id == DescriptorClusterId && e === 'ServerList')
-            value = serverList;
+            binding.setValue(serverList);
 
-        const sync = new Event<[], void>();
-        target.teardown(pubsub.on(`${prefixTopic}/${e.toString()}`, async (data) =>
+        let preventLoop = false;
+        // const sync = new Event<[], void>();
+        const topic = `${prefixTopic}/${e.toString()}`;
+        target.teardown(pubsub.on(topic, async (data, ev) =>
         {
+            if (ev.publishedTopic !== topic)
+                return;
+            preventLoop = true;
             if (typeof data == 'string')
-                value = JSON.parse(data);
+                binding.setValue(JSON.parse(data));
             else
-                value = JSON.parse(data.toString('utf-8'));
-            sync.emit();
+                binding.setValue(JSON.parse(data.toString('utf-8')));
+            preventLoop = false;
+            // sync.emit();
         }, { retainAsPublished: true, retainHandling: protocol.subscribe.RetainHandling.SendAtSubscribe }));
+        binding.onChanged(ev =>
+        {
+            if (!preventLoop)
+            {
+                pubsub.emit(`${topic}/set`, JSON.stringify(ev.value));
+
+            }
+        })
         return [['local' + e.toString(), {
             get()
             {
-                return value;
+                return binding.getValue();
             },
             set(newValue)
             {
-                pubsub.emit(`${prefixTopic}/${e.toString()}/set`, JSON.stringify(newValue)).then(() => value = newValue);
+                binding.setValue(newValue);
             }
         } as PropertyDescriptor
         ], [e, {
-            async get()
+            get()
             {
-                await pubsub.emit(`${prefixTopic}/${e.toString()}/get`, '{}');
-                await new Promise<void>(resolve => sync.addListener(resolve, { once: true }));
-                return value;
+                if (!firstSet)
+                {
+                    pubsub.emit(`${prefixTopic}/${e.toString()}/get`, '{}');
+                    //  new Promise<void>(resolve => sync.addListener(resolve, { once: true }));
+                }
+                return binding;
             },
             set(newValue)
             {
-                pubsub.emit(`${prefixTopic}/${e.toString()}/set`, JSON.stringify(newValue)).then(() => value = newValue);
+                binding.setValue(newValue);
             }
         } as PropertyDescriptor
         ]];
@@ -154,7 +173,7 @@ export type ClusterAttributes<T> = T extends Cluster<infer TAttributes, any, any
 export type ClusterCommands<T> = T extends Cluster<any, infer TCommands, any> ? TCommands : never;
 export type ClusterEvents<T> = T extends Cluster<any, any, infer TEvents> ? TEvents : never;
 
-export type RemoteClusterAttributes<T> = T extends Cluster<infer TAttributes, any, any> ? { [key in keyof TAttributes]: Promise<TAttributes[key]> } & { [key in Extract<keyof TAttributes, string> as `local${key}`]: TAttributes[key] } : never;
+export type RemoteClusterAttributes<T> = T extends Cluster<infer TAttributes, any, any> ? { [key in keyof TAttributes]: Binding<TAttributes[key]> } & { [key in Extract<keyof TAttributes, string> as `local${key}`]: TAttributes[key] } : never;
 export type RemoteClusterCommands<T> = T extends Cluster<any, infer TCommands, any> ? TCommands : never;
 export type RemoteClusterEvents<T> = T extends Cluster<any, any, infer TEvents> ? TEvents : never;
 
