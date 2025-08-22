@@ -2,7 +2,7 @@
     "name": "domojs",
     "repository": "https://github.com/npenin/domojs",
     "author": "npenin <nicolas.penin@dragon-angel.fr>",
-    "version": "100.0.0",
+    "version": "101.0.0",
     "license": "MIT",
     "private": true,
     "workspaces": [
