@@ -1,4 +1,4 @@
-import { allProperties, AsyncEvent, AsyncEventBus, AsyncSubscription, combineAsyncSubscriptions, ObjectEvent, ObservableArray, ObservableObject, Subscription, UrlTemplate } from "@akala/core";
+import { allProperties, AsyncEvent, AsyncEventBus, AsyncSubscription, Binding, combineAsyncSubscriptions, isPromiseLike, ObjectEvent, ObservableArray, ObservableObject, Subscription, UrlTemplate } from "@akala/core";
 import { ClusterInstanceLight, ClusterInstance, Cluster, ClusterDefinition, NonWatchableClusterInstance, RemoteClusterInstance } from "./shared.js";
 import { Descriptor, DescriptorClusterId } from "../behaviors/descriptor.js";
 import { MqttEvents } from "@domojs/mqtt";
@@ -55,6 +55,8 @@ export class Endpoint<
 
                 for (const clusterId of this.descriptor.target.ServerList)
                 {
+                    if (clusterId == DescriptorClusterId)
+                        continue;
                     this.clusterSubscriptions[clusterId]?.();
 
                     this.clusterSubscriptions[clusterId] = (this.clusters[clustersById[clusterId]] as ClusterInstance<Cluster<any, any, any>>).on(allProperties as any, ev =>
@@ -115,6 +117,8 @@ export class Endpoint<
                         cluster.setValue(match.attributeOrCommand, JSON.parse(data));
                     default:
                         let value = cluster.getValue(match.attributeOrCommand);
+                        if (value instanceof Binding)
+                            value = value.getValue();
                         if (value instanceof ObservableArray)
                             value = value.array;
                         await bus.emit(`${prefix}/${endpointName || endpoint.id}/${match.cluster}/${match.attributeOrCommand}`, JSON.stringify(typeof value == 'undefined' || value === null ? false : value), { qos: 1 });
