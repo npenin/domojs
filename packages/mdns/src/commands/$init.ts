@@ -175,7 +175,7 @@ export default async function (this: State, context: Context<ProxyConfiguration<
                 {
                     const ep = fqdnEndpoint = new Endpoint<'fixedLabel'>(fqdnId, {
                         fixedLabel: clusterFactory({
-                            id: MatterClusterIds.UserLabel,
+                            id: MatterClusterIds.FixedLabel,
                             LabelList: [{ Label: 'Type', Value: c.type }, { Label: 'Host', Value: c.host }, { Label: 'FQDN', Value: c.fqdn }].
                                 concat(c.txt ? Object.entries(c.txt).map(e => ({ Label: e[0], Value: e[1] })) : [])
                         })
@@ -194,7 +194,13 @@ export default async function (this: State, context: Context<ProxyConfiguration<
 
                 if (!(typeEndpoint = fabric.endpoints.find(ep => ep.id == typeId) as AggregatorEndpoint<never>))
                 {
-                    fabric.endpoints.push(typeEndpoint = new AggregatorEndpoint(typeId, {}));
+                    fabric.endpoints.push(typeEndpoint = new AggregatorEndpoint(typeId, {
+                        fixedLabel: clusterFactory({
+                            id: MatterClusterIds.FixedLabel,
+                            LabelList: [{ Label: 'Type', Value: c.type }]
+                        })
+
+                    }));
                     fqdnEndpoint.teardown(await Endpoint.attach(self.pubsub, `domojs/${fabric.name}`, typeEndpoint, c.type));
                 }
 
@@ -202,6 +208,10 @@ export default async function (this: State, context: Context<ProxyConfiguration<
                 if (!(hostEndpoint = fabric.endpoints.find(e => e.id === hostId) as AggregatorEndpoint<never>))
                 {
                     fabric.endpoints.push(hostEndpoint = new AggregatorEndpoint(hostId, {
+                        fixedLabel: clusterFactory({
+                            id: MatterClusterIds.FixedLabel,
+                            LabelList: [{ Label: 'Host', Value: c.host }]
+                        })
                     }));
                     fqdnEndpoint.teardown(await Endpoint.attach(self.pubsub, `domojs/${fabric.name}`, hostEndpoint, c.host));
                 }
