@@ -15,7 +15,7 @@ import { DescriptorClusterId } from "../behaviors/descriptor.js";
 //     rotatingId: boolean,
 // };
 
-export function clusterFactory<TCluster extends Cluster<unknown, unknown, any>, const TId>(impl: ClusterInstanceLight<TCluster>): ClusterInstance<TCluster>
+export function clusterFactory<TCluster extends Cluster<unknown, unknown, any>>(impl: ClusterInstanceLight<TCluster>): ClusterInstance<TCluster>
 {
     return new ObservableObject({
         ...impl
