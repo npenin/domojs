@@ -18,8 +18,9 @@
         "inject": [
             "$http",
             "context.abort.signal",
-            "options.destination"
+            "options.destination",
+            "options.version"
         ],
-        "usage": "codegen-clusters [destination]"
+        "usage": "codegen-clusters [destination] [version]"
     }
 }

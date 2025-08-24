@@ -5,7 +5,7 @@ import { pathToFileURL } from 'url'
 
 const GITHUB_API_URL = 'https://api.github.com/repos/project-chip/connectedhomeip/contents/data_model/1.4.1/device_types';
 
-export default async function generateFromXml(http: Http, signal: AbortSignal, folder: string)
+export default async function generateFromXml(http: Http, signal: AbortSignal, folder: string, version: string = 'master')
 {
     if (!folder.endsWith('/'))
         folder += '/'
@@ -18,7 +18,7 @@ export default async function generateFromXml(http: Http, signal: AbortSignal, f
     await sharedOutput.write('export enum DeviceTypes {');
 
     // 1. Fetch the list of files in the folder
-    for (const file of await http.getJSON<{ name: string, download_url: string }[]>(GITHUB_API_URL))
+    for (const file of await http.getJSON<{ name: string, download_url: string }[]>(GITHUB_API_URL, new URLSearchParams({ ref: version })))
     {
         if (!file.name.endsWith('.xml'))
             continue;

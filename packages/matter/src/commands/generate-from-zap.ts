@@ -5,7 +5,7 @@ import { pathToFileURL } from 'url'
 
 const GITHUB_API_URL = 'https://api.github.com/repos/project-chip/connectedhomeip/contents/src/app/zap-templates/zcl/data-model/chip';
 
-export default async function generateFromXml(http: Http, signal: AbortSignal, folder: string)
+export default async function generateFromXml(http: Http, signal: AbortSignal, folder: string, version: string = 'master')
 {
     if (!folder.endsWith('/'))
         folder += '/'
@@ -17,7 +17,7 @@ export default async function generateFromXml(http: Http, signal: AbortSignal, f
     const clusterIds: Record<string, Record<string, number>> = {};
 
     // 1. Fetch the list of files in the folder
-    for (const file of await http.getJSON<{ name: string, download_url: string }[]>(GITHUB_API_URL))
+    for (const file of await http.getJSON<{ name: string, download_url: string }[]>(GITHUB_API_URL, new URLSearchParams({ ref: version })))
     {
         if (!file.name.endsWith('.xml'))
             continue;
@@ -586,7 +586,7 @@ async function generateTypescriptFromXml(folderURL: URL, parsedXml: XmlCluster, 
                         if (cmd.arg?.length)
                             await eachAsync(cmd.arg, async f => 
                             {
-                                await output.write(`\n\t\t\t\t${f['@name']}: ${mapType(f, knownTypes)}${f['@array'] === 'true' ? '[]' : ''}, `)
+                                await output.write(`\n\t\t\t\t${f['@name']}: ${mapType(f, knownTypes)}, `)
                             }, true);
 
                         await output.write(`\n\t\t\t],\n\t\t\t outputparams: readonly [`)
@@ -602,7 +602,7 @@ async function generateTypescriptFromXml(folderURL: URL, parsedXml: XmlCluster, 
 
                             await eachAsync(response.arg, async f => 
                             {
-                                await output.write(`\n\t\t\t\t${f['@name']}: ${mapType(f, knownTypes)}${f['@array'] === 'true' ? '[]' : ''}, `)
+                                await output.write(`\n\t\t\t\t${f['@name']}: ${mapType(f, knownTypes)}, `)
                             }, true);
                         }
 

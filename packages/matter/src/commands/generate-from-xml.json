@@ -18,8 +18,9 @@
         "inject": [
             "$http",
             "context.abort.signal",
-            "options.destination"
+            "options.destination",
+            "options.version"
         ],
-        "usage": "codegen-devicetypes [destination]"
+        "usage": "codegen-devicetypes [destination] [version]"
     }
 }
