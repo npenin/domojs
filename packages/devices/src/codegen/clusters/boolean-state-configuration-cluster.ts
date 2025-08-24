@@ -1,5 +1,5 @@
 // This file is generated from boolean-state-configuration-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:44.754Z
+// Generated on 2025-08-24T09:48:24.226Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

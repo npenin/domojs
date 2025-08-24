@@ -1,5 +1,5 @@
 // This file is generated from network-commissioning-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:46.104Z
+// Generated on 2025-08-24T09:48:36.582Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -110,8 +110,8 @@ id: 49;
 			 outputparams: readonly [
 				NetworkingStatus: NetworkCommissioningStatusEnum, 
 				DebugText: string, 
-				WiFiScanResults: readonly WiFiInterfaceScanResultStruct[][], 
-				ThreadScanResults: readonly ThreadInterfaceScanResultStruct[][], ]
+				WiFiScanResults: readonly WiFiInterfaceScanResultStruct[], 
+				ThreadScanResults: readonly ThreadInterfaceScanResultStruct[], ]
             }
 		/** Add or update the credentials for a given Wi-Fi network. */
 		AddOrUpdateWiFiNetwork?: {

@@ -1,5 +1,5 @@
 // This file is generated from service-area-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:46.630Z
+// Generated on 2025-08-24T09:48:41.465Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -77,7 +77,7 @@ id: 336;
 		/** This command is used to select a set of device areas, where the device is to operate. */
 		SelectAreas: {
 			inputparams: readonly [
-				NewAreas: readonly number[][], 
+				NewAreas: readonly number[], 
 			],
 			 outputparams: readonly [
 				Status: SelectAreasStatus, 

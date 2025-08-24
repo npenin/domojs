@@ -1,5 +1,5 @@
 // This file is generated from content-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.116Z
+// Generated on 2025-08-24T09:48:27.669Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

@@ -1,5 +1,5 @@
 // This file is generated from door-lock-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.278Z
+// Generated on 2025-08-24T09:48:29.152Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -563,7 +563,7 @@ id: 257;
 				UserStatus: UserStatusEnum, 
 				UserType: UserTypeEnum, 
 				CredentialRule: CredentialRuleEnum, 
-				Credentials: readonly CredentialStruct[][], 
+				Credentials: readonly CredentialStruct[], 
 				CreatorFabricIndex: number, 
 				LastModifiedFabricIndex: number, 
 				NextUserIndex: number, ]

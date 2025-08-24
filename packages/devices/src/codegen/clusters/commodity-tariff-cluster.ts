@@ -1,5 +1,5 @@
 // This file is generated from commodity-tariff-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.058Z
+// Generated on 2025-08-24T09:48:27.107Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -90,7 +90,7 @@ export interface TariffComponentStruct {
 	AuxiliaryLoad?:AuxiliaryLoadSwitchSettingsStruct,
 	PeakPeriod?:PeakPeriodStruct,
 	PowerThreshold?:import("./global-structs.js").PowerThresholdStruct,
-	Threshold:bigint,
+	Threshold:number,
 	Label?:string,
 	Predicted?:boolean,
 }
@@ -161,7 +161,7 @@ id: 1792;
 			],
 			 outputparams: readonly [
 				Label: string, 
-				DayEntryIDs: readonly number[][], 
+				DayEntryIDs: readonly number[], 
 				TariffComponent: TariffComponentStruct, ]
             }
 		/** The GetDayEntry command allows a client to request information for a calendar day entry identifier that may no longer be available in the CalendarPeriods or IndividualDays attributes. */

@@ -1,5 +1,5 @@
 // This file is generated from chime-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:44.856Z
+// Generated on 2025-08-24T09:48:25.325Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

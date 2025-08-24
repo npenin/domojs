@@ -1,5 +1,5 @@
 // This file is generated from commodity-price-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.038Z
+// Generated on 2025-08-24T09:48:26.923Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -54,7 +54,7 @@ id: 149;
 				Details: CommodityPriceDetailBitmap, 
 			],
 			 outputparams: readonly [
-				PriceForecast: readonly CommodityPriceStruct[][], ]
+				PriceForecast: readonly CommodityPriceStruct[], ]
             }
 }
 	events: {

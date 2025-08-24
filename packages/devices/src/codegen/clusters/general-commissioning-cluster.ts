@@ -1,5 +1,5 @@
 // This file is generated from general-commissioning-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.530Z
+// Generated on 2025-08-24T09:48:31.415Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -51,7 +51,6 @@ id: 48;
 		readonly TCUpdateDeadline?:number
 		readonly RecoveryIdentifier:import ("@akala/core").IsomorphicBuffer
 		readonly NetworkRecoveryReason?:NetworkRecoveryReasonEnum
-		readonly IsCommissioningWithoutPower:boolean
 		/** Supports Terms & Conditions acknowledgement */
 		readonly SupportsTermsAndConditions: boolean
 		/** Supports Network Recovery */
@@ -116,7 +115,6 @@ id: 48,
 		"TCUpdateDeadline",
 		"RecoveryIdentifier",
 		"NetworkRecoveryReason",
-		"IsCommissioningWithoutPower",
 		"SupportsTermsAndConditions",
 		"SupportsNetworkRecovery",
 	] as const,

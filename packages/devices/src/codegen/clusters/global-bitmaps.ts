@@ -1,5 +1,5 @@
 // This file is generated from global-bitmaps.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.589Z
+// Generated on 2025-08-24T09:48:31.935Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

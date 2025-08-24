@@ -1,5 +1,5 @@
 // This file is generated from access-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:44.506Z
+// Generated on 2025-08-24T09:48:21.721Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -91,7 +91,7 @@ id: 31;
 		/** This command signals to the service associated with the device vendor that the fabric administrator would like a review of the current restrictions on the accessing fabric. */
 		ReviewFabricRestrictions?: {
 			inputparams: readonly [
-				ARL: readonly CommissioningAccessRestrictionEntryStruct[][], 
+				ARL: readonly CommissioningAccessRestrictionEntryStruct[], 
 			],
 			 outputparams: readonly [
 				Token: bigint, ]

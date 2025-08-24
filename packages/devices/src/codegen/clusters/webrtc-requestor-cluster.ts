@@ -1,5 +1,5 @@
 // This file is generated from webrtc-requestor-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:47.205Z
+// Generated on 2025-08-24T09:48:46.394Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -19,7 +19,7 @@ id: 1364;
 			inputparams: readonly [
 				WebRTCSessionID: number, 
 				SDP: string, 
-				ICEServers: readonly import("./global-structs.js").ICEServerStruct[][], 
+				ICEServers: readonly import("./global-structs.js").ICEServerStruct[], 
 				ICETransportPolicy: string, 
 			],
 			 outputparams: readonly []
@@ -32,11 +32,11 @@ id: 1364;
 			],
 			 outputparams: readonly []
             }
-		/** This command allows for the object based ICE candidates generated after the initial Offer / Answer exchange, via a JSEP onicecandidate event, a DOM rtcpeerconnectioniceevent event, or other WebRTC compliant implementations, to be added to a session during the gathering phase. */
+		/** This command allows for the object based https://rfc-editor.org/rfc/rfc8839#section-5.1 generated after the initial Offer / Answer exchange, via a JSEP https://datatracker.ietf.org/doc/html/rfc9429#section-4.1.20 event, a DOM https://www.w3.org/TR/webrtc/#dom-rtcpeerconnectioniceevent event, or other WebRTC compliant implementations, to be added to a session during the gathering phase. */
 		ICECandidates: {
 			inputparams: readonly [
 				WebRTCSessionID: number, 
-				ICECandidates: readonly import("./global-structs.js").ICECandidateStruct[][], 
+				ICECandidates: readonly import("./global-structs.js").ICECandidateStruct[], 
 			],
 			 outputparams: readonly []
             }

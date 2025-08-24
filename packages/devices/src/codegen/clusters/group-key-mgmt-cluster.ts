@@ -1,5 +1,5 @@
 // This file is generated from group-key-mgmt-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.648Z
+// Generated on 2025-08-24T09:48:32.447Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -73,7 +73,7 @@ id: 63;
 			inputparams: readonly [
 			],
 			 outputparams: readonly [
-				GroupKeySetIDs: readonly number[][], ]
+				GroupKeySetIDs: readonly number[], ]
             }
 }
 	events: {

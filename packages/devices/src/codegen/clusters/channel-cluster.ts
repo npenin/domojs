@@ -1,5 +1,5 @@
 // This file is generated from channel-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:44.835Z
+// Generated on 2025-08-24T09:48:25.158Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -146,22 +146,22 @@ id: 1284;
 			inputparams: readonly [
 				StartTime: number, 
 				EndTime: number, 
-				ChannelList: readonly ChannelInfoStruct[][], 
+				ChannelList: readonly ChannelInfoStruct[], 
 				PageToken: PageTokenStruct, 
 				RecordingFlag: RecordingFlagBitmap, 
-				ExternalIDList: readonly AdditionalInfoStruct[][], 
+				ExternalIDList: readonly AdditionalInfoStruct[], 
 				Data: import ("@akala/core").IsomorphicBuffer, 
 			],
 			 outputparams: readonly [
 				Paging: ChannelPagingStruct, 
-				ProgramList: readonly ProgramStruct[][], ]
+				ProgramList: readonly ProgramStruct[], ]
             }
 		/** Record a specific program or series when it goes live. This functionality enables DVR recording features. */
 		RecordProgram?: {
 			inputparams: readonly [
 				ProgramIdentifier: string, 
 				ShouldRecordSeries: boolean, 
-				ExternalIDList: readonly AdditionalInfoStruct[][], 
+				ExternalIDList: readonly AdditionalInfoStruct[], 
 				Data: import ("@akala/core").IsomorphicBuffer, 
 			],
 			 outputparams: readonly []
@@ -171,7 +171,7 @@ id: 1284;
 			inputparams: readonly [
 				ProgramIdentifier: string, 
 				ShouldRecordSeries: boolean, 
-				ExternalIDList: readonly AdditionalInfoStruct[][], 
+				ExternalIDList: readonly AdditionalInfoStruct[], 
 				Data: import ("@akala/core").IsomorphicBuffer, 
 			],
 			 outputparams: readonly []

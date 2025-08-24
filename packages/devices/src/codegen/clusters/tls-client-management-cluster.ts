@@ -1,5 +1,5 @@
 // This file is generated from tls-client-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:47.023Z
+// Generated on 2025-08-24T09:48:44.807Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

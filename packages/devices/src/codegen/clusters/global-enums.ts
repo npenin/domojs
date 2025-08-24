@@ -1,5 +1,5 @@
 // This file is generated from global-enums.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.610Z
+// Generated on 2025-08-24T09:48:32.107Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

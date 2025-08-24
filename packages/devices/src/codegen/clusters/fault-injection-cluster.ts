@@ -1,5 +1,5 @@
 // This file is generated from fault-injection-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.468Z
+// Generated on 2025-08-24T09:48:30.903Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

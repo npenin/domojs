@@ -1,5 +1,5 @@
 // This file is generated from pressure-measurement-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:46.311Z
+// Generated on 2025-08-24T09:48:38.609Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

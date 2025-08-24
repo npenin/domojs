@@ -1,5 +1,5 @@
 // This file is generated from washer-controls-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:47.125Z
+// Generated on 2025-08-24T09:48:45.661Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

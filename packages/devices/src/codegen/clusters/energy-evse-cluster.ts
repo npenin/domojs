@@ -1,5 +1,5 @@
 // This file is generated from energy-evse-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.378Z
+// Generated on 2025-08-24T09:48:30.039Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -144,7 +144,7 @@ id: 153;
 		/** Allows a client to set the user specified charging targets. */
 		SetTargets?: {
 			inputparams: readonly [
-				ChargingTargetSchedules: readonly ChargingTargetScheduleStruct[][], 
+				ChargingTargetSchedules: readonly ChargingTargetScheduleStruct[], 
 			],
 			 outputparams: readonly []
             }
@@ -153,7 +153,7 @@ id: 153;
 			inputparams: readonly [
 			],
 			 outputparams: readonly [
-				ChargingTargetSchedules: readonly ChargingTargetScheduleStruct[][], ]
+				ChargingTargetSchedules: readonly ChargingTargetScheduleStruct[], ]
             }
 		/** Allows a client to clear all stored charging targets. */
 		ClearTargets?: {

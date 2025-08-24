@@ -1,5 +1,5 @@
 // This file is generated from sample-mei-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:46.571Z
+// Generated on 2025-08-24T09:48:40.937Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

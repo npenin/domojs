@@ -1,5 +1,5 @@
 // This file is generated from ecosystem-information-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.296Z
+// Generated on 2025-08-24T09:48:29.336Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

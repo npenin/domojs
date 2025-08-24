@@ -1,5 +1,5 @@
 // This file is generated from target-navigator-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:46.731Z
+// Generated on 2025-08-24T09:48:42.330Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

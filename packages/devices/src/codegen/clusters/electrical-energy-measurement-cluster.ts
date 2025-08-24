@@ -1,5 +1,5 @@
 // This file is generated from electrical-energy-measurement-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.319Z
+// Generated on 2025-08-24T09:48:29.510Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

@@ -1,14 +1,8 @@
 // This file is generated from push-av-stream-transport-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:46.410Z
+// Generated on 2025-08-24T09:48:39.493Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
-
-export enum CMAFInterfaceEnum {
-	Interface1= 0,
-	Interface2DASH= 1,
-	Interface2HLS= 2,
-}
 
 export enum ContainerFormatEnum {
 	CMAF= 0,
@@ -26,8 +20,6 @@ export enum StatusCodeEnum {
 	InvalidCombination= 6,
 	InvalidTriggerType= 7,
 	InvalidTransportStatus= 8,
-	InvalidOptions= 9,
-	InvalidStreamUsage= 10,
 }
 
 export enum TransportStatusEnum {
@@ -48,14 +40,10 @@ export enum TriggerActivationReasonEnum {
 }
 
 export interface CMAFContainerOptionsStruct {
-	CMAFInterface:CMAFInterfaceEnum,
-	SegmentDuration:number,
 	ChunkDuration:number,
-	SessionGroup:number,
-	TrackName:string,
 	CENCKey?:import ("@akala/core").IsomorphicBuffer,
-	CENCKeyID?:import ("@akala/core").IsomorphicBuffer,
 	MetadataEnabled?:boolean,
+	CENCKeyID?:import ("@akala/core").IsomorphicBuffer,
 }
 
 export interface ContainerOptionsStruct {
@@ -158,7 +146,6 @@ id: 1365;
 				ConnectionID: number, 
 				ActivationReason: TriggerActivationReasonEnum, 
 				TimeControl: TransportMotionTriggerTimeControlStruct, 
-				UserDefined: import ("@akala/core").IsomorphicBuffer, 
 			],
 			 outputparams: readonly []
             }
@@ -168,7 +155,7 @@ id: 1365;
 				ConnectionID: number, 
 			],
 			 outputparams: readonly [
-				TransportConfigurations: readonly TransportConfigurationStruct[][], ]
+				TransportConfigurations: readonly TransportConfigurationStruct[], ]
             }
 }
 	events: {

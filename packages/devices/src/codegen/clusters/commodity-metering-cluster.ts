@@ -1,5 +1,5 @@
 // This file is generated from commodity-metering-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.014Z
+// Generated on 2025-08-24T09:48:26.740Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -18,8 +18,7 @@ id: 2823;
 	attributes: {
 		readonly MeteredQuantity?:readonly MeteredQuantityStruct[]
 		readonly MeteredQuantityTimestamp?:number
-		readonly TariffUnit?:import("./global-enums.js").TariffUnitEnum
-		readonly MaximumMeteredQuantities?:number
+		readonly MeasurementType?:import("./global-enums.js").MeasurementTypeEnum
 }
 	commands: {
 }
@@ -32,8 +31,7 @@ id: 2823,
 	attributes: [
 		"MeteredQuantity",
 		"MeteredQuantityTimestamp",
-		"TariffUnit",
-		"MaximumMeteredQuantities",
+		"MeasurementType",
 	] as const,
 	commands: [
 	] as const,

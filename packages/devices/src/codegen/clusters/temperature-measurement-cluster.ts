@@ -1,5 +1,5 @@
 // This file is generated from temperature-measurement-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:46.781Z
+// Generated on 2025-08-24T09:48:42.674Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

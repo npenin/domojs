@@ -1,5 +1,5 @@
 // This file is generated from global-structs.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.626Z
+// Generated on 2025-08-24T09:48:32.275Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -83,5 +83,5 @@ export interface WebRTCSessionStruct {
 	StreamUsage:import("./global-enums.js").StreamUsageEnum,
 	VideoStreamID:number,
 	AudioStreamID:number,
-	MetadataEnabled:boolean,
+	MetadataEnabled?:boolean,
 }

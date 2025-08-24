@@ -1,5 +1,5 @@
 // This file is generated from time-synchronization-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:46.963Z
+// Generated on 2025-08-24T09:48:44.266Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -114,7 +114,7 @@ id: 56;
 		/** This command SHALL set TimeZone. */
 		SetTimeZone?: {
 			inputparams: readonly [
-				TimeZone: readonly TimeZoneStruct[][], 
+				TimeZone: readonly TimeZoneStruct[], 
 			],
 			 outputparams: readonly [
 				DSTOffsetRequired: boolean, ]
@@ -122,7 +122,7 @@ id: 56;
 		/** This command SHALL set DSTOffset. */
 		SetDSTOffset?: {
 			inputparams: readonly [
-				DSTOffset: readonly DSTOffsetStruct[][], 
+				DSTOffset: readonly DSTOffsetStruct[], 
 			],
 			 outputparams: readonly []
             }

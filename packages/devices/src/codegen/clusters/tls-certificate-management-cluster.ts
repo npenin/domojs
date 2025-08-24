@@ -1,5 +1,5 @@
 // This file is generated from tls-certificate-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:47.000Z
+// Generated on 2025-08-24T09:48:44.630Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -49,7 +49,7 @@ id: 2049;
 				CAID: number, 
 			],
 			 outputparams: readonly [
-				CertificateDetails: readonly TLSCertStruct[][], ]
+				CertificateDetails: readonly TLSCertStruct[], ]
             }
 		/** This command SHALL return the CAID for the passed in fingerprint. */
 		LookupRootCertificate: {
@@ -90,7 +90,7 @@ id: 2049;
 				CCDID: number, 
 			],
 			 outputparams: readonly [
-				CertificateDetails: readonly TLSClientCertificateDetailStruct[][], ]
+				CertificateDetails: readonly TLSClientCertificateDetailStruct[], ]
             }
 		/** This command SHALL return the CCDID for the passed in Fingerprint. */
 		LookupClientCertificate: {

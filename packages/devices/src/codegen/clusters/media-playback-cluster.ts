@@ -1,5 +1,5 @@
 // This file is generated from media-playback-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.961Z
+// Generated on 2025-08-24T09:48:35.369Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

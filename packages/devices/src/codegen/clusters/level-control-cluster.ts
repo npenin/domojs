@@ -1,5 +1,5 @@
 // This file is generated from level-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.840Z
+// Generated on 2025-08-24T09:48:34.263Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

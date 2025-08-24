@@ -1,5 +1,5 @@
 // This file is generated from wifi-network-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:47.248Z
+// Generated on 2025-08-24T09:48:46.749Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -15,7 +15,7 @@ id: 1105;
 		readonly PassphraseSurrogate?:bigint
 }
 	commands: {
-		/** This command is used to request the current WPA-Personal passphrase or PSK associated with the Wi-Fi network provided by this device. */
+		/** Request the current WPA-Personal passphrase or PSK associated with the managed Wi-Fi network. */
 		NetworkPassphraseRequest: {
 			inputparams: readonly [
 			],

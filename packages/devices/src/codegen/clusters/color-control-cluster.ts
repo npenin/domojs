@@ -1,5 +1,5 @@
 // This file is generated from color-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:44.973Z
+// Generated on 2025-08-24T09:48:26.402Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -109,17 +109,17 @@ id: 768;
 		readonly Primary6X?:number
 		readonly Primary6Y?:number
 		readonly Primary6Intensity?:number
-		readonly WhitePointX?:number
-		readonly WhitePointY?:number
-		readonly ColorPointRX?:number
-		readonly ColorPointRY?:number
-		readonly ColorPointRIntensity?:number
-		readonly ColorPointGX?:number
-		readonly ColorPointGY?:number
-		readonly ColorPointGIntensity?:number
-		readonly ColorPointBX?:number
-		readonly ColorPointBY?:number
-		readonly ColorPointBIntensity?:number
+		WhitePointX?:number
+		WhitePointY?:number
+		ColorPointRX?:number
+		ColorPointRY?:number
+		ColorPointRIntensity?:number
+		ColorPointGX?:number
+		ColorPointGY?:number
+		ColorPointGIntensity?:number
+		ColorPointBX?:number
+		ColorPointBY?:number
+		ColorPointBIntensity?:number
 		readonly CoupleColorTempToLevelMinMireds?:number
 		StartUpColorTemperatureMireds?:number
 		/** Supports color specification via hue/saturation. */

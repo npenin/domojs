@@ -1,5 +1,5 @@
 // This file is generated from smoke-co-alarm-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:46.649Z
+// Generated on 2025-08-24T09:48:41.646Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

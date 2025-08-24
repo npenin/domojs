@@ -1,5 +1,5 @@
 // This file is generated from device-energy-management-mode-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.194Z
+// Generated on 2025-08-24T09:48:28.427Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

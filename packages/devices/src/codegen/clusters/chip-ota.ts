@@ -1,5 +1,5 @@
 // This file is generated from chip-ota.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:44.874Z
+// Generated on 2025-08-24T09:48:25.501Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -70,7 +70,7 @@ id: 41;
 				VendorID: number, 
 				ProductID: number, 
 				SoftwareVersion: number, 
-				ProtocolsSupported: readonly DownloadProtocolEnum[][], 
+				ProtocolsSupported: readonly DownloadProtocolEnum[], 
 				HardwareVersion: number, 
 				Location: string, 
 				RequestorCanConsent: boolean, 

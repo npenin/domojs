@@ -1,5 +1,5 @@
 // This file is generated from thermostat-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:46.833Z
+// Generated on 2025-08-24T09:48:43.044Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -171,16 +171,6 @@ export enum PresetTypeFeaturesBitmap {
 	SupportsNames= 0x02,
 }
 
-export enum ThermostatSuggestionNotFollowingReasonBitmap {
-	DemandResponseEvent= 0x0001,
-	OngoingHold= 0x0002,
-	Schedule= 0x0004,
-	Occupancy= 0x0008,
-	VacationMode= 0x0010,
-	TimeOfUseCostSavings= 0x0020,
-	PreCoolingOrPreHeating= 0x0040,
-}
-
 export interface WeeklyScheduleTransitionStruct {
 	TransitionTime:number,
 	HeatSetpoint:number,
@@ -224,13 +214,6 @@ export interface ScheduleTransitionStruct {
 	SystemMode?:SystemModeEnum,
 	CoolingSetpoint?:number,
 	HeatingSetpoint?:number,
-}
-
-export interface ThermostatSuggestionStruct {
-	UniqueID:number,
-	PresetHandle:import ("@akala/core").IsomorphicBuffer,
-	EffectiveTime:number,
-	ExpirationTime:number,
 }
 
 /**
@@ -300,10 +283,6 @@ id: 513;
 		Presets?:readonly PresetStruct[]
 		Schedules?:readonly ScheduleStruct[]
 		readonly SetpointHoldExpiryTimestamp?:number
-		readonly MaxThermostatSuggestions?:number
-		readonly ThermostatSuggestions?:readonly ThermostatSuggestionStruct[]
-		readonly CurrentThermostatSuggestion?:ThermostatSuggestionStruct
-		readonly ThermostatSuggestionNotFollowingReason?:ThermostatSuggestionNotFollowingReasonBitmap
 		/** Thermostat is capable of managing a heating device */
 		readonly SupportsHeating: boolean
 		/** Thermostat is capable of managing a cooling device */
@@ -322,8 +301,6 @@ id: 513;
 		readonly SupportsMatterScheduleConfiguration: boolean
 		/** Thermostat supports setpoint presets */
 		readonly SupportsPresets: boolean
-		/** Thermostat supports events */
-		readonly SupportsEvents: boolean
 }
 	commands: {
 		/** Upon receipt, the attributes for the indicated setpoint(s) SHALL have the amount specified in the Amount field added to them. */
@@ -340,7 +317,7 @@ id: 513;
 				NumberOfTransitionsForSequence: number, 
 				DayOfWeekForSequence: ScheduleDayOfWeekBitmap, 
 				ModeForSequence: ScheduleModeBitmap, 
-				Transitions: readonly WeeklyScheduleTransitionStruct[][], 
+				Transitions: readonly WeeklyScheduleTransitionStruct[], 
 			],
 			 outputparams: readonly []
             }
@@ -354,7 +331,7 @@ id: 513;
 				NumberOfTransitionsForSequence: number, 
 				DayOfWeekForSequence: ScheduleDayOfWeekBitmap, 
 				ModeForSequence: ScheduleModeBitmap, 
-				Transitions: readonly WeeklyScheduleTransitionStruct[][], ]
+				Transitions: readonly WeeklyScheduleTransitionStruct[], ]
             }
 		/** This command is used to clear the weekly schedule. */
 		ClearWeeklySchedule?: {
@@ -376,68 +353,20 @@ id: 513;
 			],
 			 outputparams: readonly []
             }
-		AddThermostatSuggestion: {
-			inputparams: readonly [
-				PresetHandle: import ("@akala/core").IsomorphicBuffer, 
-				EffectiveTime: number, 
-				ExpirationInMinutes: number, 
-			],
-			 outputparams: readonly [
-				UniqueID: number, ]
-            }
-		RemoveThermostatSuggestion: {
-			inputparams: readonly [
-				UniqueID: number, 
-			],
-			 outputparams: readonly []
-            }
 		/** Begins, Commits or Cancels an atomic write */
 		AtomicRequest?: {
 			inputparams: readonly [
 				RequestType: import("./global-enums.js").AtomicRequestTypeEnum, 
-				AttributeRequests: readonly number[][], 
+				AttributeRequests: readonly number[], 
 				Timeout: number, 
 			],
 			 outputparams: readonly [
 				StatusCode: number, 
-				AttributeStatus: readonly import("./global-structs.js").AtomicAttributeStatusStruct[][], 
+				AttributeStatus: readonly import("./global-structs.js").AtomicAttributeStatusStruct[], 
 				Timeout: number, ]
             }
 }
 	events: {
-		SystemModeChange: [
-			
-			PreviousSystemMode: SystemModeEnum, 
-			CurrentSystemMode: SystemModeEnum, ];
-		LocalTemperatureChange: [
-			
-			CurrentLocalTemperature: number, ];
-		OccupancyChange: [
-			
-			PreviousOccupancy: OccupancyBitmap, 
-			CurrentOccupancy: OccupancyBitmap, ];
-		SetpointChange: [
-			
-			SystemMode: SystemModeEnum, 
-			Occupancy: OccupancyBitmap, 
-			PreviousSetpoint: number, 
-			CurrentSetpoint: number, ];
-		RunningStateChange: [
-			
-			PreviousRunningState: RelayStateBitmap, 
-			CurrentRunningState: RelayStateBitmap, ];
-		RunningModeChange: [
-			
-			PreviousRunningMode: ThermostatRunningModeEnum, 
-			CurrentRunningMode: ThermostatRunningModeEnum, ];
-		ActiveScheduleChange: [
-			
-			PreviousScheduleHandle: import ("@akala/core").IsomorphicBuffer, 
-			CurrentScheduleHandle: import ("@akala/core").IsomorphicBuffer, ];
-		ActivePresetChange: [
-			
-			PreviousPresetHandle: import ("@akala/core").IsomorphicBuffer, 
-			CurrentPresetHandle: import ("@akala/core").IsomorphicBuffer, ];
 	}
 }
 
@@ -504,10 +433,6 @@ id: 513,
 		"Presets",
 		"Schedules",
 		"SetpointHoldExpiryTimestamp",
-		"MaxThermostatSuggestions",
-		"ThermostatSuggestions",
-		"CurrentThermostatSuggestion",
-		"ThermostatSuggestionNotFollowingReason",
 		"SupportsHeating",
 		"SupportsCooling",
 		"SupportsOccupancy",
@@ -517,7 +442,6 @@ id: 513,
 		"SupportsLocalTemperatureNotExposed",
 		"SupportsMatterScheduleConfiguration",
 		"SupportsPresets",
-		"SupportsEvents",
 	] as const,
 	commands: [
 		"SetpointRaiseLower",
@@ -526,19 +450,9 @@ id: 513,
 		"ClearWeeklySchedule",
 		"SetActiveScheduleRequest",
 		"SetActivePresetRequest",
-		"AddThermostatSuggestion",
-		"RemoveThermostatSuggestion",
 		"AtomicRequest",
 	] as const,
 	events: [
-		"SystemModeChange",
-		"LocalTemperatureChange",
-		"OccupancyChange",
-		"SetpointChange",
-		"RunningStateChange",
-		"RunningModeChange",
-		"ActiveScheduleChange",
-		"ActivePresetChange",
 	] as const
 }
 

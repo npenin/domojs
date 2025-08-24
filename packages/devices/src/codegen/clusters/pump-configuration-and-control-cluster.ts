@@ -1,5 +1,5 @@
 // This file is generated from pump-configuration-and-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:46.392Z
+// Generated on 2025-08-24T09:48:39.302Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

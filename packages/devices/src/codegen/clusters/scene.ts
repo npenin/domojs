@@ -1,5 +1,5 @@
 // This file is generated from scene.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:46.592Z
+// Generated on 2025-08-24T09:48:41.114Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -53,7 +53,7 @@ id: 98;
 				SceneID: number, 
 				TransitionTime: number, 
 				SceneName: string, 
-				ExtensionFieldSetStructs: readonly ExtensionFieldSetStruct[][], 
+				ExtensionFieldSetStructs: readonly ExtensionFieldSetStruct[], 
 			],
 			 outputparams: readonly [
 				Status: number, 
@@ -72,7 +72,7 @@ id: 98;
 				SceneID: number, 
 				TransitionTime: number, 
 				SceneName: string, 
-				ExtensionFieldSetStructs: readonly ExtensionFieldSetStruct[][], ]
+				ExtensionFieldSetStructs: readonly ExtensionFieldSetStruct[], ]
             }
 		/** Removes the requested scene entry, corresponding to the value of the GroupID field, from its Scene Table */
 		RemoveScene: {
@@ -123,7 +123,7 @@ id: 98;
 				Status: number, 
 				Capacity: number, 
 				GroupID: number, 
-				SceneList: readonly number[][], ]
+				SceneList: readonly number[], ]
             }
 		/** This command allows a client to efficiently copy scenes from one group/scene identifier pair to another group/scene identifier pair. */
 		CopyScene?: {

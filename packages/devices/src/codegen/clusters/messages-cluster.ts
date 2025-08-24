@@ -1,5 +1,5 @@
 // This file is generated from messages-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.983Z
+// Generated on 2025-08-24T09:48:35.542Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -66,14 +66,14 @@ id: 151;
 				StartTime: number, 
 				Duration: bigint, 
 				MessageText: string, 
-				Responses: readonly MessageResponseOptionStruct[][], 
+				Responses: readonly MessageResponseOptionStruct[], 
 			],
 			 outputparams: readonly []
             }
 		/** Command for cancelling message present requests */
 		CancelMessagesRequest: {
 			inputparams: readonly [
-				MessageIDs: readonly import ("@akala/core").IsomorphicBuffer[][], 
+				MessageIDs: readonly import ("@akala/core").IsomorphicBuffer[], 
 			],
 			 outputparams: readonly []
             }

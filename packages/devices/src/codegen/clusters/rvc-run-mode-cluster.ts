@@ -1,5 +1,5 @@
 // This file is generated from rvc-run-mode-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:46.553Z
+// Generated on 2025-08-24T09:48:40.736Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

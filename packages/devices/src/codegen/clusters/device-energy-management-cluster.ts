@@ -1,5 +1,5 @@
 // This file is generated from device-energy-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.174Z
+// Generated on 2025-08-24T09:48:28.237Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -207,7 +207,7 @@ id: 152;
 		ModifyForecastRequest?: {
 			inputparams: readonly [
 				ForecastID: number, 
-				SlotAdjustments: readonly SlotAdjustmentStruct[][], 
+				SlotAdjustments: readonly SlotAdjustmentStruct[], 
 				Cause: AdjustmentCauseEnum, 
 			],
 			 outputparams: readonly []
@@ -215,7 +215,7 @@ id: 152;
 		/** Allows a client to ask the ESA to recompute its Forecast based on power and time constraints. */
 		RequestConstraintBasedForecast?: {
 			inputparams: readonly [
-				Constraints: readonly ConstraintsStruct[][], 
+				Constraints: readonly ConstraintsStruct[], 
 				Cause: AdjustmentCauseEnum, 
 			],
 			 outputparams: readonly []

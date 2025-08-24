@@ -1,5 +1,5 @@
 // This file is generated from refrigerator-and-temperature-controlled-cabinet-mode-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:46.479Z
+// Generated on 2025-08-24T09:48:40.025Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

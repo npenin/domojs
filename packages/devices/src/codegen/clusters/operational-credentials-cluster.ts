@@ -1,5 +1,5 @@
 // This file is generated from operational-credentials-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:46.161Z
+// Generated on 2025-08-24T09:48:37.117Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

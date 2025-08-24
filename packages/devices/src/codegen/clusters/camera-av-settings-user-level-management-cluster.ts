@@ -1,5 +1,5 @@
 // This file is generated from camera-av-settings-user-level-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:44.794Z
+// Generated on 2025-08-24T09:48:24.560Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -28,15 +28,15 @@ export interface MPTZStruct {
 export interface CameraAVSettingsUserLevelManagement {
 id: 1362;
 	attributes: {
-		readonly MPTZPosition:MPTZStruct
-		readonly MaxPresets:number
-		readonly MPTZPresets:readonly MPTZPresetStruct[]
-		readonly DPTZStreams:readonly DPTZStruct[]
-		readonly ZoomMax:number
-		readonly TiltMin:number
-		readonly TiltMax:number
-		readonly PanMin:number
-		readonly PanMax:number
+		readonly MPTZPosition?:MPTZStruct
+		readonly MaxPresets?:number
+		readonly MPTZPresets?:readonly MPTZPresetStruct[]
+		readonly DPTZStreams?:readonly DPTZStruct[]
+		readonly ZoomMax?:number
+		readonly TiltMin?:number
+		readonly TiltMax?:number
+		readonly PanMin?:number
+		readonly PanMax?:number
 		/** Digital PTZ support */
 		readonly SupportsDigitalPTZ: boolean
 		/** Mechanical Pan support */
@@ -50,7 +50,7 @@ id: 1362;
 }
 	commands: {
 		/** This command SHALL set the values for the pan, tilt, and zoom in the mechanical PTZ. */
-		MPTZSetPosition: {
+		MPTZSetPosition?: {
 			inputparams: readonly [
 				Pan: number, 
 				Tilt: number, 
@@ -59,7 +59,7 @@ id: 1362;
 			 outputparams: readonly []
             }
 		/** This command SHALL move the camera by the delta values relative to the currently defined position. */
-		MPTZRelativeMove: {
+		MPTZRelativeMove?: {
 			inputparams: readonly [
 				PanDelta: number, 
 				TiltDelta: number, 
@@ -68,14 +68,14 @@ id: 1362;
 			 outputparams: readonly []
             }
 		/** This command SHALL move the camera to the positions specified by the Preset passed. */
-		MPTZMoveToPreset: {
+		MPTZMoveToPreset?: {
 			inputparams: readonly [
 				PresetID: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command allows creating a new preset or updating the values of an existing one. */
-		MPTZSavePreset: {
+		MPTZSavePreset?: {
 			inputparams: readonly [
 				PresetID: number, 
 				Name: string, 
@@ -83,14 +83,14 @@ id: 1362;
 			 outputparams: readonly []
             }
 		/** This command SHALL remove a preset entry from the PresetMptzTable. */
-		MPTZRemovePreset: {
+		MPTZRemovePreset?: {
 			inputparams: readonly [
 				PresetID: number, 
 			],
 			 outputparams: readonly []
             }
 		/** This command allows for setting the digital viewport for a specific Video Stream. */
-		DPTZSetViewport: {
+		DPTZSetViewport?: {
 			inputparams: readonly [
 				VideoStreamID: number, 
 				Viewport: import("./global-structs.js").ViewportStruct, 
@@ -98,7 +98,7 @@ id: 1362;
 			 outputparams: readonly []
             }
 		/** This command SHALL change the per stream viewport by the amount specified in a relative fashion. */
-		DPTZRelativeMove: {
+		DPTZRelativeMove?: {
 			inputparams: readonly [
 				VideoStreamID: number, 
 				DeltaX: number, 

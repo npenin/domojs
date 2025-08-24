@@ -1,5 +1,5 @@
 // This file is generated from zone-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:47.286Z
+// Generated on 2025-08-24T09:48:47.109Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

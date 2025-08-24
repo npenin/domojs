@@ -1,5 +1,5 @@
 // This file is generated from dishwasher-alarm-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.236Z
+// Generated on 2025-08-24T09:48:28.788Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

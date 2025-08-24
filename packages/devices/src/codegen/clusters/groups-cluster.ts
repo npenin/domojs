@@ -1,5 +1,5 @@
 // This file is generated from groups-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:45.664Z
+// Generated on 2025-08-24T09:48:32.635Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -43,11 +43,11 @@ id: 4;
 		/** The GetGroupMembership command allows a client to inquire about the group membership of the server endpoint, in a number of ways. */
 		GetGroupMembership: {
 			inputparams: readonly [
-				GroupList: readonly number[][], 
+				GroupList: readonly number[], 
 			],
 			 outputparams: readonly [
 				Capacity: number, 
-				GroupList: readonly number[][], ]
+				GroupList: readonly number[], ]
             }
 		/** The RemoveGroup command allows a client to request that the server removes the membership for the server endpoint, if any, in a particular group. */
 		RemoveGroup: {

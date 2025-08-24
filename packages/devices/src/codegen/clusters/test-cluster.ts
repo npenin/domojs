@@ -1,5 +1,5 @@
 // This file is generated from test-cluster.xml - do not edit it directly
-// Generated on 2025-08-17T14:20:46.805Z
+// Generated on 2025-08-24T09:48:42.852Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -204,7 +204,6 @@ id: 4294048773;
 		nullable_global_struct?:import("./global-structs.js").TestGlobalStruct
 		mei_int8u?:number
 		unsupported?:boolean
-		UnsupportedAttributeRequiringAdminPrivilege?:boolean
 }
 	commands: {
 		/** Simple command without any parameters and without a specific response.
@@ -253,18 +252,18 @@ id: 4294048773;
 		/** Command that takes various arguments that are arrays, including an array of structs which have a list member. */
 		TestStructArrayArgumentRequest?: {
 			inputparams: readonly [
-				arg1: readonly NestedStructList[][], 
-				arg2: readonly SimpleStruct[][], 
-				arg3: readonly SimpleEnum[][], 
-				arg4: readonly boolean[][], 
+				arg1: readonly NestedStructList[], 
+				arg2: readonly SimpleStruct[], 
+				arg3: readonly SimpleEnum[], 
+				arg4: readonly boolean[], 
 				arg5: SimpleEnum, 
 				arg6: boolean, 
 			],
 			 outputparams: readonly [
-				arg1: readonly NestedStructList[][], 
-				arg2: readonly SimpleStruct[][], 
-				arg3: readonly SimpleEnum[][], 
-				arg4: readonly boolean[][], 
+				arg1: readonly NestedStructList[], 
+				arg2: readonly SimpleStruct[], 
+				arg3: readonly SimpleEnum[], 
+				arg4: readonly boolean[], 
 				arg5: SimpleEnum, 
 				arg6: boolean, ]
             }
@@ -291,7 +290,7 @@ id: 4294048773;
         false, and true otherwise (including if the list is empty). */
 		TestListStructArgumentRequest?: {
 			inputparams: readonly [
-				arg1: readonly SimpleStruct[][], 
+				arg1: readonly SimpleStruct[], 
 			],
 			 outputparams: readonly [
 				value: boolean, ]
@@ -301,7 +300,7 @@ id: 4294048773;
         if the list is empty). */
 		TestListInt8UArgumentRequest?: {
 			inputparams: readonly [
-				arg1: readonly number[][], 
+				arg1: readonly number[], 
 			],
 			 outputparams: readonly [
 				value: boolean, ]
@@ -323,7 +322,7 @@ id: 4294048773;
         field is false, and true otherwise (including if the list is empty). */
 		TestListNestedStructListArgumentRequest?: {
 			inputparams: readonly [
-				arg1: readonly NestedStructList[][], 
+				arg1: readonly NestedStructList[], 
 			],
 			 outputparams: readonly [
 				value: boolean, ]
@@ -332,10 +331,10 @@ id: 4294048773;
         response that reverses the list. */
 		TestListInt8UReverseRequest?: {
 			inputparams: readonly [
-				arg1: readonly number[][], 
+				arg1: readonly number[], 
 			],
 			 outputparams: readonly [
-				arg1: readonly number[][], ]
+				arg1: readonly number[], ]
             }
 		/** Command that sends a vendor id and an enum.  The server is expected to
         echo them back. */
@@ -376,9 +375,9 @@ id: 4294048773;
 				NullableStruct: SimpleStruct, 
 				OptionalStruct: SimpleStruct, 
 				NullableOptionalStruct: SimpleStruct, 
-				NullableList: readonly SimpleEnum[][], 
-				OptionalList: readonly SimpleEnum[][], 
-				NullableOptionalList: readonly SimpleEnum[][], 
+				NullableList: readonly SimpleEnum[], 
+				OptionalList: readonly SimpleEnum[], 
+				NullableOptionalList: readonly SimpleEnum[], 
 			],
 			 outputparams: readonly [
 				NullableIntWasNull: boolean, 
@@ -403,12 +402,12 @@ id: 4294048773;
 				NullableOptionalStructWasNull: boolean, 
 				NullableOptionalStructValue: SimpleStruct, 
 				NullableListWasNull: boolean, 
-				NullableListValue: readonly SimpleEnum[][], 
+				NullableListValue: readonly SimpleEnum[], 
 				OptionalListWasPresent: boolean, 
-				OptionalListValue: readonly SimpleEnum[][], 
+				OptionalListValue: readonly SimpleEnum[], 
 				NullableOptionalListWasPresent: boolean, 
 				NullableOptionalListWasNull: boolean, 
-				NullableOptionalListValue: readonly SimpleEnum[][], ]
+				NullableOptionalListValue: readonly SimpleEnum[], ]
             }
 		/** Command that takes an argument which is a struct.  The response echoes
         the struct back. */
@@ -618,7 +617,6 @@ id: 4294048773,
 		"nullable_global_struct",
 		"mei_int8u",
 		"unsupported",
-		"UnsupportedAttributeRequiringAdminPrivilege",
 	] as const,
 	commands: [
 		"Test",
