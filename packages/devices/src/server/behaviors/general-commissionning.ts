@@ -73,7 +73,6 @@ export function GeneralCommissioning(): ClusterInstance<generalCommissioningClus
             MaxCumulativeFailsafeSeconds: 900,
         },
         Breadcrumb: 0n,
-        IsCommissioningWithoutPower: false,
         LocationCapability: generalCommissioningCluster.RegulatoryLocationTypeEnum.IndoorOutdoor,
         RecoveryIdentifier: null,
         RegulatoryConfig: regulatoryConfig,
