@@ -22,9 +22,9 @@
         "@akala/pubsub": "^3.0.151"
     },
     "dependencies": {
-        "@akala/commands": "^17.6.17",
-        "@akala/core": "^42.2.0",
-        "@akala/protocol-parser": "^11.3.24"
+        "@akala/commands": "^17.6.20",
+        "@akala/core": "^42.2.1",
+        "@akala/protocol-parser": "^11.3.25"
     },
     "devDependencies": {
         "@types/debug": "4.1.12",

@@ -102,7 +102,8 @@
             }
         },
         "endpointsMapping": {
-            "7cbdb153fdc1b15bf9c569329111cc8778822d78e73ffd7468fe7a969ceea": 1
+            "7cbdb153fdc1b15bf9c569329111cc8778822d78e73ffd7468fe7a969ceea": 1,
+            "d6e21286621a8586f7e54720ab5a39c93acc2f4b8fba7a16ec1c24d69a8c613": 2
         },
         "id": 0,
         "pubsub": {

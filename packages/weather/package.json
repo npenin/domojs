@@ -14,17 +14,17 @@
         "@domojs/devices": "workspace:*"
     },
     "devDependencies": {
-        "@akala/cli": "^5.12.24",
-        "@akala/json-rpc-ws": "^14.3.14",
-        "@akala/pm": "^15.8.15",
-        "@akala/server": "^27.2.6",
-        "@akala/sidecar": "^8.3.30",
+        "@akala/cli": "^5.13.1",
+        "@akala/json-rpc-ws": "^14.3.15",
+        "@akala/pm": "^15.9.2",
+        "@akala/server": "^27.2.10",
+        "@akala/sidecar": "^8.3.34",
         "@domojs/devices": "workspace:^"
     },
     "dependencies": {
-        "@akala/commands": "^17.6.17",
-        "@akala/config": "^6.1.26",
-        "@akala/core": "^42.2.0"
+        "@akala/commands": "^17.6.20",
+        "@akala/config": "^7.0.2",
+        "@akala/core": "^42.2.1"
     },
     "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8",
     "scripts": {
