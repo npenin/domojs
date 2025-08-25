@@ -28,7 +28,7 @@
     "license": "MIT",
     "dependencies": {
         "@akala/commands": "^17.6.17",
-        "@akala/config": "^6.1.26",
+        "@akala/config": "^7.0.0",
         "@akala/core": "^42.2.0",
         "@ffmpeg.wasm/core-st": "^0.13.2",
         "@ffmpeg.wasm/main": "^0.13.1",

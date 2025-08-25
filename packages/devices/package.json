@@ -27,7 +27,7 @@
     "dependencies": {
         "@akala/cli": "^5.12.24",
         "@akala/commands": "^17.6.17",
-        "@akala/config": "^6.1.26",
+        "@akala/config": "^7.0.0",
         "@akala/core": "^42.2.0",
         "@akala/json-rpc-ws": "^14.3.14",
         "@akala/pm": "^15.8.15",
