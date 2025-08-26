@@ -15,7 +15,7 @@
         "Domojs"
     ],
     "dependencies": {
-        "@akala/config": "^6.1.26",
+        "@akala/config": "^7.0.0",
         "@akala/core": "^42.2.0",
         "@akala/protocol-parser": "^11.3.24",
         "@akala/sidecar": "^8.3.30",
