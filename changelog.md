@@ -137,6 +137,7 @@
 * node permissions 263b2fc
 * nodejs install 3ef884f
 * npm registry 0d68737
+* override cron version 13cbfc9
 * package metadata 5578d05
 * packages/theme-default/package.json & packages/theme-default/yarn.lock to reduce vulnerabilities 868f5f3
 * patch cheerio to compile as ESM b62f558
