@@ -36,3 +36,5 @@ export { Gateway, Endpoint, EndpointProxy, ClusterMap, ClusterIds, ClusterIdName
 export { RootNode } from './RootNode.js'
 
 export { Binding } from '../behaviors/binding.js'
+import Boolean from '../behaviors/boolean.js'
+export { Boolean }
