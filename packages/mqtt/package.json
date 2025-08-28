@@ -10,6 +10,7 @@
             "types": "./dist/index.d.ts",
             "default": "./dist/index.js"
         },
+        "./browser": "./dist/index.browser.mjs",
         "./akala": "./dist/akala.mjs"
     },
     "scripts": {
@@ -22,9 +23,9 @@
         "@akala/pubsub": "^3.0.151"
     },
     "dependencies": {
-        "@akala/commands": "^17.6.20",
-        "@akala/core": "^42.2.1",
-        "@akala/protocol-parser": "^11.3.25"
+        "@akala/commands": "^17.7.0",
+        "@akala/core": "^42.3.0",
+        "@akala/protocol-parser": "^11.3.27"
     },
     "devDependencies": {
         "@types/debug": "4.1.12",

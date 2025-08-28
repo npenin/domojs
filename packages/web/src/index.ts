@@ -21,7 +21,7 @@ import deskAdjustableIcon from '@carbon/icons/es/desk--adjustable/24.js'
 import Device from './pages/device/device.js';
 import { allProperties, asyncEventBuses, Formatter, formatters, ObservableObject, watcher, WatcherFormatter } from '@akala/core';
 import { MqttEvents } from '@domojs/mqtt';
-import { Cluster, ClusterDefinition, ClusterIds, EndpointProxy, MatterClusterIds, NonWatchableRemoteClusterInstance, RemoteClusterInstance } from '@domojs/devices';
+import { ClusterDefinition, ClusterIds, EndpointProxy, MatterClusterIds, NonWatchableRemoteClusterInstance, RemoteClusterInstance } from '@domojs/devices';
 
 formatters.register('log', class implements Formatter<unknown>
 {
