@@ -1,4 +1,4 @@
-#  (2025-08-22)
+#  (2025-08-28)
 
 
 ### Bug Fixes
@@ -7,6 +7,7 @@
 * add akala.json symlink in main folder 3b21443
 * add akala.json symlink in main folder a60a4d4
 * add coreutils e49b07b
+* add cron to build 1bb748e
 * add db volume b4243ef
 * add debugging log be1e6c0
 * add device type 53de407
@@ -96,6 +97,7 @@
 * export topic wildcard to urltemplate conversion b3a68bb
 * file copy ordering 2ece2ca
 * filter gateway mode endpoints 416ac45
+* first version 26c738d
 * first working version 325da72
 * fix wrong unit in keepalive 58ddd94
 * fix zigate start 349c0bd
@@ -146,6 +148,7 @@
 * permissions on install 5deccb7
 * prevent committing web bundles 72a3f16
 * prevent duplicate rfy endpoints 3d20a3b
+* prevent import from root index 7f61c8f
 * prevent infinite loop on attribute get 96011cd
 * prevent overhead on descriptor cluster 4e68f18
 * proper gateway closure e7eb9cd
@@ -168,6 +171,7 @@
 * remove files from volumes 29f400f
 * remove resolutions 648105b
 * remove temporary resolutions 175c6c8
+* remove unknown attribute after matter update 551a66f
 * remove useless config c2bf264
 * remove wwwroot from git tracking 4a77d5f
 * reopen on close 97206ad
@@ -190,6 +194,7 @@
 * split buffer 4715286
 * start device component selector 3fa40f9
 * start gateway before creating endpoint 62bb79a
+* start OTA Software Update Provider 5e532a1
 * support for gateway closure a77d715
 * support for tcp gateway 1afe68a
 * switch from yarn to npm a85dbd1
@@ -286,7 +291,10 @@
 * add lots of commands b7d6e19
 * add ManualAdministration cluster 60e1960
 * add name on rfxtrx modes ded3290
+* add new behaviors e31e0b4
 * add new components for device button selection and room card, enhance home page layout with search functionality 3295433
+* add ota requestor behavior 60a6da4
+* add possibility to specify version d72a139
 * add reason code when disconnecting b44aa1b
 * add redirectTopic f692d3e
 * add service discovery (not ready yet) 7a7a7b4
@@ -302,6 +310,8 @@
 * enable swipeable dialog 2a6e447
 * enable URL support 1f5dc23
 * enhance TypeScript generation with ClusterMap and default value handling 81dbad7
+* expose Boolean behavior c09637b
+* expose manualAdmin 1199b7f
 * implement basic mqtt v5 protocol 01e31e0
 * make devices as containers c1e5c93
 * make exec on devicetype CLI compatible f92bf92
