@@ -1,7 +1,7 @@
 import { AsyncEventBus, base64, Deferred, Queue } from "@akala/core";
 import { State } from "./$init.js";
 import { DynSecRequest, DynSecResponse } from '../../mosquitto-dynsec.js'
-import { SidecarConfiguration } from "@akala/sidecar";
+import type { SidecarConfiguration } from "@akala/sidecar";
 import { MqttEvents } from "@domojs/mqtt";
 import { EndpointProxy } from "../../clients/EndpointProxy.js";
 
