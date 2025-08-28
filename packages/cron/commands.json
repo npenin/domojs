@@ -1,6 +1,25 @@
 {
     "name": "@domojs/cron",
-    "commands": [],
+    "commands": [
+        {
+            "name": "$init",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "context"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        }
+    ],
     "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json",
     "extends": [
         "@akala/cron"
