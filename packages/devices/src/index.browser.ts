@@ -1,10 +1,8 @@
-
-
 import { Metadata } from '@akala/commands/browser';
 import { CommandDescription } from './devices.js';
 export * from './server/clients/index.js';
 import devices from './server/device-commands.js'
-import type { SidecarConfiguration } from '@akala/sidecar';
+// import type { SidecarConfiguration } from '@akala/sidecar';
 
 declare module '@akala/pm'
 {
@@ -15,7 +13,6 @@ declare module '@akala/pm'
 }
 
 
-export type PubSubConfiguration = SidecarConfiguration['pubsub'];
 
 export function command(name: string, cmd: CommandDescription): Metadata.Command[]
 {
