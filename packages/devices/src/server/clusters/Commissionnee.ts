@@ -1,4 +1,4 @@
-import type { PubSubConfiguration } from "../../index.js";
+import { SidecarConfiguration } from "@akala/sidecar";
 import type { Cluster, ClusterDefinition } from "../clients/index.js";
 
 export const clusterId = 0xfc01
@@ -6,7 +6,7 @@ export const clusterId = 0xfc01
 export type Commissionnee = Cluster<{}, {
     register: {
         inputparams: [name: string];
-        outputparams: [PubSubConfiguration, number];
+        outputparams: [SidecarConfiguration['pubsub'], number];
     };
 }, {}> & { id: typeof clusterId; };
 
