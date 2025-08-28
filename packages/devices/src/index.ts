@@ -8,7 +8,6 @@ import { MqttClient, MqttEvents } from '@domojs/mqtt';
 import { ReasonCodes } from '../../mqtt/dist/protocol/_shared.js';
 import { ProxyConfiguration } from '@akala/config';
 import type { BridgeConfiguration } from './server/clients/RootNode.js';
-import { Descriptor } from './server/behaviors/descriptor.js';
 
 export { type BridgeConfiguration }
 
