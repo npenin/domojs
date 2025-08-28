@@ -1,5 +1,6 @@
-import type { Cluster } from "../clients/index.js";
+import type { Cluster, ClusterDefinition } from "../clients/index.js";
 
+export const clusterId = 0xfc04
 
 export type ManualAdministrationCluster<T> = Cluster<{}, {
     add: {
@@ -15,3 +16,14 @@ export type ManualAdministrationCluster<T> = Cluster<{}, {
         outputparams: []
     }
 }, {}>;
+
+
+export const ManualAdministrationCluster: ClusterDefinition<ManualAdministrationCluster<any>> = {
+    id: clusterId,
+    commands: [
+        'add',
+        'remove'
+    ] as const,
+    attributes: [] as const,
+    events: [] as const
+}
