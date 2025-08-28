@@ -1,0 +1,8 @@
+{
+    "name": "@domojs/cron",
+    "commands": [],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json",
+    "extends": [
+        "@akala/cron"
+    ]
+}
