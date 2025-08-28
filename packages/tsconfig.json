@@ -84,6 +84,9 @@
     },
     {
       "path": "matter"
+    },
+    {
+      "path": "cron"
     }
   ]
 }
