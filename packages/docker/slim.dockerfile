@@ -25,6 +25,6 @@ COPY .akala.json db/.akala.json
 RUN ln -s db/.akala.json .akala.json && \
     rm yarn.lock
 ENV PATH=${PATH}:./node_modules/.bin
-ENTRYPOINT [ "/usr/src/akala/entrypoint.sh", "node_modules/.bin/akala" ,"pm", "start", "pm", "--keepAttached", "--configFile", "./db/.akala.json"]
+ENTRYPOINT [ "/usr/src/akala/entrypoint.sh", "node_modules/.bin/akala" ,"pm", "start", "pm", "--keepAttached", "--configFile", "file:///usr/src/akala/db/.akala.json"]
 CMD ["local", "tcp", "--tcpPort=31416"]
 EXPOSE 31416
