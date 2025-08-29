@@ -238,6 +238,7 @@
 * update to errorwithstatus cfa1344
 * update to event emitter from akala 2bdfe95
 * update to latest serial port types 77515fc
+* update to latest yarn e01f675
 * update to proper logging 7de83c6
 * update to working akala b297101
 * update tsconfig.json to include 'web' path and remove commented 'icookin' path 648b768
