@@ -3,13 +3,15 @@ import { clusterId as commissioningClusterId, CommissionningCluster } from "./Co
 import { clusterId as notificationClusterId, NotificationEmitter } from "./Notifications.js";
 import { clusterId as commandClusterId, CommandsCluster } from "./Commands.js";
 import { clusterId as manualAdminClusterId, ManualAdministrationCluster } from "./manual-administration.js";
+import { clusterId as locationClusterId, LocationCluster } from "./location.js";
 
 export enum ClusterIds
 {
     commissionning = commissioningClusterId,
     notifications = notificationClusterId,
     commands = commandClusterId,
-    manualAdmin = manualAdminClusterId
+    manualAdmin = manualAdminClusterId,
+    location = locationClusterId,
 }
 
 export enum ClusterIdNames
@@ -17,7 +19,8 @@ export enum ClusterIdNames
     commissionning = commissioningClusterId,
     notifications = notificationClusterId,
     commands = commandClusterId,
-    manualAdmin = manualAdminClusterId
+    manualAdmin = manualAdminClusterId,
+    location = locationClusterId,
 }
 
 export const ClusterMap = {
@@ -25,6 +28,7 @@ export const ClusterMap = {
     [ClusterIds.notifications]: NotificationEmitter,
     [ClusterIds.commands]: CommandsCluster,
     [ClusterIds.manualAdmin]: ManualAdministrationCluster,
+    [ClusterIds.location]: LocationCluster,
     ...MatterClusterMap
 }
 
