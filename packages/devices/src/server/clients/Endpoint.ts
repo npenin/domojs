@@ -77,7 +77,10 @@ export class Endpoint<
         Object.entries(patch).forEach(e =>
         {
             if (this.clusters[e[0]])
-                Object.assign(this.clusters[e[0]], e[1]);
+            {
+                // Object.assign(this.clusters[e[0]], e[1]);
+                Object.entries(e[1]).forEach(e2 => this.clusters[e[0]].setValue(e2[0], e2[1]))
+            }
             else
             {
                 if (!(e[1] instanceof ObservableObject))
