@@ -11,7 +11,7 @@ import type { BridgeConfiguration } from './server/clients/RootNode.js';
 
 export { type BridgeConfiguration }
 
-export async function registerNode(name: string, self: Sidecar<any, MqttEvents>, config: ProxyConfiguration<BridgeConfiguration>, abort: AbortSignal): Promise<RootNode<never>>
+export async function registerNode(name: string, self: Sidecar<any, MqttEvents>, config: ProxyConfiguration<BridgeConfiguration>, abort: AbortSignal, grantRoot?: boolean): Promise<RootNode<never>>
 {
     let id = config.id;
     if (!self.pubsub && self.config.pubsub?.transport || self.pubsub && !self.config.pubsub.transportOptions)
