@@ -1,4 +1,4 @@
-#  (2025-08-28)
+#  (2025-08-29)
 
 
 ### Bug Fixes
@@ -20,6 +20,7 @@
 * add id to register adapter and name to commissionned endpoint 14f730d
 * add id to register adapter and name to commissionned endpoint 819e2b4
 * add id to register adapter and name to commissionned endpoint c825c92
+* add init command a758f06
 * add missing DB config 94437db
 * add missing dependency 60e2e49
 * add missing export for device-commands.json in package.json f85753a
@@ -64,6 +65,7 @@
 * cluster proxy mqtt topic 91c3d7e
 * ClusterMap and ClusterIds consistency 8f665be
 * config file after upgrade 9b6bdfc
+* config path after breaking change in @akala/config ae4d47c
 * configs 845de88
 * configs 500a265
 * crypto does not accept Uint8Array, but ArrayBuffer d1af686
@@ -98,6 +100,7 @@
 * export topic wildcard to urltemplate conversion b3a68bb
 * file copy ordering 2ece2ca
 * filter gateway mode endpoints 416ac45
+* first version 3a4c6aa
 * first version 26c738d
 * first working version 325da72
 * fix wrong unit in keepalive 58ddd94
@@ -141,6 +144,7 @@
 * package metadata 5578d05
 * packages/theme-default/package.json & packages/theme-default/yarn.lock to reduce vulnerabilities 868f5f3
 * patch cheerio to compile as ESM b62f558
+* patch on endpoints 631c421
 * PATH env 2d0af89
 * permissions 7d71124
 * permissions ef3d15b
@@ -287,9 +291,12 @@
 * add crunchyroll media indexing 317eacc
 * add disconnect support to MqttClient and update tests for mqtt and mqtts ef451ea
 * add full device enumeration fe29d1c
+* add grantRoot on commissionnee aaf0fb1
+* add grantRoot on commissionnee 02b1378
 * add homekit controller 12c620a
 * add homekit server (homebridge equivalent) 4e86aa4
 * add list folders command 7ac6d78
+* add location cluser 64f080d
 * add lots of commands b7d6e19
 * add ManualAdministration cluster 60e1960
 * add name on rfxtrx modes ded3290
