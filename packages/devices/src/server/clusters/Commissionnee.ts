@@ -5,7 +5,7 @@ export const clusterId = 0xfc01
 
 export type Commissionnee = Cluster<{}, {
     register: {
-        inputparams: [name: string];
+        inputparams: [name: string, grantRoot?: boolean];
         outputparams: [SidecarConfiguration['pubsub'], number];
     };
 }, {}> & { id: typeof clusterId; };

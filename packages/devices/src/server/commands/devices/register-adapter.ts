@@ -1,6 +1,6 @@
 import { AsyncEventBus, base64, Deferred, Queue } from "@akala/core";
 import { State } from "./$init.js";
-import { DynSecRequest, DynSecResponse } from '../../mosquitto-dynsec.js'
+import { DynSecCommandPayload, DynSecRequest, DynSecResponse } from '../../mosquitto-dynsec.js'
 import type { SidecarConfiguration } from "@akala/sidecar";
 import { MqttEvents } from "@domojs/mqtt";
 import { EndpointProxy } from "../../clients/EndpointProxy.js";
@@ -25,7 +25,7 @@ const queue = new Queue<{ pubsub: AsyncEventBus<MqttEvents>, message: DynSecRequ
  * @param name 
  * @returns the password to be used to connect to the mosquitto
  */
-export default async function (this: State, node: string): Promise<Partial<SidecarConfiguration['pubsub']> & { id: number }>
+export default async function (this: State, node: string, grantRoot?: boolean): Promise<Partial<SidecarConfiguration['pubsub']> & { id: number }>
 {
     const pwd = base64.base64EncArr(crypto.getRandomValues(new Uint8Array(24)));
 
@@ -110,87 +110,142 @@ export default async function (this: State, node: string): Promise<Partial<Sidec
     }
 
     const defer = new Deferred<DynSecResponse>();
-    const clientId = await this.self?.getEndpointId(node) ?? 0;
+    const nodeId = await this.self?.getEndpointId(node) ?? 0;
+
+    const commands: DynSecCommandPayload[] = [
+        {
+            command: 'createRole',
+            rolename: 'domojs-' + node,
+        }
+    ];
+
+    // Create admin role for nodes that need broader permissions
+    if (grantRoot)
+    {
+        commands.push({
+            command: 'createRole',
+            rolename: node + '-admin',
+        });
+    }
+
+    const roles = [{ rolename: 'domojs-' + node }];
+    if (grantRoot)
+    {
+        roles.push({ rolename: node + '-admin' });
+    }
+    if (node == 'devices')
+    {
+        roles.push({ rolename: 'admin' });
+    }
+
+    commands.push({
+        "command": "createClient",
+        "username": node,
+        "password": pwd,
+        "clientid": "",
+        "textname": node,
+        "textdescription": `DomoJS ${node} client`,
+        "roles": roles
+    });
+
+    commands.push({
+        command: "addClientRole",
+        username: node,
+        rolename: "domojs-" + node
+    });
+
+    // Standard domojs permissions
+    commands.push(
+        {
+            "command": "addRoleACL",
+            "rolename": "domojs-" + node,
+            "acltype": "subscribePattern",
+            "topic": `domojs/#`,
+            "priority": 0,
+            allow: true
+        },
+        {
+            "command": "addRoleACL",
+            "rolename": "domojs-" + node,
+            "acltype": "publishClientSend",
+            "topic": `domojs/${node}/#`,
+            "priority": 0,
+            allow: true
+        },
+        {
+            "command": "addRoleACL",
+            "rolename": "domojs-" + node,
+            "acltype": "publishClientSend",
+            "topic": `domojs/${node}`,
+            "priority": 0,
+            allow: true
+        },
+        {
+            "command": "addRoleACL",
+            "rolename": "domojs-" + node,
+            "acltype": "subscribePattern",
+            "topic": `domojs/devices/0/+/+`,
+            "priority": 0,
+            allow: true
+        },
+        {
+            "command": "addRoleACL",
+            "rolename": "domojs-" + node,
+            "acltype": "publishClientSend",
+            "topic": `domojs/devices/0/+/+/+`,
+            "priority": 0,
+            allow: true
+        },
+        {
+            "command": "addRoleACL",
+            "rolename": "domojs-" + node,
+            "acltype": "subscribePattern",
+            "topic": `domojs/devices/${nodeId}/#`,
+            "priority": 0,
+            allow: true
+        },
+        {
+            "command": "addRoleACL",
+            "rolename": "domojs-" + node,
+            "acltype": "publishClientSend",
+            "topic": `domojs/devices/${nodeId}/#`,
+            "priority": 0,
+            allow: true
+        }
+    );
+
+    // Add external topic permissions to admin role if grantRoot is true
+    if (grantRoot)
+    {
+        commands.push(
+            {
+                command: "addClientRole",
+                username: node,
+                rolename: node + '-admin'
+            },
+            {
+                "command": "addRoleACL",
+                "rolename": node + '-admin',
+                "acltype": "subscribePattern",
+                "topic": `${node}/#`,
+                "priority": 1,
+                allow: true
+            },
+            {
+                "command": "addRoleACL",
+                "rolename": node + '-admin',
+                "acltype": "publishClientSend",
+                "topic": `${node}/#`,
+                "priority": 1,
+                allow: true
+            }
+        );
+    }
 
     queue.enqueue({
         pubsub: this.pubsub,
         message: {
-            "commands": [
-                {
-                    command: 'createRole',
-                    rolename: 'domojs-' + node,
-                },
-                {
-                    "command": "createClient",
-                    "username": root,
-                    "password": pwd,
-                    "clientid": "",
-                    "textname": root,
-                    "textdescription": `DomoJS ${root} client`,
-                    "roles": [{ rolename: node == 'devices' ? 'admin' : '' }].filter(s => s.rolename)
-                },
-                {
-                    command: "addClientRole",
-                    username: root,
-                    rolename: "domojs-" + node
-                },
-                {
-                    "command": "addRoleACL",
-                    "rolename": "domojs-" + node,
-                    "acltype": "subscribePattern",
-                    "topic": `domojs/#`,
-                    "priority": 0,
-                    allow: true
-                },
-                {
-                    "command": "addRoleACL",
-                    "rolename": "domojs-" + node,
-                    "acltype": "publishClientSend",
-                    "topic": `domojs/${node}/#`,
-                    "priority": 0,
-                    allow: true
-                },
-                {
-                    "command": "addRoleACL",
-                    "rolename": "domojs-" + node,
-                    "acltype": "publishClientSend",
-                    "topic": `domojs/${node}`,
-                    "priority": 0,
-                    allow: true
-                },
-                {
-                    "command": "addRoleACL",
-                    "rolename": "domojs-" + node,
-                    "acltype": "subscribePattern",
-                    "topic": `domojs/devices/0/+/+`,
-                    "priority": 0,
-                    allow: true
-                },
-                {
-                    "command": "addRoleACL",
-                    "rolename": "domojs-" + node,
-                    "acltype": "publishClientSend",
-                    "topic": `domojs/devices/0/+/+/+`,
-                    "priority": 0,
-                    allow: true
-                },
-                {
-                    "command": "addRoleACL",
-                    "rolename": "domojs-" + node,
-                    "acltype": "subscribePattern",
-                    "topic": `domojs/devices/${clientId}/#`,
-                    "priority": 0,
-                    allow: true
-                },
-                {
-                    "command": "addRoleACL",
-                    "rolename": "domojs-" + node,
-                    "acltype": "publishClientSend",
-                    "topic": `domojs/devices/${clientId}/#`,
-                    "priority": 0,
-                    allow: true
-                },
-            ]
+            "commands": commands
         },
         defer
     });
@@ -201,15 +256,15 @@ export default async function (this: State, node: string): Promise<Partial<Sidec
 
     if (this.self)
     {
-        const client = new EndpointProxy(clientId, { name: 'domojs/devices' }, this.pubsub, {});
+        const client = new EndpointProxy(nodeId, { name: 'domojs/devices' }, this.pubsub, {});
         this.self.endpoints.push(client);
     }
 
     if (clientResponse.error === 'Client already exists')
-        return { id: clientId };
+        return { id: nodeId };
 
     return {
-        id: clientId,
+        id: nodeId,
         transport: this.config.pubsub.transport,
         transportOptions: { ...this.config.pubsub.transportOptions?.extract() ?? {}, password: pwd, username: node }
     }

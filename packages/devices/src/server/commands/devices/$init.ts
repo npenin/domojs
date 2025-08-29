@@ -18,9 +18,9 @@ import modeSelect from '../../behaviors/mode-select.js'
 export function Commissionnee(state: State): ClusterInstance<Commissionnee>
 {
     return new ObservableObject({
-        async registerCommand(name)
+        async registerCommand(name, grantRoot)
         {
-            const result = await registerAdapter.call(state, name);
+            const result = await registerAdapter.call(state, name, grantRoot);
             if (result.transport)
                 return [result as SidecarConfiguration['pubsub'], result?.id]
             return [null, result?.id];
