@@ -7645,6 +7645,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"owntracks@workspace:packages/owntracks":
+  version: 0.0.0-use.local
+  resolution: "owntracks@workspace:packages/owntracks"
+  languageName: unknown
+  linkType: soft
+
 "p-cancelable@npm:^2.0.0":
   version: 2.1.1
   resolution: "p-cancelable@npm:2.1.1"
