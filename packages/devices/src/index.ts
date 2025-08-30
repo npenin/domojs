@@ -26,7 +26,7 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
     const remote = new EndpointProxy(0, { name: 'domojs/devices' }, self.pubsub, { commissionning: CommissionningCluster });
     try
     {
-        const [pubsubConfig, clientId] = await remote.clusters.commissionning.target.registerCommand(name);
+        const [pubsubConfig, clientId] = await remote.clusters.commissionning.target.registerCommand(name, grantRoot);
         if (pubsubConfig)
         {
             id = clientId;
