@@ -5,12 +5,12 @@
     "types": "dist/index.d.ts",
     "type": "module",
     "dependencies": {
-        "@akala/cron": "^6.0.3",
-        "@akala/sidecar": "^8.4.1",
+        "@akala/cron": "^6.0.4",
+        "@akala/sidecar": "^8.4.2",
         "@domojs/devices": "workspace:^"
     },
     "devDependencies": {
-        "@akala/cli": "^5.13.5"
+        "@akala/cli": "^5.13.6"
     },
     "exports": {
         ".": {
