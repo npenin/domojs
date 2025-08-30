@@ -87,6 +87,9 @@
     },
     {
       "path": "cron"
+    },
+    {
+      "path": "owntracks"
     }
   ]
 }

@@ -15,7 +15,7 @@
         "@akala/commands": "^17.7.2",
         "@akala/config": "^7.0.8",
         "@akala/core": "^42.3.0",
-        "@akala/sidecar": "^8.4.2",
+        "@akala/sidecar": "^8.4.3",
         "multicast-dns": "^7.2.5"
     },
     "devDependencies": {

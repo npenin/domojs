@@ -45,6 +45,11 @@
                 "path": "npm:///@domojs/zigate/commands.json",
                 "commandable": true,
                 "type": "nodejs"
+            },
+            "@domojs/owntracks": {
+                "type": "nodejs",
+                "path": "file:///Users/nicolas/dev/domojs/packages/owntracks/commands.json",
+                "commandable": true
             }
         },
         "mapping": {
@@ -239,7 +244,24 @@
             "d6592bf1dbd95448fc282b9a6b7f6a2969e71eb791387cdacb121196af9387": 112,
             "33dd4ba3cabd2a7ee07dda31dfea6f60e412cc01aa46c6e3e561fd4994382a": 113,
             "82d8326aff68a1b47c20e6256dff9aece8cdc59454ee07292308ce0409286c3": 114,
-            "ee578e9eafbcee730afa35d3ae2ee8a73232054b9be313690926fe8192f20e1": 115
+            "ee578e9eafbcee730afa35d3ae2ee8a73232054b9be313690926fe8192f20e1": 115,
+            "0c33319af43352442a55d9c9a5384a7461a2675423141d93c299b9966dae": 116,
+            "145424de55ac35356599e32b4d27a9be5877285b1344df85e01f1531c18abf": 117,
+            "852d8a2195f38e4972f44677145e9c592e12d19bf271626984366a361d21e5": 118,
+            "bc1148371727ae4ab204e7743ebba1e5ed28af8b2fd3934b8083907d9bd6": 119,
+            "ddcbb5babe4e46f7ff64c07bec5388adecad5abb08e9fe4d9e5a2f153a39d1e": 120,
+            "6a3c15565b729b7c91b2918bac4e2636411f9e540dd13621063ee3bbccb93": 121,
+            "e875795264b08622029af2943e41de9da94fcdab22c84dadc0de6fff5082b5": 122,
+            "8fc63f2f1b5ee73c475c2e3aaf3f32282cbc763fe31fe3b92655532f966f1": 123,
+            "6374114fa04c3e7ad47b0a3824c14e67d63bd5f7c543c285b7ffc024f6e8f0": 124,
+            "f2b172ea18eb4dc9757cbfb84341e6d6ec8c1c7dba2dcaac36f353cdd5536": 125,
+            "32f5eafea155dde462bb988b79d6f9b932e7475522bc38e7223ed476c18": 126,
+            "81ae5adbadf4c97967cfe4eb20ccec1d48c26d1a6dee7ef2ad746c926cdfa0": 127,
+            "c6452080f532eb80eeb3d94550c92ae9b6edc7803abfd6dcff64887f2b2e093": 128,
+            "76e636aabeebd4e3ea9f8c512b7e24aac412bd914ddd5949eecb8c9285212d": 129,
+            "98b0aa379de7c12d2345a3ebe8d1f3a3ee18c6117cdbe22b995d32416946d": 130,
+            "dba3572ad6bbd0dee25d3e7016d2127da3d598d7cf957283f54453b750e034": 131,
+            "5ee9aa92b611222e8da6d6f1e3a29ca3aeb95ed2f82fcc8bcf1162cb918": 132
         },
         "id": 1,
         "pubsub": {
