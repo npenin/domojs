@@ -6,8 +6,8 @@
         "url": "https://github.com/npenin/domojs/issues"
     },
     "dependencies": {
-        "@akala/cli": "^5.13.4",
-        "@akala/commands": "^17.7.0",
+        "@akala/cli": "^5.13.5",
+        "@akala/commands": "^17.7.1",
         "@akala/core": "^42.3.0",
         "@domojs/rfx-parsers": "workspace:*",
         "@matter/main": "^0.15.3",
@@ -31,7 +31,7 @@
     "deprecated": false,
     "description": "",
     "devDependencies": {
-        "@akala/pm": "^15.9.6",
+        "@akala/pm": "^15.10.0",
         "@domojs/devices": "workspace:*",
         "@types/debug": "^4.1.12",
         "@types/usb": "^2.0.5",
