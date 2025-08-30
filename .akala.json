@@ -128,6 +128,22 @@
             "transport": "mqtt://localhost"
         }
     },
+    "@domojs/owntracks": {
+        "pubsub": {
+            "id": 3,
+            "transport": "mqtt://localhost",
+            "transportOptions": {
+                "username": "owntracks",
+                "password": {
+                    "iv": "6fK+bNwEwmc0BzEkJsKP+w==",
+                    "value": "8W5IXzYZ3x36fjYRhdz6VG10bpRPGQYTX419FNN1asnxZoxqbS3bMpZSjWlXX3Eo"
+                }
+            }
+        },
+        "endpointsMapping": {
+            "264155bf1476260f92f77572dd14621761277585ec059e98053d5c9a35f": 1
+        }
+    },
     "@domojs/mdns": {
         "endpointsMapping": {
             "b9aecf5c618e2c877de9ad2f788f55dfc572363ca9499af38c9d75e1ace2fb6": 1,
