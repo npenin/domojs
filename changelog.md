@@ -45,6 +45,7 @@
 * artificial bump b08a001
 * artificial patch b7ce7a7
 * artificial patch f117e0b
+* attach root node to pubsub 73d8dde
 * await socket.send in MqttClient.write to ensure message delivery c7a5095
 * broken parsing eb3e495
 * buffer reading safeguard 7a95a15
@@ -158,6 +159,7 @@
 * prevent import from root index 7f61c8f
 * prevent infinite loop on attribute get 96011cd
 * prevent overhead on descriptor cluster 4e68f18
+* propagate grantRoot parameter c6de537
 * proper gateway closure e7eb9cd
 * proper gateway remote list support c15e201
 * proper support for commands result 8026fb7
@@ -248,6 +250,7 @@
 * upgrade @akala/core from 6.0.0 to 6.0.1 4336f5a
 * upgrade dependency 04c1122
 * usb permissions 0c1ef0c
+* use local mqtt server 2b0aa86
 * use signal to allow proper termination 7020b6c
 * use signal to allow proper termination 48f4a4f
 * use signal to allow proper termination 0a42077
