@@ -97,6 +97,7 @@
 * entry point startup d5a0a61
 * entrypoint 51411b4
 * entrypoint db3d912
+* export empty const to prevent crashes b9e5d4e
 * export topic wildcard to urltemplate conversion b3a68bb
 * file copy ordering 2ece2ca
 * filter gateway mode endpoints 416ac45
