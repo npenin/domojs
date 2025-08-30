@@ -1,4 +1,4 @@
-#  (2025-08-29)
+#  (2025-08-30)
 
 
 ### Bug Fixes
@@ -305,6 +305,7 @@
 * add new components for device button selection and room card, enhance home page layout with search functionality 3295433
 * add ota requestor behavior 60a6da4
 * add possibility to specify version d72a139
+* add powersource cluster on owntracks devices 39b78b0
 * add reason code when disconnecting b44aa1b
 * add redirectTopic f692d3e
 * add service discovery (not ready yet) 7a7a7b4
