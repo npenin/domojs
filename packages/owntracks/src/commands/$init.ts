@@ -5,12 +5,13 @@ import { ProxyConfiguration } from '@akala/config'
 import { Subscription, UrlTemplate } from '@akala/core';
 import { MqttEvents } from "@domojs/mqtt";
 
-export async function start(context: CliContext<{}, ProxyConfiguration<SidecarConfiguration & BridgeConfiguration>>)
+export default async function start(context: CliContext<{}, ProxyConfiguration<SidecarConfiguration & BridgeConfiguration>>)
 {
     const self = await app<{}, MqttEvents>(context);
 
     // Register OwnTracks node with root permissions to access owntracks/# topics
     const root = await registerNode('owntracks', self, context.state, context.abort.signal, true);
+    await root.attach(self.pubsub);
 
     const deviceLocationTemplate = UrlTemplate.parse('owntracks/{user}/{device}');
     const eventTemplate = UrlTemplate.parse('owntracks/{user}/{device}/event');
@@ -21,7 +22,11 @@ export async function start(context: CliContext<{}, ProxyConfiguration<SidecarCo
     // Subscribe to OwnTracks topics using proper async subscription
     await self.pubsub.on('owntracks/+/+', async (message, options) =>
     {
-        const match = UrlTemplate.match(options.publishedTopic, deviceLocationTemplate)
+        const match = UrlTemplate.match(options.publishedTopic, deviceLocationTemplate);
+
+        if (typeof message !== 'string')
+            message = message.toString('utf-8');
+
         if (match?.variables)
         {
             const endpointId = await root.getEndpointId(`${match.variables.user}/${match.variables.device}`);
@@ -55,8 +60,8 @@ export async function start(context: CliContext<{}, ProxyConfiguration<SidecarCo
                             powerSourceCluster.BatChargeLevelEnum.OK,
                         BatReplacementNeeded: false,
                         BatReplaceability: powerSourceCluster.BatReplaceabilityEnum.UserReplaceable,
-                        BatChargeState: json.bs === 1 ? powerSourceCluster.BatChargeStateEnum.IsCharging :
-                            json.bs === 2 ? powerSourceCluster.BatChargeStateEnum.IsAtFullCharge :
+                        BatChargeState: json.bs === 2 ? powerSourceCluster.BatChargeStateEnum.IsCharging :
+                            json.bs === 3 ? powerSourceCluster.BatChargeStateEnum.IsAtFullCharge :
                                 powerSourceCluster.BatChargeStateEnum.Unknown,
                         BatFunctionalWhileCharging: true,
                         ActiveBatFaults: [],
@@ -78,8 +83,8 @@ export async function start(context: CliContext<{}, ProxyConfiguration<SidecarCo
                             json.batt > 10 ? powerSourceCluster.BatChargeLevelEnum.Warning :
                                 powerSourceCluster.BatChargeLevelEnum.Critical) :
                             powerSourceCluster.BatChargeLevelEnum.OK,
-                        BatChargeState: json.bs === 1 ? powerSourceCluster.BatChargeStateEnum.IsCharging :
-                            json.bs === 2 ? powerSourceCluster.BatChargeStateEnum.IsAtFullCharge :
+                        BatChargeState: json.bs === 2 ? powerSourceCluster.BatChargeStateEnum.IsCharging :
+                            json.bs === 3 ? powerSourceCluster.BatChargeStateEnum.IsAtFullCharge :
                                 powerSourceCluster.BatChargeStateEnum.Unknown,
                     }
                 })
