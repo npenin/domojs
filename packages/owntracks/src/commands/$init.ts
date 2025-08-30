@@ -1,6 +1,6 @@
 import { CliContext } from "@akala/cli";
 import app, { SidecarConfiguration } from "@akala/sidecar";
-import { BridgeConfiguration, clusterFactory, ClusterIds, ClusterInstance, Endpoint, LocationCluster, registerNode } from "@domojs/devices";
+import { BridgeConfiguration, clusterFactory, ClusterIds, ClusterInstance, Endpoint, LocationCluster, MatterClusterIds, powerSourceCluster, registerNode } from "@domojs/devices";
 import { ProxyConfiguration } from '@akala/config'
 import { Subscription, UrlTemplate } from '@akala/core';
 import { MqttEvents } from "@domojs/mqtt";
@@ -36,6 +36,31 @@ export async function start(context: CliContext<{}, ProxyConfiguration<SidecarCo
                         location: `${json.lat} ${json.lon}`,
                         altitude: json.alt,
                         accuracy: json.acc,
+                    }),
+                    powerSource: clusterFactory({
+                        id: MatterClusterIds.PowerSource,
+                        Status: powerSourceCluster.PowerSourceStatusEnum.Active,
+                        EndpointList: [],
+                        Order: 0,
+                        Description: 'OwnTracks Device Battery',
+                        SupportsBattery: true,
+                        SupportsRechargeable: true,
+                        SupportsReplaceable: false,
+                        SupportsWired: false,
+                        BatPresent: true,
+                        BatPercentRemaining: json.batt || 100,
+                        BatChargeLevel: json.batt ? (json.batt > 20 ? powerSourceCluster.BatChargeLevelEnum.OK :
+                            json.batt > 10 ? powerSourceCluster.BatChargeLevelEnum.Warning :
+                                powerSourceCluster.BatChargeLevelEnum.Critical) :
+                            powerSourceCluster.BatChargeLevelEnum.OK,
+                        BatReplacementNeeded: false,
+                        BatReplaceability: powerSourceCluster.BatReplaceabilityEnum.UserReplaceable,
+                        BatChargeState: json.bs === 1 ? powerSourceCluster.BatChargeStateEnum.IsCharging :
+                            json.bs === 2 ? powerSourceCluster.BatChargeStateEnum.IsAtFullCharge :
+                                powerSourceCluster.BatChargeStateEnum.Unknown,
+                        BatFunctionalWhileCharging: true,
+                        ActiveBatFaults: [],
+                        BatReplacementDescription: 'Replace with compatible rechargeable battery'
                     })
                 }))
             }
@@ -46,6 +71,16 @@ export async function start(context: CliContext<{}, ProxyConfiguration<SidecarCo
                         location: `${json.lat} ${json.lon}`,
                         altitude: json.alt,
                         accuracy: json.acc,
+                    },
+                    powerSource: {
+                        BatPercentRemaining: json.batt || 100,
+                        BatChargeLevel: json.batt ? (json.batt > 20 ? powerSourceCluster.BatChargeLevelEnum.OK :
+                            json.batt > 10 ? powerSourceCluster.BatChargeLevelEnum.Warning :
+                                powerSourceCluster.BatChargeLevelEnum.Critical) :
+                            powerSourceCluster.BatChargeLevelEnum.OK,
+                        BatChargeState: json.bs === 1 ? powerSourceCluster.BatChargeStateEnum.IsCharging :
+                            json.bs === 2 ? powerSourceCluster.BatChargeStateEnum.IsAtFullCharge :
+                                powerSourceCluster.BatChargeStateEnum.Unknown,
                     }
                 })
             }
