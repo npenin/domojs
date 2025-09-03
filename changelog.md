@@ -1,4 +1,4 @@
-#  (2025-08-30)
+#  (2025-09-03)
 
 
 ### Bug Fixes
@@ -6,6 +6,7 @@
 * add abortsignal to start on gateways 16e9dfa
 * add akala.json symlink in main folder 3b21443
 * add akala.json symlink in main folder a60a4d4
+* add auto reconnect on mqtt 1eba5cd
 * add coreutils e49b07b
 * add cron to build 1bb748e
 * add db volume b4243ef
@@ -113,6 +114,7 @@
 * gateway startup 32c2fe9
 * guest permissions ba4e91f
 * handle buffer read over limits 3bc14bb
+* handle case when there is no value defined 4aed487
 * handle gateways detection 0c682a0
 * handle legacy configuration migration 7c37558
 * handle multiple gateways or merge gateways 1f19ef8
@@ -142,6 +144,7 @@
 * node permissions 263b2fc
 * nodejs install 3ef884f
 * npm registry 0d68737
+* only consider location events b23ec5a
 * override cron version 13cbfc9
 * package metadata 5578d05
 * packages/theme-default/package.json & packages/theme-default/yarn.lock to reduce vulnerabilities 868f5f3
@@ -186,6 +189,7 @@
 * reopen on close 97206ad
 * replace CECKeyCodeEnum import with keypadInputCluster for improved modularity 74fd565
 * restore all my personal shutters 4a9a0e0
+* restore connection to remote server 925451e
 * restore localhost akala config 17db37a
 * rfx modeendpoint naming 5e42bb3
 * rfx parsing 09bbea5
