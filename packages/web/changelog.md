@@ -1,9 +1,10 @@
-#  (2025-08-30)
+#  (2025-09-03)
 
 
 ### Bug Fixes
 
-* use local mqtt server 2b0aa86
+* handle case when there is no value defined 4aed487
+* restore connection to remote server 925451e
 
 
 
