@@ -1,4 +1,4 @@
-import { AsyncEventBus, IsomorphicBuffer, asyncEventBuses, Deferred, UrlTemplate } from '@akala/core';
+import { AsyncEventBus, IsomorphicBuffer, asyncEventBuses, Deferred, UrlTemplate, IntervalRetry, SocketWithConnectionRetry } from '@akala/core';
 import { ProtocolEvents } from './shared.js';
 import { Socket } from 'net';
 import { TLSSocket } from 'tls';
@@ -17,7 +17,12 @@ asyncEventBuses.useProtocol('mqtt', async (url, config) =>
 
     await defer;
 
-    const protocolEvents = new ProtocolEvents(new TcpSocketAdapter(socket));
+    const retry = IntervalRetry.fixedInterval(() =>
+    {
+        socket.connect(!isNaN(port) && port ? port : 1883, url.hostname, () => retry.stop());
+    }, 10000);
+
+    const protocolEvents = new ProtocolEvents(new SocketWithConnectionRetry(new TcpSocketAdapter(socket), retry));
 
     socket.on('error', err =>
     {
@@ -44,6 +49,11 @@ asyncEventBuses.useProtocol('mqtts', async (url, config) =>
     const port = Number(url.port);
     socket.connect(!isNaN(port) && port ? port : 8883, url.hostname, defer.resolve.bind(defer));
 
+    const retry = IntervalRetry.fixedInterval(() =>
+    {
+        socket.connect(!isNaN(port) && port ? port : 1883, url.hostname, () => retry.stop());
+    }, 10000);
+
     socket.on('error', err =>
     {
         if (err.cause !== config.abort.reason)
@@ -61,7 +71,7 @@ asyncEventBuses.useProtocol('mqtts', async (url, config) =>
 
     await defer;
 
-    const protocolEvents = new ProtocolEvents(new TcpSocketAdapter(tlsSocket));
+    const protocolEvents = new ProtocolEvents(new SocketWithConnectionRetry(new TcpSocketAdapter(tlsSocket), retry));
 
     const client = new MqttClient(config?.['clientId'] as string ?? crypto.randomUUID(), protocolEvents);
 
