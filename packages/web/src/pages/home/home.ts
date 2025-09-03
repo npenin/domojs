@@ -34,6 +34,8 @@ export default class Home extends Page
                 {
                     endpoint.clusters.descriptor.target.PartsList.onChanged(async endpoints =>
                     {
+                        if (!endpoints.value)
+                            return;
                         await Promise.all(endpoints.value?.map(async ep =>
                         {
                             if (ep === endpoint.id || processingIds.includes(ep))
