@@ -35,59 +35,61 @@ export default async function start(context: CliContext<{}, ProxyConfiguration<S
 
             if (!endpoint)
             {
-                root.endpoints.push(new Endpoint(endpointId, {
-                    location: clusterFactory({
-                        id: ClusterIds.location,
-                        location: `${json.lat} ${json.lon}`,
-                        altitude: json.alt,
-                        accuracy: json.acc,
-                    }),
-                    powerSource: clusterFactory({
-                        id: MatterClusterIds.PowerSource,
-                        Status: powerSourceCluster.PowerSourceStatusEnum.Active,
-                        EndpointList: [],
-                        Order: 0,
-                        Description: 'OwnTracks Device Battery',
-                        SupportsBattery: true,
-                        SupportsRechargeable: true,
-                        SupportsReplaceable: false,
-                        SupportsWired: false,
-                        BatPresent: true,
-                        BatPercentRemaining: json.batt || 100,
-                        BatChargeLevel: json.batt ? (json.batt > 20 ? powerSourceCluster.BatChargeLevelEnum.OK :
-                            json.batt > 10 ? powerSourceCluster.BatChargeLevelEnum.Warning :
-                                powerSourceCluster.BatChargeLevelEnum.Critical) :
-                            powerSourceCluster.BatChargeLevelEnum.OK,
-                        BatReplacementNeeded: false,
-                        BatReplaceability: powerSourceCluster.BatReplaceabilityEnum.UserReplaceable,
-                        BatChargeState: json.bs === 2 ? powerSourceCluster.BatChargeStateEnum.IsCharging :
-                            json.bs === 3 ? powerSourceCluster.BatChargeStateEnum.IsAtFullCharge :
-                                powerSourceCluster.BatChargeStateEnum.Unknown,
-                        BatFunctionalWhileCharging: true,
-                        ActiveBatFaults: [],
-                        BatReplacementDescription: 'Replace with compatible rechargeable battery'
-                    })
-                }))
+                if (json._type == 'location')
+                    root.endpoints.push(new Endpoint(endpointId, {
+                        location: clusterFactory({
+                            id: ClusterIds.location,
+                            location: `${json.lat} ${json.lon}`,
+                            altitude: json.alt,
+                            accuracy: json.acc,
+                        }),
+                        powerSource: clusterFactory({
+                            id: MatterClusterIds.PowerSource,
+                            Status: powerSourceCluster.PowerSourceStatusEnum.Active,
+                            EndpointList: [],
+                            Order: 0,
+                            Description: 'OwnTracks Device Battery',
+                            SupportsBattery: true,
+                            SupportsRechargeable: true,
+                            SupportsReplaceable: false,
+                            SupportsWired: false,
+                            BatPresent: true,
+                            BatPercentRemaining: json.batt || 100,
+                            BatChargeLevel: json.batt ? (json.batt > 20 ? powerSourceCluster.BatChargeLevelEnum.OK :
+                                json.batt > 10 ? powerSourceCluster.BatChargeLevelEnum.Warning :
+                                    powerSourceCluster.BatChargeLevelEnum.Critical) :
+                                powerSourceCluster.BatChargeLevelEnum.OK,
+                            BatReplacementNeeded: false,
+                            BatReplaceability: powerSourceCluster.BatReplaceabilityEnum.UserReplaceable,
+                            BatChargeState: json.bs === 2 ? powerSourceCluster.BatChargeStateEnum.IsCharging :
+                                json.bs === 3 ? powerSourceCluster.BatChargeStateEnum.IsAtFullCharge :
+                                    powerSourceCluster.BatChargeStateEnum.Unknown,
+                            BatFunctionalWhileCharging: true,
+                            ActiveBatFaults: [],
+                            BatReplacementDescription: 'Replace with compatible rechargeable battery'
+                        })
+                    }))
             }
             else
             {
-                endpoint.patch({
-                    location: {
-                        location: `${json.lat} ${json.lon}`,
-                        altitude: json.alt,
-                        accuracy: json.acc,
-                    },
-                    powerSource: {
-                        BatPercentRemaining: json.batt || 100,
-                        BatChargeLevel: json.batt ? (json.batt > 20 ? powerSourceCluster.BatChargeLevelEnum.OK :
-                            json.batt > 10 ? powerSourceCluster.BatChargeLevelEnum.Warning :
-                                powerSourceCluster.BatChargeLevelEnum.Critical) :
-                            powerSourceCluster.BatChargeLevelEnum.OK,
-                        BatChargeState: json.bs === 2 ? powerSourceCluster.BatChargeStateEnum.IsCharging :
-                            json.bs === 3 ? powerSourceCluster.BatChargeStateEnum.IsAtFullCharge :
-                                powerSourceCluster.BatChargeStateEnum.Unknown,
-                    }
-                })
+                if (json._type == 'location')
+                    endpoint.patch({
+                        location: {
+                            location: `${json.lat} ${json.lon}`,
+                            altitude: json.alt,
+                            accuracy: json.acc,
+                        },
+                        powerSource: {
+                            BatPercentRemaining: json.batt || 100,
+                            BatChargeLevel: json.batt ? (json.batt > 20 ? powerSourceCluster.BatChargeLevelEnum.OK :
+                                json.batt > 10 ? powerSourceCluster.BatChargeLevelEnum.Warning :
+                                    powerSourceCluster.BatChargeLevelEnum.Critical) :
+                                powerSourceCluster.BatChargeLevelEnum.OK,
+                            BatChargeState: json.bs === 2 ? powerSourceCluster.BatChargeStateEnum.IsCharging :
+                                json.bs === 3 ? powerSourceCluster.BatChargeStateEnum.IsAtFullCharge :
+                                    powerSourceCluster.BatChargeStateEnum.Unknown,
+                        }
+                    })
             }
         }
         console.log('Received OwnTracks location:', { topic: options?.publishedTopic, message });
