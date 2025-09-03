@@ -8,7 +8,7 @@
     "main": "dist/index.js",
     "type": "module",
     "dependencies": {
-        "@akala/protocol-parser": "^11.3.27"
+        "@akala/protocol-parser": "^11.3.28"
     },
     "repository": {
         "type": "git",
