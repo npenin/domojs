@@ -16,7 +16,7 @@ export default defineConfig({
                 ws: true,
             },
             '/mqtt': {
-                target: 'ws://localhost:9001',
+                target: 'ws://home.dragon-angel.fr:9001',
                 ws: true,
                 changeOrigin: true,
                 rewrite: path => path.replace(/^\/mqtt/, '')
