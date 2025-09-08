@@ -34,14 +34,16 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "params.0"
+                        "params.0",
+                        "params.1"
                     ],
                     "path": "dist/server/commands/devices/register-adapter.js",
                     "source": "src/server/commands/devices/register-adapter.ts"
                 },
                 "": {
                     "inject": [
-                        "params.0"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "mqtt": {
