@@ -23,6 +23,15 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
         }
         await pubsub(self, { transport: self.config.pubsub.transport, transportOptions: { username: 'domojs-guest', password: 'domojs' } }, abort);
     }
+    if (!self.pubsub)
+    {
+        const result = await (await self.sidecars['@domojs/devices']).dispatch('register-adapter', name, grantRoot);
+        if (result.transport)
+        {
+            id = result.id;
+            await pubsub(self, result?.transportOptions ? { transport: result.transport, transportOptions: result.transportOptions } : null, abort);
+        }
+    }
     const remote = new EndpointProxy(0, { name: 'domojs/devices' }, self.pubsub, { commissionning: CommissionningCluster });
     try
     {
