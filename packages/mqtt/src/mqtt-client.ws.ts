@@ -33,3 +33,34 @@ asyncEventBuses.useProtocol('mqtt+ws', async (url, config) =>
 
     return client as AsyncEventBus;
 });
+
+asyncEventBuses.useProtocol('mqtt+wss', async (url, config) =>
+{
+    if (config?.abort)
+        config.abort.addEventListener('abort', () => socket.close());
+
+    const defer = new Deferred<void>();
+    const port = Number(url.port);
+    const socket = new WebSocket(new URL(`wss://${url.hostname}:${port ?? 9001}${url.pathname}${url.search}${url.hash}`), 'mqtt');
+    socket.binaryType = 'arraybuffer';
+    socket.addEventListener('error', () => defer.reject(new Error('WebSocket connection error')));
+    socket.addEventListener('open', () => defer.resolve());
+
+    await defer;
+
+    const protocolEvents = new ProtocolEvents(new WebSocketAdapter(socket));
+
+    socket.addEventListener('error', (err: ErrorEvent) =>
+    {
+        if (err.error !== config.abort.reason)
+            console.error(err);
+    })
+
+    const client = new MqttClient(config?.['clientId'] as string ?? crypto.randomUUID(), protocolEvents);
+    if (url.username || url.password || config.username || config.password)
+        await client.connect({ userName: url.username || config.username as string, password: IsomorphicBuffer.from(url.password || config.password as string) });
+    else
+        await client.connect({});
+
+    return client as AsyncEventBus;
+});
