@@ -1,10 +1,9 @@
-#  (2025-09-03)
+#  (2025-09-19)
 
 
-### Bug Fixes
+### Features
 
-* handle case when there is no value defined 4aed487
-* restore connection to remote server 925451e
+* start browser client as node dacfd1d
 
 
 
