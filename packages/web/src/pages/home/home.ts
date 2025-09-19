@@ -61,7 +61,7 @@ export default class Home extends Page
         }));
     }
 
-    public async[OutletService.onLoad]()
+    public async [OutletService.onLoad]()
     {
         // const allDevices = await EndpointProxy.fromBus<ClusterMap>(mqtt, 'domojs/devices', '0');
 
@@ -89,7 +89,7 @@ export default class Home extends Page
             })
         })
 
-        await EndpointProxy.fromBus(this.mqtt, 'domojs/devices', 0).then(allDevices =>
+        EndpointProxy.fromBus(this.mqtt, 'domojs/devices', 0).then(allDevices =>
         {
             // this.rooms.push({ name: 'AllHouse', devices: [allDevices] });
             this.devices.target['domojs/devices'].push(allDevices)

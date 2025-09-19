@@ -108,7 +108,8 @@
         },
         "endpointsMapping": {
             "7cbdb153fdc1b15bf9c569329111cc8778822d78e73ffd7468fe7a969ceea": 1,
-            "d6e21286621a8586f7e54720ab5a39c93acc2f4b8fba7a16ec1c24d69a8c613": 2
+            "d6e21286621a8586f7e54720ab5a39c93acc2f4b8fba7a16ec1c24d69a8c613": 2,
+            "8bca3c552fe97254bfd946b13bc7a16791aebab713b838e9da496f9ee7f4f6a": 3
         },
         "id": 0,
         "pubsub": {
@@ -126,22 +127,6 @@
     "@domojs/weather": {
         "pubsub": {
             "transport": "mqtt://localhost"
-        }
-    },
-    "@domojs/owntracks": {
-        "pubsub": {
-            "id": 3,
-            "transport": "mqtt://localhost",
-            "transportOptions": {
-                "username": "owntracks",
-                "password": {
-                    "iv": "6fK+bNwEwmc0BzEkJsKP+w==",
-                    "value": "8W5IXzYZ3x36fjYRhdz6VG10bpRPGQYTX419FNN1asnxZoxqbS3bMpZSjWlXX3Eo"
-                }
-            }
-        },
-        "endpointsMapping": {
-            "264155bf1476260f92f77572dd14621761277585ec059e98053d5c9a35f": 1
         }
     },
     "@domojs/mdns": {
@@ -277,7 +262,82 @@
             "76e636aabeebd4e3ea9f8c512b7e24aac412bd914ddd5949eecb8c9285212d": 129,
             "98b0aa379de7c12d2345a3ebe8d1f3a3ee18c6117cdbe22b995d32416946d": 130,
             "dba3572ad6bbd0dee25d3e7016d2127da3d598d7cf957283f54453b750e034": 131,
-            "5ee9aa92b611222e8da6d6f1e3a29ca3aeb95ed2f82fcc8bcf1162cb918": 132
+            "5ee9aa92b611222e8da6d6f1e3a29ca3aeb95ed2f82fcc8bcf1162cb918": 132,
+            "4d582b54c63a5cf718c915da6af5f671cb989969fe7f6c561d686ac58c069": 133,
+            "206bba2d82d64255b75d9d8e2285e4eb1f72ad9ef1ca2c39895027bd74c219da": 134,
+            "9cf49879866edb793529a0c12b6139d431b68c43b6acb0f4247c11d36642fd3b": 135,
+            "3da3c5411c6267639c62850846af6a2b1cb6b2c699424b4268c5d670f9ae1b": 136,
+            "a25834480211fd9c5ef14eec620594e8875569123f6e428dc5c5e9d82d04936": 137,
+            "6e1932af50199da4e88a6557a8b61e96452d8fc13e919e5031e86945417b4": 138,
+            "505349bec8bd5ce81fd9d5b44aa479a5b5570eb1c84a4a70b81f4548f84861": 139,
+            "7ffc396ae6ebcc8a95171a5c75944f7bf2d985bf9631060b369df5a6ada8699": 140,
+            "1a92613b58da2198fbc1eac18a16a81b8679ff68f432dbe6288c7cdd543d2": 141,
+            "a42ade1c1bfa2225b8e2b8cff39aeee7e7de9fee0731ccdb62db693e63bb036": 142,
+            "85494cd447297f83f96830ca0af3e23faac80a208d9aa23f985573fec98d": 143,
+            "deb6e1b31488112eca753c58a987b4a0f89f9f9918de2bfd2bcfe4d5f458e782": 144,
+            "9185e26b65cef4a529b9992eb1f32d81ea77bf239fc29e3857e34217b968c3": 145,
+            "7b33adbd865243d99b75d0e8ada5349242017f92aca84a950112da528c1f1": 146,
+            "692cf51d20110773ed11b4252a777bd7d33904f297c1ffdb2e4b72c8519": 147,
+            "bcfa3efa6a495fc9b864277f552418293994165c8bee814e3f1bbc243e34911": 148,
+            "b5fe5435d952ed07137ffbb14383523b19a49a94c43ee5fc3c2240e5abc48": 149,
+            "31904ccf495d9f7266af4eb2d5b674180412dc2526ac4efbae2a273fd5559": 150,
+            "847e5ed8cb27b28e4834de9e788b35ed61f0f36caa6b444a1799bac5cbc9b": 151,
+            "4568f598dc5bf03aa9231c78970dca04635de8f13e94aaee2d8bbc9abb81a": 152,
+            "8e96ebb12b989ddf3bdf1cacacffcf43d7d2ff7b646c641bb61e7fdf210108b": 153,
+            "66159dfbb98588ce7a83e5f93dfa404b192b7966912335b3951ece6d7a95": 154,
+            "54197b32ed6d2571f8e92d6867caea414c5e94cdac65f3fd6ad4ea4b42a67f": 155,
+            "d4b21cc5bf64e7feeafe92d3f2638e632b4561c433d24432c273b24f3edd8f8": 156,
+            "af9e6118c416614edeaaa1b986b7dd12514d1378e9bcc6513a915bd1de6f6": 157,
+            "10a2c4aa49c0556512126429a56a4a2afed44566c4db1b39f2b7d3316a877e8c": 158,
+            "fe2c5c6b1e89a235d1167f7b729f90378e8cbc1a45118a995c6d66cf17d18b3": 159,
+            "6702840b74f95a1a71dc1bc4483cd8fc4ecae67319565ce3eb43de4a65": 160,
+            "e54dcf61cf08c97e9818b6748d2b7f1864d2a4b039cfe5bbefa624e742a474": 161,
+            "9e53d48fa741edd9578f57edc28f7aa244bbaa178b0d1ec21469817b121be": 162,
+            "6ad63633f4ecc28bc732dce73ff89deea2fb1be8275a26ec6442adf1eea6ea2": 163,
+            "10b1304740e22edb5b3f6b16ae8e1b2a2289e5df48e568a02b699c3117dcd223": 164,
+            "60df23a5ab919ad9c5e158e64da65051e8c7873d575276db1b64ef7fba2f38f": 165,
+            "ac51f4b7a6cf5fde3c98c12eee1a1e6f5be5257155c756ad439652b75c2762": 166,
+            "658788ce1234ab3979c23996e43ff99c7f4411bb6b40fdbb17bc6edcd8783bc7": 167,
+            "a05ce032bb6563b01c2fb1941ecd9dec70fcf4aae2e1d81d11e135e84d80ed": 168,
+            "cbf95caac184b38c115c6cab1c861ec346af97d93bc6591ef951fd81e1c9b2c": 169,
+            "3314438b68f108ae8886aa874722b9eec5e4da8596d7b05ae3f5f868bf5ecb": 170,
+            "ce8ac43da72a76121a5d3ff7f0a547be9616ce877c61dc0936f252dfa12ff7": 171,
+            "46d49262623ef7f6ba38802f1f3204db3f76dd84d74afbc3496a48ed3d808a": 172,
+            "82658e894feb67e59446b741b3821b7ff8ff327c7d0902a63eb011c2c2a4b": 173,
+            "d8ff187515a5def47527e958667c475342d4f1144785afe5fcd6899554c78": 174,
+            "9ef22df040379d534e37adbfeba683246540309c6d1d9e15e91caa829c8a1360": 175,
+            "3579918d6fb64d369e8dbcdba865b540936540c0199e65b13f969d227120": 176,
+            "d7f356c076dc88cc7df3d1a9bff564d91f20281d987c35fa603a532992a360aa": 177,
+            "f8f124a2de9a18e329e769cf0d54c19d5ab23a7a2d0abe3ab6c7a15dc98b1": 178,
+            "b6fe3745a805f5c2dfca98c529a1c465a6801658b45c66b45b69278ce390": 179,
+            "e0ceaf41e03f5607a75d566ef54ce762dbc759025917b2f4c9cefa293f4b8": 180,
+            "e3f8bd2b6e97b8252d97d5f2662b726fd3de9cf4bf954e172355622c362": 181,
+            "5ee92eea3aaf8b0825cf13ead47735231ae898e17be83fb67adb6b147f5e3f8": 182,
+            "b5c7c514723f3e178cb98ce7a86fe23212cbaeb5e03650f3556ead418acdc3": 183,
+            "193cf4bad4cf2fdf981b7059ac5284daf9926dd7cb18067e1f5d246fdaccbe5": 184,
+            "e96b28ececcd498435f9f66261fe7cfad71bf53919a126a80376da9927e6781": 185,
+            "35a17e82f88ed4fc63db628a8632c9d264a6bb31060a2c4def975233b5714ed": 186,
+            "1823b7104a1e47669b756419660b1903c9d0b8ee14b6ef6821276c1610c88b": 187,
+            "a583c58285153c5c7c6edc1f44c12378d712ce2c1df9c8c9eb726835281c": 188,
+            "96ab54d4c5487692ecf13c8e4bf3aeaa07831f8651f9eb757b49aac127acf": 189,
+            "887e88cc14835bdffec41ceac6e3697d5aa16f5a30f59bff2176f47168cf": 190,
+            "25b810185e712f8b3bb3632c107ed1ee1f896fa531f68b8144277ea2f7e14d": 191,
+            "fac39549ed23842fc38370d9318ddf5fc25f4de2a491dbe2921a5101aaf2c": 192,
+            "75dd157b39bf5786ed719386b563e3a73946fa9ea62d1d7bc47ad79ce657f": 193,
+            "a6d312c32dfb46cfe3c7b69cc27d161191ba6de3f70a0f0cb4ef38278f24cdc": 194,
+            "68f7fa9b4a1f93d23ebfe6efb75abd8b972c2c6b4cb9a2fba3a6bd5d42e427e3": 195,
+            "f7cbf750d3e465d964ceee5bb514eb7868ea5ddbaee47373aacae7a64ec9be8": 196,
+            "21de827f2fecb2d27b8fdfdf7a21df57d19fe842a85a56a8869e47e3cf1": 197,
+            "ad55eafd87bb1d588dc344dc908a96bbf2fe3cd1e7b60c41fcdce34117f9eb": 198,
+            "8fade47f6590cca2268d8e5f0cfd630c33b3ebade62f72beb8e333a162fdc2": 199,
+            "a34e09bd887c14a5539f332ea24145859f061634fb2ae3429c19bafd7c78a": 200,
+            "5e62b5552994f9985513be40852f58f55b8d63182bf46b3e22715ee026318911": 201,
+            "e49554af70e4f598e697e6ae349eceab5c80c364a06f16b6e1feb02d271cb3e2": 202,
+            "18ecde8bcbbfa7de4bc5f6051209e6acf91896c65773935a864e2bb10b9775": 203,
+            "ebb2fc79c7a1903c342965fe5cb3d8eedc3bf4b14c333b83bfc59b940bfef": 204,
+            "c9f8896a58871a2995eb2d616b13a3de9fbbb914cbd066912a7a598861d1d3": 205,
+            "a1f9822bec908283de5f4b951426ec3ebabb2bfefe52e8ba363f66477225a": 206,
+            "85ed9c88fae6861fa35fd86ab59ab34c02c8b4f3c335a7871aa4c5a7e13d7": 207
         },
         "id": 1,
         "pubsub": {
@@ -288,6 +348,23 @@
                 "password": {
                     "iv": "8gEVVKkKNkKqe7CrSWOJXw==",
                     "value": "Gj2R006/JtkqxX5YTkkPHOHdqtdhtAZQVT6LdBM1v8fDD8HGlFa9esxJla4KQkf5"
+                }
+            }
+        }
+    },
+    "@domojs/owntracks": {
+        "pubsub": {
+            "transport": "mqtt://localhost",
+            "transportOptions": {
+                "username": "owntracks",
+                "password": {
+                    "iv": "rnCeTsiNnwo7t1Ddvm1CYA==",
+                    "value": "v7wlxdCSqievQq0mTnEsIZqiUINUPNV+ERZxPtdnUPaTUXM2xhwDoyKq+7GLgbcr"
+                }
+            }
+        }
+    }
+}ZxPtdnUPaTUXM2xhwDoyKq+7GLgbcr"
                 }
             }
         }

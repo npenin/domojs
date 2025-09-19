@@ -19,9 +19,13 @@ import temperatureIcon from '@carbon/icons/es/temperature/24.js'
 import thisSideUpIcon from '@carbon/icons/es/this-side-up/24.js'
 import deskAdjustableIcon from '@carbon/icons/es/desk--adjustable/24.js'
 import Device from './pages/device/device.js';
-import { allProperties, asyncEventBuses, Formatter, formatters, ObservableObject, watcher, WatcherFormatter } from '@akala/core';
+import fsHandler, { FileHandle, FileSystemProvider, MakeDirectoryOptions, OpenFlags, OpenStreamOptions, PathLike, RmDirOptions, RmOptions, Stats, FileEntry, VirtualFileHandle, GlobOptions, GlobOptionsWithFileTypes, GlobOptionsWithoutFileTypes } from '@akala/fs';
+import { allProperties, asyncEventBuses, base64, ErrorWithStatus, Formatter, formatters, IsomorphicBuffer, ObservableObject, watcher, WatcherFormatter } from '@akala/core';
 import { MqttEvents } from '@domojs/mqtt';
-import { ClusterDefinition, ClusterIds, EndpointProxy, MatterClusterIds, NonWatchableRemoteClusterInstance, RemoteClusterInstance } from '@domojs/devices';
+import Configuration from '@akala/config';
+import { BridgeConfiguration, ClusterDefinition, ClusterIds, EndpointProxy, MatterClusterIds, NonWatchableRemoteClusterInstance, registerNode, RemoteClusterInstance } from '@domojs/devices';
+import { dirname } from 'path';
+import type { SidecarConfiguration } from '@akala/sidecar';
 
 formatters.register('log', class implements Formatter<unknown>
 {
@@ -131,8 +135,328 @@ bootstrapModule.activate([[serviceModule, OutletService.InjectionToken]], (outle
 
 bootstrapModule.activateAsync([], async () =>
 {
-    serviceModule.register('mqtt', await asyncEventBuses.process<MqttEvents>(new URL(`mqtt+ws://${location.host}/mqtt`), { username: 'domojs-guest', password: 'domojs' }));
+    serviceModule.register('mqtt', await asyncEventBuses.process<MqttEvents>(new URL(`mqtt+wss://${location.host}/mqtt`), { username: 'domojs-guest', password: 'domojs' }));
+    const config = await Configuration.load<SidecarConfiguration & BridgeConfiguration>('localstorage:sidecar', true);
+    if (!config.pubsub.transport)
+    {
+        const abortController = new AbortController();
+        registerNode(`browser/${crypto.randomUUID()}`, {
+            config,
+            abort: abortController.signal,
+            pm: null,
+            sidecars: {} as any
+        }, config, abortController.signal, true)
+    }
 });
+
+fsHandler.useProtocol('localStorage', async url => new (class implements FileSystemProvider
+{
+    readonly: boolean = false;
+    root: URL = new URL('localstorage:/');
+
+    private normalizePath(path: PathLike<FileHandle>): string
+    {
+        if (typeof path === 'string')
+            return path.startsWith('/') ? path.slice(1) : path;
+        if (path instanceof URL)
+            return path.pathname.startsWith('/') ? path.pathname.slice(1) : path.pathname;
+        if (this.isFileHandle(path))
+            return this.normalizePath(path.path);
+        throw new Error('Unsupported path type');
+    }
+
+    toImportPath(path: PathLike<never>, options?: { withSideEffects?: boolean; }): string
+    {
+        throw new Error('Method not implemented.');
+    }
+    openReadStream(path: PathLike<FileHandle>, options?: OpenStreamOptions | OpenStreamOptions['encoding']): ReadableStream
+    {
+        throw new Error('Method not implemented.');
+    }
+    openWriteStream(path: PathLike<FileHandle>, options?: OpenStreamOptions | OpenStreamOptions['encoding']): WritableStream
+    {
+        throw new Error('Method not implemented.');
+    }
+    access(path: PathLike<FileHandle>, mode?: OpenFlags): Promise<void>
+    {
+        const normalizedPath = this.normalizePath(path);
+        if (localStorage.getItem(normalizedPath) === null)
+            throw new ErrorWithStatus(404, `no such file or directory, access '${path}'`);
+        return Promise.resolve();
+    }
+    async copyFile(src: PathLike<FileHandle>, dest: string | URL, mode?: number): Promise<void>
+    {
+        await this.writeFile(dest, await this.readFile(src));
+    }
+    async cp(src: PathLike<FileHandle>, dest: string | URL, options?: { force?: boolean; recursive?: boolean; }): Promise<void>
+    {
+        await this.writeFile(dest, await this.readFile(src));
+    }
+    mkdir(path: PathLike, options?: MakeDirectoryOptions): Promise<void>
+    {
+        return Promise.resolve();
+    }
+    symlink(source: PathLike<FileHandle>, target: PathLike, type?: 'dir' | 'file' | 'junction'): Promise<void>
+    {
+        throw new Error('Method not implemented.');
+    }
+    open(path: PathLike, flags: OpenFlags): Promise<FileHandle>
+    {
+        return Promise.resolve(new VirtualFileHandle(this, new URL(this.normalizePath(path))));
+    }
+    opendir(path: PathLike, options?: { bufferSize?: number; encoding?: string; }): Promise<any>
+    {
+        throw new Error('Method not implemented.');
+    }
+    readdir(path: PathLike, options?: { encoding?: Exclude<BufferEncoding, 'binary'> | null; withFileTypes?: false; }): Promise<string[]>;
+    readdir(path: PathLike, options: { encoding: 'binary'; withFileTypes?: false; }): Promise<IsomorphicBuffer[]>;
+    readdir(path: PathLike, options: { withFileTypes: true; }): Promise<FileEntry[]>;
+    readdir(path: PathLike, options?: { encoding?: BufferEncoding | null; withFileTypes?: boolean; }): Promise<string[] | IsomorphicBuffer[] | FileEntry[]>
+    {
+        const normalizedPath = this.normalizePath(path);
+        const prefix = normalizedPath ? normalizedPath + '/' : '';
+        const children = new Set<string>();
+        for (let i = 0; i < localStorage.length; i++)
+        {
+            const key = localStorage.key(i);
+            if (key && key.startsWith(prefix))
+            {
+                const remaining = key.slice(prefix.length);
+                const nextSlash = remaining.indexOf('/');
+                const child = nextSlash === -1 ? remaining : remaining.slice(0, nextSlash);
+                if (child)
+                    children.add(child);
+            }
+        }
+        const result = Array.from(children);
+        if (options?.encoding === 'binary')
+        {
+            return Promise.resolve(result.map(name =>
+            {
+                const bytes = new Uint8Array(name.length);
+                for (let i = 0; i < name.length; i++)
+                    bytes[i] = name.charCodeAt(i);
+                return new IsomorphicBuffer(bytes);
+            }));
+        }
+        else if (options && options.withFileTypes)
+        {
+            return Promise.resolve(result.map(name => ({
+                name,
+                parentPath: new URL(normalizedPath),
+                isFile: !this.isDirectory(prefix + name),
+                isDirectory: this.isDirectory(prefix + name),
+                isBlockDevice: false,
+                isCharacterDevice: false,
+                isSymbolicLink: false,
+                isFIFO: false,
+                isSocket: false
+            } as FileEntry<string>)));
+        }
+        else
+        {
+            return Promise.resolve(result);
+        }
+    }
+    readFile(path: PathLike<FileHandle>, options?: "binary" | { encoding?: "binary"; flag?: OpenFlags; }): Promise<IsomorphicBuffer>;
+    readFile(path: PathLike<FileHandle>, options: BufferEncoding | { encoding: BufferEncoding; flag?: OpenFlags; }): Promise<string>;
+    readFile<T>(path: PathLike<FileHandle>, options: { encoding: "json"; flag?: OpenFlags; } | "json"): Promise<T>;
+    readFile(path: PathLike<FileHandle>, options?: any): Promise<IsomorphicBuffer | string | any>
+    {
+        const normalizedPath = this.normalizePath(path);
+        const stored = localStorage.getItem(normalizedPath);
+        if (stored === null)
+            throw new Error(`ENOENT: no such file or directory, open '${path}'`);
+
+        if (options === 'binary' || (options && options.encoding === 'binary'))
+        {
+            return Promise.resolve(new IsomorphicBuffer(base64.base64DecToArr(stored)));
+        }
+        else if (options === 'json' || (options && options.encoding === 'json'))
+        {
+            return Promise.resolve(JSON.parse(stored));
+        }
+        // Default to string
+        return Promise.resolve(stored);
+    }
+    async rename(oldPath: PathLike<FileHandle>, newPath: string | URL): Promise<void>
+    {
+        await this.copyFile(oldPath, newPath);
+        await this.unlink(oldPath);
+    }
+    rmdir(path: PathLike, options?: RmDirOptions): Promise<void>
+    {
+        throw new Error('Method not implemented.');
+    }
+    rm(path: PathLike, options?: RmOptions): Promise<void>
+    {
+        return this.unlink(path);
+    }
+    stat(path: PathLike<FileHandle>, opts?: { bigint?: false; }): Promise<Stats<number>>;
+    stat(path: PathLike<FileHandle>, opts: { bigint: true; }): Promise<Stats<bigint>>;
+    stat(path: PathLike<FileHandle>, opts?: any): Promise<Stats<number> | Stats<bigint>>
+    {
+        const normalizedPath = this.normalizePath(path);
+        const stored = localStorage.getItem(normalizedPath);
+        if (stored === null)
+            throw new ErrorWithStatus(404, `no such file or directory, stat '${path}'`);
+
+        const isDirectory = this.isDirectory(normalizedPath);
+        const size = stored.length;
+        const mtime = new Date();
+        const atime = new Date();
+
+        if (opts && opts.bigint)
+        {
+            return Promise.resolve({
+                size: BigInt(size),
+                name: dirname(normalizedPath),
+                parentPath: new URL('./', normalizedPath),
+                mtime,
+                mtimeMs: BigInt(mtime.getTime()),
+                atime,
+                atimeMs: BigInt(atime.getTime()),
+                ctime: mtime,
+                ctimeMs: BigInt(mtime.getTime()),
+                birthtime: mtime,
+                birthtimeMs: BigInt(mtime.getTime()),
+                isDirectory,
+                isFile: !isDirectory,
+                isBlockDevice: false,
+                isCharacterDevice: false,
+                isSymbolicLink: false,
+                isFIFO: false,
+                isSocket: false,
+                dev: 0n,
+                ino: 0n,
+                mode: 0o644,
+                nlink: 1n,
+                uid: 0n,
+                gid: 0n,
+                rdev: 0n,
+                blksize: 4096n,
+                blocks: 1n
+            } as Stats<bigint>);
+        }
+        else
+        {
+            return Promise.resolve({
+                size,
+                mtime,
+                mtimeMs: mtime.getTime(),
+                atime,
+                atimeMs: atime.getTime(),
+                name: dirname(normalizedPath),
+                parentPath: new URL('./', normalizedPath),
+                ctime: mtime,
+                ctimeMs: mtime.getTime(),
+                birthtime: mtime,
+                birthtimeMs: mtime.getTime(),
+                isDirectory,
+                isFile: !isDirectory,
+                isBlockDevice: false,
+                isCharacterDevice: false,
+                isSymbolicLink: false,
+                isFIFO: false,
+                isSocket: false,
+                dev: 0,
+                ino: 0,
+                mode: 0o644,
+                nlink: 1,
+                uid: 0,
+                gid: 0,
+                rdev: 0,
+                blksize: 4096,
+                blocks: 1
+            } as Stats<number>);
+        }
+    }
+
+    private isDirectory(path: string): boolean
+    {
+        // Check if there are keys that start with path + '/'
+        for (let i = 0; i < localStorage.length; i++)
+        {
+            const key = localStorage.key(i);
+            if (key && key.startsWith(path + '/'))
+                return true;
+        }
+        return false;
+    }
+    truncate(path: PathLike<FileHandle>, len?: number): Promise<void>
+    {
+        throw new Error('Method not implemented.');
+    }
+    unlink(path: PathLike<FileHandle>): Promise<void>
+    {
+        const normalizedPath = this.normalizePath(path);
+        if (localStorage.getItem(normalizedPath) === null)
+            throw new ErrorWithStatus(404, `no such file or directory, unlink '${path}'`);
+        localStorage.removeItem(normalizedPath);
+        return Promise.resolve();
+    }
+    utimes(path: PathLike<FileHandle>, atime: string | number | Date, mtime: string | number | Date): Promise<void>
+    {
+        throw new Error('Method not implemented.');
+    }
+    watch(filename: PathLike<FileHandle>, options?: { encoding?: BufferEncoding; recursive?: boolean; }): Promise<any>
+    {
+        throw new Error('Method not implemented.');
+    }
+    writeFile(path: PathLike<FileHandle>, data: IsomorphicBuffer | string | ArrayBuffer | SharedArrayBuffer, options?: {
+        mode?: number;
+    }): Promise<void>
+    {
+        const normalizedPath = this.normalizePath(path);
+        let toStore: string;
+        if (typeof data === 'string')
+        {
+            toStore = data;
+        }
+        else if (data instanceof ArrayBuffer || data instanceof SharedArrayBuffer)
+        {
+            // Convert to base64
+            const bytes = new Uint8Array(data);
+            let binary = '';
+            for (let i = 0; i < bytes.byteLength; i++)
+                binary += String.fromCharCode(bytes[i]);
+            toStore = btoa(binary);
+        }
+        else if (data instanceof Uint8Array || (data as any).buffer)
+        {
+            // Assume IsomorphicBuffer or similar
+            let binary = '';
+            for (let i = 0; i < data.length; i++)
+                binary += String.fromCharCode(data[i]);
+            toStore = btoa(binary);
+        }
+        else
+        {
+            throw new Error('Unsupported data type');
+        }
+        localStorage.setItem(normalizedPath, toStore);
+        return Promise.resolve();
+    }
+    chroot(root: PathLike): void
+    {
+        throw new Error('Method not implemented.');
+    }
+    newChroot(root: PathLike): FileSystemProvider<FileHandle>
+    {
+        throw new Error('Method not implemented.');
+    }
+    isFileHandle(x: any): x is FileHandle
+    {
+        throw new Error('Method not implemented.');
+    }
+    glob(pattern: string | string[], options: GlobOptionsWithFileTypes): AsyncIterable<FileEntry>
+    glob(pattern: string | string[], options?: GlobOptionsWithoutFileTypes): AsyncIterable<URL>
+    glob(pattern: string | string[], options?: GlobOptions): AsyncIterable<URL> | AsyncIterable<FileEntry>
+    {
+        throw new Error('Method not implemented.');
+    }
+
+})());
 
 DataContext.propagateProperties.push('icons');
 

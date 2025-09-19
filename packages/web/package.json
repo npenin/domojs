@@ -27,6 +27,7 @@
     },
     "devDependencies": {
         "@akala/vite": "^2.7.46",
+        "@vitejs/plugin-basic-ssl": "^2.1.0",
         "esbuild-sass-plugin": "^3.3.1",
         "postcss": "^8.5.6",
         "postcss-modules": "^6.0.1",
