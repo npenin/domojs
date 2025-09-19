@@ -1,4 +1,4 @@
-#  (2025-09-03)
+#  (2025-09-19)
 
 
 ### Bug Fixes
@@ -230,6 +230,7 @@
 * update after jsonrpc breaking change a5d8dbf
 * update codegen to provide ClusterDefinitions f191fd7
 * update config 26a8d19
+* update cron reference c80babf
 * update default config ed6451b
 * update dependencies a3ea3a6
 * update dependencies and checkout depth f04e50a
@@ -238,6 +239,7 @@
 * update generated metadata f24985f
 * update generated metadata 675a3a7
 * update home screen tailored impl 9898cb4
+* update location 6071c35
 * update lock file 17fbd2a
 * update parameter references from "param" to "params" in command JSON files 7634f8f
 * update SocketAdapter import and use JsonRpcBrowser 065c4b9
@@ -298,6 +300,7 @@
 * add class to IDevice 716d8d8
 * add codegen from zap clusters and devices types f68bdea
 * add crunchyroll media indexing 317eacc
+* add default config as file for initial startup d46000c
 * add disconnect support to MqttClient and update tests for mqtt and mqtts ef451ea
 * add full device enumeration fe29d1c
 * add grantRoot on commissionnee aaf0fb1
@@ -316,6 +319,7 @@
 * add powersource cluster on owntracks devices 39b78b0
 * add reason code when disconnecting b44aa1b
 * add redirectTopic f692d3e
+* add registerNode in browser implementation 6e8e368
 * add service discovery (not ready yet) 7a7a7b4
 * add slim docker alternative a06e7c6
 * add tlv support be185cf
@@ -323,6 +327,7 @@
 * add user label on gateway endpoint 87d8b51
 * add web scrapping support and tests 62a3c61
 * add yt-music 5c09d55
+* allow inheriting devices pubsub config (may not work on remote nodes) 40c9160
 * create new web site from scratch using vite and akala 1492bfe
 * enable cluster definition on remote clusters 4a1852e
 * enable debug mode 684b9cd
@@ -349,6 +354,7 @@
 * provide fromBus to create an EndpointProxy from the bus 127e3cf
 * shared gateway implementation d7a42a9
 * start a dbus implementation 44b24d6
+* start browser client as node dacfd1d
 * start to upgrade media to container 419e5a4
 * switch to matter like and mqtt implementation 7153114
 * update guest role configuration and add ACLs for publish and subscribe 35473f8
@@ -359,6 +365,7 @@
 
 ### BREAKING CHANGES
 
+* location is now /akala instead of /usr/src/akala
 * EndpointProxy provide bindings instead of Promise
 * endpoints and endpointproxies do not expect ClusterMap anymore
 * no more commands for now
