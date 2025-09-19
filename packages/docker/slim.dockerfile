@@ -21,8 +21,7 @@ COPY entrypoint.sh entrypoint.sh
 COPY --from=build /root /root
 COPY .yarnrc.yml /akala/.yarnrc.yml
 COPY --from=build /usr/src/akala /akala
-COPY .akala.json db/.akala.json
-COPY .akala.json default.json
+COPY .akala.json default-akala.json
 RUN ln -s db/.akala.json .akala.json && \
     rm yarn.lock
 ENV PATH=${PATH}:./node_modules/.bin
