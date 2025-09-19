@@ -14,17 +14,18 @@ RUN apk --no-cache --update add yarn npm coreutils eudev-libs eudev && \
     echo 'KERNEL=="ttyUSB[0-9]*",MODE="0660",GROUP="dialout"' > /etc/udev/rules.d/99-usb-serial.rules && \
     echo 'SUBSYSTEM=="usb",MODE="0660",GROUP="dialout"' > /etc/udev/rules.d/99-usb.rules
 
-VOLUME ["/usr/src/akala/db"]
+VOLUME ["/akala/db"]
 ENV NODE_ENV=production
-WORKDIR /usr/src/akala
+WORKDIR /akala
 COPY entrypoint.sh entrypoint.sh
 COPY --from=build /root /root
-COPY .yarnrc.yml /usr/src/akala/.yarnrc.yml
-COPY --from=build /usr/src/akala /usr/src/akala
+COPY .yarnrc.yml /akala/.yarnrc.yml
+COPY --from=build /usr/src/akala /akala
 COPY .akala.json db/.akala.json
+COPY .akala.json default.json
 RUN ln -s db/.akala.json .akala.json && \
     rm yarn.lock
 ENV PATH=${PATH}:./node_modules/.bin
-ENTRYPOINT [ "/usr/src/akala/entrypoint.sh", "node_modules/.bin/akala" ,"pm", "start", "pm", "--keepAttached", "--configFile", "file:///usr/src/akala/db/.akala.json"]
+ENTRYPOINT [ "/akala/entrypoint.sh", "node_modules/.bin/akala" ,"pm", "start", "pm", "--keepAttached", "--configFile", "file:///akala/db/.akala.json"]
 CMD ["local", "tcp", "--tcpPort=31416"]
 EXPOSE 31416
