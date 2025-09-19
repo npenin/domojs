@@ -5,7 +5,7 @@ import { pubsub, Sidecar } from '@akala/sidecar';
 
 import { clusterFactory, ClusterIds, ClusterMap, CommissionningCluster, descriptorCluster, Endpoint, EndpointProxy, MatterClusterIds, RootNode } from './server/clients/index.js';
 import { MqttClient, MqttEvents } from '@domojs/mqtt';
-import { ReasonCodes } from '../../mqtt/dist/protocol/_shared.js';
+import { protocol } from '@domojs/mqtt';
 import { ProxyConfiguration } from '@akala/config';
 import type { BridgeConfiguration } from './server/clients/RootNode.js';
 
@@ -18,7 +18,7 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
     {
         if (self.pubsub)
         {
-            await (self.pubsub as MqttClient).disconnect(ReasonCodes.NormalDisconnection);
+            await (self.pubsub as MqttClient).disconnect(protocol.ReasonCodes.NormalDisconnection);
             delete self.pubsub
         }
         await pubsub(self, { transport: self.config.pubsub.transport, transportOptions: { username: 'domojs-guest', password: 'domojs' } }, abort);
@@ -39,7 +39,7 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
         if (pubsubConfig)
         {
             id = clientId;
-            await (self.pubsub as MqttClient).disconnect(ReasonCodes.NormalDisconnection);
+            await (self.pubsub as MqttClient).disconnect(protocol.ReasonCodes.NormalDisconnection);
             delete self.pubsub;
             delete self.config.pubsub;
             await pubsub(self, pubsubConfig, abort);
@@ -49,7 +49,7 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
     }
     catch (e)
     {
-        if (e.disconnect.reason !== ReasonCodes.NotAuthorized)
+        if (e.disconnect.reason !== protocol.ReasonCodes.NotAuthorized)
         {
             delete self.config.pubsub.transportOptions;
             await self.config.commit();

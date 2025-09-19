@@ -29,7 +29,10 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
 {
     const pwd = base64.base64EncArr(crypto.getRandomValues(new Uint8Array(24)));
 
-    const root = node.split('.')[0];
+    let userName = node;
+    const root = node.split('/');
+    if (root.length > 1)
+        userName = root.join('-');
 
     if (node === 'devices')
     {
@@ -115,7 +118,7 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
     const commands: DynSecCommandPayload[] = [
         {
             command: 'createRole',
-            rolename: 'domojs-' + node,
+            rolename: 'domojs-' + userName,
         }
     ];
 
@@ -124,11 +127,11 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
     {
         commands.push({
             command: 'createRole',
-            rolename: node + '-admin',
+            rolename: userName + '-admin',
         });
     }
 
-    const roles = [{ rolename: 'domojs-' + node }];
+    const roles = [{ rolename: userName }];
     if (grantRoot)
     {
         roles.push({ rolename: node + '-admin' });
@@ -140,7 +143,7 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
 
     commands.push({
         "command": "createClient",
-        "username": node,
+        "username": userName,
         "password": pwd,
         "clientid": "",
         "textname": node,
@@ -158,7 +161,7 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
     commands.push(
         {
             "command": "addRoleACL",
-            "rolename": "domojs-" + node,
+            "rolename": "domojs-" + userName,
             "acltype": "subscribePattern",
             "topic": `domojs/#`,
             "priority": 0,
@@ -166,7 +169,7 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
         },
         {
             "command": "addRoleACL",
-            "rolename": "domojs-" + node,
+            "rolename": "domojs-" + userName,
             "acltype": "publishClientSend",
             "topic": `domojs/${node}/#`,
             "priority": 0,
@@ -174,7 +177,7 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
         },
         {
             "command": "addRoleACL",
-            "rolename": "domojs-" + node,
+            "rolename": "domojs-" + userName,
             "acltype": "publishClientSend",
             "topic": `domojs/${node}`,
             "priority": 0,
@@ -182,7 +185,7 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
         },
         {
             "command": "addRoleACL",
-            "rolename": "domojs-" + node,
+            "rolename": "domojs-" + userName,
             "acltype": "subscribePattern",
             "topic": `domojs/devices/0/+/+`,
             "priority": 0,
@@ -190,7 +193,7 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
         },
         {
             "command": "addRoleACL",
-            "rolename": "domojs-" + node,
+            "rolename": "domojs-" + userName,
             "acltype": "publishClientSend",
             "topic": `domojs/devices/0/+/+/+`,
             "priority": 0,
@@ -198,7 +201,7 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
         },
         {
             "command": "addRoleACL",
-            "rolename": "domojs-" + node,
+            "rolename": "domojs-" + userName,
             "acltype": "subscribePattern",
             "topic": `domojs/devices/${nodeId}/#`,
             "priority": 0,
@@ -206,7 +209,7 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
         },
         {
             "command": "addRoleACL",
-            "rolename": "domojs-" + node,
+            "rolename": "domojs-" + userName,
             "acltype": "publishClientSend",
             "topic": `domojs/devices/${nodeId}/#`,
             "priority": 0,
@@ -220,8 +223,8 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
         commands.push(
             {
                 command: "addClientRole",
-                username: node,
-                rolename: node + '-admin'
+                username: userName,
+                rolename: userName + '-admin'
             },
             {
                 "command": "addRoleACL",
