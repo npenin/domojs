@@ -11,11 +11,11 @@
         "generate": "akala sdk generate dist/commands commands.json --name @domojs/mdns"
     },
     "dependencies": {
-        "@akala/cli": "^5.13.7",
-        "@akala/commands": "^17.7.3",
-        "@akala/config": "^7.0.9",
-        "@akala/core": "^42.4.0",
-        "@akala/sidecar": "^8.4.4",
+        "@akala/cli": "^5.13.8",
+        "@akala/commands": "^18.0.0",
+        "@akala/config": "^7.0.10",
+        "@akala/core": "^42.5.0",
+        "@akala/sidecar": "^8.5.1",
         "multicast-dns": "^7.2.5"
     },
     "devDependencies": {
