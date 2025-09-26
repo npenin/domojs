@@ -1,12 +1,12 @@
 {
     "author": "npenin",
     "dependencies": {
-        "@akala/commands": "^18.0.1",
-        "@akala/core": "^42.5.0",
-        "@akala/json-rpc-ws": "^14.3.19",
-        "@akala/pm": "^15.11.6",
-        "@akala/server": "^27.2.25",
-        "@akala/web-ui": "^5.3.20",
+        "@akala/commands": "^18.0.2",
+        "@akala/core": "^42.5.1",
+        "@akala/json-rpc-ws": "^14.3.20",
+        "@akala/pm": "^15.11.7",
+        "@akala/server": "^27.2.26",
+        "@akala/web-ui": "^5.3.21",
         "@fortawesome/fontawesome-common-types": "^7.0.0",
         "@fortawesome/fontawesome-svg-core": "^7.0.0",
         "@fortawesome/free-brands-svg-icons": "^7.0.0",
