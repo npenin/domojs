@@ -1,4 +1,4 @@
-#  (2025-09-19)
+#  (2025-09-26)
 
 
 ### Bug Fixes
@@ -130,6 +130,7 @@
 * improvements to protocol parser 1398b5f
 * iscp parsing 7eda917
 * ISCP processor 89e99b3
+* local storage fs provider f53f8a9
 * lock file 5ac40a4
 * made devdependencies using workspace reference 3737032
 * make dbus private cc7ded1
