@@ -53,9 +53,6 @@
     },
     "commands": {},
     "@domojs/devices": {
-        "pubsub": {
-            "transport": "mqtt://localhost"
-        },
         "store": {
             "provider": "file",
             "providerOptions": {
