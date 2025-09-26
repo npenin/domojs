@@ -15,10 +15,10 @@
         "Domojs"
     ],
     "dependencies": {
-        "@akala/config": "^7.0.14",
+        "@akala/config": "^7.2.0",
         "@akala/core": "^42.5.0",
-        "@akala/protocol-parser": "^11.4.0",
-        "@akala/sidecar": "^8.5.5",
+        "@akala/protocol-parser": "^11.5.0",
+        "@akala/sidecar": "^8.5.7",
         "@domojs/devices": "workspace:^",
         "fast-srp-hap": "^2.0.4",
         "hap-nodejs": "^1.2.0"

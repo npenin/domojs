@@ -13,7 +13,7 @@
     "license": "MIT",
     "dependencies": {
         "@akala/core": "^42.5.0",
-        "@akala/protocol-parser": "^11.4.0",
+        "@akala/protocol-parser": "^11.5.0",
         "@domojs/devices": "workspace:*",
         "debug": "^4.4.1"
     },
