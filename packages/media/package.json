@@ -27,8 +27,8 @@
     "author": "npenin",
     "license": "MIT",
     "dependencies": {
-        "@akala/commands": "^18.0.0",
-        "@akala/config": "^7.0.13",
+        "@akala/commands": "^18.0.1",
+        "@akala/config": "^7.0.14",
         "@akala/core": "^42.5.0",
         "@ffmpeg.wasm/core-st": "^0.13.2",
         "@ffmpeg.wasm/main": "^0.13.1",
@@ -40,10 +40,10 @@
         "@akala/pm": "^15.0.0"
     },
     "devDependencies": {
-        "@akala/cli": "^5.13.8",
+        "@akala/cli": "^5.13.9",
         "@akala/json-rpc-ws": "^14.3.19",
-        "@akala/pm": "^15.11.3",
-        "@akala/server": "^27.2.22",
+        "@akala/pm": "^15.11.4",
+        "@akala/server": "^27.2.23",
         "@akala/storage": "^20.4.12",
         "@domojs/theme-default": "workspace:*",
         "@types/debug": "4.1.12",
