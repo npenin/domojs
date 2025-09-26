@@ -16,7 +16,7 @@
     "devDependencies": {
         "@akala/commands": "^18.0.0",
         "@akala/core": "^42.5.0",
-        "@akala/server": "^27.2.19",
+        "@akala/server": "^27.2.22",
         "@types/ws": "8.18.1"
     },
     "deprecated": false,
