@@ -24,8 +24,9 @@ import { allProperties, asyncEventBuses, base64, ErrorWithStatus, Formatter, for
 import { MqttEvents } from '@domojs/mqtt';
 import Configuration from '@akala/config';
 import { BridgeConfiguration, ClusterDefinition, ClusterIds, EndpointProxy, MatterClusterIds, NonWatchableRemoteClusterInstance, registerNode, RemoteClusterInstance } from '@domojs/devices';
-import { dirname } from 'path';
+// import { dirname } from 'path';
 import type { SidecarConfiguration } from '@akala/sidecar';
+import type { Container as pmContainer } from '@akala/pm'
 
 formatters.register('log', class implements Formatter<unknown>
 {
@@ -133,23 +134,7 @@ bootstrapModule.activate([[serviceModule, OutletService.InjectionToken]], (outle
     outlet.use('/device/{fabric}/{endpointId}', 'main', Device[outletDefinition]);
 })
 
-bootstrapModule.activateAsync([], async () =>
-{
-    serviceModule.register('mqtt', await asyncEventBuses.process<MqttEvents>(new URL(`mqtt+wss://${location.host}/mqtt`), { username: 'domojs-guest', password: 'domojs' }));
-    const config = await Configuration.load<SidecarConfiguration & BridgeConfiguration>('localstorage:sidecar', true);
-    if (!config.pubsub.transport)
-    {
-        const abortController = new AbortController();
-        registerNode(`browser/${crypto.randomUUID()}`, {
-            config,
-            abort: abortController.signal,
-            pm: null,
-            sidecars: {} as any
-        }, config, abortController.signal, true)
-    }
-});
-
-fsHandler.useProtocol('localStorage', async url => new (class implements FileSystemProvider
+fsHandler.useProtocol('localstorage', async url => new (class implements FileSystemProvider
 {
     readonly: boolean = false;
     root: URL = new URL('localstorage:/');
@@ -266,7 +251,7 @@ fsHandler.useProtocol('localStorage', async url => new (class implements FileSys
         const normalizedPath = this.normalizePath(path);
         const stored = localStorage.getItem(normalizedPath);
         if (stored === null)
-            throw new Error(`ENOENT: no such file or directory, open '${path}'`);
+            throw new ErrorWithStatus(404, `ENOENT: no such file or directory, open '${path}'`);
 
         if (options === 'binary' || (options && options.encoding === 'binary'))
         {
@@ -310,7 +295,7 @@ fsHandler.useProtocol('localStorage', async url => new (class implements FileSys
         {
             return Promise.resolve({
                 size: BigInt(size),
-                name: dirname(normalizedPath),
+                name: normalizedPath.substring(normalizedPath.lastIndexOf('/') + 1),
                 parentPath: new URL('./', normalizedPath),
                 mtime,
                 mtimeMs: BigInt(mtime.getTime()),
@@ -346,7 +331,7 @@ fsHandler.useProtocol('localStorage', async url => new (class implements FileSys
                 mtimeMs: mtime.getTime(),
                 atime,
                 atimeMs: atime.getTime(),
-                name: dirname(normalizedPath),
+                name: normalizedPath.substring(normalizedPath.lastIndexOf('/') + 1),
                 parentPath: new URL('./', normalizedPath),
                 ctime: mtime,
                 ctimeMs: mtime.getTime(),
@@ -457,6 +442,28 @@ fsHandler.useProtocol('localStorage', async url => new (class implements FileSys
     }
 
 })());
+
+bootstrapModule.activateAsync([], async () =>
+{
+    serviceModule.register('mqtt', await asyncEventBuses.process<MqttEvents>(new URL(`mqtt+wss://${location.host}/mqtt`), { username: 'domojs-guest', password: 'domojs' }));
+    const config = await Configuration.load<SidecarConfiguration & BridgeConfiguration>('localstorage:///sidecar', true);
+
+    const abortController = new AbortController();
+    const pm = await connect(new URL(`/pm`, window.location.href).href.replace(/^http/, 'ws'), abortController.signal) as Container<void> & pmContainer;
+    if (!config.pubsub?.transport)
+    {
+        config.pubsub.transport = `mqtt+wss://${location.host}/mqtt`;
+
+        await registerNode(`browser/${crypto.randomUUID()}`, {
+            config,
+            abort: abortController.signal,
+            pm: pm,
+            sidecars: {
+            } as any
+        }, config, abortController.signal, true);
+
+    }
+});
 
 DataContext.propagateProperties.push('icons');
 
