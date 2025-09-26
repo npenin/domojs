@@ -182,6 +182,7 @@
 * remove failing pubsub 1f0ec9e
 * remove fake env 883a7f1
 * remove files from volumes 29f400f
+* remove pubsub config to allow environment setting 03f2d3f
 * remove resolutions 648105b
 * remove temporary resolutions 175c6c8
 * remove unknown attribute after matter update 551a66f
