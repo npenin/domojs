@@ -21,7 +21,7 @@ export function Commissionnee(state: State): ClusterInstance<Commissionnee>
         async registerCommand(name, grantRoot)
         {
             const result = await registerAdapter.call(state, name, grantRoot);
-            if (result.transport)
+            if (result.transport || result.transportOptions)
                 return [result as SidecarConfiguration['pubsub'], result?.id]
             return [null, result?.id];
         },
