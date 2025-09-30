@@ -190,6 +190,7 @@
 * remove temporary resolutions 175c6c8
 * remove unknown attribute after matter update 551a66f
 * remove useless config c2bf264
+* remove useless data in default config file f113d9c
 * remove wwwroot from git tracking 4a77d5f
 * reopen on close 97206ad
 * replace CECKeyCodeEnum import with keypadInputCluster for improved modularity 74fd565
@@ -273,6 +274,7 @@
 * various processing improvements 1984092
 * web implementation f2b5bcb
 * wrong cluster id being used 08bb3c5
+* wrong file testing in entrypoint 4d6eb88
 * wrong work dir 617ce09
 * yarn cache 856a0d8
 * yarn cache 0bb7a11
