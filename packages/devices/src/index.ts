@@ -14,14 +14,14 @@ export { type BridgeConfiguration }
 export async function registerNode(name: string, self: Sidecar<any, MqttEvents>, config: ProxyConfiguration<BridgeConfiguration>, abort: AbortSignal, grantRoot?: boolean): Promise<RootNode<never>>
 {
     let id = config.id;
-    if (!self.pubsub && self.config.pubsub?.transport || self.pubsub && !self.config.pubsub.transportOptions)
+    if (!self.pubsub && self.config.pubsub?.transport || self.pubsub && !self.config.pubsub?.transportOptions)
     {
         if (self.pubsub)
         {
             await (self.pubsub as MqttClient).disconnect(protocol.ReasonCodes.NormalDisconnection);
             delete self.pubsub
         }
-        await pubsub(self, { transport: self.config.pubsub.transport, transportOptions: { username: 'domojs-guest', password: 'domojs' } }, abort);
+        await pubsub(self, { transport: self.config.pubsub?.transport, transportOptions: { username: 'domojs-guest', password: 'domojs' } }, abort);
     }
     if (!self.pubsub)
     {

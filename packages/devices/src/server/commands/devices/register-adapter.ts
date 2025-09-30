@@ -131,7 +131,7 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
         });
     }
 
-    const roles = [{ rolename: userName }];
+    const roles = [{ rolename: 'domojs-' + userName }];
     if (grantRoot)
     {
         roles.push({ rolename: node + '-admin' });
@@ -153,8 +153,8 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
 
     commands.push({
         command: "addClientRole",
-        username: node,
-        rolename: "domojs-" + node
+        username: userName,
+        rolename: "domojs-" + userName
     });
 
     // Standard domojs permissions
@@ -268,7 +268,7 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
 
     return {
         id: nodeId,
-        transport: this.config.pubsub.transport,
-        transportOptions: { ...this.config.pubsub.transportOptions?.extract() ?? {}, password: pwd, username: node }
+        transport: this.config.pubsub?.transport,
+        transportOptions: { ...this.config.pubsub?.transportOptions?.extract() ?? {}, password: pwd, username: node }
     }
 }
