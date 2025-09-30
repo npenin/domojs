@@ -227,9 +227,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@akala/sidecar@npm:^8.5.8":
-  version: 8.5.8
-  resolution: "@akala/sidecar@npm:8.5.8"
+"@akala/sidecar@npm:^8.5.9":
+  version: 8.5.9
+  resolution: "@akala/sidecar@npm:8.5.9"
   dependencies:
     "@akala/cli": "npm:^5.13.10"
     "@akala/commands": "npm:^18.0.2"
@@ -237,7 +237,7 @@ __metadata:
     "@akala/core": "npm:^42.5.1"
     "@akala/pm": "npm:^15.11.7"
     "@akala/storage": "npm:^20.4.13"
-  checksum: 10/5e6eae20e7bcfb9da9756a8ed5f32894f3081701506a1b60287b06808a8f45645288f7d476ecc98d168bf4edacd664722e660351cb34d68be3355eadb315e16e
+  checksum: 10/b81644925da2b7259ac4a626c7a1829c49366b9adc6f723b6ad0944ddb13324c88463637936d96ad8651679e46993465b1532857a8e8fec3d0c92f0e14585a83
   languageName: node
   linkType: hard
 
@@ -413,7 +413,7 @@ __metadata:
   dependencies:
     "@akala/cli": "npm:^5.13.10"
     "@akala/cron": "npm:^6.0.14"
-    "@akala/sidecar": "npm:^8.5.8"
+    "@akala/sidecar": "npm:^8.5.9"
     "@domojs/devices": "workspace:^"
   languageName: unknown
   linkType: soft
@@ -439,7 +439,7 @@ __metadata:
     "@akala/pm": "npm:^15.11.7"
     "@akala/pubsub": "npm:^3.1.49"
     "@akala/server": "npm:^27.2.26"
-    "@akala/sidecar": "npm:^8.5.8"
+    "@akala/sidecar": "npm:^8.5.9"
     "@akala/storage": "npm:^20.4.13"
     "@domojs/mqtt": "npm:^2.0.55"
     "@domojs/theme-default": "workspace:*"
@@ -468,7 +468,7 @@ __metadata:
     "@akala/config": "npm:^7.2.1"
     "@akala/core": "npm:^42.5.1"
     "@akala/protocol-parser": "npm:^11.5.1"
-    "@akala/sidecar": "npm:^8.5.8"
+    "@akala/sidecar": "npm:^8.5.9"
     "@domojs/devices": "workspace:^"
     "@domojs/mdns": "workspace:^"
     fast-srp-hap: "npm:^2.0.4"
@@ -558,7 +558,7 @@ __metadata:
     "@akala/commands": "npm:^18.0.2"
     "@akala/config": "npm:^7.2.1"
     "@akala/core": "npm:^42.5.1"
-    "@akala/sidecar": "npm:^8.5.8"
+    "@akala/sidecar": "npm:^8.5.9"
     "@types/multicast-dns": "npm:^7.2.4"
     multicast-dns: "npm:^7.2.5"
   bin:
@@ -756,7 +756,7 @@ __metadata:
     "@akala/json-rpc-ws": "npm:^14.3.20"
     "@akala/pm": "npm:^15.11.7"
     "@akala/server": "npm:^27.2.26"
-    "@akala/sidecar": "npm:^8.5.8"
+    "@akala/sidecar": "npm:^8.5.9"
     "@domojs/devices": "workspace:^"
   peerDependencies:
     "@akala/pm": ^15.0.0
@@ -839,7 +839,7 @@ __metadata:
     "@akala/commands": "npm:^18.0.2"
     "@akala/core": "npm:^42.5.1"
     "@akala/pubsub": "npm:^3.1.49"
-    "@akala/sidecar": "npm:^8.5.8"
+    "@akala/sidecar": "npm:^8.5.9"
     "@domojs/devices": "workspace:*"
     "@domojs/zigate-parsers": "workspace:*"
     "@types/debug": "npm:4.1.12"

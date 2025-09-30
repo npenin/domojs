@@ -6,7 +6,7 @@
     "type": "module",
     "dependencies": {
         "@akala/cron": "^6.0.14",
-        "@akala/sidecar": "^8.5.8",
+        "@akala/sidecar": "^8.5.9",
         "@domojs/devices": "workspace:^"
     },
     "devDependencies": {
