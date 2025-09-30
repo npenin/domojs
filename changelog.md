@@ -1,4 +1,4 @@
-#  (2025-09-26)
+#  (2025-09-30)
 
 
 ### Bug Fixes
@@ -103,6 +103,7 @@
 * export topic wildcard to urltemplate conversion b3a68bb
 * file copy ordering 2ece2ca
 * filter gateway mode endpoints 416ac45
+* first run 437a3e7
 * first version 3a4c6aa
 * first version 26c738d
 * first working version 325da72
@@ -118,6 +119,7 @@
 * handle gateways detection 0c682a0
 * handle legacy configuration migration 7c37558
 * handle multiple gateways or merge gateways 1f19ef8
+* handle pubsub url defined in env 6b0a9ca
 * handle start from fork 98c8153
 * handle undefined pubsub config 233fa6d
 * import cycle 48903df
@@ -131,6 +133,7 @@
 * iscp parsing 7eda917
 * ISCP processor 89e99b3
 * local storage fs provider f53f8a9
+* local storage fs provider behavior 56feb42
 * lock file 5ac40a4
 * made devdependencies using workspace reference 3737032
 * make dbus private cc7ded1
@@ -258,6 +261,7 @@
 * upgrade @akala/core from 6.0.0 to 6.0.1 4336f5a
 * upgrade dependency 04c1122
 * usb permissions 0c1ef0c
+* use config first instead of url first credentials 852e3a4
 * use local mqtt server 2b0aa86
 * use signal to allow proper termination 7020b6c
 * use signal to allow proper termination 48f4a4f
