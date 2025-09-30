@@ -20,7 +20,7 @@ import thisSideUpIcon from '@carbon/icons/es/this-side-up/24.js'
 import deskAdjustableIcon from '@carbon/icons/es/desk--adjustable/24.js'
 import Device from './pages/device/device.js';
 import fsHandler, { FileHandle, FileSystemProvider, MakeDirectoryOptions, OpenFlags, OpenStreamOptions, PathLike, RmDirOptions, RmOptions, Stats, FileEntry, VirtualFileHandle, GlobOptions, GlobOptionsWithFileTypes, GlobOptionsWithoutFileTypes } from '@akala/fs';
-import { allProperties, asyncEventBuses, base64, ErrorWithStatus, Formatter, formatters, IsomorphicBuffer, ObservableObject, watcher, WatcherFormatter } from '@akala/core';
+import { allProperties, asyncEventBuses, base64, ErrorWithStatus, Formatter, formatters, HttpStatusCode, IsomorphicBuffer, ObservableObject, watcher, WatcherFormatter } from '@akala/core';
 import { MqttEvents } from '@domojs/mqtt';
 import Configuration from '@akala/config';
 import { BridgeConfiguration, ClusterDefinition, ClusterIds, EndpointProxy, MatterClusterIds, NonWatchableRemoteClusterInstance, registerNode, RemoteClusterInstance } from '@domojs/devices';
@@ -139,15 +139,15 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     readonly: boolean = false;
     root: URL = new URL('localstorage:/');
 
-    private normalizePath(path: PathLike<FileHandle>): string
+    private normalizePath(path: PathLike<FileHandle>, unsafe?: boolean): string
     {
-        if (typeof path === 'string')
-            return path.startsWith('/') ? path.slice(1) : path;
-        if (path instanceof URL)
-            return path.pathname.startsWith('/') ? path.pathname.slice(1) : path.pathname;
         if (this.isFileHandle(path))
             return this.normalizePath(path.path);
-        throw new Error('Unsupported path type');
+        const url = new URL(path, this.root);
+        if (!unsafe && !url.toString().startsWith(this.root.toString()))
+            throw new ErrorWithStatus(HttpStatusCode.Forbidden, `The path ${path} is not in scope of ${this.root}`)
+
+        return url.pathname;
     }
 
     toImportPath(path: PathLike<never>, options?: { withSideEffects?: boolean; }): string
@@ -187,7 +187,7 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     }
     open(path: PathLike, flags: OpenFlags): Promise<FileHandle>
     {
-        return Promise.resolve(new VirtualFileHandle(this, new URL(this.normalizePath(path))));
+        return Promise.resolve(new VirtualFileHandle(this, new URL(this.normalizePath(path), this.root)));
     }
     opendir(path: PathLike, options?: { bufferSize?: number; encoding?: string; }): Promise<any>
     {
@@ -432,7 +432,7 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     }
     isFileHandle(x: any): x is FileHandle
     {
-        throw new Error('Method not implemented.');
+        return x instanceof VirtualFileHandle;
     }
     glob(pattern: string | string[], options: GlobOptionsWithFileTypes): AsyncIterable<FileEntry>
     glob(pattern: string | string[], options?: GlobOptionsWithoutFileTypes): AsyncIterable<URL>
