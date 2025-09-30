@@ -27,7 +27,7 @@ asyncEventBuses.useProtocol('mqtt+ws', async (url, config) =>
 
     const client = new MqttClient(config?.['clientId'] as string ?? crypto.randomUUID(), protocolEvents);
     if (url.username || url.password || config.username || config.password)
-        await client.connect({ userName: url.username || config.username as string, password: IsomorphicBuffer.from(url.password || config.password as string) });
+        await client.connect({ userName: config.username as string || url.username, password: IsomorphicBuffer.from(config.password as string || url.password) });
     else
         await client.connect({});
 
@@ -58,7 +58,7 @@ asyncEventBuses.useProtocol('mqtt+wss', async (url, config) =>
 
     const client = new MqttClient(config?.['clientId'] as string ?? crypto.randomUUID(), protocolEvents);
     if (url.username || url.password || config.username || config.password)
-        await client.connect({ userName: url.username || config.username as string, password: IsomorphicBuffer.from(url.password || config.password as string) });
+        await client.connect({ userName: config.username as string || url.username, password: IsomorphicBuffer.from(config.password as string || url.password) });
     else
         await client.connect({});
 
