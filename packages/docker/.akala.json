@@ -37,9 +37,7 @@
         "mapping": {
             "pm": {
                 "container": "pm",
-                "connect": {
-                    "jsonrpc+unix:///Users/nicolas/dev/domojs/pm.sock": {}
-                }
+                "connect": {}
             },
             "@domojs/devices": {
                 "container": "@domojs/devices",
@@ -52,32 +50,5 @@
         "plugins": []
     },
     "commands": {},
-    "@domojs/devices": {
-        "store": {
-            "provider": "file",
-            "providerOptions": {
-                "rootDbName": "./db/devices"
-            },
-            "models": {
-                "DeviceInit": {
-                    "members": {
-                        "name": {
-                            "isKey": true,
-                            "type": {
-                                "type": "string",
-                                "length": 250
-                            },
-                            "generator": "business"
-                        },
-                        "body": {
-                            "isKey": false,
-                            "type": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+    "@domojs/devices": {}
 }
