@@ -1,6 +1,6 @@
 {
     "name": "@domojs/weather",
-    "version": "3.0.46",
+    "version": "3.0.47",
     "commands": "./commands.json",
     "type": "module",
     "main": "./dist/commander.js",
