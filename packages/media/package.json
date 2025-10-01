@@ -28,7 +28,7 @@
     "license": "MIT",
     "dependencies": {
         "@akala/commands": "^18.0.2",
-        "@akala/config": "^7.2.1",
+        "@akala/config": "^7.2.2",
         "@akala/core": "^42.5.1",
         "@ffmpeg.wasm/core-st": "^0.13.2",
         "@ffmpeg.wasm/main": "^0.13.1",
@@ -42,8 +42,8 @@
     "devDependencies": {
         "@akala/cli": "^5.13.10",
         "@akala/json-rpc-ws": "^14.3.20",
-        "@akala/pm": "^15.11.7",
-        "@akala/server": "^27.2.26",
+        "@akala/pm": "^15.11.8",
+        "@akala/server": "^27.2.27",
         "@akala/storage": "^20.4.13",
         "@domojs/theme-default": "workspace:*",
         "@types/debug": "4.1.12",
