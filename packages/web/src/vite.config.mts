@@ -15,7 +15,7 @@ export default defineConfig({
         https: {},
         proxy: {
             '/pm': {
-                target: 'http://home.dragon-angel.fr:31415/',
+                target: 'ws://home.dragon-angel.fr:31416/',
                 ws: true,
             },
             '/mqtt': {

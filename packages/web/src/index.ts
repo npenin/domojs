@@ -20,7 +20,7 @@ import thisSideUpIcon from '@carbon/icons/es/this-side-up/24.js'
 import deskAdjustableIcon from '@carbon/icons/es/desk--adjustable/24.js'
 import Device from './pages/device/device.js';
 import fsHandler, { FileHandle, FileSystemProvider, MakeDirectoryOptions, OpenFlags, OpenStreamOptions, PathLike, RmDirOptions, RmOptions, Stats, FileEntry, VirtualFileHandle, GlobOptions, GlobOptionsWithFileTypes, GlobOptionsWithoutFileTypes } from '@akala/fs';
-import { allProperties, asyncEventBuses, base64, ErrorWithStatus, Formatter, formatters, HttpStatusCode, IsomorphicBuffer, ObservableObject, watcher, WatcherFormatter } from '@akala/core';
+import { allProperties, AsyncEventBus, asyncEventBuses, base64, ErrorWithStatus, Formatter, formatters, HttpStatusCode, IsomorphicBuffer, ObservableObject, watcher, WatcherFormatter } from '@akala/core';
 import { MqttEvents } from '@domojs/mqtt';
 import Configuration from '@akala/config';
 import { BridgeConfiguration, ClusterDefinition, ClusterIds, EndpointProxy, MatterClusterIds, NonWatchableRemoteClusterInstance, registerNode, RemoteClusterInstance } from '@domojs/devices';
@@ -139,15 +139,15 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     readonly: boolean = false;
     root: URL = new URL('localstorage:/');
 
-    private normalizePath(path: PathLike<FileHandle>, unsafe?: boolean): string
+    private normalizePath(path: PathLike<FileHandle>, unsafe?: boolean): Promise<string>
     {
         if (this.isFileHandle(path))
             return this.normalizePath(path.path);
         const url = new URL(path, this.root);
         if (!unsafe && !url.toString().startsWith(this.root.toString()))
-            throw new ErrorWithStatus(HttpStatusCode.Forbidden, `The path ${path} is not in scope of ${this.root}`)
+            return Promise.reject(new ErrorWithStatus(HttpStatusCode.Forbidden, `The path ${path} is not in scope of ${this.root}`));
 
-        return url.pathname;
+        return Promise.resolve(url.pathname);
     }
 
     toImportPath(path: PathLike<never>, options?: { withSideEffects?: boolean; }): string
@@ -162,12 +162,11 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     {
         throw new Error('Method not implemented.');
     }
-    access(path: PathLike<FileHandle>, mode?: OpenFlags): Promise<void>
+    async access(path: PathLike<FileHandle>, mode?: OpenFlags): Promise<void>
     {
-        const normalizedPath = this.normalizePath(path);
+        const normalizedPath = await this.normalizePath(path);
         if (localStorage.getItem(normalizedPath) === null)
             throw new ErrorWithStatus(404, `no such file or directory, access '${path}'`);
-        return Promise.resolve();
     }
     async copyFile(src: PathLike<FileHandle>, dest: string | URL, mode?: number): Promise<void>
     {
@@ -185,9 +184,9 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     {
         throw new Error('Method not implemented.');
     }
-    open(path: PathLike, flags: OpenFlags): Promise<FileHandle>
+    async open(path: PathLike, flags: OpenFlags): Promise<FileHandle>
     {
-        return Promise.resolve(new VirtualFileHandle(this, new URL(this.normalizePath(path), this.root)));
+        return new VirtualFileHandle(this, new URL(await this.normalizePath(path), this.root));
     }
     opendir(path: PathLike, options?: { bufferSize?: number; encoding?: string; }): Promise<any>
     {
@@ -196,9 +195,9 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     readdir(path: PathLike, options?: { encoding?: Exclude<BufferEncoding, 'binary'> | null; withFileTypes?: false; }): Promise<string[]>;
     readdir(path: PathLike, options: { encoding: 'binary'; withFileTypes?: false; }): Promise<IsomorphicBuffer[]>;
     readdir(path: PathLike, options: { withFileTypes: true; }): Promise<FileEntry[]>;
-    readdir(path: PathLike, options?: { encoding?: BufferEncoding | null; withFileTypes?: boolean; }): Promise<string[] | IsomorphicBuffer[] | FileEntry[]>
+    async readdir(path: PathLike, options?: { encoding?: BufferEncoding | null; withFileTypes?: boolean; }): Promise<string[] | IsomorphicBuffer[] | FileEntry[]>
     {
-        const normalizedPath = this.normalizePath(path);
+        const normalizedPath = await this.normalizePath(path);
         const prefix = normalizedPath ? normalizedPath + '/' : '';
         const children = new Set<string>();
         for (let i = 0; i < localStorage.length; i++)
@@ -216,17 +215,17 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
         const result = Array.from(children);
         if (options?.encoding === 'binary')
         {
-            return Promise.resolve(result.map(name =>
+            return result.map(name =>
             {
                 const bytes = new Uint8Array(name.length);
                 for (let i = 0; i < name.length; i++)
                     bytes[i] = name.charCodeAt(i);
                 return new IsomorphicBuffer(bytes);
-            }));
+            });
         }
         else if (options && options.withFileTypes)
         {
-            return Promise.resolve(result.map(name => ({
+            return result.map(name => ({
                 name,
                 parentPath: new URL(normalizedPath),
                 isFile: !this.isDirectory(prefix + name),
@@ -236,19 +235,19 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
                 isSymbolicLink: false,
                 isFIFO: false,
                 isSocket: false
-            } as FileEntry<string>)));
+            } as FileEntry<string>));
         }
         else
         {
-            return Promise.resolve(result);
+            return result;
         }
     }
     readFile(path: PathLike<FileHandle>, options?: "binary" | { encoding?: "binary"; flag?: OpenFlags; }): Promise<IsomorphicBuffer>;
     readFile(path: PathLike<FileHandle>, options: BufferEncoding | { encoding: BufferEncoding; flag?: OpenFlags; }): Promise<string>;
     readFile<T>(path: PathLike<FileHandle>, options: { encoding: "json"; flag?: OpenFlags; } | "json"): Promise<T>;
-    readFile(path: PathLike<FileHandle>, options?: any): Promise<IsomorphicBuffer | string | any>
+    async readFile(path: PathLike<FileHandle>, options?: any): Promise<IsomorphicBuffer | string | any>
     {
-        const normalizedPath = this.normalizePath(path);
+        const normalizedPath = await this.normalizePath(path);
         const stored = localStorage.getItem(normalizedPath);
         if (stored === null)
             throw new ErrorWithStatus(404, `ENOENT: no such file or directory, open '${path}'`);
@@ -279,9 +278,9 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     }
     stat(path: PathLike<FileHandle>, opts?: { bigint?: false; }): Promise<Stats<number>>;
     stat(path: PathLike<FileHandle>, opts: { bigint: true; }): Promise<Stats<bigint>>;
-    stat(path: PathLike<FileHandle>, opts?: any): Promise<Stats<number> | Stats<bigint>>
+    async stat(path: PathLike<FileHandle>, opts?: any): Promise<Stats<number> | Stats<bigint>>
     {
-        const normalizedPath = this.normalizePath(path);
+        const normalizedPath = await this.normalizePath(path);
         const stored = localStorage.getItem(normalizedPath);
         if (stored === null)
             throw new ErrorWithStatus(404, `no such file or directory, stat '${path}'`);
@@ -293,7 +292,7 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
 
         if (opts && opts.bigint)
         {
-            return Promise.resolve({
+            return {
                 size: BigInt(size),
                 name: normalizedPath.substring(normalizedPath.lastIndexOf('/') + 1),
                 parentPath: new URL('./', normalizedPath),
@@ -321,11 +320,11 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
                 rdev: 0n,
                 blksize: 4096n,
                 blocks: 1n
-            } as Stats<bigint>);
+            } as Stats<bigint>;
         }
         else
         {
-            return Promise.resolve({
+            return {
                 size,
                 mtime,
                 mtimeMs: mtime.getTime(),
@@ -353,7 +352,7 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
                 rdev: 0,
                 blksize: 4096,
                 blocks: 1
-            } as Stats<number>);
+            } as Stats<number>;
         }
     }
 
@@ -372,13 +371,12 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     {
         throw new Error('Method not implemented.');
     }
-    unlink(path: PathLike<FileHandle>): Promise<void>
+    async unlink(path: PathLike<FileHandle>): Promise<void>
     {
-        const normalizedPath = this.normalizePath(path);
+        const normalizedPath = await this.normalizePath(path);
         if (localStorage.getItem(normalizedPath) === null)
             throw new ErrorWithStatus(404, `no such file or directory, unlink '${path}'`);
         localStorage.removeItem(normalizedPath);
-        return Promise.resolve();
     }
     utimes(path: PathLike<FileHandle>, atime: string | number | Date, mtime: string | number | Date): Promise<void>
     {
@@ -388,11 +386,11 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     {
         throw new Error('Method not implemented.');
     }
-    writeFile(path: PathLike<FileHandle>, data: IsomorphicBuffer | string | ArrayBuffer | SharedArrayBuffer, options?: {
+    async writeFile(path: PathLike<FileHandle>, data: IsomorphicBuffer | string | ArrayBuffer | SharedArrayBuffer, options?: {
         mode?: number;
     }): Promise<void>
     {
-        const normalizedPath = this.normalizePath(path);
+        const normalizedPath = await this.normalizePath(path);
         let toStore: string;
         if (typeof data === 'string')
         {
@@ -420,7 +418,6 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
             throw new Error('Unsupported data type');
         }
         localStorage.setItem(normalizedPath, toStore);
-        return Promise.resolve();
     }
     chroot(root: PathLike): void
     {
@@ -443,27 +440,36 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
 
 })());
 
+let mqtt: Promise<AsyncEventBus<MqttEvents>>;
 bootstrapModule.activateAsync([], async () =>
 {
-    serviceModule.register('mqtt', await asyncEventBuses.process<MqttEvents>(new URL(`mqtt+wss://${location.host}/mqtt`), { username: 'domojs-guest', password: 'domojs' }));
+    mqtt = asyncEventBuses.process<MqttEvents>(new URL(`mqtt+wss://${location.host}/mqtt`), { username: 'domojs-guest', password: 'domojs' }).then(mqtt => serviceModule.register('mqtt', mqtt));
+    debugger;
     const config = await Configuration.load<SidecarConfiguration & BridgeConfiguration>('localstorage:///sidecar', true);
 
     const abortController = new AbortController();
-    const pm = await connect(new URL(`/pm`, window.location.href).href.replace(/^http/, 'ws'), abortController.signal) as Container<void> & pmContainer;
+    const pm = connect(new URL(`/pm`, window.location.href).href.replace(/^http/, 'ws'), abortController.signal) as Promise<Container<void> & pmContainer>;
     if (!config.pubsub?.transport)
     {
+        if (!config.pubsub)
+            config.set('pubsub', {});
         config.pubsub.transport = `mqtt+wss://${location.host}/mqtt`;
 
-        await registerNode(`browser/${crypto.randomUUID()}`, {
+        pm.then(pm => registerNode(`browser/${crypto.randomUUID()}`, {
             config,
             abort: abortController.signal,
             pm: pm,
             sidecars: {
             } as any
-        }, config, abortController.signal, true);
+        }, config, abortController.signal, true));
 
     }
 });
+
+bootstrapModule.readyAsync([], async () =>
+{
+    await mqtt;
+})
 
 DataContext.propagateProperties.push('icons');
 
