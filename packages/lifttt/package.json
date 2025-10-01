@@ -1,6 +1,6 @@
 {
     "name": "@domojs/lifttt",
-    "version": "5.0.91",
+    "version": "5.0.92",
     "main": "dist/server/index.js",
     "type": "module",
     "scripts": {
