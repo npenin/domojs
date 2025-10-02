@@ -151,6 +151,7 @@
 * npm registry 0d68737
 * only consider location events b23ec5a
 * override cron version 13cbfc9
+* ownership fix 3b8029c
 * package metadata 5578d05
 * packages/theme-default/package.json & packages/theme-default/yarn.lock to reduce vulnerabilities 868f5f3
 * patch cheerio to compile as ESM b62f558
