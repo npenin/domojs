@@ -5,8 +5,8 @@
     "types": "dist/index.d.ts",
     "type": "module",
     "dependencies": {
-        "@akala/cron": "^6.0.15",
-        "@akala/sidecar": "^8.5.10",
+        "@akala/cron": "^6.0.16",
+        "@akala/sidecar": "^8.5.11",
         "@domojs/devices": "workspace:^"
     },
     "devDependencies": {

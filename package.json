@@ -9,12 +9,12 @@
         "packages/*"
     ],
     "devDependencies": {
-        "@akala/automate": "^6.8.53",
-        "@akala/automate-yamlloader": "^3.1.53",
+        "@akala/automate": "^6.8.54",
+        "@akala/automate-yamlloader": "^3.1.54",
         "@akala/cli": "^5.13.10",
-        "@akala/commands": "^18.0.2",
-        "@akala/pm": "^15.11.8",
-        "@akala/semantic-release": "^3.2.39",
+        "@akala/commands": "^18.0.3",
+        "@akala/pm": "^15.11.9",
+        "@akala/semantic-release": "^3.2.40",
         "typescript": "^5.9.2"
     },
     "scripts": {

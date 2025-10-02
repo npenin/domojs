@@ -7,7 +7,7 @@
     },
     "dependencies": {
         "@akala/cli": "^5.13.10",
-        "@akala/commands": "^18.0.2",
+        "@akala/commands": "^18.0.3",
         "@akala/core": "^42.5.1",
         "@domojs/rfx-parsers": "workspace:*",
         "@matter/main": "^0.15.3",
@@ -31,7 +31,7 @@
     "deprecated": false,
     "description": "",
     "devDependencies": {
-        "@akala/pm": "^15.11.8",
+        "@akala/pm": "^15.11.9",
         "@domojs/devices": "workspace:*",
         "@types/debug": "^4.1.12",
         "@types/usb": "^2.0.5",
