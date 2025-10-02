@@ -93,6 +93,7 @@
 * enable yarn cec2353
 * endpoint command result adf4756
 * endpoint proxy descriptor 95f7aae
+* enforce yarn default install ab9232c
 * ensure config is initialized 31238d4
 * ensure mqtt-client.net.js is imported in index.ts dea90e5
 * ensure proper permissions 80f00b8
