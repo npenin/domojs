@@ -28,5 +28,6 @@ ENV PATH=${PATH}:./node_modules/.bin
 ENTRYPOINT [ "/akala/entrypoint.sh", "node_modules/.bin/akala" ,"pm", "start", "pm", "--keepAttached", "--configFile", "file:///akala/db/.akala.json"]
 CMD ["local", "tcp", "--tcpPort=31416"]
 EXPOSE 31416
+RUN chown -R node:node /akala
 USER node
 RUN yarn add @domojs/devices
