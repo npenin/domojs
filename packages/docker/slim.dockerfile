@@ -7,7 +7,7 @@ RUN yarn add serialport usb
 RUN yarn add @akala/pm @domojs/devices
 
 FROM alpine
-RUN apk --no-cache --update add yarn npm coreutils eudev-libs eudev && \
+RUN apk --no-cache --update add yarn coreutils eudev-libs eudev && \
     addgroup -g 1000 node && \
     adduser -u 1000 -G node -G dialout -s /bin/sh -D node && \
     mkdir -p /etc/udev/rules.d && \
@@ -20,7 +20,7 @@ WORKDIR /akala
 COPY entrypoint.sh entrypoint.sh
 COPY --from=build /root /root
 COPY .yarnrc.yml /akala/.yarnrc.yml
-COPY --from=build /usr/src/akala /akala
+COPY --from=build /akala /akala
 COPY .akala.json default-akala.json
 RUN ln -s db/.akala.json .akala.json && \
     rm yarn.lock
@@ -28,6 +28,3 @@ ENV PATH=${PATH}:./node_modules/.bin
 ENTRYPOINT [ "/akala/entrypoint.sh", "node_modules/.bin/akala" ,"pm", "start", "pm", "--keepAttached", "--configFile", "file:///akala/db/.akala.json"]
 CMD ["local", "tcp", "--tcpPort=31416"]
 EXPOSE 31416
-RUN chown -R node:node /akala
-USER node
-RUN yarn add @domojs/devices
