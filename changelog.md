@@ -1,4 +1,4 @@
-#  (2025-10-02)
+#  (2025-10-03)
 
 
 ### Bug Fixes
@@ -244,6 +244,7 @@
 * update dependencies and checkout depth f04e50a
 * update dependencies and fix devices communications b34af9c
 * update dependencies to major 1292a69
+* update file source after breaking change in akala image 1217a7f
 * update generated metadata f24985f
 * update generated metadata 675a3a7
 * update home screen tailored impl 9898cb4
