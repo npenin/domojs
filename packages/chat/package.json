@@ -1,6 +1,6 @@
 {
     "name": "@domojs/chat",
-    "version": "174.0.0",
+    "version": "175.0.0",
     "private": true,
     "main": "dist/test.js",
     "type": "module",
