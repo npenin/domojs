@@ -5,12 +5,12 @@
     "types": "dist/index.d.ts",
     "type": "module",
     "dependencies": {
-        "@akala/commands": "^18.0.3",
+        "@akala/commands": "^18.0.8",
         "@akala/core": "^42.5.1",
         "fast-xml-parser": "^5.2.5"
     },
     "devDependencies": {
-        "@akala/cli": "^5.13.10"
+        "@akala/cli": "^5.14.4"
     },
     "exports": {
         ".": {

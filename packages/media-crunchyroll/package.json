@@ -5,8 +5,8 @@
     "types": "dist/esm/index.d.ts",
     "type": "module",
     "dependencies": {
-        "@akala/commands": "^18.0.3",
-        "@akala/config": "^7.2.3",
+        "@akala/commands": "^18.0.8",
+        "@akala/config": "^7.2.9",
         "@domojs/media": "workspace:^",
         "crunchyroll.js": "^1.1.0"
     },
@@ -15,6 +15,6 @@
         "generate": "akala sdk generate dist/commands commands.json --name @domojs/media-crunchyroll"
     },
     "devDependencies": {
-        "@akala/cli": "^5.13.10"
+        "@akala/cli": "^5.14.4"
     }
 }
