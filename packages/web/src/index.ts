@@ -152,15 +152,15 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
 
     toImportPath(path: PathLike<never>, options?: { withSideEffects?: boolean; }): string
     {
-        throw new Error('Method not implemented.');
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
     }
     openReadStream(path: PathLike<FileHandle>, options?: OpenStreamOptions | OpenStreamOptions['encoding']): ReadableStream
     {
-        throw new Error('Method not implemented.');
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
     }
     openWriteStream(path: PathLike<FileHandle>, options?: OpenStreamOptions | OpenStreamOptions['encoding']): WritableStream
     {
-        throw new Error('Method not implemented.');
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
     }
     async access(path: PathLike<FileHandle>, mode?: OpenFlags): Promise<void>
     {
@@ -182,7 +182,7 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     }
     symlink(source: PathLike<FileHandle>, target: PathLike, type?: 'dir' | 'file' | 'junction'): Promise<void>
     {
-        throw new Error('Method not implemented.');
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
     }
     async open(path: PathLike, flags: OpenFlags): Promise<FileHandle>
     {
@@ -190,7 +190,7 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     }
     opendir(path: PathLike, options?: { bufferSize?: number; encoding?: string; }): Promise<any>
     {
-        throw new Error('Method not implemented.');
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
     }
     readdir(path: PathLike, options?: { encoding?: Exclude<BufferEncoding, 'binary'> | null; withFileTypes?: false; }): Promise<string[]>;
     readdir(path: PathLike, options: { encoding: 'binary'; withFileTypes?: false; }): Promise<IsomorphicBuffer[]>;
@@ -270,7 +270,7 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     }
     rmdir(path: PathLike, options?: RmDirOptions): Promise<void>
     {
-        throw new Error('Method not implemented.');
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
     }
     rm(path: PathLike, options?: RmOptions): Promise<void>
     {
@@ -369,7 +369,7 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     }
     truncate(path: PathLike<FileHandle>, len?: number): Promise<void>
     {
-        throw new Error('Method not implemented.');
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
     }
     async unlink(path: PathLike<FileHandle>): Promise<void>
     {
@@ -380,11 +380,11 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     }
     utimes(path: PathLike<FileHandle>, atime: string | number | Date, mtime: string | number | Date): Promise<void>
     {
-        throw new Error('Method not implemented.');
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
     }
     watch(filename: PathLike<FileHandle>, options?: { encoding?: BufferEncoding; recursive?: boolean; }): Promise<any>
     {
-        throw new Error('Method not implemented.');
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
     }
     async writeFile(path: PathLike<FileHandle>, data: IsomorphicBuffer | string | ArrayBuffer | SharedArrayBuffer, options?: {
         mode?: number;
@@ -421,11 +421,11 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     }
     chroot(root: PathLike): void
     {
-        throw new Error('Method not implemented.');
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
     }
     newChroot(root: PathLike): FileSystemProvider<FileHandle>
     {
-        throw new Error('Method not implemented.');
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
     }
     isFileHandle(x: any): x is FileHandle
     {
@@ -435,7 +435,7 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     glob(pattern: string | string[], options?: GlobOptionsWithoutFileTypes): AsyncIterable<URL>
     glob(pattern: string | string[], options?: GlobOptions): AsyncIterable<URL> | AsyncIterable<FileEntry>
     {
-        throw new Error('Method not implemented.');
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
     }
 
 })());
