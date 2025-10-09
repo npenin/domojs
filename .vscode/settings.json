@@ -8,5 +8,6 @@
   "sonarlint.connectedMode.project": {
     "connectionId": "npenin",
     "projectKey": "npenin_domojs"
-  }
+  },
+  "java.configuration.updateBuildConfiguration": "interactive"
 }
