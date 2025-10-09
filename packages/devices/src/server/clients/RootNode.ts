@@ -33,9 +33,9 @@ export class RootNode<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descrip
         return () => Promise.resolve(sub());
     }
 
-    public async newEndpoint<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor'>>(name: string, clusters: MixedClusterMap<TClusterMapKeys>)
+    public async newEndpoint<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor'>>(name: string | number, clusters: MixedClusterMap<TClusterMapKeys>)
     {
-        return new Endpoint(await this.getEndpointId(name), clusters);
+        return new Endpoint(typeof name == 'number' ? name : await this.getEndpointId(name), clusters);
     }
 
 
