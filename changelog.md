@@ -1,4 +1,4 @@
-#  (2025-10-05)
+#  (2025-10-12)
 
 
 ### Bug Fixes
@@ -338,6 +338,7 @@
 * add user label on gateway endpoint 87d8b51
 * add web scrapping support and tests 62a3c61
 * add yt-music 5c09d55
+* allow creating endpoint with id directly a85c581
 * allow inheriting devices pubsub config (may not work on remote nodes) 40c9160
 * create new web site from scratch using vite and akala 1492bfe
 * enable cluster definition on remote clusters 4a1852e
