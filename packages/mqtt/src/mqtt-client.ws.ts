@@ -41,7 +41,7 @@ asyncEventBuses.useProtocol('mqtt+wss', async (url, config) =>
 
     const defer = new Deferred<void>();
     const port = Number(url.port);
-    const socket = new WebSocket(new URL(`wss://${url.hostname}:${port ?? 9001}${url.pathname}${url.search}${url.hash}`), 'mqtt');
+    const socket = new WebSocket(new URL(`wss://${url.hostname}:${port ?? 443}${url.pathname}${url.search}${url.hash}`), 'mqtt');
     socket.binaryType = 'arraybuffer';
     socket.addEventListener('error', () => defer.reject(new Error('WebSocket connection error')));
     socket.addEventListener('open', () => defer.resolve());
