@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>DomoJS Companion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+        }
+
+        #app {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .status {
+            padding: 15px;
+            background: #2a2a2a;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #3a3a3a;
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-value {
+            color: #4CAF50;
+        }
+
+        .sensor-data {
+            background: #2a2a2a;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .sensor-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+
+        .sensor-value {
+            font-family: monospace;
+            font-size: 12px;
+            color: #888;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:active {
+            background: #45a049;
+        }
+
+        button:disabled {
+            background: #555;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>DomoJS Companion</h1>
+
+        <div class="status">
+            <div class="status-item">
+                <span>MQTT Status:</span>
+                <span class="status-value" id="mqtt-status">Disconnected</span>
+            </div>
+            <div class="status-item">
+                <span>Sensor Service:</span>
+                <span class="status-value" id="service-status">Stopped</span>
+            </div>
+            <div class="status-item">
+                <span>Device Name:</span>
+                <span class="status-value" id="device-name">-</span>
+            </div>
+        </div>
+
+        <div>
+            <button id="start-btn">Start Sensors</button>
+            <button id="stop-btn" disabled>Stop Sensors</button>
+        </div>
+
+        <h2 style="margin-top: 30px; margin-bottom: 15px;">Live Sensor Data</h2>
+        <div id="sensors"></div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

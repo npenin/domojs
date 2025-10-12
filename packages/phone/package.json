@@ -1,0 +1,43 @@
+{
+    "name": "@domojs/phone",
+    "version": "1.0.0",
+    "description": "DomoJS Android companion app built with Capacitor",
+    "type": "module",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "sync": "cap sync",
+        "sync:android": "cap sync android",
+        "sync:ios": "cap sync ios",
+        "open:android": "cap open android",
+        "open:ios": "cap open ios",
+        "run:android": "cap run android",
+        "run:ios": "cap run ios",
+        "android:dev": "yarn build && yarn sync:android && yarn open:android",
+        "ios:dev": "yarn build && yarn sync:ios && yarn open:ios",
+        "android": "yarn build && yarn sync:android",
+        "ios": "yarn build && yarn sync:ios"
+    },
+    "dependencies": {
+        "@akala/commands": "^18.0.9",
+        "@akala/config": "^7.2.11",
+        "@akala/core": "^42.5.1",
+        "@akala/fs": "^2.4.0",
+        "@akala/pubsub": "^3.1.59",
+        "@akala/sidecar": "^8.5.19",
+        "@capacitor/android": "^6.0.0",
+        "@capacitor/core": "^6.0.0",
+        "@capacitor/filesystem": "^7.1.4",
+        "@capacitor/ios": "^7.4.3",
+        "@domojs/devices": "workspace:*",
+        "@domojs/mqtt": "workspace:*"
+    },
+    "devDependencies": {
+        "@capacitor/cli": "^6.0.0",
+        "typescript": "^5.3.0",
+        "vite": "^7.1.3"
+    }
+}
