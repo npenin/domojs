@@ -228,6 +228,7 @@
 * trying apk at first 16d00df
 * trying to fix config file issue 4ccf7ac
 * trying to fix docker permissions 756874a
+* trying to fix usb permissions 0891a49
 * trying to improve reliability 55e75a7
 * typo b448cdb
 * udev permissions 8552c0a
