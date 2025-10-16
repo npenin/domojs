@@ -1,5 +1,8 @@
 {
     "name": "commands",
+    "dependencies": [
+        "@domojs/devices"
+    ],
     "commands": [
         {
             "name": "$init",
