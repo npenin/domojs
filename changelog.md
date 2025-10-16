@@ -23,6 +23,7 @@
 * add id to register adapter and name to commissionned endpoint c825c92
 * add init command a758f06
 * add missing DB config 94437db
+* add missing dependency e8d319b
 * add missing dependency 60e2e49
 * add missing export for device-commands.json in package.json f85753a
 * add missing library 28717e2
