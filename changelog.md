@@ -1,4 +1,4 @@
-#  (2025-10-12)
+#  (2025-10-16)
 
 
 ### Bug Fixes
@@ -138,6 +138,7 @@
 * lock file 5ac40a4
 * made devdependencies using workspace reference 3737032
 * make dbus private cc7ded1
+* make default port to 443 on mqtt+wss a25a87f
 * make homescreen private for now b5a6c9b
 * make webscrapper private f2a547f
 * **mdns:** build and behavior 5934661
