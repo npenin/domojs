@@ -37,7 +37,7 @@
         "@akala/sidecar": "^8.5.20",
         "@akala/storage": "^20.4.13",
         "@domojs/mqtt": "^2.0.55",
-        "@fortawesome/free-brands-svg-icons": "7.0.0",
+        "@fortawesome/free-brands-svg-icons": "7.1.0",
         "ws": "8.18.3"
     },
     "deprecated": false,
