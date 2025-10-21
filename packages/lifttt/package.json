@@ -28,7 +28,7 @@
     "description": "",
     "types": "dist/server/index.d.ts",
     "dependencies": {
-        "@fortawesome/fontawesome-common-types": "7.0.0"
+        "@fortawesome/fontawesome-common-types": "7.1.0"
     },
     "devDependencies": {
         "@akala/commands": "^18.0.10",
