@@ -20,7 +20,7 @@
     "description": "",
     "devDependencies": {
         "@types/debug": "4.1.12",
-        "@types/node": "22.17.2",
+        "@types/node": "22.19.0",
         "@types/request": "2.48.13",
         "@types/ws": "8.18.1",
         "esbuild": "0.25.9",
