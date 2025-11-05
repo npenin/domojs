@@ -1,30 +1,18 @@
-import { administratorCommissioningCluster, Binding, BridgeConfiguration, clusterFactory, ClusterIds, generalCommissioningCluster, globalEnums, identifyCluster, MatterClusterIds, registerNode, RootNode, timeFormatLocalizationCluster, timeSynchronizationCluster, unitLocalizationCluster } from '@domojs/devices';
+import { administratorCommissioningCluster, Binding, BridgeConfiguration, clusterFactory, ClusterIds, generalCommissioningCluster, globalEnums, identifyCluster, MatterClusterIds, registerNode, RootNode, timeFormatLocalizationCluster, timeSynchronizationCluster, unitLocalizationCluster, Endpoint } from '@domojs/devices';
 import { State } from '../state.js'
-import { Zigate } from '@domojs/zigate-parsers';
+import { Zigate, MessageType, Device, Cluster as ZigbeeCluster } from '@domojs/zigate-parsers';
+import { createMatterClusterFromZigbee } from '../cluster-converter.js';
 import { CliContext } from '@akala/cli';
 import { Container } from '@akala/commands';
 import app, { SidecarConfiguration } from '@akala/sidecar'
 import { ProxyConfiguration } from '@akala/config';
 import os from 'os';
 
-var setGateway: (gw: Zigate) => void = null;
-
 export default async function (this: State, context: CliContext<{ debug: boolean }, ProxyConfiguration<SidecarConfiguration & BridgeConfiguration>>, container: Container<void>, signal: AbortSignal)
 {
     this.devicesByAddress = {};
     this.devices = {};
     this.logger = context.logger;
-
-    this.gateway = new Promise((resolve) =>
-    {
-        setGateway = resolve;
-    });
-    this.setGateway = async (gw: Zigate) =>
-    {
-        await gw.start(signal, context.options.debug);
-        setGateway(gw);
-        return gw;
-    };
 
     // await fs.readFile(fileURLToPath(new URL('../../views/device.html', import.meta.url)), 'utf-8').then(newDeviceTemplate =>
     // );
@@ -43,39 +31,114 @@ export default async function (this: State, context: CliContext<{ debug: boolean
 
                     const nodeName = serial.replace(/^\/dev\//, '') + '@' + os.hostname();
 
-                    const discriminator = crypto.randomUUID().replace(/-/g, '').substring(0, 16);
-
-                    fabric.endpoints.push(await fabric.newEndpoint(serial,
+                    const endpoint = await fabric.newEndpoint(serial,
                         {
-                            basicInformation: clusterFactory({
-                                id: MatterClusterIds.BasicInformation,
-                                VendorName: 'Zigate',
-                                VendorID: 1027,
-                                NodeLabel: 'Zigate',
-                                ProductName: serial,
-                                ProductLabel: serial,
-                                ProductID: 20577,
-                                CapabilityMinima: {
-                                    CaseSessionsPerFabric: 1,
-                                    SubscriptionsPerFabric: 1
-                                },
-                                ConfigurationVersion: 1,
-                                DataModelRevision: 1,
-                                HardwareVersion: 1,
-                                HardwareVersionString: '',
-                                Location: '',
-                                MaxPathsPerInvoke: 1,
-                                SoftwareVersion: 1,
-                                SoftwareVersionString: '',
-                                SpecificationVersion: 142,
-                                UniqueID: discriminator
-                            }),
+                            fixedLabel: clusterFactory({
+                                id: MatterClusterIds.FixedLabel,
+                                LabelList: [
+                                    {
+                                        Label: 'Name',
+                                        Value: nodeName
+                                    }
+                                ]
+                            })
                         }
-                    ));
+                    );
+                    fabric.endpoints.push(endpoint);
+                    const gw = await Zigate.getSerial(serial);
+                    const gwEndpoint = await fabric.newEndpoint(serial, {
+                        fixedLabel: clusterFactory({
+                            id: MatterClusterIds.FixedLabel,
+                            LabelList: [
+                                {
+                                    Label: 'Name',
+                                    Value: nodeName
+                                }
+                            ]
+                        })
+                    });
+
+                    // Store gateway endpoint in fabric
+                    fabric.endpoints.push(gwEndpoint);
+
+                    // Set up device announce handler before starting the gateway
+                    gw.on('DeviceAnnounce', async (deviceAnnounce: any) =>
+                    {
+                        const zigbeeDevice = new Device(
+                            deviceAnnounce.shortAddress,
+                            deviceAnnounce.IEEEAddress,
+                            deviceAnnounce.MacCapability
+                        );
+
+                        context.logger.info(`New device announced: ${zigbeeDevice.IEEEAddress.toString(16)} (${zigbeeDevice.shortAddress.toString(16)})`);
+
+                        // Create device endpoint with basic information
+                        const deviceEndpoint = await fabric.newEndpoint(`${serial}-device-${zigbeeDevice.IEEEAddress.toString(16)}`, {
+                            fixedLabel: clusterFactory({
+                                id: MatterClusterIds.FixedLabel,
+                                LabelList: [
+                                    {
+                                        Label: 'Name',
+                                        Value: `Zigbee Device ${zigbeeDevice.shortAddress.toString(16)}`
+                                    },
+                                    {
+                                        Label: 'Address',
+                                        Value: zigbeeDevice.shortAddress.toString(16)
+                                    }
+                                ]
+                            })
+                        });
+
+                        // Add mapped clusters from Zigbee device
+                        const basicClusters = [
+                            ZigbeeCluster.Basic,
+                            ZigbeeCluster.PowerConfig,
+                            ZigbeeCluster.Identify
+                        ];
+
+                        // Store cluster mappings for later use
+                        const mappedClusters: number[] = [];
+
+                        for (const clusterId of basicClusters)
+                        {
+                            const matterCluster = createMatterClusterFromZigbee(clusterId);
+                            if (matterCluster)
+                            {
+                                const clusterName = ZigbeeCluster[clusterId].toLowerCase();
+                                fabric.endpoints.push(deviceEndpoint);
+                                mappedClusters.push(clusterId);
+                            }
+                        }
+
+                        // Initialize the gateway's device map if it doesn't exist
+                        if (!this.devicesByAddress[serial])
+                        {
+                            this.devicesByAddress[serial] = {};
+                        }
+
+                        // Store device with its mapped clusters
+                        this.devicesByAddress[serial][zigbeeDevice.shortAddress] = {
+                            type: 'device' as const,
+                            address: zigbeeDevice.shortAddress,
+                            category: 'zigbee',
+                            room: '',
+                            gateway: Promise.resolve(gw),
+                            name: `Zigbee Device ${zigbeeDevice.shortAddress.toString(16)}`,
+                            clusters: mappedClusters,
+                            attributes: {}
+                        };
+
+                        this.devices[serial][zigbeeDevice.IEEEAddress.toString(16)] = this.devicesByAddress[serial][zigbeeDevice.shortAddress];
+
+                        fabric.endpoints.push(deviceEndpoint);
+                    });
+
+                    await gw.start(signal, context.options.debug);
+
+                    // Request list of existing devices after gateway is started
+                    gw.send(MessageType.GetDevicesList);
                 }
             }
-
-            setGateway(await Zigate.getSerial(serials[0]));
         });
     }
     catch (e)
