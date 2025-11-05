@@ -56,7 +56,9 @@
             "pm": {
                 "container": "pm",
                 "connect": {
-                    "jsonrpc+unix://./pm.sock": {}
+                    "jsonrpc+unix:///Users/nicolas/dev/domojs/pm.sock": {},
+                    "jsonrpc+tcp://0.0.0.0:31415": {},
+                    "ws://0.0.0.0:31416": {}
                 }
             },
             "@domojs/devices": {
@@ -80,55 +82,26 @@
     "commands": {
         "sdk": "./node_modules/@akala/commands/commands.json",
         "mdns": "./node_modules/@domojs/mdns/commands.json",
-        "matter": "npm:///@domojs/matter/commands.json"
+        "matter": "npm:///@domojs/matter/sdk.json"
     },
     "@domojs/devices": {
-        "store": {
-            "provider": "file+json://./",
-            "models": {
-                "DeviceInit": {
-                    "members": {
-                        "name": {
-                            "isKey": true,
-                            "type": {
-                                "type": "string",
-                                "length": 250
-                            },
-                            "generator": "business"
-                        },
-                        "body": {
-                            "isKey": false,
-                            "type": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "endpointsMapping": {
             "7cbdb153fdc1b15bf9c569329111cc8778822d78e73ffd7468fe7a969ceea": 1,
             "d6e21286621a8586f7e54720ab5a39c93acc2f4b8fba7a16ec1c24d69a8c613": 2,
             "8bca3c552fe97254bfd946b13bc7a16791aebab713b838e9da496f9ee7f4f6a": 3
         },
-        "id": 0,
         "pubsub": {
             "id": 0,
-            "transport": "mqtt://localhost",
             "transportOptions": {
-                "username": "devices",
                 "password": {
-                    "iv": "eG5yifEQ0jTsvhHz9bjg2g==",
-                    "value": "bUgo5FkgBiWETe32QsmqS02tN5qpN4oTrAXDTIaJw51ZPmacWJzjpPOkbLnN1RiZ"
-                }
+                    "iv": "U8mpfzU2X4qVLCbjLp5Pcg==",
+                    "value": "BGnbzJI2JQ/TF+3JVvBwJuKBOhPgjXYXzTPKIoxgGXzEXGiCJ52t/hPrwqG+VQ3A"
+                },
+                "username": "devices"
             }
         }
     },
-    "@domojs/weather": {
-        "pubsub": {
-            "transport": "mqtt://localhost"
-        }
-    },
+    "@domojs/weather": {},
     "@domojs/mdns": {
         "endpointsMapping": {
             "b9aecf5c618e2c877de9ad2f788f55dfc572363ca9499af38c9d75e1ace2fb6": 1,
@@ -339,34 +312,16 @@
             "a1f9822bec908283de5f4b951426ec3ebabb2bfefe52e8ba363f66477225a": 206,
             "85ed9c88fae6861fa35fd86ab59ab34c02c8b4f3c335a7871aa4c5a7e13d7": 207
         },
-        "id": 1,
         "pubsub": {
             "id": 1,
-            "transport": "mqtt://localhost",
             "transportOptions": {
-                "username": "mdns",
                 "password": {
-                    "iv": "8gEVVKkKNkKqe7CrSWOJXw==",
-                    "value": "Gj2R006/JtkqxX5YTkkPHOHdqtdhtAZQVT6LdBM1v8fDD8HGlFa9esxJla4KQkf5"
-                }
+                    "iv": "QI4mRGEcTlB75IbRaT8huA==",
+                    "value": "Z4REXyVyARx3NF9STs5b0OkNWJ+s7H7b3lHJQJKaBUX0/dB/j5721ROP+Utd7yZQ"
+                },
+                "username": "mdns"
             }
         }
     },
-    "@domojs/owntracks": {
-        "pubsub": {
-            "transport": "mqtt://localhost",
-            "transportOptions": {
-                "username": "owntracks",
-                "password": {
-                    "iv": "rnCeTsiNnwo7t1Ddvm1CYA==",
-                    "value": "v7wlxdCSqievQq0mTnEsIZqiUINUPNV+ERZxPtdnUPaTUXM2xhwDoyKq+7GLgbcr"
-                }
-            }
-        }
-    }
-}ZxPtdnUPaTUXM2xhwDoyKq+7GLgbcr"
-                }
-            }
-        }
-    }
+    "@domojs/owntracks": {}
 }

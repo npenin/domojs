@@ -5,16 +5,16 @@
     "types": "dist/esm/index.d.ts",
     "type": "module",
     "dependencies": {
-        "@akala/commands": "^18.0.10",
-        "@akala/config": "^7.2.12",
+        "@akala/commands": "^18.0.12",
+        "@akala/config": "^7.2.14",
         "@domojs/media": "workspace:^",
-        "crunchyroll.js": "^1.1.0"
+        "crunchyroll.js": "^1.1.1"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\"",
         "generate": "akala sdk generate dist/commands commands.json --name @domojs/media-crunchyroll"
     },
     "devDependencies": {
-        "@akala/cli": "^5.14.6"
+        "@akala/cli": "^5.14.8"
     }
 }

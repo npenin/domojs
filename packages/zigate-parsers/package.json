@@ -12,10 +12,10 @@
     "author": "npenin",
     "license": "MIT",
     "dependencies": {
-        "@akala/core": "^42.5.1",
-        "@akala/protocol-parser": "^11.6.0",
+        "@akala/core": "^43.0.1",
+        "@akala/protocol-parser": "^11.6.2",
         "@domojs/devices": "workspace:*",
-        "debug": "^4.4.1"
+        "debug": "^4.4.3"
     },
     "peerDependencies": {
         "serialport": "^13.0.0",
@@ -34,7 +34,7 @@
         "@types/usb": "2.0.5",
         "@types/ws": "8.18.1",
         "serialport": "^13.0.0",
-        "typescript": "^5.9.2",
+        "typescript": "^5.9.3",
         "usb": "2.16.0"
     },
     "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"

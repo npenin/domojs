@@ -5,12 +5,19 @@
     "types": "dist/index.d.ts",
     "type": "module",
     "dependencies": {
-        "@akala/commands": "^18.0.10",
-        "@akala/core": "^42.5.1",
+        "@akala/commands": "^18.0.12",
+        "@akala/core": "^43.0.1",
+        "@akala/fs": "^2.5.2",
+        "@akala/protocol-parser": "^11.6.2",
+        "@matter/general": "^0.16.0-alpha.0-20251102-faee7ab25",
+        "@matter/nodejs": "^0.16.0-alpha.0-20251102-faee7ab25",
+        "@matter/nodejs-ble": "^0.16.0-alpha.0-20251102-faee7ab25",
+        "@project-chip/matter.js": "^0.16.0-alpha.0-20251102-faee7ab25",
         "fast-xml-parser": "^5.2.5"
     },
     "devDependencies": {
-        "@akala/cli": "^5.14.6"
+        "@akala/cli": "^5.14.8",
+        "@types/node": "^24.9.2"
     },
     "exports": {
         ".": {
@@ -19,10 +26,11 @@
                 "default": "./dist/index.js"
             }
         },
+        "./sdk.json": "./sdk.json",
         "./commands.json": "./commands.json"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\"",
-        "generate": "akala sdk generate ./dist/commands commands.json --name @domojs/matter"
+        "sdk": "akala sdk generate ./dist/sdk sdk.json --name @domojs/matter"
     }
 }

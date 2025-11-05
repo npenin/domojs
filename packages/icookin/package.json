@@ -6,15 +6,15 @@
     "type": "module",
     "license": "MIT",
     "dependencies": {
-        "@akala/core": "^42.5.1",
-        "mongodb": "6.18.0",
+        "@akala/core": "^43.0.1",
+        "mongodb": "6.20.0",
         "ws": "8.18.3"
     },
     "devDependencies": {
         "@types/debug": "4.1.12",
         "@types/mongodb": "4.0.7",
-        "@types/node": "22.17.2",
+        "@types/node": "24.10.0",
         "@types/ws": "8.18.1",
-        "typescript": "^5.9.2"
+        "typescript": "^5.9.3"
     }
 }
