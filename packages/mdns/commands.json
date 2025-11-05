@@ -1,5 +1,8 @@
 {
     "name": "@domojs/mdns",
+    "dependencies": [
+        "@domojs/devices"
+    ],
     "commands": [
         {
             "name": "$init",
