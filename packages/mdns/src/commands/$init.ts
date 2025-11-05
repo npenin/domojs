@@ -176,8 +176,13 @@ export default async function (this: State, context: Context<ProxyConfiguration<
                     const ep = fqdnEndpoint = new Endpoint<'fixedLabel'>(fqdnId, {
                         fixedLabel: clusterFactory({
                             id: MatterClusterIds.FixedLabel,
-                            LabelList: [{ Label: 'Type', Value: c.type }, { Label: 'Host', Value: c.host }, { Label: 'FQDN', Value: c.fqdn }].
-                                concat(c.txt ? Object.entries(c.txt).map(e => ({ Label: e[0], Value: e[1] })) : [])
+                            LabelList: [
+                                { Label: 'Type', Value: c.type },
+                                { Label: 'Host', Value: c.host },
+                                { Label: 'Port', Value: c.port.toString() },
+                                { Label: 'FQDN', Value: c.fqdn },
+                                { Label: 'Addresses', Value: c.addresses?.join(',') }
+                            ].concat(c.txt ? Object.entries(c.txt).map(e => ({ Label: e[0], Value: e[1] })) : [])
                         })
                     });
                     fabric.endpoints.push(ep);
@@ -199,7 +204,6 @@ export default async function (this: State, context: Context<ProxyConfiguration<
                             id: MatterClusterIds.FixedLabel,
                             LabelList: [{ Label: 'Type', Value: c.type }]
                         })
-
                     }));
                     fqdnEndpoint.teardown(await Endpoint.attach(self.pubsub, `domojs/${fabric.name}`, typeEndpoint, c.type));
                 }
