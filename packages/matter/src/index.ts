@@ -1,15 +1,15 @@
-async function generateSalt(length = 16): Promise<Uint8Array>
+export async function generateSalt(length = 16): Promise<Uint8Array>
 {
     return crypto.getRandomValues(new Uint8Array(length));
 }
 
-function passcodeToBytes(pin: number): Uint8Array
+export function passcodeToBytes(pin: number): Uint8Array
 {
     const str = pin.toString();
     return new TextEncoder().encode(str);
 }
 
-async function deriveScalar(passcode: number, salt: Uint8Array, iterations: number): Promise<Uint8Array>
+export async function deriveScalar(passcode: number, salt: Uint8Array, iterations: number): Promise<Uint8Array>
 {
     const passcodeBytes = passcodeToBytes(passcode);
 
@@ -35,7 +35,7 @@ async function deriveScalar(passcode: number, salt: Uint8Array, iterations: numb
     return new Uint8Array(derivedBits);
 }
 
-async function generateVerifierFromScalar(scalar: Uint8Array): Promise<Uint8Array>
+export async function generateVerifierFromScalar(scalar: Uint8Array): Promise<Uint8Array>
 {
     // Import the scalar as a raw P-256 private key
     const privateKey = await crypto.subtle.importKey(
