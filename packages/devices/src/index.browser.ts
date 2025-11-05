@@ -8,6 +8,15 @@ import { clusterFactory, CommissionningCluster, Endpoint, EndpointProxy, MatterC
 import { ProxyConfiguration } from '@akala/config';
 import { BridgeConfiguration } from './server/clients/RootNode.js';
 // import type { SidecarConfiguration } from '@akala/sidecar';
+export * from './server/behaviors/acl.js'
+export * from './server/behaviors/admin-commissionning.js'
+export * from './server/behaviors/binding.js'
+export * from './server/behaviors/boolean.js'
+export * from './server/behaviors/descriptor.js'
+export * from './server/behaviors/general-commissionning.js'
+export * from './server/behaviors/mode-select.js'
+export * from './server/behaviors/operational-credentials.js'
+export * from './server/behaviors/ota-requestor.js'
 
 declare module '@akala/pm'
 {
