@@ -1,4 +1,5 @@
 import { Cursor, double, int16, int32, parsers, uint16, uint32, uint64, uint8 } from '@akala/protocol-parser'
+import { ErrorWithStatus, HttpStatusCode, IsomorphicBuffer } from '@akala/core'
 
 export enum MessageType
 {
@@ -41,8 +42,13 @@ const signature = parsers.string(parsers.uint8, 'ascii');
 
 class Uint32lebe implements parsers.ParserWithMessage<uint32, Message>
 {
+    getLength(): number
+    {
+        return 4;
+    }
+
     length: number = 4;
-    read(buffer: Buffer, cursor: Cursor, message: Message): uint32
+    read(buffer: IsomorphicBuffer, cursor: Cursor, message: Message): uint32
     {
         switch (message.endianness)
         {
@@ -52,7 +58,7 @@ class Uint32lebe implements parsers.ParserWithMessage<uint32, Message>
                 return parsers.uint32.read(buffer, cursor);
         }
     }
-    write(buffer: Buffer, cursor: Cursor, value: uint32, message: Message): void
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: uint32, message: Message): void
     {
         switch (message.endianness)
         {
@@ -113,10 +119,15 @@ function createSignatureParsers(endianness: Message['endianness'], signature: Si
     return signatureParsers;
 }
 
-class VariantParser implements parsers.ParserWithMessageWithoutKnownLength<Variant, Message>
+class VariantParser implements parsers.ParserWithMessage<Variant, Message>
 {
+    getLength(value: Variant, message?: Message): number
+    {
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+    }
+
     length: -1;
-    read(buffer: Buffer, cursor: Cursor, partial: Message)
+    read(buffer: IsomorphicBuffer, cursor: Cursor, partial: Message)
     {
         const endianness = partial.endianness;
         const parsedSignature = signature.read(buffer, cursor);
@@ -125,9 +136,10 @@ class VariantParser implements parsers.ParserWithMessageWithoutKnownLength<Varia
             throw new Error('Variant only supports one single type');
         return parser[0].read(buffer, cursor, partial);
     }
-    write(value: any, message: Message): Buffer[]
+
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: any, message: Message): Buffer[]
     {
-        throw new Error('Method not implemented.');
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
     }
 
 }
