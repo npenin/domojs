@@ -79,7 +79,7 @@ export default class Home extends Page
             {
                 if ('newItems' in l)
                 {
-                    const tous = l.newItems.find(ep => ep.id == 6);
+                    const tous = l.newItems.find(ep => ep.clusters['windowCovering']);
                     if (tous)
                     {
                         if (!room.devices.find(d => d.id == tous.id))
