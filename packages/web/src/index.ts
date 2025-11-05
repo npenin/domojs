@@ -444,7 +444,6 @@ let mqtt: Promise<AsyncEventBus<MqttEvents>>;
 bootstrapModule.activateAsync([], async () =>
 {
     mqtt = asyncEventBuses.process<MqttEvents>(new URL(`mqtt+wss://${location.host}/mqtt`), { username: 'domojs-guest', password: 'domojs' }).then(mqtt => serviceModule.register('mqtt', mqtt));
-    debugger;
     const config = await Configuration.load<SidecarConfiguration & BridgeConfiguration>('localstorage:///sidecar', true);
 
     const abortController = new AbortController();
