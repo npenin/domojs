@@ -3,8 +3,7 @@ import { MqttEvents } from "@domojs/mqtt";
 import { ClusterIdNames, ClusterMap as ClusterMapType } from "../clusters/index.js";
 import { MixedClusterDefinition, Endpoint } from "./Endpoint.js";
 import { Cluster, ClusterInstance, clusterProxyFactory, ClusterInstanceLight, ClusterDefinition, RemoteClusterInstance } from "./shared.js";
-import { ClusterIds, ClusterMap, MatterClusterIds } from "../clusters/_shared.js";
-import descriptor from "../../codegen/clusters/descriptor-cluster.js";
+import { ClusterMap, MatterClusterIds } from "../clusters/_shared.js";
 
 
 export type MixedRemoteClusterMap<K extends keyof ClusterMapType> =
@@ -58,7 +57,7 @@ export class EndpointProxy<TClusterMapKeys extends Exclude<keyof ClusterMapType,
         return Endpoint.attach<TClusterMapKeys>(bus, prefix, this, endpointName);
     }
 
-    public static async fromBus<TClusterMapKeys extends Exclude<keyof ClusterMapType, 'descriptor'> = never>(bus: AsyncEventBus<MqttEvents>, prefix: string, endpointId: number): Promise<EndpointProxy<TClusterMapKeys>>
+    public static async fromBus<TClusterMapKeys extends Exclude<keyof ClusterMapType, 'descriptor'> = never>(bus: AsyncEventBus<MqttEvents>, prefix: string, endpointId: number | string): Promise<EndpointProxy<TClusterMapKeys>>
     {
         let result = new Deferred<EndpointProxy<TClusterMapKeys>>();
 
@@ -67,7 +66,7 @@ export class EndpointProxy<TClusterMapKeys extends Exclude<keyof ClusterMapType,
             if (typeof data !== 'string')
                 data = data.toString('utf8');
             const serverList: number[] = JSON.parse(data);
-            result.resolve(new EndpointProxy<TClusterMapKeys>(endpointId, { name: prefix }, bus, Object.fromEntries(serverList.map(clusterId => [ClusterIdNames[clusterId], ClusterMap[clusterId]])) as MixedClusterDefinition<TClusterMapKeys>));
+            result.resolve(new EndpointProxy<TClusterMapKeys>(typeof endpointId == 'number' ? endpointId : -1, { name: prefix }, bus, Object.fromEntries(serverList.map(clusterId => [ClusterIdNames[clusterId], ClusterMap[clusterId]])) as MixedClusterDefinition<TClusterMapKeys>));
         });
         await bus.emit(`${prefix}/${endpointId}/descriptor/ServerList/get`, '{}', { qos: 1 });
 
