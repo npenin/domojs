@@ -1,4 +1,4 @@
-#  (2025-10-16)
+#  (2025-11-08)
 
 
 ### Bug Fixes
@@ -93,6 +93,7 @@
 * enable production mode 4e66bf1
 * enable yarn cec2353
 * endpoint command result adf4756
+* endpoint detection 7278349
 * endpoint proxy descriptor 95f7aae
 * enforce yarn default install ab9232c
 * ensure config is initialized 31238d4
@@ -131,6 +132,7 @@
 * improve mdns typings 3a5d0f1
 * improve media manager bb7f291
 * improve mqtt implementation (not ready yet) a26db7d
+* improve typing 82130fa
 * improvements to protocol parser 1398b5f
 * iscp parsing 7eda917
 * ISCP processor 89e99b3
@@ -141,6 +143,8 @@
 * make dbus private cc7ded1
 * make default port to 443 on mqtt+wss a25a87f
 * make homescreen private for now b5a6c9b
+* make mdns dependent on devices b9ba5bc
+* make mdns usable adding addresses and port to labels 015a4de
 * make webscrapper private f2a547f
 * **mdns:** build and behavior 5934661
 * migrate to akala 19 and commands 9 c04f43e
@@ -242,6 +246,7 @@
 * update codegen to provide ClusterDefinitions f191fd7
 * update config 26a8d19
 * update cron reference c80babf
+* update dbus uint32lebe parser 489fba8
 * update default config ed6451b
 * update dependencies a3ea3a6
 * update dependencies and checkout depth f04e50a
@@ -329,6 +334,7 @@
 * add new behaviors e31e0b4
 * add new components for device button selection and room card, enhance home page layout with search functionality 3295433
 * add ota requestor behavior 60a6da4
+* add possibility to provide endpoint proxy name 2aa86bf
 * add possibility to specify version d72a139
 * add powersource cluster on owntracks devices 39b78b0
 * add reason code when disconnecting b44aa1b
@@ -346,15 +352,18 @@
 * create new web site from scratch using vite and akala 1492bfe
 * enable cluster definition on remote clusters 4a1852e
 * enable debug mode 684b9cd
+* enable matter as devices on mqtt bus (not yet tested) 513a2e6
 * enable swipeable dialog 2a6e447
 * enable URL support 1f5dc23
 * enhance TypeScript generation with ClusterMap and default value handling 81dbad7
+* expose behaviors d90e465
 * expose Boolean behavior c09637b
 * expose manualAdmin 1199b7f
 * implement basic mqtt v5 protocol 01e31e0
 * make devices as containers c1e5c93
 * make exec on devicetype CLI compatible f92bf92
 * make webscrapper public 68ba711
+* make zigate compatible with matter 18b016e
 * many new media features 7b15160
 * mdns implementation 3fdc367
 * migrate to new device model and started device discovery implementation 7644990
@@ -371,6 +380,7 @@
 * start a dbus implementation 44b24d6
 * start browser client as node dacfd1d
 * start to upgrade media to container 419e5a4
+* started migration to domojs mqtt 6f3ed22
 * switch to matter like and mqtt implementation 7153114
 * update guest role configuration and add ACLs for publish and subscribe 35473f8
 * update scrapper as generic 1286958
