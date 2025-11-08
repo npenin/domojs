@@ -1,4 +1,4 @@
-#  (2025-10-16)
+#  (2025-11-08)
 
 
 ### Bug Fixes
@@ -10,6 +10,7 @@
 * improve media manager bb7f291
 * make dbus private cc7ded1
 * remove @akala/client for now fae299f
+* update dbus uint32lebe parser 489fba8
 
 
 ### Code Refactoring
