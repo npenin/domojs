@@ -1,6 +1,6 @@
-import { Cluster as ZigbeeCluster } from '@domojs/zigate-parsers/src/messages/_common.js';
-import { ClusterMap, clusterFactory } from '@domojs/devices';
-import { clusterMappings } from '@domojs/zigate-parsers/src/attributes/cluster-mapping.js';
+import { Cluster as ZigbeeCluster } from '@domojs/zigate-parsers';
+import { ClusterMap, MatterClusterIds, clusterFactory } from '@domojs/devices';
+import { ClusterMapping, zigbeeToMatterClusterMap } from './cluster-mapping.js';
 
 interface ZigbeeAttributeValue
 {
@@ -13,7 +13,7 @@ interface ZigbeeAttributeValue
  */
 export function createMatterClusterFromZigbee(zigbeeClusterId: ZigbeeCluster, zigbeeAttributes: ZigbeeAttributeValue[] = [])
 {
-    const mapping = clusterMappings.find(m => m.zigbeeCluster === zigbeeClusterId);
+    const mapping = zigbeeToMatterClusterMap.get(zigbeeClusterId);
     if (!mapping)
     {
         return null;
@@ -24,7 +24,7 @@ export function createMatterClusterFromZigbee(zigbeeClusterId: ZigbeeCluster, zi
 
     for (const zigbeeAttr of zigbeeAttributes)
     {
-        const matterId = mapping.attributeMap[zigbeeAttr.attributeId];
+        const matterId = mapping.attributes.find(att => att.zigbeeId == zigbeeAttr.attributeId);
         if (typeof matterId === 'number')
         {
             // TODO: Add value conversions based on attribute types
@@ -33,7 +33,7 @@ export function createMatterClusterFromZigbee(zigbeeClusterId: ZigbeeCluster, zi
     }
 
     return clusterFactory({
-        id: mapping.matterClusterId,
+        id: mapping.matterId,
         ...matterAttributes
     });
 }
@@ -43,13 +43,13 @@ export function createMatterClusterFromZigbee(zigbeeClusterId: ZigbeeCluster, zi
  */
 export function convertToMatterAttribute(zigbeeClusterId: ZigbeeCluster, attributeId: number, value: any): { matterId: number, value: any } | null
 {
-    const mapping = clusterMappings.find(m => m.zigbeeCluster === zigbeeClusterId);
+    const mapping = zigbeeToMatterClusterMap.get(zigbeeClusterId);
     if (!mapping)
     {
         return null;
     }
 
-    const matterId = mapping.attributeMap[attributeId];
+    const matterId = mapping.attributes.find(att => att.zigbeeId == attributeId);
     if (typeof matterId !== 'number')
     {
         return null;
@@ -65,28 +65,26 @@ export function convertToMatterAttribute(zigbeeClusterId: ZigbeeCluster, attribu
 /**
  * Convert a Matter attribute to its Zigbee equivalent
  */
-export function convertToZigbeeAttribute(matterClusterId: number, matterId: number, value: any): { zigbeeCluster: ZigbeeCluster, attributeId: number, value: any } | null
+export function convertToZigbeeAttribute(matterClusterId: MatterClusterIds, matterId: string, value: any): { zigbeeCluster: ZigbeeCluster, attributeId: number, value: any } | null
 {
-    const mapping = clusterMappings.find(m => m.matterClusterId === matterClusterId);
+    const [zigbeeCluster, mapping]: [ZigbeeCluster, ClusterMapping | undefined] = zigbeeToMatterClusterMap.entries().find(e => e[1].matterId == matterClusterId);
     if (!mapping)
     {
         return null;
     }
 
     // Find the Zigbee attribute ID that maps to this Matter ID
-    const entries = Object.entries(mapping.attributeMap);
-    const match = entries.find(([_, id]) => id === matterId);
+    const match = mapping.attributes.find(att => att.matterId === matterId);
     if (!match)
     {
         return null;
     }
 
-    const [zigbeeIdStr] = match;
-    const attributeId = parseInt(zigbeeIdStr);
+    const attributeId = match.zigbeeId;
 
     // TODO: Add value conversions based on attribute types
     return {
-        zigbeeCluster: mapping.zigbeeCluster,
+        zigbeeCluster,
         attributeId,
         value
     };

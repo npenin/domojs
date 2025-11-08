@@ -1,18 +1,26 @@
 import { Cluster as ZigbeeCluster } from '@domojs/zigate-parsers';
-import { MatterClusterIds, clusterFactory, ClusterMap } from '@domojs/devices';
+import { MatterClusterIds, clusterFactory, ClusterMap, basicInformationCluster, onoffCluster, levelControlCluster, colorControlCluster, temperatureControlCluster, temperatureMeasurementCluster, relativeHumidityMeasurementCluster, occupancySensingCluster, powerSourceCluster } from '@domojs/devices';
 
 export interface AttributeMapping
 {
     zigbeeId: number;
     matterId: string;
     convert?: (value: any) => any;
+    unconvert?: (value: any) => any;
+}
+
+export interface CommandMapping
+{
+    zigbeeId: number;
+    matterId: string;
+
 }
 
 export interface ClusterMapping
 {
     matterId: number;
     attributes: AttributeMapping[];
-    // Add command mappings later if needed
+    commands?: CommandMapping[];
 }
 
 // Maps Zigbee cluster IDs to Matter clusters with attribute mappings
@@ -21,12 +29,12 @@ export const zigbeeToMatterClusterMap = new Map<ZigbeeCluster, ClusterMapping>([
     [ZigbeeCluster.Basic, {
         matterId: MatterClusterIds.BasicInformation,
         attributes: [
-            { zigbeeId: 0x0000, matterId: 'VendorName' },    // ZCLVersion -> mapped to vendor
-            { zigbeeId: 0x0004, matterId: 'VendorName' },    // ManufacturerName
-            { zigbeeId: 0x0005, matterId: 'ProductName' },    // ModelIdentifier
-            { zigbeeId: 0x0006, matterId: 'SerialNumber' },   // DateCode -> mapped to serial
-            { zigbeeId: 0x0007, matterId: 'HardwareVersion' }, // PowerSource
-            { zigbeeId: 0x0010, matterId: 'SoftwareVersion' }  // LocationDesc -> mapped to sw version
+            { zigbeeId: 0x0000, matterId: basicInformationCluster.default.attributes.find(a => a == 'VendorName') },    // ZCLVersion -> mapped to vendor
+            { zigbeeId: 0x0004, matterId: basicInformationCluster.default.attributes.find(a => a == 'VendorName') },    // ManufacturerName
+            { zigbeeId: 0x0005, matterId: basicInformationCluster.default.attributes.find(a => a == 'ProductName') },    // ModelIdentifier
+            { zigbeeId: 0x0006, matterId: basicInformationCluster.default.attributes.find(a => a == 'SerialNumber') },   // DateCode -> mapped to serial
+            { zigbeeId: 0x0007, matterId: basicInformationCluster.default.attributes.find(a => a == 'HardwareVersion') }, // PowerSource
+            { zigbeeId: 0x0010, matterId: basicInformationCluster.default.attributes.find(a => a == 'SoftwareVersion') }  // LocationDesc -> mapped to sw version
         ]
     }],
 
@@ -36,20 +44,20 @@ export const zigbeeToMatterClusterMap = new Map<ZigbeeCluster, ClusterMapping>([
         attributes: [
             {
                 zigbeeId: 0x0000,
-                matterId: 'OnOff',
-                convert: (value: boolean) => value
+                matterId: onoffCluster.default.attributes.find(a => a == 'OnOff'),
+                convert: (value: boolean) => value ? 0 : 1
             },
             {
                 zigbeeId: 0x4000,
-                matterId: 'GlobalSceneControl'
+                matterId: onoffCluster.default.attributes.find(a => a == 'GlobalSceneControl')
             },
             {
                 zigbeeId: 0x4001,
-                matterId: 'OnTime'
+                matterId: onoffCluster.default.attributes.find(a => a == 'OnTime')
             },
             {
                 zigbeeId: 0x4002,
-                matterId: 'OffWaitTime'
+                matterId: onoffCluster.default.attributes.find(a => a == 'OffWaitTime')
             }
         ]
     }],
@@ -59,12 +67,14 @@ export const zigbeeToMatterClusterMap = new Map<ZigbeeCluster, ClusterMapping>([
         attributes: [
             {
                 zigbeeId: 0x0000,
-                matterId: 'CurrentLevel',
-                convert: (value: number) => Math.round((value / 255) * 100) // Convert 0-255 to 0-100
+                matterId: levelControlCluster.default.attributes.find(a => a == 'CurrentLevel'),
+                convert: (value: number) => Math.round((value / 255) * 100), // Convert 0-255 to 0-100
+                unconvert: (value: number) => Math.round((value / 100) * 255), // Convert 0-100 to 0-255
+
             },
             {
                 zigbeeId: 0x0001,
-                matterId: 'RemainingTime'
+                matterId: levelControlCluster.default.attributes.find(a => a == 'RemainingTime')
             }
         ]
     }],
@@ -74,21 +84,23 @@ export const zigbeeToMatterClusterMap = new Map<ZigbeeCluster, ClusterMapping>([
         attributes: [
             {
                 zigbeeId: 0x0000,
-                matterId: 'CurrentHue',
-                convert: (value: number) => Math.round((value / 255) * 360) // Convert to degrees
+                matterId: colorControlCluster.default.attributes.find(a => a == 'CurrentHue'),
+                convert: (value: number) => Math.round((value / 255) * 360), // Convert to degrees
+                unconvert: (value: number) => Math.round((value / 360) * 255), // Convert to degrees
             },
             {
                 zigbeeId: 0x0001,
-                matterId: 'CurrentSaturation',
-                convert: (value: number) => Math.round((value / 255) * 100) // Convert to percentage
+                matterId: colorControlCluster.default.attributes.find(a => a == 'CurrentSaturation'),
+                convert: (value: number) => Math.round((value / 255) * 100), // Convert to percentage
+                unconvert: (value: number) => Math.round((value / 100) * 255) // Convert to percentage
             },
             {
                 zigbeeId: 0x0003,
-                matterId: 'RemainingTime'
+                matterId: colorControlCluster.default.attributes.find(a => a == 'RemainingTime')
             },
             {
                 zigbeeId: 0x0007,
-                matterId: 'ColorTemperatureMireds'
+                matterId: colorControlCluster.default.attributes.find(a => a == 'ColorTemperatureMireds')
             }
         ]
     }],
@@ -99,18 +111,21 @@ export const zigbeeToMatterClusterMap = new Map<ZigbeeCluster, ClusterMapping>([
         attributes: [
             {
                 zigbeeId: 0x0000,
-                matterId: 'MeasuredValue',
-                convert: (value: number) => value / 100 // Convert from centi-degrees to degrees
+                matterId: temperatureMeasurementCluster.default.attributes.find(a => a == 'MeasuredValue'),
+                convert: (value: number) => value / 100, // Convert from centi-degrees to degrees
+                unconvert: (value: number) => value * 100 // Convert from centi-degrees to degrees
             },
             {
                 zigbeeId: 0x0001,
-                matterId: 'MinMeasuredValue',
-                convert: (value: number) => value / 100
+                matterId: temperatureMeasurementCluster.default.attributes.find(a => a == 'MinMeasuredValue'),
+                convert: (value: number) => value / 100,
+                unconvert: (value: number) => value * 100,
             },
             {
                 zigbeeId: 0x0002,
-                matterId: 'MaxMeasuredValue',
-                convert: (value: number) => value / 100
+                matterId: temperatureMeasurementCluster.default.attributes.find(a => a == 'MaxMeasuredValue'),
+                convert: (value: number) => value / 100,
+                unconvert: (value: number) => value * 100,
             }
         ]
     }],
@@ -120,18 +135,21 @@ export const zigbeeToMatterClusterMap = new Map<ZigbeeCluster, ClusterMapping>([
         attributes: [
             {
                 zigbeeId: 0x0000,
-                matterId: 'MeasuredValue',
-                convert: (value: number) => value / 100 // Convert to percentage
+                matterId: relativeHumidityMeasurementCluster.default.attributes.find(a => a == 'MeasuredValue'),
+                convert: (value: number) => value / 100, // Convert to percentage
+                unconvert: (value: number) => value * 100,
             },
             {
                 zigbeeId: 0x0001,
-                matterId: 'MinMeasuredValue',
-                convert: (value: number) => value / 100
+                matterId: relativeHumidityMeasurementCluster.default.attributes.find(a => a == 'MinMeasuredValue'),
+                convert: (value: number) => value / 100,
+                unconvert: (value: number) => value * 100,
             },
             {
                 zigbeeId: 0x0002,
-                matterId: 'MaxMeasuredValue',
-                convert: (value: number) => value / 100
+                matterId: relativeHumidityMeasurementCluster.default.attributes.find(a => a == 'MaxMeasuredValue'),
+                convert: (value: number) => value / 100,
+                unconvert: (value: number) => value * 100,
             }
         ]
     }],
@@ -141,38 +159,39 @@ export const zigbeeToMatterClusterMap = new Map<ZigbeeCluster, ClusterMapping>([
         attributes: [
             {
                 zigbeeId: 0x0000,
-                matterId: 'Occupancy',
-                convert: (value: number) => value === 1 // Convert to boolean
+                matterId: occupancySensingCluster.default.attributes.find(a => a == 'Occupancy'),
+                convert: (value: number) => value === 1, // Convert to boolean
+                unconvert: (value: boolean) => value ? 1 : 0
             },
             {
                 zigbeeId: 0x0001,
-                matterId: 'OccupancySensorType'
+                matterId: occupancySensingCluster.default.attributes.find(a => a == 'OccupancySensorType')
             },
             {
                 zigbeeId: 0x0002,
-                matterId: 'OccupancySensorTypeBitmap'
+                matterId: occupancySensingCluster.default.attributes.find(a => a == 'OccupancySensorTypeBitmap')
             }
         ]
     }],
 
     // Security clusters
-    [ZigbeeCluster.IASZone, {
-        matterId: MatterClusterIds.ZoneManagement,
-        attributes: [
-            {
-                zigbeeId: 0x0000,
-                matterId: 'ZoneState'
-            },
-            {
-                zigbeeId: 0x0001,
-                matterId: 'ZoneType'
-            },
-            {
-                zigbeeId: 0x0002,
-                matterId: 'ZoneStatus'
-            }
-        ]
-    }],
+    // [ZigbeeCluster.IASZone, {
+    //     matterId: MatterClusterIds.ZoneManagement,
+    //     attributes: [
+    //         {
+    //             zigbeeId: 0x0000,
+    //             matterId: 'ZoneState'
+    //         },
+    //         {
+    //             zigbeeId: 0x0001,
+    //             matterId: 'ZoneType'
+    //         },
+    //         {
+    //             zigbeeId: 0x0002,
+    //             matterId: 'ZoneStatus'
+    //         }
+    //     ]
+    // }],
 
     // Power Configuration
     [ZigbeeCluster.PowerConfig, {
@@ -180,21 +199,23 @@ export const zigbeeToMatterClusterMap = new Map<ZigbeeCluster, ClusterMapping>([
         attributes: [
             {
                 zigbeeId: 0x0000,
-                matterId: 'Status'
+                matterId: powerSourceCluster.default.attributes.find(a => a == 'Status')
             },
             {
                 zigbeeId: 0x0001,
-                matterId: 'Order'
+                matterId: powerSourceCluster.default.attributes.find(a => a == 'Order')
             },
             {
                 zigbeeId: 0x0020,
-                matterId: 'BatVoltage',
-                convert: (value: number) => value / 10 // Convert to actual voltage
+                matterId: powerSourceCluster.default.attributes.find(a => a == 'BatVoltage'),
+                convert: (value: number) => value / 10, // Convert to actual voltage
+                unconvert: (value: number) => value * 10,
             },
             {
                 zigbeeId: 0x0021,
-                matterId: 'BatPercentageRemaining',
-                convert: (value: number) => value / 2 // Convert to percentage
+                matterId: powerSourceCluster.default.attributes.find(a => a == 'BatPercentRemaining'),
+                convert: (value: number) => value / 2, // Convert to percentage
+                unconvert: (value: number) => value * 2,
             }
         ]
     }]
