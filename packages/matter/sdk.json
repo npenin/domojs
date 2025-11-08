@@ -1,0 +1,66 @@
+{
+    "name": "@domojs/matter",
+    "commands": [
+        {
+            "name": "generate-from-xml",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "$http",
+                        "signal",
+                        "params.0"
+                    ],
+                    "path": "dist/sdk/generate-from-xml.js",
+                    "source": "src/sdk/generate-from-xml.ts"
+                },
+                "": {
+                    "inject": [
+                        "$http",
+                        "signal",
+                        "params.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "$http",
+                        "context.abort.signal",
+                        "options.destination",
+                        "options.version"
+                    ],
+                    "usage": "codegen-devicetypes [destination] [version]"
+                }
+            }
+        },
+        {
+            "name": "generate-from-zap",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "$http",
+                        "signal",
+                        "params.0"
+                    ],
+                    "path": "dist/sdk/generate-from-zap.js",
+                    "source": "src/sdk/generate-from-zap.ts"
+                },
+                "": {
+                    "inject": [
+                        "$http",
+                        "signal",
+                        "params.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "$http",
+                        "context.abort.signal",
+                        "options.destination",
+                        "options.version"
+                    ],
+                    "usage": "codegen-clusters [destination] [version]"
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"
+}

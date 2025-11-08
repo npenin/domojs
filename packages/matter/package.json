@@ -31,6 +31,6 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\"",
-        "sdk": "akala sdk generate ./dist/sdk sdk.json --name @domojs/matter"
+        "generate": "akala sdk generate ./dist/sdk sdk.json --name @domojs/matter"
     }
 }

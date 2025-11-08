@@ -28,66 +28,10 @@
                     ]
                 }
             }
-        },
-        {
-            "name": "exec",
-            "config": {
-                "fs": {
-                    "path": "dist/commands/exec.js",
-                    "source": "src/commands/exec.ts",
-                    "inject": [
-                        "params.0",
-                        "params.1",
-                        "params.2"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "params.0",
-                        "params.1",
-                        "params.2"
-                    ]
-                },
-                "cli": {
-                    "usage": "exec <device> <command> [value]",
-                    "inject": [
-                        "options.device",
-                        "options.command",
-                        "params.0"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "getStatus",
-            "config": {
-                "fs": {
-                    "path": "dist/commands/getStatus.js",
-                    "source": "src/commands/getStatus.ts",
-                    "inject": [
-                        "params.0"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "params.0"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "pendingDevices",
-            "config": {
-                "fs": {
-                    "path": "dist/commands/pendingDevices.js",
-                    "source": "src/commands/pendingDevices.ts",
-                    "inject": []
-                },
-                "": {
-                    "inject": []
-                }
-            }
         }
+    ],
+    "dependencies": [
+        "@domojs/devices"
     ],
     "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"
 }

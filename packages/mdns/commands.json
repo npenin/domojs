@@ -1,8 +1,5 @@
 {
     "name": "@domojs/mdns",
-    "dependencies": [
-        "@domojs/devices"
-    ],
     "commands": [
         {
             "name": "$init",
@@ -80,6 +77,9 @@
                 }
             }
         }
+    ],
+    "dependencies": [
+        "@domojs/devices"
     ],
     "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"
 }
