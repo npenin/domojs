@@ -69,6 +69,188 @@ export
 };
 const log = logger('zigate');
 
+export type Messages =
+    | version.VersionResponse
+    | permitjoin.PermitJoinResponse
+    | devices.DeviceAnnounce
+    | gateway.SetExtendedPanId
+    | status.StatusMessage
+    | gateway.SetChannelMask
+    | status.StatusMessage
+    | gateway.SetSecurityStateAndKey
+    | status.StatusMessage
+    | { type: network.DeviceType }
+    | status.StatusMessage
+    | network.NetworkResponse
+    | network.NetworkResponse
+    | devices.RemoveDevice
+    | managementLeave.LeaveIndicationResponse
+    | enablePermissionsControlJoin.EnablePermissionsControlJoin
+    | status.StatusMessage
+    | devices.AuthenticateDevice
+    | devices.AuthenticateResponse
+    | outOfBandCommissionningData.OutOfBandCommissionningDataRequest
+    | outOfBandCommissionningData.OutOfBandCommissionningDataResponse
+    | descriptors.UserDescriptorSet
+    | descriptors.UserDescriptorNotifyMessage
+    | descriptors.AddressOfInterestRequest
+    | descriptors.UserDescriptorResponse
+    | descriptors.AddressOfInterestRequest
+    | descriptors.ComplexDescriptorResponse
+    | bind.BindRequest
+    | status.StatusMessage
+    | bind.BindRequest
+    | status.StatusMessage
+    | address.SingleNetworkAddressRequest
+    | address.NetworkAddressResponse
+    | address.ExtendedNetworkAddressRequest
+    | address.NetworkAddressResponse
+    | address.IEEEAddressRequest
+    | address.NetworkAddressResponse
+    | descriptors.ShortAddressRequest
+    | descriptors.NodeDescriptor
+    | descriptors.SimpleDescriptorRequest
+    | descriptors.SimpleDescriptor
+    | descriptors.ShortAddressRequest
+    | descriptors.PowerDescriptor
+    | descriptors.ShortAddressRequest
+    | descriptors.ActiveEndpointResponse
+    | descriptors.MatchDescriptorRequest
+    | descriptors.MatchDescriptorResponse
+    | managementLeave.ManagementLeave
+    | status.StatusMessage
+    | permitjoin.PermitJoiningRequest
+    | status.StatusMessage
+    | network.ManagementNetworkUpdateRequest
+    | network.ManagementNetworkUpdateResponse
+    | network.SystemServerDiscoveryRequest
+    | network.SystemServerDiscoveryResponse
+    | devices.DeviceAnnounce
+    | network.ManagementLQIRequest
+    | network.ManagementLQIResponse
+    | group.AddGroupRequest
+    | group.AddGroupRequest
+    | group.ViewGroupRequest
+    | group.ViewGroupResponse
+    | group.GetGroupMembershipRequest
+    | group.GetGroupMembershipResponse
+    | group.RemoveGroupRequest
+    | group.RemoveGroupResponse
+    | group.RemoveAllGroupsMessage
+    | status.StatusMessage
+    | group.AddGroupIfIdentifyMessage
+    | status.StatusMessage
+    | identify.IdentifySendRequest
+    | status.StatusMessage
+    | move.CommandMessage
+    | status.StatusMessage
+    | move.MoveToLevel
+    | status.StatusMessage
+    | move.MoveToLevelWithWithoutOnOff
+    | status.StatusMessage
+    | move.MoveStep
+    | status.StatusMessage
+    | move.CommandMessage
+    | status.StatusMessage
+    | move.CommandMessage
+    | status.StatusMessage
+    | onoff.OnOffWithNoEffectsMessage
+    | status.StatusMessage
+    | onoff.OnOffTimedSendMessage
+    | status.StatusMessage
+    | onoff.OnOffWithEffectsMessage
+    | status.StatusMessage
+    | scenes.SceneRequest
+    | scenes.ViewSceneResponse
+    | scenes.AddSceneRequest
+    | status.StatusMessage
+    | scenes.SceneRequest
+    | status.StatusMessage
+    | scenes.SceneRequest
+    | dataIndication.DataIndication
+    | scenes.SceneRequest
+    | dataIndication.DataIndication
+    | scenes.SceneRequest
+    | dataIndication.DataIndication
+    | scenes.SceneRequest
+    | scenes.SceneMembershipResponse
+    | scenes.AddSceneRequest
+    | dataIndication.DataIndication
+    | scenes.SceneRequest
+    | dataIndication.DataIndication
+    | scenes.CopyScene
+    | dataIndication.DataIndication
+    | hue.MoveToHue
+    | dataIndication.DataIndication
+    | hue.MoveHue
+    | dataIndication.DataIndication
+    | hue.StepHue
+    | dataIndication.DataIndication
+    | hue.MoveToSaturation
+    | dataIndication.DataIndication
+    | hue.MoveSaturation
+    | dataIndication.DataIndication
+    | hue.StepSaturation
+    | dataIndication.DataIndication
+    | hue.MoveToHueAndSaturation
+    | dataIndication.DataIndication
+    | hue.MoveToColor
+    | dataIndication.DataIndication
+    | hue.MoveToColor
+    | dataIndication.DataIndication
+    | hue.StepColor
+    | dataIndication.DataIndication
+    | hue.EnhancedMoveToHue
+    | dataIndication.DataIndication
+    | hue.EnhancedMoveHue
+    | dataIndication.DataIndication
+    | hue.EnhancedStepHue
+    | dataIndication.DataIndication
+    | hue.EnhancedMoveToHueAndSaturation
+    | dataIndication.DataIndication
+    | hue.ColorLoopSet
+    | dataIndication.DataIndication
+    | move.CommandMessage
+    | dataIndication.DataIndication
+    | temperature.MoveToColorTemperature
+    | dataIndication.DataIndication
+    | temperature.MoveColorTemperature
+    | dataIndication.DataIndication
+    | temperature.StepColorTemperature
+    | dataIndication.DataIndication
+    | touchlink.TouchlinkStatus
+    | touchlink.TouchlinkStatus
+    | trigger.IdentifyTriggerEffectMessage
+    | dataIndication.DataIndication
+    | door.LockUnlockMessage
+    | dataIndication.DataIndication
+    | attributes.ReadAttributeMessage
+    | attributes.AttributeResponse
+    | attributes.WriteAttributeMessage
+    | attributes.AttributeResponse
+    | attributes.ConfigureReportingRequest
+    | attributes.ConfigureReportingResponse
+    | attributes.AttributeDiscoveryRequest
+    | attributes.AttributeDiscoveryResponse
+    | ias.IASZoneMessage
+    | status.StatusMessage
+    | aps.APSRequest
+    | status.StatusMessage
+    | status.StatusMessage
+    | logs.LogLevel
+    | dataIndication.DataIndication
+    | gateway.FactoryNewRestart
+    | gateway.FactoryNewRestart
+    | managementLeave.LeaveIndicationResponse
+    | status.DefaultResponse
+    | attributes.AttributeResponse
+    | network.ZoneStatusChangeNotification
+    | network.RouterDiscoveryConfirm
+    | aps.APSDataConfirmFail;
+
+export type Responses = MessageMap[keyof MessageMap]['response'];
+export type Requests = MessageMap[keyof MessageMap]['request'];
+
 export namespace MessageTypes
 {
     export type GetVersionRequest = void;
@@ -274,9 +456,112 @@ export namespace MessageTypes
     export type APSDataConfirmFail = aps.APSDataConfirmFail;
 }
 
+export type MessageMap = {
+
+    [MessageType.GetVersion]: { request: MessageTypes.GetVersionRequest, response: MessageTypes.GetVersionResponse },
+    [MessageType.PermitJoin]: { request: MessageTypes.PermitJoinRequest, response: MessageTypes.PermitJoinResponse },
+    [MessageType.GetDevicesList]: { request: MessageTypes.GetDevicesListRequest, response: MessageTypes.GetDevicesListResponse },
+    [MessageType.SetExtendedPanId]: { request: MessageTypes.SetExtendedPanIdRequest, response: MessageTypes.SetExtendedPanIdResponse },
+    [MessageType.SetChannelMask]: { request: MessageTypes.SetChannelMaskRequest, response: MessageTypes.SetChannelMaskResponse },
+    [MessageType.SetSecurityStateAndKey]: { request: MessageTypes.SetSecurityStateAndKeyRequest, response: MessageTypes.SetSecurityStateAndKeyResponse },
+    [MessageType.SetDeviceType]: { request: MessageTypes.SetDeviceTypeRequest, response: MessageTypes.SetDeviceTypeResponse },
+    [MessageType.StartNetwork]: { request: MessageTypes.StartNetworkRequest, response: MessageTypes.StartNetworkResponse },
+    [MessageType.StartNetworkScan]: { request: MessageTypes.StartNetworkScanRequest, response: MessageTypes.StartNetworkScanResponse },
+    [MessageType.RemoveDevice]: { request: MessageTypes.RemoveDeviceRequest, response: MessageTypes.RemoveDeviceResponse },
+    [MessageType.EnablePermissionsControlJoin]: { request: MessageTypes.EnablePermissionsControlJoinRequest, response: MessageTypes.EnablePermissionsControlJoinResponse },
+    [MessageType.AuthenticateDevice]: { request: MessageTypes.AuthenticateDeviceRequest, response: MessageTypes.AuthenticateDeviceResponse },
+    [MessageType.OutOfBandCommissionningData]: { request: MessageTypes.OutOfBandCommissionningDataRequest, response: MessageTypes.OutOfBandCommissionningDataResponse },
+    [MessageType.UserDescriptorSet]: { request: MessageTypes.UserDescriptorSetRequest, response: MessageTypes.UserDescriptorSetResponse },
+    [MessageType.UserDescriptor]: { request: MessageTypes.UserDescriptorRequest, response: MessageTypes.UserDescriptorResponse },
+    [MessageType.ComplexDescriptor]: { request: MessageTypes.ComplexDescriptorRequest, response: MessageTypes.ComplexDescriptorResponse },
+    [MessageType.Bind]: { request: MessageTypes.BindRequest, response: MessageTypes.BindResponse },
+    [MessageType.Unbind]: { request: MessageTypes.UnbindRequest, response: MessageTypes.UnbindResponse },
+
+    [MessageType.IEEEAddress]: { request: MessageTypes.IEEEAddressRequest, response: MessageTypes.IEEEAddressResponse },
+    [MessageType.NodeDescriptor]: { request: MessageTypes.NodeDescriptorRequest, response: MessageTypes.NodeDescriptorResponse },
+    [MessageType.SimpleDescriptor]: { request: MessageTypes.SimpleDescriptorRequest, response: MessageTypes.SimpleDescriptorResponse },
+    [MessageType.PowerDescriptor]: { request: MessageTypes.PowerDescriptorRequest, response: MessageTypes.PowerDescriptorResponse },
+    [MessageType.ActiveEndpoint]: { request: MessageTypes.ActiveEndpointRequest, response: MessageTypes.ActiveEndpointResponse },
+    [MessageType.MatchDescriptor]: { request: MessageTypes.MatchDescriptorRequest, response: MessageTypes.MatchDescriptorResponse },
+    [MessageType.ManagementLeave]: { request: MessageTypes.ManagementLeaveRequest, response: MessageTypes.ManagementLeaveResponse },
+    [MessageType.PermitJoining]: { request: MessageTypes.PermitJoiningRequest, response: MessageTypes.PermitJoiningResponse },
+    [MessageType.ManagementNetworkUpdate]: { request: MessageTypes.ManagementNetworkUpdateRequest, response: MessageTypes.ManagementNetworkUpdateResponse },
+    [MessageType.SystemServerDiscovery]: { request: MessageTypes.SystemServerDiscoveryRequest, response: MessageTypes.SystemServerDiscoveryResponse },
+    [MessageType.DeviceAnnounce]: { request: void, response: MessageTypes.DeviceAnnounce },
+    [MessageType.ManagementLQI]: { request: MessageTypes.ManagementLQIRequest, response: MessageTypes.ManagementLQIResponse },
+
+    [MessageType.AddGroup]: { request: MessageTypes.AddGroupRequest, response: MessageTypes.AddGroupResponse },
+    [MessageType.ViewGroup]: { request: MessageTypes.ViewGroupRequest, response: MessageTypes.ViewGroupResponse },
+    [MessageType.GetGroupMembership]: { request: MessageTypes.GetGroupMembershipRequest, response: MessageTypes.GetGroupMembershipResponse },
+    [MessageType.RemoveGroup]: { request: MessageTypes.RemoveGroupRequest, response: MessageTypes.RemoveGroupResponse },
+    [MessageType.RemoveAllGroup]: { request: MessageTypes.RemoveAllGroupRequest, response: MessageTypes.RemoveAllGroupResponse },
+    [MessageType.AddGroupIfIdentify]: { request: MessageTypes.AddGroupIfIdentifyRequest, response: MessageTypes.AddGroupIfIdentifyResponse },
+
+    [MessageType.IdentifySend]: { request: MessageTypes.IdentifySendRequest, response: MessageTypes.IdentifySendResponse },
+    [MessageType.IdentifyQuery]: { request: MessageTypes.IdentifyQueryRequest, response: MessageTypes.IdentifyQueryResponse },
+
+    [MessageType.MoveToLevel]: { request: MessageTypes.MoveToLevelRequest, response: MessageTypes.MoveToLevelResponse },
+    [MessageType.MoveToLevelWithWithoutOnOff]: { request: MessageTypes.MoveToLevelWithWithoutOnOffRequest, response: MessageTypes.MoveToLevelWithWithoutOnOffResponse },
+    [MessageType.MoveStep]: { request: MessageTypes.MoveStepRequest, response: MessageTypes.MoveStepResponse },
+    [MessageType.MoveStopMove]: { request: MessageTypes.MoveStopMoveRequest, response: MessageTypes.MoveStopMoveResponse },
+    [MessageType.MoveStopWithOnOff]: { request: MessageTypes.MoveStopWithOnOffRequest, response: MessageTypes.MoveStopWithOnOffResponse },
+
+    [MessageType.OnOffWithNoEffect]: { request: MessageTypes.OnOffWithNoEffectRequest, response: MessageTypes.OnOffWithNoEffectResponse },
+    [MessageType.OnOffTimedSend]: { request: MessageTypes.OnOffTimedSendRequest, response: MessageTypes.OnOffTimedSendResponse },
+    [MessageType.OnOffWithEffectsSend]: { request: MessageTypes.OnOffWithEffectsSendRequest, response: MessageTypes.OnOffWithEffectsSendResponse },
+
+    [MessageType.ViewScene]: { request: MessageTypes.ViewSceneRequest, response: MessageTypes.ViewSceneResponse },
+    [MessageType.AddScene]: { request: MessageTypes.AddSceneRequest, response: MessageTypes.AddSceneResponse },
+    [MessageType.RemoveScene]: { request: MessageTypes.RemoveSceneRequest, response: MessageTypes.RemoveSceneResponse },
+    [MessageType.RemoveAllScene]: { request: MessageTypes.RemoveAllSceneRequest, response: MessageTypes.RemoveAllSceneResponse },
+    [MessageType.StoreScene]: { request: MessageTypes.StoreSceneRequest, response: MessageTypes.StoreSceneResponse },
+    [MessageType.RecallScene]: { request: MessageTypes.RecallSceneRequest, response: MessageTypes.RecallSceneResponse },
+    [MessageType.SceneMembership]: { request: MessageTypes.SceneMembershipRequest, response: MessageTypes.SceneMembershipResponse },
+    [MessageType.AddEnhancedScene]: { request: MessageTypes.AddEnhancedSceneRequest, response: MessageTypes.AddEnhancedSceneResponse },
+    [MessageType.ViewEnhancedHost_NodeScene]: { request: MessageTypes.ViewEnhancedHost_NodeSceneRequest, response: MessageTypes.ViewEnhancedHost_NodeSceneResponse },
+    [MessageType.CopyScene]: { request: MessageTypes.CopySceneRequest, response: MessageTypes.CopySceneResponse },
+
+    [MessageType.MoveToHue]: { request: MessageTypes.MoveToHueRequest, response: MessageTypes.MoveToHueResponse },
+    [MessageType.MoveHue]: { request: MessageTypes.MoveHueRequest, response: MessageTypes.MoveHueResponse },
+    [MessageType.StepHue]: { request: MessageTypes.StepHueRequest, response: MessageTypes.StepHueResponse },
+    [MessageType.MoveToSaturation]: { request: MessageTypes.MoveToSaturationRequest, response: MessageTypes.MoveToSaturationResponse },
+    [MessageType.MoveSaturation]: { request: MessageTypes.MoveSaturationRequest, response: MessageTypes.MoveSaturationResponse },
+    [MessageType.StepSaturation]: { request: MessageTypes.StepSaturationRequest, response: MessageTypes.StepSaturationResponse },
+    [MessageType.MoveToHueAndSaturation]: { request: MessageTypes.MoveToHueAndSaturationRequest, response: MessageTypes.MoveToHueAndSaturationResponse },
+    [MessageType.MoveToColor]: { request: MessageTypes.MoveToColorRequest, response: MessageTypes.MoveToColorResponse },
+    [MessageType.MoveColor]: { request: MessageTypes.MoveColorRequest, response: MessageTypes.MoveColorResponse },
+    [MessageType.StepColor]: { request: MessageTypes.StepColorRequest, response: MessageTypes.StepColorResponse },
+    [MessageType.EnhancedMoveToHue]: { request: MessageTypes.EnhancedMoveToHueRequest, response: MessageTypes.EnhancedMoveToHueResponse },
+    [MessageType.EnhancedMoveHue]: { request: MessageTypes.EnhancedMoveHueRequest, response: MessageTypes.EnhancedMoveHueResponse },
+    [MessageType.EnhancedStepHue]: { request: MessageTypes.EnhancedStepHueRequest, response: MessageTypes.EnhancedStepHueResponse },
+    [MessageType.EnhancedMoveToHueAndSaturation]: { request: MessageTypes.EnhancedMoveToHueAndSaturationRequest, response: MessageTypes.EnhancedMoveToHueAndSaturationResponse },
+    [MessageType.ColorLoopSet]: { request: MessageTypes.ColorLoopSetRequest, response: MessageTypes.ColorLoopSetResponse },
+    [MessageType.StopMoveStep]: { request: MessageTypes.StopMoveStepResponse, response: MessageTypes.StopMoveStepResponse },
+
+    [MessageType.MoveToColorTemperature]: { request: MessageTypes.MoveToColorTemperatureRequest, response: MessageTypes.MoveToColorTemperatureResponse },
+    [MessageType.MoveColorTemperature]: { request: MessageTypes.MoveColorTemperatureRequest, response: MessageTypes.MoveColorTemperatureResponse },
+    [MessageType.StepColorTemperature]: { request: MessageTypes.StepColorTemperatureRequest, response: MessageTypes.StepColorTemperatureResponse },
+
+    [MessageType.InitiateTouchlink]: { request: MessageTypes.InitiateTouchlinkRequest, response: MessageTypes.InitiateTouchlinkResponse },
+    [MessageType.TouchlinkFactoryResetTarget]: { request: MessageTypes.TouchlinkFactoryResetTargetRequest, response: MessageTypes.TouchlinkFactoryResetTargetResponse },
+
+    [MessageType.IdentifyTriggerEffect]: { request: MessageTypes.IdentifyTriggerEffectRequest, response: MessageTypes.IdentifyTriggerEffectResponse },
+
+    [MessageType.LockUnlockDoor]: { request: MessageTypes.LockUnlockDoorRequest, response: MessageTypes.LockUnlockDoorResponse },
+
+    [MessageType.ReadAttribute]: { request: MessageTypes.ReadAttributeRequest, response: MessageTypes.ReadAttributeResponse },
+    [MessageType.WriteAttribute]: { request: MessageTypes.WriteAttributeRequest, response: MessageTypes.WriteAttributeResponse },
+    [MessageType.ConfigureReporting]: { request: MessageTypes.ConfigureReportingRequest, response: MessageTypes.ConfigureReportingResponse },
+    [MessageType.AttributeDiscovery]: { request: MessageTypes.AttributeDiscoveryRequest, response: MessageTypes.AttributeDiscoveryResponse },
+
+    [MessageType.IASZoneEnrollResponse]: { request: MessageTypes.IASZoneEnrollResponseRequest, response: MessageTypes.IASZoneEnrollResponseResponse },
+
+    [MessageType.RawAPSData]: { request: MessageTypes.RawAPSDataRequest, response: MessageTypes.RawAPSDataResponse },
+}
+
 export { Cluster };
 
-export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in keyof typeof MessageType | MessageType]: Message['message'] }>
+export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in keyof typeof MessageType | MessageType]: Event<[Message & { message: Messages }]> }>
 {
     public start(abort?: AbortSignal, debug?: boolean)
     {
@@ -438,5 +723,29 @@ export class Zigate extends Gateway<{ message: Event<[Message]> } & { [key in ke
             if (e.code !== 'MODULE_NOT_FOUND' && e.code !== 'ERR_MODULE_NOT_FOUND')
                 throw e;
         }
+    }
+
+    public dialog<T extends keyof MessageMap & MessageType>(type: T, message: MessageMap[T]['request']): Promise<MessageMap[T]['response']>
+    {
+        return new Promise(resolve =>
+        {
+            if (typeof message == 'object' && 'sequenceNumber' in message)
+            {
+                let sub = this.on(type | MessageType.Response, x =>
+                {
+                    const m = x as Message<MessageMap[T]['response']>;
+                    if ('sequenceNumber' in m.message && m.message.sequenceNumber == message.sequenceNumber)
+                    {
+                        sub();
+                        resolve(m.message);
+                    }
+                    else
+                        console.error('should not happen, response without sequence number but request has one.');
+                });
+            }
+            else
+                this.once(type | MessageType.Response, resolve);
+            this.send(type, message);
+        });
     }
 }

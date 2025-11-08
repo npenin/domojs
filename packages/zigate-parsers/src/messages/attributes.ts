@@ -165,7 +165,7 @@ messages.register(MessageType.ReadAttribute | MessageType.Response, parsers.obje
     parsers.property('sourceAddress', parsers.uint16),
     parsers.property('endpoint', parsers.uint8),
     parsers.property('clusterId', parsers.uint8),
-    parsers.property('attributeEnum', parsers.uint8),
+    parsers.property('attribute', parsers.uint8),
     parsers.property('status', parsers.uint8),
     parsers.property('dataType', parsers.uint8),
     parsers.property('value', parsers.buffer(parsers.uint16)),
@@ -176,7 +176,7 @@ messages.register(MessageType.WriteAttribute | MessageType.Response, parsers.obj
     parsers.property('sourceAddress', parsers.uint16),
     parsers.property('endpoint', parsers.uint8),
     parsers.property('clusterId', parsers.uint8),
-    parsers.property('attributeEnum', parsers.uint8),
+    parsers.property('attribute', parsers.uint8),
     parsers.property('status', parsers.uint8),
     parsers.property('dataType', parsers.uint8),
     parsers.property('value', parsers.buffer(parsers.uint16)),
@@ -187,10 +187,63 @@ messages.register(MessageType.ReportIndividualAttribute | MessageType.Response, 
     parsers.property('sourceAddress', parsers.uint16),
     parsers.property('endpoint', parsers.uint8),
     parsers.property('clusterId', parsers.uint16),
-    parsers.property('attributeEnum', parsers.uint16),
+    parsers.property('attribute', parsers.uint16),
     parsers.property('status', parsers.uint8),
     parsers.property('dataType', parsers.uint8),
-    parsers.property('value', parsers.buffer(parsers.uint16)),
+    parsers.chooseProperty('dataType', 'value', {
+        0x00: parsers.skip(0),
+        0x08: parsers.int8,
+        0x09: parsers.int16,
+        0x0a: parsers.int24,
+        0x0b: parsers.int32,
+        // 0x0c: parsers.int40,
+        // 0x0d: parsers.int48,
+        // 0x0e: parsers.int56,
+        0x0f: parsers.int64,
+        0x10: parsers.boolean(parsers.uint8),
+
+        0x18: parsers.buffer(1),
+        0x19: parsers.buffer(2),
+        0x1A: parsers.buffer(3),
+        0x1B: parsers.buffer(4),
+
+        0x20: parsers.uint8,
+        0x21: parsers.uint16,
+        0x22: parsers.uint24,
+        0x23: parsers.uint32,
+        // 0x24: parsers.uint40,
+        // 0x25: parsers.uint48,
+        // 0x26: parsers.uint56,
+        0x27: parsers.uint64,
+
+
+        0x28: parsers.uint8,
+        0x29: parsers.uint16,
+        0x2a: parsers.uint24,
+        0x2b: parsers.uint32,
+        // 0x2c: parsers.uint40,
+        // 0x2d: parsers.uint48,
+        // 0x2e: parsers.uint56,
+        0x2f: parsers.uint64,
+
+        0x30: parsers.uint8,
+        0x31: parsers.uint16,
+        //0x38: parsers.float,	Semi-precision float	2	IEEE-754 half-float
+        0x39: parsers.float, //Single- precision float	4	IEEE - 754 float
+        0x3A: parsers.double,//	Double-precision float	8	IEEE-754 double
+        0x41: parsers.buffer(parsers.uint8),//	Octet string	variable	Length-prefixed (1 byte length)
+        0x42: parsers.string(parsers.uint8, 'utf-8'),//	Character string	variable	UTF-8 or ASCII, 1-byte length
+        0x43: parsers.buffer(parsers.uint16), // Long octet string	variable	2 - byte length prefix
+        0x44: parsers.string(parsers.uint16, 'utf-8'), // Long character string	variable	2 - byte length prefix
+        // 0x48	Array	variable	Complex type
+        // 0x4C	Structure	variable	Complex type
+        // 0xE0	Time of day	4	hh: mm: ss in BCD
+        // 0xE1	Date	4	YYYY - MM - DD
+        // 0xE2	UTC time	4	Seconds since 1 Jan 2000
+        // 0xE8	Cluster ID	2	Cluster identifier
+        // 0xE9	Attribute ID	2	Attribute identifier
+        // 0xEA	BACnet OID	4	—
+    } as Record<number, parsers.AnyParser<any, AttributeResponse>>),
 ))
 
 export interface AttributeResponse extends StatusMessage
@@ -198,9 +251,8 @@ export interface AttributeResponse extends StatusMessage
     sourceAddress: uint16;
     endpoint: uint8;
     clusterId: Cluster;
-    attributeEnum: uint16;
+    attribute: uint16;
     status: uint8;
     dataType: uint8;
-    attributes: uint16[];
-    value: IsomorphicBuffer;
+    value: IsomorphicBuffer | number | bigint | string | boolean;
 }

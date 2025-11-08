@@ -55,9 +55,15 @@ messages.register(MessageType.ObjectCommandsList, parsers.object<CommandList>(
     parsers.property('commands', parsers.array(-1, parsers.uint8)),
 ))
 
+export enum AddressMode
+{
+    ShortAddress = 2,
+    IEEEAddress = 3,
+}
+
 export interface CommandMessage extends ShortAddressRequest
 {
-    addressMode: uint8;
+    addressMode: AddressMode;
     sourceEndpoint: uint8;
     destinationEndpoint: uint8;
 }

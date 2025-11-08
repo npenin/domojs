@@ -224,12 +224,12 @@ export enum Cluster
     XiaomiPrivate2 = 0xFF02,
 }
 
-export interface Message
+export interface Message<T = any>
 {
     start: 0x01;
     end: 0x03;
     type: MessageType;
-    message: any;
+    message: T;
     length: uint16;
     checksum: uint8;
     rssi?: uint8;
