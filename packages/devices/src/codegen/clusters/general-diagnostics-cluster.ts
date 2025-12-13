@@ -1,5 +1,5 @@
 // This file is generated from general-diagnostics-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:31.596Z
+// Generated on 2025-12-03T20:57:11.089Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -53,6 +53,14 @@ export enum InterfaceTypeEnum {
 	Thread= 4,
 }
 
+export interface DeviceLoadStruct {
+	CurrentSubscriptions:number,
+	CurrentSubscriptionsForFabric:number,
+	TotalSubscriptionsEstablished:number,
+	TotalInteractionModelMessagesSent:number,
+	TotalInteractionModelMessagesReceived:number,
+}
+
 export interface NetworkInterface {
 	Name:string,
 	IsOperational:boolean,
@@ -80,11 +88,14 @@ id: 51;
 		readonly ActiveRadioFaults?:readonly RadioFaultEnum[]
 		readonly ActiveNetworkFaults?:readonly NetworkFaultEnum[]
 		readonly TestEventTriggersEnabled:boolean
+		readonly DeviceLoadStatus?:DeviceLoadStruct
 		/** Support specific testing needs for extended Data Model features */
 		readonly SupportsDataModelTest: boolean
+		/** Support for reporting device load metrics (mandatory in revision 3 and above) */
+		readonly SupportsDeviceLoad: boolean
 }
 	commands: {
-		/** Provide a means for certification tests to trigger some test-plan-specific events */
+		/** This command SHALL be supported to provide a means for certification tests to trigger some test-plan-specific events, necessary to assist in automation of device interactions for some certification test cases. */
 		TestEventTrigger: {
 			inputparams: readonly [
 				EnableKey: import ("@akala/core").IsomorphicBuffer, 
@@ -92,7 +103,7 @@ id: 51;
 			],
 			 outputparams: readonly []
             }
-		/** Take a snapshot of system time and epoch time. */
+		/** This command MAY be used by a client to obtain a correlated view of both System Time, and, if currently synchronized and supported, "wall clock time" of the server. */
 		TimeSnapshot: {
 			inputparams: readonly [
 			],
@@ -100,7 +111,7 @@ id: 51;
 				SystemTimeMs: number, 
 				PosixTimeMs: number, ]
             }
-		/** Request a variable length payload response. */
+		/** This command provides a means for certification tests or manufacturer's internal tests to validate particular command handling and encoding constraints by generating a response of a given size. */
 		PayloadTestRequest?: {
 			inputparams: readonly [
 				EnableKey: import ("@akala/core").IsomorphicBuffer, 
@@ -142,7 +153,9 @@ id: 51,
 		"ActiveRadioFaults",
 		"ActiveNetworkFaults",
 		"TestEventTriggersEnabled",
+		"DeviceLoadStatus",
 		"SupportsDataModelTest",
+		"SupportsDeviceLoad",
 	] as const,
 	commands: [
 		"TestEventTrigger",

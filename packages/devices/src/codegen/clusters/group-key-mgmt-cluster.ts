@@ -1,5 +1,5 @@
 // This file is generated from group-key-mgmt-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:32.447Z
+// Generated on 2025-12-03T20:57:11.196Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

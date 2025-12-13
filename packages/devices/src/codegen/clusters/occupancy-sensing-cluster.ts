@@ -1,5 +1,5 @@
 // This file is generated from occupancy-sensing-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:36.774Z
+// Generated on 2025-12-03T20:57:11.749Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

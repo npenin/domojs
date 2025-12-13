@@ -1,5 +1,5 @@
 // This file is generated from identify-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:33.001Z
+// Generated on 2025-12-03T20:57:11.304Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -45,7 +45,7 @@ id: 3;
 			 outputparams: readonly []
             }
 		/** This command allows the support of feedback to the user, such as a certain light effect. */
-		TriggerEffect: {
+		TriggerEffect?: {
 			inputparams: readonly [
 				EffectIdentifier: EffectIdentifierEnum, 
 				EffectVariant: EffectVariantEnum, 

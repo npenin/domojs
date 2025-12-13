@@ -1,5 +1,5 @@
 // This file is generated from administrator-commissioning-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:22.415Z
+// Generated on 2025-12-03T20:57:09.974Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -30,7 +30,7 @@ id: 60;
 		readonly SupportsBasic: boolean
 }
 	commands: {
-		/** This command is used by a current Administrator to instruct a Node to go into commissioning mode using enhanced commissioning method. */
+		/** This command is used by a current Administrator to instruct a Node to go into commissioning mode. */
 		OpenCommissioningWindow: {
 			inputparams: readonly [
 				CommissioningTimeout: number, 
@@ -41,14 +41,14 @@ id: 60;
 			],
 			 outputparams: readonly []
             }
-		/** This command is used by a current Administrator to instruct a Node to go into commissioning mode using basic commissioning method, if the node supports it. */
+		/** This command MAY be used by a current Administrator to instruct a Node to go into commissioning mode, if the node supports the Basic Commissioning Method. */
 		OpenBasicCommissioningWindow?: {
 			inputparams: readonly [
 				CommissioningTimeout: number, 
 			],
 			 outputparams: readonly []
             }
-		/** This command is used by a current Administrator to instruct a Node to revoke any active Open Commissioning Window or Open Basic Commissioning Window command. */
+		/** This command is used by a current Administrator to instruct a Node to revoke any active OpenCommissioningWindow or OpenBasicCommissioningWindow command. */
 		RevokeCommissioning: {
 			inputparams: readonly [
 			],

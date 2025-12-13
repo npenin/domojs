@@ -1,12 +1,60 @@
 // This file is generated from content-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:27.669Z
+// Generated on 2025-12-03T20:57:10.518Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
 
+export enum StatusCodeEnum {
+	InvalidPINCode= 2,
+	InvalidRating= 3,
+	InvalidChannel= 4,
+	ChannelAlreadyExist= 5,
+	ChannelNotExist= 6,
+	UnidentifiableApplication= 7,
+	ApplicationAlreadyExist= 8,
+	ApplicationNotExist= 9,
+	TimeWindowAlreadyExist= 10,
+	TimeWindowNotExist= 11,
+}
+
+export enum DayOfWeekBitmap {
+	Sunday= 0x01,
+	Monday= 0x02,
+	Tuesday= 0x04,
+	Wednesday= 0x08,
+	Thursday= 0x10,
+	Friday= 0x20,
+	Saturday= 0x40,
+}
+
+export interface AppInfoStruct {
+	CatalogVendorID:number,
+	ApplicationID:string,
+}
+
+export interface BlockChannelStruct {
+	BlockChannelIndex:number,
+	MajorNumber:number,
+	MinorNumber:number,
+	Identifier?:string,
+}
+
 export interface RatingNameStruct {
 	RatingName:string,
 	RatingNameDesc?:string,
+}
+
+export interface TimePeriodStruct {
+	StartHour:number,
+	StartMinute:number,
+	EndHour:number,
+	EndMinute:number,
+}
+
+export interface TimeWindowStruct {
+	TimeWindowIndex:number,
+	DayOfWeek:DayOfWeekBitmap,
+	TimePeriod:readonly TimePeriodStruct[],
 }
 
 /**
@@ -24,6 +72,9 @@ id: 1295;
 		readonly ScreenDailyTime?:number
 		readonly RemainingScreenTime?:number
 		readonly BlockUnrated?:boolean
+		readonly BlockChannelList?:readonly BlockChannelStruct[]
+		readonly BlockApplicationList?:readonly AppInfoStruct[]
+		readonly BlockContentTimeWindow?:readonly TimeWindowStruct[]
 		/** Supports managing screen time limits. */
 		readonly SupportsScreenTime: boolean
 		/** Supports managing a PIN code which is used for restricting access to configuration of this feature. */
@@ -34,9 +85,15 @@ id: 1295;
 		readonly SupportsOnDemandContentRating: boolean
 		/** Supports managing content controls based upon rating threshold for scheduled content. */
 		readonly SupportsScheduledContentRating: boolean
+		/** Supports managing a set of channels that are prohibited. */
+		readonly SupportsBlockChannels: boolean
+		/** Supports managing a set of applications that are prohibited. */
+		readonly SupportsBlockApplications: boolean
+		/** Supports managing content controls based upon setting time window in which all contents and applications SHALL be blocked. */
+		readonly SupportsBlockContentTimeWindow: boolean
 }
 	commands: {
-		/** The purpose of this command is to update the PIN used for protecting configuration of the content control settings. Upon success, the old PIN SHALL no longer work. The PIN is used to ensure that only the Node (or User) with the PIN code can make changes to the Content Control settings, for example, turn off Content Controls or modify the ScreenDailyTime. The PIN is composed of a numeric string of up to 6 human readable characters (displayable) . Upon receipt of this command, the media device SHALL check if the OldPIN field of this command is the same as the current PIN. If the PINs are the same, then the PIN code SHALL be set to NewPIN. Otherwise a response with InvalidPINCode error status SHALL be returned. The media device MAY provide a default PIN to the User via an out of band mechanism. For security reasons, it is recommended that a client encourage the user to update the PIN from its default value when performing configuration of the Content Control settings exposed by this cluster. The ResetPIN command can also be used to obtain the default PIN. */
+		/** The purpose of this command is to update the PIN used for protecting configuration of the content control settings. */
 		UpdatePIN?: {
 			inputparams: readonly [
 				OldPIN: string, 
@@ -44,26 +101,26 @@ id: 1295;
 			],
 			 outputparams: readonly []
             }
-		/** The purpose of this command is to reset the PIN. If this command is executed successfully, a ResetPINResponse command with a new PIN SHALL be returned. */
+		/** The purpose of this command is to reset the PIN. */
 		ResetPIN?: {
 			inputparams: readonly [
 			],
 			 outputparams: readonly [
 				PINCode: string, ]
             }
-		/** The purpose of this command is to turn on the Content Control feature on a media device. On receipt of the Enable command, the media device SHALL set the Enabled attribute to TRUE. */
-		Enable?: {
+		/** The purpose of this command is to turn on the Content Control feature on a media device. */
+		Enable: {
 			inputparams: readonly [
 			],
 			 outputparams: readonly []
             }
-		/** The purpose of this command is to turn off the Content Control feature on a media device. On receipt of the Disable command, the media device SHALL set the Enabled attribute to FALSE. */
-		Disable?: {
+		/** The purpose of this command is to turn off the Content Control feature on a media device. */
+		Disable: {
 			inputparams: readonly [
 			],
 			 outputparams: readonly []
             }
-		/** The purpose of this command is to add the extra screen time for the user. If a client with Operate privilege invokes this command, the media device SHALL check whether the PINCode passed in the command matches the current PINCode value. If these match, then the RemainingScreenTime attribute SHALL be increased by the specified BonusTime value. If the PINs do not match, then a response with InvalidPINCode error status SHALL be returned, and no changes SHALL be made to RemainingScreenTime. If a client with Manage privilege or greater invokes this command, the media device SHALL ignore the PINCode field and directly increase the RemainingScreenTime attribute by the specified BonusTime value. A server that does not support the PM feature SHALL respond with InvalidPINCode to clients that only have Operate privilege unless: It has been provided with the PIN value to expect via an out of band mechanism, and The client has provided a PINCode that matches the expected PIN value. */
+		/** The purpose of this command is to add the extra screen time for the user. */
 		AddBonusTime?: {
 			inputparams: readonly [
 				PINCode: string, 
@@ -71,42 +128,86 @@ id: 1295;
 			],
 			 outputparams: readonly []
             }
-		/** The purpose of this command is to set the ScreenDailyTime attribute. On receipt of the SetScreenDailyTime command, the media device SHALL set the ScreenDailyTime attribute to the ScreenTime value. */
+		/** The purpose of this command is to set the ScreenDailyTime attribute. */
 		SetScreenDailyTime?: {
 			inputparams: readonly [
 				ScreenTime: number, 
 			],
 			 outputparams: readonly []
             }
-		/** The purpose of this command is to specify whether programs with no Content rating must be blocked by this media device. On receipt of the BlockUnratedContent command, the media device SHALL set the BlockUnrated attribute to TRUE. */
+		/** The purpose of this command is to specify whether programs with no Content rating must be blocked by this media device. */
 		BlockUnratedContent?: {
 			inputparams: readonly [
 			],
 			 outputparams: readonly []
             }
-		/** The purpose of this command is to specify whether programs with no Content rating must be blocked by this media device. On receipt of the UnblockUnratedContent command, the media device SHALL set the BlockUnrated attribute to FALSE. */
+		/** The purpose of this command is to specify whether programs with no Content rating must be blocked by this media device. */
 		UnblockUnratedContent?: {
 			inputparams: readonly [
 			],
 			 outputparams: readonly []
             }
-		/** The purpose of this command is to set the OnDemandRatingThreshold attribute. On receipt of the SetOnDemandRatingThreshold command, the media device SHALL check if the Rating field is one of values present in the OnDemandRatings attribute. If not, then a response with InvalidRating error status SHALL be returned. */
+		/** The purpose of this command is to set the OnDemandRatingThreshold attribute. */
 		SetOnDemandRatingThreshold?: {
 			inputparams: readonly [
 				Rating: string, 
 			],
 			 outputparams: readonly []
             }
-		/** The purpose of this command is to set ScheduledContentRatingThreshold attribute. On receipt of the SetScheduledContentRatingThreshold command, the media device SHALL check if the Rating field is one of values present in the ScheduledContentRatings attribute. If not, then a response with InvalidRating error status SHALL be returned. */
+		/** The purpose of this command is to set ScheduledContentRatingThreshold attribute. */
 		SetScheduledContentRatingThreshold?: {
 			inputparams: readonly [
 				Rating: string, 
 			],
 			 outputparams: readonly []
             }
+		/** The purpose of this command is to set BlockChannelList attribute. */
+		AddBlockChannels?: {
+			inputparams: readonly [
+				Channels: readonly BlockChannelStruct[], 
+			],
+			 outputparams: readonly []
+            }
+		/** The purpose of this command is to remove channels from the BlockChannelList attribute. */
+		RemoveBlockChannels?: {
+			inputparams: readonly [
+				ChannelIndexes: readonly number[], 
+			],
+			 outputparams: readonly []
+            }
+		/** The purpose of this command is to set applications to the BlockApplicationList attribute. */
+		AddBlockApplications?: {
+			inputparams: readonly [
+				Applications: readonly AppInfoStruct[], 
+			],
+			 outputparams: readonly []
+            }
+		/** The purpose of this command is to remove applications from the BlockApplicationList attribute. */
+		RemoveBlockApplications?: {
+			inputparams: readonly [
+				Applications: readonly AppInfoStruct[], 
+			],
+			 outputparams: readonly []
+            }
+		/** The purpose of this command is to set the BlockContentTimeWindow attribute. */
+		SetBlockContentTimeWindow?: {
+			inputparams: readonly [
+				TimeWindow: TimeWindowStruct, 
+			],
+			 outputparams: readonly []
+            }
+		/** The purpose of this command is to remove the selected time windows from the BlockContentTimeWindow attribute. */
+		RemoveBlockContentTimeWindow?: {
+			inputparams: readonly [
+				TimeWindowIndexes: readonly number[], 
+			],
+			 outputparams: readonly []
+            }
 }
 	events: {
 		RemainingScreenTimeExpired?: [
+			];
+		EnteringBlockContentTimeWindow?: [
 			];
 	}
 }
@@ -122,11 +223,17 @@ id: 1295,
 		"ScreenDailyTime",
 		"RemainingScreenTime",
 		"BlockUnrated",
+		"BlockChannelList",
+		"BlockApplicationList",
+		"BlockContentTimeWindow",
 		"SupportsScreenTime",
 		"SupportsPINManagement",
 		"SupportsBlockUnrated",
 		"SupportsOnDemandContentRating",
 		"SupportsScheduledContentRating",
+		"SupportsBlockChannels",
+		"SupportsBlockApplications",
+		"SupportsBlockContentTimeWindow",
 	] as const,
 	commands: [
 		"UpdatePIN",
@@ -139,9 +246,16 @@ id: 1295,
 		"UnblockUnratedContent",
 		"SetOnDemandRatingThreshold",
 		"SetScheduledContentRatingThreshold",
+		"AddBlockChannels",
+		"RemoveBlockChannels",
+		"AddBlockApplications",
+		"RemoveBlockApplications",
+		"SetBlockContentTimeWindow",
+		"RemoveBlockContentTimeWindow",
 	] as const,
 	events: [
 		"RemainingScreenTimeExpired",
+		"EnteringBlockContentTimeWindow",
 	] as const
 }
 

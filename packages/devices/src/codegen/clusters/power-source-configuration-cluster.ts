@@ -1,5 +1,5 @@
 // This file is generated from power-source-configuration-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:38.254Z
+// Generated on 2025-12-03T20:57:11.921Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

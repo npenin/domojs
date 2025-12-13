@@ -1,5 +1,5 @@
 // This file is generated from icd-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:32.830Z
+// Generated on 2025-12-03T20:57:11.278Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -67,7 +67,7 @@ id: 70;
 		readonly SupportsDynamicSitLitSupport: boolean
 }
 	commands: {
-		/** Register a client to the end device */
+		/** This command allows a client to register itself with the ICD to be notified when the device is available for communication. */
 		RegisterClient?: {
 			inputparams: readonly [
 				CheckInNodeID: string, 
@@ -79,7 +79,7 @@ id: 70;
 			 outputparams: readonly [
 				ICDCounter: number, ]
             }
-		/** Unregister a client from an end device */
+		/** This command allows a client to unregister itself with the ICD. */
 		UnregisterClient?: {
 			inputparams: readonly [
 				CheckInNodeID: string, 
@@ -87,7 +87,7 @@ id: 70;
 			],
 			 outputparams: readonly []
             }
-		/** Request the end device to stay in Active Mode for an additional ActiveModeThreshold */
+		/** This command allows a client to request that the server stays in active mode for at least a given time duration (in milliseconds) from when this command is received. */
 		StayActiveRequest?: {
 			inputparams: readonly [
 				StayActiveDuration: number, 

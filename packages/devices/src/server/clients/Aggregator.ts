@@ -4,7 +4,7 @@ import { Endpoint, MixedClusterMap } from "./Endpoint.js";
 import { EndpointProxy } from "./EndpointProxy.js";
 import { MqttEvents } from "@domojs/mqtt";
 
-const log = logger('domojs:devices:aggregator')
+const log = logger.use('domojs:devices:aggregator')
 
 export class AggregatorEndpoint<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor'>> extends Endpoint<TClusterMapKeys> 
 {
@@ -17,7 +17,7 @@ export class AggregatorEndpoint<TClusterMapKeys extends Exclude<keyof ClusterMap
         this.teardown(this.endpoints.addListener(async (ev) =>
         {
             log.data(ev);
-            this.descriptor.setValue('PartsList', this.endpoints.map(ev => ev.id));
+            this.descriptor.setValue('PartsList', this.endpoints.map(ev => Number(ev.id)));
         }));
         this.teardown(() =>
         {

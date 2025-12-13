@@ -1,5 +1,5 @@
 // This file is generated from refrigerator-alarm.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:39.850Z
+// Generated on 2025-12-03T20:57:12.095Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

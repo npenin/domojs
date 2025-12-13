@@ -1,5 +1,5 @@
 // This file is generated from resource-monitoring-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:40.381Z
+// Generated on 2025-12-03T20:57:12.156Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -33,6 +33,11 @@ export interface ReplacementProductStruct {
 	ProductIdentifierValue:string,
 }
 
+export interface ReplacementProductStruct {
+	ProductIdentifierType:ProductIdentifierTypeEnum,
+	ProductIdentifierValue:string,
+}
+
 /**
  * Attributes and commands for monitoring HEPA filters in a device
  */
@@ -54,7 +59,7 @@ id: 113;
 		readonly SupportsReplacementProductList: boolean
 }
 	commands: {
-		/** Reset the condition of the replaceable to the non degraded state */
+		/** Upon receipt, the device SHALL reset the Condition and ChangeIndicator attributes, indicating full resource availability and readiness for use, as initially configured. */
 		ResetCondition?: {
 			inputparams: readonly [
 			],
@@ -106,7 +111,7 @@ id: 114;
 		readonly SupportsReplacementProductList: boolean
 }
 	commands: {
-		/** Reset the condition of the replaceable to the non degraded state */
+		/** Upon receipt, the device SHALL reset the Condition and ChangeIndicator attributes, indicating full resource availability and readiness for use, as initially configured. */
 		ResetCondition?: {
 			inputparams: readonly [
 			],
@@ -119,6 +124,58 @@ id: 114;
 
 export const activatedCarbonFilterMonitoring: ClusterDefinition<ActivatedCarbonFilterMonitoring> = {
 id: 114,
+	attributes: [
+		"Condition",
+		"DegradationDirection",
+		"ChangeIndication",
+		"InPlaceIndicator",
+		"LastChangedTime",
+		"ReplacementProductList",
+		"SupportsCondition",
+		"SupportsWarning",
+		"SupportsReplacementProductList",
+	] as const,
+	commands: [
+		"ResetCondition",
+	] as const,
+	events: [
+	] as const
+}
+
+/**
+ * This generic cluster provides an interface to the current condition of a resource.
+ */
+
+export interface WaterTankLevelMonitoring {
+id: 121;
+	attributes: {
+		readonly Condition?:number
+		readonly DegradationDirection?:DegradationDirectionEnum
+		readonly ChangeIndication:ChangeIndicationEnum
+		readonly InPlaceIndicator?:boolean
+		LastChangedTime?:number
+		readonly ReplacementProductList?:readonly ReplacementProductStruct[]
+		/** Supports monitoring the condition of the resource in percentage */
+		readonly SupportsCondition: boolean
+		/** Supports warning indication */
+		readonly SupportsWarning: boolean
+		/** Supports specifying the list of replacement products */
+		readonly SupportsReplacementProductList: boolean
+}
+	commands: {
+		/** Upon receipt, the device SHALL reset the Condition and ChangeIndicator attributes, indicating full resource availability and readiness for use, as initially configured. */
+		ResetCondition?: {
+			inputparams: readonly [
+			],
+			 outputparams: readonly []
+            }
+}
+	events: {
+	}
+}
+
+export const waterTankLevelMonitoring: ClusterDefinition<WaterTankLevelMonitoring> = {
+id: 121,
 	attributes: [
 		"Condition",
 		"DegradationDirection",

@@ -20,7 +20,7 @@ export class RootNode<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descrip
     {
         super(0, clusters);
 
-        const root = new Endpoint<TClusterMapKeys>(0, this.clusters);
+        const root = new Endpoint<TClusterMapKeys>(0, this.clusters as any);
         this.endpoints.push(root);
     }
     async offline(): Promise<void>

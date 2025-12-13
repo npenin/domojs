@@ -1,5 +1,5 @@
 // This file is generated from keypad-input-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:33.723Z
+// Generated on 2025-12-03T20:57:11.381Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -114,7 +114,7 @@ id: 1289;
 		readonly SupportsNumberKeys: boolean
 }
 	commands: {
-		/** Upon receipt, this SHALL process a keycode as input to the media device. */
+		/** Upon receipt, this SHALL process a keycode as input to the media endpoint. */
 		SendKey: {
 			inputparams: readonly [
 				KeyCode: CECKeyCodeEnum, 

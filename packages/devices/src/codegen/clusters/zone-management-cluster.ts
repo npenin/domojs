@@ -1,8 +1,13 @@
 // This file is generated from zone-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:47.109Z
+// Generated on 2025-12-03T20:57:12.934Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
+
+export enum StatusCodeEnum {
+	ZoneNotFound= 2,
+	ZoneInUse= 3,
+}
 
 export enum ZoneEventStoppedReasonEnum {
 	ActionStopped= 0,
@@ -96,7 +101,7 @@ id: 1360;
 			],
 			 outputparams: readonly []
             }
-		/** This command SHALL remove the Zone mapped to the passed in ZoneID. */
+		/** This command SHALL remove the user-defined Zone indicated by ZoneID. */
 		RemoveZone?: {
 			inputparams: readonly [
 				ZoneID: number, 
@@ -110,7 +115,7 @@ id: 1360;
 			],
 			 outputparams: readonly []
             }
-		/** This command SHALL remove the Trigger mapped to the provided ZoneID. */
+		/** This command SHALL remove the Trigger for the provided ZoneID. */
 		RemoveTrigger: {
 			inputparams: readonly [
 				ZoneID: number, 

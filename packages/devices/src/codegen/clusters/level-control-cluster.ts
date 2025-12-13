@@ -1,5 +1,5 @@
 // This file is generated from level-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:34.263Z
+// Generated on 2025-12-03T20:57:11.441Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -44,13 +44,11 @@ id: 8;
 		readonly SupportsOnOff: boolean
 		/** Behavior that supports lighting applications */
 		readonly SupportsLighting: boolean
-		/** Supports frequency attributes and behavior.
-                                        The Pulse Width Modulation cluster was created
-                                        for frequency control. */
+		/** Supports frequency attributes and behavior. */
 		readonly SupportsFrequency: boolean
 }
 	commands: {
-		/** Command description for MoveToLevel */
+		/** This command will move the device to the specified level. */
 		MoveToLevel: {
 			inputparams: readonly [
 				Level: number, 
@@ -60,7 +58,7 @@ id: 8;
 			],
 			 outputparams: readonly []
             }
-		/** Command description for Move */
+		/** This command will move the device using the specified values. */
 		Move: {
 			inputparams: readonly [
 				MoveMode: MoveModeEnum, 
@@ -70,7 +68,7 @@ id: 8;
 			],
 			 outputparams: readonly []
             }
-		/** Command description for Step */
+		/** This command will do a relative step change of the device using the specified values. */
 		Step: {
 			inputparams: readonly [
 				StepMode: StepModeEnum, 
@@ -81,7 +79,7 @@ id: 8;
 			],
 			 outputparams: readonly []
             }
-		/** Command description for Stop */
+		/** This command will stop the actions of various other commands that are still in progress. */
 		Stop: {
 			inputparams: readonly [
 				OptionsMask: OptionsBitmap, 
@@ -128,8 +126,7 @@ id: 8;
 			],
 			 outputparams: readonly []
             }
-		/** Change the currrent frequency to the provided one, or a close
-        approximation if the exact provided one is not possible. */
+		/** This command will cause the device to change the current frequency to the requested value. */
 		MoveToClosestFrequency?: {
 			inputparams: readonly [
 				Frequency: number, 

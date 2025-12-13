@@ -1,5 +1,5 @@
 // This file is generated from air-quality-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:22.597Z
+// Generated on 2025-12-03T20:57:09.994Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

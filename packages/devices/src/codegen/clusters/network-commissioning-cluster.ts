@@ -1,5 +1,5 @@
 // This file is generated from network-commissioning-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:36.582Z
+// Generated on 2025-12-03T20:57:11.732Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -101,7 +101,7 @@ id: 49;
 		readonly SupportsPerDeviceCredentials: boolean
 }
 	commands: {
-		/** Detemine the set of networks the device sees as available. */
+		/** This command is used to scan for available networks on the network interface associated with the cluster instance. */
 		ScanNetworks?: {
 			inputparams: readonly [
 				SSID: import ("@akala/core").IsomorphicBuffer, 
@@ -113,7 +113,7 @@ id: 49;
 				WiFiScanResults: readonly WiFiInterfaceScanResultStruct[], 
 				ThreadScanResults: readonly ThreadInterfaceScanResultStruct[], ]
             }
-		/** Add or update the credentials for a given Wi-Fi network. */
+		/** This command is used to add or update a Wi-Fi network configuration. */
 		AddOrUpdateWiFiNetwork?: {
 			inputparams: readonly [
 				SSID: import ("@akala/core").IsomorphicBuffer, 
@@ -130,7 +130,7 @@ id: 49;
 				ClientIdentity: import ("@akala/core").IsomorphicBuffer, 
 				PossessionSignature: import ("@akala/core").IsomorphicBuffer, ]
             }
-		/** Add or update the credentials for a given Thread network. */
+		/** This command is used to add or update a Thread network configuration. */
 		AddOrUpdateThreadNetwork?: {
 			inputparams: readonly [
 				OperationalDataset: import ("@akala/core").IsomorphicBuffer, 
@@ -143,7 +143,7 @@ id: 49;
 				ClientIdentity: import ("@akala/core").IsomorphicBuffer, 
 				PossessionSignature: import ("@akala/core").IsomorphicBuffer, ]
             }
-		/** Remove the definition of a given network (including its credentials). */
+		/** This command is used to remove a network configuration on the network interface associated with the cluster instance. */
 		RemoveNetwork?: {
 			inputparams: readonly [
 				NetworkID: import ("@akala/core").IsomorphicBuffer, 
@@ -156,7 +156,7 @@ id: 49;
 				ClientIdentity: import ("@akala/core").IsomorphicBuffer, 
 				PossessionSignature: import ("@akala/core").IsomorphicBuffer, ]
             }
-		/** Connect to the specified network, using previously-defined credentials. */
+		/** This command is used to connect to a network on the network interface associated with the cluster instance. */
 		ConnectNetwork?: {
 			inputparams: readonly [
 				NetworkID: import ("@akala/core").IsomorphicBuffer, 
@@ -167,7 +167,7 @@ id: 49;
 				DebugText: string, 
 				ErrorValue: number, ]
             }
-		/** Modify the order in which networks will be presented in the Networks attribute. */
+		/** This command is used to re-order the network configuration list. */
 		ReorderNetwork?: {
 			inputparams: readonly [
 				NetworkID: import ("@akala/core").IsomorphicBuffer, 
@@ -181,7 +181,7 @@ id: 49;
 				ClientIdentity: import ("@akala/core").IsomorphicBuffer, 
 				PossessionSignature: import ("@akala/core").IsomorphicBuffer, ]
             }
-		/** Retrieve details about and optionally proof of possession of a network client identity. */
+		/** This command is used to query the identity of a network configuration. */
 		QueryIdentity?: {
 			inputparams: readonly [
 				KeyIdentifier: import ("@akala/core").IsomorphicBuffer, 

@@ -1,5 +1,5 @@
 // This file is generated from valve-configuration-and-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:45.313Z
+// Generated on 2025-12-03T20:57:12.731Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

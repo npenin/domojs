@@ -1,4 +1,4 @@
-import { AsyncEventBus, Deferred, IEvent, Event, ObservableArray, ObservableObject, AsyncTeardownManager, fromEvent, EmptyBinding, Binding } from "@akala/core";
+import { AsyncEventBus, Deferred, IEvent, Event, ObservableArray, ObservableObject, AsyncTeardownManager, fromEvent, EmptyBinding, Binding, IsomorphicBuffer } from "@akala/core";
 import { MqttEvents, protocol } from "@domojs/mqtt";
 import { DescriptorClusterId } from "../behaviors/descriptor.js";
 
@@ -28,12 +28,16 @@ export function clusterProxyFactory<TCluster extends Cluster<unknown, unknown, a
         id: cluster.id,
         definition: cluster
     });
+
+    let ready: Promise<void>[] = [];
+
     Object.defineProperties(target, Object.fromEntries(cluster.commands.map(e => [e.toString() + 'Command', {
         value:
             async (...args) =>
             {
                 const defer = new Deferred();
-                const sub = await pubsub.on(`${prefixTopic}/${e.toString()}Command`, async (data) =>
+                const commandExecutionId = crypto.randomUUID();
+                const sub = await pubsub.on(`${prefixTopic}/${e.toString()}Command/reply/${commandExecutionId}`, async (data, options) =>
                 {
                     console.log(data);
                     await sub?.();
@@ -45,7 +49,12 @@ export function clusterProxyFactory<TCluster extends Cluster<unknown, unknown, a
                     { noLocal: true });
 
                 target.teardown(sub);
-                await pubsub.emit(`${prefixTopic}/${e.toString()}Command/execute`, JSON.stringify(args), { qos: 1 });
+                await pubsub.emit(`${prefixTopic}/${e.toString()}Command/execute`, JSON.stringify(args), {
+                    qos: 1, properties: protocol.fromPropertyMap({
+                        responseTopic: `${prefixTopic}/${e.toString()}Command/reply/${commandExecutionId}`,
+                        correlationData: IsomorphicBuffer.from(commandExecutionId),
+                    })
+                });
 
                 return defer.promise;
             },
@@ -65,7 +74,7 @@ export function clusterProxyFactory<TCluster extends Cluster<unknown, unknown, a
         let preventLoop = false;
         // const sync = new Event<[], void>();
         const topic = `${prefixTopic}/${e.toString()}`;
-        target.teardown(pubsub.on(topic, async (data, ev) =>
+        ready.push(target.teardown(pubsub.on(topic, async (data, ev) =>
         {
             if (ev.publishedTopic !== topic)
                 return;
@@ -76,13 +85,12 @@ export function clusterProxyFactory<TCluster extends Cluster<unknown, unknown, a
                 binding.setValue(JSON.parse(data.toString('utf-8')));
             preventLoop = false;
             // sync.emit();
-        }, { retainAsPublished: true, retainHandling: protocol.subscribe.RetainHandling.SendAtSubscribe }));
+        }, { noLocal: true })).then(() => { }));
         binding.onChanged(ev =>
         {
             if (!preventLoop)
             {
-                pubsub.emit(`${topic}/set`, JSON.stringify(ev.value));
-
+                pubsub.emit(`${topic}/set`, JSON.stringify(ev.value), { qos: 1 });
             }
         })
         return [['local' + e.toString(), {
@@ -100,7 +108,7 @@ export function clusterProxyFactory<TCluster extends Cluster<unknown, unknown, a
             {
                 if (!firstSet)
                 {
-                    pubsub.emit(`${prefixTopic}/${e.toString()}/get`, '{}');
+                    pubsub.emit(`${topic}/get`, '{}');
                     //  new Promise<void>(resolve => sync.addListener(resolve, { once: true }));
                 }
                 return binding;
@@ -135,7 +143,10 @@ export function clusterProxyFactory<TCluster extends Cluster<unknown, unknown, a
         } as PropertyDescriptor
         ];
     })));
-    return new ObservableObject(target) as any;
+    const result = new ObservableObject(target) as any;
+    result.ready = Promise.all(ready);
+
+    return result;
 }
 export { Binding } from '../behaviors/binding.js'
 
@@ -157,7 +168,7 @@ export type ClusterDefinition<TCluster extends Cluster<any, any, any>> = {
 export type NonWatchableClusterInstance<TCluster extends Cluster<any, any, any>> = ClusterInstanceLight<TCluster> & ClusterEvents<TCluster>
 export type NonWatchableRemoteClusterInstance<TCluster extends Cluster<any, any, any>> = RemoteClusterInstanceLight<TCluster> & ClusterEvents<TCluster>
 export type ClusterInstance<TCluster extends Cluster<any, any, any>> = ObservableObject<NonWatchableClusterInstance<TCluster>>
-export type RemoteClusterInstance<TCluster extends Cluster<any, any, any>> = ObservableObject<NonWatchableRemoteClusterInstance<TCluster>>
+export type RemoteClusterInstance<TCluster extends Cluster<any, any, any>> = ObservableObject<NonWatchableRemoteClusterInstance<TCluster>> & { ready: Promise<void> };
 
 export type ClusterInstanceLight<TCluster extends Cluster<any, any, any>> = ClusterAttributes<TCluster> & ClusterCommandsImpl<TCluster> &
 {

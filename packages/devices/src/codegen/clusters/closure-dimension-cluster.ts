@@ -1,5 +1,5 @@
 // This file is generated from closure-dimension-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:26.026Z
+// Generated on 2025-12-03T20:57:10.333Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -63,13 +63,14 @@ export enum TranslationDirectionEnum {
 	Backward= 9,
 	DepthMask= 10,
 	DepthSymmetry= 11,
-	CeilingSimple= 12,
-	CeilingMask= 13,
-	CeilingSidedSymmetry= 14,
-	CeilingCenteredSymmetry= 15,
 }
 
-export interface CurrentStateStruct {
+export enum LatchControlModesBitmap {
+	RemoteLatching= 0x01,
+	RemoteUnlatching= 0x02,
+}
+
+export interface DimensionStateStruct {
 	Position?:number,
 	Latch?:boolean,
 	Speed?:import("./global-enums.js").ThreeLevelAutoEnum,
@@ -80,36 +81,31 @@ export interface RangePercent100thsStruct {
 	Max:number,
 }
 
-export interface TargetStruct {
-	Position?:number,
-	Latch?:boolean,
-	Speed?:import("./global-enums.js").ThreeLevelAutoEnum,
-}
-
 export interface UnitRangeStruct {
 	Min:number,
 	Max:number,
 }
 
 /**
- * Ceiling values are dedicated for closures that close a ceiling, such as horizontal awnings, pergolas, etc.
+ * This cluster provides an interface to reflect and control a closure's range of movement, usually involving a panel, by using 6-axis framework.
  */
 
 export interface ClosureDimension {
 id: 261;
 	attributes: {
-		readonly CurrentState?:CurrentStateStruct
-		readonly Target?:TargetStruct
-		readonly Resolution?:number
-		readonly StepValue?:number
-		readonly Unit?:ClosureUnitEnum
+		readonly CurrentState?:DimensionStateStruct
+		readonly TargetState?:DimensionStateStruct
+		readonly Resolution:number
+		readonly StepValue:number
+		readonly Unit:ClosureUnitEnum
 		readonly UnitRange?:UnitRangeStruct
-		readonly LimitRange?:RangePercent100thsStruct
-		readonly TranslationDirection?:TranslationDirectionEnum
-		readonly RotationAxis?:RotationAxisEnum
-		readonly Overflow?:OverflowEnum
-		readonly ModulationType?:ModulationTypeEnum
-		/** Supports positioning in the range from 0.00% to 100.00% */
+		readonly LimitRange:RangePercent100thsStruct
+		readonly TranslationDirection:TranslationDirectionEnum
+		readonly RotationAxis:RotationAxisEnum
+		readonly Overflow:OverflowEnum
+		readonly ModulationType:ModulationTypeEnum
+		readonly LatchControlModes:LatchControlModesBitmap
+		/** Supports Positioning in the range from 0.00% to 100.00% */
 		readonly SupportsPositioning: boolean
 		/** Supports a latch to secure the closure to a position or state */
 		readonly SupportsMotionLatching: boolean
@@ -127,7 +123,7 @@ id: 261;
 		readonly SupportsModulation: boolean
 }
 	commands: {
-		/** This command is used to move a dimension of the device to a target position. */
+		/** This command is used to move a dimension of the closure to a target position. */
 		SetTarget: {
 			inputparams: readonly [
 				Position: number, 
@@ -136,8 +132,8 @@ id: 261;
 			],
 			 outputparams: readonly []
             }
-		/** This command is used to move a dimension of the device to a target position by a number of steps. */
-		Step?: {
+		/** This command is used to move a dimension of the closure to a target position by a number of steps. */
+		Step: {
 			inputparams: readonly [
 				Direction: StepDirectionEnum, 
 				NumberOfSteps: number, 
@@ -154,7 +150,7 @@ export const closureDimension: ClusterDefinition<ClosureDimension> = {
 id: 261,
 	attributes: [
 		"CurrentState",
-		"Target",
+		"TargetState",
 		"Resolution",
 		"StepValue",
 		"Unit",
@@ -164,6 +160,7 @@ id: 261,
 		"RotationAxis",
 		"Overflow",
 		"ModulationType",
+		"LatchControlModes",
 		"SupportsPositioning",
 		"SupportsMotionLatching",
 		"SupportsUnit",

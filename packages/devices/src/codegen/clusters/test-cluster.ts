@@ -1,5 +1,5 @@
 // This file is generated from test-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:42.852Z
+// Generated on 2025-12-03T20:57:12.467Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -204,6 +204,7 @@ id: 4294048773;
 		nullable_global_struct?:import("./global-structs.js").TestGlobalStruct
 		mei_int8u?:number
 		unsupported?:boolean
+		UnsupportedAttributeRequiringAdminPrivilege?:boolean
 }
 	commands: {
 		/** Simple command without any parameters and without a specific response.
@@ -617,6 +618,7 @@ id: 4294048773,
 		"nullable_global_struct",
 		"mei_int8u",
 		"unsupported",
+		"UnsupportedAttributeRequiringAdminPrivilege",
 	] as const,
 	commands: [
 		"Test",

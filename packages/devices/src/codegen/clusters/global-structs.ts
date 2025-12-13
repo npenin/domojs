@@ -1,5 +1,5 @@
 // This file is generated from global-structs.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:32.275Z
+// Generated on 2025-12-03T20:57:11.176Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -50,6 +50,13 @@ export interface PriceStruct {
 	Currency:CurrencyStruct,
 }
 
+export interface SemanticTagStruct {
+	MfgCode:number,
+	NamespaceID:number,
+	Tag:number,
+	Label?:string,
+}
+
 export interface TestGlobalStruct {
 	Name:string,
 	MyBitmap:import("./global-bitmaps.js").TestGlobalBitmap,
@@ -83,5 +90,5 @@ export interface WebRTCSessionStruct {
 	StreamUsage:import("./global-enums.js").StreamUsageEnum,
 	VideoStreamID:number,
 	AudioStreamID:number,
-	MetadataEnabled?:boolean,
+	MetadataEnabled:boolean,
 }

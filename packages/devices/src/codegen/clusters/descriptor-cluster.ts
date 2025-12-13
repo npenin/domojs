@@ -1,5 +1,5 @@
 // This file is generated from descriptor-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:28.060Z
+// Generated on 2025-12-03T20:57:10.561Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -7,13 +7,6 @@ import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 export interface DeviceTypeStruct {
 	DeviceType:number,
 	Revision:number,
-}
-
-export interface SemanticTagStruct {
-	MfgCode:number,
-	NamespaceID:number,
-	Tag:number,
-	Label?:string,
 }
 
 /**
@@ -27,7 +20,7 @@ id: 29;
 		readonly ServerList:readonly import ("./clusters-index.js").ClusterIds[]
 		readonly ClientList:readonly import ("./clusters-index.js").ClusterIds[]
 		readonly PartsList:readonly number[]
-		readonly TagList?:readonly SemanticTagStruct[]
+		readonly TagList?:readonly import("./mode-select-cluster.js").SemanticTagStruct[]
 		readonly EndpointUniqueID?:string
 		/** The TagList attribute is present */
 		readonly SupportsTagList: boolean

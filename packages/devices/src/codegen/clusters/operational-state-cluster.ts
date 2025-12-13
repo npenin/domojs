@@ -1,5 +1,5 @@
 // This file is generated from operational-state-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:37.377Z
+// Generated on 2025-12-03T20:57:11.806Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

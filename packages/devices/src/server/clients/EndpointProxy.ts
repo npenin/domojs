@@ -21,7 +21,7 @@ export class EndpointProxy<TClusterMapKeys extends Exclude<keyof ClusterMapType,
         public readonly id: number,
         public readonly parent: { name: string; },
         pubsub: AsyncEventBus<MqttEvents>,
-        clusters: MixedClusterDefinition<TClusterMapKeys>
+        clusters: MixedClusterDefinition<TClusterMapKeys> & Record<TClusterMapKeys, { ready: Promise<void> }>
     )
     {
         super();
@@ -32,10 +32,10 @@ export class EndpointProxy<TClusterMapKeys extends Exclude<keyof ClusterMapType,
             map(e => [e[0],
             clusterProxyFactory(
                 e[1],
-                `${parent.name}/${id}/${e[0]}`,
+                id == -1 ? `${parent.name}/${e[0]}` : `${parent.name}/${id}/${e[0]}`,
                 pubsub,
                 Object.values(clusters).map(c => (c as ClusterDefinition<any>).id)
-            )])) as MixedRemoteClusterMap<TClusterMapKeys | 'descriptor'>;
+            )])) as unknown as MixedRemoteClusterMap<TClusterMapKeys | 'descriptor'>;
     }
 
     public patch(patch: {
@@ -66,11 +66,16 @@ export class EndpointProxy<TClusterMapKeys extends Exclude<keyof ClusterMapType,
             if (typeof data !== 'string')
                 data = data.toString('utf8');
             const serverList: number[] = JSON.parse(data);
-            result.resolve(new EndpointProxy<TClusterMapKeys>(typeof endpointId == 'number' ? endpointId : -1, { name: prefix }, bus, Object.fromEntries(serverList.map(clusterId => [ClusterIdNames[clusterId], ClusterMap[clusterId]])) as MixedClusterDefinition<TClusterMapKeys>));
+            if (typeof endpointId === 'string')
+                result.resolve(new EndpointProxy<TClusterMapKeys>(-1, { name: prefix + '/' + endpointId }, bus, Object.fromEntries(serverList.map(clusterId => [ClusterIdNames[clusterId], ClusterMap[clusterId]])) as MixedClusterDefinition<TClusterMapKeys> & Record<TClusterMapKeys, { ready: Promise<void> }>));
+            else
+                result.resolve(new EndpointProxy<TClusterMapKeys>(endpointId, { name: prefix }, bus, Object.fromEntries(serverList.map(clusterId => [ClusterIdNames[clusterId], ClusterMap[clusterId]])) as MixedClusterDefinition<TClusterMapKeys> & Record<TClusterMapKeys, { ready: Promise<void> }>));
         });
         await bus.emit(`${prefix}/${endpointId}/descriptor/ServerList/get`, '{}', { qos: 1 });
 
         const endpoint = await result;
+
+        await Promise.all(Object.values(endpoint.clusters as unknown as Record<string, RemoteClusterInstance<any>>).map(c => c.ready));
 
         return endpoint;
     }

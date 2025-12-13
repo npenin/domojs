@@ -1,9 +1,10 @@
 import { allProperties, AsyncEvent, AsyncEventBus, AsyncSubscription, Binding, combineAsyncSubscriptions, isPromiseLike, ObjectEvent, ObservableArray, ObservableObject, Subscription, UrlTemplate } from "@akala/core";
 import { ClusterInstanceLight, ClusterInstance, Cluster, ClusterDefinition, NonWatchableClusterInstance, RemoteClusterInstance } from "./shared.js";
 import { Descriptor, DescriptorClusterId } from "../behaviors/descriptor.js";
-import { MqttEvents } from "@domojs/mqtt";
+import { MqttEvents, protocol } from "@domojs/mqtt";
 import { EndpointProxy } from "./EndpointProxy.js";
 import { ClusterMap } from "../clusters/index.js";
+import { Descriptor as DescriptorCluster } from "../../codegen/clusters/descriptor-cluster.js";
 
 export type SemiPartial<K extends keyof ClusterMap> =
     Partial<{ [key in Exclude<keyof ClusterMap, K>]: ClusterMap[key] }>
@@ -29,7 +30,7 @@ export class Endpoint<
     TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor'> = never>
     extends AsyncEvent<TClusterWatch<keyof ClusterMap>, void>
 {
-    readonly clusters: MixedClusterMap<TClusterMapKeys>;
+    readonly clusters: MixedClusterMap<TClusterMapKeys | 'descriptor'>;
     protected readonly descriptor: ReturnType<typeof Descriptor< TClusterMapKeys>>;
     private readonly clusterSubscriptions: Partial<Record<number, Subscription>> = {};
 
@@ -44,14 +45,14 @@ export class Endpoint<
         else
             this.descriptor = Descriptor<TClusterMapKeys>();
 
-        this.clusters = Object.fromEntries(Object.entries(clusters).concat([['descriptor', this.descriptor]])) as MixedClusterMap<TClusterMapKeys>;
+        this.clusters = Object.fromEntries(Object.entries(clusters).concat([['descriptor', this.descriptor]])) as MixedClusterMap<TClusterMapKeys | 'descriptor'>;
 
         this.clusterSubscriptions[DescriptorClusterId] = this.descriptor.on(allProperties, ev =>
         {
             this.emit('descriptor', ev as any);
             if (ev.property == 'ServerList')
             {
-                const clustersById: Record<number, keyof typeof this.clusters> = Object.fromEntries(Object.entries(this.clusters).map(e => [(e[1] as ClusterInstance<any>).target.id, e[0] as keyof typeof this.clusters]));
+                const clustersById: Record<number, keyof typeof this.clusters> = Object.fromEntries(Object.entries(this.clusters as any).map(e => [(e[1] as ClusterInstance<any>).target.id, e[0] as keyof typeof this.clusters]));
 
                 for (const clusterId of this.descriptor.target.ServerList)
                 {
@@ -97,8 +98,7 @@ export class Endpoint<
     public static async attach<TClusterMapKeys extends Exclude<keyof ClusterMap, "descriptor">>(bus: AsyncEventBus<MqttEvents>, prefix: string, endpoint: Endpoint<TClusterMapKeys> | EndpointProxy<TClusterMapKeys>, endpointName?: string): Promise<AsyncSubscription>
     {
         const template = UrlTemplate.parse(`${prefix}/${endpointName || endpoint.id}/{cluster}/{attributeOrCommand}/{action}`);
-
-        return combineAsyncSubscriptions(await bus.on(`${prefix}/${endpointName || endpoint.id}/#`, async (data, ev) =>
+        const sub = combineAsyncSubscriptions(await bus.on(`${prefix}/${endpointName || endpoint.id}/#`, async (data, ev) =>
         {
             if (typeof data !== 'string')
                 data = data.toString('utf8');
@@ -112,9 +112,19 @@ export class Endpoint<
                     return;
                 switch (match.action)
                 {
+                    case 'reply':
+                        break;
                     case 'execute':
+                        const props = protocol.toPropertyMap(ev.properties ?? []);
+                        const responseTopic = props.responseTopic ?? `${prefix}/${endpointName || endpoint.id}/${match.cluster}/${match.attributeOrCommand}`;
                         const result = await cluster.target[match.attributeOrCommand](...JSON.parse(data));
-                        await bus.emit(`${prefix}/${endpointName || endpoint.id}/${match.cluster}/${match.attributeOrCommand}`, JSON.stringify(Array.isArray(result) ? result : typeof result == 'undefined' ? [] : [result]), { qos: 1 });
+
+                        await bus.emit(responseTopic, JSON.stringify(Array.isArray(result) ? result : typeof result == 'undefined' ? [] : [result]), {
+                            qos: 1, properties: props.correlationData ?
+                                protocol.fromPropertyMap({ correlationData: props.correlationData }) :
+                                []
+                        });
+
                         break;
                     case 'set':
                         cluster.setValue(match.attributeOrCommand, JSON.parse(data));
@@ -132,6 +142,21 @@ export class Endpoint<
         {
             await bus.emit(`${prefix}/${endpointName || endpoint.id}/descriptor/${ev.property}`, JSON.stringify(ev.value), { qos: 1 });
         }) : null);
+
+        const match = {
+            attributeOrCommand: 'ServerList',
+            cluster: 'descriptor'
+        } as const;
+
+        let value = (endpoint.clusters.descriptor as ClusterInstance<DescriptorCluster>).getValue(match.attributeOrCommand);
+        if (value instanceof Binding)
+            value = value.getValue();
+        if (value instanceof ObservableArray)
+            value = value.array;
+        await bus.emit(`${prefix}/${endpointName || endpoint.id}/${match.cluster}/${match.attributeOrCommand}`, JSON.stringify(typeof value == 'undefined' || value === null ? false : value), { qos: 1 });
+
+
+        return sub;
     }
 
     public attach(bus: AsyncEventBus<MqttEvents>, prefix: string, endpointName?: string): Promise<AsyncSubscription>

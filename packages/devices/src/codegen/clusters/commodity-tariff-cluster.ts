@@ -1,5 +1,5 @@
 // This file is generated from commodity-tariff-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:27.107Z
+// Generated on 2025-12-03T20:57:10.461Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -90,7 +90,7 @@ export interface TariffComponentStruct {
 	AuxiliaryLoad?:AuxiliaryLoadSwitchSettingsStruct,
 	PeakPeriod?:PeakPeriodStruct,
 	PowerThreshold?:import("./global-structs.js").PowerThresholdStruct,
-	Threshold:number,
+	Threshold:bigint,
 	Label?:string,
 	Predicted?:boolean,
 }

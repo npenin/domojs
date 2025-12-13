@@ -1,5 +1,5 @@
 // This file is generated from electrical-grid-conditions-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:29.682Z
+// Generated on 2025-12-03T20:57:10.738Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

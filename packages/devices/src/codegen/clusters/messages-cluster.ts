@@ -1,5 +1,5 @@
 // This file is generated from messages-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:35.542Z
+// Generated on 2025-12-03T20:57:11.611Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

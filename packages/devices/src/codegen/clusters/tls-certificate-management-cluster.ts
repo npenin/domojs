@@ -1,13 +1,8 @@
 // This file is generated from tls-certificate-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:44.630Z
+// Generated on 2025-12-03T20:57:12.657Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
-
-export enum StatusCodeEnum {
-	CertificateAlreadyInstalled= 2,
-	DuplicateKey= 3,
-}
 
 export interface TLSCertStruct {
 	CAID:number,
@@ -43,7 +38,7 @@ id: 2049;
 			 outputparams: readonly [
 				CAID: number, ]
             }
-		/** This command SHALL return the specified TLS root certificate, or all TLS provisioned root certificates, based on the contents of the CAID field. */
+		/** This command SHALL return the specified TLS root certificate, or all provisioned TLS root certificates for the accessing fabric, based on the contents of the CAID field. */
 		FindRootCertificate: {
 			inputparams: readonly [
 				CAID: number, 
@@ -66,25 +61,27 @@ id: 2049;
 			],
 			 outputparams: readonly []
             }
-		/** This command SHALL be generated to request the Node generates a Certificate Signing Request. */
-		TLSClientCSR: {
+		/** This command SHALL be generated to request the Node generates a certificate signing request for a new TLS key pair or use an existing CCDID for certificate rotation. */
+		ClientCSR: {
 			inputparams: readonly [
 				Nonce: import ("@akala/core").IsomorphicBuffer, 
+				CCDID: number, 
 			],
 			 outputparams: readonly [
 				CCDID: number, 
 				CSR: import ("@akala/core").IsomorphicBuffer, 
-				Nonce: import ("@akala/core").IsomorphicBuffer, ]
+				NonceSignature: import ("@akala/core").IsomorphicBuffer, ]
             }
 		/** This command SHALL be generated to request the Node provisions newly provided Client Certificate Details, or rotate an existing client certificate. */
 		ProvisionClientCertificate: {
 			inputparams: readonly [
 				CCDID: number, 
-				ClientCertificateDetails: TLSClientCertificateDetailStruct, 
+				ClientCertificate: import ("@akala/core").IsomorphicBuffer, 
+				IntermediateCertificates: readonly import ("@akala/core").IsomorphicBuffer[], 
 			],
 			 outputparams: readonly []
             }
-		/** This command SHALL return the TLSClientCertificateDetailStruct for the passed in CCDID, or all TLS client certificates, based on the contents of the CCDID field. */
+		/** This command SHALL return the TLSClientCertificateDetailStruct for the passed in CCDID, or all TLS client certificates for the accessing fabric, based on the contents of the CCDID field. */
 		FindClientCertificate: {
 			inputparams: readonly [
 				CCDID: number, 
@@ -125,7 +122,7 @@ id: 2049,
 		"FindRootCertificate",
 		"LookupRootCertificate",
 		"RemoveRootCertificate",
-		"TLSClientCSR",
+		"ClientCSR",
 		"ProvisionClientCertificate",
 		"FindClientCertificate",
 		"LookupClientCertificate",

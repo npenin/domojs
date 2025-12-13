@@ -1,5 +1,5 @@
 // This file is generated from basic-information-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:23.698Z
+// Generated on 2025-12-03T20:57:10.100Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -40,6 +40,10 @@ export enum ColorEnum {
 export interface CapabilityMinimaStruct {
 	CaseSessionsPerFabric:number,
 	SubscriptionsPerFabric:number,
+	SimultaneousInvocationsSupported?:number,
+	SimultaneousWritesSupported?:number,
+	ReadPathsSupported?:number,
+	SubscribePathsSupported?:number,
 }
 
 export interface ProductAppearanceStruct {
@@ -74,12 +78,12 @@ id: 40;
 		readonly SerialNumber?:string
 		LocalConfigDisabled?:boolean
 		readonly Reachable?:boolean
-		readonly UniqueID:string
+		readonly UniqueID?:string
 		readonly CapabilityMinima:CapabilityMinimaStruct
 		readonly ProductAppearance?:ProductAppearanceStruct
-		readonly SpecificationVersion:number
-		readonly MaxPathsPerInvoke:number
-		readonly ConfigurationVersion:number
+		readonly SpecificationVersion?:number
+		readonly MaxPathsPerInvoke?:number
+		readonly ConfigurationVersion?:number
 }
 	commands: {
 }

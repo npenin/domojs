@@ -1,5 +1,5 @@
 // This file is generated from joint-fabric-administrator-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:33.365Z
+// Generated on 2025-12-03T20:57:11.342Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -11,8 +11,11 @@ export enum ICACResponseStatusEnum {
 }
 
 export enum StatusCodeEnum {
-	VIDNotVerified= 2,
-	InvalidAdministratorFabricIndex= 3,
+	Busy= 2,
+	PAKEParameterError= 3,
+	WindowNotOpen= 4,
+	VIDNotVerified= 5,
+	InvalidAdministratorFabricIndex= 6,
 }
 
 export enum TransferAnchorResponseStatusEnum {

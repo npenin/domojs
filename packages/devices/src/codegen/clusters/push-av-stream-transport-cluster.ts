@@ -1,8 +1,14 @@
 // This file is generated from push-av-stream-transport-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:39.493Z
+// Generated on 2025-12-03T20:57:12.057Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
+
+export enum CMAFInterfaceEnum {
+	Interface1= 0,
+	Interface2DASH= 1,
+	Interface2HLS= 2,
+}
 
 export enum ContainerFormatEnum {
 	CMAF= 0,
@@ -20,6 +26,9 @@ export enum StatusCodeEnum {
 	InvalidCombination= 6,
 	InvalidTriggerType= 7,
 	InvalidTransportStatus= 8,
+	InvalidOptions= 9,
+	InvalidStreamUsage= 10,
+	InvalidTime= 11,
 }
 
 export enum TransportStatusEnum {
@@ -40,10 +49,14 @@ export enum TriggerActivationReasonEnum {
 }
 
 export interface CMAFContainerOptionsStruct {
+	CMAFInterface:CMAFInterfaceEnum,
+	SegmentDuration:number,
 	ChunkDuration:number,
+	SessionGroup:number,
+	TrackName:string,
 	CENCKey?:import ("@akala/core").IsomorphicBuffer,
-	MetadataEnabled?:boolean,
 	CENCKeyID?:import ("@akala/core").IsomorphicBuffer,
+	MetadataEnabled?:boolean,
 }
 
 export interface ContainerOptionsStruct {
@@ -73,7 +86,7 @@ export interface TransportOptionsStruct {
 	StreamUsage:import("./global-enums.js").StreamUsageEnum,
 	VideoStreamID?:number,
 	AudioStreamID?:number,
-	EndpointID:number,
+	TLSEndpointID:number,
 	URL:string,
 	TriggerOptions:TransportTriggerOptionsStruct,
 	IngestMethod:IngestMethodsEnum,
@@ -146,6 +159,7 @@ id: 1365;
 				ConnectionID: number, 
 				ActivationReason: TriggerActivationReasonEnum, 
 				TimeControl: TransportMotionTriggerTimeControlStruct, 
+				UserDefined: import ("@akala/core").IsomorphicBuffer, 
 			],
 			 outputparams: readonly []
             }
@@ -166,9 +180,7 @@ id: 1365;
 			ActivationReason: TriggerActivationReasonEnum, ];
 		PushTransportEnd: [
 			
-			ConnectionID: number, 
-			TriggerType: TransportTriggerTypeEnum, 
-			ActivationReason: TriggerActivationReasonEnum, ];
+			ConnectionID: number, ];
 	}
 }
 

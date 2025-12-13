@@ -2,6 +2,7 @@ import { IsomorphicBuffer, ObservableObject } from '@akala/core';
 
 import { ClusterIds, generalCommissioningCluster } from '../../codegen/clusters/clusters-index.js';
 import { ClusterEvents, ClusterInstance, ClusterInstanceLight } from '../clients/index.js';
+import { NetworkRecoveryReasonEnum } from '../../codegen/clusters/general-commissioning-cluster.js';
 
 export function GeneralCommissioning(): ClusterInstance<generalCommissioningCluster.GeneralCommissioning>
 {
@@ -14,6 +15,9 @@ export function GeneralCommissioning(): ClusterInstance<generalCommissioningClus
         ClusterEvents<generalCommissioningCluster.GeneralCommissioning>
     >({
         id: ClusterIds.GeneralCommissioning,
+        IsCommissioningWithoutPower: false,
+        NetworkRecoveryReason: NetworkRecoveryReasonEnum.Unspecified,
+        TCUpdateDeadline: 0,
         async ArmFailSafeCommand(duration, breadcrumbArg)
         {
             if (commissioning)

@@ -5,7 +5,7 @@ import type { SidecarConfiguration } from "@akala/sidecar";
 import { MqttEvents } from "@domojs/mqtt";
 import { EndpointProxy } from "../../clients/EndpointProxy.js";
 
-const queue = new Queue<{ pubsub: AsyncEventBus<MqttEvents>, message: DynSecRequest, defer: Deferred<DynSecResponse> }>(async (e, next) =>
+export const queue = new Queue<{ pubsub: AsyncEventBus<MqttEvents>, message: DynSecRequest, defer: Deferred<DynSecResponse> }>(async (e, next) =>
 {
     await e.pubsub.once('$CONTROL/dynamic-security/v1/response', s =>
         typeof s === 'string' ?
@@ -58,8 +58,8 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
                     {
                         "command": "addRoleACL",
                         "rolename": "domojs-guest",
-                        "acltype": "subscribeLiteral",
-                        "topic": `domojs/devices/0/commissionning/registerCommand`,
+                        "acltype": "subscribePattern",
+                        "topic": `domojs/devices/0/commissionning/registerCommand/reply/+`,
                         "priority": 0,
                         allow: true
                     },
@@ -131,7 +131,7 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
         });
     }
 
-    const roles = [{ rolename: 'domojs-' + userName }];
+    const roles = [{ rolename: 'domojs-' + userName }, { rolename: 'domojs-guest' }];
     if (grantRoot)
     {
         roles.push({ rolename: node + '-admin' });

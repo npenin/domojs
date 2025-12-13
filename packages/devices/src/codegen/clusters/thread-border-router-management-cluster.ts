@@ -1,5 +1,5 @@
 // This file is generated from thread-border-router-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:43.586Z
+// Generated on 2025-12-03T20:57:12.531Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

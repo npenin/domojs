@@ -1,5 +1,5 @@
 // This file is generated from dishwasher-mode-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:28.972Z
+// Generated on 2025-12-03T20:57:10.657Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

@@ -57,7 +57,8 @@ export { globalAttributes };import * as globalBitmaps from "./global-bitmaps.js"
 export { globalBitmaps };import * as globalEnums from "./global-enums.js";
 export { globalEnums };import * as globalStructs from "./global-structs.js";
 export { globalStructs };import * as groupKeyMgmtCluster from "./group-key-mgmt-cluster.js";
-export { groupKeyMgmtCluster };import * as groupsCluster from "./groups-cluster.js";
+export { groupKeyMgmtCluster };import * as groupcastCluster from "./groupcast-cluster.js";
+export { groupcastCluster };import * as groupsCluster from "./groups-cluster.js";
 export { groupsCluster };import * as icdManagementCluster from "./icd-management-cluster.js";
 export { icdManagementCluster };import * as identifyCluster from "./identify-cluster.js";
 export { identifyCluster };import * as illuminanceMeasurementCluster from "./illuminance-measurement-cluster.js";
@@ -203,6 +204,7 @@ export enum ClusterIds {
 	GeneralCommissioning = 48,
 	GeneralDiagnostics = 51,
 	GroupKeyManagement = 63,
+	Groupcast = 101,
 	Groups = 4,
 	ICDManagement = 70,
 	Identify = 3,
@@ -245,6 +247,7 @@ export enum ClusterIds {
 	RelativeHumidityMeasurement = 1029,
 	HEPAFilterMonitoring = 113,
 	ActivatedCarbonFilterMonitoring = 114,
+	WaterTankLevelMonitoring = 121,
 	RVCCleanMode = 85,
 	RVCRunMode = 84,
 	SampleMEI = 4294048800,
@@ -346,6 +349,7 @@ export type ClusterIdMap = {
 	[ClusterIds.GeneralCommissioning]: generalCommissioningCluster.GeneralCommissioning,
 	[ClusterIds.GeneralDiagnostics]: generalDiagnosticsCluster.GeneralDiagnostics,
 	[ClusterIds.GroupKeyManagement]: groupKeyMgmtCluster.GroupKeyManagement,
+	[ClusterIds.Groupcast]: groupcastCluster.Groupcast,
 	[ClusterIds.Groups]: groupsCluster.Groups,
 	[ClusterIds.ICDManagement]: icdManagementCluster.ICDManagement,
 	[ClusterIds.Identify]: identifyCluster.Identify,
@@ -388,6 +392,7 @@ export type ClusterIdMap = {
 	[ClusterIds.RelativeHumidityMeasurement]: relativeHumidityMeasurementCluster.RelativeHumidityMeasurement,
 	[ClusterIds.HEPAFilterMonitoring]: resourceMonitoringCluster.HEPAFilterMonitoring,
 	[ClusterIds.ActivatedCarbonFilterMonitoring]: resourceMonitoringCluster.ActivatedCarbonFilterMonitoring,
+	[ClusterIds.WaterTankLevelMonitoring]: resourceMonitoringCluster.WaterTankLevelMonitoring,
 	[ClusterIds.RVCCleanMode]: rvcCleanModeCluster.RVCCleanMode,
 	[ClusterIds.RVCRunMode]: rvcRunModeCluster.RVCRunMode,
 	[ClusterIds.SampleMEI]: sampleMeiCluster.SampleMEI,
@@ -489,6 +494,7 @@ export type ClusterMap = {
 	generalCommissioning: generalCommissioningCluster.GeneralCommissioning,
 	generalDiagnostics: generalDiagnosticsCluster.GeneralDiagnostics,
 	groupKeyManagement: groupKeyMgmtCluster.GroupKeyManagement,
+	groupcast: groupcastCluster.Groupcast,
 	groups: groupsCluster.Groups,
 	iCDManagement: icdManagementCluster.ICDManagement,
 	identify: identifyCluster.Identify,
@@ -531,6 +537,7 @@ export type ClusterMap = {
 	relativeHumidityMeasurement: relativeHumidityMeasurementCluster.RelativeHumidityMeasurement,
 	hEPAFilterMonitoring: resourceMonitoringCluster.HEPAFilterMonitoring,
 	activatedCarbonFilterMonitoring: resourceMonitoringCluster.ActivatedCarbonFilterMonitoring,
+	waterTankLevelMonitoring: resourceMonitoringCluster.WaterTankLevelMonitoring,
 	rVCCleanMode: rvcCleanModeCluster.RVCCleanMode,
 	rVCRunMode: rvcRunModeCluster.RVCRunMode,
 	sampleMEI: sampleMeiCluster.SampleMEI,
@@ -632,6 +639,7 @@ export const ClusterMap = {
 	[48]: generalCommissioningCluster.generalCommissioning,
 	[51]: generalDiagnosticsCluster.generalDiagnostics,
 	[63]: groupKeyMgmtCluster.groupKeyManagement,
+	[101]: groupcastCluster.groupcast,
 	[4]: groupsCluster.groups,
 	[70]: icdManagementCluster.iCDManagement,
 	[3]: identifyCluster.identify,
@@ -674,6 +682,7 @@ export const ClusterMap = {
 	[1029]: relativeHumidityMeasurementCluster.relativeHumidityMeasurement,
 	[113]: resourceMonitoringCluster.hEPAFilterMonitoring,
 	[114]: resourceMonitoringCluster.activatedCarbonFilterMonitoring,
+	[121]: resourceMonitoringCluster.waterTankLevelMonitoring,
 	[85]: rvcCleanModeCluster.rVCCleanMode,
 	[84]: rvcRunModeCluster.rVCRunMode,
 	[4294048800]: sampleMeiCluster.sampleMEI,
@@ -775,6 +784,7 @@ export enum ClusterIdNames {
 	generalCommissioning = ClusterIds.GeneralCommissioning,
 	generalDiagnostics = ClusterIds.GeneralDiagnostics,
 	groupKeyManagement = ClusterIds.GroupKeyManagement,
+	groupcast = ClusterIds.Groupcast,
 	groups = ClusterIds.Groups,
 	iCDManagement = ClusterIds.ICDManagement,
 	identify = ClusterIds.Identify,
@@ -817,6 +827,7 @@ export enum ClusterIdNames {
 	relativeHumidityMeasurement = ClusterIds.RelativeHumidityMeasurement,
 	hEPAFilterMonitoring = ClusterIds.HEPAFilterMonitoring,
 	activatedCarbonFilterMonitoring = ClusterIds.ActivatedCarbonFilterMonitoring,
+	waterTankLevelMonitoring = ClusterIds.WaterTankLevelMonitoring,
 	rVCCleanMode = ClusterIds.RVCCleanMode,
 	rVCRunMode = ClusterIds.RVCRunMode,
 	sampleMEI = ClusterIds.SampleMEI,
@@ -918,6 +929,7 @@ export type ReverseClusterIdNames = {
 	[48]: 'generalCommissioning',
 	[51]: 'generalDiagnostics',
 	[63]: 'groupKeyManagement',
+	[101]: 'groupcast',
 	[4]: 'groups',
 	[70]: 'iCDManagement',
 	[3]: 'identify',
@@ -960,6 +972,7 @@ export type ReverseClusterIdNames = {
 	[1029]: 'relativeHumidityMeasurement',
 	[113]: 'hEPAFilterMonitoring',
 	[114]: 'activatedCarbonFilterMonitoring',
+	[121]: 'waterTankLevelMonitoring',
 	[85]: 'rVCCleanMode',
 	[84]: 'rVCRunMode',
 	[4294048800]: 'sampleMEI',

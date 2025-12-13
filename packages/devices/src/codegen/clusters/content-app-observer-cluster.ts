@@ -1,5 +1,5 @@
 // This file is generated from content-app-observer-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:27.486Z
+// Generated on 2025-12-03T20:57:10.497Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -18,7 +18,7 @@ id: 1296;
 	attributes: {
 }
 	commands: {
-		/** Upon receipt, the data field MAY be parsed and interpreted. Message encoding is specific to the Content App. A Content App MAY when possible read attributes from the Basic Information Cluster on the Observer and use this to determine the Message encoding. */
+		/** Upon receipt, the data field MAY be parsed and interpreted. */
 		ContentAppMessage: {
 			inputparams: readonly [
 				Data: string, 

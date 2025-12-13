@@ -1,8 +1,14 @@
 // This file is generated from webrtc-provider-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:46.207Z
+// Generated on 2025-12-03T20:57:12.831Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
+
+export interface SFrameStruct {
+	CipherSuite:number,
+	BaseKey:import ("@akala/core").IsomorphicBuffer,
+	KID:import ("@akala/core").IsomorphicBuffer,
+}
 
 /**
  * The WebRTC transport provider cluster provides a way for stream providers (e.g. Cameras) to stream or receive their data through WebRTC.
@@ -26,6 +32,7 @@ id: 1363;
 				ICEServers: readonly import("./global-structs.js").ICEServerStruct[], 
 				ICETransportPolicy: string, 
 				MetadataEnabled: boolean, 
+				SFrameConfig: SFrameStruct, 
 			],
 			 outputparams: readonly [
 				WebRTCSessionID: number, 
@@ -45,6 +52,7 @@ id: 1363;
 				ICEServers: readonly import("./global-structs.js").ICEServerStruct[], 
 				ICETransportPolicy: string, 
 				MetadataEnabled: boolean, 
+				SFrameConfig: SFrameStruct, 
 			],
 			 outputparams: readonly [
 				WebRTCSessionID: number, 
@@ -59,7 +67,7 @@ id: 1363;
 			],
 			 outputparams: readonly []
             }
-		/** This command allows for string based https://rfc-editor.org/rfc/rfc8839#section-5.1 generated after the initial Offer / Answer exchange, via a JSEP https://datatracker.ietf.org/doc/html/rfc9429#section-4.1.20 event, a DOM https://www.w3.org/TR/webrtc/#dom-rtcpeerconnectioniceevent event, or other WebRTC compliant implementations, to be added to a session during the gathering phase. */
+		/** This command allows for string based ICE candidates generated after the initial Offer / Answer exchange, via a JSEP onicecandidate event, a DOM rtcpeerconnectioniceevent event, or other WebRTC compliant implementations, to be added to a session during the gathering phase. */
 		ProvideICECandidates: {
 			inputparams: readonly [
 				WebRTCSessionID: number, 

@@ -1,5 +1,5 @@
 // This file is generated from media-input-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:35.184Z
+// Generated on 2025-12-03T20:57:11.571Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -39,26 +39,26 @@ id: 1287;
 		readonly SupportsNameUpdates: boolean
 }
 	commands: {
-		/** Upon receipt, this SHALL change the input on the media device to the input at a specific index in the Input List. */
+		/** Upon receipt, this command SHALL change the media input on the device to the input at a specific index in the Input List. */
 		SelectInput: {
 			inputparams: readonly [
 				Index: number, 
 			],
 			 outputparams: readonly []
             }
-		/** Upon receipt, this SHALL display the active status of the input list on screen. */
+		/** Upon receipt, this command SHALL display the active status of the input list on screen. */
 		ShowInputStatus: {
 			inputparams: readonly [
 			],
 			 outputparams: readonly []
             }
-		/** Upon receipt, this SHALL hide the input list from the screen. */
+		/** Upon receipt, this command SHALL hide the input list from the screen. */
 		HideInputStatus: {
 			inputparams: readonly [
 			],
 			 outputparams: readonly []
             }
-		/** Upon receipt, this SHALL rename the input at a specific index in the Input List. Updates to the input name SHALL appear in the TV settings menus. */
+		/** Upon receipt, this command SHALL rename the input at a specific index in the Input List. */
 		RenameInput?: {
 			inputparams: readonly [
 				Index: number, 

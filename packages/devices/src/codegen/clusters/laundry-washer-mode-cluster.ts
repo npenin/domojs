@@ -1,5 +1,5 @@
 // This file is generated from laundry-washer-mode-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:34.089Z
+// Generated on 2025-12-03T20:57:11.417Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

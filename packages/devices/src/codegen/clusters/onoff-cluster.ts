@@ -1,5 +1,5 @@
 // This file is generated from onoff-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:36.945Z
+// Generated on 2025-12-03T20:57:11.770Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -43,7 +43,7 @@ id: 6;
 		StartUpOnOff?:StartUpOnOffEnum
 		/** Behavior that supports lighting applications. */
 		readonly SupportsLighting: boolean
-		/** Device has DeadFrontBehavior Feature */
+		/** Device has Dead Front behavior */
 		readonly SupportsDeadFrontBehavior: boolean
 		/** Device supports the OffOnly Feature feature */
 		readonly SupportsOffOnly: boolean
@@ -56,13 +56,13 @@ id: 6;
 			 outputparams: readonly []
             }
 		/** On receipt of this command, a device SHALL enter its ‘On’ state. This state is device dependent, but it is recommended that it is used for power on or similar functions. On receipt of the On command, if the value of the OnTime attribute is equal to 0, the device SHALL set the OffWaitTime attribute to 0. */
-		On: {
+		On?: {
 			inputparams: readonly [
 			],
 			 outputparams: readonly []
             }
 		/** On receipt of this command, if a device is in its ‘Off’ state it SHALL enter its ‘On’ state. Otherwise, if it is in its ‘On’ state it SHALL enter its ‘Off’ state. On receipt of the Toggle command, if the value of the OnOff attribute is equal to FALSE and if the value of the OnTime attribute is equal to 0, the device SHALL set the OffWaitTime attribute to 0. If the value of the OnOff attribute is equal to TRUE, the OnTime attribute SHALL be set to 0. */
-		Toggle: {
+		Toggle?: {
 			inputparams: readonly [
 			],
 			 outputparams: readonly []
@@ -75,13 +75,13 @@ id: 6;
 			],
 			 outputparams: readonly []
             }
-		/** The OnWithRecallGlobalScene command allows the recall of the settings when the device was turned off. */
+		/** This command allows the recall of the settings when the device was turned off. */
 		OnWithRecallGlobalScene?: {
 			inputparams: readonly [
 			],
 			 outputparams: readonly []
             }
-		/** The OnWithTimedOff command allows devices to be turned on for a specific duration with a guarded off duration so that SHOULD the device be subsequently switched off, further OnWithTimedOff commands, received during this time, are prevented from turning the devices back on. */
+		/** This command allows devices to be turned on for a specific duration with a guarded off duration so that SHOULD the device be subsequently turned off, further OnWithTimedOff commands, received during this time, are prevented from turning the devices back on. */
 		OnWithTimedOff?: {
 			inputparams: readonly [
 				OnOffControl: OnOffControlBitmap, 

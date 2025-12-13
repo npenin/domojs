@@ -1,5 +1,5 @@
 // This file is generated from global-enums.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:32.107Z
+// Generated on 2025-12-03T20:57:11.157Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -37,6 +37,13 @@ export enum PowerThresholdSourceEnum {
 	Equipment= 2,
 }
 
+export enum SoftwareVersionCertificationStatusEnum {
+	DevTest= 0,
+	Provisional= 1,
+	Certified= 2,
+	Revoked= 3,
+}
+
 export enum TariffPriceTypeEnum {
 	Standard= 0,
 	Critical= 1,
@@ -71,8 +78,8 @@ export enum TestGlobalEnum {
 }
 
 export enum WebRTCEndReasonEnum {
-	IceFailed= 0,
-	IceTimeout= 1,
+	ICEFailed= 0,
+	ICETimeout= 1,
 	UserHangup= 2,
 	UserBusy= 3,
 	Replaced= 4,
@@ -82,5 +89,6 @@ export enum WebRTCEndReasonEnum {
 	OutOfResources= 8,
 	MediaTimeout= 9,
 	LowPower= 10,
-	UnknownReason= 11,
+	PrivacyMode= 11,
+	UnknownReason= 12,
 }

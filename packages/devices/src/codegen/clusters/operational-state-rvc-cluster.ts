@@ -1,5 +1,5 @@
 // This file is generated from operational-state-rvc-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:37.726Z
+// Generated on 2025-12-03T20:57:11.855Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

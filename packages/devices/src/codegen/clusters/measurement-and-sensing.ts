@@ -1,5 +1,5 @@
 // This file is generated from measurement-and-sensing.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:35.011Z
+// Generated on 2025-12-03T20:57:11.535Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

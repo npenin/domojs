@@ -1,5 +1,5 @@
 // This file is generated from tls-client-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:44.807Z
+// Generated on 2025-12-03T20:57:12.673Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -9,11 +9,7 @@ export enum StatusCodeEnum {
 	RootCertificateNotFound= 3,
 	ClientCertificateNotFound= 4,
 	EndpointInUse= 5,
-}
-
-export enum TLSEndpointStatusEnum {
-	Provisioned= 0,
-	InUse= 1,
+	InvalidTime= 6,
 }
 
 export interface TLSEndpointStruct {
@@ -22,7 +18,7 @@ export interface TLSEndpointStruct {
 	Port:number,
 	CAID:number,
 	CCDID:number,
-	Status:TLSEndpointStatusEnum,
+	ReferenceCount:number,
 }
 
 /**
@@ -36,7 +32,7 @@ id: 2050;
 		readonly ProvisionedEndpoints:readonly TLSEndpointStruct[]
 }
 	commands: {
-		/** This command is used to provision a TLS Endpoint for the provided HostName / Port combination. */
+		/** This command is used to provision a TLS Endpoint for the provided Hostname / Port combination. */
 		ProvisionEndpoint: {
 			inputparams: readonly [
 				Hostname: import ("@akala/core").IsomorphicBuffer, 

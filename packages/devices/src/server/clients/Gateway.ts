@@ -1,6 +1,6 @@
 import { EventEmitter, Queue, logger, IsomorphicBuffer, EventMap, UrlHandler, NotHandled, ErrorWithStatus } from '@akala/core';
 
-export const log = logger('domojs:devices');
+export const log = logger.use('domojs:devices');
 
 export function gatewayHandler<T>(): UrlHandler<[URL, void], T> & { cache: Record<string, T> }
 {

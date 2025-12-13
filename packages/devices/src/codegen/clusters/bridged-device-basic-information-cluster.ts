@@ -1,5 +1,5 @@
 // This file is generated from bridged-device-basic-information-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:24.385Z
+// Generated on 2025-12-03T20:57:10.176Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -67,7 +67,7 @@ id: 57;
 		readonly ProductLabel?:string
 		readonly SerialNumber?:string
 		readonly Reachable:boolean
-		readonly UniqueID:string
+		readonly UniqueID?:string
 		readonly ProductAppearance?:ProductAppearanceStruct
 		readonly ConfigurationVersion?:number
 		/** Support bridged ICDs. */

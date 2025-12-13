@@ -1,5 +1,5 @@
 // This file is generated from software-diagnostics-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:41.818Z
+// Generated on 2025-12-03T20:57:12.322Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

@@ -1,5 +1,5 @@
 // This file is generated from chime-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:25.325Z
+// Generated on 2025-12-03T20:57:10.256Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -21,6 +21,7 @@ id: 1366;
 		Enabled:boolean
 }
 	commands: {
+		/** This command will play the currently selected chime. */
 		PlayChimeSound: {
 			inputparams: readonly [
 			],

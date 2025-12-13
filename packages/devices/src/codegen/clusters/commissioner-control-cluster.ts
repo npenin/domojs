@@ -1,5 +1,5 @@
 // This file is generated from commissioner-control-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:26.575Z
+// Generated on 2025-12-03T20:57:10.402Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

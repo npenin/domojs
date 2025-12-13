@@ -1,8 +1,13 @@
 // This file is generated from camera-av-settings-user-level-management-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:24.560Z
+// Generated on 2025-12-03T20:57:10.195Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
+
+export enum PhysicalMovementEnum {
+	Idle= 0,
+	Moving= 1,
+}
 
 export interface DPTZStruct {
 	VideoStreamID:number,
@@ -37,6 +42,7 @@ id: 1362;
 		readonly TiltMax?:number
 		readonly PanMin?:number
 		readonly PanMax?:number
+		readonly MovementState?:PhysicalMovementEnum
 		/** Digital PTZ support */
 		readonly SupportsDigitalPTZ: boolean
 		/** Mechanical Pan support */
@@ -49,7 +55,7 @@ id: 1362;
 		readonly SupportsMechanicalPresets: boolean
 }
 	commands: {
-		/** This command SHALL set the values for the pan, tilt, and zoom in the mechanical PTZ. */
+		/** This command SHALL move the camera to the provided values for pan, tilt, and zoom in the mechanical PTZ. */
 		MPTZSetPosition?: {
 			inputparams: readonly [
 				Pan: number, 
@@ -124,6 +130,7 @@ id: 1362,
 		"TiltMax",
 		"PanMin",
 		"PanMax",
+		"MovementState",
 		"SupportsDigitalPTZ",
 		"SupportsMechanicalPan",
 		"SupportsMechanicalTilt",

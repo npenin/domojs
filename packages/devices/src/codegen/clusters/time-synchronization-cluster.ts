@@ -1,5 +1,5 @@
 // This file is generated from time-synchronization-cluster.xml - do not edit it directly
-// Generated on 2025-08-24T09:48:44.266Z
+// Generated on 2025-12-03T20:57:12.616Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -95,7 +95,7 @@ id: 56;
 		readonly SupportsTimeSyncClient: boolean
 }
 	commands: {
-		/** This command MAY be issued by Administrator to set the time. */
+		/** This command is used to set the UTC time of the node. */
 		SetUTCTime: {
 			inputparams: readonly [
 				UTCTime: number, 
@@ -104,14 +104,14 @@ id: 56;
 			],
 			 outputparams: readonly []
             }
-		/** This command SHALL set TrustedTimeSource. */
+		/** This command is used to set the TrustedTimeSource attribute. */
 		SetTrustedTimeSource?: {
 			inputparams: readonly [
 				TrustedTimeSource: FabricScopedTrustedTimeSourceStruct, 
 			],
 			 outputparams: readonly []
             }
-		/** This command SHALL set TimeZone. */
+		/** This command is used to set the time zone of the node. */
 		SetTimeZone?: {
 			inputparams: readonly [
 				TimeZone: readonly TimeZoneStruct[], 
@@ -119,14 +119,14 @@ id: 56;
 			 outputparams: readonly [
 				DSTOffsetRequired: boolean, ]
             }
-		/** This command SHALL set DSTOffset. */
+		/** This command is used to set the DST offsets for a node. */
 		SetDSTOffset?: {
 			inputparams: readonly [
 				DSTOffset: readonly DSTOffsetStruct[], 
 			],
 			 outputparams: readonly []
             }
-		/** This command is used to set DefaultNTP. */
+		/** This command is used to set the DefaultNTP attribute. */
 		SetDefaultNTP?: {
 			inputparams: readonly [
 				DefaultNTP: string, 

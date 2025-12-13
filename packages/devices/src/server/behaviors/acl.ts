@@ -18,6 +18,7 @@ export function Acl()
         FabricRestrictionReviewUpdate: null,
         SupportsExtension: true,
         SupportsManagedDevice: true,
+        SupportsAuxiliary: false,
         async ReviewFabricRestrictionsCommand(arl)
         {
             // Validate the ARL entry structure

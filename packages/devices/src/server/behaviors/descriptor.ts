@@ -21,7 +21,7 @@ export function Descriptor<TClusterMapKeys extends Exclude<keyof ClusterMap, 'de
         {
             setEndpoint(ep: Endpoint<TClusterMapKeys>)
             {
-                descriptor.setValue('ServerList', Object.values(ep.clusters).map(c => (c as ClusterInstance<Cluster<unknown, unknown, {}>>).target.id));
+                descriptor.setValue('ServerList', Object.values(ep.clusters as any).map(c => (c as ClusterInstance<Cluster<unknown, unknown, {}>>).target.id));
             }
         }
     );
