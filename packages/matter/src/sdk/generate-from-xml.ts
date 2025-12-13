@@ -3,10 +3,11 @@ import { XMLParser } from 'fast-xml-parser';
 import { FileGenerator } from '@akala/commands'
 import { pathToFileURL } from 'url'
 
-const GITHUB_API_URL = 'https://api.github.com/repos/project-chip/connectedhomeip/contents/data_model/1.4.1/device_types';
 
 export default async function generateFromXml(http: Http, signal: AbortSignal, folder: string, version: string = 'master')
 {
+    const GITHUB_API_URL = `https://api.github.com/repos/project-chip/connectedhomeip/contents/data_model/${version}/device_types`;
+
     if (!folder.endsWith('/'))
         folder += '/'
 
@@ -18,7 +19,7 @@ export default async function generateFromXml(http: Http, signal: AbortSignal, f
     await sharedOutput.write('export enum DeviceTypes {');
 
     // 1. Fetch the list of files in the folder
-    for (const file of await http.getJSON<{ name: string, download_url: string }[]>(GITHUB_API_URL, new URLSearchParams({ ref: version })))
+    for (const file of await http.getJSON<{ name: string, download_url: string }[]>(GITHUB_API_URL))//, new URLSearchParams({ ref: version })))
     {
         if (!file.name.endsWith('.xml'))
             continue;
@@ -43,7 +44,7 @@ export default async function generateFromXml(http: Http, signal: AbortSignal, f
             continue;
         }
 
-        if (parsedXml.deviceType.clusters.cluster && !Array.isArray(parsedXml.deviceType.clusters.cluster))
+        if (parsedXml.deviceType.clusters?.cluster && !Array.isArray(parsedXml.deviceType.clusters.cluster))
             parsedXml.deviceType.clusters.cluster = [parsedXml.deviceType.clusters.cluster];
 
         // 4. Generate TypeScript code from parsed XML
@@ -129,7 +130,7 @@ async function generateTypescriptFromXml(folderURL: URL, parsedXml: XmlCluster, 
         first = false;
     }
 
-    if (parsedXml.deviceType.clusters.cluster?.length)
+    if (parsedXml.deviceType.clusters?.cluster?.length)
         await eachAsync(parsedXml.deviceType.clusters.cluster, async cluster =>
         {
             if (cluster['@side'] == 'server')

@@ -5,7 +5,7 @@ import { pathToFileURL } from 'url'
 
 const GITHUB_API_URL = 'https://api.github.com/repos/project-chip/connectedhomeip/contents/src/app/zap-templates/zcl/data-model/chip';
 
-export default async function generateFromXml(http: Http, signal: AbortSignal, folder: string, version: string = 'master')
+export default async function generateFromZap(http: Http, signal: AbortSignal, folder: string, version: string = 'master')
 {
     if (!folder.endsWith('/'))
         folder += '/'
@@ -16,12 +16,13 @@ export default async function generateFromXml(http: Http, signal: AbortSignal, f
 
     const clusterIds: Record<string, Record<string, number>> = {};
 
+    const json = await http.getJSON<{ name: string, download_url: string }[]>(GITHUB_API_URL)//, new URLSearchParams({ ref: version }));
     // 1. Fetch the list of files in the folder
-    for (const file of await http.getJSON<{ name: string, download_url: string }[]>(GITHUB_API_URL, new URLSearchParams({ ref: version })))
+    for (const file of json)
     {
         if (!file.name.endsWith('.xml'))
             continue;
-
+        // console.log(file)
         // 2. Fetch the content of each XML file
         const fileRes = await http.call({ url: file.download_url, type: 'xml' });
         if (!fileRes.ok)
@@ -418,7 +419,7 @@ function mapType(x: { '@type': string, '@array'?: 'true', entry?: { '@type': str
                 return 'import("./Descriptor-Cluster.js").' + x['@type'];
         case 'SemanticTagStruct':
             if (!knownTypes?.includes(x['@type']))
-                return 'import("./ModeSelect.js").SemanticTagStruct';
+                return 'import("./mode-select-cluster.js").SemanticTagStruct';
         default:
             if (!knownTypes || knownTypes.includes(x['@type']))
                 return x['@type'];

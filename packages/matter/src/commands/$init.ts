@@ -12,7 +12,7 @@ import { CommissioningController } from '@project-chip/matter.js';
 import { MqttScanner } from '../environment/mdns/mqtt.js';
 import { Network } from '@matter/general';
 
-const log = logger('domojs:matter');
+const log = logger.use('domojs:matter');
 
 export default async function init(context: CliContext<{}, ProxyConfiguration<SidecarConfiguration & BridgeConfiguration>>, signal: AbortSignal)
 {
