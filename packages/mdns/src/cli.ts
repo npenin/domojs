@@ -19,7 +19,7 @@ import { logger } from '@akala/core';
         console.log(r);
     });
     cli.cliContainer.state = {} as unknown as void;
-    await cli.cliContainer.dispatch('$init', buildCliContext(logger('')));
+    await cli.cliContainer.dispatch('$init', buildCliContext(logger.use('')));
 
     await cli.start();
 
