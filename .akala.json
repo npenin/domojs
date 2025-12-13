@@ -18,7 +18,10 @@
             "@domojs/rfx": {
                 "path": "npm:///@domojs/rfx/commands.json",
                 "commandable": true,
-                "type": "nodejs"
+                "type": "nodejs",
+                "dependencies": [
+                    "@domojs/devices"
+                ]
             },
             "@domojs/devices": {
                 "path": "npm:///@domojs/devices/device-commands.json",
@@ -44,22 +47,41 @@
             "zigate": {
                 "path": "npm:///@domojs/zigate/commands.json",
                 "commandable": true,
-                "type": "nodejs"
+                "type": "nodejs",
+                "dependencies": [
+                    "@domojs/devices"
+                ]
             },
             "@domojs/owntracks": {
                 "type": "nodejs",
-                "path": "file:///Users/nicolas/dev/domojs/packages/owntracks/commands.json",
-                "commandable": true
+                "path": "npm:///@domojs/owntracks/commands.json",
+                "commandable": true,
+                "dependencies": [
+                    "@domojs/devices"
+                ]
+            },
+            "@domojs/upnp": {
+                "type": "nodejs",
+                "path": "npm:///@domojs/upnp/commands.json",
+                "commandable": true,
+                "dependencies": [
+                    "@domojs/devices"
+                ]
+            },
+            "@domojs/logitech-alert": {
+                "type": "nodejs",
+                "path": "npm:///@domojs/logitech-alert/commands.json",
+                "commandable": true,
+                "dependencies": [
+                    "@domojs/devices",
+                    "@domojs/upnp"
+                ]
             }
         },
         "mapping": {
             "pm": {
                 "container": "pm",
-                "connect": {
-                    "jsonrpc+unix:///Users/nicolas/dev/domojs/pm.sock": {},
-                    "jsonrpc+tcp://0.0.0.0:31415": {},
-                    "ws://0.0.0.0:31416": {}
-                }
+                "connect": {}
             },
             "@domojs/devices": {
                 "container": "@domojs/devices",
@@ -74,6 +96,14 @@
             },
             "@domojs/mdns": {
                 "container": "@domojs/mdns",
+                "autostart": false
+            },
+            "@domojs/upnp": {
+                "container": "@domojs/upnp",
+                "autostart": true
+            },
+            "@domojs/logitech-alert": {
+                "container": "@domojs/logitech-alert",
                 "autostart": true
             }
         },
@@ -88,14 +118,16 @@
         "endpointsMapping": {
             "7cbdb153fdc1b15bf9c569329111cc8778822d78e73ffd7468fe7a969ceea": 1,
             "d6e21286621a8586f7e54720ab5a39c93acc2f4b8fba7a16ec1c24d69a8c613": 2,
-            "8bca3c552fe97254bfd946b13bc7a16791aebab713b838e9da496f9ee7f4f6a": 3
+            "8bca3c552fe97254bfd946b13bc7a16791aebab713b838e9da496f9ee7f4f6a": 3,
+            "2d91dec1adadfb907ec12f4ce4fab767dad29c48383a497debd2da484d3f1065": 4,
+            "ed75292130e0ea9f56f0994c7d551ef223da2b1852cbd531f72716a29c571": 5
         },
         "pubsub": {
             "id": 0,
             "transportOptions": {
                 "password": {
-                    "iv": "U8mpfzU2X4qVLCbjLp5Pcg==",
-                    "value": "BGnbzJI2JQ/TF+3JVvBwJuKBOhPgjXYXzTPKIoxgGXzEXGiCJ52t/hPrwqG+VQ3A"
+                    "iv": "twnB8lxmQgdl0UJGIKxcIg==",
+                    "value": "Kgfu40zU02seQSpTcun4tJyl4552Tqs1edHVkXJhSL53WoM1dUZuC8B/Fn1j9gpi"
                 },
                 "username": "devices"
             }
@@ -310,18 +342,122 @@
             "ebb2fc79c7a1903c342965fe5cb3d8eedc3bf4b14c333b83bfc59b940bfef": 204,
             "c9f8896a58871a2995eb2d616b13a3de9fbbb914cbd066912a7a598861d1d3": 205,
             "a1f9822bec908283de5f4b951426ec3ebabb2bfefe52e8ba363f66477225a": 206,
-            "85ed9c88fae6861fa35fd86ab59ab34c02c8b4f3c335a7871aa4c5a7e13d7": 207
+            "85ed9c88fae6861fa35fd86ab59ab34c02c8b4f3c335a7871aa4c5a7e13d7": 207,
+            "723fafa1ed77f07317525ee7e9e57b9125f1298f70184939e78429405a2a9f": 208,
+            "4187eeddeb9b9b7ff417308f20e697d68175d5271e5784b3245ace4d64c82": 209,
+            "876895501846ea884d7c31b7796d738c72190fa855aa8531baa9b7b7179919": 210,
+            "1d85740658b5a9dda39f14f869fb57a117b45feaa42e28d2d4977717945cc3": 211
+        }
+    },
+    "@domojs/owntracks": {},
+    "@domojs/upnp": {
+        "endpointsMapping": {
+            "ccfacefdb072b58b99ea32e8527b98cb5bd6918b2bb137fff98dacc491bfe3": 1,
+            "5a9a62c71acddfa67715317c396daf99f41f85dd9c6414ec3ab15a36cf75e7e": 2,
+            "ca19ec11c17c1827b3cdcadbfe200cfb7c0b5daa1e3444b4c26efcc78348af8": 3,
+            "b4aa308a118ef2b8d34f769d2fee5b23e54bccdc81eb3fdf5a2a88284cbd47": 4,
+            "d941ceeedab8f44a5fa875b2961670ed1025e4314f9746e2b25229b56cc3e3": 5,
+            "123a7a8be58bf15a709ab2b597eeeed2bbe813d2d713705525b5c3fbca41bc7b": 6,
+            "d698643c87af6aa8efd8efe439328a76e016796cfe45a0b34449994d73c1bb9": 7,
+            "3f55e0217e90cb1ba15faf2342eca1c31ccd48ab4a045a32aac75c8b89c038": 8,
+            "221f397650924ed2bfa5ecda6de8df64b77e589b384889314dffb92554791": 9,
+            "e189b552462dc4a4dc14182b62b4bb93cc2746c40cef68679b2767c94bbc": 10,
+            "6a39d2ab44b3c6a91fdd367d6b91efa7a74f43d1abad3f7934c664db3ed1bcc5": 11,
+            "97d6f33656c0b024294d5f54f16f437543dc28f79e31eae98aaf39b25c7d28": 12,
+            "938bb21f226f5af6f1186e05c258574881f52cc3b9cd273ca917d7b9073f0": 13,
+            "c32037ce6167b89f20c9cfba09a4f2a85321ae4872a6b76088366b566df": 14,
+            "82dc9cfa87f1bb2b1409aef44787c4c9d8cf453b5f5ee814671eb8fe8d8ca": 15,
+            "26e9366984c2126ac8b54b43716880b5d7a220b6dfeb5f865aa97bbb9bdfeb": 16,
+            "278b9279b8354a48a1240382b7d4173dc87fc84abfd1cb0102ce79fb169e2": 17,
+            "789b8a912d9623b6f9bffea7bbeb23c221e8b416c324db836ba1631b1e6bcb13": 18,
+            "4e76b19fe880fbe016d3b3f9baf45dce69819ed2cf5fc4f138c5c1227be848": 19,
+            "85b5d723bdc7d282f8617526152cfd26a1648dd27e011113da062d2ec598898": 20,
+            "ccf6dfd07d4c6583ede96bc360386d0867b913a9992d03dae936111e7fe23b": 21,
+            "2c393daf3265a76e185037beea6bfb5fafcd32bacda96130123e801cdde31f9": 22,
+            "2a6f158ee847213647826b41c5c656d8e441990f8787c59c9134baeb6ae1d5a": 23,
+            "0c47d3d9f265a54cf5929116cf61d32aaa1543df8725496bb7953f240f4d": 24,
+            "6182e292d14c5f3e8f1b3122c743eddedd0b658ada0e143a4cae2dd9a1c7a": 25,
+            "be6976e64e2d5b3d67c97bb6d87bbaeee7ca88b88852788e588774d373657": 26,
+            "ae6731f31e9da6a294de9808886b67dda5c1a83fdd854e1be0bebcc6a99571": 27,
+            "6a495d3f34bcd177e5dcd3c4bf551e76f1ab65d5565569a99ddd0b7edbcb55e": 28,
+            "eae2264e99b2884da38cc321a15a68c09138669a7170aae643f9ffa55eea1e7d": 29,
+            "4f7e9a6db92b498b9f0af71a43766d8e947c32bde36d4d16362dbbbe4e2353a": 30,
+            "41831aadeb1b39d8ddc2e292db33f607ecc142d65549bf3c4e7fec58d1d58e": 31,
+            "854d9014a69a50b572e1a7cc69a4cf4eb92b09c67ba595e1856c6a7d9b0f6ac": 32,
+            "d6e6711647c5d21d375fd48ecb34328afd9daee2cbdee7da89464679cf6a5": 33,
+            "fd304bd6905d69313f1eaa39290741bc011cc209b7526502611ae1db24d25df": 34,
+            "d86b56a7c47527298f3fbf91dc4323585962ebd0128ef320a73dbb6ce38d35": 35,
+            "94103866c419879ee181170cb4578bdd30959cf5e2c248e31178cea36d6a95": 36,
+            "af1edc7d33a8f18f36a98c9f91eda29b6e4d629ce5644d82ad3e14f1bffdd": 37,
+            "c6756ac65e8945a0c7b070c64ff8bd2b745f4849a776f8ce9972efbd4401752": 38,
+            "908560529fb8dd47148eb3d6036ee7dfd5e61af34478acf66f2b45d1c709ca6": 39,
+            "21b458ab95ef9e3c48be4fcad46d0691ba0cf98e4e24f5097c2a37f44b70": 40,
+            "c2d18fb7e2453bf3c3c3d76a28550ddce42f677ca13ce3112615d27c162ed39": 41,
+            "14c86358aacb2c7ebb33483f1c554cdc512141996540b3655778153a83127a": 42,
+            "3b6f97f64da01d5e858720fe4b59f16736c941d7297d1783c9bb154e1b533f": 43,
+            "8d2480e9e34aeb2da20400925dc0802b5e5a917fef0a2236ed4a542c4163e": 44,
+            "491a1fa466a5293ec1e9d9e62ba512a46375826e857a8f1134de6aac15bdb": 45,
+            "6014bf7da17ca55867bfe8401dcad2ab8d284cc93c9eb275db9334cdae68873": 46,
+            "cb7955ce498e9ae763a508c1219e9bd90cc1a5d1809339b244f84b5268645a": 47,
+            "b26898d0937a56f8ef66ef5d391f3466fd843362c88ca473a826b836e96": 48,
+            "fab7f3b03965ea9b8a95c1a1efb78bceaef432643ad72a2bb5430111145a817": 49,
+            "4021bc508532b31789ac78da139c48837fe6baedfe8dddb1ea8e888bfa5328c": 50,
+            "e663dcdc783d6e16bc54b3322a34f6e22261f1de5af9d6471a59cb09085d1": 51,
+            "459ba2a8893c6c5a72a5a2432a197eb9b46848459af2f31b4de4331ba1e674": 52,
+            "c2238dd3a99dde477a6bbaf4a606fb995c3ee52b04b2dd441e7ab7ab0659c": 53,
+            "22ebfefcd1a15219404a971b3ef07a88fed6d4252bc11cafd4ec319483a2549": 54,
+            "2211e82dde6a448d8e5f1c2f52d32d876354336e46eb345fb68a9a92091ce": 55,
+            "27e6fe2685ab5dfacc5c0b9342056ed5612168c3631b1d43e5186822ccad": 56,
+            "a8ba16bd13b4a2a3b8923db7304f47bb3e932d63dfafef48b8a56d885aefb": 57,
+            "977387c1832331d5f7feff4e2b85f55afbf781778d943b7a9d9821ed93fdde": 58,
+            "c84d3b2288d27427e56295202ded6f52f39f94cbdcb90c3e1f815a0978f8": 59,
+            "e1a518d3d1b7e48d2b42e2afd1607df807412b6a369bed94afad678a1e2f381": 60,
+            "c719b69ee2fe1b19146c059985086491138eac1dd559bcb17e3e70f7f031fc": 61,
+            "b2decbe978e070903a6ebf975c662230ed4745bd593fe471527baacc81b2299": 62,
+            "6b48a1af69c797d46ba1e8872b71bf95dec510a7fefb7211b351c92e775838": 63,
+            "cdd0cf766bf56b9ae86044615d368b3581b7ac39e7414adb64174906a54": 64,
+            "9efa955d2cda114f4d18c37d591163e3403e4394504a84e75899ace1ac249f6": 65,
+            "a1808ae12c3689b6b18927f9cca3a9b52c1c9b8e5f399ba8c41139dc0c216": 66,
+            "f63723653cae51476f54f19f8bbc06e35cd18d3191878258f1bb585dac34a7": 67,
+            "c2e9176e9a49916d5b91ed6d437bb61dfc8d0a51cf92774b29dfa697ab0814a": 68,
+            "4568b26de592e37593a88a5a9623575471b443be7fa887fa9429ac73fcc5d64": 69,
+            "24673ae479a2e3ada8023a6d7c56e725388dd737576a768078465580b9c8": 70,
+            "263e3e83fd86054aff2cdb569dbc61a93a9cb3a5f63a834ca94f73690e781": 71,
+            "314628e9fd59f2c7cf83b64dd45bdccff86ae5f812c1515fa45542c41e6": 72,
+            "ad5d834ddc5c8e34308c26db6b18e74aa4f4d97f7bb2e51dc47fc5dafcff7ee": 73,
+            "c938d84a339ca37edcacfd5bc81d55eaa7fad5bccc0ca60c540c6fc562a4a": 74,
+            "4a17bbac08502c8bed565b7f53af36c710465891456e475c2f3449eb97c4": 75
         },
         "pubsub": {
-            "id": 1,
+            "id": 4,
             "transportOptions": {
                 "password": {
-                    "iv": "QI4mRGEcTlB75IbRaT8huA==",
-                    "value": "Z4REXyVyARx3NF9STs5b0OkNWJ+s7H7b3lHJQJKaBUX0/dB/j5721ROP+Utd7yZQ"
+                    "iv": "w1dSpbuy9jMuVVofFOD++Q==",
+                    "value": "w+hadQSb7Ll1lkLmI2du22+K5qHJekq6kK8Uv3sWPHKOsdJfyMmMqJ0ig0RnlPhi"
                 },
-                "username": "mdns"
+                "username": "upnp"
             }
         }
     },
-    "@domojs/owntracks": {}
+    "@domojs/logitech-alert": {
+        "pubsub": {
+            "id": 5,
+            "transportOptions": {
+                "password": {
+                    "iv": "4cxYki61W6aWoAlrxseSxg==",
+                    "value": "32CBOImxy/9EcPqMl1Tiz3ZxK1ifK0/wO5PGNxz7M/WR70RVtHDFJDKk9JEdXdx8"
+                },
+                "username": "logitech-alert"
+            }
+        },
+        "auth": {
+            "uuid:LogiSecurityDevice_00-12-AB-1B-8C-B6::urn:upnp-logitech-com:service:SecurityDeviceControl:1": "dragon-angel"
+        },
+        "endpointsMapping": {
+            "938bb21f226f5af6f1186e05c258574881f52cc3b9cd273ca917d7b9073f0": 1,
+            "c32037ce6167b89f20c9cfba09a4f2a85321ae4872a6b76088366b566df": 2,
+            "82dc9cfa87f1bb2b1409aef44787c4c9d8cf453b5f5ee814671eb8fe8d8ca": 3,
+            "97d6f33656c0b024294d5f54f16f437543dc28f79e31eae98aaf39b25c7d28": 4
+        }
+    }
 }
