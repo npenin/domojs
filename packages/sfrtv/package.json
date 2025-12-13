@@ -1,11 +1,11 @@
 {
-    "name": "sfrtv",
+    "name": "@domojs/sfrtv",
     "version": "0.0.36",
     "main": "dist/cjs/index.js",
     "types": "dist/cjs/index.d.ts",
     "type": "module",
     "dependencies": {
-        "@akala/core": "^43.0.1",
+        "@akala/core": "^44.1.0",
         "cookiejar": "^2.1.4",
         "puppeteer": "^24.27.0"
     },
