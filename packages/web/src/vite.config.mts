@@ -15,11 +15,11 @@ export default defineConfig({
         https: {},
         proxy: {
             '/pm': {
-                target: 'ws://home.dragon-angel.fr:31416/',
+                target: 'ws://localhost:31416/',
                 ws: true,
             },
             '/mqtt': {
-                target: 'wss://mqtt.dragon-angel.fr/',
+                target: 'ws://localhost:9001/',
                 ws: true,
                 changeOrigin: true,
                 rewrite: path => path.replace(/^\/mqtt/, '')
