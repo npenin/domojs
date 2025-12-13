@@ -1,6 +1,6 @@
 import * as net from 'net';
 import * as akala from '@akala/core';
-const log = akala.logger('domojs:iscp');
+const log = akala.logger.use('domojs:iscp');
 
 function buildQueue(device: string)
 {

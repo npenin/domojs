@@ -5,7 +5,7 @@ import { Duplex } from 'stream'
 import { EventEmitter } from 'events'
 import { parsers, parserWrite } from "@akala/protocol-parser";
 
-const log = logger('domojs:iscp:processor');
+const log = logger.use('domojs:iscp:processor');
 
 export class TimeoutError extends Error
 {

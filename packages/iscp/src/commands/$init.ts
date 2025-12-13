@@ -76,7 +76,18 @@ export default async function init(this: State, container: Container<void>, cont
                         }),
                         contentControl: clusterFactory({
                             id: MatterClusterIds.ContentControl,
+                            async EnableCommand()
+                            {
+                                this.Enabled = true;
+                            },
+                            async DisableCommand()
+                            {
+                                this.Enabled = false;
+                            },
                             Enabled: false,
+                            SupportsBlockApplications: false,
+                            SupportsBlockChannels: false,
+                            SupportsBlockContentTimeWindow: false,
                             SupportsBlockUnrated: false,
                             SupportsOnDemandContentRating: false,
                             SupportsPINManagement: false,
