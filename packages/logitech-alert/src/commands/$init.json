@@ -1,0 +1,15 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/command-schema.json",
+    "cli": {
+        "inject": [
+            "context",
+            "$http"
+        ]
+    },
+    "": {
+        "inject": [
+            "params.0",
+            "$http"
+        ]
+    }
+}
