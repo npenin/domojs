@@ -1,0 +1,28 @@
+{
+    "name": "@domojs/upnp",
+    "version": "0.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "type": "module",
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
+            }
+        },
+        "./commands.json": "./commands.json"
+    },
+    "dependencies": {
+        "@akala/sidecar": "^8.5.31",
+        "@domojs/devices": "workspace:^",
+        "@rgrove/parse-xml": "^4.2.0"
+    },
+    "devDependencies": {
+        "@akala/cli": "^5.15.6"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\"",
+        "generate": "akala sdk generate dist/commands commands.json --name @domojs/upnp"
+    }
+}

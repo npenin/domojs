@@ -1,0 +1,34 @@
+{
+    "name": "@domojs/upnp",
+    "commands": [
+        {
+            "name": "$init",
+            "config": {
+                "fs": {
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts",
+                    "inject": [
+                        "params.0",
+                        "params.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "context",
+                        "$http"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "params.0",
+                        "params.1"
+                    ]
+                }
+            }
+        }
+    ],
+    "dependencies": [
+        "@domojs/devices"
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"
+}
