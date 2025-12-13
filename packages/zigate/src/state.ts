@@ -1,4 +1,4 @@
-import { Logger } from '@akala/core';
+import { logger, LoggerWrapper } from '@akala/core';
 import { Sidecar } from '@akala/sidecar';
 import { Cluster, gateway, Zigate } from '@domojs/zigate-parsers';
 
@@ -29,5 +29,5 @@ export interface State extends Sidecar
 {
     devicesByAddress: { [gateway: string]: { [address: number]: ZDevice } };
     devices: { [gateway: string]: { [key: string]: ZDevices } };
-    logger: Logger;
+    logger: LoggerWrapper;
 }

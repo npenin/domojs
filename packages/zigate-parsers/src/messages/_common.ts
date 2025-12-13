@@ -1,6 +1,6 @@
 import { Cursor, parsers, parserWrite, uint16, uint8 } from '@akala/protocol-parser';
 import { IsomorphicBuffer, logger } from '@akala/core';
-const log = logger('zigate');
+const log = logger.use('zigate');
 
 export enum MessageType
 {

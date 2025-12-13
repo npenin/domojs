@@ -67,7 +67,7 @@ export function convertToMatterAttribute(zigbeeClusterId: ZigbeeCluster, attribu
  */
 export function convertToZigbeeAttribute(matterClusterId: MatterClusterIds, matterId: string, value: any): { zigbeeCluster: ZigbeeCluster, attributeId: number, value: any } | null
 {
-    const [zigbeeCluster, mapping]: [ZigbeeCluster, ClusterMapping | undefined] = zigbeeToMatterClusterMap.entries().find(e => e[1].matterId == matterClusterId);
+    const [zigbeeCluster, mapping]: [ZigbeeCluster, ClusterMapping | undefined] = Array.from(zigbeeToMatterClusterMap.entries()).find(e => e[1].matterId == matterClusterId);
     if (!mapping)
     {
         return null;

@@ -67,7 +67,7 @@ export
     address, aps, attributes, bind, dataIndication, descriptors, devices, door, enablePermissionsControlJoin, gateway, group, hue, ias, identify, logs,
     managementLeave, move, network, onoff, outOfBandCommissionningData, permitjoin, scenes, status, temperature, touchlink, trigger, version
 };
-const log = logger('zigate');
+const log = logger.use('zigate');
 
 export type Messages =
     | version.VersionResponse
