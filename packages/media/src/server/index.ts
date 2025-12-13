@@ -4,7 +4,7 @@ import levenshtein from 'levenshtein';
 
 export { fsHandler, FsProvider } from './commands/processFolder.js'
 
-const confidenceLog = akala.logger('domojs:media:confidence');
+const confidenceLog = akala.logger.use('domojs:media:confidence');
 
 export function confidence(name: string, names: string[])
 {

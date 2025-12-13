@@ -12,7 +12,7 @@ import { fileURLToPath, pathToFileURL } from 'url'
 import { Writable, Readable } from 'stream'
 import { LibraryState } from '../state.js';
 
-const log = akala.logger('domojs:media');
+const log = akala.logger.use('domojs:media');
 
 (function ()
 {
