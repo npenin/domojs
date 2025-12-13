@@ -169,7 +169,7 @@ export class DisconnectError<TMessage extends Responses<MessageTypes>> extends E
 }
 
 export type MqttEvent = IEvent<[data: IsomorphicBuffer | string,
-    mqttOptions?: { publishedTopic?: string, qos?: number, retain?: boolean, properties?: Properties }],
+    mqttOptions?: { publishedTopic?: string, qos?: number, retain?: boolean, properties?: Properties, replyTopic?: string }],
     void | Promise<void>,
     Partial<TopicSubscription> & { once?: boolean, properties?: Properties }>;
 

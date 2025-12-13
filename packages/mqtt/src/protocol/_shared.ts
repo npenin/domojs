@@ -133,7 +133,25 @@ export interface PropertiesMap
     [PropertyKeys.sharedSubscriptionAvailable]: uint8;
 }
 
-export type Property<TKey extends keyof PropertiesMap = keyof PropertiesMap> = { property: PropertiesMap[TKey], value: PropertiesMap[TKey] };
+export type UsablePropertiesMap = { [key in keyof typeof PropertyKeys]?: typeof PropertyKeys[key] extends keyof PropertiesMap ? PropertiesMap[typeof PropertyKeys[key]] : never };
+
+export function fromPropertyMap(map: Partial<UsablePropertiesMap>): Properties
+{
+    const properties: Properties = [];
+    for (const key in map)
+        properties.push({ property: PropertyKeys[key] as unknown as PropertyKeys, value: map[key] });
+    return properties;
+}
+
+export function toPropertyMap(properties: Properties): Partial<UsablePropertiesMap>
+{
+    const map: Partial<UsablePropertiesMap> = {};
+    for (const prop of properties)
+        map[PropertyKeys[prop.property]] = prop.value;
+    return map as Partial<UsablePropertiesMap>;
+}
+
+export type Property<TKey extends keyof PropertiesMap = keyof PropertiesMap> = { property: TKey, value: PropertiesMap[TKey] };
 
 export type Properties = Property[];
 

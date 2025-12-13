@@ -37,7 +37,16 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
             {
                 const matches = Object.entries(this.mqttSubscriptions).filter(([topic, sub]) => { return topic == m.topic || UrlTemplate.match(m.topic, topicTemplate(topic)) }).flatMap(([_, subs]) => subs);
                 if (matches.length > 0)
-                    await eachAsync(matches, async handler => await handler.listener(m.properties.find(p => p.property === PropertyKeys.payloadFormat)?.value ? m.stringPayload : m.binaryPayload, { publishedTopic: m.topic, qos: m.qos, retain: m.retain, properties: m.properties }));
+                {
+                    const data = m.properties.find(p => p.property === PropertyKeys.payloadFormat)?.value ? m.stringPayload : m.binaryPayload;
+                    console.log(`received ` + (data ?? '<empty>') + ` on subscribed topic ${m.topic}`);
+                    await eachAsync(matches, async handler => await handler.listener(data, { publishedTopic: m.topic, qos: m.qos, retain: m.retain, properties: m.properties }));
+                }
+                else
+                {
+                    const data = m.properties.find(p => p.property === PropertyKeys.payloadFormat)?.value ? m.stringPayload : m.binaryPayload;
+                    console.log(`received ` + (data ?? '<empty>') + ` on unsubscribed topic ${m.topic}`);
+                }
                 if (m.qos > 0)
                 {
                     const message: puback.Message = {
@@ -298,14 +307,25 @@ export class MqttClient extends AsyncTeardownManager implements AsyncEventBus<Mq
     public async publish(topic: string, payload: IsomorphicBuffer | string, options?: { qos?: number; retain?: boolean; properties?: Properties; }): Promise<void | Message>
     {
         const qos = options?.qos || 0;
-        console.log(`publishing to ${topic}`)
+        console.log(`publishing to ${topic}: ${typeof payload == 'string' ? payload : payload.toString('utf-8')}`)
+        if (!options?.properties?.find(p => p.property === PropertyKeys.payloadFormat))
+        {
+            if (!options)
+                options = {};
+            if (!options.properties)
+                options.properties = [];
+            if (typeof payload === 'string')
+                options.properties.push({ property: PropertyKeys.payloadFormat, value: 1 });
+            else
+                options.properties.push({ property: PropertyKeys.payloadFormat, value: 0 });
+        }
         const message: publish.Message = {
             type: ControlPacketType.PUBLISH,
             qos,
             retain: options?.retain,
             topic,
             packetId: this.getNextPacketId(),
-            properties: options?.properties || [typeof payload == 'string' ? { property: PropertyKeys.payloadFormat, value: 1 } : { property: PropertyKeys.payloadFormat, value: 0 }],
+            properties: options.properties,
             stringPayload: typeof payload === 'string' ? payload : undefined,
             binaryPayload: typeof payload !== 'string' ? payload : undefined,
         };
