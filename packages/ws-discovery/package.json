@@ -1,0 +1,29 @@
+{
+    "name": "@domojs/ws-discovery",
+    "version": "0.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "commands": "./commands.json",
+    "type": "module",
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
+            }
+        },
+        "./commands.json": "./commands.json"
+    },
+    "dependencies": {
+        "@akala/cli": "^5.15.6",
+        "@akala/commands": "^18.1.6",
+        "@akala/config": "^7.2.21",
+        "@akala/core": "^44.1.0",
+        "@akala/sidecar": "^8.5.31",
+        "@domojs/devices": "workspace:^"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\"",
+        "generate": "akala sdk generate dist/commands commands.json --name @domojs/ws-discovery"
+    }
+}

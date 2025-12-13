@@ -1,0 +1,67 @@
+{
+    "name": "@domojs/ws-discovery",
+    "commands": [
+        {
+            "name": "$init",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "params.0"
+                    ],
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts"
+                },
+                "": {
+                    "inject": [
+                        "params.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "context"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "$stop",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/commands/$stop.js",
+                    "source": "src/commands/$stop.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "browse",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
+                    ],
+                    "path": "dist/commands/browse.js",
+                    "source": "src/commands/browse.ts"
+                },
+                "": {
+                    "inject": [
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
+                    ]
+                }
+            }
+        }
+    ],
+    "dependencies": [
+        "@domojs/devices"
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"
+}

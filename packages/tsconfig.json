@@ -90,6 +90,18 @@
     },
     {
       "path": "owntracks"
+    },
+    {
+      "path": "logitech-alert"
+    },
+    {
+      "path": "upnp"
+    },
+    {
+      "path": "ws-discovery"
+    },
+    {
+      "path": "onvif"
     }
   ]
 }
