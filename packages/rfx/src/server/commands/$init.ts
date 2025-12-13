@@ -15,7 +15,7 @@ import { GatewayEndpoint } from "../endpoints/gateway.js";
 
 var state: State = null;
 // var setGateway: (gw: Rfxtrx) => void = null;
-const logger = Logger('@domojs/rfx');
+const logger = Logger.use('@domojs/rfx');
 
 // class RfxCommissionner extends Commissionner
 // {

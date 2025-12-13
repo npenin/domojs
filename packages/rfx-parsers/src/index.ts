@@ -23,7 +23,7 @@ import { Gateway } from '@domojs/devices'
 import { EmitPower, Frequences } from './protocol/0.interface.mode.js';
 
 type Modes = Pick<InterfaceControl.ModeCommand, 'msg3' | 'msg4' | 'msg5' | 'msg6'>;
-const log = logger('rfxtrx');
+const log = logger.use('rfxtrx');
 
 export class Rfxtrx extends Gateway<{ message: IEvent<[Message<any>], void> } & { [key in ((keyof typeof Type.INTERFACE_MESSAGE) | (keyof typeof PacketType) | PacketType)]: IEvent<[Message<any>['message']], void> }>
 {
