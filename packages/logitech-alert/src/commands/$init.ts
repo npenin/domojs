@@ -1,8 +1,8 @@
 import { CliContext } from '@akala/cli'
 import { ProxyConfiguration } from '@akala/config';
-import { BridgeConfiguration, clusterFactory, EndpointProxy, MatterClusterIds, registerNode, zoneManagementCluster } from '@domojs/devices'
+import { BridgeConfiguration, clusterFactory, EndpointProxy, MatterClusterIds, occupancySensingCluster, OccupancySensor, registerNode, zoneManagementCluster } from '@domojs/devices'
 import sidecar, { SidecarConfiguration } from '@akala/sidecar'
-import { base64, ErrorWithStatus, Http, HttpStatusCode, logger, TcpSocketAdapter } from '@akala/core';
+import { base64, ErrorWithStatus, Http, HttpStatusCode, logger, ObservableArray, TcpSocketAdapter } from '@akala/core';
 import { XMLParser } from 'fast-xml-parser';
 import net from 'node:net'
 import { Jabber } from '../jabberCommandHandler.js';
@@ -192,7 +192,7 @@ export default async function (context: CliContext<any, ProxyConfiguration<Sidec
                     });
 
                     // Extract motion detection zones from response
-                    const zones: zoneManagementCluster.ZoneInformationStruct[] = [];
+                    const zones = new ObservableArray<zoneManagementCluster.ZoneInformationStruct>([]);
                     let zoneId: 1;
                     if (motionDetection.MotionDetection?.zones.zones)
                     {
@@ -221,11 +221,27 @@ export default async function (context: CliContext<any, ProxyConfiguration<Sidec
                             id: MatterClusterIds.FixedLabel,
                             LabelList: Object.entries(labels).map(kv => ({ Label: kv[0], Value: kv[1] }))
                         }),
+                        occupancySensing: clusterFactory({
+                            id: MatterClusterIds.OccupancySensing,
+                            Occupancy: occupancySensingCluster.OccupancyBitmap.Occupied,
+                            OccupancySensorType: occupancySensingCluster.OccupancySensorTypeEnum.PIR,
+                            PIROccupiedToUnoccupiedDelay: 30,
+                            PIRUnoccupiedToOccupiedDelay: 0,
+                            SupportsActiveInfrared: false,
+                            SupportsVision: true,
+                            SupportsOther: false,
+                            SupportsPassiveInfrared: false,
+                            SupportsPhysicalContact: false,
+                            SupportsRadar: false,
+                            SupportsRFSensing: false,
+                            SupportsUltrasonic: false,
+                            OccupancySensorTypeBitmap: occupancySensingCluster.OccupancySensorTypeBitmap.PIR,
+                        }),
                         // Zone Management cluster for motion detection
                         zoneManagement: clusterFactory({
                             id: MatterClusterIds.ZoneManagement,
                             MaxZones: motionDetection.MotionDetection?.zones.maxCount || 10,
-                            Zones: zones,
+                            Zones: zones.array,
                             Triggers: [] as any,
                             SensitivityMax: 100,
                             Sensitivity: motionDetection.MotionDetection?.overall || 50,
@@ -258,6 +274,8 @@ export default async function (context: CliContext<any, ProxyConfiguration<Sidec
                             async RemoveZoneCommand(zone)
                             {
                                 zones.splice(zones.findIndex(z => z.ZoneID == zone), 1);
+
+
                             },
                         })
                     });
@@ -268,7 +286,20 @@ export default async function (context: CliContext<any, ProxyConfiguration<Sidec
                         jabber.on('message', msg =>
                         {
                             if (msg.type == 'message')
-                                console.log(msg);
+                            {
+                                console.log(msg.event.items.item);
+
+                                if (msg.event.items.item.MediaRecordingStarted?.Reasons['@_motion'] === '1')
+                                {
+                                    log.info(`Motion detected on camera ${labels.friendlyName || usn}`);
+                                    cameraEndpoint.clusters.occupancySensing.setValue('Occupancy', occupancySensingCluster.OccupancyBitmap.Occupied);
+                                    // setTimeout(() =>
+                                    // {
+                                    //     cameraEndpoint.clusters.occupancySensing.setValue('Occupancy', 0 as any);
+                                    //     log.info(`No motion on camera ${labels.friendlyName || usn}`);
+                                    // }, 30000);
+                                }
+                            }
                         })
                     }
                     fabric.endpoints.push(cameraEndpoint);
