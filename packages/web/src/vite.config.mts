@@ -4,7 +4,13 @@ import webui from '@akala/web-ui/vite'
 import basicSsl from '@vitejs/plugin-basic-ssl';
 
 export default defineConfig({
-
+    resolve: {
+        // Runtime resolution
+        conditions: ['browser', 'import', 'default'],
+        alias: {
+            'node:tty': 'virtual:empty-module', // stub the module
+        }
+    },
     build: {
         // generate .vite/manifest.json in outDir
         manifest: true,
@@ -34,8 +40,26 @@ export default defineConfig({
     },
     optimizeDeps: {
         exclude: ['@akala/pm/akala'],
+        esbuildOptions: {
+            conditions: ['browser', 'import', 'default'],
+        },
     },
     plugins: [
+        {
+            name: 'empty-module-plugin',
+            resolveId(id)
+            {
+                if (id === 'virtual:empty-module') return id; // your target id
+            },
+            load(id)
+            {
+                if (id === 'virtual:empty-module')
+                {
+                    // Tree‑shakable empty module
+                    return { code: 'export {};', moduleSideEffects: false };
+                }
+            },
+        },
         akala({
         }),
         webui({ generateOptions: { grid: true, customMedia: true }, includeDefaultTheme: true }),

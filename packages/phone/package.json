@@ -22,12 +22,12 @@
         "ios": "yarn build && yarn sync:ios"
     },
     "dependencies": {
-        "@akala/commands": "^18.1.6",
-        "@akala/config": "^7.2.21",
-        "@akala/core": "^44.1.0",
-        "@akala/fs": "^2.5.9",
-        "@akala/pubsub": "^3.1.71",
-        "@akala/sidecar": "^8.5.31",
+        "@akala/commands": "^18.1.9",
+        "@akala/config": "^7.2.24",
+        "@akala/core": "^44.2.2",
+        "@akala/fs": "^2.6.2",
+        "@akala/pubsub": "^3.1.74",
+        "@akala/sidecar": "^8.5.34",
         "@capacitor/android": "^7.4.4",
         "@capacitor/core": "^7.4.4",
         "@capacitor/filesystem": "^7.1.4",

@@ -17,16 +17,16 @@
         }
     },
     "dependencies": {
-        "@akala/client": "^43.6.37",
-        "@akala/commands": "^18.1.6",
-        "@akala/core": "^44.1.0",
-        "@akala/web-ui": "^5.3.38",
+        "@akala/client": "^43.6.40",
+        "@akala/commands": "^18.1.9",
+        "@akala/core": "^44.2.2",
+        "@akala/web-ui": "^5.3.41",
         "@carbon/icon-helpers": "^10.68.0",
         "@carbon/icons": "^11.70.0",
         "@domojs/devices": "workspace:^"
     },
     "devDependencies": {
-        "@akala/vite": "^2.7.66",
+        "@akala/vite": "^2.7.69",
         "@vitejs/plugin-basic-ssl": "^2.1.0",
         "esbuild-sass-plugin": "^3.3.1",
         "postcss": "^8.5.6",

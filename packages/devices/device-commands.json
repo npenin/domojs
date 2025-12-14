@@ -55,6 +55,27 @@
                     ]
                 }
             }
+        },
+        {
+            "name": "request-permissions",
+            "config": {
+                "fs": {
+                    "path": "dist/server/commands/devices/request-permissions.js",
+                    "source": "src/server/commands/devices/request-permissions.ts",
+                    "inject": [
+                        "params.0",
+                        "params.1",
+                        "params.2"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "params.0",
+                        "params.1",
+                        "params.2"
+                    ]
+                }
+            }
         }
     ],
     "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"
