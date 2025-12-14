@@ -1,9 +1,9 @@
-#  (2025-11-08)
+#  (2025-12-14)
 
 
 ### Bug Fixes
 
-* endpoint detection 7278349
+* update websocket targets to localhost for local development 9628663
 
 
 
