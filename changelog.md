@@ -186,6 +186,7 @@
 * publish workflow after semantic-release upgrade 3d373e1
 * recover from closed socket 0b733dd
 * redirectTopic value 7c77939
+* refine motion detection logic for occupancy sensing dc541e5
 * remove @akala/client for now 570f6fd
 * remove @akala/client for now fae299f
 * remove connect settings in docker e057800
