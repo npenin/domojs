@@ -1,4 +1,4 @@
-#  (2025-11-08)
+#  (2025-12-14)
 
 
 ### Bug Fixes
@@ -106,6 +106,8 @@
 * export topic wildcard to urltemplate conversion b3a68bb
 * file copy ordering 2ece2ca
 * filter gateway mode endpoints 416ac45
+* first logitech-alert version 2573c6f
+* first non-working onvif version 121291b
 * first run 437a3e7
 * first version 3a4c6aa
 * first version 26c738d
@@ -239,12 +241,18 @@
 * update AccuracyRanges to use array format in GatewayEndpoint and enable SupportsLift in RfyWindowCovering e869096
 * update after breaking changes in akala 28983f9
 * update after commands upgrade e41e30a
+* update after core and matter updates 37c314c
+* update after core breaking change 4399020
+* update after core breaking change 1e11361
+* update after core breaking change 4deabe1
+* update after core breaking change 91e6b2e
 * update after devices break 1e59885
 * update after devices breaking change e693405
 * update after devices breaking change db3d19d
 * update after jsonrpc breaking change a5d8dbf
 * update codegen to provide ClusterDefinitions f191fd7
 * update config 26a8d19
+* update config to run logitech-alert a4be9c1
 * update cron reference c80babf
 * update dbus uint32lebe parser 489fba8
 * update default config ed6451b
@@ -263,12 +271,14 @@
 * update terminology for rfy devices to match matter terminology 24cb712
 * update to errorwithstatus cfa1344
 * update to event emitter from akala 2bdfe95
+* update to handle incomplete 1.5 definitions 7c9d13a
 * update to latest serial port types 77515fc
 * update to latest yarn e01f675
 * update to proper logging 7de83c6
 * update to working akala b297101
 * update tsconfig.json to include 'web' path and remove commented 'icookin' path 648b768
 * update vite config c771226
+* update websocket targets to localhost for local development 9628663
 * update yarn 336a099
 * upgrade @akala/core from 6.0.0 to 6.0.1 4336f5a
 * upgrade dependency 04c1122
@@ -333,6 +343,7 @@
 * add name on rfxtrx modes ded3290
 * add new behaviors e31e0b4
 * add new components for device button selection and room card, enhance home page layout with search functionality 3295433
+* add occupancySensing on logitech-alert cameras 9242501
 * add ota requestor behavior 60a6da4
 * add possibility to provide endpoint proxy name 2aa86bf
 * add possibility to specify version d72a139
@@ -355,10 +366,13 @@
 * enable matter as devices on mqtt bus (not yet tested) 513a2e6
 * enable swipeable dialog 2a6e447
 * enable URL support 1f5dc23
+* enhance MQTT client with detailed logging and property handling cdd9880
 * enhance TypeScript generation with ClusterMap and default value handling 81dbad7
 * expose behaviors d90e465
 * expose Boolean behavior c09637b
 * expose manualAdmin 1199b7f
+* first upnp version 1d53bad
+* first ws-discovery version a3ccdbc
 * implement basic mqtt v5 protocol 01e31e0
 * make devices as containers c1e5c93
 * make exec on devicetype CLI compatible f92bf92
@@ -384,12 +398,14 @@
 * switch to matter like and mqtt implementation 7153114
 * update guest role configuration and add ACLs for publish and subscribe 35473f8
 * update scrapper as generic 1286958
+* update to matter 1.5 definitions eb9ee75
 * upgrade devices as command container 7dcd4df
 * various fixes and improvements 5f6c5f1
 
 
 ### BREAKING CHANGES
 
+* matter 1.5 definition might break previous clusters
 * location is now /akala instead of /usr/src/akala
 * EndpointProxy provide bindings instead of Promise
 * endpoints and endpointproxies do not expect ClusterMap anymore
