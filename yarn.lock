@@ -741,6 +741,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@domojs/onvif@workspace:packages/onvif":
+  version: 0.0.0-use.local
+  resolution: "@domojs/onvif@workspace:packages/onvif"
+  languageName: unknown
+  linkType: soft
+
 "@domojs/owntracks@workspace:packages/owntracks":
   version: 0.0.0-use.local
   resolution: "@domojs/owntracks@workspace:packages/owntracks"
@@ -8501,12 +8507,6 @@ __metadata:
   checksum: 10/8e832de08b1d73b470e01690c211cb4fcefccab1fd1bd19e706d572d74d3e9b7e38a8bfcdabdd364f9f868757d9e8e5812a59817dc473eaf698ff3bfae2219f2
   languageName: node
   linkType: hard
-
-"onvif@workspace:packages/onvif":
-  version: 0.0.0-use.local
-  resolution: "onvif@workspace:packages/onvif"
-  languageName: unknown
-  linkType: soft
 
 "open@npm:^7.4.2":
   version: 7.4.2
