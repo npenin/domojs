@@ -1,10 +1,14 @@
-#  (2025-11-08)
+#  (2025-12-14)
 
 
 ### Features
 
-* add possibility to provide endpoint proxy name 2aa86bf
-* expose behaviors d90e465
+* update to matter 1.5 definitions eb9ee75
+
+
+### BREAKING CHANGES
+
+* matter 1.5 definition might break previous clusters
 
 
 
