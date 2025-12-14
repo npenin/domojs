@@ -1,9 +1,9 @@
-#  (2025-11-08)
+#  (2025-12-14)
 
 
 ### Bug Fixes
 
-* improve typing 82130fa
+* update after core breaking change 4399020
 
 
 
