@@ -1,4 +1,9 @@
-#  (2025-11-08)
+#  (2025-12-14)
+
+
+### Features
+
+* enhance MQTT client with detailed logging and property handling cdd9880
 
 
 
