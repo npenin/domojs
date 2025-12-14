@@ -289,7 +289,7 @@ export default async function (context: CliContext<any, ProxyConfiguration<Sidec
                             {
                                 console.log(msg.event.items.item);
 
-                                if (msg.event.items.item.MediaRecordingStarted?.Reasons['@_motion'] === '1')
+                                if (msg.event.items.item.MediaRecordingStarted?.Reasons['@_motion'] === '1' && msg.event.items.item.MediaRecordingStarted?.Device['@_id'] == nvr.DeviceUniqueId)
                                 {
                                     log.info(`Motion detected on camera ${labels.friendlyName || usn}`);
                                     cameraEndpoint.clusters.occupancySensing.setValue('Occupancy', occupancySensingCluster.OccupancyBitmap.Occupied);
