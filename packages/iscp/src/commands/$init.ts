@@ -1,10 +1,9 @@
 import { State } from "../state.js";
 import { Container } from "@akala/commands";
-import { BasicVideoPlayer, Binding, BridgeConfiguration, clusterFactory, ClusterIds, ClusterMap, CommissionningCluster, EndpointProxy, MatterClusterIds, mediaPlaybackCluster, registerNode, RootNode, targetNavigatorCluster } from "@domojs/devices";
+import { BasicVideoPlayer, Binding, BridgeConfiguration, clusterFactory, ClusterIds, ClusterMap, CommissionningCluster, EndpointProxy, keypadInput, MatterClusterIds, mediaPlayback, registerNode, RootNode, targetNavigator } from "@domojs/devices";
 import { Context } from "@akala/core";
 import app, { pubsub, SidecarConfiguration } from "@akala/sidecar";
 import { ProxyConfiguration } from "@akala/config";
-import { keypadInputCluster } from "@domojs/devices";
 import { IscpMessage, protocol } from "../iscp-processor.js";
 import { parserWrite } from '@akala/protocol-parser';
 
@@ -48,7 +47,7 @@ export default async function init(this: State, container: Container<void>, cont
                 (data, remote) =>
                 {
 
-                    new BasicVideoPlayer(0, {
+                    new BasicVideoPlayer('test', 0, {
                         audioOutput: clusterFactory({
                             id: MatterClusterIds.AudioOutput,
                             async SelectOutputCommand(i)
@@ -119,18 +118,18 @@ export default async function init(this: State, container: Container<void>, cont
                         }),
                         mediaPlayback: clusterFactory({
                             id: MatterClusterIds.MediaPlayback,
-                            CurrentState: mediaPlaybackCluster.PlaybackStateEnum.NotPlaying,
+                            CurrentState: mediaPlayback.PlaybackStateEnum.NotPlaying,
                             async PauseCommand()
                             {
-                                return [mediaPlaybackCluster.StatusEnum.NotAllowed, ''];
+                                return [mediaPlayback.StatusEnum.NotAllowed, ''];
                             },
                             async PlayCommand()
                             {
-                                return [mediaPlaybackCluster.StatusEnum.NotAllowed, ''];
+                                return [mediaPlayback.StatusEnum.NotAllowed, ''];
                             },
                             async StopCommand()
                             {
-                                return [mediaPlaybackCluster.StatusEnum.NotAllowed, ''];
+                                return [mediaPlayback.StatusEnum.NotAllowed, ''];
                             },
                             SupportsAdvancedSeek: false,
                             SupportsAudioAdvance: false,
@@ -166,13 +165,14 @@ export default async function init(this: State, container: Container<void>, cont
                             id: MatterClusterIds.TargetNavigator,
                             async NavigateTargetCommand(target, data)
                             {
-                                return [targetNavigatorCluster.StatusEnum.NotAllowed, '']
+                                return [targetNavigator.StatusEnum.NotAllowed, '']
                             },
                             TargetList: [],
                             CurrentTarget: 0
                         }),
                         userLabel: clusterFactory({
                             id: MatterClusterIds.UserLabel,
+                            LabelList: []
                         }),
                         wakeOnLAN: clusterFactory({
                             id: MatterClusterIds.WakeOnLAN,
@@ -184,93 +184,93 @@ export default async function init(this: State, container: Container<void>, cont
                             {
                                 switch (key)
                                 {
-                                    case keypadInputCluster.CECKeyCodeEnum.Select:
-                                    case keypadInputCluster.CECKeyCodeEnum.Up:
-                                    case keypadInputCluster.CECKeyCodeEnum.Down:
-                                    case keypadInputCluster.CECKeyCodeEnum.Left:
-                                    case keypadInputCluster.CECKeyCodeEnum.Right:
-                                    case keypadInputCluster.CECKeyCodeEnum.RightUp:
-                                    case keypadInputCluster.CECKeyCodeEnum.RightDown:
-                                    case keypadInputCluster.CECKeyCodeEnum.LeftUp:
-                                    case keypadInputCluster.CECKeyCodeEnum.LeftDown:
-                                    case keypadInputCluster.CECKeyCodeEnum.RootMenu:
-                                    case keypadInputCluster.CECKeyCodeEnum.SetupMenu:
-                                    case keypadInputCluster.CECKeyCodeEnum.ContentsMenu:
-                                    case keypadInputCluster.CECKeyCodeEnum.FavoriteMenu:
-                                    case keypadInputCluster.CECKeyCodeEnum.Exit:
-                                    case keypadInputCluster.CECKeyCodeEnum.MediaTopMenu:
-                                    case keypadInputCluster.CECKeyCodeEnum.MediaContextSensitiveMenu:
-                                    case keypadInputCluster.CECKeyCodeEnum.NumberEntryMode:
-                                    case keypadInputCluster.CECKeyCodeEnum.Number11:
-                                    case keypadInputCluster.CECKeyCodeEnum.Number12:
-                                    case keypadInputCluster.CECKeyCodeEnum.Number0OrNumber10:
-                                    case keypadInputCluster.CECKeyCodeEnum.Numbers1:
-                                    case keypadInputCluster.CECKeyCodeEnum.Numbers2:
-                                    case keypadInputCluster.CECKeyCodeEnum.Numbers3:
-                                    case keypadInputCluster.CECKeyCodeEnum.Numbers4:
-                                    case keypadInputCluster.CECKeyCodeEnum.Numbers5:
-                                    case keypadInputCluster.CECKeyCodeEnum.Numbers6:
-                                    case keypadInputCluster.CECKeyCodeEnum.Numbers7:
-                                    case keypadInputCluster.CECKeyCodeEnum.Numbers8:
-                                    case keypadInputCluster.CECKeyCodeEnum.Numbers9:
-                                    case keypadInputCluster.CECKeyCodeEnum.Dot:
-                                    case keypadInputCluster.CECKeyCodeEnum.Enter:
-                                    case keypadInputCluster.CECKeyCodeEnum.Clear:
-                                    case keypadInputCluster.CECKeyCodeEnum.NextFavorite:
-                                    case keypadInputCluster.CECKeyCodeEnum.ChannelUp:
-                                    case keypadInputCluster.CECKeyCodeEnum.ChannelDown:
-                                    case keypadInputCluster.CECKeyCodeEnum.PreviousChannel:
-                                    case keypadInputCluster.CECKeyCodeEnum.SoundSelect:
-                                    case keypadInputCluster.CECKeyCodeEnum.InputSelect:
-                                    case keypadInputCluster.CECKeyCodeEnum.DisplayInformation:
-                                    case keypadInputCluster.CECKeyCodeEnum.Help:
-                                    case keypadInputCluster.CECKeyCodeEnum.PageUp:
-                                    case keypadInputCluster.CECKeyCodeEnum.PageDown:
-                                    case keypadInputCluster.CECKeyCodeEnum.Power:
-                                    case keypadInputCluster.CECKeyCodeEnum.VolumeUp:
-                                    case keypadInputCluster.CECKeyCodeEnum.VolumeDown:
-                                    case keypadInputCluster.CECKeyCodeEnum.Mute:
-                                    case keypadInputCluster.CECKeyCodeEnum.Play:
-                                    case keypadInputCluster.CECKeyCodeEnum.Stop:
-                                    case keypadInputCluster.CECKeyCodeEnum.Pause:
-                                    case keypadInputCluster.CECKeyCodeEnum.Record:
-                                    case keypadInputCluster.CECKeyCodeEnum.Rewind:
-                                    case keypadInputCluster.CECKeyCodeEnum.FastForward:
-                                    case keypadInputCluster.CECKeyCodeEnum.Eject:
-                                    case keypadInputCluster.CECKeyCodeEnum.Forward:
-                                    case keypadInputCluster.CECKeyCodeEnum.Backward:
-                                    case keypadInputCluster.CECKeyCodeEnum.StopRecord:
-                                    case keypadInputCluster.CECKeyCodeEnum.PauseRecord:
-                                    case keypadInputCluster.CECKeyCodeEnum.Reserved:
-                                    case keypadInputCluster.CECKeyCodeEnum.Angle:
-                                    case keypadInputCluster.CECKeyCodeEnum.SubPicture:
-                                    case keypadInputCluster.CECKeyCodeEnum.VideoOnDemand:
-                                    case keypadInputCluster.CECKeyCodeEnum.ElectronicProgramGuide:
-                                    case keypadInputCluster.CECKeyCodeEnum.TimerProgramming:
-                                    case keypadInputCluster.CECKeyCodeEnum.InitialConfiguration:
-                                    case keypadInputCluster.CECKeyCodeEnum.SelectBroadcastType:
-                                    case keypadInputCluster.CECKeyCodeEnum.SelectSoundPresentation:
-                                    case keypadInputCluster.CECKeyCodeEnum.PlayFunction:
-                                    case keypadInputCluster.CECKeyCodeEnum.PausePlayFunction:
-                                    case keypadInputCluster.CECKeyCodeEnum.RecordFunction:
-                                    case keypadInputCluster.CECKeyCodeEnum.PauseRecordFunction:
-                                    case keypadInputCluster.CECKeyCodeEnum.StopFunction:
-                                    case keypadInputCluster.CECKeyCodeEnum.MuteFunction:
-                                    case keypadInputCluster.CECKeyCodeEnum.RestoreVolumeFunction:
-                                    case keypadInputCluster.CECKeyCodeEnum.TuneFunction:
-                                    case keypadInputCluster.CECKeyCodeEnum.SelectMediaFunction:
-                                    case keypadInputCluster.CECKeyCodeEnum.SelectAvInputFunction:
-                                    case keypadInputCluster.CECKeyCodeEnum.SelectAudioInputFunction:
-                                    case keypadInputCluster.CECKeyCodeEnum.PowerToggleFunction:
-                                    case keypadInputCluster.CECKeyCodeEnum.F1Blue:
-                                    case keypadInputCluster.CECKeyCodeEnum.F2Red:
-                                    case keypadInputCluster.CECKeyCodeEnum.F3Green:
-                                    case keypadInputCluster.CECKeyCodeEnum.F4Yellow:
-                                    case keypadInputCluster.CECKeyCodeEnum.F5:
-                                    case keypadInputCluster.CECKeyCodeEnum.Data:
+                                    case keypadInput.CecKeyCodeEnum.Select:
+                                    case keypadInput.CecKeyCodeEnum.Up:
+                                    case keypadInput.CecKeyCodeEnum.Down:
+                                    case keypadInput.CecKeyCodeEnum.Left:
+                                    case keypadInput.CecKeyCodeEnum.Right:
+                                    case keypadInput.CecKeyCodeEnum.RightUp:
+                                    case keypadInput.CecKeyCodeEnum.RightDown:
+                                    case keypadInput.CecKeyCodeEnum.LeftUp:
+                                    case keypadInput.CecKeyCodeEnum.LeftDown:
+                                    case keypadInput.CecKeyCodeEnum.RootMenu:
+                                    case keypadInput.CecKeyCodeEnum.SetupMenu:
+                                    case keypadInput.CecKeyCodeEnum.ContentsMenu:
+                                    case keypadInput.CecKeyCodeEnum.FavoriteMenu:
+                                    case keypadInput.CecKeyCodeEnum.Exit:
+                                    case keypadInput.CecKeyCodeEnum.MediaTopMenu:
+                                    case keypadInput.CecKeyCodeEnum.MediaContextSensitiveMenu:
+                                    case keypadInput.CecKeyCodeEnum.NumberEntryMode:
+                                    case keypadInput.CecKeyCodeEnum.Number11:
+                                    case keypadInput.CecKeyCodeEnum.Number12:
+                                    case keypadInput.CecKeyCodeEnum.Number0OrNumber10:
+                                    case keypadInput.CecKeyCodeEnum.Numbers1:
+                                    case keypadInput.CecKeyCodeEnum.Numbers2:
+                                    case keypadInput.CecKeyCodeEnum.Numbers3:
+                                    case keypadInput.CecKeyCodeEnum.Numbers4:
+                                    case keypadInput.CecKeyCodeEnum.Numbers5:
+                                    case keypadInput.CecKeyCodeEnum.Numbers6:
+                                    case keypadInput.CecKeyCodeEnum.Numbers7:
+                                    case keypadInput.CecKeyCodeEnum.Numbers8:
+                                    case keypadInput.CecKeyCodeEnum.Numbers9:
+                                    case keypadInput.CecKeyCodeEnum.Dot:
+                                    case keypadInput.CecKeyCodeEnum.Enter:
+                                    case keypadInput.CecKeyCodeEnum.Clear:
+                                    case keypadInput.CecKeyCodeEnum.NextFavorite:
+                                    case keypadInput.CecKeyCodeEnum.ChannelUp:
+                                    case keypadInput.CecKeyCodeEnum.ChannelDown:
+                                    case keypadInput.CecKeyCodeEnum.PreviousChannel:
+                                    case keypadInput.CecKeyCodeEnum.SoundSelect:
+                                    case keypadInput.CecKeyCodeEnum.InputSelect:
+                                    case keypadInput.CecKeyCodeEnum.DisplayInformation:
+                                    case keypadInput.CecKeyCodeEnum.Help:
+                                    case keypadInput.CecKeyCodeEnum.PageUp:
+                                    case keypadInput.CecKeyCodeEnum.PageDown:
+                                    case keypadInput.CecKeyCodeEnum.Power:
+                                    case keypadInput.CecKeyCodeEnum.VolumeUp:
+                                    case keypadInput.CecKeyCodeEnum.VolumeDown:
+                                    case keypadInput.CecKeyCodeEnum.Mute:
+                                    case keypadInput.CecKeyCodeEnum.Play:
+                                    case keypadInput.CecKeyCodeEnum.Stop:
+                                    case keypadInput.CecKeyCodeEnum.Pause:
+                                    case keypadInput.CecKeyCodeEnum.Record:
+                                    case keypadInput.CecKeyCodeEnum.Rewind:
+                                    case keypadInput.CecKeyCodeEnum.FastForward:
+                                    case keypadInput.CecKeyCodeEnum.Eject:
+                                    case keypadInput.CecKeyCodeEnum.Forward:
+                                    case keypadInput.CecKeyCodeEnum.Backward:
+                                    case keypadInput.CecKeyCodeEnum.StopRecord:
+                                    case keypadInput.CecKeyCodeEnum.PauseRecord:
+                                    case keypadInput.CecKeyCodeEnum.Reserved:
+                                    case keypadInput.CecKeyCodeEnum.Angle:
+                                    case keypadInput.CecKeyCodeEnum.SubPicture:
+                                    case keypadInput.CecKeyCodeEnum.VideoOnDemand:
+                                    case keypadInput.CecKeyCodeEnum.ElectronicProgramGuide:
+                                    case keypadInput.CecKeyCodeEnum.TimerProgramming:
+                                    case keypadInput.CecKeyCodeEnum.InitialConfiguration:
+                                    case keypadInput.CecKeyCodeEnum.SelectBroadcastType:
+                                    case keypadInput.CecKeyCodeEnum.SelectSoundPresentation:
+                                    case keypadInput.CecKeyCodeEnum.PlayFunction:
+                                    case keypadInput.CecKeyCodeEnum.PausePlayFunction:
+                                    case keypadInput.CecKeyCodeEnum.RecordFunction:
+                                    case keypadInput.CecKeyCodeEnum.PauseRecordFunction:
+                                    case keypadInput.CecKeyCodeEnum.StopFunction:
+                                    case keypadInput.CecKeyCodeEnum.MuteFunction:
+                                    case keypadInput.CecKeyCodeEnum.RestoreVolumeFunction:
+                                    case keypadInput.CecKeyCodeEnum.TuneFunction:
+                                    case keypadInput.CecKeyCodeEnum.SelectMediaFunction:
+                                    case keypadInput.CecKeyCodeEnum.SelectAvInputFunction:
+                                    case keypadInput.CecKeyCodeEnum.SelectAudioInputFunction:
+                                    case keypadInput.CecKeyCodeEnum.PowerToggleFunction:
+                                    case keypadInput.CecKeyCodeEnum.F1Blue:
+                                    case keypadInput.CecKeyCodeEnum.F2Red:
+                                    case keypadInput.CecKeyCodeEnum.F3Green:
+                                    case keypadInput.CecKeyCodeEnum.F4Yellow:
+                                    case keypadInput.CecKeyCodeEnum.F5:
+                                    case keypadInput.CecKeyCodeEnum.Data:
                                         return Promise.reject();
-                                    case keypadInputCluster.CECKeyCodeEnum.PowerOnFunction:
-                                    case keypadInputCluster.CECKeyCodeEnum.PowerOffFunction:
+                                    case keypadInput.CecKeyCodeEnum.PowerOnFunction:
+                                    case keypadInput.CecKeyCodeEnum.PowerOffFunction:
 
                                         break;
                                 }

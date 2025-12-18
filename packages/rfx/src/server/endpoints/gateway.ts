@@ -1,4 +1,4 @@
-import { Endpoint, powerSourceCluster, wifiNetworkDiagnosticsCluster, globalEnums, identifyCluster, Aggregator, commissionerControlCluster, electricalPowerMeasurementCluster, ClusterMap, Binding, temperatureMeasurementCluster, ClusterInstanceLight, clusterFactory, AggregatorEndpoint, RootNode, MatterClusterIds } from "@domojs/devices";
+import { Endpoint, powerSourceCluster, globalEnums, Aggregator, commissionerControlCluster, ClusterMap, Binding, ClusterInstanceLight, clusterFactory, AggregatorEndpoint, RootNode, MatterClusterIds, diagnosticsWiFi, electricalEnergyMeasurement, electricalPowerMeasurement } from "@domojs/devices";
 import { Elec1, Elec2, InterfaceControl, InterfaceMessage, Message, PacketType, Rfxtrx, Rfy, TemperatureHumidity, Type } from "@domojs/rfx-parsers";
 import { ModeEndpoint } from "./mode.js";
 import { IsomorphicBuffer, ObservableArray, ObservableObject } from "@akala/core";
@@ -8,7 +8,7 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
 {
     constructor(id: number, public readonly deviceName: string, public readonly gateway: Rfxtrx, fabric: RootNode<never>)
     {
-        super(id, {
+        super(deviceName.toString(), id, {
             userLabel: clusterFactory({
                 id: MatterClusterIds.UserLabel,
                 LabelList: [
@@ -53,9 +53,10 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                     if (message.type === Type.INTERFACE_MESSAGE.listRFYRemotes || message.type === Type.INTERFACE_MESSAGE.listASARemotes)
                     {
                         const remote = (message as Message<InterfaceMessage.ListRFYRemote>).message;
-                        const endpointId = await fabric.getEndpointId(`rfy-${remote.id1}-${remote.id2}-${remote.id3}-${remote.unitCode}`);
+                        const endpointName = `rfy-${remote.id1}-${remote.id2}-${remote.id3}-${remote.unitCode}`;
+                        const endpointId = await fabric.getEndpointId(endpointName);
                         if (!this.endpoints.find(ep => ep.id == endpointId))
-                            this.endpoints.push(new Endpoint(endpointId, { windowCovering: RfyWindowCovering(gateway, remote) }));
+                            this.endpoints.push(new Endpoint(endpointName, endpointId, { windowCovering: RfyWindowCovering(gateway, remote) }));
                     }
                     break;
                 case PacketType.TEMPERATURE_HUMIDITY:
@@ -95,20 +96,44 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                             m.batteryLevel < 1 ?
                                                 powerSourceCluster.BatChargeLevelEnum.Critical :
                                                 powerSourceCluster.BatChargeLevelEnum.Warning,
+                                    BatChargeState: powerSourceCluster.BatChargeStateEnum.IsNotCharging,
+                                    BatReplaceability: powerSourceCluster.BatReplaceabilityEnum.UserReplaceable,
+                                    BatFunctionalWhileCharging: false,
+                                    BatQuantity: 2,
+                                    BatReplacementNeeded: false,
+                                    BatReplacementDescription: '',
+                                    WiredCurrentType: powerSourceCluster.WiredCurrentTypeEnum.AC,
                                     SupportsBattery: false,
                                     SupportsWired: false,
                                     SupportsRechargeable: false,
-                                    SupportsReplaceable: false
+                                    SupportsReplaceable: false,
                                 }),
                                 wiFiNetworkDiagnostics: clusterFactory({
                                     id: MatterClusterIds.WiFiNetworkDiagnostics,
                                     RSSI: m.rssi,
                                     BSSID: IsomorphicBuffer.from(this.deviceName),
                                     ChannelNumber: 0,
-                                    SecurityType: wifiNetworkDiagnosticsCluster.SecurityTypeEnum.Unspecified,
-                                    WiFiVersion: wifiNetworkDiagnosticsCluster.WiFiVersionEnum.A,
+                                    SecurityType: diagnosticsWiFi.SecurityTypeEnum.Unspecified,
+                                    WiFiVersion: diagnosticsWiFi.WiFiVersionEnum.A,
                                     SupportsPacketCounts: false,
-                                    SupportsErrorCounts: false
+                                    SupportsErrorCounts: false,
+                                    BeaconLostCount: 0,
+                                    BeaconRxCount: 0,
+                                    PacketMulticastRxCount: 0,
+                                    PacketMulticastTxCount: 0,
+                                    PacketUnicastRxCount: 0,
+                                    PacketUnicastTxCount: 0,
+                                    OverrunCount: 0n,
+                                    async ResetCountsCommand()
+                                    {
+                                        this.BeaconLostCount = 0;
+                                        this.BeaconRxCount = 0;
+                                        this.PacketMulticastRxCount = 0;
+                                        this.PacketMulticastTxCount = 0;
+                                        this.PacketUnicastRxCount = 0;
+                                        this.PacketUnicastTxCount = 0;
+                                        this.OverrunCount = 0n;
+                                    }
                                 })
                             }));
                         else
@@ -154,7 +179,7 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                         MaxMeasuredValue: 0xffffffffn,
                                         MinMeasuredValue: 0x0n,
                                         Measured: false,
-                                        MeasurementType: globalEnums.MeasurementTypeEnum.ActivePower
+                                        MeasurementType: electricalEnergyMeasurement.MeasurementTypeEnum.ActivePower
                                     },
                                     CumulativeEnergyImported: {
                                         Energy: m.total / 223.666, // Wh or kWh depending on your data,
@@ -162,12 +187,17 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                     PeriodicEnergyImported: {
                                         Energy: m.instant,
                                     },
+                                    PeriodicEnergyExported: {
+                                        Energy: 0,
+                                    },
                                     SupportsApparentEnergy: false,
                                     SupportsCumulativeEnergy: true,
                                     SupportsExportedEnergy: false,
                                     SupportsImportedEnergy: true,
                                     SupportsPeriodicEnergy: true,
                                     SupportsReactiveEnergy: false,
+                                    CumulativeEnergyExported: null,
+
                                 }),
                                 powerSource: clusterFactory({
                                     id: MatterClusterIds.PowerSource,
@@ -184,17 +214,41 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                     SupportsBattery: false,
                                     SupportsWired: false,
                                     SupportsRechargeable: false,
-                                    SupportsReplaceable: false
+                                    SupportsReplaceable: false,
+                                    WiredCurrentType: powerSourceCluster.WiredCurrentTypeEnum.AC,
+                                    BatChargeState: powerSourceCluster.BatChargeStateEnum.IsNotCharging,
+                                    BatReplaceability: powerSourceCluster.BatReplaceabilityEnum.UserReplaceable,
+                                    BatFunctionalWhileCharging: false,
+                                    BatQuantity: 2,
+                                    BatReplacementNeeded: false,
+                                    BatReplacementDescription: '',
                                 }),
                                 wiFiNetworkDiagnostics: clusterFactory({
                                     id: MatterClusterIds.WiFiNetworkDiagnostics,
                                     RSSI: m.rssi,
                                     BSSID: IsomorphicBuffer.from(this.deviceName),
                                     ChannelNumber: 0,
-                                    SecurityType: wifiNetworkDiagnosticsCluster.SecurityTypeEnum.Unspecified,
-                                    WiFiVersion: wifiNetworkDiagnosticsCluster.WiFiVersionEnum.A,
+                                    SecurityType: diagnosticsWiFi.SecurityTypeEnum.Unspecified,
+                                    WiFiVersion: diagnosticsWiFi.WiFiVersionEnum.A,
                                     SupportsErrorCounts: false,
                                     SupportsPacketCounts: false,
+                                    BeaconLostCount: 0,
+                                    BeaconRxCount: 0,
+                                    PacketMulticastRxCount: 0,
+                                    PacketMulticastTxCount: 0,
+                                    PacketUnicastRxCount: 0,
+                                    PacketUnicastTxCount: 0,
+                                    OverrunCount: 0n,
+                                    async ResetCountsCommand()
+                                    {
+                                        this.BeaconLostCount = 0;
+                                        this.BeaconRxCount = 0;
+                                        this.PacketMulticastRxCount = 0;
+                                        this.PacketMulticastTxCount = 0;
+                                        this.PacketUnicastRxCount = 0;
+                                        this.PacketUnicastTxCount = 0;
+                                        this.OverrunCount = 0n;
+                                    }
                                 })
                             }));
                         else
@@ -250,16 +304,40 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                     SupportsRechargeable: false,
                                     SupportsReplaceable: false,
                                     SupportsWired: false,
+                                    WiredCurrentType: powerSourceCluster.WiredCurrentTypeEnum.AC,
+                                    BatChargeState: powerSourceCluster.BatChargeStateEnum.IsNotCharging,
+                                    BatReplaceability: powerSourceCluster.BatReplaceabilityEnum.UserReplaceable,
+                                    BatFunctionalWhileCharging: false,
+                                    BatQuantity: 2,
+                                    BatReplacementNeeded: false,
+                                    BatReplacementDescription: '',
                                 }),
                                 wiFiNetworkDiagnostics: clusterFactory({
                                     id: MatterClusterIds.WiFiNetworkDiagnostics,
                                     RSSI: m.rssi,
                                     BSSID: IsomorphicBuffer.from(this.deviceName),
                                     ChannelNumber: 0,
-                                    SecurityType: wifiNetworkDiagnosticsCluster.SecurityTypeEnum.Unspecified,
-                                    WiFiVersion: wifiNetworkDiagnosticsCluster.WiFiVersionEnum.A,
+                                    SecurityType: diagnosticsWiFi.SecurityTypeEnum.Unspecified,
+                                    WiFiVersion: diagnosticsWiFi.WiFiVersionEnum.A,
                                     SupportsErrorCounts: false,
-                                    SupportsPacketCounts: false
+                                    SupportsPacketCounts: false,
+                                    BeaconLostCount: 0,
+                                    BeaconRxCount: 0,
+                                    PacketMulticastRxCount: 0,
+                                    PacketMulticastTxCount: 0,
+                                    PacketUnicastRxCount: 0,
+                                    PacketUnicastTxCount: 0,
+                                    OverrunCount: 0n,
+                                    async ResetCountsCommand()
+                                    {
+                                        this.BeaconLostCount = 0;
+                                        this.BeaconRxCount = 0;
+                                        this.PacketMulticastRxCount = 0;
+                                        this.PacketMulticastTxCount = 0;
+                                        this.PacketUnicastRxCount = 0;
+                                        this.PacketUnicastTxCount = 0;
+                                        this.OverrunCount = 0n;
+                                    }
                                 })
                             }));
 
@@ -271,12 +349,14 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                         Accuracy: [],
                                         ActivePower: m.channel1,
                                         NumberOfMeasurementTypes: 0,
-                                        PowerMode: electricalPowerMeasurementCluster.PowerModeEnum.Unknown,
+                                        PowerMode: electricalPowerMeasurement.PowerModeEnum.Unknown,
                                         SupportsAlternatingCurrent: true,
                                         SupportsDirectCurrent: false,
                                         SupportsHarmonics: false,
                                         SupportsPolyphasePower: false,
                                         SupportsPowerQuality: false,
+                                        HarmonicCurrents: [],
+                                        HarmonicPhases: [],
                                     }),
 
                                     electricalEnergyMeasurement: clusterFactory({
@@ -289,7 +369,7 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                             MaxMeasuredValue: 0xffffffffn,
                                             MinMeasuredValue: 0x0n,
                                             Measured: false,
-                                            MeasurementType: globalEnums.MeasurementTypeEnum.ActiveCurrent
+                                            MeasurementType: electricalEnergyMeasurement.MeasurementTypeEnum.ActiveCurrent
                                         },
                                         PeriodicEnergyImported: {
                                             Energy: m.channel1,
@@ -299,7 +379,16 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                         SupportsExportedEnergy: false,
                                         SupportsImportedEnergy: true,
                                         SupportsPeriodicEnergy: true,
-                                        SupportsReactiveEnergy: false
+                                        SupportsReactiveEnergy: false,
+                                        CumulativeEnergyExported: {
+                                            Energy: 0,
+                                        },
+                                        CumulativeEnergyImported: {
+                                            Energy: 0
+                                        },
+                                        PeriodicEnergyExported: {
+                                            Energy: 0,
+                                        }
                                     }),
                                 }),
                                 await fabric.newEndpoint(`${message.type}-${m.sensorId}-2`, {
@@ -308,12 +397,14 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                         Accuracy: [],
                                         ActivePower: m.channel2,
                                         NumberOfMeasurementTypes: 0,
-                                        PowerMode: electricalPowerMeasurementCluster.PowerModeEnum.Unknown,
+                                        PowerMode: electricalPowerMeasurement.PowerModeEnum.Unknown,
                                         SupportsAlternatingCurrent: true,
                                         SupportsDirectCurrent: false,
                                         SupportsHarmonics: false,
                                         SupportsPolyphasePower: false,
                                         SupportsPowerQuality: false,
+                                        HarmonicCurrents: [],
+                                        HarmonicPhases: [],
                                     }),
 
                                     electricalEnergyMeasurement: clusterFactory({
@@ -326,7 +417,7 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                             MaxMeasuredValue: 0xffffffffn,
                                             MinMeasuredValue: 0x0n,
                                             Measured: false,
-                                            MeasurementType: globalEnums.MeasurementTypeEnum.ActiveCurrent
+                                            MeasurementType: electricalEnergyMeasurement.MeasurementTypeEnum.ActiveCurrent
                                         },
                                         PeriodicEnergyImported: {
                                             Energy: m.channel2,
@@ -336,7 +427,17 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                         SupportsExportedEnergy: false,
                                         SupportsImportedEnergy: true,
                                         SupportsPeriodicEnergy: true,
-                                        SupportsReactiveEnergy: false
+                                        SupportsReactiveEnergy: false,
+                                        CumulativeEnergyExported: {
+                                            Energy: 0,
+                                        },
+                                        CumulativeEnergyImported: {
+                                            Energy: 0
+                                        },
+                                        PeriodicEnergyExported: {
+                                            Energy: 0,
+                                        }
+
                                     }),
                                 }),
                                 await fabric.newEndpoint(`${message.type}-${m.sensorId}-3`, {
@@ -345,12 +446,14 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                         Accuracy: [],
                                         ActivePower: m.channel3,
                                         NumberOfMeasurementTypes: 0,
-                                        PowerMode: electricalPowerMeasurementCluster.PowerModeEnum.Unknown,
+                                        PowerMode: electricalPowerMeasurement.PowerModeEnum.Unknown,
                                         SupportsAlternatingCurrent: true,
                                         SupportsDirectCurrent: false,
                                         SupportsHarmonics: false,
                                         SupportsPolyphasePower: false,
                                         SupportsPowerQuality: false,
+                                        HarmonicCurrents: [],
+                                        HarmonicPhases: [],
                                     }),
 
                                     electricalEnergyMeasurement: clusterFactory({
@@ -363,7 +466,7 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                             MaxMeasuredValue: 0xffffffffn,
                                             MinMeasuredValue: 0x0n,
                                             Measured: false,
-                                            MeasurementType: globalEnums.MeasurementTypeEnum.ActiveCurrent
+                                            MeasurementType: electricalEnergyMeasurement.MeasurementTypeEnum.ActiveCurrent
                                         },
                                         PeriodicEnergyImported: {
                                             Energy: m.channel3,
@@ -373,7 +476,16 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
                                         SupportsExportedEnergy: false,
                                         SupportsImportedEnergy: true,
                                         SupportsPeriodicEnergy: true,
-                                        SupportsReactiveEnergy: false
+                                        SupportsReactiveEnergy: false,
+                                        CumulativeEnergyExported: {
+                                            Energy: 0,
+                                        },
+                                        CumulativeEnergyImported: {
+                                            Energy: 0
+                                        },
+                                        PeriodicEnergyExported: {
+                                            Energy: 0,
+                                        }
                                     }),
                                 })];
 

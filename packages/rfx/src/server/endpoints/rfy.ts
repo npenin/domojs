@@ -6,7 +6,7 @@ export class RfyEndpoint extends Endpoint
 {
     constructor(id: number, remote: Pick<Rfy.Device, 'unitCode' | 'id1' | 'id2' | 'id3'>, gateway: Rfxtrx)
     {
-        super(id,
+        super(id.toString(), id,
             {
                 windowCovering: RfyWindowCovering(gateway, remote),
             });
@@ -17,10 +17,10 @@ export function RfyWindowCovering(gateway: Rfxtrx, remote: Pick<Rfy.Device, 'uni
 {
     return new ObservableObject({
         id: MatterClusterIds.WindowCovering,
-        ConfigStatus: windowCovering.ConfigStatus.Operational,
-        EndProductType: windowCovering.EndProductType.RollerShutter,
-        Type: windowCovering.Type.Shutter,
-        OperationalStatus: windowCovering.OperationalStatus.Global,
+        ConfigStatus: windowCovering.ConfigStatusBitmap.Operational,
+        EndProductType: windowCovering.EndProductTypeEnum.RollerShutter,
+        Type: windowCovering.TypeEnum.Shutter,
+        OperationalStatus: windowCovering.OperationalStatusBitmap.Global,
         SupportsAbsolutePosition: false,
         SupportsLift: true,
         SupportsTilt: false,
@@ -55,6 +55,7 @@ export function RfyWindowCovering(gateway: Rfxtrx, remote: Pick<Rfy.Device, 'uni
                 id3: remote.id3,
                 unitCode: remote.unitCode
             });
-        }
+        },
+        Mode: windowCovering.ModeBitmap.__NotSet,
     } as ClusterInstanceLight<windowCovering.WindowCovering>);
 }

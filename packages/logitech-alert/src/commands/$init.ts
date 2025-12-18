@@ -1,6 +1,6 @@
 import { CliContext } from '@akala/cli'
 import { ProxyConfiguration } from '@akala/config';
-import { BridgeConfiguration, clusterFactory, EndpointProxy, MatterClusterIds, occupancySensingCluster, OccupancySensor, registerNode, zoneManagementCluster } from '@domojs/devices'
+import { BridgeConfiguration, clusterFactory, EndpointProxy, MatterClusterIds, occupancySensing, OccupancySensor, registerNode, zoneManagement } from '@domojs/devices'
 import sidecar, { SidecarConfiguration } from '@akala/sidecar'
 import { base64, ErrorWithStatus, Http, HttpStatusCode, logger, ObservableArray, TcpSocketAdapter } from '@akala/core';
 import { XMLParser } from 'fast-xml-parser';
@@ -82,7 +82,10 @@ export default async function (context: CliContext<any, ProxyConfiguration<Sidec
                         if (features.mechanisms[0] == 'PLAIN')
                         {
                             if (typeof secretPassword == 'string')
-                                context.state.setSecret('auth.' + labels.uniqueServiceName, secretPassword);
+                            {
+                                await context.state.setSecret('auth.' + labels.uniqueServiceName, secretPassword);
+                                await context.state.commit();
+                            }
 
                             const password = typeof secretPassword == 'string' ? secretPassword : await context.state.getSecret('auth.' + labels.uniqueServiceName);
 
@@ -192,7 +195,7 @@ export default async function (context: CliContext<any, ProxyConfiguration<Sidec
                     });
 
                     // Extract motion detection zones from response
-                    const zones = new ObservableArray<zoneManagementCluster.ZoneInformationStruct>([]);
+                    const zones = new ObservableArray<zoneManagement.ZoneInformationStruct>([]);
                     let zoneId: 1;
                     if (motionDetection.MotionDetection?.zones.zones)
                     {
@@ -200,11 +203,11 @@ export default async function (context: CliContext<any, ProxyConfiguration<Sidec
                         {
                             zones.push({
                                 ZoneID: zoneId++,
-                                ZoneType: zoneManagementCluster.ZoneTypeEnum.TwoDCARTZone,
-                                ZoneSource: zoneManagementCluster.ZoneSourceEnum.User,
+                                ZoneType: zoneManagement.ZoneTypeEnum.TwoDCARTZone,
+                                ZoneSource: zoneManagement.ZoneSourceEnum.User,
                                 TwoDCartesianZone: {
                                     Name: `Zone ${zones.length + 1}`,
-                                    Use: zoneManagementCluster.ZoneUseEnum.Motion,
+                                    Use: zoneManagement.ZoneUseEnum.Motion,
                                     Vertices: [
                                         { X: zone.x, Y: zone.y },
                                         { X: zone.x + zone.width, Y: zone.y },
@@ -223,8 +226,8 @@ export default async function (context: CliContext<any, ProxyConfiguration<Sidec
                         }),
                         occupancySensing: clusterFactory({
                             id: MatterClusterIds.OccupancySensing,
-                            Occupancy: occupancySensingCluster.OccupancyBitmap.Occupied,
-                            OccupancySensorType: occupancySensingCluster.OccupancySensorTypeEnum.PIR,
+                            Occupancy: occupancySensing.OccupancyBitmap.Occupied,
+                            OccupancySensorType: occupancySensing.OccupancySensorTypeEnum.PIR,
                             PIROccupiedToUnoccupiedDelay: 30,
                             PIRUnoccupiedToOccupiedDelay: 0,
                             SupportsActiveInfrared: false,
@@ -235,7 +238,7 @@ export default async function (context: CliContext<any, ProxyConfiguration<Sidec
                             SupportsRadar: false,
                             SupportsRFSensing: false,
                             SupportsUltrasonic: false,
-                            OccupancySensorTypeBitmap: occupancySensingCluster.OccupancySensorTypeBitmap.PIR,
+                            OccupancySensorTypeBitmap: occupancySensing.OccupancySensorTypeBitmap.PIR,
                         }),
                         // Zone Management cluster for motion detection
                         zoneManagement: clusterFactory({
@@ -254,16 +257,16 @@ export default async function (context: CliContext<any, ProxyConfiguration<Sidec
                             MaxUserDefinedZones: motionDetection.MotionDetection?.zones.maxCount,
                             async CreateTwoDCartesianZoneCommand(zone)
                             {
-                                if (zone.Use !== zoneManagementCluster.ZoneUseEnum.Motion)
+                                if (zone.Use !== zoneManagement.ZoneUseEnum.Motion)
                                     throw new ErrorWithStatus(HttpStatusCode.NotAcceptable);
 
                                 zones.push({
                                     ZoneID: zoneId++,
-                                    ZoneSource: zoneManagementCluster.ZoneSourceEnum.User,
-                                    ZoneType: zoneManagementCluster.ZoneTypeEnum.TwoDCARTZone,
+                                    ZoneSource: zoneManagement.ZoneSourceEnum.User,
+                                    ZoneType: zoneManagement.ZoneTypeEnum.TwoDCARTZone,
                                     TwoDCartesianZone: {
                                         Name: `Zone ${zoneId}`,
-                                        Use: zoneManagementCluster.ZoneUseEnum.Motion,
+                                        Use: zoneManagement.ZoneUseEnum.Motion,
                                         Vertices: zone.Vertices,
                                         Color: zone.Color
                                     }
@@ -283,6 +286,7 @@ export default async function (context: CliContext<any, ProxyConfiguration<Sidec
                     if (sub.type == 'result' && sub.command.pubsub['subscription']['@_subscription'] == 'subscribed')
                     {
                         console.info('subscribed to urn:logitech-com:logitech-alert:remote-event:device:media:recording:started');
+                        log.info('subscribed to urn:logitech-com:logitech-alert:remote-event:device:media:recording:started');
                         jabber.on('message', msg =>
                         {
                             if (msg.type == 'message')
@@ -292,7 +296,8 @@ export default async function (context: CliContext<any, ProxyConfiguration<Sidec
                                 if (msg.event.items.item.MediaRecordingStarted?.Reasons['@_motion'] === '1' && msg.event.items.item.MediaRecordingStarted?.Device['@_id'] == nvr.DeviceUniqueId)
                                 {
                                     log.info(`Motion detected on camera ${labels.friendlyName || usn}`);
-                                    cameraEndpoint.clusters.occupancySensing.setValue('Occupancy', occupancySensingCluster.OccupancyBitmap.Occupied);
+                                    console.info(`Motion detected on camera ${labels.friendlyName || usn}`);
+                                    cameraEndpoint.clusters.occupancySensing.setValue('Occupancy', occupancySensing.OccupancyBitmap.Occupied);
                                     // setTimeout(() =>
                                     // {
                                     //     cameraEndpoint.clusters.occupancySensing.setValue('Occupancy', 0 as any);

@@ -1,4 +1,4 @@
-import { clusterFactory, ClusterIds, ClusterMap, Endpoint, MatterClusterIds, RootNode } from "@domojs/devices";
+import { clusterFactory, ClusterIds, ClusterMap, Endpoint, MatterClusterIds, onOff, RootNode } from "@domojs/devices";
 import { InterfaceControl, Rfxtrx } from "@domojs/rfx-parsers";
 import { GatewayEndpoint } from "./gateway.js";
 
@@ -11,7 +11,7 @@ export class ModeEndpoint<TName extends Extract<keyof TEnum, string>, TEnum exte
     }
     constructor(id: number, n: 3 | 4 | 5 | 6, msg: TEnum, name: TName, gateway: Rfxtrx)
     {
-        super(id,
+        super(name, id,
             {
                 fixedLabel: clusterFactory({
                     id: MatterClusterIds.FixedLabel,
@@ -40,6 +40,22 @@ export class ModeEndpoint<TName extends Extract<keyof TEnum, string>, TEnum exte
                     SupportsDeadFrontBehavior: false,
                     SupportsLighting: false,
                     SupportsOffOnly: false,
+                    GlobalSceneControl: false,
+                    OffWaitTime: 0,
+                    OffWithEffectCommand()
+                    {
+                        return Promise.resolve();
+                    },
+                    OnWithRecallGlobalSceneCommand()
+                    {
+                        return Promise.resolve();
+                    },
+                    OnWithTimedOffCommand()
+                    {
+                        return Promise.resolve();
+                    },
+                    OnTime: 0,
+                    StartUpOnOff: onOff.StartUpOnOffEnum.On,
                 })
             });
     }

@@ -65,7 +65,7 @@ export default async function (context: CliContext<any, ProxyConfiguration<Sidec
 
                     if (!typeEndpoints[service.type])
                     {
-                        typeEndpoints[service.type] = new AggregatorEndpoint(endpointTypeId, {
+                        typeEndpoints[service.type] = new AggregatorEndpoint(service.type, endpointTypeId, {
                             fixedLabel: clusterFactory({
                                 id: MatterClusterIds.FixedLabel,
                                 LabelList: [{
@@ -80,7 +80,7 @@ export default async function (context: CliContext<any, ProxyConfiguration<Sidec
                     }
                     if (!fabric.endpoints.find(ep => ep.id == endpointId))
                     {
-                        const serviceEndpoint = await fabric.newEndpoint(endpointId, {
+                        const serviceEndpoint = await fabric.newEndpoint(device.uniqueServiceName, {
                             fixedLabel: clusterFactory({
                                 id: MatterClusterIds.FixedLabel,
                                 LabelList: Object.entries(device).map(e => ({ Label: e[0], Value: e[1] })).concat([{
@@ -94,7 +94,7 @@ export default async function (context: CliContext<any, ProxyConfiguration<Sidec
                                     Value: service.descriptor.event
                                 }])
                             })
-                        });
+                        }, endpointId);
 
                         fabric.endpoints.push(serviceEndpoint);
                         typeEndpoints[service.type].endpoints.push(serviceEndpoint);

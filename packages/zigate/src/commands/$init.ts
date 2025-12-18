@@ -1,4 +1,4 @@
-import { administratorCommissioningCluster, Binding, BridgeConfiguration, clusterFactory, ClusterIds, generalCommissioningCluster, globalEnums, identifyCluster, MatterClusterIds, registerNode, RootNode, timeFormatLocalizationCluster, timeSynchronizationCluster, unitLocalizationCluster, Endpoint, MatterClusterMap, ClusterIdNames } from '@domojs/devices';
+import { adminCommissioningCluster, Binding, BridgeConfiguration, clusterFactory, ClusterIds, generalCommissioningCluster, globalEnums, identify, MatterClusterIds, registerNode, RootNode, localizationTimeFormat, timeSync, localizationUnit, Endpoint, MatterClusterMap, ClusterIdNames } from '@domojs/devices';
 import { State } from '../state.js'
 import { Zigate, MessageType, Cluster as ZigbeeCluster, MessageTypes, descriptors, attributes } from '@domojs/zigate-parsers';
 import { createMatterClusterFromZigbee } from '../cluster-converter.js';

@@ -1,6 +1,6 @@
 import { CliContext } from "@akala/cli";
 import app, { SidecarConfiguration } from "@akala/sidecar";
-import { Boolean, BridgeConfiguration, clusterFactory, ClusterIds, ClusterInstance, MatterClusterIds, onoffCluster, registerNode } from "@domojs/devices";
+import { Boolean, BridgeConfiguration, clusterFactory, ClusterIds, ClusterInstance, MatterClusterIds, onOff, registerNode } from "@domojs/devices";
 import { ProxyConfiguration } from '@akala/config'
 import { Scheduler } from "@akala/cron";
 import { Subscription } from '@akala/core';
@@ -56,11 +56,11 @@ export async function start(this: State, context: CliContext<{}, ProxyConfigurat
                     {
                         console.log(`Cron job executed: ${cron} at ${new Date().toISOString()}`);
                         // Trigger the onOff cluster to indicate the cron job ran
-                        (endpoint.clusters.onOff as ClusterInstance<onoffCluster.OnOff>)?.setValue('OnOff', true);
+                        (endpoint.clusters.onOff as ClusterInstance<onOff.OnOff>)?.setValue('OnOff', true);
                         // Optionally turn it off after a short delay
                         setTimeout(() =>
                         {
-                            (endpoint.clusters.onOff as ClusterInstance<onoffCluster.OnOff>)?.setValue('OnOff', false);
+                            (endpoint.clusters.onOff as ClusterInstance<onOff.OnOff>)?.setValue('OnOff', false);
                         }, 1000);
                     });
 

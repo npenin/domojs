@@ -1,5 +1,5 @@
 import { Cluster as ZigbeeCluster } from '@domojs/zigate-parsers';
-import { MatterClusterIds, clusterFactory, ClusterMap, basicInformationCluster, onoffCluster, levelControlCluster, colorControlCluster, temperatureControlCluster, temperatureMeasurementCluster, relativeHumidityMeasurementCluster, occupancySensingCluster, powerSourceCluster } from '@domojs/devices';
+import { MatterClusterIds, clusterFactory, ClusterMap, basicInformationCluster, onOff, levelControl, colorControl, temperatureControl, temperatureMeasurement, waterContentMeasurement, occupancySensing, powerSourceCluster } from '@domojs/devices';
 
 export interface AttributeMapping
 {
@@ -44,20 +44,20 @@ export const zigbeeToMatterClusterMap = new Map<ZigbeeCluster, ClusterMapping>([
         attributes: [
             {
                 zigbeeId: 0x0000,
-                matterId: onoffCluster.default.attributes.find(a => a == 'OnOff'),
+                matterId: onOff.default.attributes.find(a => a == 'OnOff'),
                 convert: (value: boolean) => value ? 0 : 1
             },
             {
                 zigbeeId: 0x4000,
-                matterId: onoffCluster.default.attributes.find(a => a == 'GlobalSceneControl')
+                matterId: onOff.default.attributes.find(a => a == 'GlobalSceneControl')
             },
             {
                 zigbeeId: 0x4001,
-                matterId: onoffCluster.default.attributes.find(a => a == 'OnTime')
+                matterId: onOff.default.attributes.find(a => a == 'OnTime')
             },
             {
                 zigbeeId: 0x4002,
-                matterId: onoffCluster.default.attributes.find(a => a == 'OffWaitTime')
+                matterId: onOff.default.attributes.find(a => a == 'OffWaitTime')
             }
         ]
     }],
@@ -67,14 +67,14 @@ export const zigbeeToMatterClusterMap = new Map<ZigbeeCluster, ClusterMapping>([
         attributes: [
             {
                 zigbeeId: 0x0000,
-                matterId: levelControlCluster.default.attributes.find(a => a == 'CurrentLevel'),
+                matterId: levelControl.default.attributes.find(a => a == 'CurrentLevel'),
                 convert: (value: number) => Math.round((value / 255) * 100), // Convert 0-255 to 0-100
                 unconvert: (value: number) => Math.round((value / 100) * 255), // Convert 0-100 to 0-255
 
             },
             {
                 zigbeeId: 0x0001,
-                matterId: levelControlCluster.default.attributes.find(a => a == 'RemainingTime')
+                matterId: levelControl.default.attributes.find(a => a == 'RemainingTime')
             }
         ]
     }],
@@ -84,23 +84,23 @@ export const zigbeeToMatterClusterMap = new Map<ZigbeeCluster, ClusterMapping>([
         attributes: [
             {
                 zigbeeId: 0x0000,
-                matterId: colorControlCluster.default.attributes.find(a => a == 'CurrentHue'),
+                matterId: colorControl.default.attributes.find(a => a == 'CurrentHue'),
                 convert: (value: number) => Math.round((value / 255) * 360), // Convert to degrees
                 unconvert: (value: number) => Math.round((value / 360) * 255), // Convert to degrees
             },
             {
                 zigbeeId: 0x0001,
-                matterId: colorControlCluster.default.attributes.find(a => a == 'CurrentSaturation'),
+                matterId: colorControl.default.attributes.find(a => a == 'CurrentSaturation'),
                 convert: (value: number) => Math.round((value / 255) * 100), // Convert to percentage
                 unconvert: (value: number) => Math.round((value / 100) * 255) // Convert to percentage
             },
             {
                 zigbeeId: 0x0003,
-                matterId: colorControlCluster.default.attributes.find(a => a == 'RemainingTime')
+                matterId: colorControl.default.attributes.find(a => a == 'RemainingTime')
             },
             {
                 zigbeeId: 0x0007,
-                matterId: colorControlCluster.default.attributes.find(a => a == 'ColorTemperatureMireds')
+                matterId: colorControl.default.attributes.find(a => a == 'ColorTemperatureMireds')
             }
         ]
     }],
@@ -111,19 +111,19 @@ export const zigbeeToMatterClusterMap = new Map<ZigbeeCluster, ClusterMapping>([
         attributes: [
             {
                 zigbeeId: 0x0000,
-                matterId: temperatureMeasurementCluster.default.attributes.find(a => a == 'MeasuredValue'),
+                matterId: temperatureMeasurement.default.attributes.find(a => a == 'MeasuredValue'),
                 convert: (value: number) => value / 100, // Convert from centi-degrees to degrees
                 unconvert: (value: number) => value * 100 // Convert from centi-degrees to degrees
             },
             {
                 zigbeeId: 0x0001,
-                matterId: temperatureMeasurementCluster.default.attributes.find(a => a == 'MinMeasuredValue'),
+                matterId: temperatureMeasurement.default.attributes.find(a => a == 'MinMeasuredValue'),
                 convert: (value: number) => value / 100,
                 unconvert: (value: number) => value * 100,
             },
             {
                 zigbeeId: 0x0002,
-                matterId: temperatureMeasurementCluster.default.attributes.find(a => a == 'MaxMeasuredValue'),
+                matterId: temperatureMeasurement.default.attributes.find(a => a == 'MaxMeasuredValue'),
                 convert: (value: number) => value / 100,
                 unconvert: (value: number) => value * 100,
             }
@@ -135,19 +135,19 @@ export const zigbeeToMatterClusterMap = new Map<ZigbeeCluster, ClusterMapping>([
         attributes: [
             {
                 zigbeeId: 0x0000,
-                matterId: relativeHumidityMeasurementCluster.default.attributes.find(a => a == 'MeasuredValue'),
+                matterId: waterContentMeasurement.relativeHumidityMeasurement.attributes.find(a => a == 'MeasuredValue'),
                 convert: (value: number) => value / 100, // Convert to percentage
                 unconvert: (value: number) => value * 100,
             },
             {
                 zigbeeId: 0x0001,
-                matterId: relativeHumidityMeasurementCluster.default.attributes.find(a => a == 'MinMeasuredValue'),
+                matterId: waterContentMeasurement.relativeHumidityMeasurement.attributes.find(a => a == 'MinMeasuredValue'),
                 convert: (value: number) => value / 100,
                 unconvert: (value: number) => value * 100,
             },
             {
                 zigbeeId: 0x0002,
-                matterId: relativeHumidityMeasurementCluster.default.attributes.find(a => a == 'MaxMeasuredValue'),
+                matterId: waterContentMeasurement.relativeHumidityMeasurement.attributes.find(a => a == 'MaxMeasuredValue'),
                 convert: (value: number) => value / 100,
                 unconvert: (value: number) => value * 100,
             }
@@ -159,17 +159,17 @@ export const zigbeeToMatterClusterMap = new Map<ZigbeeCluster, ClusterMapping>([
         attributes: [
             {
                 zigbeeId: 0x0000,
-                matterId: occupancySensingCluster.default.attributes.find(a => a == 'Occupancy'),
+                matterId: occupancySensing.default.attributes.find(a => a == 'Occupancy'),
                 convert: (value: number) => value === 1, // Convert to boolean
                 unconvert: (value: boolean) => value ? 1 : 0
             },
             {
                 zigbeeId: 0x0001,
-                matterId: occupancySensingCluster.default.attributes.find(a => a == 'OccupancySensorType')
+                matterId: occupancySensing.default.attributes.find(a => a == 'OccupancySensorType')
             },
             {
                 zigbeeId: 0x0002,
-                matterId: occupancySensingCluster.default.attributes.find(a => a == 'OccupancySensorTypeBitmap')
+                matterId: occupancySensing.default.attributes.find(a => a == 'OccupancySensorTypeBitmap')
             }
         ]
     }],
