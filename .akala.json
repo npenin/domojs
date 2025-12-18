@@ -454,7 +454,10 @@
             }
         },
         "auth": {
-            "uuid:LogiSecurityDevice_00-12-AB-1B-8C-B6::urn:upnp-logitech-com:service:SecurityDeviceControl:1": "dragon-angel"
+            "uuid:LogiSecurityDevice_00-12-AB-1B-8C-B6::urn:upnp-logitech-com:service:SecurityDeviceControl:1": {
+                "iv": "dXQVm/2IGDbZxFs3B6tVIA==",
+                "value": "H7zK/jKc6jT5PhczWU4/Xw=="
+            }
         },
         "endpointsMapping": {
             "938bb21f226f5af6f1186e05c258574881f52cc3b9cd273ca917d7b9073f0": 1,
