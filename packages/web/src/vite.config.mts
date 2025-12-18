@@ -1,16 +1,11 @@
 import { plugin as akala } from '@akala/vite';
-import { defineConfig } from 'vite'
+import { defineConfig, Plugin } from 'vite'
 import webui from '@akala/web-ui/vite'
 import basicSsl from '@vitejs/plugin-basic-ssl';
 
+
+
 export default defineConfig({
-    resolve: {
-        // Runtime resolution
-        conditions: ['browser', 'import', 'default'],
-        alias: {
-            'node:tty': 'virtual:empty-module', // stub the module
-        }
-    },
     build: {
         // generate .vite/manifest.json in outDir
         manifest: true,
@@ -36,30 +31,15 @@ export default defineConfig({
         supported: {
             'top-level-await': true //browsers can handle top-level-await features
         },
-
+        exclude: ['node:tty'],
     },
     optimizeDeps: {
         exclude: ['@akala/pm/akala'],
-        esbuildOptions: {
-            conditions: ['browser', 'import', 'default'],
-        },
+        // esbuildOptions: {
+        //     conditions: ['browser', 'import', 'default'],
+        // },
     },
     plugins: [
-        {
-            name: 'empty-module-plugin',
-            resolveId(id)
-            {
-                if (id === 'virtual:empty-module') return id; // your target id
-            },
-            load(id)
-            {
-                if (id === 'virtual:empty-module')
-                {
-                    // Tree‑shakable empty module
-                    return { code: 'export {};', moduleSideEffects: false };
-                }
-            },
-        },
         akala({
         }),
         webui({ generateOptions: { grid: true, customMedia: true }, includeDefaultTheme: true }),
