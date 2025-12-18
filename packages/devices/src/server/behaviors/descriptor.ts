@@ -9,6 +9,7 @@ export function Descriptor<TClusterMapKeys extends Exclude<keyof ClusterMap, 'de
     ClusterInstance<descriptorCluster.Descriptor> & { setEndpoint(ep: Endpoint<TClusterMapKeys>): void }
 {
     const descriptor = new ObservableObject({
+        EndpointUniqueID: '',
         ClientList: [],
         DeviceTypeList: [],
         PartsList: [],
@@ -21,6 +22,7 @@ export function Descriptor<TClusterMapKeys extends Exclude<keyof ClusterMap, 'de
         {
             setEndpoint(ep: Endpoint<TClusterMapKeys>)
             {
+                descriptor.setValue('EndpointUniqueID', ep.uniqueId);
                 descriptor.setValue('ServerList', Object.values(ep.clusters as any).map(c => (c as ClusterInstance<Cluster<unknown, unknown, {}>>).target.id));
             }
         }

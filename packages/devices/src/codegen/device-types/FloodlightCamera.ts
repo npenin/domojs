@@ -6,8 +6,8 @@ export type MandatoryKeys = import ("./BaseDeviceType.js").MandatoryKeys
 export default class DeviceType extends Endpoint<MandatoryKeys>
 {
    
-	constructor(id: number, clusters: MixedClusterMap<MandatoryKeys>)
+	constructor(uniqueId: string, id: number, clusters: MixedClusterMap<MandatoryKeys>)
 	{
-		super(id, clusters);
+		super(uniqueId, id, clusters);
 	}
 }

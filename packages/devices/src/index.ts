@@ -57,7 +57,7 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
         }
     }
 
-    const endpoint = new Endpoint(id, {
+    const endpoint = new Endpoint(name, id, {
         fixedLabel: clusterFactory({
             id: MatterClusterIds.FixedLabel,
             LabelList: [

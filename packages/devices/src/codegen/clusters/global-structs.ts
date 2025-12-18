@@ -1,5 +1,5 @@
-// This file is generated from global-structs.xml - do not edit it directly
-// Generated on 2025-12-03T20:57:11.176Z
+// This file is generated from global-Structs.xml - do not edit it directly
+// Generated on 2025-12-18T03:04:53.509Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -14,10 +14,23 @@ export interface CurrencyStruct {
 	DecimalPoints:number,
 }
 
+export interface ICECandidateStruct {
+	Candidate:string,
+	SDPMid:string,
+	SDPMLineIndex:number,
+}
+
+export interface ICEServerStruct {
+	URLs:readonly string[],
+	Username?:string,
+	Credential?:string,
+	CAID?:import("./TLSCertificateManagement.js").TLSCAID,
+}
+
 export interface LocationDescriptorStruct {
 	LocationName:string,
 	FloorNumber:number,
-	AreaType:import("./semantic-tag-namespace-enums.js").AreaTypeTag,
+	AreaType:number,
 }
 
 export interface MeasurementAccuracyRangeStruct {
@@ -32,7 +45,7 @@ export interface MeasurementAccuracyRangeStruct {
 }
 
 export interface MeasurementAccuracyStruct {
-	MeasurementType:import("./global-enums.js").MeasurementTypeEnum,
+	MeasurementType:import("./global-Enums.js").MeasurementTypeEnum,
 	Measured:boolean,
 	MinMeasuredValue:bigint,
 	MaxMeasuredValue:bigint,
@@ -42,7 +55,7 @@ export interface MeasurementAccuracyStruct {
 export interface PowerThresholdStruct {
 	PowerThreshold?:number,
 	ApparentPowerThreshold?:number,
-	PowerThresholdSource:import("./global-enums.js").PowerThresholdSourceEnum,
+	PowerThresholdSource:import("./global-Enums.js").PowerThresholdSourceEnum,
 }
 
 export interface PriceStruct {
@@ -57,12 +70,6 @@ export interface SemanticTagStruct {
 	Label?:string,
 }
 
-export interface TestGlobalStruct {
-	Name:string,
-	MyBitmap:import("./global-bitmaps.js").TestGlobalBitmap,
-	MyEnum?:import("./global-enums.js").TestGlobalEnum,
-}
-
 export interface ViewportStruct {
 	X1:number,
 	Y1:number,
@@ -70,25 +77,12 @@ export interface ViewportStruct {
 	Y2:number,
 }
 
-export interface ICECandidateStruct {
-	Candidate:string,
-	SDPMid:string,
-	SDPMLineIndex:number,
-}
-
-export interface ICEServerStruct {
-	URLs:readonly string[],
-	Username?:string,
-	Credential?:string,
-	CAID?:number,
-}
-
 export interface WebRTCSessionStruct {
-	ID:number,
+	ID:import("./global-TypeDefs.js").WebRTCSessionID,
 	PeerNodeID:string,
 	PeerEndpointID:number,
-	StreamUsage:import("./global-enums.js").StreamUsageEnum,
-	VideoStreamID:number,
-	AudioStreamID:number,
+	StreamUsage:import("./global-Enums.js").StreamUsageEnum,
+	VideoStreamID:import("./CameraAVStreamManagement.js").VideoStreamID,
+	AudioStreamID:import("./CameraAVStreamManagement.js").AudioStreamID,
 	MetadataEnabled:boolean,
 }

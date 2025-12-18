@@ -4,7 +4,7 @@ import { Descriptor, DescriptorClusterId } from "../behaviors/descriptor.js";
 import { MqttEvents, protocol } from "@domojs/mqtt";
 import { EndpointProxy } from "./EndpointProxy.js";
 import { ClusterMap } from "../clusters/index.js";
-import { Descriptor as DescriptorCluster } from "../../codegen/clusters/descriptor-cluster.js";
+import { Descriptor as DescriptorCluster } from "../../codegen/clusters/Descriptor-Cluster.js";
 
 export type SemiPartial<K extends keyof ClusterMap> =
     Partial<{ [key in Exclude<keyof ClusterMap, K>]: ClusterMap[key] }>
@@ -35,6 +35,7 @@ export class Endpoint<
     private readonly clusterSubscriptions: Partial<Record<number, Subscription>> = {};
 
     constructor(
+        public readonly uniqueId: string,
         public readonly id: number,
         clusters: MixedClusterMap<TClusterMapKeys>
     )

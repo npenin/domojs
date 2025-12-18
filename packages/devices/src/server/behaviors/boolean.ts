@@ -1,4 +1,4 @@
-import { BooleanState } from "../../codegen/clusters/boolean-state-cluster.js";
+import { BooleanState } from "../../codegen/clusters/BooleanState.js";
 import { clusterFactory, ClusterInstance } from "../clients/shared.js";
 import { MatterClusterIds } from "../clusters/_shared.js";
 

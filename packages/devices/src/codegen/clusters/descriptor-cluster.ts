@@ -1,5 +1,5 @@
-// This file is generated from descriptor-cluster.xml - do not edit it directly
-// Generated on 2025-12-03T20:57:10.561Z
+// This file is generated from Descriptor-Cluster.xml - do not edit it directly
+// Generated on 2025-12-18T03:04:59.739Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -9,18 +9,16 @@ export interface DeviceTypeStruct {
 	Revision:number,
 }
 
-/**
- * The Descriptor Cluster is meant to replace the support from the Zigbee Device Object (ZDO) for describing a node, its endpoints and clusters.
- */
+export type Descriptor = DescriptorCluster & { id: 0x001D};
 
-export interface Descriptor {
-id: 29;
+export interface DescriptorCluster {
+id: 0x001D;
 	attributes: {
 		readonly DeviceTypeList:readonly DeviceTypeStruct[]
 		readonly ServerList:readonly import ("./clusters-index.js").ClusterIds[]
 		readonly ClientList:readonly import ("./clusters-index.js").ClusterIds[]
 		readonly PartsList:readonly number[]
-		readonly TagList?:readonly import("./mode-select-cluster.js").SemanticTagStruct[]
+		readonly TagList?:readonly import("./ModeSelect.js").SemanticTagStruct[]
 		readonly EndpointUniqueID?:string
 		/** The TagList attribute is present */
 		readonly SupportsTagList: boolean
@@ -32,7 +30,7 @@ id: 29;
 }
 
 export const descriptor: ClusterDefinition<Descriptor> = {
-id: 29,
+id: 0x001D,
 	attributes: [
 		"DeviceTypeList",
 		"ServerList",

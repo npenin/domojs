@@ -1,5 +1,5 @@
 import { IsomorphicBuffer, ObservableObject } from '@akala/core';
-import { ClusterIds, operationalCredentialsCluster } from '../../codegen/clusters/clusters-index.js'
+import { ClusterIds, operationalCredentialCluster } from '../../codegen/clusters/clusters-index.js'
 import { ClusterEvents, ClusterInstanceLight } from '../clients/index.js'
 import { Descriptor } from './descriptor.js';
 import { ProxyConfiguration } from '@akala/config';
@@ -17,21 +17,21 @@ export function OperationalCredentials(options: {
         operationalIdentities.set(e[0] as unknown as number, e[1].identity);
     })
 
-    const cluster = new ObservableObject<ClusterInstanceLight<operationalCredentialsCluster.OperationalCredentials> & ClusterEvents<operationalCredentialsCluster.OperationalCredentials>>({
+    const cluster = new ObservableObject<ClusterInstanceLight<operationalCredentialCluster.OperationalCredentials> & ClusterEvents<operationalCredentialCluster.OperationalCredentials>>({
         id: ClusterIds.OperationalCredentials,
         async AddNOCCommand(noc, icac, ipk, caseAdminSubject, vendorId)
         {
             if (!ephemeralKeyPair)
-                return [operationalCredentialsCluster.NodeOperationalCertStatusEnum.MissingCsr, 0, 'Missing ephemeral key'];
+                return [operationalCredentialCluster.NodeOperationalCertStatusEnum.MissingCsr, 0, 'Missing ephemeral key'];
 
             if (!(ipk instanceof IsomorphicBuffer))
-                return [operationalCredentialsCluster.NodeOperationalCertStatusEnum.InvalidAdminSubject, 0, 'Invalid IPK type'];
+                return [operationalCredentialCluster.NodeOperationalCertStatusEnum.InvalidAdminSubject, 0, 'Invalid IPK type'];
 
             if (typeof caseAdminSubject !== 'bigint')
-                return [operationalCredentialsCluster.NodeOperationalCertStatusEnum.InvalidAdminSubject, 0, 'Invalid caseAdminSubject'];
+                return [operationalCredentialCluster.NodeOperationalCertStatusEnum.InvalidAdminSubject, 0, 'Invalid caseAdminSubject'];
 
             if (typeof vendorId !== 'number')
-                return [operationalCredentialsCluster.NodeOperationalCertStatusEnum.InvalidAdminSubject, 0, 'Invalid vendorId'];
+                return [operationalCredentialCluster.NodeOperationalCertStatusEnum.InvalidAdminSubject, 0, 'Invalid vendorId'];
 
             // TODO: Parse NOC to extract actual FabricID from certificate if needed
             const fabricId = this.target.Fabrics.length;
@@ -52,7 +52,7 @@ export function OperationalCredentials(options: {
             operationalIdentities.set(fabricId, ephemeralKeyPair);
             ephemeralKeyPair = undefined;
 
-            return [operationalCredentialsCluster.NodeOperationalCertStatusEnum.OK, fabricId, ''];
+            return [operationalCredentialCluster.NodeOperationalCertStatusEnum.OK, fabricId, ''];
         },
 
         async AddTrustedRootCertificateCommand(rootCA)
@@ -83,9 +83,9 @@ export function OperationalCredentials(options: {
         {
             const fs = await import('fs/promises');
             let certPath = '';
-            if (CertificateType === operationalCredentialsCluster.CertificateChainTypeEnum.DACCertificate)
+            if (CertificateType === operationalCredentialCluster.CertificateChainTypeEnum.DACCertificate)
                 certPath = './certs/dacCert.der';
-            else if (CertificateType === operationalCredentialsCluster.CertificateChainTypeEnum.PAICertificate)
+            else if (CertificateType === operationalCredentialCluster.CertificateChainTypeEnum.PAICertificate)
                 certPath = './certs/paiCert.der';
             else
                 return [new IsomorphicBuffer(new Uint8Array())];
@@ -138,7 +138,7 @@ export function OperationalCredentials(options: {
         {
             if (idx < 0 || idx >= this.target.Fabrics.length)
 
-                return [operationalCredentialsCluster.NodeOperationalCertStatusEnum.InvalidFabricIndex, idx, ''];
+                return [operationalCredentialCluster.NodeOperationalCertStatusEnum.InvalidFabricIndex, idx, ''];
 
             const fabricId = this.target.Fabrics[idx].FabricID;
 
@@ -147,7 +147,7 @@ export function OperationalCredentials(options: {
 
             operationalIdentities.delete(fabricId);
 
-            return [operationalCredentialsCluster.NodeOperationalCertStatusEnum.OK, this.target.CurrentFabricIndex, ''];
+            return [operationalCredentialCluster.NodeOperationalCertStatusEnum.OK, this.target.CurrentFabricIndex, ''];
         },
         TrustedRootCertificates: [],
         SupportedFabrics: 5,
@@ -177,11 +177,11 @@ export function OperationalCredentials(options: {
             if (this.target.Fabrics && this.target.Fabrics[idx])
             {
                 if (this.target.Fabrics.find((f, i) => f.Label === Label && i !== idx))
-                    return [operationalCredentialsCluster.NodeOperationalCertStatusEnum.LabelConflict, idx, ''];
+                    return [operationalCredentialCluster.NodeOperationalCertStatusEnum.LabelConflict, idx, ''];
                 this.target.Fabrics[idx].Label = Label;
                 this.setValue('Fabrics', this.target.Fabrics);
             }
-            return [operationalCredentialsCluster.NodeOperationalCertStatusEnum.OK, idx, ''];
+            return [operationalCredentialCluster.NodeOperationalCertStatusEnum.OK, idx, ''];
         },
 
         async UpdateNOCCommand(NOC, ICAC)
@@ -192,9 +192,9 @@ export function OperationalCredentials(options: {
                 this.target.NOCs[idx].NOC = NOC;
                 this.target.NOCs[idx].ICAC = ICAC;
                 this.setValue('NOCs', this.target.NOCs);
-                return [operationalCredentialsCluster.NodeOperationalCertStatusEnum.OK, idx, ''];
+                return [operationalCredentialCluster.NodeOperationalCertStatusEnum.OK, idx, ''];
             }
-            return [operationalCredentialsCluster.NodeOperationalCertStatusEnum.InvalidNOC, idx, ''];
+            return [operationalCredentialCluster.NodeOperationalCertStatusEnum.InvalidNOC, idx, ''];
         },
     });
 

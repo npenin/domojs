@@ -8,6 +8,6 @@ export default class DeviceType extends Endpoint<MandatoryKeys>
    
 	constructor(clusters: MixedClusterMap<MandatoryKeys>)
 	{
-		super(0, clusters);
+		super('root', 0, clusters);
 	}
 }

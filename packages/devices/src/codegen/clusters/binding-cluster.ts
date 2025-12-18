@@ -1,5 +1,5 @@
-// This file is generated from binding-cluster.xml - do not edit it directly
-// Generated on 2025-12-03T20:57:10.121Z
+// This file is generated from Binding-Cluster.xml - do not edit it directly
+// Generated on 2025-12-18T03:04:56.438Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
@@ -11,14 +11,12 @@ export interface TargetStruct {
 	Cluster?:import ("./clusters-index.js").ClusterIds,
 }
 
-/**
- * The Binding Cluster is meant to replace the support from the Zigbee Device Object (ZDO) for supporting the binding table.
- */
+export type Binding = BindingCluster & { id: 0x001E};
 
-export interface Binding {
-id: 30;
+export interface BindingCluster {
+id: 0x001E;
 	attributes: {
-		Binding:readonly TargetStruct[]
+		readonly Binding:readonly TargetStruct[]
 }
 	commands: {
 }
@@ -27,7 +25,7 @@ id: 30;
 }
 
 export const binding: ClusterDefinition<Binding> = {
-id: 30,
+id: 0x001E,
 	attributes: [
 		"Binding",
 	] as const,

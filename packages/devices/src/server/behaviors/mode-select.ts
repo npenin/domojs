@@ -1,8 +1,8 @@
-import { ClusterIds, modeSelectCluster } from '../../codegen/clusters/clusters-index.js'
+import { ClusterIds, modeSelect } from '../../codegen/clusters/clusters-index.js'
 import { type ClusterInstance, type ClusterInstanceLight, clusterFactory } from '../clients/index.js'
 
-export default function ModeSelect(modes: modeSelectCluster.ModeOptionStruct[], description: string):
-    ClusterInstance<modeSelectCluster.ModeSelect>
+export default function ModeSelect(modes: modeSelect.ModeOptionStruct[], description: string):
+    ClusterInstance<modeSelect.ModeSelect>
 {
     const self = clusterFactory({
         id: ClusterIds.ModeSelect,
@@ -10,11 +10,13 @@ export default function ModeSelect(modes: modeSelectCluster.ModeOptionStruct[], 
         {
             self.setValue('CurrentMode', newMode);
         },
+        OnMode: 0,
+        StandardNamespace: 0,
         CurrentMode: 0,
         SupportedModes: modes,
         StartUpMode: 0,
         Description: description,
         SupportsOnOff: false
-    } as ClusterInstanceLight<modeSelectCluster.ModeSelect>);
+    } as ClusterInstanceLight<modeSelect.ModeSelect>);
     return self;
 }

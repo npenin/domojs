@@ -8,8 +8,8 @@ import { clusterFactory, CommissionningCluster, Endpoint, EndpointProxy, MatterC
 import { ProxyConfiguration } from '@akala/config';
 import { BridgeConfiguration } from './server/clients/RootNode.js';
 // import type { SidecarConfiguration } from '@akala/sidecar';
-export * from './server/behaviors/acl.js'
-export * from './server/behaviors/admin-commissionning.js'
+// export * from './server/behaviors/acl.js'
+// export * from './server/behaviors/admin-commissionning.js'
 export * from './server/behaviors/binding.js'
 export * from './server/behaviors/boolean.js'
 export * from './server/behaviors/descriptor.js'
@@ -72,7 +72,7 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
         }
     }
 
-    const endpoint = new Endpoint(id, {
+    const endpoint = new Endpoint(name, id, {
         fixedLabel: clusterFactory({
             id: MatterClusterIds.FixedLabel,
             LabelList: [

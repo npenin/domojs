@@ -1,10 +1,10 @@
 import { ObservableObject } from '@akala/core';
-import { accessControlCluster, ClusterIds } from '../../codegen/clusters/clusters-index.js'
+import { aCLCluster, ClusterIds } from '../../codegen/clusters/clusters-index.js'
 import { ClusterEvents, ClusterInstanceLight } from '../clients/index.js'
 
 export function Acl()
 {
-    const acls = new ObservableObject<ClusterInstanceLight<accessControlCluster.AccessControl> & ClusterEvents<accessControlCluster.AccessControl>>({
+    const acls = new ObservableObject<ClusterInstanceLight<aCLCluster.AccessControl> & ClusterEvents<aCLCluster.AccessControl>>({
         id: ClusterIds.AccessControl,
         AccessControlEntriesPerFabric: 10,
         ACL: [],
@@ -18,7 +18,6 @@ export function Acl()
         FabricRestrictionReviewUpdate: null,
         SupportsExtension: true,
         SupportsManagedDevice: true,
-        SupportsAuxiliary: false,
         async ReviewFabricRestrictionsCommand(arl)
         {
             // Validate the ARL entry structure
@@ -51,7 +50,7 @@ export function Acl()
         acls.setValue('AccessControlEntryChanged', [
             '',
             0,
-            accessControlCluster.ChangeTypeEnum.Changed,
+            aCLCluster.ChangeTypeEnum.Changed,
             ev.value[0],
         ])
     })
@@ -61,7 +60,7 @@ export function Acl()
         acls.setValue('AccessControlExtensionChanged', [
             '',
             0,
-            accessControlCluster.ChangeTypeEnum.Changed,
+            aCLCluster.ChangeTypeEnum.Changed,
             ev.value[0],
         ])
     })
@@ -69,7 +68,7 @@ export function Acl()
     return Object.assign(acls,
         {
             async AddAccessControlEntry(
-                entry: accessControlCluster.AccessControlEntryStruct
+                entry: aCLCluster.AccessControlEntryStruct
             ): Promise<void>
             {
                 // Add entry to ACL, respecting AccessControlEntriesPerFabric

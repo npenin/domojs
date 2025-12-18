@@ -12,8 +12,7 @@ import { ClusterInstance } from "../../clients/shared.js";
 import { IsomorphicBuffer, ObservableObject, packagejson } from "@akala/core";
 import registerAdapter from "./register-adapter.js";
 import { clusterId } from "../../clusters/Commissionnee.js";
-import { chipOta, clusterFactory, ClusterIds, ClusterInstanceLight, MatterClusterIds, OTARequestor, registerNode } from "../../../index.js";
-import modeSelect from '../../behaviors/mode-select.js'
+import { clusterFactory, ClusterIds, ClusterInstanceLight, MatterClusterIds, OTARequestor, registerNode, oTAProvider } from "../../../index.js";
 
 export function Commissionnee(state: State): ClusterInstance<Commissionnee>
 {
@@ -207,9 +206,9 @@ export default async function (this: State, context: CliContext<{ configFile: st
                     RequestorCanConsent: boolean,
                     MetadataForProvider: IsomorphicBuffer)
                 {
-                    if (!ProtocolsSupported?.includes(chipOta.DownloadProtocolEnum.HTTPS))
+                    if (!ProtocolsSupported?.includes(oTAProvider.DownloadProtocolEnum.HTTPS))
                         return [
-                            chipOta.StatusEnum.DownloadProtocolNotSupported,
+                            oTAProvider.StatusEnum.DownloadProtocolNotSupported,
                             0,
                             '',
                             SoftwareVersion,
@@ -232,7 +231,7 @@ export default async function (this: State, context: CliContext<{ configFile: st
 
                     if (currentVersion > SoftwareVersion)
                         return [
-                            chipOta.StatusEnum.UpdateAvailable,
+                            oTAProvider.StatusEnum.UpdateAvailable,
                             0,
                             latest.dist.tarball,
                             currentVersion,
@@ -243,7 +242,7 @@ export default async function (this: State, context: CliContext<{ configFile: st
                         ];
 
                     return [
-                        chipOta.StatusEnum.NotAvailable,
+                        oTAProvider.StatusEnum.NotAvailable,
                         0,
                         '',
                         SoftwareVersion,
@@ -257,7 +256,7 @@ export default async function (this: State, context: CliContext<{ configFile: st
                 {
                     if (bufferToUuid(token) in tokenCache)
                         return [
-                            chipOta.ApplyUpdateActionEnum.Proceed,
+                            oTAProvider.ApplyUpdateActionEnum.Proceed,
                             0
                         ]
                 },

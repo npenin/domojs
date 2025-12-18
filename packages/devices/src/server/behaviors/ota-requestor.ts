@@ -1,8 +1,8 @@
 import { AsyncEventBus } from "@akala/core";
-import { chipOta, clusterFactory, ClusterInstance, MatterClusterIds } from "../clients/index.js";
+import { oTARequestor, clusterFactory, ClusterInstance, MatterClusterIds } from "../clients/index.js";
 import { MqttEvents } from "@domojs/mqtt";
 
-export default function (pubsub: AsyncEventBus<MqttEvents>): ClusterInstance<chipOta.OTASoftwareUpdateRequestor>
+export default function (pubsub: AsyncEventBus<MqttEvents>): ClusterInstance<oTARequestor.OTASoftwareUpdateRequestor>
 {
     return clusterFactory({
         id: MatterClusterIds.OTASoftwareUpdateRequestor,
@@ -11,19 +11,19 @@ export default function (pubsub: AsyncEventBus<MqttEvents>): ClusterInstance<chi
         {
             switch (reason)
             {
-                case chipOta.AnnouncementReasonEnum.SimpleAnnouncement:
+                case oTARequestor.AnnouncementReasonEnum.SimpleAnnouncement:
                     this.DefaultOTAProviders.push({
                         ProviderNodeID: nodeid,
                         Endpoint: endpoint
                     });
 
-                case chipOta.AnnouncementReasonEnum.UpdateAvailable:
-                case chipOta.AnnouncementReasonEnum.UrgentUpdateAvailable:
+                case oTARequestor.AnnouncementReasonEnum.UpdateAvailable:
+                case oTARequestor.AnnouncementReasonEnum.UrgentUpdateAvailable:
             }
 
         },
         UpdatePossible: true,
-        UpdateState: chipOta.UpdateStateEnum.Idle,
+        UpdateState: oTARequestor.UpdateStateEnum.Idle,
         UpdateStateProgress: 0,
     })
 }

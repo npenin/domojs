@@ -193,16 +193,21 @@ export type ClusterCommand<TIn extends readonly unknown[], TOut> = { inputparams
 
 // export type ClusterCommandsImpl<T> = T extends Cluster<any, infer TCommands, any> ? keyof TCommands extends string ? { [key in `${keyof TCommands}Command`]: ClusterCommandImpl<T, TCommands[keyof TCommands]['inputparams'], TCommands[keyof TCommands]['outputparams']> } : {} : {};
 
+export type OptionalKeys<T> = { [key in keyof T]: {} extends Pick<T, key> ? key : never }[keyof T];
+
 export type ClusterCommandsImpl<T> =
     T extends Cluster<any, infer TCommands, any>
     ? {
-        [K in keyof TCommands as `${Extract<K, string>}Command`]:
+        [K in OptionalKeys<TCommands> as `${Extract<K, string>}Command`]?:
+        ClusterCommandImpl<TCommands[K]['inputparams'], TCommands[K]['outputparams']>;
+    } & {
+        [K in Exclude<keyof TCommands, OptionalKeys<TCommands>> as `${Extract<K, string>}Command`]:
         ClusterCommandImpl<TCommands[K]['inputparams'], TCommands[K]['outputparams']>;
     } : {};
 
-export type ClusterCommandImpl<TIn extends unknown[], TOut> = TOut extends readonly [] ?
-    (...args: TIn) => Promise<void> :
-    (...args: TIn) => Promise<TOut>;
+export type ClusterCommandImpl<TIn extends readonly unknown[], TOut> = TOut extends readonly [] ?
+    (...args: [...TIn]) => Promise<void> :
+    (...args: [...TIn]) => Promise<TOut>;
 
 export enum PairingHints
 {

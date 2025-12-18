@@ -8,9 +8,9 @@ const log = logger.use('domojs:devices:aggregator')
 
 export class AggregatorEndpoint<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor'>> extends Endpoint<TClusterMapKeys> 
 {
-    constructor(id: number, clusters: MixedClusterMap<never>)
+    constructor(uniqueId: string, id: number, clusters: MixedClusterMap<never>)
     {
-        super(id, clusters);
+        super(uniqueId, id, clusters);
 
         this.endpoints = new ObservableArray<Endpoint>([]);
         this.endpoints.maxListeners = Number.MAX_SAFE_INTEGER;
