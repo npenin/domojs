@@ -15,11 +15,11 @@
         "./commands.json": "./commands.json"
     },
     "dependencies": {
-        "@akala/cli": "^5.16.2",
-        "@akala/commands": "^18.1.9",
-        "@akala/config": "^7.2.24",
-        "@akala/core": "^44.2.2",
-        "@akala/sidecar": "^8.5.34",
+        "@akala/cli": "^5.16.5",
+        "@akala/commands": "^18.1.12",
+        "@akala/config": "^7.2.27",
+        "@akala/core": "^44.2.5",
+        "@akala/sidecar": "^8.5.37",
         "@domojs/devices": "workspace:^"
     },
     "scripts": {

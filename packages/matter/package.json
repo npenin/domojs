@@ -5,10 +5,10 @@
     "types": "dist/index.d.ts",
     "type": "module",
     "dependencies": {
-        "@akala/commands": "^18.1.9",
-        "@akala/core": "^44.2.2",
-        "@akala/fs": "^2.6.2",
-        "@akala/protocol-parser": "^11.6.12",
+        "@akala/commands": "^18.1.12",
+        "@akala/core": "^44.2.5",
+        "@akala/fs": "^2.6.5",
+        "@akala/protocol-parser": "^11.6.15",
         "@matter/general": "^0.16.0-alpha.0-20251102-faee7ab25",
         "@matter/nodejs": "^0.16.0-alpha.0-20251102-faee7ab25",
         "@matter/nodejs-ble": "^0.16.0-alpha.0-20251102-faee7ab25",
@@ -16,7 +16,7 @@
         "fast-xml-parser": "^5.2.5"
     },
     "devDependencies": {
-        "@akala/cli": "^5.16.2",
+        "@akala/cli": "^5.16.5",
         "@types/node": "^24.9.2"
     },
     "exports": {

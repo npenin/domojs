@@ -9,6 +9,6 @@
         "generate": "akala sdk generate dist/commands commands.json --name @domojs/owntracks"
     },
     "devDependencies": {
-        "@akala/cli": "^5.16.2"
+        "@akala/cli": "^5.16.5"
     }
 }
