@@ -155,16 +155,16 @@ async function generateTypescriptFromXml(folderURL: URL, parsedXml: XmlCluster, 
    
 	constructor(clusters: MixedClusterMap<MandatoryKeys>)
 	{
-		super(0, clusters);
+		super('root', 0, clusters);
 	}
 `);
         else
 
             await output.write(`
    
-	constructor(id: number, clusters: MixedClusterMap<MandatoryKeys>)
+	constructor(uniqueId: string, id: number, clusters: MixedClusterMap<MandatoryKeys>)
 	{
-		super(id, clusters);
+		super(uniqueId, id, clusters);
 	}
 `);
     }
