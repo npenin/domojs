@@ -20,29 +20,6 @@ export class GatewayEndpoint extends AggregatorEndpoint<never>
             })
         });
 
-        this.endpoints.addListener(ev =>
-        {
-            switch (ev.action)
-            {
-                case "pop":
-                case "shift":
-                    ev.oldItems.forEach(ep =>
-                        fabric.endpoints.splice(fabric.endpoints.indexOf(ep), 1));
-                    break;
-                case "push":
-                case "unshift":
-                case "init":
-                    fabric.endpoints.push(...ev.newItems);
-                    break;
-                case "replace":
-
-                    fabric.endpoints.replaceN(
-                        ev.replacedItems.map(ep =>
-                            ({ index: fabric.endpoints.indexOf(ep.oldItem), item: ep.newItem }))
-                    );
-            }
-        });
-
         const sensors: { [key in PacketType]?: Record<number, Endpoint[]> } = {};
 
         gateway.on('message', async message =>
