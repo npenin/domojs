@@ -76,6 +76,14 @@
                     "@domojs/devices",
                     "@domojs/upnp"
                 ]
+            },
+            "@domojs/vapid": {
+                "type": "nodejs",
+                "path": "npm:///@domojs/vapid/commands.json",
+                "commandable": true,
+                "dependencies": [
+                    "@domojs/devices"
+                ]
             }
         },
         "mapping": {
@@ -96,7 +104,7 @@
             },
             "@domojs/mdns": {
                 "container": "@domojs/mdns",
-                "autostart": false
+                "autostart": true
             },
             "@domojs/upnp": {
                 "container": "@domojs/upnp",
@@ -104,6 +112,10 @@
             },
             "@domojs/logitech-alert": {
                 "container": "@domojs/logitech-alert",
+                "autostart": true
+            },
+            "@domojs/vapid": {
+                "container": "@domojs/vapid",
                 "autostart": true
             }
         },
@@ -120,7 +132,19 @@
             "d6e21286621a8586f7e54720ab5a39c93acc2f4b8fba7a16ec1c24d69a8c613": 2,
             "8bca3c552fe97254bfd946b13bc7a16791aebab713b838e9da496f9ee7f4f6a": 3,
             "2d91dec1adadfb907ec12f4ce4fab767dad29c48383a497debd2da484d3f1065": 4,
-            "ed75292130e0ea9f56f0994c7d551ef223da2b1852cbd531f72716a29c571": 5
+            "ed75292130e0ea9f56f0994c7d551ef223da2b1852cbd531f72716a29c571": 5,
+            "17a393dd686b75ceebd8119a52c9f1ae7d7aa3c9b679a844e44e10f45a278513": 6,
+            "f5bfb1629a9a4b62307ddabb378f46c49d5192cc2f23e869408fb062680127b": 7,
+            "9794b55d3ecbdcaa16b7ae56ab18bb0fcc1d345254da4774052433bb347ed25": 8,
+            "eb4327769ee875fe94b32eec3e3d20a64720a52c4ccd675184748468d188c5": 9,
+            "6d5c52ffe126c26b58696df35fbb8cea2a1d4af7a29c7c3d9466d2495cab3": 10,
+            "4619377648d697f93eb3016bc7a5829448f8d57c61c83197b3e19dd850d0": 11,
+            "2527781e16c349b31f129413e15f8fabc00496da5722cb29d641ea791165d": 12,
+            "2ac4f74fca32fc51bc88bb6ac12dee8f8c8d158f0d616728d9bf03df56232": 13,
+            "b62af222ea08f6efc3143ea987807b8563cfb1e4a64b4668f55ad6554eec5f": 14,
+            "28b689d015cd33f25d750b89dd42d9a2f56c052726cfdc3d186a9668f09f": 15,
+            "30871c3f1e2c5bb40f1a80e8657e6f2ada1a87d7afaffc8a3b42f4d72c0": 16,
+            "f77f91f9ac4487b4e647625a2a6ad1f7d44b962b4e4cfc8dc1787178f4921f6": 17
         },
         "pubsub": {
             "id": 0,
@@ -346,7 +370,27 @@
             "723fafa1ed77f07317525ee7e9e57b9125f1298f70184939e78429405a2a9f": 208,
             "4187eeddeb9b9b7ff417308f20e697d68175d5271e5784b3245ace4d64c82": 209,
             "876895501846ea884d7c31b7796d738c72190fa855aa8531baa9b7b7179919": 210,
-            "1d85740658b5a9dda39f14f869fb57a117b45feaa42e28d2d4977717945cc3": 211
+            "1d85740658b5a9dda39f14f869fb57a117b45feaa42e28d2d4977717945cc3": 211,
+            "334781a645745ac9681ca2f3e2ca3fa62ad530a46dab9f6fa021d75fc33d5c": 212,
+            "bdb2b9bbb319f4ba62198d207c9fbef52f1f25951358bbc7d61df29573b2e6": 213,
+            "edab16b67184486186fa5de5b25dd28eed7aa893d91c602e5479967440bec8": 214,
+            "abf8d05b6b82f13d6fa555222497cc79996c7bb3e3ad5d779016d5144e34138": 215,
+            "eaec1bc4697479b8f2e0cc881634e7d43bfbf7121d2bbcc9c4388e4c4621fe3": 216,
+            "3f4b9762ebbcf9e5f2f17d9293273c3fd75f92e6598474cb7b915738cc9f1ed": 217,
+            "b0b3d2af70746bf87b9770c935884039dc3f60fc50dc26629b30eb745e1a3d57": 218,
+            "2ac82168c69a05c579ab37270dbc680b49fc64ac2ee3fb72953e2dd146b3998": 219,
+            "459a216cf24c9d3e3c459955464b74b415d7dd6a44b27df4c46959771af411": 220,
+            "666323dfdf883dbe89568ed77580b29a3bfd5e37f6e1a9798d7339a18276db9": 221
+        },
+        "pubsub": {
+            "id": 1,
+            "transportOptions": {
+                "password": {
+                    "iv": "G9EGi3aM98dHwc8qpVV39g==",
+                    "value": "vufMkG6jS6ltHfwdF7Xjb2h4f22T3jHAD6qGD/52jdoJcAHxp5NLEKdMRmZ0Uz8r"
+                },
+                "username": "mdns"
+            }
         }
     },
     "@domojs/owntracks": {},
@@ -429,7 +473,60 @@
             "4a17bbac08502c8bed565b7f53af36c710465891456e475c2f3449eb97c4": 75,
             "eae6bcaadd9224226dd749eb05661163421588e677d550984ab94a5132dc31": 76,
             "df17363e5f448b33b8c55b3a61af9783ba5347b4e2a5ee5ff656173e1f97fa5": 77,
-            "9e7da4f25e3a2c87754fd625e0f81917e55ad9f3e9390d3d717d5640b11fd": 78
+            "9e7da4f25e3a2c87754fd625e0f81917e55ad9f3e9390d3d717d5640b11fd": 78,
+            "68e7376fa226b76a966c2bf40f91a393e9aed6cdf19f8f4d563bbbbe7a540": 79,
+            "21ac917a20d334f4c794abec3caad8af734fcad425423292299ca4d1eea337": 80,
+            "d8a1b3e966618f1932e7ad83acd2829770be6adb4dc78ffbb93f1efb4e414e1b": 81,
+            "8e8e2022673481a595cc3d7b6352573a1cb66d8180d3b70bcbece4944c5df": 82,
+            "f36df6e2377a5a2c921cc4251a30a2c1f82bed875b8fa5652b94fd5ec83feeca": 83,
+            "1d6158d4f12f0f99f6295bf9d9b6fe8bd65d188767671a6aa3d4ea1ff6b47": 84,
+            "58deeec460b142af628d2beade6e374f8912ff404bbf24e6843b915677bca5e": 85,
+            "2369127b68f570ac2798692c81a943bd43955779d022c9bd328744b4dbd6": 86,
+            "6daef961baf07882e0e169e975df671f41dfdf2b72f46945ee0a021cd77f486": 87,
+            "b4fb131c7c44e29dae7c9f2aa3e48f5072331d39fe62b1dbc64de6b77d63c2b": 88,
+            "ebf532fdf068947cfa5446e67cf359b2c5cde9704c16decb952da71b4e78a47": 89,
+            "9a8f11d3773ed73ea5f3934ab1a76613896369617cbeb818f68334763fb038": 90,
+            "fc1e61fb1e8b59ee77be3fdbd31ba4eb832841d0ff534f68e62f899146724": 91,
+            "336b32763a454d7a4d378ea8256f77d38c28da47e2c564c350aa349ed8c928": 92,
+            "1819e19f2494cd22e7a31faef465e5e8c33a314842dcc403c80d7a3c94bd9e": 93,
+            "fb6e664cfbd795186347ed9ba284e6449e11ac9b592fb6771fd4b44cbd298fc": 94,
+            "a1497e5ed5dd362bb2274e9affa5a97a41abd07bf65a693391bfa2bffeaa2a": 95,
+            "dd564e639d9cd84762a7148d4d3457ca9d14e870ea128bf3a96cace633b4f93a": 96,
+            "e055f8ccd3da3fa7317967f4755f782c448db22565d77fd11ffc62c2901a6388": 97,
+            "204e5e7e5127382ecbce112cd48644f8558cfeeee41973f81db0d52d501ea665": 98,
+            "dc5265e33355ad4e5a7587b0d9b93d51e9a1b39e1a99ec06e844e51b31f": 99,
+            "3ba326ddbfea16696e77ca5c6c7ddfa948567a61e8674821d24f04e15b64d3": 100,
+            "795f6763c2758b86e76dc730a673c2bcc2389eb0d4f5eff477a3ef04753896": 101,
+            "baf854ca80c0bf817b270606198ffd6421eb9bfe9fa4d2dd87825395b17914": 102,
+            "b1fac816da6a38787162030c28c70ec254a37c979f9852fb53a37e69c7f31": 103,
+            "91e860aeca996212b52c1f8e40c4e52f219ad07b5c81de52c899761eefe4f784": 104,
+            "b7acaac9165f43a9918b1fe22dd33127c6acf4f7c4e5d1f1461b639112e4f": 105,
+            "c4c59e63abd5b4709d92f81c9a2f02f9aa62fb1a2471920bbd7d34a19c535": 106,
+            "b32ecc75d48ddf3b133af56a8adb34fb7e29d780d9cfb04e32726e816438a1": 107,
+            "b54f23314b95a1b7b122caf2897a913f963dced1418cbcf6e0615ccd8fcfd": 108,
+            "4fc3aab1fbc2e79bb2878ad57ff0798659117d201877bc70b0f4ae97a1e28c5e": 109,
+            "6f9ad5e2b6a5837dfc7f3bf44848d52881df2a861445bdadc6e87ca53138": 110,
+            "98d94210c07f277efcca46698feace25b5a9b255c3ba46adce0cfee6eaaff7": 111,
+            "85be6c9e3e52b98185e5cf2d3d8b3c696e3ce93ebd18e6f741d76dc7fa163d7": 112,
+            "9815fcaf8ef45ee72225dc377b5207b787b4231fdbc89774db454cd2254a48": 113,
+            "2dc023702eeb3deafed7f7af150e7fcce8ea2b6b51e64e529f8712dfd7588fa": 114,
+            "7be95862657bc45d8c0b1c5d9a9265dbeb5c47869c7423b3582e7e01cea834": 115,
+            "c9a917521f68c1c8a47e5e37d2d074f956f9722375c0a6b87e9a5ac42bb263fd": 116,
+            "4fe6e36e347b913da8cc64107d5b74d66cebbecbcbf5401fc56cb72372222dc6": 117,
+            "cba2dfa1372ce2264e9481afd5988ea56a7e45b7ea517245a78320ba4f3244c": 118,
+            "93e0a2ae6328f55eb3e1b31d5a8bc880d2348572442cf681d9f72a364431b31": 119,
+            "14763e5c94bbeefbf41d3c907120f468c5a07368e99feaef974610c93d6ea": 120,
+            "86e1ed2c9aca8b5e7b8494f7e39c5e83315fc490ccd62faddb4f68012e461": 121,
+            "49ec75f253f0f79f539ed3ae5c421a869a8971fbc54547c98586d9f1b6c567": 122,
+            "33f94e96556f9de3a5ad46e6922656dd1f1e4020a4e5201ec69bcd23bf476016": 123,
+            "85de5fd9767570c0ef9c6bb2c254732cf8ee5951c456c8ff528df488c53944c1": 124,
+            "f8dcee51eca462501a16743ef3495583f87109eec82ceeffbc0d17b42e95f1": 125,
+            "7b1a739e14ddc21744bfa9e41c9cbd7bafc070bd34aec0844bb231d4aa0a3bc": 126,
+            "77adbd865a5eb858eab8f9c4753a585cec63ebbd9f77f773971c7e3e497e370": 127,
+            "36c5221724532d346a0ff70dc1a90a6b5e293fc1b4652b61c263dba8646e5": 128,
+            "65692bcae5537322a488418965aa51b5cdccdc34f6bb9d49199d91f471045": 129,
+            "904745f35e751dd9e73fa81cd28b185e651c45e1a46aaca98bf3a5e9abde22": 130,
+            "7f2899854d9679e8f56f21b36bd88ba692377eb3a8047df308b9d42cd9941cd": 131
         },
         "pubsub": {
             "id": 4,
@@ -455,8 +552,8 @@
         },
         "auth": {
             "uuid:LogiSecurityDevice_00-12-AB-1B-8C-B6::urn:upnp-logitech-com:service:SecurityDeviceControl:1": {
-                "iv": "dXQVm/2IGDbZxFs3B6tVIA==",
-                "value": "H7zK/jKc6jT5PhczWU4/Xw=="
+                "iv": "KFvJ3VuK29K8rwf7Kxo8Ig==",
+                "value": "KFyb09FvkxPuY326q9pGcw=="
             }
         },
         "endpointsMapping": {
@@ -464,6 +561,26 @@
             "c32037ce6167b89f20c9cfba09a4f2a85321ae4872a6b76088366b566df": 2,
             "82dc9cfa87f1bb2b1409aef44787c4c9d8cf453b5f5ee814671eb8fe8d8ca": 3,
             "97d6f33656c0b024294d5f54f16f437543dc28f79e31eae98aaf39b25c7d28": 4
+        }
+    },
+    "@domojs/vapid": {
+        "pubsub": {
+            "id": 7,
+            "transportOptions": {
+                "password": {
+                    "iv": "50cqJ5rkpGzeLqaI3Njbpg==",
+                    "value": "/j4VXFML3kXD/jMuB1wCfKcsHOYz/aliv3MYInAO5oBg6SZgGOLJQw0lTpYES7bp"
+                },
+                "username": "vapid"
+            }
+        },
+        "vapidConfig": {
+            "subject": "mailto:admin@domojs.local",
+            "publicKey": "BGOC0CWL0OzYkFrjhyLkl3OR2qPb7CQ3_CvR8dcMnAc1PBx_1govhZelfAAg0b0_r_ae9SsSjff-NvUUlo5ko0w",
+            "privateKey": {
+                "iv": "1eA0UsCUAxq/+FGM3Xqw3A==",
+                "value": "BkbBBHroH/06BPPngsWDFf255OinNZDwdZSV9Z1PcU/N5rC2fFyvpJrUJg2ukm7m7+H5ohDj00sYamVz7Vm3hLl5ZeTsnQu55qk1t0I1pmhgmA8pniw+ffDGdzBA/DinsL3jOvFU5juolL2Ji1++JUcWMszdR18dRR+kEgBEVv8j3f9NaX9LUFMPuHpIsvlDEnBkkDLCcRk0qe3CI4N6u/BUixB9trl0PpKHd5FW2vrisofD351JLS4XFmcs94C/"
+            }
         }
     }
 }
