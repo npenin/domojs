@@ -8,7 +8,7 @@ import { parseXml, XmlElement } from '@rgrove/parse-xml'
 
 function getByTag(source: XmlElement, tag: string)
 {
-    return source.children.filter(c => c instanceof XmlElement && c.name == tag) as XmlElement[];
+    return source?.children.filter(c => c instanceof XmlElement && c.name == tag) as XmlElement[] ?? [];
 }
 
 export default async function (context: CliContext<any, ProxyConfiguration<SidecarConfiguration & BridgeConfiguration>>, http: Http)
