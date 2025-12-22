@@ -12,6 +12,7 @@
     ],
     "exclude": [
         "dist",
+        "src/sw"
     ],
     // "references": [
     //     {

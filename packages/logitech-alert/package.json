@@ -14,11 +14,11 @@
         "./commands.json": "./commands.json"
     },
     "dependencies": {
-        "@akala/cli": "^5.16.5",
+        "@akala/cli": "^5.16.7",
         "@domojs/devices": "workspace:^"
     },
     "devDependencies": {
-        "@akala/config": "^7.2.27"
+        "@akala/config": "^7.2.29"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\"",
