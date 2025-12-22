@@ -123,7 +123,7 @@ export default async function (this: State, context: CliContext<{ debug: boolean
                                 })) as any);
 
 
-                            fabric.endpoints.push(deviceEndpoint);
+                            // fabric.endpoints.push(deviceEndpoint);
                         }
                     });
 
