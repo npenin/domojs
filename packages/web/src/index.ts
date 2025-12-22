@@ -23,9 +23,9 @@ import fsHandler, { FileHandle, FileSystemProvider, MakeDirectoryOptions, OpenFl
 import { allProperties, AsyncEventBus, asyncEventBuses, base64, ErrorWithStatus, Formatter, formatters, HttpStatusCode, IsomorphicBuffer, ObservableObject, watcher, WatcherFormatter } from '@akala/core';
 import { MqttEvents } from '@domojs/mqtt';
 import Configuration from '@akala/config';
-import { BridgeConfiguration, ClusterDefinition, ClusterIds, EndpointProxy, MatterClusterIds, NonWatchableRemoteClusterInstance, registerNode, RemoteClusterInstance } from '@domojs/devices';
+import { BridgeConfiguration, ClusterDefinition, ClusterIds, Endpoint, EndpointProxy, MatterClusterIds, NonWatchableRemoteClusterInstance, registerNode, RemoteClusterInstance } from '@domojs/devices';
 // import { dirname } from 'path';
-import type { SidecarConfiguration } from '@akala/sidecar';
+import type { PubSubConfiguration, SidecarConfiguration } from '@akala/sidecar';
 import type { Container as pmContainer } from '@akala/pm'
 
 formatters.register('log', class implements Formatter<unknown>
@@ -252,16 +252,15 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
         if (stored === null)
             throw new ErrorWithStatus(404, `ENOENT: no such file or directory, open '${path}'`);
 
-        if (options === 'binary' || (options && options.encoding === 'binary'))
-        {
-            return Promise.resolve(new IsomorphicBuffer(base64.base64DecToArr(stored)));
-        }
-        else if (options === 'json' || (options && options.encoding === 'json'))
+        if (options === 'json' || (options && options.encoding === 'json'))
         {
             return Promise.resolve(JSON.parse(stored));
         }
-        // Default to string
-        return Promise.resolve(stored);
+        // if (options === 'binary' || (options && options.encoding === 'binary'))
+        // {
+        return Promise.resolve(new IsomorphicBuffer(base64.base64DecToArr(stored)));
+        // }
+        // return Promise.resolve(IsomorphicBuffer.from(stored, 'base64'));
     }
     async rename(oldPath: PathLike<FileHandle>, newPath: string | URL): Promise<void>
     {
@@ -388,35 +387,56 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
     }
     async writeFile(path: PathLike<FileHandle>, data: IsomorphicBuffer | string | ArrayBuffer | SharedArrayBuffer, options?: {
         mode?: number;
+        encoding?: BufferEncoding | 'json';
+        format?: boolean;
     }): Promise<void>
     {
         const normalizedPath = await this.normalizePath(path);
         let toStore: string;
-        if (typeof data === 'string')
+
+        switch (options?.encoding)
         {
-            toStore = data;
+            case "base64":
+            case "base64url":
+            case "binary":
+            case 'hex':
+                toStore = typeof data == 'string' ? IsomorphicBuffer.from(data).toString(options.encoding) : data.toString(options.encoding);
+                break;
+            case "ascii":
+            case "utf8":
+            case "utf-8":
+            case "utf16le":
+            case "utf-16le":
+            case "ucs2":
+            case "ucs-2":
+            case "latin1":
+            default:
+
+                if (typeof data === 'string')
+                {
+                    toStore = data;
+                }
+                else if (data instanceof IsomorphicBuffer)
+                {
+                    toStore = data.toString('utf-8');
+                }
+                else if (data instanceof ArrayBuffer || crossOriginIsolated && data instanceof SharedArrayBuffer)
+                {
+                    toStore = IsomorphicBuffer.fromArrayBuffer(data).toString('base64');
+                }
+                else
+                {
+                    throw new Error('Unsupported data type');
+                }
+                break;
+            case "json":
+                if (options?.format)
+                    toStore = JSON.stringify(data, null, 4);
+                else
+                    toStore = JSON.stringify(data);
+                break;
         }
-        else if (data instanceof ArrayBuffer || data instanceof SharedArrayBuffer)
-        {
-            // Convert to base64
-            const bytes = new Uint8Array(data);
-            let binary = '';
-            for (let i = 0; i < bytes.byteLength; i++)
-                binary += String.fromCharCode(bytes[i]);
-            toStore = btoa(binary);
-        }
-        else if (data instanceof Uint8Array || (data as any).buffer)
-        {
-            // Assume IsomorphicBuffer or similar
-            let binary = '';
-            for (let i = 0; i < data.length; i++)
-                binary += String.fromCharCode(data[i]);
-            toStore = btoa(binary);
-        }
-        else
-        {
-            throw new Error('Unsupported data type');
-        }
+
         localStorage.setItem(normalizedPath, toStore);
     }
     chroot(root: PathLike): void
@@ -441,33 +461,76 @@ fsHandler.useProtocol('localstorage', async url => new (class implements FileSys
 })());
 
 let mqtt: Promise<AsyncEventBus<MqttEvents>>;
-bootstrapModule.activateAsync([], async () =>
+bootstrapModule.activate([], function ()
 {
-    mqtt = asyncEventBuses.process<MqttEvents>(new URL(`mqtt+wss://${location.host}/mqtt`), { username: 'domojs-guest', password: 'domojs' }).then(mqtt => serviceModule.register('mqtt', mqtt));
-    const config = await Configuration.load<SidecarConfiguration & BridgeConfiguration>('localstorage:///sidecar', true);
-
-    const abortController = new AbortController();
-    const pm = connect(new URL(`/pm`, window.location.href).href.replace(/^http/, 'ws'), abortController.signal) as Promise<Container<void> & pmContainer>;
-    if (!config.pubsub?.transport)
+    this.waitUntil((async () =>
     {
-        if (!config.pubsub)
-            config.set('pubsub', {});
-        config.pubsub.transport = `mqtt+wss://${location.host}/mqtt`;
+        const config = await Configuration.load<SidecarConfiguration & BridgeConfiguration>('localstorage:///sidecar', true);
+        if (!config.pubsub?.transport)
+        {
+            if (!config.pubsub)
+                config.set('pubsub', {});
+            config.pubsub.transport = `mqtt+wss://${location.host}/mqtt`;
 
-        pm.then(pm => registerNode(`browser/${crypto.randomUUID()}`, {
-            config,
-            abort: abortController.signal,
-            pm: pm,
-            sidecars: {
-            } as any
-        }, config, abortController.signal, true));
+            if (!config.has('clientId'))
+            {
+                config.set('clientId', crypto.randomUUID());
+                await config.commit();
+            }
+        }
 
-    }
+        const options: PubSubConfiguration['transportOptions'] = config.pubsub.transportOptions?.extract() || { username: 'domojs-guest', password: 'domojs' };
+        if (typeof options.password !== 'string')
+            options.password = await config.pubsub.transportOptions.getSecret('password');
+        mqtt = asyncEventBuses.process<MqttEvents>(new URL(config.pubsub.transport), config.pubsub.transportOptions?.extract() || { username: 'domojs-guest', password: 'domojs' }).then(mqtt => serviceModule.register('mqtt', mqtt));
+
+        const abortController = new AbortController();
+        // const pm = connect(new URL(`/pm`, window.location.href).href.replace(/^http/, 'ws'), abortController.signal) as Promise<Container<void> & pmContainer>;
+
+        await mqtt.then(async pubsub =>
+        {
+            const browser = await registerNode(`browser/${config.get('clientId')}`, {
+                config,
+                abort: abortController.signal,
+                pm: null,
+                pubsub: pubsub,
+                sidecars: {
+                } as any
+            }, config, abortController.signal, true);
+
+            await browser.attach(pubsub);
+
+
+            const vapid = await EndpointProxy.fromBus(pubsub, 'domojs/vapid', '0');
+            if (vapid.clusters.commissionning)
+            {
+                const reg = await navigator.serviceWorker.register(import.meta.resolve('./sw/index.ts'));
+
+                const sub = vapid.clusters.fixedLabel.target.LabelList.onChanged(async ev =>
+                {
+                    const labels = Object.fromEntries(ev.value.map(l => [l.Label, l.Value]));
+                    console.log(labels);
+                    if (!labels)
+                        return;
+                    sub();
+                    if (labels.VAPID_PUBLIC_KEY)
+                    {
+                        const sub = await reg.pushManager.subscribe({
+                            userVisibleOnly: true,
+                            applicationServerKey: labels.VAPID_PUBLIC_KEY
+                        });
+                        const res = await vapid.clusters.commissionning.target.registerCommand(JSON.stringify(sub), false);
+                    }
+                });
+            }
+        });
+
+    })());
 });
 
-bootstrapModule.readyAsync([], async () =>
+bootstrapModule.readyAsync([], async function ()
 {
-    await mqtt;
+    this.waitUntil(mqtt);
 })
 
 DataContext.propagateProperties.push('icons');
