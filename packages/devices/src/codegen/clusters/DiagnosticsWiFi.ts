@@ -1,5 +1,5 @@
 // This file is generated from DiagnosticsWiFi.xml - do not edit it directly
-// Generated on 2025-12-18T03:05:00.941Z
+// Generated on 2025-12-22T10:19:29.976Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

@@ -1,5 +1,5 @@
 // This file is generated from WaterHeaterManagement.xml - do not edit it directly
-// Generated on 2025-12-18T03:05:15.754Z
+// Generated on 2025-12-22T10:19:45.276Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

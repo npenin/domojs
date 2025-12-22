@@ -1,5 +1,5 @@
 // This file is generated from FanControl.xml - do not edit it directly
-// Generated on 2025-12-18T03:05:02.914Z
+// Generated on 2025-12-22T10:19:31.659Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

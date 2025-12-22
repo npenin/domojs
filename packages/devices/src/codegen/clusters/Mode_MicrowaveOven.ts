@@ -1,5 +1,5 @@
 // This file is generated from Mode_MicrowaveOven.xml - do not edit it directly
-// Generated on 2025-12-18T03:05:08.405Z
+// Generated on 2025-12-22T10:19:37.309Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

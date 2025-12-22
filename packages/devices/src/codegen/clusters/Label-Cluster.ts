@@ -1,5 +1,5 @@
 // This file is generated from Label-Cluster.xml - do not edit it directly
-// Generated on 2025-12-18T03:05:05.016Z
+// Generated on 2025-12-22T10:19:33.792Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

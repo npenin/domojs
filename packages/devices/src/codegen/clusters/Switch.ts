@@ -1,5 +1,5 @@
 // This file is generated from Switch.xml - do not edit it directly
-// Generated on 2025-12-18T03:05:13.162Z
+// Generated on 2025-12-22T10:19:42.507Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

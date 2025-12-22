@@ -1,5 +1,5 @@
 // This file is generated from ACL-Cluster.xml - do not edit it directly
-// Generated on 2025-12-18T03:04:54.716Z
+// Generated on 2025-12-22T10:19:23.450Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

@@ -1,5 +1,5 @@
 // This file is generated from Mode_EVSE.xml - do not edit it directly
-// Generated on 2025-12-18T03:05:08.061Z
+// Generated on 2025-12-22T10:19:36.944Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

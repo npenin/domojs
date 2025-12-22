@@ -1,5 +1,5 @@
 // This file is generated from JointFabricDatastoreCluster.xml - do not edit it directly
-// Generated on 2025-12-18T03:05:04.685Z
+// Generated on 2025-12-22T10:19:33.414Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

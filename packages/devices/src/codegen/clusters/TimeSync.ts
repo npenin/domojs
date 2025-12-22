@@ -1,5 +1,5 @@
 // This file is generated from TimeSync.xml - do not edit it directly
-// Generated on 2025-12-18T03:05:14.902Z
+// Generated on 2025-12-22T10:19:44.292Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

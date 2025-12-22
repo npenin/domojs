@@ -1,5 +1,5 @@
 // This file is generated from ClosureControl.xml - do not edit it directly
-// Generated on 2025-12-18T03:04:57.830Z
+// Generated on 2025-12-22T10:19:26.774Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

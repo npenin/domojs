@@ -1,5 +1,5 @@
 // This file is generated from Binding-Cluster.xml - do not edit it directly
-// Generated on 2025-12-18T03:04:56.438Z
+// Generated on 2025-12-22T10:19:25.221Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

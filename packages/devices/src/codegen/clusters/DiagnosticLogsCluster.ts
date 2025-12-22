@@ -1,5 +1,5 @@
 // This file is generated from DiagnosticLogsCluster.xml - do not edit it directly
-// Generated on 2025-12-18T03:05:00.074Z
+// Generated on 2025-12-22T10:19:29.107Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

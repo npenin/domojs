@@ -1,5 +1,5 @@
 // This file is generated from AlarmBase.xml - do not edit it directly
-// Generated on 2025-12-18T03:04:55.572Z
+// Generated on 2025-12-22T10:19:24.323Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

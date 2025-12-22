@@ -1,5 +1,5 @@
 // This file is generated from WaterContentMeasurement.xml - do not edit it directly
-// Generated on 2025-12-18T03:05:15.583Z
+// Generated on 2025-12-22T10:19:45.106Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

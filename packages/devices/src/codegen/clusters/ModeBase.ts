@@ -1,5 +1,5 @@
 // This file is generated from ModeBase.xml - do not edit it directly
-// Generated on 2025-12-18T03:05:07.339Z
+// Generated on 2025-12-22T10:19:36.203Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

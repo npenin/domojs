@@ -1,5 +1,5 @@
 // This file is generated from LocalizationUnit.xml - do not edit it directly
-// Generated on 2025-12-18T03:05:06.104Z
+// Generated on 2025-12-22T10:19:34.845Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

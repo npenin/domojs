@@ -1,5 +1,5 @@
 // This file is generated from Mode_Oven.xml - do not edit it directly
-// Generated on 2025-12-18T03:05:08.570Z
+// Generated on 2025-12-22T10:19:37.493Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

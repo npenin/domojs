@@ -1,5 +1,5 @@
 // This file is generated from CommodityMetering.xml - do not edit it directly
-// Generated on 2025-12-18T03:04:58.522Z
+// Generated on 2025-12-22T10:19:27.458Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

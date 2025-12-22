@@ -1,5 +1,5 @@
 // This file is generated from IlluminanceMeasurement.xml - do not edit it directly
-// Generated on 2025-12-18T03:05:04.323Z
+// Generated on 2025-12-22T10:19:33.065Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 

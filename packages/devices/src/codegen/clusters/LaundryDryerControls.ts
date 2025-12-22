@@ -1,5 +1,5 @@
 // This file is generated from LaundryDryerControls.xml - do not edit it directly
-// Generated on 2025-12-18T03:05:05.208Z
+// Generated on 2025-12-22T10:19:33.974Z
 
 import { Cluster, ClusterDefinition } from '../../server/clients/shared.js';
 
