@@ -29,14 +29,15 @@ export default async function start(context: CliContext<{}, ProxyConfiguration<S
 
         if (match?.variables)
         {
-            const endpointId = await root.getEndpointId(`${match.variables.user}/${match.variables.device}`);
+            const endpointName = `${match.variables.user}/${match.variables.device}`;
+            const endpointId = await root.getEndpointId(endpointName);
             const endpoint = root.endpoints.find(ep => ep.id == endpointId);
             const json = JSON.parse(message as string);
 
             if (!endpoint)
             {
                 if (json._type == 'location')
-                    root.endpoints.push(new Endpoint(endpointId, {
+                    root.endpoints.push(new Endpoint(endpointName, endpointId, {
                         location: clusterFactory({
                             id: ClusterIds.location,
                             location: `${json.lat} ${json.lon}`,
