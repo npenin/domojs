@@ -49,7 +49,7 @@ export default async function (this: State, context: Context<ProxyConfiguration<
                 if (device.xaddrs.length > 0)
                     labelList.push({ Label: 'XAddrs', Value: device.xaddrs.join(';') });
 
-                const endpoint = new Endpoint(endpointId, {
+                const endpoint = new Endpoint(device.endpointReference, endpointId, {
                     fixedLabel: clusterFactory({
                         id: MatterClusterIds.FixedLabel,
                         LabelList: labelList
