@@ -1,9 +1,9 @@
-#  (2025-12-14)
+#  (2025-12-22)
 
 
 ### Bug Fixes
 
-* refine motion detection logic for occupancy sensing dc541e5
+* update after devices breaking change da05244
 
 
 
