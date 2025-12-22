@@ -173,7 +173,7 @@ export default async function (this: State, context: Context<ProxyConfiguration<
                 let fqdnEndpoint: Endpoint<'fixedLabel'>;
                 if (!(fqdnEndpoint = fabric.endpoints.find(ep => ep.id == fqdnId) as Endpoint<'fixedLabel'>))
                 {
-                    const ep = fqdnEndpoint = new Endpoint<'fixedLabel'>(fqdnId, {
+                    const ep = fqdnEndpoint = new Endpoint<'fixedLabel'>(c.fqdn, fqdnId, {
                         fixedLabel: clusterFactory({
                             id: MatterClusterIds.FixedLabel,
                             LabelList: [
@@ -199,7 +199,7 @@ export default async function (this: State, context: Context<ProxyConfiguration<
 
                 if (!(typeEndpoint = fabric.endpoints.find(ep => ep.id == typeId) as AggregatorEndpoint<never>))
                 {
-                    fabric.endpoints.push(typeEndpoint = new AggregatorEndpoint(typeId, {
+                    fabric.endpoints.push(typeEndpoint = new AggregatorEndpoint(c.type, typeId, {
                         fixedLabel: clusterFactory({
                             id: MatterClusterIds.FixedLabel,
                             LabelList: [{ Label: 'Type', Value: c.type }]
@@ -211,7 +211,7 @@ export default async function (this: State, context: Context<ProxyConfiguration<
                 let hostEndpoint: AggregatorEndpoint<never>;
                 if (!(hostEndpoint = fabric.endpoints.find(e => e.id === hostId) as AggregatorEndpoint<never>))
                 {
-                    fabric.endpoints.push(hostEndpoint = new AggregatorEndpoint(hostId, {
+                    fabric.endpoints.push(hostEndpoint = new AggregatorEndpoint(c.host, hostId, {
                         fixedLabel: clusterFactory({
                             id: MatterClusterIds.FixedLabel,
                             LabelList: [{ Label: 'Host', Value: c.host }]
