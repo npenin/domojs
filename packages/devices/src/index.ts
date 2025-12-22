@@ -8,10 +8,11 @@ import { MqttClient, MqttEvents } from '@domojs/mqtt';
 import { protocol } from '@domojs/mqtt';
 import { ProxyConfiguration } from '@akala/config';
 import type { BridgeConfiguration } from './server/clients/RootNode.js';
+import { MixedClusterMap } from './server/clients/Endpoint.js';
 
 export { type BridgeConfiguration }
 
-export async function registerNode(name: string, self: Sidecar<any, MqttEvents>, config: ProxyConfiguration<BridgeConfiguration>, abort: AbortSignal, grantRoot?: boolean): Promise<RootNode<never>>
+export async function registerNode<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor' | 'aggregator'>>(name: string, self: Sidecar<any, MqttEvents>, config: ProxyConfiguration<BridgeConfiguration>, abort: AbortSignal, grantRoot?: boolean, clusters?: MixedClusterMap<TClusterMapKeys>): Promise<RootNode<TClusterMapKeys>>
 {
     let id = config.id;
     if (!self.pubsub && self.config.pubsub?.transport || self.pubsub && !self.config.pubsub?.transportOptions)
@@ -67,7 +68,7 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
         })
     });
 
-    const root = new RootNode<never>(name, {}, config)
+    const root = new RootNode(name, clusters, config)
 
     await endpoint.attach(self.pubsub, 'domojs/devices');
     await self.pubsub.emit(`domojs/devices/${id}/descriptor/ServerList`, JSON.stringify(Object.values(endpoint.clusters).map(c => c.target.id)), { qos: 1 });

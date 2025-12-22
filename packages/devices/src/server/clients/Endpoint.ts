@@ -41,12 +41,12 @@ export class Endpoint<
     )
     {
         super(undefined, () => { });
-        if ('descriptor' in clusters)
+        if (clusters && 'descriptor' in clusters)
             this.descriptor = clusters.descriptor as ReturnType<typeof Descriptor< TClusterMapKeys>>;
         else
             this.descriptor = Descriptor<TClusterMapKeys>();
 
-        this.clusters = Object.fromEntries(Object.entries(clusters).concat([['descriptor', this.descriptor]])) as MixedClusterMap<TClusterMapKeys | 'descriptor'>;
+        this.clusters = Object.fromEntries((clusters ? Object.entries(clusters) : []).concat([['descriptor', this.descriptor]])) as MixedClusterMap<TClusterMapKeys | 'descriptor'>;
 
         this.clusterSubscriptions[DescriptorClusterId] = this.descriptor.on(allProperties, ev =>
         {
@@ -144,24 +144,20 @@ export class Endpoint<
             await bus.emit(`${prefix}/${endpointName || endpoint.id}/descriptor/${ev.property}`, JSON.stringify(ev.value), { qos: 1 });
         }) : null);
 
+        return sub;
+    }
+
+    public async attach(bus: AsyncEventBus<MqttEvents>, prefix: string, endpointName?: string): Promise<AsyncSubscription>
+    {
+        const result = Endpoint.attach(bus, prefix, this, endpointName);
+
         const match = {
             attributeOrCommand: 'ServerList',
             cluster: 'descriptor'
         } as const;
 
-        let value = (endpoint.clusters.descriptor as ClusterInstance<DescriptorCluster>).getValue(match.attributeOrCommand);
-        if (value instanceof Binding)
-            value = value.getValue();
-        if (value instanceof ObservableArray)
-            value = value.array;
-        await bus.emit(`${prefix}/${endpointName || endpoint.id}/${match.cluster}/${match.attributeOrCommand}`, JSON.stringify(typeof value == 'undefined' || value === null ? false : value), { qos: 1 });
+        await bus.emit(`${prefix}/${endpointName || this.id}/${match.cluster}/${match.attributeOrCommand}/get`, '{}', { qos: 1 });
 
-
-        return sub;
-    }
-
-    public attach(bus: AsyncEventBus<MqttEvents>, prefix: string, endpointName?: string): Promise<AsyncSubscription>
-    {
-        return Endpoint.attach(bus, prefix, this, endpointName);
+        return result;
     }
 }

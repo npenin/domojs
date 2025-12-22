@@ -56,6 +56,7 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
             id = clientId;
             await (self.pubsub as MqttClient).disconnect(protocol.ReasonCodes.NormalDisconnection);
             delete self.pubsub;
+            pubsubConfig.transport = self.config.pubsub.transport;
             delete self.config.pubsub;
             await pubsub(self, pubsubConfig, abort);
         }
@@ -64,9 +65,10 @@ export async function registerNode(name: string, self: Sidecar<any, MqttEvents>,
     }
     catch (e)
     {
-        if (e.disconnect.reason !== protocol.ReasonCodes.NotAuthorized)
+        if (e?.disconnect?.reason !== protocol.ReasonCodes.NotAuthorized)
         {
-            delete self.config.pubsub.transportOptions;
+            if (self.config?.pubsub?.transportOptions)
+                delete self.config.pubsub.transportOptions;
             await self.config.commit();
             throw e;
         }

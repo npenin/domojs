@@ -17,7 +17,7 @@ export class AggregatorEndpoint<TClusterMapKeys extends Exclude<keyof ClusterMap
         this.teardown(this.endpoints.addListener(async (ev) =>
         {
             log.data(ev);
-            this.descriptor.setValue('PartsList', this.endpoints.map(ev => Number(ev.id)));
+            this.descriptor.setValue('PartsList', this.endpoints.map(ev => Number(ev.id)).slice(1));
         }));
         this.teardown(() =>
         {

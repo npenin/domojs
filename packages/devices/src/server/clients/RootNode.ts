@@ -14,14 +14,14 @@ export interface BridgeConfiguration
     id: number;
 }
 
-export class RootNode<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor' | 'aggregator'>> extends AggregatorEndpoint<TClusterMapKeys> implements Node
+export class RootNode<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor' | 'aggregator'> = never> extends AggregatorEndpoint<TClusterMapKeys> implements Node
 {
-    constructor(public readonly name: string, clusters: MixedClusterMap<never>, private config: ProxyConfiguration<BridgeConfiguration>)
+    constructor(public readonly name: string, clusters: MixedClusterMap<TClusterMapKeys>, private config: ProxyConfiguration<BridgeConfiguration>)
     {
         super('root', 0, clusters);
 
-        const root = new Endpoint<TClusterMapKeys>('root', 0, this.clusters as any);
-        this.endpoints.push(root);
+        // const root = new Endpoint<TClusterMapKeys>('root', 0, clusters);
+        // this.endpoints.push(root);
     }
     async offline(): Promise<void>
     {
@@ -29,8 +29,10 @@ export class RootNode<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descrip
 
     override async attach(bus: AsyncEventBus<MqttEvents>): Promise<AsyncSubscription>
     {
+        // return super.attach(bus, 'domojs');
+        const rootSub = await Endpoint.attach(bus, `domojs/${this.name}`, this);
         const sub = this.subscribeEndpoints(bus, `domojs/${this.name}`);
-        return () => Promise.resolve(sub());
+        return combineAsyncSubscriptions(rootSub, sub);
     }
 
     public async newEndpoint<TClusterMapKeys extends Exclude<keyof ClusterMap, 'descriptor'>>(name: string, clusters: MixedClusterMap<TClusterMapKeys>, endpointId?: number)

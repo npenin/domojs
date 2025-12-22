@@ -134,7 +134,7 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
     const roles = [{ rolename: 'domojs-' + userName }, { rolename: 'domojs-guest' }];
     if (grantRoot)
     {
-        roles.push({ rolename: node + '-admin' });
+        roles.push({ rolename: userName + '-admin' });
     }
     if (node == 'devices')
     {
@@ -228,7 +228,7 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
             },
             {
                 "command": "addRoleACL",
-                "rolename": node + '-admin',
+                "rolename": userName + '-admin',
                 "acltype": "subscribePattern",
                 "topic": `${node}/#`,
                 "priority": 1,
@@ -236,7 +236,7 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
             },
             {
                 "command": "addRoleACL",
-                "rolename": node + '-admin',
+                "rolename": userName + '-admin',
                 "acltype": "publishClientSend",
                 "topic": `${node}/#`,
                 "priority": 1,
@@ -257,7 +257,7 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
 
     const clientResponse = result.responses.find(c => c.command === 'createClient');
 
-    if (this.self)
+    if (this.self && !this.self.endpoints.find(ep => ep.id == nodeId))
     {
         const client = new EndpointProxy(nodeId, { name: 'domojs/devices' }, this.pubsub, {});
         this.self.endpoints.push(client);
@@ -269,6 +269,6 @@ export default async function (this: State, node: string, grantRoot?: boolean): 
     return {
         id: nodeId,
         transport: this.config.pubsub?.transport,
-        transportOptions: { ...this.config.pubsub?.transportOptions?.extract() ?? {}, password: pwd, username: node }
+        transportOptions: { ...this.config.pubsub?.transportOptions?.extract() ?? {}, password: pwd, username: userName }
     }
 }
