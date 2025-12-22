@@ -1,4 +1,4 @@
-#  (2025-12-14)
+#  (2025-12-22)
 
 
 ### Bug Fixes
@@ -67,6 +67,7 @@
 * client subscriptions 53ac6eb
 * cluster proxy mqtt topic 91c3d7e
 * ClusterMap and ClusterIds consistency 8f665be
+* comment out redundant endpoint push in $init.ts 6344284
 * config file after upgrade 9b6bdfc
 * config path after breaking change in @akala/config ae4d47c
 * configs 845de88
@@ -124,12 +125,14 @@
 * handle gateways detection 0c682a0
 * handle legacy configuration migration 7c37558
 * handle multiple gateways or merge gateways 1f19ef8
+* handle potential null source in getByTag function 8ec5093
 * handle pubsub url defined in env 6b0a9ca
 * handle start from fork 98c8153
 * handle undefined pubsub config 233fa6d
 * import cycle 48903df
 * import cycle 2dd896a
 * improve devicetype.add documentation 0f61da2
+* improve endpoint name handling in OwnTracks initialization 710271d
 * improve library indexing + fix akala cli support f235b43
 * improve mdns typings 3a5d0f1
 * improve media manager bb7f291
@@ -184,6 +187,7 @@
 * provide signal to pubsub 3e0a570
 * provide signal to pubsub 538c505
 * publish workflow after semantic-release upgrade 3d373e1
+* read from real data model and not templates 2e60764
 * recover from closed socket 0b733dd
 * redirectTopic value 7c77939
 * refine motion detection logic for occupancy sensing dc541e5
@@ -196,7 +200,9 @@
 * remove failing pubsub 1f0ec9e
 * remove fake env 883a7f1
 * remove files from volumes 29f400f
+* remove legacy files for rename fe4f11b
 * remove pubsub config to allow environment setting 03f2d3f
+* remove redundant event listener logic in GatewayEndpoint b3b4458
 * remove resolutions 648105b
 * remove temporary resolutions 175c6c8
 * remove unknown attribute after matter update 551a66f
@@ -215,6 +221,7 @@
 * scrap stop crashing on not found elements 57355db
 * service discovery package name 4aec8df
 * set mode on rfx d043a17
+* simplify vite config 74f6456
 * slim building 79e69e3
 * slim docker file building a1dd3e8
 * slim dockerfile 6d167ec
@@ -248,6 +255,8 @@
 * update after core breaking change 4deabe1
 * update after core breaking change 91e6b2e
 * update after devices break 1e59885
+* update after devices breaking change 38008ab
+* update after devices breaking change da05244
 * update after devices breaking change e693405
 * update after devices breaking change db3d19d
 * update after jsonrpc breaking change a5d8dbf
@@ -260,13 +269,17 @@
 * update dependencies a3ea3a6
 * update dependencies and checkout depth f04e50a
 * update dependencies and fix devices communications b34af9c
+* update dependencies and improve error handling in registerNode function 445dd55
 * update dependencies to major 1292a69
+* update endpoint initialization to use uniqueId ca50096
+* update Endpoint instantiation to use device.endpointReference c1a50bd
 * update file source after breaking change in akala image 1217a7f
 * update generated metadata f24985f
 * update generated metadata 675a3a7
 * update home screen tailored impl 9898cb4
 * update location 6071c35
 * update lock file 17fbd2a
+* update matter codegen files b16d3f5
 * update parameter references from "param" to "params" in command JSON files 7634f8f
 * update SocketAdapter import and use JsonRpcBrowser 065c4b9
 * update terminology for rfy devices to match matter terminology 24cb712
@@ -313,6 +326,7 @@
 ### chore
 
 * update dependencies aa46616
+* update to matter 1.5 real definition 57dbd21
 
 
 ### Code Refactoring
@@ -353,10 +367,14 @@
 * add redirectTopic f692d3e
 * add registerNode in browser implementation 6e8e368
 * add service discovery (not ready yet) 7a7a7b4
+* add service worker and TypeScript configuration for push notifications 869481a
 * add slim docker alternative a06e7c6
 * add tlv support be185cf
 * add unknown RTS message support 9cca173
 * add user label on gateway endpoint 87d8b51
+* add VAPID configuration and update autostart settings for mdns df2c3e9
+* add vapid path reference to TypeScript configuration d65767a
+* add VAPID support with commands and configuration files b4783e0
 * add web scrapping support and tests 62a3c61
 * add yt-music 5c09d55
 * allow creating endpoint with id directly a85c581
@@ -406,6 +424,7 @@
 
 ### BREAKING CHANGES
 
+* switch to matter data model instead of templates has broken many clusters
 * matter 1.5 definition might break previous clusters
 * location is now /akala instead of /usr/src/akala
 * EndpointProxy provide bindings instead of Promise
