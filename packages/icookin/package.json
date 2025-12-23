@@ -1,6 +1,6 @@
 {
     "name": "@domojs/icookin",
-    "version": "185.0.0",
+    "version": "186.0.0",
     "main": "index.js",
     "private": true,
     "type": "module",
