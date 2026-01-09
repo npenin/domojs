@@ -1,6 +1,6 @@
 {
     "name": "@domojs/phone",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "DomoJS Android companion app built with Capacitor",
     "type": "module",
     "main": "dist/index.js",
