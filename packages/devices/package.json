@@ -1,6 +1,6 @@
 {
     "name": "@domojs/devices",
-    "version": "12.1.0",
+    "version": "12.1.1",
     "author": {
         "name": "npenin"
     },
@@ -36,7 +36,7 @@
         "@akala/server": "^27.2.59",
         "@akala/sidecar": "^8.5.43",
         "@akala/storage": "^20.4.31",
-        "@domojs/mqtt": "^2.0.55",
+        "@domojs/mqtt": "^2.4.4",
         "@fortawesome/free-brands-svg-icons": "7.1.0",
         "ws": "8.18.3"
     },

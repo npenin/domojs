@@ -1642,7 +1642,7 @@ __metadata:
     "@akala/server": "npm:^27.2.59"
     "@akala/sidecar": "npm:^8.5.43"
     "@akala/storage": "npm:^20.4.31"
-    "@domojs/mqtt": "npm:^2.0.55"
+    "@domojs/mqtt": "npm:^2.4.4"
     "@domojs/theme-default": "workspace:*"
     "@fortawesome/free-brands-svg-icons": "npm:7.1.0"
     "@popperjs/core": "npm:2.11.8"
@@ -1853,7 +1853,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@domojs/mqtt@npm:^2.0.55, @domojs/mqtt@workspace:*, @domojs/mqtt@workspace:packages/mqtt":
+"@domojs/mqtt@npm:^2.4.4, @domojs/mqtt@workspace:*, @domojs/mqtt@workspace:packages/mqtt":
   version: 0.0.0-use.local
   resolution: "@domojs/mqtt@workspace:packages/mqtt"
   dependencies:
