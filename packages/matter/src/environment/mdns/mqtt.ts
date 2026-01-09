@@ -1,12 +1,25 @@
 import { AsyncEventBus, Deferred, delay, ErrorWithStatus, HttpStatusCode } from '@akala/core';
 import { MqttEvents } from '@domojs/mqtt';
-import { Bytes, ChannelType, Duration, Lifespan, Seconds, ServerAddress, ServerAddressUdp, Time, Timestamp } from '@matter/general';
-import { CommissionableDevice, CommissionableDeviceIdentifiers, Fabric, MATTER_SERVICE_QNAME, OperationalDevice, Scanner, getCommissionableDeviceQname, getCommissioningModeQname, getDeviceTypeQname, getLongDiscriminatorQname, getOperationalDeviceQname, getShortDiscriminatorQname, getVendorQname } from '@matter/protocol'
+import { Bytes, ChannelType, Lifespan, ServerAddressIp, Time } from '@matter/general';
+import { CommissionableDevice, CommissionableDeviceIdentifiers, Fabric, MATTER_COMMISSION_SERVICE_QNAME, MATTER_COMMISSIONER_SERVICE_QNAME, MATTER_SERVICE_QNAME, OperationalDevice, Scanner } from '@matter/protocol'
 import { NodeId, VendorId } from '@matter/types';
 import { EndpointProxy } from '@domojs/devices';
 
 
-type MatterServerRecordWithExpire = ServerAddressUdp & Lifespan;
+export const getFabricQname = (operationalIdString: string) => `_I${operationalIdString}._sub.${MATTER_SERVICE_QNAME}`;
+export const getOperationalDeviceQname = (operationalIdString: string, nodeIdString: string) =>
+    `${operationalIdString}-${nodeIdString}.${MATTER_SERVICE_QNAME}`;
+export const getVendorQname = (vendorId: VendorId) => `_V${vendorId}._sub.${MATTER_COMMISSION_SERVICE_QNAME}`;
+export const getDeviceTypeQname = (deviceType: number) => `_T${deviceType}._sub.${MATTER_COMMISSION_SERVICE_QNAME}`;
+export const getShortDiscriminatorQname = (shortDiscriminator: number) =>
+    `_S${shortDiscriminator}._sub.${MATTER_COMMISSION_SERVICE_QNAME}`;
+export const getLongDiscriminatorQname = (longDiscriminator: number) =>
+    `_L${longDiscriminator}._sub.${MATTER_COMMISSION_SERVICE_QNAME}`;
+export const getCommissioningModeQname = () => `_CM._sub.${MATTER_COMMISSION_SERVICE_QNAME}`;
+export const getCommissionableDeviceQname = (instanceId: string) => `${instanceId}.${MATTER_COMMISSION_SERVICE_QNAME}`;
+export const getCommissionerDeviceQname = (instanceId: string) => `${instanceId}.${MATTER_COMMISSIONER_SERVICE_QNAME}`;
+
+type MatterServerRecordWithExpire = ServerAddressIp & Lifespan;
 
 /** Type for commissionable Device records including Lifespan details. */
 type CommissionableDeviceRecordWithExpire = Omit<CommissionableDevice, "addresses"> &
@@ -31,20 +44,20 @@ class OperationalDeviceProxy implements OperationalDevice, AsyncDisposable
     public get PI() { return this.endpoint.clusters.fixedLabel.target.localLabelList.find(l => l.Label == 'PI')?.Value }
     public get DT() { const v = this.endpoint.clusters.fixedLabel.target.localLabelList.find(l => l.Label == 'DT')?.Value; if (v) return Number(v); return undefined; }
     public get PH() { const v = this.endpoint.clusters.fixedLabel.target.localLabelList.find(l => l.Label == 'PH')?.Value; if (v) return Number(v); return undefined; }
-    public get SII() { const v = this.endpoint.clusters.fixedLabel.target.localLabelList.find(l => l.Label == 'SII')?.Value; if (v) return Duration(v); return undefined; }
-    public get SAI() { const v = this.endpoint.clusters.fixedLabel.target.localLabelList.find(l => l.Label == 'SAI')?.Value; if (v) return Duration(v); return undefined; }
-    public get SAT() { const v = this.endpoint.clusters.fixedLabel.target.localLabelList.find(l => l.Label == 'SAT')?.Value; if (v) return Duration(v); return undefined; }
+    public get SII() { const v = this.endpoint.clusters.fixedLabel.target.localLabelList.find(l => l.Label == 'SII')?.Value; if (v) return Number(v); return undefined; }
+    public get SAI() { const v = this.endpoint.clusters.fixedLabel.target.localLabelList.find(l => l.Label == 'SAI')?.Value; if (v) return Number(v); return undefined; }
+    public get SAT() { const v = this.endpoint.clusters.fixedLabel.target.localLabelList.find(l => l.Label == 'SAT')?.Value; if (v) return Number(v); return undefined; }
     public get T() { const v = this.endpoint.clusters.fixedLabel.target.localLabelList.find(l => l.Label == 'T')?.Value; if (v) return Number(v); return undefined; }
     public get ICD() { const v = this.endpoint.clusters.fixedLabel.target.localLabelList.find(l => l.Label == 'ICD')?.Value; if (v) return Number(v); return undefined; }
-    discoveredAt?: Timestamp = Time.nowMs;
-    ttl?: Duration;
+    discoveredAt?: number = Time.nowMs();
+    ttl?: number;
     public get addresses()
     {
         const v = this.endpoint.clusters.fixedLabel.target.localLabelList.find(l => l.Label == 'Addresses')?.Value; if (v) return v.split(',').map(a => ({
             type: 'udp',
             ip: a,
             port: Number(this.endpoint.clusters.fixedLabel.target.localLabelList.find(l => l.Label == 'Port').Value)
-        } as ServerAddressUdp)); return undefined;
+        } as ServerAddressIp)); return undefined;
     }
     deviceIdentifier: string;
 }
@@ -65,7 +78,7 @@ export class MqttScanner implements Scanner
     private readonly commissionableDevices: Record<string, CommissionableDevice[]> = {};
 
     readonly type: ChannelType = ChannelType.UDP;
-    async findOperationalDevice(fabric: Fabric, nodeId: NodeId, timeout?: Duration, ignoreExistingRecords?: boolean): Promise<OperationalDevice | undefined>
+    async findOperationalDevice(fabric: Fabric, nodeId: NodeId, timeout?: number, ignoreExistingRecords?: boolean): Promise<OperationalDevice | undefined>
     {
         if (!ignoreExistingRecords)
         {
@@ -249,10 +262,10 @@ export class MqttScanner implements Scanner
         return undefined;
     }
 
-    async findCommissionableDevices(identifier: CommissionableDeviceIdentifiers, timeout?: Duration, ignoreExistingRecords?: boolean): Promise<CommissionableDevice[]>
+    async findCommissionableDevices(identifier: CommissionableDeviceIdentifiers, timeout?: number, ignoreExistingRecords?: boolean): Promise<CommissionableDevice[]>
     {
         if (!ignoreExistingRecords)
-            return this.findCommissionableDevicesContinuously(identifier, () => { }, timeout, delay(Seconds.one).then(() => { }))
+            return this.findCommissionableDevicesContinuously(identifier, () => { }, timeout, delay(1000).then(() => { }))
 
         const query = MqttScanner.buildCommissionableQueryIdentifier(identifier);
 
@@ -290,7 +303,7 @@ export class MqttScanner implements Scanner
 
         }, true));
     }
-    async findCommissionableDevicesContinuously(identifier: CommissionableDeviceIdentifiers, callback: (device: CommissionableDevice) => void, timeout?: Duration, cancelSignal?: Promise<void>): Promise<CommissionableDevice[]>
+    async findCommissionableDevicesContinuously(identifier: CommissionableDeviceIdentifiers, callback: (device: CommissionableDevice) => void, timeout?: number, cancelSignal?: Promise<void>): Promise<CommissionableDevice[]>
     {
         const query = MqttScanner.buildCommissionableQueryIdentifier(identifier);
 
