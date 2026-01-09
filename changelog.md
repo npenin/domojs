@@ -1,4 +1,4 @@
-#  (2025-12-23)
+#  (2026-01-09)
 
 
 ### Bug Fixes
@@ -89,6 +89,7 @@
 * dockerfile syntax 89de8c7
 * enable autostart on devicetype c7a8664
 * enable bin from node modules 940f54c
+* enable docker compose 3a58720
 * enable keepalive on tcp and http sockets cd61cd8
 * enable keepalive on tcp and http sockets 27fcfd2
 * enable production mode 4e66bf1
@@ -129,6 +130,8 @@
 * handle pubsub url defined in env 6b0a9ca
 * handle start from fork 98c8153
 * handle undefined pubsub config 233fa6d
+* ignore sensitive files 5273e61
+* ignore sensitive files 0738bc7
 * import cycle 48903df
 * import cycle 2dd896a
 * improve devicetype.add documentation 0f61da2
@@ -286,6 +289,7 @@
 * update to errorwithstatus cfa1344
 * update to event emitter from akala 2bdfe95
 * update to handle incomplete 1.5 definitions 7c9d13a
+* update to latest matter e6cbf0f
 * update to latest serial port types 77515fc
 * update to latest yarn e01f675
 * update to proper logging 7de83c6
