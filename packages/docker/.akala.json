@@ -23,12 +23,7 @@
                 "commandable": true,
                 "type": "nodejs"
             },
-            "weather": {
-                "path": "npm:///@domojs/weather/commands.json",
-                "commandable": true,
-                "type": "nodejs"
-            },
-            "zigate": {
+            "@domojs/zigate": {
                 "path": "npm:///@domojs/zigate/commands.json",
                 "commandable": true,
                 "type": "nodejs"

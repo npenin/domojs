@@ -18,6 +18,7 @@ VOLUME ["/akala/db"]
 ENV NODE_ENV=production
 WORKDIR /akala
 COPY entrypoint.sh entrypoint.sh
+COPY env-init.sh env-init.sh
 COPY --from=build /root /root
 COPY .yarnrc.yml /akala/.yarnrc.yml
 COPY --from=build /akala /akala

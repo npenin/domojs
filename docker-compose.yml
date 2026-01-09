@@ -1,0 +1,57 @@
+services:
+  mqtt-init:
+    build:
+      context: ./mosquitto
+      dockerfile: Dockerfile.init
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/scripts:/scripts
+    networks:
+      - domojs-net
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /scripts/password_generated"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+
+  mqtt:
+    image: eclipse-mosquitto:latest
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    networks:
+      - domojs-net
+    depends_on:
+      mqtt-init:
+        condition: service_healthy
+  domojs:
+    build:
+      context: .
+      dockerfile: ./packages/docker/test.dockerfile
+    container_name: domojs-server
+    environment:
+      - NODE_ENV=test
+      - DEBUG=*
+    volumes:
+      - test-db:/akala/db
+      - ./packages:/akala/packages
+      - ./.yarn:/akala/.yarn
+      - ./mosquitto/scripts:/scripts
+      # - ./node_modules:/akala/node_modules # do not do that if you do not want to break you dev env !
+    ports:
+      - "31417:31416"
+    restart: unless-stopped
+    networks:
+      - domojs-net
+    stdin_open: true
+    tty: true
+    depends_on:
+      - mqtt
+
+networks:
+  domojs-net:
+    driver: bridge
+
+volumes:
+  test-db:

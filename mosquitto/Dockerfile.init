@@ -1,0 +1,14 @@
+# Lightweight init container for password generation
+FROM alpine:latest
+
+# Install required packages
+RUN apk add --no-cache bash
+
+# Copy the password generation script
+COPY scripts/generate_password.sh /generate_password.sh
+
+# Make the script executable
+RUN chmod +x /generate_password.sh
+
+# Set the entrypoint to run the script
+ENTRYPOINT ["/generate_password.sh"]
