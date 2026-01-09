@@ -1,12 +1,14 @@
 import type { Media } from "@domojs/media";
 import State from "../state.js";
 import cr from 'crunchyroll.js'
-import { writeFile, stat } from 'fs/promises'
-import { eachAsync } from '@akala/core'
+import fsHandler, { FileSystemProvider } from '@akala/fs'
+// import { writeFile, stat } from 'fs/promises'
+import { eachAsync, HttpStatusCode } from '@akala/core'
+import { pathToFileURL } from 'node:url'
 
-export default async function (this: State): Promise<Media[]>
-export default async function (this: State, outFile: string): Promise<undefined>
-export default async function (this: State, outFile?: string): Promise<Media[] | undefined>
+export default async function getAllAnimes(this: State): Promise<Media[]>
+export default async function getAllAnimes(this: State, outFile: string): Promise<undefined>
+export default async function getAllAnimes(this: State, outFile?: string): Promise<Media[] | undefined>
 {
     debugger;
     await cr.login(this.userName, await this.getSecret('password'), this.locale);
@@ -14,15 +16,17 @@ export default async function (this: State, outFile?: string): Promise<Media[] |
     let result: Media[] = [];
     const localesFilter = this.locales.extract();
     let stopAt: Date | undefined;
+    let fs: FileSystemProvider;
     if (outFile)
     {
+        fs = await fsHandler.process(new URL(pathToFileURL(outFile).toString()));
         try
         {
-            stopAt = (await stat(outFile)).mtime;
+            stopAt = (await fs.stat(outFile)).mtime;
         }
         catch (e)
         {
-            if (e.code !== 'ENOENT')
+            if (e.code !== 'ENOENT' && e.statusCode !== HttpStatusCode.NotFound)
                 throw e;
         }
     }
@@ -42,7 +46,6 @@ export default async function (this: State, outFile?: string): Promise<Media[] |
 
                 if (anime.type == 'movie_listing')
                 {
-                    // console.log(episode);
                     result.push({
                         id: anime.channel_id + ':' + anime.id,
                         path: anime.id,
@@ -69,7 +72,6 @@ export default async function (this: State, outFile?: string): Promise<Media[] |
                             await eachAsync((await cr.getEpisodes(season.id)).items, async episode =>
                             {
                                 if (episode.audio_locale in localesFilter && (!localesFilter[episode.audio_locale].length || localesFilter[episode.audio_locale].find(x => episode.subtitle_locales.indexOf(x) > -1)))
-                                    // console.log(episode);
                                     result.push({
                                         id: anime.channel_id + ':' + episode.id,
                                         path: "crunchyroll://episode?id=" + episode.id,
@@ -115,7 +117,7 @@ export default async function (this: State, outFile?: string): Promise<Media[] |
     while (true);
 
     if (outFile)
-        await writeFile(outFile, JSON.stringify(result, null, 4))
+        await fs.writeFile(outFile, JSON.stringify(result, null, 4))
     else
         return result;
 }
