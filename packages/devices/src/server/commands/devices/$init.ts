@@ -6,13 +6,13 @@ import { Container as pmContainer } from '@akala/pm'
 import { MqttClient, MqttEvents, protocol } from "@domojs/mqtt";
 import devices from '../../device-commands.js'
 import { EndpointProxy } from "../../clients/EndpointProxy.js";
-import { ClusterMap, type Commissionnee } from "../../clusters/index.js";
+import { type Commissionnee } from "../../clusters/index.js";
 import { BridgeConfiguration, RootNode } from "../../clients/RootNode.js";
 import { ClusterInstance } from "../../clients/shared.js";
 import { IsomorphicBuffer, ObservableObject, packagejson } from "@akala/core";
 import registerAdapter from "./register-adapter.js";
 import { clusterId } from "../../clusters/Commissionnee.js";
-import { clusterFactory, ClusterIds, ClusterInstanceLight, MatterClusterIds, OTARequestor, registerNode, oTAProvider } from "../../../index.js";
+import { clusterFactory, MatterClusterIds, oTAProvider } from "../../../index.js";
 
 export function Commissionnee(state: State): ClusterInstance<Commissionnee>
 {
@@ -90,44 +90,59 @@ export function parseVersion(version: string): ParsedVersion
     return result as ParsedVersion;
 }
 
-export default async function (this: State, context: CliContext<{ configFile: string }, State['config']>, pm: pmContainer & Container<any>, container: devices.container & Container<void>)
+function uuidToBuffer(uuid: string)
 {
-    if (!context.state)
-        this.config = await Configuration.newAsync(context.options.configFile);
-    else
+    // Remove hyphens from the UUID
+    const hex = uuid.replaceAll('-', '');
+
+    // Create a buffer from the hex string
+    const buffer = IsomorphicBuffer.from(hex, 'hex');
+
+    return buffer;
+}
+
+function bufferToUuid(buffer: IsomorphicBuffer)
+{
+    // Convert the buffer to a hex string
+    const hex = buffer.toString('hex');
+
+    // Format the hex string into a UUID format
+    const uuid = [
+        hex.slice(0, 8),
+        hex.slice(8, 12),
+        hex.slice(12, 16),
+        hex.slice(16, 20),
+        hex.slice(20, 32)
+    ].join('-');
+
+    return uuid;
+}
+
+function versionToNumber(version: string): number
+{
+    const parsedVersion = parseVersion(version);
+    return parsedVersion.major * 1_000_000 + parsedVersion.minor * 1_000 + parsedVersion.patch;
+}
+
+function versionNumberToString(version: number): string
+{
+    const major = Math.floor(version / 1_000_000);
+    const minor = Math.floor((version % 1_000_000) / 1_000);
+    const patch = version % 1_000;
+
+    return `${major}.${minor}.${patch}`;
+}
+
+export default async function init(this: State, context: CliContext<{ configFile: string }, State['config']>, pm: pmContainer & Container<any>, container: devices.container & Container<void>)
+{
+    if (context.state)
         this.config = context.state;
+    else
+        this.config = await Configuration.newAsync(context.options.configFile);
 
 
     if (!context.state.has('endpointsMapping'))
         context.state.set('endpointsMapping', {});
-
-    // if (!this.config.has('store'))
-    // {
-    //     context.state.set('store', {
-    //         "provider": "file+json://./",
-    //         "models": {
-    //             "DeviceInit": {
-    //                 "members": {
-    //                     "name": {
-    //                         "isKey": true,
-    //                         "type": {
-    //                             "type": "string",
-    //                             "length": 250
-    //                         },
-    //                         "generator": "business"
-    //                     },
-    //                     "body": {
-    //                         "isKey": false,
-    //                         "type": {
-    //                             "type": "string"
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     });
-
-    // }
 
     const sidecar = Object.assign(this, await app<{}, MqttEvents>(context, pm));
     sidecar.sidecars['@domojs/devices'] = Promise.resolve(container);
@@ -143,49 +158,6 @@ export default async function (this: State, context: CliContext<{ configFile: st
         delete sidecar.pubsub;
         delete sidecar.config.pubsub;
         await pubsub(sidecar, pubsubConfig, context.abort.signal);
-    }
-
-    function uuidToBuffer(uuid: string)
-    {
-        // Remove hyphens from the UUID
-        const hex = uuid.replace(/-/g, '');
-
-        // Create a buffer from the hex string
-        const buffer = IsomorphicBuffer.from(hex, 'hex');
-
-        return buffer;
-    }
-
-    function bufferToUuid(buffer: IsomorphicBuffer)
-    {
-        // Convert the buffer to a hex string
-        const hex = buffer.toString('hex');
-
-        // Format the hex string into a UUID format
-        const uuid = [
-            hex.slice(0, 8),
-            hex.slice(8, 12),
-            hex.slice(12, 16),
-            hex.slice(16, 20),
-            hex.slice(20, 32)
-        ].join('-');
-
-        return uuid;
-    }
-
-    function versionToNumber(version: string): number
-    {
-        const parsedVersion = parseVersion(version);
-        return parsedVersion.major * 1_000_000 + parsedVersion.minor * 1_000 + parsedVersion.patch;
-    }
-
-    function versionNumberToString(version: number): string
-    {
-        const major = Math.floor(version / 1_000_000);
-        const minor = Math.floor((version % 1_000_000) / 1_000);
-        const patch = version % 1_000;
-
-        return `${major}.${minor}.${patch}`;
     }
 
     this.self = new RootNode('devices', {
