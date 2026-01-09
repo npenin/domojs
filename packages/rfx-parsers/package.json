@@ -1,7 +1,7 @@
 {
     "dependencies": {
-        "@akala/core": "^44.2.7",
-        "@akala/protocol-parser": "^11.6.17",
+        "@akala/core": "^44.2.8",
+        "@akala/protocol-parser": "^11.6.18",
         "@domojs/devices": "workspace:*"
     },
     "peerDependencies": {
@@ -19,7 +19,7 @@
     "type": "module",
     "devDependencies": {
         "@types/debug": "4.1.12",
-        "@types/node": "24.10.0",
+        "@types/node": "24.10.4",
         "@types/usb": "^2.0.5",
         "serialport": "^13.0.0",
         "typescript": "^5.9.3",

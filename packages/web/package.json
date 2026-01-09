@@ -17,22 +17,22 @@
         }
     },
     "dependencies": {
-        "@akala/client": "^43.6.45",
-        "@akala/commands": "^18.1.14",
-        "@akala/core": "^44.2.7",
-        "@akala/web-ui": "^5.3.46",
-        "@carbon/icon-helpers": "^10.68.0",
-        "@carbon/icons": "^11.70.0",
+        "@akala/client": "^43.6.46",
+        "@akala/commands": "^18.1.15",
+        "@akala/core": "^44.2.8",
+        "@akala/web-ui": "^5.3.47",
+        "@carbon/icon-helpers": "10.69.0",
+        "@carbon/icons": "11.71.0",
         "@domojs/devices": "workspace:^"
     },
     "devDependencies": {
-        "@akala/vite": "^2.7.74",
+        "@akala/vite": "^2.7.75",
         "@vitejs/plugin-basic-ssl": "^2.1.0",
         "esbuild-sass-plugin": "^3.3.1",
         "postcss": "^8.5.6",
         "postcss-modules": "^6.0.1",
-        "sass": "^1.93.3",
-        "vite": "^7.1.12",
+        "sass": "^1.97.1",
+        "vite": "^7.3.0",
         "vite-plugin-pwa": "^1.2.0"
     },
     "scripts": {

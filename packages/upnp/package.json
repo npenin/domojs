@@ -14,12 +14,12 @@
         "./commands.json": "./commands.json"
     },
     "dependencies": {
-        "@akala/sidecar": "^8.5.41",
+        "@akala/sidecar": "^8.5.43",
         "@domojs/devices": "workspace:^",
         "@rgrove/parse-xml": "^4.2.0"
     },
     "devDependencies": {
-        "@akala/cli": "^5.16.7"
+        "@akala/cli": "^5.16.8"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\"",

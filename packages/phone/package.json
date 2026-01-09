@@ -22,22 +22,22 @@
         "ios": "yarn build && yarn sync:ios"
     },
     "dependencies": {
-        "@akala/commands": "^18.1.14",
-        "@akala/config": "^7.2.29",
-        "@akala/core": "^44.2.7",
-        "@akala/fs": "^2.6.7",
-        "@akala/pubsub": "^3.1.79",
-        "@akala/sidecar": "^8.5.41",
-        "@capacitor/android": "^7.4.4",
-        "@capacitor/core": "^7.4.4",
-        "@capacitor/filesystem": "^7.1.4",
-        "@capacitor/ios": "^7.4.4",
+        "@akala/commands": "^18.1.15",
+        "@akala/config": "^7.2.30",
+        "@akala/core": "^44.2.8",
+        "@akala/fs": "^2.6.8",
+        "@akala/pubsub": "^3.1.81",
+        "@akala/sidecar": "^8.5.43",
+        "@capacitor/android": "^8.0.0",
+        "@capacitor/core": "^8.0.0",
+        "@capacitor/filesystem": "^8.0.0",
+        "@capacitor/ios": "^8.0.0",
         "@domojs/devices": "workspace:*",
         "@domojs/mqtt": "workspace:*"
     },
     "devDependencies": {
-        "@capacitor/cli": "^7.4.4",
+        "@capacitor/cli": "^8.0.0",
         "typescript": "^5.9.3",
-        "vite": "^7.1.12"
+        "vite": "^7.3.0"
     }
 }
