@@ -5,3 +5,4 @@ coverage
 yarn-error.log
 *._ts
 wwwroot/
+certs/_cert.pem
