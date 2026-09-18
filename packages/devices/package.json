@@ -45,7 +45,7 @@
     "devDependencies": {
         "@domojs/theme-default": "workspace:*",
         "@popperjs/core": "2.11.8",
-        "@types/debug": "4.1.12",
+        "@types/debug": "4.1.13",
         "@types/ws": "8.18.1",
         "typescript": "^5.9.3"
     },

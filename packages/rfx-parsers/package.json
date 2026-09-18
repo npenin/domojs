@@ -18,7 +18,7 @@
     },
     "type": "module",
     "devDependencies": {
-        "@types/debug": "4.1.12",
+        "@types/debug": "4.1.13",
         "@types/node": "24.10.4",
         "@types/usb": "^2.0.5",
         "serialport": "^13.0.0",

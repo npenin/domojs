@@ -36,7 +36,7 @@
         "@akala/json-rpc-ws": "^15.0.9",
         "@domojs/theme-default": "workspace:*",
         "@popperjs/core": "2.11.8",
-        "@types/debug": "4.1.12",
+        "@types/debug": "4.1.13",
         "typescript": "^5.9.3"
     }
 }
