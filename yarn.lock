@@ -1646,7 +1646,7 @@ __metadata:
     "@domojs/theme-default": "workspace:*"
     "@fortawesome/free-brands-svg-icons": "npm:7.1.0"
     "@popperjs/core": "npm:2.11.8"
-    "@types/debug": "npm:4.1.12"
+    "@types/debug": "npm:4.1.13"
     "@types/ws": "npm:8.18.1"
     typescript: "npm:^5.9.3"
     ws: "npm:8.18.3"
@@ -1700,7 +1700,7 @@ __metadata:
   resolution: "@domojs/icookin@workspace:packages/icookin"
   dependencies:
     "@akala/core": "npm:^44.2.8"
-    "@types/debug": "npm:4.1.12"
+    "@types/debug": "npm:4.1.13"
     "@types/mongodb": "npm:4.0.7"
     "@types/node": "npm:24.10.4"
     "@types/ws": "npm:8.18.1"
@@ -1735,7 +1735,7 @@ __metadata:
     "@domojs/theme-default": "workspace:*"
     "@fortawesome/fontawesome-common-types": "npm:7.1.0"
     "@popperjs/core": "npm:2.11.8"
-    "@types/debug": "npm:4.1.12"
+    "@types/debug": "npm:4.1.13"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
@@ -1837,7 +1837,7 @@ __metadata:
     "@domojs/theme-default": "workspace:*"
     "@ffmpeg.wasm/core-st": "npm:^0.13.2"
     "@ffmpeg.wasm/main": "npm:^0.13.1"
-    "@types/debug": "npm:4.1.12"
+    "@types/debug": "npm:4.1.13"
     "@types/ioredis": "npm:5.0.0"
     "@types/jquery": "npm:3.5.33"
     "@types/levenshtein": "npm:1.0.4"
@@ -1860,7 +1860,7 @@ __metadata:
     "@akala/commands": "npm:^18.1.15"
     "@akala/core": "npm:^44.2.8"
     "@akala/protocol-parser": "npm:^11.6.18"
-    "@types/debug": "npm:4.1.12"
+    "@types/debug": "npm:4.1.13"
     "@types/request": "npm:2.48.13"
     mqtt: "npm:^5.14.1"
   peerDependencies:
@@ -1911,7 +1911,7 @@ __metadata:
     "@akala/core": "npm:^44.2.8"
     "@akala/protocol-parser": "npm:^11.6.18"
     "@domojs/devices": "workspace:*"
-    "@types/debug": "npm:4.1.12"
+    "@types/debug": "npm:4.1.13"
     "@types/node": "npm:24.10.4"
     "@types/usb": "npm:^2.0.5"
     serialport: "npm:^13.0.0"
@@ -1989,7 +1989,7 @@ __metadata:
     "@fortawesome/free-brands-svg-icons": "npm:^7.1.0"
     "@fortawesome/free-solid-svg-icons": "npm:^7.1.0"
     "@popperjs/core": "npm:^2.11.8"
-    "@types/debug": "npm:4.1.12"
+    "@types/debug": "npm:4.1.13"
     "@types/node": "npm:24.10.4"
     "@types/request": "npm:2.48.13"
     "@types/ws": "npm:8.18.1"
@@ -2105,7 +2105,7 @@ __metadata:
     "@akala/core": "npm:^44.2.8"
     "@akala/protocol-parser": "npm:^11.6.18"
     "@domojs/devices": "workspace:*"
-    "@types/debug": "npm:4.1.12"
+    "@types/debug": "npm:4.1.13"
     "@types/usb": "npm:2.0.5"
     "@types/ws": "npm:8.18.1"
     debug: "npm:^4.4.3"
@@ -2134,7 +2134,7 @@ __metadata:
     "@akala/sidecar": "npm:^8.5.43"
     "@domojs/devices": "workspace:*"
     "@domojs/zigate-parsers": "workspace:*"
-    "@types/debug": "npm:4.1.12"
+    "@types/debug": "npm:4.1.13"
     http-punch-hole: "npm:^1.0.12"
   peerDependencies:
     "@domojs/devices": "workspace:*"
@@ -4352,7 +4352,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/debug@npm:4.1.12, @types/debug@npm:^4.1.12":
+"@types/debug@npm:4.1.13":
+  version: 4.1.13
+  resolution: "@types/debug@npm:4.1.13"
+  dependencies:
+    "@types/ms": "npm:*"
+  checksum: 10/5091d4ebda85236e6f4a6ecea552860e521e11d1d388d3f6255b40726f5a4a7cf1baa0d09f60853838e4cac6c12a13b14114d5f422ccecaee4d1d07dab349900
+  languageName: node
+  linkType: hard
+
+"@types/debug@npm:^4.1.12":
   version: 4.1.12
   resolution: "@types/debug@npm:4.1.12"
   dependencies:

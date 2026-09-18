@@ -46,7 +46,7 @@
         "@akala/server": "^27.2.59",
         "@akala/storage": "^20.4.31",
         "@domojs/theme-default": "workspace:*",
-        "@types/debug": "4.1.12",
+        "@types/debug": "4.1.13",
         "@types/ioredis": "5.0.0",
         "@types/jquery": "3.5.33",
         "@types/levenshtein": "1.0.4",

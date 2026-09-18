@@ -28,7 +28,7 @@
         "@akala/protocol-parser": "^11.6.18"
     },
     "devDependencies": {
-        "@types/debug": "4.1.12",
+        "@types/debug": "4.1.13",
         "@types/request": "2.48.13",
         "mqtt": "^5.14.1"
     },
